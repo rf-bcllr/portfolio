@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useTranslations } from "@/hooks/useTranslations";
 
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import p1 from "@/assets/proj-mural.png";
@@ -16,6 +19,8 @@ import cert3 from "@/assets/cert-leadership.jpg";
 
 const Index = () => {
   const [spot, setSpot] = useState({ x: 0, y: 0 });
+  const [language, setLanguage] = useState<"pt" | "en">("pt");
+  const t = useTranslations(language);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -35,14 +40,20 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
-          <a href="#inicio" className="font-semibold">RB</a>
-          <div className="flex items-center gap-2">
-            <a href="#projetos" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Projetos</a>
-            <a href="#sobre" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Sobre</a>
-            <a href="#contato" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contato</a>
-            <Button asChild variant="soft" className="ml-2">
-              <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
-            </Button>
+          <a href="#inicio" className="font-semibold text-lg">RB</a>
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-6">
+              <a href="#projetos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">{t.projects}</a>
+              <a href="#sobre" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">{t.about}</a>
+              <a href="#contato" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">{t.contact}</a>
+            </div>
+            <div className="flex items-center gap-2">
+              <LanguageToggle language={language} onLanguageChange={setLanguage} />
+              <ThemeToggle />
+              <Button asChild variant="contrast" size="sm">
+                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
+              </Button>
+            </div>
           </div>
         </nav>
       </header>
@@ -68,35 +79,34 @@ const Index = () => {
               className="mx-auto aspect-square size-40 rounded-full border-2 border-border object-cover shadow-lg md:mx-0 md:size-48 animate-enter"
             />
             <div>
-              <h1 className="text-4xl font-bold tracking-tight md:text-5xl">Rafael Bacellar — Product Designer</h1>
-              <p className="mt-4 max-w-xl text-muted-foreground">
-                Portfólio com experiências reais em produtos digitais. Foco em UX/UI, design system e interfaces escaláveis.
+              <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl animate-fade-in">{t.heroTitle}</h1>
+              <p className="mt-4 max-w-xl text-lg text-muted-foreground animate-fade-in" style={{ animationDelay: "0.1s" }}>
+                {t.heroDescription}
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild variant="hero">
-                  <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" aria-label="Falar com Rafael no LinkedIn">
-                    Falar no LinkedIn
+              <div className="mt-8 flex flex-wrap gap-3 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <Button asChild variant="hero" size="lg">
+                  <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" aria-label={t.talkOnLinkedIn}>
+                    {t.talkOnLinkedIn}
                   </a>
                 </Button>
-                <Button asChild variant="outline">
-                  <a href="#projetos">Ver projetos</a>
+                <Button asChild variant="outline" size="lg">
+                  <a href="#projetos">{t.viewProjects}</a>
                 </Button>
               </div>
-              <div className="mt-6 flex flex-wrap items-center gap-2">
-                <Badge variant="secondary">UX</Badge>
-                <Badge variant="secondary">UI</Badge>
-                <Badge variant="secondary">Design System</Badge>
-                <Badge variant="secondary">Prototipagem</Badge>
+              <div className="mt-8 flex flex-wrap items-center gap-2 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+                {t.skills.map((skill) => (
+                  <Badge key={skill} variant="secondary">{skill}</Badge>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
         {/* Projetos */}
-        <section id="projetos" className="container mx-auto px-6 py-16">
-          <header className="mb-8">
-            <h2 className="text-2xl font-semibold tracking-tight">Experiências reais</h2>
-            <p className="text-muted-foreground">Alguns destaques visuais dos meus estudos de caso.</p>
+        <section id="projetos" className="container mx-auto px-6 py-24">
+          <header className="mb-12 text-center">
+            <h2 className="text-3xl font-bold tracking-tight lg:text-4xl">{t.realExperiences}</h2>
+            <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">{t.projectsSubtitle}</p>
           </header>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
