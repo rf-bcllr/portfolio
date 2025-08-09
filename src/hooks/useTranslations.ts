@@ -22,6 +22,7 @@ export const translations = {
     // Certifications
     certificationsTitle: "Certificações",
     certificationsSubtitle: "Principais certificações e cursos concluídos.",
+    moreOnBento: "Ver mais no Bento",
     
     // Recommendations
     recommendationsTitle: "Recomendações",
@@ -30,9 +31,10 @@ export const translations = {
     // Contact
     contactTitle: "Vamos conversar?",
     contactDescription: "Disponível para projetos freelance e oportunidades de trabalho.",
+    backToTop: "Voltar ao topo",
     
     // Skills
-    skills: ["UX", "UI", "Design System", "Prototipagem"]
+    skills: ["UX", "UI", "Design System", "Prototipagem", "IA"]
   },
   en: {
     // Navigation
@@ -57,6 +59,7 @@ export const translations = {
     // Certifications
     certificationsTitle: "Certifications",
     certificationsSubtitle: "Main certifications and completed courses.",
+    moreOnBento: "See more on Bento",
     
     // Recommendations
     recommendationsTitle: "Recommendations",
@@ -65,9 +68,10 @@ export const translations = {
     // Contact
     contactTitle: "Let's talk?",
     contactDescription: "Available for freelance projects and job opportunities.",
+    backToTop: "Back to top",
     
     // Skills
-    skills: ["UX", "UI", "Design System", "Prototyping"]
+    skills: ["UX", "UI", "Design System", "Prototyping", "AI"]
   }
 };
 

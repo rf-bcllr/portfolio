@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,7 +20,14 @@ import cert3 from "@/assets/cert-leadership.jpg";
 const Index = () => {
   const [spot, setSpot] = useState({ x: 0, y: 0 });
   const [language, setLanguage] = useState<"pt" | "en">("pt");
+  const [scrolled, setScrolled] = useState(false);
   const t = useTranslations(language);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -30,17 +37,25 @@ const Index = () => {
   const projects = [
     { src: p1, title: "Login, Onboarding and Home @Mural", href: "https://www.behance.net/rfbcllr" },
     { src: p4, title: "Healthy Food & Groceries App Prototype", href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1" },
-    { src: p2, title: "Behance Highlights 1", href: "https://www.behance.net/rfbcllr" },
-    { src: p3, title: "Behance Highlights 2", href: "https://www.behance.net/rfbcllr" },
-    { src: p5, title: "Behance Highlights 3", href: "https://www.behance.net/rfbcllr" },
-    { src: p6, title: "Behance Highlights 4", href: "https://www.behance.net/rfbcllr" },
+    { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", title: "New app @isaac (GIF)", href: "https://bento.me/rfbcllr" },
+    { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", title: "AI interactions (GIF)", href: "https://bento.me/rfbcllr" },
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
-          <a href="#inicio" className="font-semibold text-lg">RB</a>
+          {!scrolled ? (
+            <a href="#inicio" className="font-semibold text-lg transition-opacity duration-300">RB</a>
+          ) : (
+            <a href="#inicio" className="flex items-center">
+              <img
+                src={avatar}
+                alt="Rafael Bacellar avatar"
+                className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300"
+              />
+            </a>
+          )}
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-6">
               <a href="#projetos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">{t.projects}</a>
@@ -84,7 +99,7 @@ const Index = () => {
                 {t.heroDescription}
               </p>
               <div className="mt-8 flex flex-wrap gap-3 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <Button asChild variant="hero" size="lg">
+                <Button asChild variant="contrast" size="lg">
                   <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" aria-label={t.talkOnLinkedIn}>
                     {t.talkOnLinkedIn}
                   </a>
@@ -132,7 +147,7 @@ const Index = () => {
 
           <div className="mt-10 flex justify-center">
             <Button asChild variant="soft">
-              <a href="https://bento.me/rfbcllr" target="_blank" rel="noreferrer">Ver mais no Bento</a>
+              <a href="https://bento.me/rfbcllr" target="_blank" rel="noreferrer">{t.moreOnBento}</a>
             </Button>
           </div>
         </section>
@@ -141,9 +156,9 @@ const Index = () => {
         <section id="sobre" className="container mx-auto px-6 py-16">
           <div className="grid gap-8 md:grid-cols-2">
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight">Sobre mim</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">{t.aboutTitle}</h2>
               <p className="mt-4 text-muted-foreground">
-                Product Designer com experiência na criação de experiências digitais end‑to‑end: pesquisa, arquitetura de informação, fluxos, wireframes e interfaces de alta fidelidade. Trabalho próximo a times de produto e engenharia para entregar valor com qualidade.
+                {t.aboutDescription}
               </p>
             </div>
             <div className="rounded-lg border p-6">
@@ -163,8 +178,8 @@ const Index = () => {
         {/* Certificações */}
         <section id="certificacoes" className="container mx-auto px-6 py-16">
           <header className="mb-8">
-            <h2 className="text-2xl font-semibold tracking-tight">Certificações</h2>
-            <p className="text-muted-foreground">Conteúdo fiel ao Bento.</p>
+            <h2 className="text-2xl font-semibold tracking-tight">{t.certificationsTitle}</h2>
+            <p className="text-muted-foreground">{t.certificationsSubtitle}</p>
           </header>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[{
@@ -197,7 +212,7 @@ const Index = () => {
         {/* Recomendações */}
         <section id="recomendacoes" className="container mx-auto px-6 py-16">
           <header className="mb-8">
-            <h2 className="text-2xl font-semibold tracking-tight">Recomendações</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">{t.recommendationsTitle}</h2>
             <div className="mt-3 flex flex-wrap gap-2">
               {[
                 "1 ano @isaac",
@@ -227,14 +242,11 @@ const Index = () => {
         <section id="contato" className="relative isolate">
           <div className="absolute inset-0 -z-10 opacity-[0.12]" style={{ background: "var(--gradient-hero)" }} />
           <div className="container mx-auto px-6 py-16 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight">Vamos conversar?</h2>
-            <p className="mt-2 text-muted-foreground">Aberto a novas conexões e oportunidades.</p>
+            <h2 className="text-2xl font-semibold tracking-tight">{t.contactTitle}</h2>
+            <p className="mt-2 text-muted-foreground">{t.contactDescription}</p>
             <div className="mt-6 flex justify-center gap-3">
-              <Button asChild variant="hero">
-                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">Conectar no LinkedIn</a>
-              </Button>
               <Button asChild variant="outline">
-                <a href="#inicio">Voltar ao topo</a>
+                <a href="#inicio">{t.backToTop}</a>
               </Button>
             </div>
           </div>
