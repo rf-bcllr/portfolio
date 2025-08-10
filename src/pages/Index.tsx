@@ -1,21 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
-import p1 from "@/assets/proj-mural.png";
-import p2 from "@/assets/proj-thumb-1.png";
-import p3 from "@/assets/proj-thumb-2.png";
-import p4 from "@/assets/proj-healthy.png";
-import p5 from "@/assets/proj-thumb-3.png";
-import p6 from "@/assets/proj-thumb-4.png";
-import cert1 from "@/assets/cert-google.png";
-import cert2 from "@/assets/cert-ai.jpg";
-import cert3 from "@/assets/cert-leadership.jpg";
 
 const Index = () => {
   const [spot, setSpot] = useState({ x: 0, y: 0 });
@@ -35,10 +26,10 @@ const Index = () => {
   };
 
   const projects = [
-    { src: p1, title: "Login, Onboarding and Home @Mural", href: "https://www.behance.net/rfbcllr" },
-    { src: p4, title: "Healthy Food & Groceries App Prototype", href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1" },
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", title: "New app @isaac (GIF)", href: "https://bento.me/rfbcllr" },
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", title: "AI interactions (GIF)", href: "https://bento.me/rfbcllr" },
+    { src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/6d1gUMMWYdGdDNPe-26ddde76011107.Y3JvcCw4MDgsNjMyLDAsMA%2520(1).png?w=1500", title: "Login, Onboarding and Home @Mural", href: "https://bento.me/rfbcllr" },
+    { src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/EC90UL0Vda7i4S30-Screenshot%25202023-10-10%2520at%252022.10.09.png?w=1500", title: "Healthy Food & Groceries App Prototype", href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1" },
   ];
 
   return (
@@ -65,9 +56,6 @@ const Index = () => {
             <div className="flex items-center gap-2">
               <LanguageToggle language={language} onLanguageChange={setLanguage} />
               <ThemeToggle />
-              <Button asChild variant="contrast" size="sm">
-                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
-              </Button>
             </div>
           </div>
         </nav>
@@ -124,23 +112,18 @@ const Index = () => {
             <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">{t.projectsSubtitle}</p>
           </header>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="space-y-10">
             {projects.map((proj, i) => (
-              <a key={i} href={proj.href} target="_blank" rel="noreferrer" className="group">
-                <Card className="overflow-hidden border-border/70 transition-all hover:shadow-xl">
-                  <CardContent className="p-0">
-                    <img
-                      src={proj.src}
-                      alt={`${proj.title} — case de produto por Rafael Bacellar`}
-                      loading="lazy"
-                      className="h-52 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    />
-                  </CardContent>
-                  <div className="p-4">
-                    <p className="font-medium">{proj.title}</p>
-                    <p className="text-sm text-muted-foreground">UI/UX · Case study</p>
-                  </div>
-                </Card>
+              <a key={i} href={proj.href} target="_blank" rel="noreferrer" className="block group">
+                <figure className="overflow-hidden rounded-xl">
+                  <img
+                    src={proj.src}
+                    alt={`${proj.title} — case de produto por Rafael Bacellar`}
+                    loading="lazy"
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.01]"
+                  />
+                </figure>
+                <p className="mt-3 text-sm text-muted-foreground">{proj.title}</p>
               </a>
             ))}
           </div>
@@ -181,32 +164,28 @@ const Index = () => {
             <h2 className="text-2xl font-semibold tracking-tight">{t.certificationsTitle}</h2>
             <p className="text-muted-foreground">{t.certificationsSubtitle}</p>
           </header>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[{
-              src: cert1,
-              title: "Foundations of UX Design by Google",
-              href: "https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98"
-            },{
-              src: cert2,
-              title: "UX Design for AI Systems",
-              href: "https://app.crowdclass.com/tokens/9153"
-            },{
-              src: cert3,
-              title: "UX Design Leadership",
-              href: "https://app.crowdclass.com/tokens/12141"
-            }].map((c,i) => (
-              <a key={i} href={c.href} target="_blank" rel="noreferrer" className="group">
-                <Card className="overflow-hidden transition-all hover:shadow-xl">
-                  <CardContent className="p-0">
-                    <img src={c.src} alt={c.title} loading="lazy" className="h-48 w-full object-cover" />
-                  </CardContent>
-                  <div className="p-4">
-                    <p className="font-medium">{c.title}</p>
-                  </div>
-                </Card>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <a href="https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98" target="_blank" rel="noreferrer" className="story-link">
+                Foundations of UX Design by Google — Coursera
               </a>
-            ))}
-          </div>
+            </li>
+            <li>
+              <a href="https://app.crowdclass.com/tokens/9153" target="_blank" rel="noreferrer" className="story-link">
+                UX Design for AI Systems — Crowdclass
+              </a>
+            </li>
+            <li>
+              <a href="https://app.crowdclass.com/tokens/12141" target="_blank" rel="noreferrer" className="story-link">
+                UX Design Leadership — Crowdclass
+              </a>
+            </li>
+            <li>
+              <a href="https://app.crowdclass.com/tokens/8394" target="_blank" rel="noreferrer" className="story-link">
+                Strategic Design by The Starter — Crowdclass
+              </a>
+            </li>
+          </ul>
         </section>
 
         {/* Recomendações */}
@@ -253,8 +232,19 @@ const Index = () => {
         </section>
       </main>
 
-      <footer className="border-t py-6 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Rafael Bacellar · Todos os direitos reservados
+      <footer className="border-t py-8 text-center">
+        <div className="container mx-auto px-6">
+          <div className="mb-4">
+            <Button asChild variant="contrast">
+              <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                LinkedIn
+              </a>
+            </Button>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Rafael Bacellar · Todos os direitos reservados
+          </p>
+        </div>
       </footer>
     </div>
   );
