@@ -6,8 +6,8 @@ interface BentoGridProps extends React.HTMLAttributes<HTMLDivElement> {}
 export function BentoGrid({ className, ...props }: BentoGridProps) {
   return (
     <div
-      className={cn(
-        "container mx-auto grid auto-rows-[minmax(180px,auto)] gap-4 px-6 py-12 sm:grid-cols-6 lg:grid-cols-8",
+className={cn(
+        "w-full grid grid-flow-col auto-cols-[minmax(240px,1fr)] grid-rows-[220px_220px] gap-4 overflow-x-auto px-4 py-8 sm:auto-cols-[minmax(280px,1fr)] sm:grid-rows-[260px_260px] lg:auto-cols-[minmax(340px,1fr)] lg:grid-rows-[320px_320px] snap-x",
         className
       )}
       {...props}

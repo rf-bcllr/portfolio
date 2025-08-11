@@ -61,54 +61,54 @@ const Index = () => {
         <BentoGrid className="py-12">
           {/* Left column projects */}
           {projects.slice(0, 1).map((p, i) => (
-            <BentoCard key={`left-${i}`} className="col-span-6 sm:col-span-3 row-span-2 border-0 bg-transparent shadow-none">
+            <BentoCard key={`left-${i}`} className="col-span-2 row-span-2 snap-start">
               <ProjectCard title={p.title} src={p.src} href={p.href} language={language} />
             </BentoCard>
           ))}
 
           {/* Center Profile */}
-          <BentoCard className="col-span-6 lg:col-span-4 row-span-3">
+          <BentoCard className="col-span-3 row-span-2 snap-start">
             <ProfileCard language={language} />
           </BentoCard>
 
           {/* Right column projects */}
           {projects.slice(1, 3).map((p, i) => (
-            <BentoCard key={`right-${i}`} className="col-span-6 sm:col-span-3 row-span-2 border-0 bg-transparent shadow-none">
+            <BentoCard key={`right-${i}`} className="col-span-1 row-span-1 snap-start">
               <ProjectCard title={p.title} src={p.src} href={p.href} language={language} />
             </BentoCard>
           ))}
 
           {/* Wide project */}
           {projects.slice(3, 4).map((p, i) => (
-            <BentoCard key={`wide-${i}`} className="col-span-6 lg:col-span-8 row-span-2 border-0 bg-transparent shadow-none">
+            <BentoCard key={`wide-${i}`} className="col-span-3 row-span-2 snap-start">
               <ProjectCard title={p.title} src={p.src} href={p.href} language={language} />
             </BentoCard>
           ))}
 
           {/* Recommendations */}
-          <BentoCard className="col-span-6 sm:col-span-4">
+          <BentoCard className="col-span-2 row-span-1 snap-start">
             <RecommendationsCard language={language} />
           </BentoCard>
 
           {/* Certifications */}
-          <BentoCard className="col-span-6 sm:col-span-4">
+          <BentoCard className="col-span-2 row-span-1 snap-start">
             <CertificationsCard items={certifications} language={language} />
           </BentoCard>
 
           {/* Social icons as separate small boxes */}
-          <BentoCard className="col-span-3">
+          <BentoCard className="col-span-1 row-span-1 snap-start">
             <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="group flex h-full items-center justify-center p-8">
               <Linkedin className="h-8 w-8 text-foreground/80 transition-transform duration-300 group-hover:scale-110" />
             </a>
           </BentoCard>
-          <BentoCard className="col-span-3">
+          <BentoCard className="col-span-1 row-span-1 snap-start">
             <a href="https://www.behance.net/rfbcllr" target="_blank" rel="noreferrer" aria-label="Behance" className="group flex h-full items-center justify-center p-8">
               <BehanceIcon className="h-8 w-8 text-foreground/80 transition-transform duration-300 group-hover:scale-110" />
             </a>
           </BentoCard>
 
           {/* Toggles */}
-          <BentoCard className="col-span-6 sm:col-span-4">
+          <BentoCard className="col-span-2 row-span-1 snap-start">
             <TogglesCard language={language} onLanguageChange={setLanguage} />
           </BentoCard>
         </BentoGrid>

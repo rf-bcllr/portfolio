@@ -16,7 +16,7 @@ export function ProjectCard({ title, src, href, language = "pt" }: ProjectCardPr
       src={src}
       alt={alt}
       loading="lazy"
-      className="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+      className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
     />
   );
 
