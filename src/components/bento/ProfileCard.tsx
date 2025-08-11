@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "@/hooks/useTranslations";
-import avatar from "@/assets/rafael-bacellar-avatar.jpg";
+import portrait from "@/assets/rafael-bacellar-portrait-extended.jpg";
 
 interface ProfileCardProps {
   language: "pt" | "en";
@@ -13,11 +13,11 @@ export function ProfileCard({ language }: ProfileCardProps) {
     <div className="flex h-full flex-col items-center justify-center p-6 text-center md:p-8">
       <div className="relative">
         <img
-          src={avatar}
+          src={portrait}
           alt={language === "pt" ? "Retrato de Rafael Bacellar" : "Portrait of Rafael Bacellar"}
-          width={200}
-          height={200}
-          className="mx-auto size-36 rounded-full border-2 border-border object-cover shadow-lg md:size-44"
+          width={320}
+          height={420}
+          className="mx-auto h-auto w-48 rounded-2xl border-2 border-border object-cover shadow-lg md:w-64"
         />
       </div>
       <h1 className="mt-6 text-2xl font-bold tracking-tight md:text-3xl">Rafael Bacellar</h1>

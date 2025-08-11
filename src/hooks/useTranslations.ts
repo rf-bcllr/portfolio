@@ -27,6 +27,18 @@ export const translations = {
     // Recommendations
     recommendationsTitle: "Recomendações",
     recommendationsSubtitle: "O que colegas e clientes falam sobre meu trabalho.",
+    recommendations: [
+      {
+        quote:
+          "Rafael é de longe o designer mais criativo com quem já trabalhei (...) ele realmente tem um olhar para detalhes e acaba identificando falhas que mais ninguém percebe. (...) ele é paciente com os colegas e sempre disposto a ajudar os outros a melhorarem suas habilidades.",
+        author: "Inis Leahy - Senior Product Designer @Udemy",
+      },
+      {
+        quote:
+          "Rafael é minha referência de um designer dedicado e curioso. Sempre trazendo algo novo para a mesa e explorando ao máximo suas habilidades, é um profissional em quem você pode confiar para entregar as melhores soluções às necessidades do cliente.",
+        author: "Esdras Lopes - Advertisement & Media Specialist",
+      },
+    ],
     
     // Contact
     contactTitle: "Vamos conversar?",
@@ -34,7 +46,7 @@ export const translations = {
     backToTop: "Voltar ao topo",
     
     // Skills
-    skills: ["UX", "UI", "Design System", "Prototipagem", "IA"]
+    skills: ["UX", "UI", "Design System", "Prototipagem", "IA"],
   },
   en: {
     // Navigation
@@ -64,6 +76,18 @@ export const translations = {
     // Recommendations
     recommendationsTitle: "Recommendations",
     recommendationsSubtitle: "What colleagues and clients say about my work.",
+    recommendations: [
+      {
+        quote:
+          "Rafael is by far the most creative designer I've ever worked with (...) he really has the eye for details and ends up spotting flaws no one else does. (...) he is patient with his colleagues and always willing to help others improve their own skills.",
+        author: "Inis Leahy - Senior Product Designer @Udemy",
+      },
+      {
+        quote:
+          "Rafael is my reference of a dedicated and curious designer. Always bringing something new to the table and exploring his own abilities to the fullest, he is a professional you can count on to deliver the best solutions to your client’s needs.",
+        author: "Esdras Lopes - Advertisement & Media Specialist",
+      },
+    ],
     
     // Contact
     contactTitle: "Let's talk?",
@@ -71,8 +95,8 @@ export const translations = {
     backToTop: "Back to top",
     
     // Skills
-    skills: ["UX", "UI", "Design System", "Prototyping", "AI"]
-  }
+    skills: ["UX", "UI", "Design System", "Prototyping", "AI"],
+  },
 };
 
 export function useTranslations(language: "pt" | "en") {

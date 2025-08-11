@@ -1,16 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BentoGrid, BentoCard } from "@/components/bento/BentoGrid";
 import { ProfileCard } from "@/components/bento/ProfileCard";
 import { ProjectCard } from "@/components/bento/ProjectCard";
 import { RecommendationsCard } from "@/components/bento/RecommendationsCard";
 import { CertificationsCard } from "@/components/bento/CertificationsCard";
-import { SocialCard } from "@/components/bento/SocialCard";
+import { SocialCard, BehanceIcon } from "@/components/bento/SocialCard";
 import { TogglesCard } from "@/components/bento/TogglesCard";
 import { useTranslations } from "@/hooks/useTranslations";
+import { Linkedin } from "lucide-react";
 
 const Index = () => {
   const [language, setLanguage] = useState<"pt" | "en">("pt");
   const t = useTranslations(language);
+
+  useEffect(() => {
+    document.title =
+      language === "pt"
+        ? "Rafael Bacellar — Product Designer | Portfólio"
+        : "Rafael Bacellar — Product Designer | Portfolio";
+
+    const meta = document.querySelector('meta[name="description"]');
+    const contentPt = "Portfólio de Rafael Bacellar com projetos, certificações e recomendações. UX/UI, design system e interfaces escaláveis.";
+    const contentEn = "Rafael Bacellar portfolio with projects, certifications and recommendations. UX/UI, design systems and scalable interfaces.";
+    if (meta) {
+      meta.setAttribute("content", language === "pt" ? contentPt : contentEn);
+    } else {
+      const m = document.createElement("meta");
+      m.name = "description";
+      m.content = language === "pt" ? contentPt : contentEn;
+      document.head.appendChild(m);
+    }
+
+    let link: HTMLLinkElement | null = document.querySelector('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
+    }
+    link.href = window.location.href;
+  }, [language]);
 
   // Projects pulled from Bento profile
   const projects = [
@@ -31,35 +59,56 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <main>
         <BentoGrid className="py-12">
-          {/* Profile - center piece */}
-          <BentoCard className="col-span-6 lg:col-span-4 row-span-2">
+          {/* Left column projects */}
+          {projects.slice(0, 1).map((p, i) => (
+            <BentoCard key={`left-${i}`} className="col-span-6 sm:col-span-3 row-span-2 border-0 bg-transparent shadow-none">
+              <ProjectCard title={p.title} src={p.src} href={p.href} language={language} />
+            </BentoCard>
+          ))}
+
+          {/* Center Profile */}
+          <BentoCard className="col-span-6 lg:col-span-4 row-span-3">
             <ProfileCard language={language} />
           </BentoCard>
 
-          {/* Projects - big visuals, full images, non-cropped */}
-          {projects.map((p, i) => (
-            <BentoCard key={i} className={`col-span-6 sm:col-span-3 ${i < 2 ? "row-span-2" : "row-span-1"} border-0 bg-transparent shadow-none`}>
-              <ProjectCard title={p.title} src={p.src} href={p.href} />
+          {/* Right column projects */}
+          {projects.slice(1, 3).map((p, i) => (
+            <BentoCard key={`right-${i}`} className="col-span-6 sm:col-span-3 row-span-2 border-0 bg-transparent shadow-none">
+              <ProjectCard title={p.title} src={p.src} href={p.href} language={language} />
+            </BentoCard>
+          ))}
+
+          {/* Wide project */}
+          {projects.slice(3, 4).map((p, i) => (
+            <BentoCard key={`wide-${i}`} className="col-span-6 lg:col-span-8 row-span-2 border-0 bg-transparent shadow-none">
+              <ProjectCard title={p.title} src={p.src} href={p.href} language={language} />
             </BentoCard>
           ))}
 
           {/* Recommendations */}
-          <BentoCard className="col-span-6 sm:col-span-3">
-            <RecommendationsCard />
+          <BentoCard className="col-span-6 sm:col-span-4">
+            <RecommendationsCard language={language} />
           </BentoCard>
 
           {/* Certifications */}
-          <BentoCard className="col-span-6 sm:col-span-3">
-            <CertificationsCard items={certifications} />
+          <BentoCard className="col-span-6 sm:col-span-4">
+            <CertificationsCard items={certifications} language={language} />
           </BentoCard>
 
-          {/* Social small boxes */}
-          <BentoCard className="col-span-6 sm:col-span-3">
-            <SocialCard />
+          {/* Social icons as separate small boxes */}
+          <BentoCard className="col-span-3">
+            <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="group flex h-full items-center justify-center p-8">
+              <Linkedin className="h-8 w-8 text-foreground/80 transition-transform duration-300 group-hover:scale-110" />
+            </a>
+          </BentoCard>
+          <BentoCard className="col-span-3">
+            <a href="https://www.behance.net/rfbcllr" target="_blank" rel="noreferrer" aria-label="Behance" className="group flex h-full items-center justify-center p-8">
+              <BehanceIcon className="h-8 w-8 text-foreground/80 transition-transform duration-300 group-hover:scale-110" />
+            </a>
           </BentoCard>
 
           {/* Toggles */}
-          <BentoCard className="col-span-6 sm:col-span-3">
+          <BentoCard className="col-span-6 sm:col-span-4">
             <TogglesCard language={language} onLanguageChange={setLanguage} />
           </BentoCard>
         </BentoGrid>
@@ -75,7 +124,7 @@ const Index = () => {
               aria-label="LinkedIn"
               className="inline-flex items-center justify-center rounded-md border bg-primary text-primary-foreground px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-primary/90"
             >
-              LinkedIn
+              {t.talkOnLinkedIn}
             </a>
           </div>
           <p className="text-sm text-muted-foreground">

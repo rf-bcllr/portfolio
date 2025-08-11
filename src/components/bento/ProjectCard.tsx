@@ -2,27 +2,30 @@ interface ProjectCardProps {
   title: string;
   src: string;
   href?: string;
+  language?: "pt" | "en";
 }
 
-export function ProjectCard({ title, src, href }: ProjectCardProps) {
+export function ProjectCard({ title, src, href, language = "pt" }: ProjectCardProps) {
+  const alt =
+    language === "pt"
+      ? `${title} — estudo de caso de produto por Rafael Bacellar`
+      : `${title} — product design case by Rafael Bacellar`;
+
   const img = (
     <img
       src={src}
-      alt={`${title} — case de produto por Rafael Bacellar`}
+      alt={alt}
       loading="lazy"
-      className="h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+      className="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
     />
   );
 
-  return (
-    <div className="flex h-full w-full items-center justify-center bg-muted/10 p-2 sm:p-3">
-      {href ? (
-        <a href={href} target="_blank" rel="noreferrer" className="block w-full">
-          {img}
-        </a>
-      ) : (
-        img
-      )}
-    </div>
+  return href ? (
+    <a href={href} target="_blank" rel="noreferrer" className="block w-full h-full">
+      {img}
+    </a>
+  ) : (
+    img
   );
 }
+
