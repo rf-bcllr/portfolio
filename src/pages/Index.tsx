@@ -125,7 +125,7 @@ const Index = () => {
                   src={item.src}
                   alt={`${item.title ?? `Project media ${i + 1}`} — portfolio de Rafael Bacellar`}
                   loading="lazy"
-                  className="w-full h-auto rounded-md border border-border bg-muted/20"
+                  className="w-full h-auto rounded-xl border border-border bg-muted/20"
                 />
               </a>
             ))}
