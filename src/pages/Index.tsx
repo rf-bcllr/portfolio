@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslations } from "@/hooks/useTranslations";
+import MediaLightbox from "@/components/MediaLightbox";
 
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 
@@ -34,6 +35,24 @@ const Index = () => {
     { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC9hMmVjMmQxNTM5ODM1MDMuWTNKdmNDdzRNRGdzTmpNeUxEQXNNQS5wbmc=.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 2" },
     { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC8zZmM2NzAxNDI1Mjk0NzEuWTNKdmNDdzRNRGdzTmpNeUxEQXNNQS5wbmc=.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 3" },
   ];
+
+  const experienceBadges = [
+    { years: 1, org: "isaac" },
+    { years: 3, org: "ClassApp" },
+    { years: 2, org: "Le biscuit" },
+    { years: 2, org: "Sebrae" },
+    { years: 2, org: "Sanar" },
+  ];
+
+  const formatExperience = (years: number, org: string) => {
+    const isEn = language === "en";
+    const word = isEn ? (years === 1 ? "year" : "years") : (years === 1 ? "ano" : "anos");
+    const prefix = years > 1 ? "+" : "";
+    return `${prefix}${years} ${word} @${org}`;
+  };
+
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [activeMedia, setActiveMedia] = useState(0);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -120,16 +139,34 @@ const Index = () => {
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
             {projectMedia.map((item, i) => (
-              <a key={i} href={item.href} target="_blank" rel="noreferrer" className="mb-4 block break-inside-avoid">
+              <button
+                key={i}
+                type="button"
+                onClick={() => {
+                  setActiveMedia(i);
+                  setLightboxOpen(true);
+                }}
+                className="mb-4 block break-inside-avoid focus:outline-none"
+                aria-label={item.title ?? `Open media ${i + 1}`}
+                title={item.title}
+              >
                 <img
                   src={item.src}
                   alt={`${item.title ?? `Project media ${i + 1}`} — portfolio de Rafael Bacellar`}
                   loading="lazy"
-                  className="w-full h-auto rounded-xl border border-border bg-muted/20"
+                  className="w-full h-auto rounded-2xl border border-border bg-muted/20"
                 />
-              </a>
+              </button>
             ))}
           </div>
+
+          <MediaLightbox
+            items={projectMedia}
+            index={activeMedia}
+            open={lightboxOpen}
+            onOpenChange={setLightboxOpen}
+            onIndexChange={setActiveMedia}
+          />
 
           <div className="mt-10 flex justify-center">
             <Button asChild variant="soft">
@@ -193,14 +230,8 @@ const Index = () => {
           <header className="mb-8">
             <h2 className="text-2xl font-semibold tracking-tight">{t.recommendationsTitle}</h2>
             <div className="mt-3 flex flex-wrap gap-2">
-              {[
-                "1 ano @isaac",
-                "+3 anos @ClassApp",
-                "+2 anos @Le biscuit",
-                "+2 anos @Sebrae",
-                "+2 anos @Sanar"
-              ].map((t) => (
-                <Badge key={t} variant="secondary">{t}</Badge>
+              {experienceBadges.map(({ years, org }) => (
+                <Badge key={`${org}-${years}`} variant="secondary">{formatExperience(years, org)}</Badge>
               ))}
             </div>
           </header>
