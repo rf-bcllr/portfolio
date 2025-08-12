@@ -22,13 +22,32 @@ export const translations = {
     // Certifications
     certificationsTitle: "Certificações",
     certificationsSubtitle: "Principais certificações e cursos concluídos.",
-    moreOnBento: "Ver mais no Bento",
+    moreOnBento: "Ver mais no Behance",
     
     // Recommendations
     recommendationsTitle: "Recomendações",
     recommendationsSubtitle: "O que colegas e clientes falam sobre meu trabalho.",
+    recommendationsItems: [
+      {
+        quote: "Rafael é de longe o designer mais criativo com quem já trabalhei (…) ele realmente tem olhar para detalhes e acaba identificando falhas que ninguém vê. (…), é paciente com seus colegas e sempre disposto a ajudar os outros a melhorar suas habilidades (…)",
+        author: "Inis Leahy - Senior Product Designer @Udemy",
+      },
+      {
+        quote: "Rafael é minha referência de um designer dedicado e curioso. Sempre trazendo algo novo para a mesa e explorando suas próprias habilidades ao máximo, é um profissional em quem você pode confiar para entregar as melhores soluções para as necessidades do cliente.",
+        author: "Esdras Lopes - Advertisement & Media Specialist",
+      },
+    ],
     
-    // Contact
+    competenciesTitle: "Competências",
+    competencies: [
+      "Design System",
+      "Prototipagem",
+      "Acessibilidade",
+      "Design de Interação",
+      "Pesquisa com usuários",
+      "Colaboração com Dev",
+    ],
+    
     contactTitle: "Vamos conversar?",
     contactDescription: "Disponível para projetos freelance e oportunidades de trabalho.",
     backToTop: "Voltar ao topo",
@@ -59,13 +78,32 @@ export const translations = {
     // Certifications
     certificationsTitle: "Certifications",
     certificationsSubtitle: "Main certifications and completed courses.",
-    moreOnBento: "See more on Bento",
+    moreOnBento: "See More on Behance",
     
     // Recommendations
     recommendationsTitle: "Recommendations",
     recommendationsSubtitle: "What colleagues and clients say about my work.",
+    recommendationsItems: [
+      {
+        quote: "Rafael is by far the most creative designer I've ever worked with (…) he really has the eye for details and ends up spotting flaws no one else does. (…), he is patient with his colleagues and always willing to help others improve their own skills (…)",
+        author: "Inis Leahy - Senior Product Designer @Udemy",
+      },
+      {
+        quote: "Rafael is my reference of a dedicated and curious designer. Always bringing something new to the table and exploring his own abilities to the fullest, he is a professional you can count on to deliver the best solutions to your client’s needs.",
+        author: "Esdras Lopes - Advertisement & Media Specialist",
+      },
+    ],
+
+    competenciesTitle: "Skills",
+    competencies: [
+      "Design System",
+      "Prototyping",
+      "Accessibility",
+      "Interaction Design",
+      "User Research",
+      "Collaboration with Devs",
+    ],
     
-    // Contact
     contactTitle: "Let's talk?",
     contactDescription: "Available for freelance projects and job opportunities.",
     backToTop: "Back to top",

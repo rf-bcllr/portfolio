@@ -30,7 +30,9 @@ const Index = () => {
     { src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/EC90UL0Vda7i4S30-Screenshot%25202023-10-10%2520at%252022.10.09.png?w=750&h=750", href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1", title: "Healthy Food & Groceries App Prototype" },
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", href: "https://bento.me/rfbcllr", title: "New app @isaac (GIF)" },
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", href: "https://bento.me/rfbcllr", title: "AI interactions (GIF)" },
-    { src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/ASUGtTS5mLxevGHd-WhatsApp%2520Image%25202024-10-30%2520at%252012.20.36%2520PM.jpeg?w=750&h=750", href: "https://bento.me/rfbcllr", title: "Real experiences" },
+    { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC82ZThiZmIxNTgyNTU0MDcuWTNKdmNDdzJORGdzTlRBM0xEYzBPU3d5TlRVLnBuZw==.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 1" },
+    { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC9hMmVjMmQxNTM5ODM1MDMuWTNKdmNDdzRNRGdzTmpNeUxEQXNNQS5wbmc=.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 2" },
+    { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC8zZmM2NzAxNDI1Mjk0NzEuWTNKdmNDdzRNRGdzTmpNeUxEQXNNQS5wbmc=.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 3" },
   ];
 
   return (
@@ -131,7 +133,7 @@ const Index = () => {
 
           <div className="mt-10 flex justify-center">
             <Button asChild variant="soft">
-              <a href="https://bento.me/rfbcllr" target="_blank" rel="noreferrer">{t.moreOnBento}</a>
+              <a href="https://www.behance.net/rfbcllr" target="_blank" rel="noreferrer">{t.moreOnBento}</a>
             </Button>
           </div>
         </section>
@@ -146,14 +148,11 @@ const Index = () => {
               </p>
             </div>
             <div className="rounded-lg border p-6">
-              <h3 className="font-semibold">Competências</h3>
+              <h3 className="font-semibold">{t.competenciesTitle}</h3>
               <ul className="mt-3 grid list-disc gap-2 pl-5 text-muted-foreground sm:grid-cols-2">
-                <li>Design System</li>
-                <li>Prototipagem</li>
-                <li>Acessibilidade</li>
-                <li>Design de Interação</li>
-                <li>Pesquisa com usuários</li>
-                <li>Colaboração com Dev</li>
+                {t.competencies.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -207,14 +206,12 @@ const Index = () => {
           </header>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <Card className="p-6">
-              <p className="text-sm text-muted-foreground">“Rafael is by far the most creative designer I've ever worked with (…) he really has the eye for details and ends up spotting flaws no one else does. (…), he is patient with his colleagues and always willing to help others improve their own skills (…)”</p>
-              <p className="mt-3 font-medium">Inis Leahy - Senior Product Designer @Udemy</p>
-            </Card>
-            <Card className="p-6">
-              <p className="text-sm text-muted-foreground">“Rafael is my reference of a dedicated and curious designer. Always bringing something new to the table and exploring his own abilities to the fullest, he is a professional you can count on to deliver the best solutions to your client’s needs.”</p>
-              <p className="mt-3 font-medium">Esdras Lopes - Advertisement & Media Specialist</p>
-            </Card>
+            {t.recommendationsItems?.map((rec, idx) => (
+              <Card className="p-6" key={idx}>
+                <p className="text-sm text-muted-foreground">“{rec.quote}”</p>
+                <p className="mt-3 font-medium">{rec.author}</p>
+              </Card>
+            ))}
           </div>
         </section>
 
