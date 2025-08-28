@@ -49,8 +49,7 @@ const Index = () => {
   const formatExperience = (years: number, org: string) => {
     const isEn = language === "en";
     const word = isEn ? (years === 1 ? "year" : "years") : (years === 1 ? "ano" : "anos");
-    const prefix = years > 1 ? "+" : "";
-    return `${prefix}${years} ${word} @${org}`;
+    return `+${years} ${word} @${org}`;
   };
 
   const [lightboxOpen, setLightboxOpen] = useState(false);

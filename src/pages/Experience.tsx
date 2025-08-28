@@ -74,12 +74,12 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
   ];
 
   const softSkills = language === "pt" 
-    ? ["Liderança", "Comunicação", "Colaboração", "Pensamento Crítico", "Adaptabilidade", "Criatividade"]
-    : ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity"];
+    ? ["Liderança", "Comunicação", "Colaboração", "Pensamento Crítico", "Adaptabilidade", "Criatividade", "Iterações Rápidas"]
+    : ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
 
   const tools = [
-    "Figma", "Adobe XD", "Photoshop", "Illustrator", "After Effects", 
-    "Sketch", "InVision", "Principle", "Framer", "Miro", "FigJam"
+    "Figma", "Adobe XD", "Photoshop", "Illustrator", 
+    "Sketch", "Framer", "Miro", "FigJam", "Figma Make", "Lovable", "v0"
   ];
 
   const languages = [

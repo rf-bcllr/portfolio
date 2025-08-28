@@ -18,7 +18,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
-				'display': ['SF Pro Display', 'Inter', 'ui-sans-serif', 'system-ui'],
+				'display': ['Geist Sans', 'Inter', 'ui-sans-serif', 'system-ui'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
