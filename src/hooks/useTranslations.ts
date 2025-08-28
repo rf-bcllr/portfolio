@@ -52,6 +52,29 @@ export const translations = {
     contactDescription: "Disponível para projetos freelance e oportunidades de trabalho.",
     backToTop: "Voltar ao topo",
     
+    // Experience Page
+    experienceTitle: "Experiência",
+    fullExperience: "Ver Experiência Completa",
+    downloadCV: "Baixar CV",
+    workExperience: "Experiência Profissional",
+    education: "Formação",
+    languages: "Idiomas",
+    tools: "Ferramentas",
+    softSkills: "Habilidades Interpessoais",
+    
+    // Languages
+    portuguese: "Português",
+    english: "Inglês", 
+    german: "Alemão",
+    spanish: "Espanhol",
+    native: "Nativo",
+    advanced: "Avançado", 
+    basic: "Básico",
+    
+    // Work Experience
+    currentJob: "Atual",
+    present: "Presente",
+    
     // Skills
     skills: ["UX", "UI", "Design System", "Prototipagem", "IA"]
   },
@@ -107,6 +130,29 @@ export const translations = {
     contactTitle: "Let's talk?",
     contactDescription: "Available for freelance projects and job opportunities.",
     backToTop: "Back to top",
+    
+    // Experience Page
+    experienceTitle: "Experience",
+    fullExperience: "View Full Experience",
+    downloadCV: "Download CV",
+    workExperience: "Work Experience", 
+    education: "Education",
+    languages: "Languages",
+    tools: "Tools",
+    softSkills: "Soft Skills",
+    
+    // Languages
+    portuguese: "Portuguese",
+    english: "English",
+    german: "German", 
+    spanish: "Spanish",
+    native: "Native",
+    advanced: "Advanced",
+    basic: "Basic",
+    
+    // Work Experience
+    currentJob: "Current",
+    present: "Present",
     
     // Skills
     skills: ["UX", "UI", "Design System", "Prototyping", "AI"]

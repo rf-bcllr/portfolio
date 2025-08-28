@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 import MediaLightbox from "@/components/MediaLightbox";
+import { ArrowRight } from "lucide-react";
 
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 
@@ -107,7 +109,7 @@ const Index = () => {
               className="mx-auto aspect-square size-40 rounded-full border-2 border-border object-cover shadow-lg md:mx-0 md:size-48 animate-enter"
             />
             <div>
-              <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl animate-fade-in">{t.heroTitle}</h1>
+              <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl animate-fade-in font-display">{t.heroTitle}</h1>
               <p className="mt-4 max-w-xl text-lg text-muted-foreground animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 {t.heroDescription}
               </p>
@@ -133,7 +135,7 @@ const Index = () => {
         {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-24">
           <header className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight lg:text-4xl">{t.realExperiences}</h2>
+            <h2 className="text-3xl font-bold tracking-tight lg:text-4xl font-display">{t.realExperiences}</h2>
             <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">{t.projectsSubtitle}</p>
           </header>
 
@@ -179,13 +181,22 @@ const Index = () => {
         <section id="sobre" className="container mx-auto px-6 py-16">
           <div className="grid gap-8 md:grid-cols-2">
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight">{t.aboutTitle}</h2>
+              <h2 className="text-2xl font-semibold tracking-tight font-display">{t.aboutTitle}</h2>
               <p className="mt-4 text-muted-foreground">
                 {t.aboutDescription}
               </p>
+              <div className="mt-6">
+                <Link 
+                  to={language === "pt" ? "/experiencia" : "/experience"}
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                >
+                  {t.fullExperience}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
             <div className="rounded-lg border p-6">
-              <h3 className="font-semibold">{t.competenciesTitle}</h3>
+              <h3 className="font-semibold font-display">{t.competenciesTitle}</h3>
               <ul className="mt-3 grid list-disc gap-2 pl-5 text-muted-foreground sm:grid-cols-2">
                 {t.competencies.map((item) => (
                   <li key={item}>{item}</li>
@@ -198,7 +209,7 @@ const Index = () => {
         {/* Certificações */}
         <section id="certificacoes" className="container mx-auto px-6 py-16">
           <header className="mb-8">
-            <h2 className="text-2xl font-semibold tracking-tight">{t.certificationsTitle}</h2>
+            <h2 className="text-2xl font-semibold tracking-tight font-display">{t.certificationsTitle}</h2>
             <p className="text-muted-foreground">{t.certificationsSubtitle}</p>
           </header>
           <ul className="space-y-2">
@@ -228,7 +239,7 @@ const Index = () => {
         {/* Recomendações */}
         <section id="recomendacoes" className="container mx-auto px-6 py-16">
           <header className="mb-8">
-            <h2 className="text-2xl font-semibold tracking-tight">{t.recommendationsTitle}</h2>
+            <h2 className="text-2xl font-semibold tracking-tight font-display">{t.recommendationsTitle}</h2>
             <div className="mt-3 flex flex-wrap gap-2">
               {experienceBadges.map(({ years, org }) => (
                 <Badge key={`${org}-${years}`} variant="secondary">{formatExperience(years, org)}</Badge>
@@ -250,7 +261,7 @@ const Index = () => {
         <section id="contato" className="relative isolate">
           <div className="absolute inset-0 -z-10 opacity-[0.12]" style={{ background: "var(--gradient-hero)" }} />
           <div className="container mx-auto px-6 py-16 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight">{t.contactTitle}</h2>
+            <h2 className="text-2xl font-semibold tracking-tight font-display">{t.contactTitle}</h2>
             <p className="mt-2 text-muted-foreground">{t.contactDescription}</p>
             <div className="mt-6 flex justify-center gap-3">
               <Button asChild variant="outline">

@@ -1,0 +1,270 @@
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useTranslations } from '@/hooks/useTranslations';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+interface ExperiencePageProps {
+  language: "pt" | "en";
+}
+
+const Experience = ({ language = "pt" }: ExperiencePageProps) => {
+  const t = useTranslations(language);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const experiences = [
+    {
+      title: "Product Designer",
+      company: "isaac",
+      period: language === "pt" ? "2024 - Presente" : "2024 - Present",
+      description: language === "pt" 
+        ? "Design de produtos digitais end-to-end, design system e interfaces escaláveis."
+        : "End-to-end digital product design, design system and scalable interfaces.",
+      current: true
+    },
+    {
+      title: "Product Designer", 
+      company: "ClassApp",
+      period: "2021 - 2024",
+      description: language === "pt"
+        ? "Liderança em design de produto, pesquisa com usuários e colaboração com desenvolvimento."
+        : "Product design leadership, user research and development collaboration.",
+      current: false
+    },
+    {
+      title: "Design Analyst",
+      company: "Le biscuit", 
+      period: "2019 - 2021",
+      description: language === "pt"
+        ? "Análise e design de interfaces digitais, melhoria de experiência do usuário."
+        : "Digital interface analysis and design, user experience improvement.",
+      current: false
+    },
+    {
+      title: "Design & Marketing Analyst",
+      company: "Sebrae Bahia",
+      period: "2017 - 2019", 
+      description: language === "pt"
+        ? "Design gráfico, marketing digital e comunicação visual para empreendedores."
+        : "Graphic design, digital marketing and visual communication for entrepreneurs.",
+      current: false
+    },
+    {
+      title: "Brand Designer",
+      company: "Sanar",
+      period: "2015 - 2016",
+      description: language === "pt"
+        ? "Desenvolvimento de identidade visual e materiais de marca para educação médica."
+        : "Visual identity development and brand materials for medical education.",
+      current: false
+    }
+  ];
+
+  const skills = [
+    "User Research", "Visual Design", "Prototyping", "Design System", 
+    "Usability Testing", "Information Architecture", "Interaction Design",
+    "Design Thinking", "Agile", "Figma", "Adobe Creative Suite", "HTML/CSS"
+  ];
+
+  const softSkills = language === "pt" 
+    ? ["Liderança", "Comunicação", "Colaboração", "Pensamento Crítico", "Adaptabilidade", "Criatividade"]
+    : ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity"];
+
+  const tools = [
+    "Figma", "Adobe XD", "Photoshop", "Illustrator", "After Effects", 
+    "Sketch", "InVision", "Principle", "Framer", "Miro", "FigJam"
+  ];
+
+  const languages = [
+    { name: t.portuguese, level: t.native },
+    { name: t.english, level: t.advanced },
+    { name: t.german, level: t.basic },
+    { name: t.spanish, level: t.basic }
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <motion.div
+        className="container mx-auto px-4 py-8 max-w-4xl"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+      >
+        {/* Header */}
+        <motion.div className="flex items-center justify-between mb-8" variants={itemVariants}>
+          <Link to="/#sobre">
+            <Button variant="ghost" size="sm" className="gap-2">
+              <ArrowLeft className="w-4 h-4" />
+              {language === "pt" ? "Voltar" : "Back"}
+            </Button>
+          </Link>
+          <Button variant="outline" size="sm" className="gap-2">
+            <Download className="w-4 h-4" />
+            {t.downloadCV}
+          </Button>
+        </motion.div>
+
+        {/* Profile Header */}
+        <motion.div className="text-center mb-12" variants={itemVariants}>
+          <h1 className="font-display text-4xl font-bold mb-4">Rafael Bacellar Ramos Reis</h1>
+          <p className="text-xl text-muted-foreground mb-6">End-to-End Product Designer</p>
+          
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-1">
+              <Mail className="w-4 h-4" />
+              rfbcllr@gmail.com
+            </div>
+            <div className="flex items-center gap-1">
+              <Phone className="w-4 h-4" />
+              +55 71 991373998
+            </div>
+            <div className="flex items-center gap-1">
+              <MapPin className="w-4 h-4" />
+              Salvador, Bahia
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Work Experience */}
+        <motion.section className="mb-12" variants={itemVariants}>
+          <h2 className="font-display text-2xl font-semibold mb-6">{t.workExperience}</h2>
+          <div className="space-y-6">
+            {experiences.map((exp, index) => (
+              <Card key={index} className="rounded-2xl">
+                <CardContent className="p-6">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h3 className="font-semibold text-lg">{exp.title}</h3>
+                      <p className="text-primary font-medium">{exp.company}</p>
+                    </div>
+                    <div className="text-right">
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <Calendar className="w-4 h-4" />
+                        {exp.period}
+                      </div>
+                      {exp.current && (
+                        <Badge variant="secondary" className="mt-1">
+                          {t.currentJob}
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground">{exp.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Education */}
+        <motion.section className="mb-12" variants={itemVariants}>
+          <h2 className="font-display text-2xl font-semibold mb-6">{t.education}</h2>
+          <Card className="rounded-2xl">
+            <CardContent className="p-6">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-semibold text-lg">
+                    {language === "pt" ? "Bacharelado em Design" : "Bachelor in Design"}
+                  </h3>
+                  <p className="text-primary font-medium">
+                    {language === "pt" ? "Universidade do Estado da Bahia" : "Bahia State University"}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <Calendar className="w-4 h-4" />
+                  2016 - 2021
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.section>
+
+        {/* Skills Grid */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          {/* Technical Skills */}
+          <motion.section variants={itemVariants}>
+            <h2 className="font-display text-2xl font-semibold mb-6">{t.competenciesTitle}</h2>
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill, index) => (
+                <Badge key={index} variant="outline" className="text-sm">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Soft Skills */}
+          <motion.section variants={itemVariants}>
+            <h2 className="font-display text-2xl font-semibold mb-6">{t.softSkills}</h2>
+            <div className="flex flex-wrap gap-2">
+              {softSkills.map((skill, index) => (
+                <Badge key={index} variant="secondary" className="text-sm">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </motion.section>
+        </div>
+
+        {/* Tools & Languages Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Tools */}
+          <motion.section variants={itemVariants}>
+            <h2 className="font-display text-2xl font-semibold mb-6">{t.tools}</h2>
+            <div className="flex flex-wrap gap-2">
+              {tools.map((tool, index) => (
+                <Badge key={index} variant="outline" className="text-sm">
+                  {tool}
+                </Badge>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Languages */}
+          <motion.section variants={itemVariants}>
+            <h2 className="font-display text-2xl font-semibold mb-6">{t.languages}</h2>
+            <div className="space-y-3">
+              {languages.map((lang, index) => (
+                <div key={index} className="flex justify-between items-center">
+                  <span className="font-medium">{lang.name}</span>
+                  <Badge variant="secondary" className="text-sm">
+                    {lang.level}
+                  </Badge>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default Experience;
