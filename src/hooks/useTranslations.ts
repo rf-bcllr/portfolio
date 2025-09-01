@@ -6,8 +6,8 @@ export const translations = {
     contact: "Contato",
     
     // Hero Section
-    heroTitle: "Rafael Bacellar — Product Designer",
-    heroDescription: "Portfólio com experiências reais em produtos digitais. Foco em UX/UI, design system e interfaces escaláveis.",
+    heroTitle: "Rafa Bacellar",
+    heroDescription: "Product designer com experiências reais em produtos digitais. Foco em UX/UI, design system e interfaces escaláveis.",
     talkOnLinkedIn: "Falar no LinkedIn",
     viewProjects: "Ver projetos",
     
@@ -85,8 +85,8 @@ export const translations = {
     contact: "Contact",
     
     // Hero Section
-    heroTitle: "Rafael Bacellar — Product Designer",
-    heroDescription: "Portfolio with real experiences in digital products. Focus on UX/UI, design systems and scalable interfaces.",
+    heroTitle: "Rafa Bacellar",
+    heroDescription: "Product designer with real experiences in digital products. Focus on UX/UI, design system and scalable interfaces.",
     talkOnLinkedIn: "Talk on LinkedIn",
     viewProjects: "View projects",
     

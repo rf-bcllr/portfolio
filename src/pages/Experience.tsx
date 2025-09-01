@@ -148,7 +148,7 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
           <h1 className="font-display text-4xl font-bold mb-4">Rafael Bacellar Ramos Reis</h1>
           <p className="text-xl text-muted-foreground mb-6">End-to-End Product Designer</p>
           
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground mb-4">
             <div className="flex items-center gap-1">
               <Mail className="w-4 h-4" />
               rfbcllr@gmail.com
@@ -159,8 +159,14 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
             </div>
             <div className="flex items-center gap-1">
               <MapPin className="w-4 h-4" />
-              Salvador, Bahia
+              Aracaju, SE, Brasil
             </div>
+          </div>
+          
+          <div className="flex justify-center">
+            <Badge variant="outline" className="text-sm font-medium" style={{ borderColor: '#25aef4', color: '#25aef4' }}>
+              {language === "pt" ? "Disponível para oportunidades remotas e presenciais" : "Available for remote and on-site opportunities"}
+            </Badge>
           </div>
         </motion.div>
 
@@ -174,7 +180,7 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="font-semibold text-lg">{exp.title}</h3>
-                      <p className="text-primary font-medium">{exp.company}</p>
+                      <p className="font-medium" style={{ color: '#25aef4' }}>{exp.company}</p>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -205,7 +211,7 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
                   <h3 className="font-semibold text-lg">
                     {language === "pt" ? "Bacharelado em Design" : "Bachelor in Design"}
                   </h3>
-                  <p className="text-primary font-medium">
+                  <p className="font-medium" style={{ color: '#25aef4' }}>
                     {language === "pt" ? "Universidade do Estado da Bahia" : "Bahia State University"}
                   </p>
                 </div>

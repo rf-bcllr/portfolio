@@ -60,7 +60,7 @@ const Index = () => {
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
           {!scrolled ? (
-            <a href="#inicio" className="font-semibold text-lg transition-opacity duration-300">RB</a>
+            <a href="#inicio" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a>
           ) : (
             <a href="#inicio" className="flex items-center">
               <img
