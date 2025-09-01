@@ -125,7 +125,19 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
               {language === "pt" ? "Voltar" : "Back"}
             </Button>
           </Link>
-          <Button variant="outline" size="sm" className="gap-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="gap-2"
+            onClick={() => {
+              const link = document.createElement('a');
+              link.href = 'https://drive.google.com/uc?export=download&id=1DlC5dQW9jbqnZPxc3TKTmaXnU0sIsHHo';
+              link.download = 'CV_Rafael_Bacellar.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
+          >
             <Download className="w-4 h-4" />
             {t.downloadCV}
           </Button>

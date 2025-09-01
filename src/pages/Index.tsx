@@ -185,13 +185,12 @@ const Index = () => {
                 {t.aboutDescription}
               </p>
               <div className="mt-6">
-                <Link 
-                  to={language === "pt" ? "/experiencia" : "/experience"}
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"
-                >
-                  {t.fullExperience}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                <Button asChild className="gap-2">
+                  <Link to={language === "pt" ? "/experiencia" : "/experience"}>
+                    {t.fullExperience}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
               </div>
             </div>
             <div className="rounded-lg border p-6">
