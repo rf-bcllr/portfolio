@@ -185,7 +185,7 @@ const Index = () => {
                 {t.aboutDescription}
               </p>
               <div className="mt-6">
-                <Button asChild className="gap-2">
+                <Button asChild variant="contrast" className="gap-2">
                   <Link to={language === "pt" ? "/experiencia" : "/experience"}>
                     {t.fullExperience}
                     <ArrowRight className="w-4 h-4" />
