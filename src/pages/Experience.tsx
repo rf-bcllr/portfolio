@@ -164,8 +164,8 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
           </div>
           
           <div className="flex justify-center">
-            <Badge variant="outline" className="text-sm font-medium flex items-center gap-2 animate-pulse" style={{ borderColor: '#25aef4', color: '#25aef4' }}>
-              <Check className="w-4 h-4" />
+            <Badge variant="outline" className="text-sm font-medium flex items-center gap-2 animate-pulse" style={{ borderColor: '#10b981', color: '#10b981' }}>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               {language === "pt" ? "Disponível para oportunidades remotas e presenciais" : "Available for remote and on-site opportunities"}
             </Badge>
           </div>
