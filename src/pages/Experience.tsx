@@ -13,9 +13,10 @@ import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 
 interface ExperiencePageProps {
   language: "pt" | "en";
+  onLanguageChange?: (lang: "pt" | "en") => void;
 }
 
-const Experience = ({ language = "pt" }: ExperiencePageProps) => {
+const Experience = ({ language = "pt", onLanguageChange }: ExperiencePageProps) => {
   const t = useTranslations(language);
   const [isVisible, setIsVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -145,10 +146,10 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
             <div className="flex items-center gap-2">
               <LanguageToggle 
                 language={language} 
-                onLanguageChange={(newLang) => {
-                  // Navigate to the appropriate experience page
+                onLanguageChange={onLanguageChange || ((newLang) => {
+                  // Fallback to navigation if no callback provided
                   window.location.href = newLang === "pt" ? "/experiencia" : "/experience";
-                }} 
+                })} 
               />
               <ThemeToggle />
               <Button asChild variant="contrast" size="sm">
