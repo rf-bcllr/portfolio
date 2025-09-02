@@ -4,7 +4,7 @@ import { useTranslations } from '@/hooks/useTranslations';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar } from 'lucide-react';
+import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface ExperiencePageProps {
@@ -164,7 +164,8 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
           </div>
           
           <div className="flex justify-center">
-            <Badge variant="outline" className="text-sm font-medium" style={{ borderColor: '#25aef4', color: '#25aef4' }}>
+            <Badge variant="outline" className="text-sm font-medium flex items-center gap-2 animate-pulse" style={{ borderColor: '#25aef4', color: '#25aef4' }}>
+              <Check className="w-4 h-4" />
               {language === "pt" ? "Disponível para oportunidades remotas e presenciais" : "Available for remote and on-site opportunities"}
             </Badge>
           </div>
