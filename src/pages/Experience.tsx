@@ -6,6 +6,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { LanguageToggle } from '@/components/LanguageToggle';
+
+import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 
 interface ExperiencePageProps {
   language: "pt" | "en";
@@ -14,9 +18,16 @@ interface ExperiencePageProps {
 const Experience = ({ language = "pt" }: ExperiencePageProps) => {
   const t = useTranslations(language);
   const [isVisible, setIsVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    // Reset scroll position to top
+    window.scrollTo(0, 0);
     setIsVisible(true);
+
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const experiences = [
@@ -111,13 +122,50 @@ const Experience = ({ language = "pt" }: ExperiencePageProps) => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Navigation Header */}
+      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <nav className="container mx-auto flex items-center justify-between py-4">
+          {!scrolled ? (
+            <Link to="/" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</Link>
+          ) : (
+            <Link to="/" className="flex items-center">
+              <img
+                src={avatar}
+                alt="Rafael Bacellar avatar"
+                className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300"
+              />
+            </Link>
+          )}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-6">
+              <Link to="/#projetos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">{t.projects}</Link>
+              <Link to="/#sobre" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">{t.about}</Link>
+              <Link to="/#contato" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">{t.contact}</Link>
+            </div>
+            <div className="flex items-center gap-2">
+              <LanguageToggle 
+                language={language} 
+                onLanguageChange={(newLang) => {
+                  // Navigate to the appropriate experience page
+                  window.location.href = newLang === "pt" ? "/experiencia" : "/experience";
+                }} 
+              />
+              <ThemeToggle />
+              <Button asChild variant="contrast" size="sm">
+                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
+              </Button>
+            </div>
+          </div>
+        </nav>
+      </header>
+
       <motion.div
         className="container mx-auto px-4 py-8 max-w-4xl"
         variants={containerVariants}
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
       >
-        {/* Header */}
+        {/* Page Header */}
         <motion.div className="flex items-center justify-between mb-8" variants={itemVariants}>
           <Link to="/#sobre">
             <Button variant="ghost" size="sm" className="gap-2">
