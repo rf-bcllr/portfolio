@@ -34,8 +34,8 @@ const Index = () => {
     { src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/EC90UL0Vda7i4S30-Screenshot%25202023-10-10%2520at%252022.10.09.png?w=750&h=750", href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1", title: "Healthy Food & Groceries App Prototype", type: "image" },
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", href: "https://bento.me/rfbcllr", title: "New app @isaac (GIF)", type: "image" },
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", href: "https://bento.me/rfbcllr", title: "AI interactions (GIF)", type: "image" },
-    { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FAucyFqTIN1iRvmwU-Screen%2520Recording%25202023-10-10%2520at%252021.45.32.mov", href: "https://bento.me/rfbcllr", title: "UI/UX Design Process Demo (GIF)", type: "image" },
-    { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FnwNkiEzg3hhXBCpl-Screen%2520Recording%25202023-10-10%2520at%252021.36.41.mov", href: "https://bento.me/rfbcllr", title: "Interface Design Demo (GIF)", type: "image" },
+    { src: "/src/assets/project-demo-1.mov", href: "https://bento.me/rfbcllr", title: "UI/UX Design Process Demo", type: "video" },
+    { src: "/src/assets/project-demo-2.mov", href: "https://bento.me/rfbcllr", title: "Interface Design Demo", type: "video" },
     { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC82ZThiZmIxNTgyNTU0MDcuWTNKdmNDdzJORGdzTlRBM0xEYzBPU3d5TlRVLnBuZw==.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 1", type: "image" },
   ];
 
