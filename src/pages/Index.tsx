@@ -35,8 +35,8 @@ const Index = () => {
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", href: "https://bento.me/rfbcllr", title: "New app @isaac (GIF)" },
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", href: "https://bento.me/rfbcllr", title: "AI interactions (GIF)" },
     { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC82ZThiZmIxNTgyNTU0MDcuWTNKdmNDdzJORGdzTlRBM0xEYzBPU3d5TlRVLnBuZw==.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 1" },
-    { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FAucyFqTIN1iRvmwU-Screen%2520Recording%25202023-10-10%2520at%252021.45.32.mov", href: "https://bento.me/rfbcllr", title: "UI/UX Design Process Demo (Video)" },
-    { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FnwNkiEzg3hhXBCpl-Screen%2520Recording%25202023-10-10%2520at%252021.36.41.mov", href: "https://bento.me/rfbcllr", title: "Interface Design Demo (Video)" },
+    { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC8yNmRkZGU3NjAxMTEwNy5ZM0p2Y0N3NE1EZ3NOak15TERBc01BLnBuZw==.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Sistema de Design - Interface Mobile" },
+    { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC8zODYxN2QxMDI1NTc3MDcuWTNKdmNDdzRNRGdzTmpNeUxEQXNNQS5wbmc=.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Identidade Visual - Branding" },
   ];
 
   const experienceBadges = [
