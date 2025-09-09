@@ -31,6 +31,7 @@ const Index = () => {
   };
 
   const projectMedia = [
+    { src: projectThumbNew2, href: "https://www.behance.net/rfbcllr", title: "Project thumbnail 3" },
     { src: "/lovable-uploads/90169309-3cbd-483f-8bdc-c5e96fc950da.png", href: "https://bento.me/rfbcllr", title: "Risk Analysis Dashboard - Cybersecurity Interface" },
     { src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/6d1gUMMWYdGdDNPe-26ddde76011107.Y3JvcCw4MDgsNjMyLDAsMA%2520(1).png?w=750&h=750", href: "https://bento.me/rfbcllr", title: "Login, Onboarding and Home @Mural" },
     { src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/EC90UL0Vda7i4S30-Screenshot%25202023-10-10%2520at%252022.10.09.png?w=750&h=750", href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1", title: "Healthy Food & Groceries App Prototype" },
@@ -38,7 +39,6 @@ const Index = () => {
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", href: "https://bento.me/rfbcllr", title: "AI interactions (GIF)" },
     { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC82ZThiZmIxNTgyNTU0MDcuWTNKdmNDdzJORGdzTlRBM0xEYzBPU3d5TlRVLnBuZw==.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 1" },
     { src: projectThumbNew1, href: "https://www.behance.net/rfbcllr", title: "Project thumbnail 2" },
-    { src: projectThumbNew2, href: "https://www.behance.net/rfbcllr", title: "Project thumbnail 3" },
   ];
 
   const experienceBadges = [
@@ -141,22 +141,42 @@ const Index = () => {
             <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">{t.projectsSubtitle}</p>
           </header>
 
+          {/* Featured project - first item with larger horizontal space */}
+          <button
+            type="button"
+            onClick={() => {
+              setActiveMedia(0);
+              setLightboxOpen(true);
+            }}
+            className="mb-6 block w-full focus:outline-none col-span-full"
+            aria-label={projectMedia[0].title ?? "Open featured media"}
+            title={projectMedia[0].title}
+          >
+            <img
+              src={projectMedia[0].src}
+              alt={`${projectMedia[0].title ?? "Featured project"} — portfolio de Rafael Bacellar`}
+              loading="lazy"
+              className="w-full h-auto rounded-3xl border border-border bg-muted/20 max-h-96 object-cover"
+            />
+          </button>
+
+          {/* Rest of the projects in masonry layout */}
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
-            {projectMedia.map((item, i) => (
+            {projectMedia.slice(1).map((item, i) => (
               <button
-                key={i}
+                key={i + 1}
                 type="button"
                 onClick={() => {
-                  setActiveMedia(i);
+                  setActiveMedia(i + 1);
                   setLightboxOpen(true);
                 }}
                 className="mb-4 block break-inside-avoid focus:outline-none"
-                aria-label={item.title ?? `Open media ${i + 1}`}
+                aria-label={item.title ?? `Open media ${i + 2}`}
                 title={item.title}
               >
                 <img
                   src={item.src}
-                  alt={`${item.title ?? `Project media ${i + 1}`} — portfolio de Rafael Bacellar`}
+                  alt={`${item.title ?? `Project media ${i + 2}`} — portfolio de Rafael Bacellar`}
                   loading="lazy"
                   className="w-full h-auto rounded-3xl border border-border bg-muted/20"
                 />
