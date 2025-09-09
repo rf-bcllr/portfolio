@@ -166,7 +166,7 @@ const Index = () => {
           </div>
 
           {/* Featured project at the bottom - 2/3 width aligned left */}
-          <div className="mt-6 grid grid-cols-3 gap-4">
+          <div className="mt-4 grid grid-cols-3 gap-4">
             <button
               type="button"
               onClick={() => {
