@@ -141,48 +141,48 @@ const Index = () => {
             <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">{t.projectsSubtitle}</p>
           </header>
 
-          {/* Featured project - first item with larger horizontal space */}
-          <button
-            type="button"
-            onClick={() => {
-              setActiveMedia(0);
-              setLightboxOpen(true);
-            }}
-            className="mb-6 block w-full focus:outline-none col-span-full"
-            aria-label={projectMedia[0].title ?? "Open featured media"}
-            title={projectMedia[0].title}
-          >
-            <img
-              src={projectMedia[0].src}
-              alt={`${projectMedia[0].title ?? "Featured project"} — portfolio de Rafael Bacellar`}
-              loading="lazy"
-              className="w-full h-auto rounded-3xl border border-border bg-muted/20 max-h-96 object-cover"
-            />
-          </button>
-
-          {/* Rest of the projects in masonry layout */}
+          {/* Projects in masonry layout */}
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
-            {projectMedia.slice(1).map((item, i) => (
+            {projectMedia.slice(0, -1).map((item, i) => (
               <button
-                key={i + 1}
+                key={i}
                 type="button"
                 onClick={() => {
-                  setActiveMedia(i + 1);
+                  setActiveMedia(i);
                   setLightboxOpen(true);
                 }}
                 className="mb-4 block break-inside-avoid focus:outline-none"
-                aria-label={item.title ?? `Open media ${i + 2}`}
+                aria-label={item.title ?? `Open media ${i + 1}`}
                 title={item.title}
               >
                 <img
                   src={item.src}
-                  alt={`${item.title ?? `Project media ${i + 2}`} — portfolio de Rafael Bacellar`}
+                  alt={`${item.title ?? `Project media ${i + 1}`} — portfolio de Rafael Bacellar`}
                   loading="lazy"
                   className="w-full h-auto rounded-3xl border border-border bg-muted/20"
                 />
               </button>
             ))}
           </div>
+
+          {/* Featured project at the bottom - larger horizontal space */}
+          <button
+            type="button"
+            onClick={() => {
+              setActiveMedia(projectMedia.length - 1);
+              setLightboxOpen(true);
+            }}
+            className="mt-6 block w-full focus:outline-none col-span-full"
+            aria-label={projectMedia[projectMedia.length - 1].title ?? "Open featured media"}
+            title={projectMedia[projectMedia.length - 1].title}
+          >
+            <img
+              src={projectMedia[projectMedia.length - 1].src}
+              alt={`${projectMedia[projectMedia.length - 1].title ?? "Featured project"} — portfolio de Rafael Bacellar`}
+              loading="lazy"
+              className="w-full h-auto rounded-3xl border border-border bg-muted/20 max-h-96 object-cover"
+            />
+          </button>
 
           <MediaLightbox
             items={projectMedia}
