@@ -10,6 +10,8 @@ import MediaLightbox from "@/components/MediaLightbox";
 import { ArrowRight } from "lucide-react";
 
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
+import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
+import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 
 const Index = () => {
   const [spot, setSpot] = useState({ x: 0, y: 0 });
@@ -35,8 +37,8 @@ const Index = () => {
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", href: "https://bento.me/rfbcllr", title: "New app @isaac (GIF)" },
     { src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", href: "https://bento.me/rfbcllr", title: "AI interactions (GIF)" },
     { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC82ZThiZmIxNTgyNTU0MDcuWTNKdmNDdzJORGdzTlRBM0xEYzBPU3d5TlRVLnBuZw==.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 1" },
-    { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC9hMmVjMmQxNTM5ODM1MDMuWTNKdmNDdzRNRGdzTmpNeUxEQXNNQS5wbmc=.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 2" },
-    { src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC8zZmM2NzAxNDI1Mjk0NzEuWTNKdmNDdzRNRGdzTmpNeUxEQXNNQS5wbmc=.png?w=750&h=750", href: "https://www.behance.net/rfbcllr", title: "Behance project thumbnail 3" },
+    { src: projectThumbNew1, href: "https://www.behance.net/rfbcllr", title: "Project thumbnail 2" },
+    { src: projectThumbNew2, href: "https://www.behance.net/rfbcllr", title: "Project thumbnail 3" },
   ];
 
   const experienceBadges = [
