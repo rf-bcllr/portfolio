@@ -141,9 +141,8 @@ const Index = () => {
             <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">{t.projectsSubtitle}</p>
           </header>
 
-          {/* Projects in masonry layout */}
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
-            {projectMedia.slice(0, -1).map((item, i) => (
+            {projectMedia.map((item, i) => (
               <button
                 key={i}
                 type="button"
@@ -163,27 +162,6 @@ const Index = () => {
                 />
               </button>
             ))}
-          </div>
-
-          {/* Featured project at the bottom - 2/3 width aligned left */}
-          <div className="mt-4 grid grid-cols-3 gap-4">
-            <button
-              type="button"
-              onClick={() => {
-                setActiveMedia(projectMedia.length - 1);
-                setLightboxOpen(true);
-              }}
-              className="col-span-2 block focus:outline-none"
-              aria-label={projectMedia[projectMedia.length - 1].title ?? "Open featured media"}
-              title={projectMedia[projectMedia.length - 1].title}
-            >
-              <img
-                src={projectMedia[projectMedia.length - 1].src}
-                alt={`${projectMedia[projectMedia.length - 1].title ?? "Featured project"} — portfolio de Rafael Bacellar`}
-                loading="lazy"
-                className="w-full h-auto rounded-3xl border border-border bg-muted/20 max-h-96 object-cover"
-              />
-            </button>
           </div>
 
           <MediaLightbox
