@@ -96,38 +96,56 @@ const Index = () => {
           id="inicio"
           onMouseMove={onMove}
           style={{ ['--x' as any]: `${spot.x}px`, ['--y' as any]: `${spot.y}px` }}
-          className="relative overflow-hidden"
+          className="relative overflow-hidden min-h-[90vh] flex items-center"
         >
           <div className="pointer-events-none absolute inset-0 -z-10 opacity-70" style={{
-            background: "radial-gradient(600px at var(--x) var(--y), hsl(var(--primary)/0.25), transparent 60%)",
+            background: "radial-gradient(800px at var(--x) var(--y), hsl(var(--primary)/0.3), transparent 70%)",
           }} />
-          <div className="container mx-auto grid gap-10 px-6 py-20 md:grid-cols-[auto,1fr] md:items-center">
-            <img
-              src={avatar}
-              alt="Retrato de Rafael Bacellar, Product Designer"
-              loading="eager"
-              width={184}
-              height={184}
-              className="mx-auto aspect-square size-40 rounded-full border-2 border-border object-cover shadow-lg md:mx-0 md:size-48 animate-enter"
-            />
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl animate-fade-in font-display">{t.heroTitle}</h1>
-              <p className="mt-4 max-w-xl text-lg text-muted-foreground animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          
+          {/* Marquee com nome repetido */}
+          <div className="absolute top-1/3 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-5">
+            <div className="flex whitespace-nowrap animate-marquee">
+              <span className="text-[clamp(4rem,15vw,12rem)] font-bold font-display px-8">
+                Rafael Bacellar · Rafael Bacellar · Rafael Bacellar · Rafael Bacellar ·
+              </span>
+              <span className="text-[clamp(4rem,15vw,12rem)] font-bold font-display px-8">
+                Rafael Bacellar · Rafael Bacellar · Rafael Bacellar · Rafael Bacellar ·
+              </span>
+            </div>
+          </div>
+
+          <div className="container mx-auto px-6 py-20">
+            <div className="max-w-5xl mx-auto text-center">
+              <div className="mb-8 animate-enter">
+                <img
+                  src={avatar}
+                  alt="Retrato de Rafael Bacellar, Product Designer"
+                  loading="eager"
+                  width={160}
+                  height={160}
+                  className="mx-auto aspect-square size-32 md:size-40 rounded-full border-2 border-border object-cover"
+                  style={{ boxShadow: "var(--shadow-elegant)" }}
+                />
+              </div>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight animate-fade-in font-display text-balance leading-[1.1]">
+                {t.heroTitle}
+              </h1>
+              <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 {t.heroDescription}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <Button asChild variant="contrast" size="lg">
+              <div className="mt-10 flex flex-wrap justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <Button asChild variant="contrast" size="lg" className="text-base px-8">
                   <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" aria-label={t.talkOnLinkedIn}>
                     {t.talkOnLinkedIn}
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg">
+                <Button asChild variant="outline" size="lg" className="text-base px-8">
                   <a href="#projetos">{t.viewProjects}</a>
                 </Button>
               </div>
-              <div className="mt-8 flex flex-wrap items-center gap-2 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+              <div className="mt-10 flex flex-wrap justify-center items-center gap-3 animate-fade-in" style={{ animationDelay: "0.3s" }}>
                 {t.skills.map((skill) => (
-                  <Badge key={skill} variant="secondary">{skill}</Badge>
+                  <Badge key={skill} variant="secondary" className="text-sm px-4 py-1.5">{skill}</Badge>
                 ))}
               </div>
             </div>
@@ -135,13 +153,15 @@ const Index = () => {
         </section>
 
         {/* Projetos */}
-        <section id="projetos" className="container mx-auto px-6 py-24">
-          <header className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight lg:text-4xl font-display">{t.realExperiences}</h2>
-            <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">{t.projectsSubtitle}</p>
+        <section id="projetos" className="container mx-auto px-6 py-32">
+          <header className="mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4">
+              {t.realExperiences}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </header>
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
             {projectMedia.map((item, i) => (
               <button
                 key={i}
@@ -150,16 +170,18 @@ const Index = () => {
                   setActiveMedia(i);
                   setLightboxOpen(true);
                 }}
-                className="mb-4 block break-inside-avoid focus:outline-none"
+                className="mb-6 block break-inside-avoid focus:outline-none group"
                 aria-label={item.title ?? `Open media ${i + 1}`}
                 title={item.title}
               >
-                <img
-                  src={item.src}
-                  alt={`${item.title ?? `Project media ${i + 1}`} — portfolio de Rafael Bacellar`}
-                  loading="lazy"
-                  className="w-full h-auto rounded-3xl border border-border bg-muted/20"
-                />
+                <div className="relative overflow-hidden rounded-3xl hover-lift" style={{ boxShadow: "var(--shadow-card)" }}>
+                  <img
+                    src={item.src}
+                    alt={`${item.title ?? `Project media ${i + 1}`} — portfolio de Rafael Bacellar`}
+                    loading="lazy"
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
               </button>
             ))}
           </div>
@@ -172,23 +194,25 @@ const Index = () => {
             onIndexChange={setActiveMedia}
           />
 
-          <div className="mt-10 flex justify-center">
-            <Button asChild variant="soft">
+          <div className="mt-12 flex justify-center">
+            <Button asChild variant="soft" size="lg" className="text-base px-8">
               <a href="https://www.behance.net/rfbcllr" target="_blank" rel="noreferrer">{t.moreOnBento}</a>
             </Button>
           </div>
         </section>
 
         {/* Sobre */}
-        <section id="sobre" className="container mx-auto px-6 py-16">
-          <div className="grid gap-8 md:grid-cols-2">
+        <section id="sobre" className="container mx-auto px-6 py-32">
+          <div className="grid gap-12 lg:grid-cols-2 max-w-6xl mx-auto">
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight font-display">{t.aboutTitle}</h2>
-              <p className="mt-4 text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-6 text-balance">
+                {t.aboutTitle}
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 {t.aboutDescription}
               </p>
-              <div className="mt-6">
-                <Button asChild variant="contrast" className="gap-2">
+              <div className="mt-8">
+                <Button asChild variant="contrast" size="lg" className="gap-2 text-base px-8">
                   <Link to={language === "pt" ? "/experiencia" : "/experience"}>
                     {t.fullExperience}
                     <ArrowRight className="w-4 h-4" />
@@ -196,11 +220,11 @@ const Index = () => {
                 </Button>
               </div>
             </div>
-            <div className="rounded-lg border p-6">
-              <h3 className="font-semibold font-display">{t.competenciesTitle}</h3>
-              <ul className="mt-3 grid list-disc gap-2 pl-5 text-muted-foreground sm:grid-cols-2">
+            <div className="rounded-2xl border p-8 hover-lift" style={{ boxShadow: "var(--shadow-card)" }}>
+              <h3 className="text-xl font-semibold font-display mb-6">{t.competenciesTitle}</h3>
+              <ul className="grid list-disc gap-3 pl-5 text-muted-foreground sm:grid-cols-2">
                 {t.competencies.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} className="leading-relaxed">{item}</li>
                 ))}
               </ul>
             </div>
@@ -208,29 +232,29 @@ const Index = () => {
         </section>
 
         {/* Certificações */}
-        <section id="certificacoes" className="container mx-auto px-6 py-16">
-          <header className="mb-8">
-            <h2 className="text-2xl font-semibold tracking-tight font-display">{t.certificationsTitle}</h2>
-            <p className="text-muted-foreground">{t.certificationsSubtitle}</p>
+        <section id="certificacoes" className="container mx-auto px-6 py-32 max-w-4xl">
+          <header className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display mb-3">{t.certificationsTitle}</h2>
+            <p className="text-lg text-muted-foreground">{t.certificationsSubtitle}</p>
           </header>
-          <ul className="space-y-2">
+          <ul className="space-y-4">
             <li>
-              <a href="https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98" target="_blank" rel="noreferrer" className="story-link">
+              <a href="https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98" target="_blank" rel="noreferrer" className="story-link text-lg">
                 Foundations of UX Design by Google
               </a>
             </li>
             <li>
-              <a href="https://app.crowdclass.com/tokens/8394" target="_blank" rel="noreferrer" className="story-link">
+              <a href="https://app.crowdclass.com/tokens/8394" target="_blank" rel="noreferrer" className="story-link text-lg">
                 Strategic Design by The Starter
               </a>
             </li>
             <li>
-              <a href="https://app.crowdclass.com/tokens/9153" target="_blank" rel="noreferrer" className="story-link">
+              <a href="https://app.crowdclass.com/tokens/9153" target="_blank" rel="noreferrer" className="story-link text-lg">
                 UX Design for AI Systems
               </a>
             </li>
             <li>
-              <a href="https://app.crowdclass.com/tokens/12141" target="_blank" rel="noreferrer" className="story-link">
+              <a href="https://app.crowdclass.com/tokens/12141" target="_blank" rel="noreferrer" className="story-link text-lg">
                 UX Design Leadership
               </a>
             </li>
@@ -260,15 +284,17 @@ const Index = () => {
 
         {/* Contato */}
         <section id="contato" className="relative isolate">
-          <div className="absolute inset-0 -z-10 opacity-[0.12]" style={{ background: "var(--gradient-hero)" }} />
-          <div className="container mx-auto px-6 py-16 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight font-display">{t.contactTitle}</h2>
-            <p className="mt-2 text-muted-foreground">{t.contactDescription}</p>
-            <div className="mt-6 flex justify-center gap-3">
-              <Button asChild variant="outline">
+          <div className="absolute inset-0 -z-10 opacity-[0.08]" style={{ background: "var(--gradient-hero)" }} />
+          <div className="container mx-auto px-6 py-24 md:py-32 text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-6 text-balance">
+              {t.contactTitle}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">{t.contactDescription}</p>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <Button asChild variant="outline" size="lg" className="text-base px-8">
                 <a href="#inicio">{t.backToTop}</a>
               </Button>
-              <Button asChild variant="contrast">
+              <Button asChild variant="contrast" size="lg" className="text-base px-8">
                 <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
               </Button>
             </div>
@@ -276,8 +302,8 @@ const Index = () => {
         </section>
       </main>
 
-      <footer className="border-t py-6 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Rafael Bacellar · Todos os direitos reservados
+      <footer className="border-t py-10 text-center text-sm text-muted-foreground">
+        <p>© {new Date().getFullYear()} Rafael Bacellar · Todos os direitos reservados</p>
       </footer>
     </div>
   );
