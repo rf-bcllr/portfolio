@@ -189,7 +189,7 @@ const Index = () => {
 
           <AnimatedSection className="mt-12 flex justify-center" delay={0.3}>
             <Button asChild variant="soft" size="lg" className="text-base px-8">
-              <a href="https://www.behance.net/rfbcllr" target="_blank" rel="noreferrer">{t.moreOnBento}</a>
+              
             </Button>
           </AnimatedSection>
         </section>
@@ -225,7 +225,7 @@ const Index = () => {
         </section>
 
         {/* Certificações */}
-        <section id="certificacoes" className="container mx-auto px-6 py-32 max-w-4xl">
+        <section id="certificacoes" className="container mx-auto px-6 py-32 ">
           <AnimatedSection className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display mb-3">{t.certificationsTitle}</h2>
             <p className="text-lg text-muted-foreground">{t.certificationsSubtitle}</p>
