@@ -45,7 +45,7 @@ export const ProjectCard = ({
         </div>
         
         {/* Glow effect */}
-        <div className="absolute inset-0 ring-1 ring-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+        <div className="absolute inset-0 ring-1 ring-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
       </div>
     </motion.div>;
 };
