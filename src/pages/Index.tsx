@@ -8,6 +8,9 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 import MediaLightbox from "@/components/MediaLightbox";
 import { ArrowRight } from "lucide-react";
+import { ProjectCard } from "@/components/ProjectCard";
+import { CertificationCard } from "@/components/CertificationCard";
+import { AnimatedSection } from "@/components/AnimatedSection";
 
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
@@ -154,35 +157,26 @@ const Index = () => {
 
         {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-32">
-          <header className="mb-16 text-center max-w-3xl mx-auto">
+          <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4">
               {t.realExperiences}
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
-          </header>
+          </AnimatedSection>
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
             {projectMedia.map((item, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => {
-                  setActiveMedia(i);
-                  setLightboxOpen(true);
-                }}
-                className="mb-6 block break-inside-avoid focus:outline-none group"
-                aria-label={item.title ?? `Open media ${i + 1}`}
-                title={item.title}
-              >
-                <div className="relative overflow-hidden rounded-3xl hover-lift" style={{ boxShadow: "var(--shadow-card)" }}>
-                  <img
-                    src={item.src}
-                    alt={`${item.title ?? `Project media ${i + 1}`} — portfolio de Rafael Bacellar`}
-                    loading="lazy"
-                    className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-              </button>
+              <div key={i} className="mb-6 break-inside-avoid">
+                <ProjectCard
+                  src={item.src}
+                  alt={item.title ?? `Project media ${i + 1}`}
+                  index={i}
+                  onClick={() => {
+                    setActiveMedia(i);
+                    setLightboxOpen(true);
+                  }}
+                />
+              </div>
             ))}
           </div>
 
@@ -194,11 +188,11 @@ const Index = () => {
             onIndexChange={setActiveMedia}
           />
 
-          <div className="mt-12 flex justify-center">
+          <AnimatedSection className="mt-12 flex justify-center" delay={0.3}>
             <Button asChild variant="soft" size="lg" className="text-base px-8">
               <a href="https://www.behance.net/rfbcllr" target="_blank" rel="noreferrer">{t.moreOnBento}</a>
             </Button>
-          </div>
+          </AnimatedSection>
         </section>
 
         {/* Sobre */}
@@ -233,32 +227,32 @@ const Index = () => {
 
         {/* Certificações */}
         <section id="certificacoes" className="container mx-auto px-6 py-32 max-w-4xl">
-          <header className="mb-12">
+          <AnimatedSection className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display mb-3">{t.certificationsTitle}</h2>
             <p className="text-lg text-muted-foreground">{t.certificationsSubtitle}</p>
-          </header>
-          <ul className="space-y-4">
-            <li>
-              <a href="https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98" target="_blank" rel="noreferrer" className="story-link text-lg">
-                Foundations of UX Design by Google
-              </a>
-            </li>
-            <li>
-              <a href="https://app.crowdclass.com/tokens/8394" target="_blank" rel="noreferrer" className="story-link text-lg">
-                Strategic Design by The Starter
-              </a>
-            </li>
-            <li>
-              <a href="https://app.crowdclass.com/tokens/9153" target="_blank" rel="noreferrer" className="story-link text-lg">
-                UX Design for AI Systems
-              </a>
-            </li>
-            <li>
-              <a href="https://app.crowdclass.com/tokens/12141" target="_blank" rel="noreferrer" className="story-link text-lg">
-                UX Design Leadership
-              </a>
-            </li>
-          </ul>
+          </AnimatedSection>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 max-w-2xl mx-auto">
+            <CertificationCard
+              title="Foundations of UX Design by Google"
+              href="https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98"
+              index={0}
+            />
+            <CertificationCard
+              title="Strategic Design by The Starter"
+              href="https://app.crowdclass.com/tokens/8394"
+              index={1}
+            />
+            <CertificationCard
+              title="UX Design for AI Systems"
+              href="https://app.crowdclass.com/tokens/9153"
+              index={2}
+            />
+            <CertificationCard
+              title="UX Design Leadership"
+              href="https://app.crowdclass.com/tokens/12141"
+              index={3}
+            />
+          </div>
         </section>
 
         {/* Recomendações */}

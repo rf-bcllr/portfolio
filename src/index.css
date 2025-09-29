@@ -48,6 +48,11 @@ All colors MUST be HSL.
     --shadow-glow: 0 0 60px hsl(var(--accent) / 0.5);
     --shadow-card: 0 4px 24px -4px hsl(var(--foreground) / 0.1);
     --shadow-card-hover: 0 8px 40px -8px hsl(var(--foreground) / 0.15);
+    
+    /* Animation timings */
+    --animation-duration: 0.3s;
+    --animation-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --stagger-delay: 0.1s;
 
     /* Sidebar tokens (kept for components) */
     --sidebar-background: 0 0% 98%;
@@ -133,11 +138,50 @@ All colors MUST be HSL.
   }
   
   .hover-lift {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--animation-duration) var(--animation-ease), 
+                box-shadow var(--animation-duration) var(--animation-ease);
   }
   
   .hover-lift:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-card-hover);
   }
+
+  /* Reveal animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s var(--animation-ease) forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s var(--animation-ease) forwards;
+  }
+
+  /* Stagger delay utilities */
+  .stagger-1 { animation-delay: calc(1 * var(--stagger-delay)); }
+  .stagger-2 { animation-delay: calc(2 * var(--stagger-delay)); }
+  .stagger-3 { animation-delay: calc(3 * var(--stagger-delay)); }
+  .stagger-4 { animation-delay: calc(4 * var(--stagger-delay)); }
+  .stagger-5 { animation-delay: calc(5 * var(--stagger-delay)); }
 }

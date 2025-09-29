@@ -8,6 +8,8 @@ import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Check } from 'lucid
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { SkillCard } from '@/components/SkillCard';
+import { AnimatedSection } from '@/components/AnimatedSection';
 
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 
@@ -275,60 +277,73 @@ const Experience = ({ language = "pt", onLanguageChange }: ExperiencePageProps) 
         </motion.section>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-1 gap-8 mb-12">
           {/* Technical Skills */}
-          <motion.section variants={itemVariants}>
+          <AnimatedSection>
             <h2 className="font-display text-2xl font-semibold mb-6">{t.competenciesTitle}</h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {skills.map((skill, index) => (
-                <Badge key={index} variant="outline" className="text-sm">
-                  {skill}
-                </Badge>
+                <SkillCard
+                  key={skill}
+                  skill={skill}
+                  category="skill"
+                  index={index}
+                  level={Math.floor(Math.random() * 3) + 3}
+                />
               ))}
             </div>
-          </motion.section>
+          </AnimatedSection>
 
           {/* Soft Skills */}
-          <motion.section variants={itemVariants}>
+          <AnimatedSection delay={0.2}>
             <h2 className="font-display text-2xl font-semibold mb-6">{t.softSkills}</h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {softSkills.map((skill, index) => (
-                <Badge key={index} variant="secondary" className="text-sm">
-                  {skill}
-                </Badge>
+                <SkillCard
+                  key={skill}
+                  skill={skill}
+                  category="softSkill"
+                  index={index}
+                  level={Math.floor(Math.random() * 2) + 4}
+                />
               ))}
             </div>
-          </motion.section>
+          </AnimatedSection>
         </div>
 
         {/* Tools & Languages Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-1 gap-8">
           {/* Tools */}
-          <motion.section variants={itemVariants}>
+          <AnimatedSection delay={0.4}>
             <h2 className="font-display text-2xl font-semibold mb-6">{t.tools}</h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {tools.map((tool, index) => (
-                <Badge key={index} variant="outline" className="text-sm">
-                  {tool}
-                </Badge>
+                <SkillCard
+                  key={tool}
+                  skill={tool}
+                  category="tool"
+                  index={index}
+                  level={Math.floor(Math.random() * 3) + 3}
+                />
               ))}
             </div>
-          </motion.section>
+          </AnimatedSection>
 
           {/* Languages */}
-          <motion.section variants={itemVariants}>
+          <AnimatedSection delay={0.6}>
             <h2 className="font-display text-2xl font-semibold mb-6">{t.languages}</h2>
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {languages.map((lang, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <span className="font-medium">{lang.name}</span>
-                  <Badge variant="secondary" className="text-sm">
-                    {lang.level}
-                  </Badge>
-                </div>
+                <SkillCard
+                  key={lang.name}
+                  skill={`${lang.name} - ${lang.level}`}
+                  category="language"
+                  index={index}
+                  level={lang.name.includes("Português") || lang.name.includes("Portuguese") ? 5 : lang.name.includes("Inglês") || lang.name.includes("English") ? 4 : 3}
+                />
               ))}
             </div>
-          </motion.section>
+          </AnimatedSection>
         </div>
       </motion.div>
     </div>
