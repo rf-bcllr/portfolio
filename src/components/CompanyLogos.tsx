@@ -1,4 +1,10 @@
 import { AnimatedSection } from "./AnimatedSection";
+import logoSanar from "@/assets/logo-sanar.png";
+import logoSebrae from "@/assets/logo-sebrae.png";
+import logoCvlb from "@/assets/logo-cvlb.png";
+import logoClassapp from "@/assets/logo-classapp.png";
+import logoIsaac from "@/assets/logo-isaac.png";
+import logoArco from "@/assets/logo-arco.png";
 
 interface Company {
   name: string;
@@ -9,32 +15,32 @@ interface Company {
 const companies: Company[] = [
   {
     name: "Sanar",
-    logo: "https://sanarsaude.com/favicon.ico",
+    logo: logoSanar,
     url: "https://sanarsaude.com/"
   },
   {
     name: "Sebrae",
-    logo: "https://sebrae.com.br/favicon.ico",
+    logo: logoSebrae,
     url: "https://sebrae.com.br/"
   },
   {
     name: "CVLB Group",
-    logo: "https://www.grupocvlb.com.br/favicon.ico",
+    logo: logoCvlb,
     url: "https://www.grupocvlb.com.br/"
   },
   {
     name: "ClassApp",
-    logo: "https://www.classapp.com.br/favicon.ico",
+    logo: logoClassapp,
     url: "https://www.classapp.com.br/"
   },
   {
     name: "isaac",
-    logo: "https://isaac.com.br/favicon.ico",
+    logo: logoIsaac,
     url: "https://isaac.com.br/"
   },
   {
     name: "Arco Educação",
-    logo: "https://www.arcoeducacao.com.br/favicon.ico",
+    logo: logoArco,
     url: "https://www.arcoeducacao.com.br/"
   }
 ];
@@ -75,20 +81,8 @@ export const CompanyLogos = ({ title, subtitle }: CompanyLogosProps) => {
                 <img
                   src={company.logo}
                   alt={`${company.name} logo`}
-                  className="w-full h-full object-contain opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                  className="w-full h-full object-contain brightness-0 dark:invert group-hover:brightness-100 group-hover:invert-0 group-hover:dark:invert-0 transition-all duration-300"
                   loading="lazy"
-                  onError={(e) => {
-                    // Fallback to company name if logo fails to load
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      const text = document.createElement('span');
-                      text.textContent = company.name;
-                      text.className = 'text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors';
-                      parent.appendChild(text);
-                    }
-                  }}
                 />
               </a>
             ))}
