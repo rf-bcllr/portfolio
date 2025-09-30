@@ -10,6 +10,7 @@ import MediaLightbox from "@/components/MediaLightbox";
 import { ArrowRight } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
+import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
@@ -138,6 +139,9 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
+              <p className="text-2xl md:text-3xl text-muted-foreground mb-4 animate-fade-in">
+                {t.heroGreeting}
+              </p>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight animate-fade-in font-display text-balance leading-[1.1]">
                 {t.heroTitle}
               </h1>
@@ -166,6 +170,12 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Companies Section */}
+        <CompanyLogos 
+          title={t.companiesTitle}
+          subtitle={t.companiesSubtitle}
+        />
 
         {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-32">

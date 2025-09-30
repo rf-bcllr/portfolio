@@ -6,10 +6,15 @@ export const translations = {
     contact: "Contato",
     
     // Hero Section
+    heroGreeting: "Olá, prazer em te conhecer! 👋",
     heroTitle: "Rafa Bacellar",
     heroDescription: "Product designer com experiências reais em produtos digitais. Foco em UX/UI, design system e interfaces escaláveis.",
     talkOnLinkedIn: "Falar no LinkedIn",
     viewProjects: "Ver projetos",
+    
+    // Companies Section
+    companiesTitle: "Já trabalhei com",
+    companiesSubtitle: "Algumas das empresas onde apliquei minhas habilidades em design de produtos digitais.",
     
     // Projects Section
     realExperiences: "Experiências reais",
@@ -85,10 +90,15 @@ export const translations = {
     contact: "Contact",
     
     // Hero Section
+    heroGreeting: "Hi, nice to meet you! 👋",
     heroTitle: "Rafa Bacellar",
     heroDescription: "Product designer with real experiences in digital products. Focus on UX/UI, design system and scalable interfaces.",
     talkOnLinkedIn: "Talk on LinkedIn",
     viewProjects: "View projects",
+    
+    // Companies Section
+    companiesTitle: "I've worked with",
+    companiesSubtitle: "Some of the companies where I've applied my skills in digital product design.",
     
     // Projects Section
     realExperiences: "Real experiences",
