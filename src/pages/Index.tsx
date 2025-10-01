@@ -144,7 +144,7 @@ const Index = () => {
               </div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight animate-fade-in text-foreground leading-[1.3]">
                 <span className="text-xl md:text-2xl lg:text-3xl text-muted-foreground">Olá, meu nome é </span>
-                <span className="font-bold font-display text-3xl">{language === "pt" ? "Rafa Bacellar 👋🏿" : "Rafa Bacellar 👋🏿"}</span>
+                <span className="font-bold font-display text-4xl">{language === "pt" ? "Rafa Bacellar 👋🏿" : "Rafa Bacellar 👋🏿"}</span>
               </h1>
               <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground animate-fade-in" style={{
               animationDelay: "0.1s"
