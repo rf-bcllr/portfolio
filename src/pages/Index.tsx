@@ -15,6 +15,9 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
+import projMuralNew from "@/assets/proj-mural-new.png";
+import projHealthyNew from "@/assets/proj-healthy-new.png";
+import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 const Index = () => {
   const [spot, setSpot] = useState({
     x: 0,
@@ -40,11 +43,11 @@ const Index = () => {
     href: "https://bento.me/rfbcllr",
     title: "Risk Analysis Dashboard - Cybersecurity Interface"
   }, {
-    src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/6d1gUMMWYdGdDNPe-26ddde76011107.Y3JvcCw4MDgsNjMyLDAsMA%2520(1).png?w=750&h=750",
+    src: projMuralNew,
     href: "https://bento.me/rfbcllr",
     title: "Login, Onboarding and Home @Mural"
   }, {
-    src: "https://creatorspace.imgix.net/users/clnkcjnw802u4ou01tta5rqcm/EC90UL0Vda7i4S30-Screenshot%25202023-10-10%2520at%252022.10.09.png?w=750&h=750",
+    src: projHealthyNew,
     href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1",
     title: "Healthy Food & Groceries App Prototype"
   }, {
@@ -56,7 +59,7 @@ const Index = () => {
     href: "https://bento.me/rfbcllr",
     title: "AI interactions (GIF)"
   }, {
-    src: "https://creatorspace.imgix.net/richdata/behance/posts/aHR0cHM6Ly9taXItczMtY2RuLWNmLmJlaGFuY2UubmV0L3Byb2plY3RzLzQwNC82ZThiZmIxNTgyNTU0MDcuWTNKdmNDdzJORGdzTlRBM0xEYzBPU3d5TlRVLnBuZw==.png?w=750&h=750",
+    src: projThumbNew3,
     href: "https://www.behance.net/rfbcllr",
     title: "Behance project thumbnail 1"
   }, {
@@ -139,11 +142,9 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
-              <p className="text-2xl md:text-3xl text-muted-foreground mb-4 animate-fade-in">
-                {t.heroGreeting}
-              </p>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight animate-fade-in font-display text-balance leading-[1.1]">
-                {t.heroTitle}
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight animate-fade-in text-foreground leading-[1.3]">
+                <span className="text-xl md:text-2xl lg:text-3xl text-muted-foreground">Olá, meu nome é </span>
+                <span className="font-bold font-display">{language === "pt" ? "Rafa Bacellar 👋🏿" : "Rafa Bacellar 👋🏿"}</span>
               </h1>
               <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground animate-fade-in" style={{
               animationDelay: "0.1s"

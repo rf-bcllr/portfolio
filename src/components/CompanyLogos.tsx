@@ -73,7 +73,7 @@ export const CompanyLogos = ({ title, subtitle }: CompanyLogosProps) => {
                 href={company.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-full aspect-square max-w-[120px] flex items-center justify-center p-6 rounded-xl border border-border bg-card/50 hover:bg-card transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                className="group relative w-full aspect-square max-w-[120px] flex items-center justify-center p-6 transition-all duration-300 hover:scale-110"
                 style={{
                   animationDelay: `${index * 0.1}s`
                 }}
@@ -81,7 +81,7 @@ export const CompanyLogos = ({ title, subtitle }: CompanyLogosProps) => {
                 <img
                   src={company.logo}
                   alt={`${company.name} logo`}
-                  className="w-full h-full object-contain brightness-0 dark:invert group-hover:brightness-100 group-hover:invert-0 group-hover:dark:invert-0 transition-all duration-300"
+                  className="w-full h-full object-contain brightness-0 dark:invert transition-all duration-300"
                   loading="lazy"
                 />
               </a>

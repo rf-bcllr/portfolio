@@ -6,8 +6,7 @@ export const translations = {
     contact: "Contato",
     
     // Hero Section
-    heroGreeting: "Olá, prazer em te conhecer! 👋",
-    heroTitle: "Rafa Bacellar",
+    heroGreeting: "Olá, meu nome é Rafa Bacellar 👋🏿",
     heroDescription: "Product designer com experiências reais em produtos digitais. Foco em UX/UI, design system e interfaces escaláveis.",
     talkOnLinkedIn: "Falar no LinkedIn",
     viewProjects: "Ver projetos",
@@ -90,8 +89,7 @@ export const translations = {
     contact: "Contact",
     
     // Hero Section
-    heroGreeting: "Hi, nice to meet you! 👋",
-    heroTitle: "Rafa Bacellar",
+    heroGreeting: "Hi, my name is Rafa Bacellar 👋🏿",
     heroDescription: "Product designer with real experiences in digital products. Focus on UX/UI, design system and scalable interfaces.",
     talkOnLinkedIn: "Talk on LinkedIn",
     viewProjects: "View projects",
