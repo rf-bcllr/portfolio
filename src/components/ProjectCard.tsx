@@ -1,14 +1,20 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+
 interface ProjectCardProps {
   src: string;
   alt: string;
+  title: string;
+  chips: string[];
   index: number;
   onClick: () => void;
 }
 export const ProjectCard = ({
   src,
   alt,
+  title,
+  chips,
   index,
   onClick
 }: ProjectCardProps) => {
@@ -39,8 +45,14 @@ export const ProjectCard = ({
         {/* Hover content */}
         <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
           <div className="text-white">
-            <h3 className="text-lg font-semibold mb-1">Projeto {index + 1}</h3>
-            <p className="text-sm text-white/80">Ver detalhes</p>
+            <h3 className="text-lg font-semibold mb-2">{title}</h3>
+            <div className="flex flex-wrap gap-2">
+              {chips.map((chip) => (
+                <Badge key={chip} variant="secondary" className="text-xs bg-white/20 text-white border-white/30 hover:bg-white/30">
+                  {chip}
+                </Badge>
+              ))}
+            </div>
           </div>
         </div>
         

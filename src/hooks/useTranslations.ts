@@ -90,7 +90,7 @@ export const translations = {
     
     // Hero Section
     heroGreeting: "Hi, my name is Rafa Bacellar 👋🏿",
-    heroDescription: "Product designer with real experiences in digital products. Focus on UX/UI, design system and scalable interfaces.",
+    heroDescription: "Brazilian product designer with real experiences in digital products. Focus on UX/UI, design system and scalable interfaces.",
     talkOnLinkedIn: "Talk on LinkedIn",
     viewProjects: "View projects",
     

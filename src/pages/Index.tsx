@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { LanguageToggle } from "@/components/LanguageToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 import MediaLightbox from "@/components/MediaLightbox";
 import { ArrowRight } from "lucide-react";
@@ -18,19 +17,23 @@ import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 import projMuralNew from "@/assets/proj-mural-new.png";
 import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
+import inisAvatar from "@/assets/inis-avatar.png";
+import esdrasAvatar from "@/assets/esdras-avatar.png";
+
 const Index = () => {
   const [spot, setSpot] = useState({
     x: 0,
     y: 0
   });
-  const [language, setLanguage] = useState<"pt" | "en">("pt");
   const [scrolled, setScrolled] = useState(false);
-  const t = useTranslations(language);
+  const t = useTranslations("en");
+  
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  
   const onMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setSpot({
@@ -38,62 +41,52 @@ const Index = () => {
       y: e.clientY - rect.top
     });
   };
+  
   const projectMedia = [{
     src: "/lovable-uploads/90169309-3cbd-483f-8bdc-c5e96fc950da.png",
     href: "https://bento.me/rfbcllr",
-    title: "Risk Analysis Dashboard - Cybersecurity Interface"
+    title: "Risk Analysis Dashboard for Cyberbrake",
+    chips: ["UI", "Technology"]
   }, {
     src: projMuralNew,
     href: "https://bento.me/rfbcllr",
-    title: "Login, Onboarding and Home @Mural"
+    title: "Mural",
+    chips: ["Branding", "UI"]
   }, {
     src: projHealthyNew,
     href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1",
-    title: "Healthy Food & Groceries App Prototype"
+    title: "Health Food Delivery App",
+    chips: ["UI/UX", "Research"]
   }, {
     src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
     href: "https://bento.me/rfbcllr",
-    title: "New app @isaac (GIF)"
+    title: "Meu Arco",
+    chips: ["UI/UX", "Research"]
   }, {
     src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
     href: "https://bento.me/rfbcllr",
-    title: "AI interactions (GIF)"
+    title: "AI Writing Assistant",
+    chips: ["UI/UX", "Research"]
   }, {
     src: projThumbNew3,
     href: "https://www.behance.net/rfbcllr",
-    title: "Behance project thumbnail 1"
+    title: "Health Food Delivery App",
+    chips: ["UI/UX", "Research"]
   }, {
     src: projectThumbNew1,
     href: "https://www.behance.net/rfbcllr",
-    title: "Project thumbnail 2"
+    title: "Digital Signature Feature",
+    chips: ["UI/UX", "Research"]
   }, {
     src: projectThumbNew2,
     href: "https://www.behance.net/rfbcllr",
-    title: "Project thumbnail 3"
+    title: "Students' Transportation Feature",
+    chips: ["UI/UX", "Research"]
   }];
-  const experienceBadges = [{
-    years: 1,
-    org: "isaac"
-  }, {
-    years: 3,
-    org: "ClassApp"
-  }, {
-    years: 2,
-    org: "Le biscuit"
-  }, {
-    years: 2,
-    org: "Sebrae"
-  }, {
-    years: 2,
-    org: "Sanar"
-  }];
-  const formatExperience = (years: number, org: string) => {
-    const isEn = language === "en";
-    const word = isEn ? years === 1 ? "year" : "years" : years === 1 ? "ano" : "anos";
-    return `+${years} ${word} @${org}`;
-  };
+  
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeMedia, setActiveMedia] = useState(0);
+  
   return <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
@@ -101,9 +94,7 @@ const Index = () => {
               <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
             </a>}
           <div className="flex items-center gap-4">
-            
             <div className="flex items-center gap-2">
-              <LanguageToggle language={language} onLanguageChange={setLanguage} />
               <ThemeToggle />
               <Button asChild variant="contrast" size="sm">
                 <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -143,8 +134,8 @@ const Index = () => {
               }} />
               </div>
               <h1 className="text-3xl md:text-4xl font-normal tracking-tight animate-fade-in leading-[1.3] text-white lg:text-3xl">
-                <span className="text-xl md:text-2xl lg:text-3xl text-muted-foreground">Olá, meu nome é </span>
-                <span className="font-bold font-display text-4xl text-slate-500">{language === "pt" ? "Rafa Bacellar 👋🏿" : "Rafa Bacellar 👋🏿"}</span>
+                <span className="text-xl md:text-2xl lg:text-3xl text-muted-foreground">Hi, my name is </span>
+                <span className="font-bold font-display text-4xl text-slate-500">Rafa Bacellar 👋🏿</span>
               </h1>
               <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground animate-fade-in" style={{
               animationDelay: "0.1s"
@@ -186,10 +177,17 @@ const Index = () => {
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
             {projectMedia.map((item, i) => <div key={i} className="mb-6 break-inside-avoid">
-                <ProjectCard src={item.src} alt={item.title ?? `Project media ${i + 1}`} index={i} onClick={() => {
-              setActiveMedia(i);
-              setLightboxOpen(true);
-            }} />
+                <ProjectCard 
+                  src={item.src} 
+                  alt={item.title ?? `Project media ${i + 1}`} 
+                  title={item.title}
+                  chips={item.chips}
+                  index={i} 
+                  onClick={() => {
+                    setActiveMedia(i);
+                    setLightboxOpen(true);
+                  }} 
+                />
               </div>)}
           </div>
 
@@ -214,7 +212,7 @@ const Index = () => {
               </p>
               <div className="mt-8">
                 <Button asChild variant="contrast" size="lg" className="gap-2 text-base px-8">
-                  <Link to={language === "pt" ? "/experiencia" : "/experience"}>
+                  <Link to="/experience">
                     {t.fullExperience}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -247,22 +245,30 @@ const Index = () => {
         </section>
 
         {/* Recomendações */}
-        <section id="recomendacoes" className="container mx-auto px-6 py-16">
-          <header className="mb-8">
-            <h2 className="text-2xl font-semibold tracking-tight font-display">{t.recommendationsTitle}</h2>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {experienceBadges.map(({
-              years,
-              org
-            }) => <Badge key={`${org}-${years}`} variant="secondary">{formatExperience(years, org)}</Badge>)}
-            </div>
+        <section id="recomendacoes" className="container mx-auto px-6 py-32">
+          <header className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display">{t.recommendationsTitle}</h2>
           </header>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {t.recommendationsItems?.map((rec, idx) => <Card className="p-6" key={idx}>
-                <p className="text-sm text-muted-foreground">“{rec.quote}”</p>
-                <p className="mt-3 font-medium">{rec.author}</p>
-              </Card>)}
+          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+            {t.recommendationsItems?.map((rec, idx) => {
+              const avatar = idx === 0 ? inisAvatar : esdrasAvatar;
+              return (
+                <Card className="p-8 hover-lift" key={idx} style={{ boxShadow: "var(--shadow-card)" }}>
+                  <div className="flex items-start gap-4 mb-4">
+                    <img 
+                      src={avatar} 
+                      alt={rec.author} 
+                      className="w-16 h-16 rounded-full object-cover border-2 border-border"
+                    />
+                    <div>
+                      <p className="font-semibold text-lg">{rec.author}</p>
+                    </div>
+                  </div>
+                  <p className="text-base leading-relaxed text-muted-foreground italic">"{rec.quote}"</p>
+                </Card>
+              );
+            })}
           </div>
         </section>
 
@@ -289,8 +295,9 @@ const Index = () => {
       </main>
 
       <footer className="border-t py-10 text-center text-sm text-muted-foreground">
-        <p>© {new Date().getFullYear()} Rafael Bacellar · Todos os direitos reservados</p>
+        <p>© {new Date().getFullYear()} Rafael Bacellar · All rights reserved</p>
       </footer>
     </div>;
 };
+
 export default Index;
