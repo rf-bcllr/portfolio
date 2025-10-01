@@ -142,7 +142,7 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight animate-fade-in text-foreground leading-[1.3]">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight animate-fade-in leading-[1.3] text-white">
                 <span className="text-xl md:text-2xl lg:text-3xl text-muted-foreground">Olá, meu nome é </span>
                 <span className="font-bold font-display text-4xl">{language === "pt" ? "Rafa Bacellar 👋🏿" : "Rafa Bacellar 👋🏿"}</span>
               </h1>
