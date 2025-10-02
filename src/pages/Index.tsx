@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -133,10 +134,29 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
-              <h1 className="text-3xl md:text-4xl font-normal tracking-tight animate-fade-in leading-[1.3] text-white lg:text-3xl">
-                <span className="text-xl md:text-2xl lg:text-3xl text-muted-foreground">Hi, my name is </span>
-                <span className="font-bold font-display text-4xl text-slate-500">Rafa Bacellar 👋🏿</span>
-              </h1>
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="inline-block"
+                >
+                  Hi, my name is{" "}
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="inline-block"
+                >
+                  Rafa Bacellar 👋🏿
+                </motion.span>
+              </motion.h1>
               <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground animate-fade-in" style={{
               animationDelay: "0.1s"
             }}>
@@ -231,16 +251,19 @@ const Index = () => {
         </section>
 
         {/* Certificações */}
-        <section id="certificacoes" className="container mx-auto px-6 py-32 ">
+        <section id="certificacoes" className="container mx-auto px-6 py-32">
           <AnimatedSection className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display mb-3">{t.certificationsTitle}</h2>
             <p className="text-lg text-muted-foreground">{t.certificationsSubtitle}</p>
           </AnimatedSection>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 max-w-2xl mx-auto">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2 max-w-6xl mx-auto">
             <CertificationCard title="Foundations of UX Design by Google" href="https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98" index={0} />
             <CertificationCard title="Strategic Design by The Starter" href="https://app.crowdclass.com/tokens/8394" index={1} />
             <CertificationCard title="UX Design for AI Systems" href="https://app.crowdclass.com/tokens/9153" index={2} />
             <CertificationCard title="UX Design Leadership" href="https://app.crowdclass.com/tokens/12141" index={3} />
+            <CertificationCard title="Game UX Design Foundations" href="https://www.interaction-design.org/members/rafael-bacellar-ramos-reis/certificate/masterclass/mcc_5847201105b245858759024389ba2499" index={4} />
+            <CertificationCard title="UX/UI na Prática (Masterclass)" href="https://www.sympla.com.br/download-certificado?t=wEW3bUAO3xBIV29pYRsKL4vdl1mx8jSIU2FaPKEkrrI" index={5} />
+            <CertificationCard title="Design for the 21st Century with Don Norman" href="https://www.interaction-design.org/members/rafael-bacellar-ramos-reis/certificate/masterclass/mcc_e5b0cd9411fb4af9993fc87c1b4f8291" index={6} />
           </div>
         </section>
 

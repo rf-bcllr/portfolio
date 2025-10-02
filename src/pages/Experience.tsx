@@ -7,8 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { LanguageToggle } from '@/components/LanguageToggle';
-import { SkillCard } from '@/components/SkillCard';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 interface ExperiencePageProps {
@@ -35,31 +33,36 @@ const Experience = ({
     company: "isaac",
     period: language === "pt" ? "2024 - Presente" : "2024 - Present",
     description: language === "pt" ? "Design de produtos digitais end-to-end, design system e interfaces escaláveis." : "End-to-end digital product design, design system and scalable interfaces.",
-    current: true
+    current: true,
+    secondaryChips: ["Fintech", "B2B"]
   }, {
     title: "Product Designer",
     company: "ClassApp",
     period: "2021 - 2024",
     description: language === "pt" ? "Liderança em design de produto, pesquisa com usuários e colaboração com desenvolvimento." : "Product design leadership, user research and development collaboration.",
-    current: false
+    current: false,
+    secondaryChips: ["Edtech", "B2B", "B2C"]
   }, {
     title: "Design Analyst",
     company: "Le biscuit",
     period: "2019 - 2021",
     description: language === "pt" ? "Análise e design de interfaces digitais, melhoria de experiência do usuário." : "Digital interface analysis and design, user experience improvement.",
-    current: false
+    current: false,
+    secondaryChips: ["Retail", "B2B", "B2C"]
   }, {
     title: "Design & Marketing Analyst",
     company: "Sebrae Bahia",
     period: "2017 - 2019",
     description: language === "pt" ? "Design gráfico, marketing digital e comunicação visual para empreendedores." : "Graphic design, digital marketing and visual communication for entrepreneurs.",
-    current: false
+    current: false,
+    secondaryChips: ["Govt. Agency", "B2B"]
   }, {
     title: "Brand Designer",
     company: "Sanar",
     period: "2015 - 2016",
     description: language === "pt" ? "Desenvolvimento de identidade visual e materiais de marca para educação médica." : "Visual identity development and brand materials for medical education.",
-    current: false
+    current: false,
+    secondaryChips: ["Healthtech", "B2C"]
   }];
   const skills = ["User Research", "Visual Design", "Prototyping", "Design System", "Usability Testing", "Information Architecture", "Interaction Design", "Design Thinking", "Agile", "Figma", "Adobe Creative Suite", "HTML/CSS"];
   const softSkills = language === "pt" ? ["Liderança", "Comunicação", "Colaboração", "Pensamento Crítico", "Adaptabilidade", "Criatividade", "Iterações Rápidas"] : ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
@@ -109,18 +112,11 @@ const Experience = ({
           {!scrolled ? <Link to="/" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</Link> : <Link to="/" className="flex items-center">
               <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
             </Link>}
-          <div className="flex items-center gap-4">
-            
-            <div className="flex items-center gap-2">
-              <LanguageToggle language={language} onLanguageChange={onLanguageChange || (newLang => {
-              // Fallback to navigation if no callback provided
-              window.location.href = newLang === "pt" ? "/experiencia" : "/experience";
-            })} />
-              <ThemeToggle />
-              <Button asChild variant="contrast" size="sm">
-                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
-              </Button>
-            </div>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button asChild variant="contrast" size="sm">
+              <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
+            </Button>
           </div>
         </nav>
       </header>
@@ -168,13 +164,23 @@ const Experience = ({
           </div>
           
           <div className="flex justify-center">
-            <Badge variant="outline" className="text-sm font-medium flex items-center gap-2 animate-pulse" style={{
-            borderColor: '#10b981',
-            color: '#10b981'
-          }}>
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              {language === "pt" ? "Disponível para oportunidades remotas e presenciais" : "Available for remote and on-site opportunities"}
-            </Badge>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm"
+              style={{
+                backgroundColor: '#10b981',
+                color: 'white'
+              }}
+            >
+              <motion.div 
+                className="w-2.5 h-2.5 bg-white rounded-full"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              {language === "pt" ? "DISPONÍVEL PARA TRABALHO • INÍCIO IMEDIATO" : "OPEN TO WORK • IMMEDIATE JOINER"}
+            </motion.div>
           </div>
         </motion.div>
 
@@ -196,10 +202,17 @@ const Experience = ({
                         <Calendar className="w-4 h-4" />
                         {exp.period}
                       </div>
-                      {exp.current && <Badge variant="secondary" className="mt-1">
-                          {t.currentJob}
-                        </Badge>}
                     </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {exp.current && <Badge variant="default" className="bg-primary">
+                        {t.currentJob}
+                      </Badge>}
+                    {exp.secondaryChips?.map((chip, idx) => (
+                      <Badge key={idx} variant="outline" className="text-xs">
+                        {chip}
+                      </Badge>
+                    ))}
                   </div>
                   <p className="text-muted-foreground">{exp.description}</p>
                 </CardContent>
@@ -232,41 +245,94 @@ const Experience = ({
           </Card>
         </motion.section>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-1 gap-8 mb-12">
+        {/* Capabilities Grid */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
           {/* Technical Skills */}
           <AnimatedSection>
-            <h2 className="font-display text-2xl font-semibold mb-6">{t.competenciesTitle}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {skills.map((skill, index) => <SkillCard key={skill} skill={skill} category="skill" index={index} level={Math.floor(Math.random() * 3) + 3} />)}
-            </div>
+            <Card className="rounded-2xl p-6 h-full">
+              <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.competenciesTitle}</h2>
+              <ul className="space-y-2">
+                {skills.map((skill, index) => (
+                  <motion.li 
+                    key={skill}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                    className="text-muted-foreground flex items-center gap-2"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    {skill}
+                  </motion.li>
+                ))}
+              </ul>
+            </Card>
           </AnimatedSection>
 
           {/* Soft Skills */}
-          <AnimatedSection delay={0.2}>
-            <h2 className="font-display text-2xl font-semibold mb-6">{t.softSkills}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {softSkills.map((skill, index) => <SkillCard key={skill} skill={skill} category="softSkill" index={index} level={Math.floor(Math.random() * 2) + 4} />)}
-            </div>
+          <AnimatedSection delay={0.1}>
+            <Card className="rounded-2xl p-6 h-full">
+              <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.softSkills}</h2>
+              <ul className="space-y-2">
+                {softSkills.map((skill, index) => (
+                  <motion.li 
+                    key={skill}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                    className="text-muted-foreground flex items-center gap-2"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    {skill}
+                  </motion.li>
+                ))}
+              </ul>
+            </Card>
           </AnimatedSection>
-        </div>
 
-        {/* Tools & Languages Grid */}
-        <div className="grid md:grid-cols-1 gap-8">
           {/* Tools */}
-          <AnimatedSection delay={0.4}>
-            <h2 className="font-display text-2xl font-semibold mb-6">{t.tools}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {tools.map((tool, index) => <SkillCard key={tool} skill={tool} category="tool" index={index} level={Math.floor(Math.random() * 3) + 3} />)}
-            </div>
+          <AnimatedSection delay={0.2}>
+            <Card className="rounded-2xl p-6 h-full">
+              <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.tools}</h2>
+              <ul className="space-y-2">
+                {tools.map((tool, index) => (
+                  <motion.li 
+                    key={tool}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                    className="text-muted-foreground flex items-center gap-2"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    {tool}
+                  </motion.li>
+                ))}
+              </ul>
+            </Card>
           </AnimatedSection>
 
           {/* Languages */}
-          <AnimatedSection delay={0.6}>
-            <h2 className="font-display text-2xl font-semibold mb-6">{t.languages}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {languages.map((lang, index) => <SkillCard key={lang.name} skill={`${lang.name} - ${lang.level}`} category="language" index={index} level={lang.name.includes("Português") || lang.name.includes("Portuguese") ? 5 : lang.name.includes("Inglês") || lang.name.includes("English") ? 4 : 3} />)}
-            </div>
+          <AnimatedSection delay={0.3}>
+            <Card className="rounded-2xl p-6 h-full">
+              <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.languages}</h2>
+              <ul className="space-y-2">
+                {languages.map((lang, index) => (
+                  <motion.li 
+                    key={lang.name}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                    className="text-muted-foreground flex items-center gap-2"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    {lang.name} - {lang.level}
+                  </motion.li>
+                ))}
+              </ul>
+            </Card>
           </AnimatedSection>
         </div>
       </motion.div>
