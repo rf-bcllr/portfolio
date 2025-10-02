@@ -212,9 +212,7 @@ const Experience = ({
                     {exp.current && <Badge variant="default" className="bg-primary">
                         {t.currentJob}
                       </Badge>}
-                    {exp.secondaryChips?.map((chip, idx) => <Badge key={idx} variant="outline" className="text-xs">
-                        {chip}
-                      </Badge>)}
+                    {exp.secondaryChips?.map((chip, idx) => {})}
                   </div>
                   <p className="text-muted-foreground">{exp.description}</p>
                 </CardContent>
