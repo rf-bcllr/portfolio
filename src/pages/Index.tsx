@@ -20,7 +20,6 @@ import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
-
 const Index = () => {
   const [spot, setSpot] = useState({
     x: 0,
@@ -28,13 +27,11 @@ const Index = () => {
   });
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations("en");
-  
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  
   const onMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setSpot({
@@ -42,7 +39,6 @@ const Index = () => {
       y: e.clientY - rect.top
     });
   };
-  
   const projectMedia = [{
     src: "/lovable-uploads/90169309-3cbd-483f-8bdc-c5e96fc950da.png",
     href: "https://bento.me/rfbcllr",
@@ -84,10 +80,8 @@ const Index = () => {
     title: "Students' Transportation Feature",
     chips: ["UI/UX", "Research"]
   }];
-  
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeMedia, setActiveMedia] = useState(0);
-  
   return <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
@@ -134,28 +128,38 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
-              <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              >
-                <motion.span
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="inline-block"
-                >
+              <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4" initial={{
+              opacity: 0,
+              y: 20
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              duration: 0.6,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}>
+                <motion.span initial={{
+                opacity: 0,
+                x: -20
+              }} animate={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                duration: 0.5,
+                delay: 0.2
+              }} className="inline-block">
                   Hi, my name is{" "}
                 </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="inline-block"
-                >
-                  Rafa Bacellar 👋🏿
-                </motion.span>
+                <motion.span initial={{
+                opacity: 0,
+                x: -20
+              }} animate={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                duration: 0.5,
+                delay: 0.4
+              }} className="inline-block"> Rafa Bacellar 👋🏿</motion.span>
               </motion.h1>
               <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground animate-fade-in" style={{
               animationDelay: "0.1s"
@@ -197,17 +201,10 @@ const Index = () => {
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
             {projectMedia.map((item, i) => <div key={i} className="mb-6 break-inside-avoid">
-                <ProjectCard 
-                  src={item.src} 
-                  alt={item.title ?? `Project media ${i + 1}`} 
-                  title={item.title}
-                  chips={item.chips}
-                  index={i} 
-                  onClick={() => {
-                    setActiveMedia(i);
-                    setLightboxOpen(true);
-                  }} 
-                />
+                <ProjectCard src={item.src} alt={item.title ?? `Project media ${i + 1}`} title={item.title} chips={item.chips} index={i} onClick={() => {
+              setActiveMedia(i);
+              setLightboxOpen(true);
+            }} />
               </div>)}
           </div>
 
@@ -275,23 +272,19 @@ const Index = () => {
 
           <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
             {t.recommendationsItems?.map((rec, idx) => {
-              const avatar = idx === 0 ? inisAvatar : esdrasAvatar;
-              return (
-                <Card className="p-8 hover-lift" key={idx} style={{ boxShadow: "var(--shadow-card)" }}>
+            const avatar = idx === 0 ? inisAvatar : esdrasAvatar;
+            return <Card className="p-8 hover-lift" key={idx} style={{
+              boxShadow: "var(--shadow-card)"
+            }}>
                   <div className="flex items-start gap-4 mb-4">
-                    <img 
-                      src={avatar} 
-                      alt={rec.author} 
-                      className="w-16 h-16 rounded-full object-cover border-2 border-border"
-                    />
+                    <img src={avatar} alt={rec.author} className="w-16 h-16 rounded-full object-cover border-2 border-border" />
                     <div>
                       <p className="font-semibold text-lg">{rec.author}</p>
                     </div>
                   </div>
                   <p className="text-base leading-relaxed text-muted-foreground italic">"{rec.quote}"</p>
-                </Card>
-              );
-            })}
+                </Card>;
+          })}
           </div>
         </section>
 
@@ -322,5 +315,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
