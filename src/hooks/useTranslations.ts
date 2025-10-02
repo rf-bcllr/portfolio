@@ -34,11 +34,16 @@ export const translations = {
     recommendationsItems: [
       {
         quote: "Rafael é de longe o designer mais criativo com quem já trabalhei (…) ele realmente tem olhar para detalhes e acaba identificando falhas que ninguém vê. (…), é paciente com seus colegas e sempre disposto a ajudar os outros a melhorar suas habilidades (…)",
-        author: "Inis Leahy - Senior Product Designer @Udemy",
+        author: "Inis Leahy",
+        role: "Senior Product Designer @Udemy",
+        description: "(ex-funcionária da Meta)",
+        linkedin: "https://www.linkedin.com/in/inisleahy/"
       },
       {
         quote: "Rafael é minha referência de um designer dedicado e curioso. Sempre trazendo algo novo para a mesa e explorando suas próprias habilidades ao máximo, é um profissional em quem você pode confiar para entregar as melhores soluções para as necessidades do cliente.",
-        author: "Esdras Lopes - Advertisement & Media Specialist",
+        author: "Esdras Lopes",
+        role: "Advertisement & Media Specialist",
+        linkedin: "https://www.linkedin.com/in/esdraslopesb/"
       },
     ],
     
@@ -117,11 +122,16 @@ export const translations = {
     recommendationsItems: [
       {
         quote: "Rafael is by far the most creative designer I've ever worked with (…) he really has the eye for details and ends up spotting flaws no one else does. (…), he is patient with his colleagues and always willing to help others improve their own skills (…)",
-        author: "Inis Leahy - Senior Product Designer @Udemy",
+        author: "Inis Leahy",
+        role: "Senior Product Designer @Udemy",
+        description: "(former Meta employee)",
+        linkedin: "https://www.linkedin.com/in/inisleahy/"
       },
       {
-        quote: "Rafael is my reference of a dedicated and curious designer. Always bringing something new to the table and exploring his own abilities to the fullest, he is a professional you can count on to deliver the best solutions to your client’s needs.",
-        author: "Esdras Lopes - Advertisement & Media Specialist",
+        quote: "Rafael is my reference of a dedicated and curious designer. Always bringing something new to the table and exploring his own abilities to the fullest, he is a professional you can count on to deliver the best solutions to your client's needs.",
+        author: "Esdras Lopes",
+        role: "Advertisement & Media Specialist",
+        linkedin: "https://www.linkedin.com/in/esdraslopesb/"
       },
     ],
 

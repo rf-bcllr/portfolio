@@ -179,7 +179,7 @@ const Experience = ({
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              {language === "pt" ? "DISPONÍVEL PARA TRABALHO • INÍCIO IMEDIATO" : "OPEN TO WORK • IMMEDIATE JOINER"}
+              {language === "pt" ? "Disponível para oportunidades remotas e presenciais" : "Available for both remote and on-site opportunities"}
             </motion.div>
           </div>
         </motion.div>
@@ -317,7 +317,7 @@ const Experience = ({
           <AnimatedSection delay={0.3}>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.languages}</h2>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {languages.map((lang, index) => (
                   <motion.li 
                     key={lang.name}
@@ -325,10 +325,13 @@ const Experience = ({
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                     viewport={{ once: true }}
-                    className="text-muted-foreground flex items-center gap-2"
+                    className="flex items-center gap-2"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                    {lang.name} - {lang.level}
+                    <div>
+                      <span className="font-medium text-foreground">{lang.name}</span>
+                      <span className="text-sm text-muted-foreground ml-2">· {lang.level}</span>
+                    </div>
                   </motion.li>
                 ))}
               </ul>

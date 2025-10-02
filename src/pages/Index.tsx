@@ -276,10 +276,14 @@ const Index = () => {
             return <Card className="p-8 hover-lift" key={idx} style={{
               boxShadow: "var(--shadow-card)"
             }}>
-                  <div className="flex items-start gap-4 mb-4">
-                    <img src={avatar} alt={rec.author} className="w-16 h-16 rounded-full object-cover border-2 border-border" />
+                  <div className="flex items-start gap-4 mb-6">
+                    <a href={rec.linkedin} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 transition-opacity hover:opacity-80">
+                      <img src={avatar} alt={rec.author} className="w-16 h-16 rounded-full object-cover border-2 border-border" />
+                    </a>
                     <div>
-                      <p className="font-semibold text-lg">{rec.author}</p>
+                      <h3 className="font-semibold text-lg mb-0.5">{rec.author}</h3>
+                      <p className="text-sm text-muted-foreground">{rec.role}</p>
+                      {rec.description && <p className="text-xs text-muted-foreground mt-0.5">{rec.description}</p>}
                     </div>
                   </div>
                   <p className="text-base leading-relaxed text-muted-foreground italic">"{rec.quote}"</p>
