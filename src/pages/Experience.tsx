@@ -199,7 +199,7 @@ const Experience = ({
                       <h3 className="font-semibold text-lg">{exp.title}</h3>
                       <p style={{
                     color: '#25aef4'
-                  }} className="font-medium text-indigo-400">{exp.company}</p>
+                  }} className="font-medium text-slate-400">{exp.company}</p>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -209,9 +209,7 @@ const Experience = ({
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2 mb-3">
-                    {exp.current && <Badge variant="default" className="bg-primary">
-                        {t.currentJob}
-                      </Badge>}
+                    {exp.current}
                     {exp.secondaryChips?.map((chip, idx) => <Badge key={idx} variant="outline" className="text-xs">
                         {chip}
                       </Badge>)}
@@ -234,7 +232,7 @@ const Experience = ({
                   </h3>
                   <p style={{
                   color: '#25aef4'
-                }} className="font-medium text-indigo-400">
+                }} className="font-medium text-slate-400">
                     {language === "pt" ? "Universidade do Estado da Bahia" : "Bahia State University"}
                   </p>
                 </div>
