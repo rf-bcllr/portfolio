@@ -199,7 +199,7 @@ const Experience = ({
                       <h3 className="font-semibold text-lg">{exp.title}</h3>
                       <p style={{
                     color: '#25aef4'
-                  }} className="font-medium text-slate-400">{exp.company}</p>
+                  }} className="font-medium text-indigo-300">{exp.company}</p>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -232,7 +232,7 @@ const Experience = ({
                   </h3>
                   <p style={{
                   color: '#25aef4'
-                }} className="font-medium text-slate-400">
+                }} className="font-medium text-indigo-300">
                     {language === "pt" ? "Universidade do Estado da Bahia" : "Bahia State University"}
                   </p>
                 </div>
