@@ -164,22 +164,26 @@ const Experience = ({
           </div>
           
           <div className="flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm"
-              style={{
-                backgroundColor: '#10b981',
-                color: 'white'
-              }}
-            >
-              <motion.div 
-                className="w-2.5 h-2.5 bg-white rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              {language === "pt" ? "Disponível para oportunidades remotas e presenciais" : "Available for both remote and on-site opportunities"}
+            <motion.div initial={{
+            opacity: 0,
+            scale: 0.9
+          }} animate={{
+            opacity: 1,
+            scale: 1
+          }} transition={{
+            duration: 0.5,
+            delay: 0.3
+          }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm" style={{
+            backgroundColor: '#10b981',
+            color: 'white'
+          }}>
+              <motion.div className="w-2.5 h-2.5 bg-white rounded-full" animate={{
+              scale: [1, 1.2, 1]
+            }} transition={{
+              duration: 2,
+              repeat: Infinity
+            }} />
+              {language === "pt" ? "DISPONÍVEL PARA TRABALHO • INÍCIO IMEDIATO" : "OPEN TO WORK • IMMEDIATE JOINER"}
             </motion.div>
           </div>
         </motion.div>
@@ -193,11 +197,11 @@ const Experience = ({
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="font-semibold text-lg">{exp.title}</h3>
-                      <p className="font-medium" style={{
+                      <p style={{
                     color: '#25aef4'
-                  }}>{exp.company}</p>
+                  }} className="font-medium text-indigo-300">{exp.company}</p>
                     </div>
-                    <div className="text-right">
+                    <div className="text-indigo-300 text-left">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
                         <Calendar className="w-4 h-4" />
                         {exp.period}
@@ -208,11 +212,9 @@ const Experience = ({
                     {exp.current && <Badge variant="default" className="bg-primary">
                         {t.currentJob}
                       </Badge>}
-                    {exp.secondaryChips?.map((chip, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
+                    {exp.secondaryChips?.map((chip, idx) => <Badge key={idx} variant="outline" className="text-xs">
                         {chip}
-                      </Badge>
-                    ))}
+                      </Badge>)}
                   </div>
                   <p className="text-muted-foreground">{exp.description}</p>
                 </CardContent>
@@ -230,9 +232,9 @@ const Experience = ({
                   <h3 className="font-semibold text-lg">
                     {language === "pt" ? "Bacharelado em Design" : "Bachelor in Design"}
                   </h3>
-                  <p className="font-medium" style={{
+                  <p style={{
                   color: '#25aef4'
-                }}>
+                }} className="font-medium text-indigo-300">
                     {language === "pt" ? "Universidade do Estado da Bahia" : "Bahia State University"}
                   </p>
                 </div>
@@ -252,19 +254,20 @@ const Experience = ({
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.competenciesTitle}</h2>
               <ul className="space-y-2">
-                {skills.map((skill, index) => (
-                  <motion.li 
-                    key={skill}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    className="text-muted-foreground flex items-center gap-2"
-                  >
+                {skills.map((skill, index) => <motion.li key={skill} initial={{
+                opacity: 0,
+                x: -10
+              }} whileInView={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                delay: index * 0.05
+              }} viewport={{
+                once: true
+              }} className="text-muted-foreground flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                     {skill}
-                  </motion.li>
-                ))}
+                  </motion.li>)}
               </ul>
             </Card>
           </AnimatedSection>
@@ -274,19 +277,20 @@ const Experience = ({
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.softSkills}</h2>
               <ul className="space-y-2">
-                {softSkills.map((skill, index) => (
-                  <motion.li 
-                    key={skill}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    className="text-muted-foreground flex items-center gap-2"
-                  >
+                {softSkills.map((skill, index) => <motion.li key={skill} initial={{
+                opacity: 0,
+                x: -10
+              }} whileInView={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                delay: index * 0.05
+              }} viewport={{
+                once: true
+              }} className="text-muted-foreground flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                     {skill}
-                  </motion.li>
-                ))}
+                  </motion.li>)}
               </ul>
             </Card>
           </AnimatedSection>
@@ -296,19 +300,20 @@ const Experience = ({
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.tools}</h2>
               <ul className="space-y-2">
-                {tools.map((tool, index) => (
-                  <motion.li 
-                    key={tool}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    className="text-muted-foreground flex items-center gap-2"
-                  >
+                {tools.map((tool, index) => <motion.li key={tool} initial={{
+                opacity: 0,
+                x: -10
+              }} whileInView={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                delay: index * 0.05
+              }} viewport={{
+                once: true
+              }} className="text-muted-foreground flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                     {tool}
-                  </motion.li>
-                ))}
+                  </motion.li>)}
               </ul>
             </Card>
           </AnimatedSection>
@@ -317,23 +322,21 @@ const Experience = ({
           <AnimatedSection delay={0.3}>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.languages}</h2>
-              <ul className="space-y-3">
-                {languages.map((lang, index) => (
-                  <motion.li 
-                    key={lang.name}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-2"
-                  >
+              <ul className="space-y-2">
+                {languages.map((lang, index) => <motion.li key={lang.name} initial={{
+                opacity: 0,
+                x: -10
+              }} whileInView={{
+                opacity: 1,
+                x: 0
+              }} transition={{
+                delay: index * 0.05
+              }} viewport={{
+                once: true
+              }} className="text-muted-foreground flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                    <div>
-                      <span className="font-medium text-foreground">{lang.name}</span>
-                      <span className="text-sm text-muted-foreground ml-2">· {lang.level}</span>
-                    </div>
-                  </motion.li>
-                ))}
+                    {lang.name} - {lang.level}
+                  </motion.li>)}
               </ul>
             </Card>
           </AnimatedSection>
