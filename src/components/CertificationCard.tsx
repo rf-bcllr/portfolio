@@ -35,7 +35,7 @@ export const CertificationCard = ({ title, href, index }: CertificationCardProps
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
       
       {/* Content */}
-      <div className="relative flex items-start gap-5">
+      <div className="relative flex items-center gap-5">
         <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
           {getIcon(title)}
         </div>
