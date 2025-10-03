@@ -4,7 +4,7 @@ import { useTranslations } from '@/hooks/useTranslations';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Check } from 'lucide-react';
+import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Check, Lightbulb, Heart, Wrench, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { AnimatedSection } from '@/components/AnimatedSection';
@@ -33,8 +33,8 @@ const Experience = ({
     company: "isaac",
     period: language === "pt" ? "2024 - Presente" : "2024 - Present",
     description: language === "pt" ? "Design de produtos digitais end-to-end, design system e interfaces escaláveis." : "End-to-end digital product design, design system and scalable interfaces.",
-    current: true,
-    secondaryChips: ["Fintech", "B2B"]
+    current: false,
+    secondaryChips: ["Fintech", "B2B", "B2C"]
   }, {
     title: "Product Designer",
     company: "ClassApp",
@@ -183,7 +183,7 @@ const Experience = ({
               duration: 2,
               repeat: Infinity
             }} />
-              {language === "pt" ? "Disponível para oportunidades remotas e presenciais" : "Available for both remote and on-site opportunities"}
+              {language === "pt" ? "DISPONÍVEL PARA OPORTUNIDADES REMOTAS E PRESENCIAIS" : "OPEN FOR REMOTE AND ON-SITE OPPORTUNITIES"}
             </motion.div>
           </div>
         </motion.div>
@@ -197,9 +197,7 @@ const Experience = ({
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="font-semibold text-lg">{exp.title}</h3>
-                      <p style={{
-                    color: '#25aef4'
-                  }} className="font-medium text-indigo-300">{exp.company}</p>
+                      <p className="font-medium" style={{ color: 'hsl(var(--primary))' }}>{exp.company}</p>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -209,7 +207,6 @@ const Experience = ({
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2 mb-3">
-                    {exp.current}
                     {exp.secondaryChips?.map((chip, idx) => <Badge key={idx} variant="outline" className="text-xs">
                         {chip}
                       </Badge>)}
@@ -230,9 +227,7 @@ const Experience = ({
                   <h3 className="font-semibold text-lg">
                     {language === "pt" ? "Bacharelado em Design" : "Bachelor in Design"}
                   </h3>
-                  <p style={{
-                  color: '#25aef4'
-                }} className="font-medium text-indigo-300">
+                  <p className="font-medium" style={{ color: 'hsl(var(--primary))' }}>
                     {language === "pt" ? "Universidade do Estado da Bahia" : "Bahia State University"}
                   </p>
                 </div>
@@ -250,7 +245,10 @@ const Experience = ({
           {/* Technical Skills */}
           <AnimatedSection>
             <Card className="rounded-2xl p-6 h-full">
-              <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.competenciesTitle}</h2>
+              <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
+                <Lightbulb className="w-5 h-5" />
+                {t.competenciesTitle}
+              </h2>
               <ul className="space-y-2">
                 {skills.map((skill, index) => <motion.li key={skill} initial={{
                 opacity: 0,
@@ -273,7 +271,10 @@ const Experience = ({
           {/* Soft Skills */}
           <AnimatedSection delay={0.1}>
             <Card className="rounded-2xl p-6 h-full">
-              <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.softSkills}</h2>
+              <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
+                <Heart className="w-5 h-5" />
+                {t.softSkills}
+              </h2>
               <ul className="space-y-2">
                 {softSkills.map((skill, index) => <motion.li key={skill} initial={{
                 opacity: 0,
@@ -296,7 +297,10 @@ const Experience = ({
           {/* Tools */}
           <AnimatedSection delay={0.2}>
             <Card className="rounded-2xl p-6 h-full">
-              <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.tools}</h2>
+              <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
+                <Wrench className="w-5 h-5" />
+                {t.tools}
+              </h2>
               <ul className="space-y-2">
                 {tools.map((tool, index) => <motion.li key={tool} initial={{
                 opacity: 0,
@@ -319,7 +323,10 @@ const Experience = ({
           {/* Languages */}
           <AnimatedSection delay={0.3}>
             <Card className="rounded-2xl p-6 h-full">
-              <h2 className="font-display text-xl font-semibold mb-4 text-primary">{t.languages}</h2>
+              <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
+                <Globe className="w-5 h-5" />
+                {t.languages}
+              </h2>
               <ul className="space-y-3">
                 {languages.map((lang, index) => <motion.li key={lang.name} initial={{
                 opacity: 0,
@@ -332,10 +339,9 @@ const Experience = ({
               }} viewport={{
                 once: true
               }} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                    <div>
-                      <span className="font-medium text-foreground">{lang.name}</span>
-                      <span className="text-sm text-muted-foreground ml-2">· {lang.level}</span>
+                    <div className="flex flex-col">
+                      <span className="text-base font-semibold text-foreground">{lang.name}</span>
+                      <span className="text-sm text-muted-foreground">{lang.level}</span>
                     </div>
                   </motion.li>)}
               </ul>

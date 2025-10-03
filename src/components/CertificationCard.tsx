@@ -41,12 +41,9 @@ export const CertificationCard = ({ title, href, index }: CertificationCardProps
         </div>
         
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors duration-300 mb-2">
+          <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors duration-300">
             {title}
           </h3>
-          <p className="text-sm text-muted-foreground">
-            Certificação verificada
-          </p>
         </div>
         
         <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300 flex-shrink-0 mt-1" />
