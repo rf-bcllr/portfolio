@@ -239,15 +239,9 @@ const Index = () => {
             <div className="rounded-2xl border p-8 hover-lift" style={{
             boxShadow: "var(--shadow-card)"
           }}>
-              <h3 className="text-xl font-semibold font-display mb-6">Hobbies & Things I Love</h3>
+              <h3 className="text-xl font-semibold font-display mb-6">{t.competenciesTitle}</h3>
               <ul className="grid list-disc gap-3 pl-5 text-muted-foreground sm:grid-cols-2">
-                <li className="leading-relaxed">Creative Writing</li>
-                <li className="leading-relaxed">Visual Design</li>
-                <li className="leading-relaxed">Art</li>
-                <li className="leading-relaxed">AI</li>
-                <li className="leading-relaxed">Dogs</li>
-                <li className="leading-relaxed">Gaming</li>
-                <li className="leading-relaxed">Coffee</li>
+                {t.competencies.map(item => <li key={item} className="leading-relaxed">{item}</li>)}
               </ul>
             </div>
           </div>

@@ -8,7 +8,6 @@ import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Check, Lightbulb, H
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { AnimatedSection } from '@/components/AnimatedSection';
-import jsPDF from 'jspdf';
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 interface ExperiencePageProps {
   language: "pt" | "en";
@@ -29,132 +28,6 @@ const Experience = ({
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const handleDownloadResume = () => {
-    const pdf = new jsPDF();
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    let yPos = 20;
-
-    // Header
-    pdf.setFontSize(24);
-    pdf.setFont("helvetica", "bold");
-    pdf.text("Rafael Bacellar", pageWidth / 2, yPos, { align: "center" });
-    
-    yPos += 10;
-    pdf.setFontSize(12);
-    pdf.setFont("helvetica", "normal");
-    pdf.text("Product Designer", pageWidth / 2, yPos, { align: "center" });
-    
-    yPos += 7;
-    pdf.setFontSize(10);
-    pdf.text("linkedin.com/in/rfbcllr", pageWidth / 2, yPos, { align: "center" });
-    
-    yPos += 10;
-    pdf.setFontSize(9);
-    pdf.text("OPEN FOR REMOTE AND ON-SITE OPPORTUNITIES", pageWidth / 2, yPos, { align: "center" });
-
-    // Work Experience
-    yPos += 15;
-    pdf.setFontSize(14);
-    pdf.setFont("helvetica", "bold");
-    pdf.text("WORK EXPERIENCE", 20, yPos);
-    
-    experiences.forEach((exp) => {
-      yPos += 10;
-      if (yPos > 270) {
-        pdf.addPage();
-        yPos = 20;
-      }
-      
-      pdf.setFontSize(11);
-      pdf.setFont("helvetica", "bold");
-      pdf.text(exp.title, 20, yPos);
-      
-      yPos += 6;
-      pdf.setFontSize(10);
-      pdf.setFont("helvetica", "normal");
-      pdf.text(`${exp.company} | ${exp.period}`, 20, yPos);
-      
-      yPos += 6;
-      pdf.setFontSize(9);
-      const descLines = pdf.splitTextToSize(exp.description, pageWidth - 40);
-      pdf.text(descLines, 20, yPos);
-      yPos += descLines.length * 5;
-    });
-
-    // Education
-    yPos += 10;
-    if (yPos > 250) {
-      pdf.addPage();
-      yPos = 20;
-    }
-    pdf.setFontSize(14);
-    pdf.setFont("helvetica", "bold");
-    pdf.text("EDUCATION", 20, yPos);
-    
-    yPos += 10;
-    pdf.setFontSize(11);
-    pdf.text("Bachelor in Design", 20, yPos);
-    
-    yPos += 6;
-    pdf.setFontSize(10);
-    pdf.setFont("helvetica", "normal");
-    pdf.text("Bahia State University | 2016 - 2021", 20, yPos);
-
-    // Skills
-    yPos += 15;
-    if (yPos > 250) {
-      pdf.addPage();
-      yPos = 20;
-    }
-    pdf.setFontSize(14);
-    pdf.setFont("helvetica", "bold");
-    pdf.text("TECHNICAL SKILLS", 20, yPos);
-    
-    yPos += 8;
-    pdf.setFontSize(9);
-    pdf.setFont("helvetica", "normal");
-    pdf.text(skills.join(" • "), 20, yPos, { maxWidth: pageWidth - 40 });
-
-    yPos += 12;
-    pdf.setFontSize(14);
-    pdf.setFont("helvetica", "bold");
-    pdf.text("SOFT SKILLS", 20, yPos);
-    
-    yPos += 8;
-    pdf.setFontSize(9);
-    pdf.setFont("helvetica", "normal");
-    pdf.text(softSkills.join(" • "), 20, yPos, { maxWidth: pageWidth - 40 });
-
-    yPos += 12;
-    pdf.setFontSize(14);
-    pdf.setFont("helvetica", "bold");
-    pdf.text("TOOLS", 20, yPos);
-    
-    yPos += 8;
-    pdf.setFontSize(9);
-    pdf.setFont("helvetica", "normal");
-    pdf.text(tools.join(" • "), 20, yPos, { maxWidth: pageWidth - 40 });
-
-    // Languages
-    yPos += 15;
-    if (yPos > 260) {
-      pdf.addPage();
-      yPos = 20;
-    }
-    pdf.setFontSize(14);
-    pdf.setFont("helvetica", "bold");
-    pdf.text("LANGUAGES", 20, yPos);
-    
-    languages.forEach((lang) => {
-      yPos += 8;
-      pdf.setFontSize(10);
-      pdf.setFont("helvetica", "normal");
-      pdf.text(`${lang.name}: ${lang.level}`, 20, yPos);
-    });
-
-    pdf.save("rafael-bacellar-resume.pdf");
-  };
   const experiences = [{
     title: "Product Designer",
     company: "isaac",
@@ -193,7 +66,7 @@ const Experience = ({
   }];
   const skills = ["User Research", "Visual Design", "Prototyping", "Design System", "Usability Testing", "Information Architecture", "Interaction Design", "Design Thinking", "Agile", "Figma", "Adobe Creative Suite", "HTML/CSS"];
   const softSkills = language === "pt" ? ["Liderança", "Comunicação", "Colaboração", "Pensamento Crítico", "Adaptabilidade", "Criatividade", "Iterações Rápidas"] : ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
-  const tools = ["UX Writing", "Accessibility", "Adobe XD", "Photoshop", "Illustrator", "Sketch", "Framer", "Miro", "FigJam", "Figma Make", "Lovable", "v0"];
+  const tools = ["Figma", "Adobe XD", "Photoshop", "Illustrator", "Sketch", "Framer", "Miro", "FigJam", "Figma Make", "Lovable", "v0"];
   const languages = [{
     name: t.portuguese,
     level: t.native
@@ -257,9 +130,16 @@ const Experience = ({
               {language === "pt" ? "Voltar" : "Back"}
             </Button>
           </Link>
-          <Button variant="outline" size="sm" className="gap-2" onClick={handleDownloadResume}>
+          <Button variant="outline" size="sm" className="gap-2" onClick={() => {
+          const link = document.createElement('a');
+          link.href = 'https://drive.google.com/uc?export=download&id=1DlC5dQW9jbqnZPxc3TKTmaXnU0sIsHHo';
+          link.download = 'CV_Rafael_Bacellar.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }}>
             <Download className="w-4 h-4" />
-            Download Resume
+            {t.downloadCV}
           </Button>
         </motion.div>
 
