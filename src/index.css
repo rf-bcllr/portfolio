@@ -212,6 +212,48 @@ All colors MUST be HSL.
   .stagger-6 { animation-delay: calc(6 * var(--stagger-delay)); }
   .stagger-7 { animation-delay: calc(7 * var(--stagger-delay)); }
 
+  /* Floating emoji animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate3d(10px, -10px, 0) rotate(5deg);
+    }
+    50% {
+      transform: translate3d(-5px, -20px, 0) rotate(-3deg);
+    }
+    75% {
+      transform: translate3d(-10px, -10px, 0) rotate(4deg);
+    }
+  }
+
+  @keyframes float-reverse {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate3d(-10px, -10px, 0) rotate(-5deg);
+    }
+    50% {
+      transform: translate3d(5px, -20px, 0) rotate(3deg);
+    }
+    75% {
+      transform: translate3d(10px, -10px, 0) rotate(-4deg);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
   /* Respect prefers-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -225,6 +267,25 @@ All colors MUST be HSL.
     
     .hover-lift:hover {
       transform: none;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    
+    @keyframes float-reverse {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
     }
   }
 }

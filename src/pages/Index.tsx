@@ -13,6 +13,7 @@ import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
+import professionalPhoto from "@/assets/rafael-professional.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 import projMuralNew from "@/assets/proj-mural-new.png";
@@ -219,24 +220,13 @@ const Index = () => {
 
         {/* Sobre */}
         <section id="sobre" className="container mx-auto px-6 py-32">
-          <div className="grid gap-12 lg:grid-cols-2 max-w-6xl mx-auto">
-            <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-6 text-balance">
-                {t.aboutTitle}
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {t.aboutDescription}
-              </p>
-              <div className="mt-8">
-                <Button asChild variant="contrast" size="lg" className="gap-2 text-base px-8">
-                  <Link to="/experience">
-                    {t.fullExperience}
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-            <div className="space-y-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-12 text-balance text-center lg:text-left">
+            {t.aboutTitle}
+          </h2>
+          
+          <div className="grid gap-12 lg:grid-cols-2 max-w-6xl mx-auto items-start">
+            {/* Left column: Cards */}
+            <div className="space-y-6 order-2 lg:order-1">
               {/* My Power Skills Card */}
               <Card className="rounded-2xl p-6 hover-lift" style={{
                 boxShadow: "var(--shadow-card)"
@@ -292,6 +282,73 @@ const Index = () => {
                     </motion.li>)}
                 </ul>
               </Card>
+            </div>
+
+            {/* Right column: Photo & Text */}
+            <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start gap-8">
+              {/* Photo with floating emojis */}
+              <div className="relative w-64 h-64 group">
+                <img 
+                  src={professionalPhoto} 
+                  alt="Rafael Bacellar - Product Designer"
+                  className="w-full h-full rounded-[2rem] object-cover border-2 border-border transition-transform duration-300 group-hover:scale-105"
+                  style={{
+                    boxShadow: "var(--shadow-elegant)"
+                  }}
+                />
+                
+                {/* Floating emojis */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {[
+                    { emoji: "✍🏿", label: "Creative Writing", delay: 0, x: -20, y: -20 },
+                    { emoji: "🎨", label: "Visual Design", delay: 0.5, x: 80, y: -15 },
+                    { emoji: "🤖", label: "AI", delay: 1, x: -30, y: 60 },
+                    { emoji: "🐶", label: "Dogs", delay: 1.5, x: 70, y: 70 },
+                    { emoji: "🎮", label: "Gaming", delay: 2, x: 90, y: 30 },
+                    { emoji: "📚", label: "History", delay: 2.5, x: -15, y: 90 },
+                    { emoji: "☕", label: "Coffee", delay: 3, x: 50, y: -25 },
+                    { emoji: "⚡", label: "Fast Iterations", delay: 3.5, x: -25, y: 30 },
+                    { emoji: "💬", label: "Communication", delay: 4, x: 85, y: 85 },
+                    { emoji: "🤝🏿", label: "Collaboration", delay: 4.5, x: 10, y: -30 },
+                    { emoji: "📖", label: "Storytelling", delay: 5, x: 60, y: 95 }
+                  ].map((item, idx) => (
+                    <motion.div
+                      key={item.emoji}
+                      className="absolute text-2xl cursor-default group/emoji"
+                      style={{
+                        left: `${item.x}%`,
+                        top: `${item.y}%`,
+                        animation: `${idx % 2 === 0 ? 'float' : 'float-reverse'} ${4 + idx * 0.3}s ease-in-out infinite`,
+                        animationDelay: `${item.delay}s`
+                      }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 0.6, scale: 1 }}
+                      whileHover={{ scale: 1.3, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      viewport={{ once: true }}
+                      aria-label={item.label}
+                    >
+                      <span aria-hidden="true">{item.emoji}</span>
+                      <span className="absolute left-1/2 -translate-x-1/2 -top-8 bg-background/90 text-foreground text-xs px-2 py-1 rounded opacity-0 group-hover/emoji:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-border">
+                        {item.label}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Text */}
+              <div className="text-center lg:text-left">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  {t.aboutDescription}
+                </p>
+                <Button asChild variant="contrast" size="lg" className="gap-2 text-base px-8">
+                  <Link to="/experience">
+                    {t.fullExperience}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>

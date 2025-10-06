@@ -209,8 +209,32 @@ export const generateResumePDF = (language: 'pt' | 'en') => {
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  const skills = 'User Research, Visual Design, Prototyping, Design System, Usability Testing, Information Architecture, Interaction Design, Design Thinking, Agile, UX Writing, Accessibility, HTML/CSS';
-  yPosition = addText(skills, marginLeft, yPosition, contentWidth, 10);
+  const hardSkills = 'User Research, Visual Design, Prototyping, Design System, Usability Testing, Information Architecture, Interaction Design, Design Thinking, Agile, UX Writing, Accessibility, HTML/CSS';
+  yPosition = addText(hardSkills, marginLeft, yPosition, contentWidth, 10);
+  yPosition += 6;
+
+  // Soft Skills
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('SOFT SKILLS', marginLeft, yPosition);
+  yPosition += 5;
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  const softSkills = 'Communication, Problem-solving, Product sense, Prototyping, Collaboration with Devs, Fast Iterations, Storytelling';
+  yPosition = addText(softSkills, marginLeft, yPosition, contentWidth, 10);
+  yPosition += 6;
+
+  // Tools
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('TOOLS', marginLeft, yPosition);
+  yPosition += 5;
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  const tools = 'Figma, Miro, Jira, Notion, Adobe Creative Suite, Zeroheight, Chat GPT, FigJam';
+  yPosition = addText(tools, marginLeft, yPosition, contentWidth, 10);
   yPosition += 6;
 
   // Languages

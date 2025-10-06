@@ -53,6 +53,9 @@ export const translations = {
       { emoji: "🧠", text: "Resolução de problemas" },
       { emoji: "🧭", text: "Senso de produto" },
       { emoji: "🛠️", text: "Prototipagem" },
+      { emoji: "🤝🏿", text: "Colaboração com Devs" },
+      { emoji: "⚡", text: "Iterações Rápidas" },
+      { emoji: "📖", text: "Narrativa" },
     ],
     
     hobbiesTitle: "Hobbies e coisas que amo",
@@ -150,6 +153,9 @@ export const translations = {
       { emoji: "🧠", text: "Problem-solving" },
       { emoji: "🧭", text: "Product sense" },
       { emoji: "🛠️", text: "Prototyping" },
+      { emoji: "🤝🏿", text: "Collaboration with Devs" },
+      { emoji: "⚡", text: "Fast Iterations" },
+      { emoji: "📖", text: "Storytelling" },
     ],
     
     hobbiesTitle: "Hobbies and things I love",

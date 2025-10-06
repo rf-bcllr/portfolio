@@ -4,7 +4,7 @@ import { useTranslations } from '@/hooks/useTranslations';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Lightbulb, Heart, Wrench, Globe } from 'lucide-react';
+import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Lightbulb, MessageCircle, Wrench, Globe } from 'lucide-react';
 import { generateResumePDF } from '@/utils/generateResumePDF';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -266,7 +266,7 @@ const Experience = ({
           <AnimatedSection delay={0.1}>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
-                <Heart className="w-5 h-5" aria-hidden="true" />
+                <MessageCircle className="w-5 h-5" aria-hidden="true" />
                 {t.softSkills}
               </h2>
               <ul className="space-y-2">
