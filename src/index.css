@@ -49,10 +49,13 @@ All colors MUST be HSL.
     --shadow-card: 0 4px 24px -4px hsl(var(--foreground) / 0.1);
     --shadow-card-hover: 0 8px 40px -8px hsl(var(--foreground) / 0.15);
     
-    /* Animation timings */
-    --animation-duration: 0.3s;
-    --animation-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --stagger-delay: 0.1s;
+    /* Motion System Tokens (inspired by iventions.com) */
+    --dur-fast: 220ms;
+    --dur-med: 420ms;
+    --dur-slow: 650ms;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --stagger-delay: 60ms;
 
     /* Sidebar tokens (kept for components) */
     --sidebar-background: 0 0% 98%;
@@ -137,45 +140,67 @@ All colors MUST be HSL.
     }
   }
   
+  /* Motion System - GPU-accelerated transforms only */
   .hover-lift {
-    transition: transform var(--animation-duration) var(--animation-ease), 
-                box-shadow var(--animation-duration) var(--animation-ease);
+    transition: transform var(--dur-fast) var(--ease-out), 
+                box-shadow var(--dur-fast) var(--ease-out);
+    will-change: transform;
   }
   
   .hover-lift:hover {
-    transform: translateY(-8px);
+    transform: translateY(-2px) scale(1.01);
     box-shadow: var(--shadow-card-hover);
   }
 
-  /* Reveal animations */
+  .hover-lift:not(:hover) {
+    will-change: auto;
+  }
+
+  /* Section entrance animations */
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translate3d(0, 20px, 0);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
   }
 
-  @keyframes scaleIn {
+  @keyframes fadeInUpHome {
     from {
       opacity: 0;
-      transform: scale(0.9);
+      transform: translate3d(0, 16px, 0);
     }
     to {
       opacity: 1;
-      transform: scale(1);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Headline reveal with clip-path */
+  @keyframes headlineReveal {
+    from {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
     }
   }
 
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s var(--animation-ease) forwards;
+    animation: fadeInUp var(--dur-med) var(--ease-out) forwards;
   }
 
-  .animate-scale-in {
-    animation: scaleIn 0.4s var(--animation-ease) forwards;
+  .animate-fade-in-up-home {
+    animation: fadeInUpHome var(--dur-med) var(--ease-out) forwards;
+  }
+
+  .animate-headline-reveal {
+    animation: headlineReveal var(--dur-slow) var(--ease-out) forwards;
   }
 
   /* Stagger delay utilities */
@@ -184,4 +209,22 @@ All colors MUST be HSL.
   .stagger-3 { animation-delay: calc(3 * var(--stagger-delay)); }
   .stagger-4 { animation-delay: calc(4 * var(--stagger-delay)); }
   .stagger-5 { animation-delay: calc(5 * var(--stagger-delay)); }
+  .stagger-6 { animation-delay: calc(6 * var(--stagger-delay)); }
+  .stagger-7 { animation-delay: calc(7 * var(--stagger-delay)); }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    
+    .hover-lift:hover {
+      transform: none;
+    }
+  }
 }

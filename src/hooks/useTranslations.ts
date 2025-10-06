@@ -47,14 +47,23 @@ export const translations = {
       },
     ],
     
-    competenciesTitle: "Competências",
-    competencies: [
-      "Design System",
-      "Prototipagem",
-      "Acessibilidade",
-      "Design de Interação",
-      "Pesquisa com usuários",
-      "Colaboração com Dev",
+    powerSkillsTitle: "Minhas Power Skills",
+    powerSkills: [
+      { emoji: "💬", text: "Comunicação" },
+      { emoji: "🧠", text: "Resolução de problemas" },
+      { emoji: "🧭", text: "Senso de produto" },
+      { emoji: "🛠️", text: "Prototipagem" },
+    ],
+    
+    hobbiesTitle: "Hobbies e coisas que amo",
+    hobbies: [
+      { emoji: "✍️", text: "Escrita Criativa" },
+      { emoji: "🎨", text: "Design Visual" },
+      { emoji: "🤖", text: "IA" },
+      { emoji: "🐶", text: "Cachorros" },
+      { emoji: "🎮", text: "Jogos" },
+      { emoji: "📚", text: "História" },
+      { emoji: "☕", text: "Café" },
     ],
     
     contactTitle: "Vamos conversar?",
@@ -135,14 +144,23 @@ export const translations = {
       },
     ],
 
-    competenciesTitle: "Skills",
-    competencies: [
-      "Design System",
-      "Prototyping",
-      "Accessibility",
-      "Interaction Design",
-      "User Research",
-      "Collaboration with Devs",
+    powerSkillsTitle: "My Power Skills",
+    powerSkills: [
+      { emoji: "💬", text: "Communication" },
+      { emoji: "🧠", text: "Problem-solving" },
+      { emoji: "🧭", text: "Product sense" },
+      { emoji: "🛠️", text: "Prototyping" },
+    ],
+    
+    hobbiesTitle: "Hobbies and things I love",
+    hobbies: [
+      { emoji: "✍️", text: "Creative Writing" },
+      { emoji: "🎨", text: "Visual Design" },
+      { emoji: "🤖", text: "AI" },
+      { emoji: "🐶", text: "Dogs" },
+      { emoji: "🎮", text: "Gaming" },
+      { emoji: "📚", text: "History" },
+      { emoji: "☕", text: "Coffee" },
     ],
     
     contactTitle: "Let's talk?",

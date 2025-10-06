@@ -4,7 +4,8 @@ import { useTranslations } from '@/hooks/useTranslations';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Check, Lightbulb, Heart, Wrench, Globe } from 'lucide-react';
+import { ArrowLeft, Download, Mail, Phone, MapPin, Calendar, Lightbulb, Heart, Wrench, Globe } from 'lucide-react';
+import { generateResumePDF } from '@/utils/generateResumePDF';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { AnimatedSection } from '@/components/AnimatedSection';
@@ -64,7 +65,7 @@ const Experience = ({
     current: false,
     secondaryChips: ["Healthtech", "B2C"]
   }];
-  const skills = ["User Research", "Visual Design", "Prototyping", "Design System", "Usability Testing", "Information Architecture", "Interaction Design", "Design Thinking", "Agile", "Figma", "Adobe Creative Suite", "HTML/CSS"];
+  const skills = ["User Research", "Visual Design", "Prototyping", "Design System", "Usability Testing", "Information Architecture", "Interaction Design", "Design Thinking", "Agile", "UX Writing", "Accessibility", "HTML/CSS"];
   const softSkills = language === "pt" ? ["Liderança", "Comunicação", "Colaboração", "Pensamento Crítico", "Adaptabilidade", "Criatividade", "Iterações Rápidas"] : ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
   const tools = ["Figma", "Adobe XD", "Photoshop", "Illustrator", "Sketch", "Framer", "Miro", "FigJam", "Figma Make", "Lovable", "v0"];
   const languages = [{
@@ -130,16 +131,9 @@ const Experience = ({
               {language === "pt" ? "Voltar" : "Back"}
             </Button>
           </Link>
-          <Button variant="outline" size="sm" className="gap-2" onClick={() => {
-          const link = document.createElement('a');
-          link.href = 'https://drive.google.com/uc?export=download&id=1DlC5dQW9jbqnZPxc3TKTmaXnU0sIsHHo';
-          link.download = 'CV_Rafael_Bacellar.pdf';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }}>
+          <Button variant="outline" size="sm" className="gap-2" onClick={() => generateResumePDF(language)}>
             <Download className="w-4 h-4" />
-            {t.downloadCV}
+            Download Resume
           </Button>
         </motion.div>
 
@@ -242,12 +236,12 @@ const Experience = ({
 
         {/* Capabilities Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {/* Technical Skills */}
+          {/* Hard Skills */}
           <AnimatedSection>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
-                <Lightbulb className="w-5 h-5" />
-                {t.competenciesTitle}
+                <Lightbulb className="w-5 h-5" aria-hidden="true" />
+                Hard Skills
               </h2>
               <ul className="space-y-2">
                 {skills.map((skill, index) => <motion.li key={skill} initial={{
@@ -272,7 +266,7 @@ const Experience = ({
           <AnimatedSection delay={0.1}>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
-                <Heart className="w-5 h-5" />
+                <Heart className="w-5 h-5" aria-hidden="true" />
                 {t.softSkills}
               </h2>
               <ul className="space-y-2">
@@ -298,7 +292,7 @@ const Experience = ({
           <AnimatedSection delay={0.2}>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
-                <Wrench className="w-5 h-5" />
+                <Wrench className="w-5 h-5" aria-hidden="true" />
                 {t.tools}
               </h2>
               <ul className="space-y-2">
@@ -324,7 +318,7 @@ const Experience = ({
           <AnimatedSection delay={0.3}>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
-                <Globe className="w-5 h-5" />
+                <Globe className="w-5 h-5" aria-hidden="true" />
                 {t.languages}
               </h2>
               <ul className="space-y-3">

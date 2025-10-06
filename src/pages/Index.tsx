@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 import MediaLightbox from "@/components/MediaLightbox";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Heart, Zap } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
@@ -236,13 +236,62 @@ const Index = () => {
                 </Button>
               </div>
             </div>
-            <div className="rounded-2xl border p-8 hover-lift" style={{
-            boxShadow: "var(--shadow-card)"
-          }}>
-              <h3 className="text-xl font-semibold font-display mb-6">{t.competenciesTitle}</h3>
-              <ul className="grid list-disc gap-3 pl-5 text-muted-foreground sm:grid-cols-2">
-                {t.competencies.map(item => <li key={item} className="leading-relaxed">{item}</li>)}
-              </ul>
+            <div className="space-y-6">
+              {/* My Power Skills Card */}
+              <Card className="rounded-2xl p-6 hover-lift" style={{
+                boxShadow: "var(--shadow-card)"
+              }}>
+                <div className="flex items-center gap-2 mb-4">
+                  <Zap className="w-5 h-5 text-primary" aria-hidden="true" />
+                  <h3 className="text-xl font-semibold font-display text-primary">{t.powerSkillsTitle}</h3>
+                </div>
+                <ul className="space-y-2">
+                  {t.powerSkills.map((skill, index) => <motion.li key={skill.text} initial={{
+                    opacity: 0,
+                    x: -10
+                  }} whileInView={{
+                    opacity: 1,
+                    x: 0
+                  }} transition={{
+                    delay: index * 0.06,
+                    duration: 0.42,
+                    ease: [0.16, 1, 0.3, 1]
+                  }} viewport={{
+                    once: true
+                  }} className="text-muted-foreground flex items-center gap-2" aria-label={skill.text}>
+                      <span aria-hidden="true">{skill.emoji}</span>
+                      <span>{skill.text}</span>
+                    </motion.li>)}
+                </ul>
+              </Card>
+
+              {/* Hobbies Card */}
+              <Card className="rounded-2xl p-6 hover-lift" style={{
+                boxShadow: "var(--shadow-card)"
+              }}>
+                <div className="flex items-center gap-2 mb-4">
+                  <Heart className="w-5 h-5 text-primary" aria-hidden="true" />
+                  <h3 className="text-xl font-semibold font-display text-primary">{t.hobbiesTitle}</h3>
+                </div>
+                <ul className="space-y-2">
+                  {t.hobbies.map((hobby, index) => <motion.li key={hobby.text} initial={{
+                    opacity: 0,
+                    x: -10
+                  }} whileInView={{
+                    opacity: 1,
+                    x: 0
+                  }} transition={{
+                    delay: index * 0.06,
+                    duration: 0.42,
+                    ease: [0.16, 1, 0.3, 1]
+                  }} viewport={{
+                    once: true
+                  }} className="text-muted-foreground flex items-center gap-2" aria-label={hobby.text}>
+                      <span aria-hidden="true">{hobby.emoji}</span>
+                      <span>{hobby.text}</span>
+                    </motion.li>)}
+                </ul>
+              </Card>
             </div>
           </div>
         </section>
