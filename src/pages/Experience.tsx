@@ -176,7 +176,7 @@ const Experience = ({
             }} transition={{
               duration: 2,
               repeat: Infinity
-            }} className="w-3 h-2.5 bg-white rounded-full" />
+            }} className="w-3 h-3 bg-white rounded-full" />
               {language === "pt" ? "DISPONÍVEL PARA OPORTUNIDADES REMOTAS E PRESENCIAIS" : "OPEN FOR REMOTE AND ON-SITE OPPORTUNITIES"}
             </motion.div>
           </div>
