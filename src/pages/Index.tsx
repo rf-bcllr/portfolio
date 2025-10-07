@@ -230,29 +230,20 @@ const Index = () => {
               {/* Left Column - Visual Card (Photo + Floating Emojis + Text) */}
               <div className="order-1 lg:order-1 flex flex-col">
                 {/* Photo Card with Floating Emojis */}
-                <Card className="relative overflow-visible p-0 mb-8 max-w-md mx-auto lg:mx-0 rounded-xl hover-lift" style={{ boxShadow: "var(--shadow-elegant)" }}>
+                <Card className="relative overflow-visible p-0 mb-8 max-w-md mx-auto lg:mx-0 rounded-xl hover-lift" style={{
+                boxShadow: "var(--shadow-elegant)"
+              }}>
                   <div className="relative">
-                    <img
-                      src={aboutMePortrait}
-                      alt="Portrait of Rafael Bacellar, Product Designer"
-                      className="w-full h-auto rounded-xl"
-                      loading="lazy"
-                    />
+                    <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" className="w-full h-auto rounded-xl" loading="lazy" />
                     
                     {/* Floating Emojis */}
-                    <motion.div
-                      className="absolute -top-8 -left-6 text-5xl pointer-events-auto cursor-pointer group"
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Creative Writing"
-                    >
-                      <span 
-                        aria-hidden="true"
-                        className="block transition-all duration-[var(--dur-fast)]"
-                        style={{ 
-                          animation: 'floatReaction 10s ease-in-out infinite',
-                          animationDelay: '0s'
-                        }}
-                      >
+                    <motion.div className="absolute -top-8 -left-6 text-5xl pointer-events-auto cursor-pointer group" whileHover={{
+                    scale: 1.15
+                  }} aria-label="Creative Writing">
+                      <span aria-hidden="true" style={{
+                      animation: 'floatReaction 10s ease-in-out infinite',
+                      animationDelay: '0s'
+                    }} className="block transition-all duration-[var(--dur-fast)] text-6xl">
                         ✍🏿
                       </span>
                       <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
@@ -260,19 +251,13 @@ const Index = () => {
                       </span>
                     </motion.div>
 
-                    <motion.div
-                      className="absolute -top-6 -right-8 text-4xl pointer-events-auto cursor-pointer group"
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Visual Design"
-                    >
-                      <span 
-                        aria-hidden="true"
-                        className="block transition-all duration-[var(--dur-fast)]"
-                        style={{ 
-                          animation: 'floatReactionAlt 12s ease-in-out infinite',
-                          animationDelay: '1.5s'
-                        }}
-                      >
+                    <motion.div className="absolute -top-6 -right-8 text-4xl pointer-events-auto cursor-pointer group" whileHover={{
+                    scale: 1.15
+                  }} aria-label="Visual Design">
+                      <span aria-hidden="true" style={{
+                      animation: 'floatReactionAlt 12s ease-in-out infinite',
+                      animationDelay: '1.5s'
+                    }} className="block transition-all duration-[var(--dur-fast)] text-7xl">
                         🎨
                       </span>
                       <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
@@ -280,19 +265,13 @@ const Index = () => {
                       </span>
                     </motion.div>
 
-                    <motion.div
-                      className="absolute top-1/2 -right-10 text-[2.2rem] pointer-events-auto cursor-pointer group"
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Fast Iterations"
-                    >
-                      <span 
-                        aria-hidden="true"
-                        className="block transition-all duration-[var(--dur-fast)]"
-                        style={{ 
-                          animation: 'floatReaction 11s ease-in-out infinite',
-                          animationDelay: '3s'
-                        }}
-                      >
+                    <motion.div className="absolute top-1/2 -right-10 text-[2.2rem] pointer-events-auto cursor-pointer group" whileHover={{
+                    scale: 1.15
+                  }} aria-label="Fast Iterations">
+                      <span aria-hidden="true" style={{
+                      animation: 'floatReaction 11s ease-in-out infinite',
+                      animationDelay: '3s'
+                    }} className="block transition-all duration-[var(--dur-fast)] text-8xl">
                         ⚡
                       </span>
                       <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
@@ -300,19 +279,13 @@ const Index = () => {
                       </span>
                     </motion.div>
 
-                    <motion.div
-                      className="absolute -bottom-4 -left-8 text-[2.6rem] pointer-events-auto cursor-pointer group"
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Communication"
-                    >
-                      <span 
-                        aria-hidden="true"
-                        className="block transition-all duration-[var(--dur-fast)]"
-                        style={{ 
-                          animation: 'floatReactionAlt 13s ease-in-out infinite',
-                          animationDelay: '4.5s'
-                        }}
-                      >
+                    <motion.div className="absolute -bottom-4 -left-8 text-[2.6rem] pointer-events-auto cursor-pointer group" whileHover={{
+                    scale: 1.15
+                  }} aria-label="Communication">
+                      <span aria-hidden="true" style={{
+                      animation: 'floatReactionAlt 13s ease-in-out infinite',
+                      animationDelay: '4.5s'
+                    }} className="block transition-all duration-[var(--dur-fast)] text-7xl">
                         💬
                       </span>
                       <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
@@ -320,19 +293,13 @@ const Index = () => {
                       </span>
                     </motion.div>
 
-                    <motion.div
-                      className="absolute bottom-8 -right-6 text-4xl pointer-events-auto cursor-pointer group"
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Problem Solving"
-                    >
-                      <span 
-                        aria-hidden="true"
-                        className="block transition-all duration-[var(--dur-fast)]"
-                        style={{ 
-                          animation: 'floatReaction 14s ease-in-out infinite',
-                          animationDelay: '6s'
-                        }}
-                      >
+                    <motion.div className="absolute bottom-8 -right-6 text-4xl pointer-events-auto cursor-pointer group" whileHover={{
+                    scale: 1.15
+                  }} aria-label="Problem Solving">
+                      <span aria-hidden="true" style={{
+                      animation: 'floatReaction 14s ease-in-out infinite',
+                      animationDelay: '6s'
+                    }} className="block transition-all duration-[var(--dur-fast)] text-5xl">
                         🧠
                       </span>
                       <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
@@ -358,58 +325,58 @@ const Index = () => {
               {/* Right Column - Skills Cards */}
               <div className="space-y-6 order-2 lg:order-2">
                 {/* My Power Skills Card */}
-                <Card className="rounded-2xl p-6 hover-lift" style={{ boxShadow: "var(--shadow-card)" }}>
+                <Card className="rounded-2xl p-6 hover-lift" style={{
+                boxShadow: "var(--shadow-card)"
+              }}>
                   <div className="flex items-center gap-2 mb-4">
                     <Zap className="w-5 h-5 text-primary" aria-hidden="true" />
                     <h3 className="text-xl font-semibold font-display text-primary">{t.powerSkillsTitle}</h3>
                   </div>
                   <ul className="space-y-2">
-                    {t.powerSkills.map((skill, index) => (
-                      <motion.li
-                        key={skill.text}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{
-                          delay: index * 0.06,
-                          duration: 0.42,
-                          ease: [0.16, 1, 0.3, 1]
-                        }}
-                        viewport={{ once: true }}
-                        className="text-muted-foreground flex items-center gap-2"
-                        aria-label={skill.text}
-                      >
+                    {t.powerSkills.map((skill, index) => <motion.li key={skill.text} initial={{
+                    opacity: 0,
+                    x: -10
+                  }} whileInView={{
+                    opacity: 1,
+                    x: 0
+                  }} transition={{
+                    delay: index * 0.06,
+                    duration: 0.42,
+                    ease: [0.16, 1, 0.3, 1]
+                  }} viewport={{
+                    once: true
+                  }} className="text-muted-foreground flex items-center gap-2" aria-label={skill.text}>
                         <span aria-hidden="true">{skill.emoji}</span>
                         <span>{skill.text}</span>
-                      </motion.li>
-                    ))}
+                      </motion.li>)}
                   </ul>
                 </Card>
 
                 {/* Hobbies Card */}
-                <Card className="rounded-2xl p-6 hover-lift" style={{ boxShadow: "var(--shadow-card)" }}>
+                <Card className="rounded-2xl p-6 hover-lift" style={{
+                boxShadow: "var(--shadow-card)"
+              }}>
                   <div className="flex items-center gap-2 mb-4">
                     <Heart className="w-5 h-5 text-primary" aria-hidden="true" />
                     <h3 className="text-xl font-semibold font-display text-primary">{t.hobbiesTitle}</h3>
                   </div>
                   <ul className="space-y-2">
-                    {t.hobbies.map((hobby, index) => (
-                      <motion.li
-                        key={hobby.text}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{
-                          delay: index * 0.06,
-                          duration: 0.42,
-                          ease: [0.16, 1, 0.3, 1]
-                        }}
-                        viewport={{ once: true }}
-                        className="text-muted-foreground flex items-center gap-2"
-                        aria-label={hobby.text}
-                      >
+                    {t.hobbies.map((hobby, index) => <motion.li key={hobby.text} initial={{
+                    opacity: 0,
+                    x: -10
+                  }} whileInView={{
+                    opacity: 1,
+                    x: 0
+                  }} transition={{
+                    delay: index * 0.06,
+                    duration: 0.42,
+                    ease: [0.16, 1, 0.3, 1]
+                  }} viewport={{
+                    once: true
+                  }} className="text-muted-foreground flex items-center gap-2" aria-label={hobby.text}>
                         <span aria-hidden="true">{hobby.emoji}</span>
                         <span>{hobby.text}</span>
-                      </motion.li>
-                    ))}
+                      </motion.li>)}
                   </ul>
                 </Card>
               </div>
