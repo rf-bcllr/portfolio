@@ -171,12 +171,12 @@ const Experience = ({
             backgroundColor: '#10b981',
             color: 'white'
           }}>
-              <motion.div className="w-2.5 h-2.5 bg-white rounded-full" animate={{
+              <motion.div animate={{
               scale: [1, 1.2, 1]
             }} transition={{
               duration: 2,
               repeat: Infinity
-            }} />
+            }} className="w-3 h-2.5 bg-white rounded-full" />
               {language === "pt" ? "DISPONÍVEL PARA OPORTUNIDADES REMOTAS E PRESENCIAIS" : "OPEN FOR REMOTE AND ON-SITE OPPORTUNITIES"}
             </motion.div>
           </div>
@@ -191,7 +191,9 @@ const Experience = ({
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="font-semibold text-lg">{exp.title}</h3>
-                      <p className="font-medium" style={{ color: 'hsl(var(--primary))' }}>{exp.company}</p>
+                      <p className="font-medium" style={{
+                    color: 'hsl(var(--primary))'
+                  }}>{exp.company}</p>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -221,7 +223,9 @@ const Experience = ({
                   <h3 className="font-semibold text-lg">
                     {language === "pt" ? "Bacharelado em Design" : "Bachelor in Design"}
                   </h3>
-                  <p className="font-medium" style={{ color: 'hsl(var(--primary))' }}>
+                  <p className="font-medium" style={{
+                  color: 'hsl(var(--primary))'
+                }}>
                     {language === "pt" ? "Universidade do Estado da Bahia" : "Bahia State University"}
                   </p>
                 </div>
