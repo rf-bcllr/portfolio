@@ -7,13 +7,14 @@ import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 import MediaLightbox from "@/components/MediaLightbox";
-import { ArrowRight, Heart, Zap } from "lucide-react";
+import { ArrowRight, Heart, Zap, ChevronRight } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
+import aboutMePortrait from "@/assets/about-me-portrait.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 import projMuralNew from "@/assets/proj-mural-new.png";
@@ -224,133 +225,196 @@ const Index = () => {
             {t.aboutTitle}
           </h2>
           
-          <div className="grid gap-12 lg:grid-cols-2 max-w-6xl mx-auto items-start">
-            {/* Left column: Cards */}
-            <div className="space-y-6 order-2 lg:order-1">
-              {/* My Power Skills Card */}
-              <Card className="rounded-2xl p-6 hover-lift" style={{
-                boxShadow: "var(--shadow-card)"
-              }}>
-                <div className="flex items-center gap-2 mb-4">
-                  <Zap className="w-5 h-5 text-primary" aria-hidden="true" />
-                  <h3 className="text-xl font-semibold font-display text-primary">{t.powerSkillsTitle}</h3>
-                </div>
-                <ul className="space-y-2">
-                  {t.powerSkills.map((skill, index) => <motion.li key={skill.text} initial={{
-                    opacity: 0,
-                    x: -10
-                  }} whileInView={{
-                    opacity: 1,
-                    x: 0
-                  }} transition={{
-                    delay: index * 0.06,
-                    duration: 0.42,
-                    ease: [0.16, 1, 0.3, 1]
-                  }} viewport={{
-                    once: true
-                  }} className="text-muted-foreground flex items-center gap-2" aria-label={skill.text}>
-                      <span aria-hidden="true">{skill.emoji}</span>
-                      <span>{skill.text}</span>
-                    </motion.li>)}
-                </ul>
-              </Card>
-
-              {/* Hobbies Card */}
-              <Card className="rounded-2xl p-6 hover-lift" style={{
-                boxShadow: "var(--shadow-card)"
-              }}>
-                <div className="flex items-center gap-2 mb-4">
-                  <Heart className="w-5 h-5 text-primary" aria-hidden="true" />
-                  <h3 className="text-xl font-semibold font-display text-primary">{t.hobbiesTitle}</h3>
-                </div>
-                <ul className="space-y-2">
-                  {t.hobbies.map((hobby, index) => <motion.li key={hobby.text} initial={{
-                    opacity: 0,
-                    x: -10
-                  }} whileInView={{
-                    opacity: 1,
-                    x: 0
-                  }} transition={{
-                    delay: index * 0.06,
-                    duration: 0.42,
-                    ease: [0.16, 1, 0.3, 1]
-                  }} viewport={{
-                    once: true
-                  }} className="text-muted-foreground flex items-center gap-2" aria-label={hobby.text}>
-                      <span aria-hidden="true">{hobby.emoji}</span>
-                      <span>{hobby.text}</span>
-                    </motion.li>)}
-                </ul>
-              </Card>
-            </div>
-
-            {/* Right column: Photo & Text */}
-            <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start gap-8">
-              {/* Photo with floating emojis */}
-              <div className="relative w-64 h-64 group">
-                <img 
-                  src={professionalPhoto} 
-                  alt="Rafael Bacellar - Product Designer"
-                  className="w-full h-full rounded-[2rem] object-cover border-2 border-border transition-transform duration-300 group-hover:scale-105"
-                  style={{
-                    boxShadow: "var(--shadow-elegant)"
-                  }}
-                />
-                
-                {/* Floating emojis */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {[
-                    { emoji: "✍🏿", label: "Creative Writing", delay: 0, x: -20, y: -20 },
-                    { emoji: "🎨", label: "Visual Design", delay: 0.5, x: 80, y: -15 },
-                    { emoji: "🤖", label: "AI", delay: 1, x: -30, y: 60 },
-                    { emoji: "🐶", label: "Dogs", delay: 1.5, x: 70, y: 70 },
-                    { emoji: "🎮", label: "Gaming", delay: 2, x: 90, y: 30 },
-                    { emoji: "📚", label: "History", delay: 2.5, x: -15, y: 90 },
-                    { emoji: "☕", label: "Coffee", delay: 3, x: 50, y: -25 },
-                    { emoji: "⚡", label: "Fast Iterations", delay: 3.5, x: -25, y: 30 },
-                    { emoji: "💬", label: "Communication", delay: 4, x: 85, y: 85 },
-                    { emoji: "🤝🏿", label: "Collaboration", delay: 4.5, x: 10, y: -30 },
-                    { emoji: "📖", label: "Storytelling", delay: 5, x: 60, y: 95 }
-                  ].map((item, idx) => (
+          <AnimatedSection>
+            <div className="grid gap-16 lg:gap-20 lg:grid-cols-[1fr_1.2fr] max-w-6xl mx-auto items-start">
+              {/* Left Column - Visual Card (Photo + Floating Emojis + Text) */}
+              <div className="order-1 lg:order-1 flex flex-col">
+                {/* Photo Card with Floating Emojis */}
+                <Card className="relative overflow-visible p-0 mb-8 max-w-md mx-auto lg:mx-0 rounded-xl hover-lift" style={{ boxShadow: "var(--shadow-elegant)" }}>
+                  <div className="relative">
+                    <img
+                      src={aboutMePortrait}
+                      alt="Portrait of Rafael Bacellar, Product Designer"
+                      className="w-full h-auto rounded-xl"
+                      loading="lazy"
+                    />
+                    
+                    {/* Floating Emojis */}
                     <motion.div
-                      key={item.emoji}
-                      className="absolute text-2xl cursor-default group/emoji"
-                      style={{
-                        left: `${item.x}%`,
-                        top: `${item.y}%`,
-                        animation: `${idx % 2 === 0 ? 'float' : 'float-reverse'} ${4 + idx * 0.3}s ease-in-out infinite`,
-                        animationDelay: `${item.delay}s`
-                      }}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 0.6, scale: 1 }}
-                      whileHover={{ scale: 1.3, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                      viewport={{ once: true }}
-                      aria-label={item.label}
+                      className="absolute -top-8 -left-6 text-5xl pointer-events-auto cursor-pointer group"
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Creative Writing"
                     >
-                      <span aria-hidden="true">{item.emoji}</span>
-                      <span className="absolute left-1/2 -translate-x-1/2 -top-8 bg-background/90 text-foreground text-xs px-2 py-1 rounded opacity-0 group-hover/emoji:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-border">
-                        {item.label}
+                      <span 
+                        aria-hidden="true"
+                        className="block transition-all duration-[var(--dur-fast)]"
+                        style={{ 
+                          animation: 'floatReaction 10s ease-in-out infinite',
+                          animationDelay: '0s'
+                        }}
+                      >
+                        ✍🏿
+                      </span>
+                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
+                        Creative Writing
                       </span>
                     </motion.div>
-                  ))}
+
+                    <motion.div
+                      className="absolute -top-6 -right-8 text-4xl pointer-events-auto cursor-pointer group"
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Visual Design"
+                    >
+                      <span 
+                        aria-hidden="true"
+                        className="block transition-all duration-[var(--dur-fast)]"
+                        style={{ 
+                          animation: 'floatReactionAlt 12s ease-in-out infinite',
+                          animationDelay: '1.5s'
+                        }}
+                      >
+                        🎨
+                      </span>
+                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
+                        Visual Design
+                      </span>
+                    </motion.div>
+
+                    <motion.div
+                      className="absolute top-1/2 -right-10 text-[2.2rem] pointer-events-auto cursor-pointer group"
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Fast Iterations"
+                    >
+                      <span 
+                        aria-hidden="true"
+                        className="block transition-all duration-[var(--dur-fast)]"
+                        style={{ 
+                          animation: 'floatReaction 11s ease-in-out infinite',
+                          animationDelay: '3s'
+                        }}
+                      >
+                        ⚡
+                      </span>
+                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
+                        Fast Iterations
+                      </span>
+                    </motion.div>
+
+                    <motion.div
+                      className="absolute -bottom-4 -left-8 text-[2.6rem] pointer-events-auto cursor-pointer group"
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Communication"
+                    >
+                      <span 
+                        aria-hidden="true"
+                        className="block transition-all duration-[var(--dur-fast)]"
+                        style={{ 
+                          animation: 'floatReactionAlt 13s ease-in-out infinite',
+                          animationDelay: '4.5s'
+                        }}
+                      >
+                        💬
+                      </span>
+                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
+                        Communication
+                      </span>
+                    </motion.div>
+
+                    <motion.div
+                      className="absolute bottom-8 -right-6 text-4xl pointer-events-auto cursor-pointer group"
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Problem Solving"
+                    >
+                      <span 
+                        aria-hidden="true"
+                        className="block transition-all duration-[var(--dur-fast)]"
+                        style={{ 
+                          animation: 'floatReaction 14s ease-in-out infinite',
+                          animationDelay: '6s'
+                        }}
+                      >
+                        🧠
+                      </span>
+                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
+                        Problem Solving
+                      </span>
+                    </motion.div>
+                  </div>
+                </Card>
+
+                {/* About Me Text */}
+                <div className="text-center lg:text-left max-w-md mx-auto lg:mx-0">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {t.aboutDescription}
+                  </p>
+                  <Button asChild variant="contrast" size="lg">
+                    <Link to="/experience">
+                      {t.fullExperience} <ChevronRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
 
-              {/* Text */}
-              <div className="text-center lg:text-left">
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  {t.aboutDescription}
-                </p>
-                <Button asChild variant="contrast" size="lg" className="gap-2 text-base px-8">
-                  <Link to="/experience">
-                    {t.fullExperience}
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
+              {/* Right Column - Skills Cards */}
+              <div className="space-y-6 order-2 lg:order-2">
+                {/* My Power Skills Card */}
+                <Card className="rounded-2xl p-6 hover-lift" style={{ boxShadow: "var(--shadow-card)" }}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Zap className="w-5 h-5 text-primary" aria-hidden="true" />
+                    <h3 className="text-xl font-semibold font-display text-primary">{t.powerSkillsTitle}</h3>
+                  </div>
+                  <ul className="space-y-2">
+                    {t.powerSkills.map((skill, index) => (
+                      <motion.li
+                        key={skill.text}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: index * 0.06,
+                          duration: 0.42,
+                          ease: [0.16, 1, 0.3, 1]
+                        }}
+                        viewport={{ once: true }}
+                        className="text-muted-foreground flex items-center gap-2"
+                        aria-label={skill.text}
+                      >
+                        <span aria-hidden="true">{skill.emoji}</span>
+                        <span>{skill.text}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </Card>
+
+                {/* Hobbies Card */}
+                <Card className="rounded-2xl p-6 hover-lift" style={{ boxShadow: "var(--shadow-card)" }}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Heart className="w-5 h-5 text-primary" aria-hidden="true" />
+                    <h3 className="text-xl font-semibold font-display text-primary">{t.hobbiesTitle}</h3>
+                  </div>
+                  <ul className="space-y-2">
+                    {t.hobbies.map((hobby, index) => (
+                      <motion.li
+                        key={hobby.text}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: index * 0.06,
+                          duration: 0.42,
+                          ease: [0.16, 1, 0.3, 1]
+                        }}
+                        viewport={{ once: true }}
+                        className="text-muted-foreground flex items-center gap-2"
+                        aria-label={hobby.text}
+                      >
+                        <span aria-hidden="true">{hobby.emoji}</span>
+                        <span>{hobby.text}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </Card>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </section>
 
         {/* Certificações */}
