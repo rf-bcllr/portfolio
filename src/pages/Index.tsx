@@ -234,7 +234,7 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }}>
                   <div className="relative">
-                    <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" className="w-full h-auto rounded-xl" loading="lazy" />
+                    <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" loading="lazy" className="w-full h-auto rounded-xl" />
                     
                     {/* Floating Emojis */}
                     <motion.div className="absolute -top-8 -left-6 text-5xl pointer-events-auto cursor-pointer group" whileHover={{
