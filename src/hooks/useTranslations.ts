@@ -73,9 +73,13 @@ export const translations = {
     contactDescription: "Disponível para projetos freelance e oportunidades de trabalho.",
     backToTop: "Voltar ao topo",
     
+    // Design Process
+    designProcessTitle: "Processo de design",
+    designProcessIntro: "O design de experiência do usuário é muito mais do que aparenta. Colaboro com minha equipe em todos os aspectos da interação de um usuário com uma empresa e seus produtos.",
+    
     // Experience Page
     experienceTitle: "Experiência",
-    fullExperience: "Ver Experiência Completa",
+    fullExperience: "Confira meu currículo completo",
     downloadCV: "Baixar CV",
     workExperience: "Experiência Profissional",
     education: "Formação",
@@ -173,9 +177,13 @@ export const translations = {
     contactDescription: "Available for freelance projects and job opportunities.",
     backToTop: "Back to top",
     
+    // Design Process
+    designProcessTitle: "Design process",
+    designProcessIntro: "User experience design is much more than what meets the eye. I collaborate with my team on all aspects of a user's interaction with a company and its products.",
+    
     // Experience Page
     experienceTitle: "Experience",
-    fullExperience: "View Full Experience",
+    fullExperience: "Check my full resume",
     downloadCV: "Download CV",
     workExperience: "Work Experience", 
     education: "Education",

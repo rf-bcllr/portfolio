@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 
 interface ProjectCardProps {
@@ -8,7 +9,7 @@ interface ProjectCardProps {
   title: string;
   chips: string[];
   index: number;
-  onClick: () => void;
+  slug?: string;
 }
 export const ProjectCard = ({
   src,
@@ -16,9 +17,17 @@ export const ProjectCard = ({
   title,
   chips,
   index,
-  onClick
+  slug
 }: ProjectCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    if (slug) {
+      navigate(`/project/${slug}`);
+    }
+  };
+  
   return <motion.div initial={{
     opacity: 0,
     y: 20
@@ -32,7 +41,7 @@ export const ProjectCard = ({
   }} viewport={{
     once: true,
     margin: "-50px"
-  }} className="group relative overflow-hidden rounded-xl cursor-pointer" onClick={onClick}>
+  }} className="group relative overflow-hidden rounded-xl cursor-pointer" onClick={handleClick}>
       <div className="relative">
         <img src={src} alt={alt} className={`w-full h-auto transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImageLoaded(true)} />
         

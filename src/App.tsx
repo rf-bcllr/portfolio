@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Index from "./pages/Index";
 import Experience from "./pages/Experience";
 import NotFound from "./pages/NotFound";
+import ProjectDetail from "./pages/ProjectDetail";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/project/:slug" element={<ProjectDetail />} />
+            <Route path="/projetos/:slug" element={<ProjectDetail />} />
             <Route path="/experiencia" element={<ExperienceWrapper />} />
             <Route path="/experience" element={<ExperienceWrapper />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

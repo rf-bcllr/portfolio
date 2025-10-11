@@ -35,7 +35,7 @@ const Experience = ({
     period: language === "pt" ? "2024 - Presente" : "2024 - Present",
     description: language === "pt" ? "Design de produtos digitais end-to-end, design system e interfaces escaláveis." : "End-to-end digital product design, design system and scalable interfaces.",
     current: false,
-    secondaryChips: ["Fintech", "B2B", "B2C"]
+    secondaryChips: ["Fintech", "B2B", "B2C", "SaaS"]
   }, {
     title: "Product Designer",
     company: "ClassApp",
@@ -49,7 +49,7 @@ const Experience = ({
     period: "2019 - 2021",
     description: language === "pt" ? "Análise e design de interfaces digitais, melhoria de experiência do usuário." : "Digital interface analysis and design, user experience improvement.",
     current: false,
-    secondaryChips: ["Retail", "B2B", "B2C"]
+    secondaryChips: ["Retail", "B2B", "B2C", "E-commerce"]
   }, {
     title: "Design & Marketing Analyst",
     company: "Sebrae Bahia",
@@ -63,7 +63,7 @@ const Experience = ({
     period: "2015 - 2016",
     description: language === "pt" ? "Desenvolvimento de identidade visual e materiais de marca para educação médica." : "Visual identity development and brand materials for medical education.",
     current: false,
-    secondaryChips: ["Healthtech", "B2C"]
+    secondaryChips: ["Healthtech", "B2C", "SaaS", "E-commerce"]
   }];
   const skills = ["User Research", "Visual Design", "Prototyping", "Design System", "Usability Testing", "Information Architecture", "Interaction Design", "Design Thinking", "Agile", "UX Writing", "Accessibility", "HTML/CSS"];
   const softSkills = language === "pt" ? ["Liderança", "Comunicação", "Colaboração", "Pensamento Crítico", "Adaptabilidade", "Criatividade", "Iterações Rápidas"] : ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
