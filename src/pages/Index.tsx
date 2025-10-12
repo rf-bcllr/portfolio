@@ -6,8 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTranslations } from "@/hooks/useTranslations";
-import MediaLightbox from "@/components/MediaLightbox";
-import { ArrowRight, Heart, Zap, ChevronRight } from "lucide-react";
+import { ArrowRight, Heart, Zap, ChevronRight, Search, RefreshCw, Rocket, TrendingUp } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
@@ -42,48 +41,36 @@ const Index = () => {
     });
   };
   const projectMedia = [{
-    src: "/lovable-uploads/90169309-3cbd-483f-8bdc-c5e96fc950da.png",
-    href: "https://bento.me/rfbcllr",
-    title: "Risk Analysis Dashboard for Cyberbrake",
-    chips: ["UI", "Technology"]
-  }, {
-    src: projMuralNew,
-    href: "https://bento.me/rfbcllr",
-    title: "Mural",
-    chips: ["Branding", "UI"]
+    src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
+    title: "Meu Arco",
+    chips: ["UI/UX", "Research"],
+    slug: "meu-arco"
   }, {
     src: projHealthyNew,
-    href: "https://www.figma.com/proto/YpQOWHj5nJEZqHdi7hn3VR/Sa%C3%BAde-e-Ponto?kind=&node-id=978-7363&page-id=5%3A5&scaling=scale-down&show-proto-sidebar=1&starting-point-node-id=978%3A7363&mode=design&t=7depr6rbcfCS1Mkq-1",
     title: "Health Food Delivery App",
-    chips: ["UI/UX", "Research"]
+    chips: ["UI/UX", "Research"],
+    slug: "health-food-delivery"
   }, {
-    src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
-    href: "https://bento.me/rfbcllr",
-    title: "Meu Arco",
-    chips: ["UI/UX", "Research"]
-  }, {
-    src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
-    href: "https://bento.me/rfbcllr",
-    title: "AI Writing Assistant",
-    chips: ["UI/UX", "Research"]
-  }, {
-    src: projThumbNew3,
-    href: "https://www.behance.net/rfbcllr",
-    title: "Health Food Delivery App",
-    chips: ["UI/UX", "Research"]
+    src: projMuralNew,
+    title: "Mural",
+    chips: ["Branding", "UI"],
+    slug: "mural"
   }, {
     src: projectThumbNew1,
-    href: "https://www.behance.net/rfbcllr",
     title: "Digital Signature Feature",
-    chips: ["UI/UX", "Research"]
+    chips: ["UI/UX", "Research"],
+    slug: "digital-signature"
   }, {
     src: projectThumbNew2,
-    href: "https://www.behance.net/rfbcllr",
     title: "Students' Transportation Feature",
-    chips: ["UI/UX", "Research"]
+    chips: ["UI/UX", "Research"],
+    slug: "students-transportation"
+  }, {
+    src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
+    title: "AI Writing Assistant",
+    chips: ["UI/UX", "AI"],
+    slug: "ai-writing-assistant"
   }];
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [activeMedia, setActiveMedia] = useState(0);
   return <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
@@ -192,6 +179,65 @@ const Index = () => {
         {/* Companies Section */}
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />
 
+        {/* Design Process Section */}
+        <section id="design-process" className="container mx-auto px-6 py-32">
+          <AnimatedSection className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display mb-6 text-center">
+              {t.designProcessTitle}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-16">
+              {t.designProcessIntro}
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { 
+                  icon: Search, 
+                  title: t.designProcessStrategize?.title || "Strategize",
+                  description: t.designProcessStrategize?.description || "Explore the problem as deeply as possible. Understand the needs of the users and business, the context and the competition.",
+                  delay: 0
+                },
+                { 
+                  icon: RefreshCw, 
+                  title: t.designProcessIterate?.title || "Iterate",
+                  description: t.designProcessIterate?.description || "Generate as many ideas as possible. Do not be afraid to experiment and try out new ideas. Sketch, create wireframes, build prototypes.",
+                  delay: 0.1
+                },
+                { 
+                  icon: Rocket, 
+                  title: t.designProcessLaunch?.title || "Launch",
+                  description: t.designProcessLaunch?.description || "Test feasibility of the product and get feedback from users. Be prepared to make changes to the product based on the feedback.",
+                  delay: 0.2
+                },
+                { 
+                  icon: TrendingUp, 
+                  title: t.designProcessMeasure?.title || "Measure",
+                  description: t.designProcessMeasure?.description || "The design process is never really finished. Use metrics and data to iterate and improve the product and its performance.",
+                  delay: 0.3
+                }
+              ].map((process, index) => (
+                <motion.div
+                  key={process.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: process.delay,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="rounded-2xl p-6 hover-lift h-full" style={{ boxShadow: "var(--shadow-card)" }}>
+                    <process.icon className="w-8 h-8 text-primary mb-4" />
+                    <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{process.description}</p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </AnimatedSection>
+        </section>
+
         {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-32">
           <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
@@ -203,20 +249,16 @@ const Index = () => {
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
             {projectMedia.map((item, i) => <div key={i} className="mb-6 break-inside-avoid">
-                <ProjectCard src={item.src} alt={item.title ?? `Project media ${i + 1}`} title={item.title} chips={item.chips} index={i} onClick={() => {
-              setActiveMedia(i);
-              setLightboxOpen(true);
-            }} />
+                <ProjectCard 
+                  src={item.src} 
+                  alt={item.title ?? `Project media ${i + 1}`} 
+                  title={item.title} 
+                  chips={item.chips} 
+                  index={i}
+                  slug={item.slug}
+                />
               </div>)}
           </div>
-
-          <MediaLightbox items={projectMedia} index={activeMedia} open={lightboxOpen} onOpenChange={setLightboxOpen} onIndexChange={setActiveMedia} />
-
-          <AnimatedSection className="mt-12 flex justify-center" delay={0.3}>
-            <Button asChild variant="soft" size="lg" className="text-base px-8">
-              
-            </Button>
-          </AnimatedSection>
         </section>
 
         {/* Sobre */}
@@ -236,75 +278,65 @@ const Index = () => {
                   <div className="relative">
                     <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" loading="lazy" className="w-full max-h-[420px] object-cover object-[center_30%] rounded-xl" />
                     
-                    {/* Floating Emojis */}
-                    <motion.div className="absolute -top-8 -left-6 text-5xl pointer-events-auto cursor-pointer group" whileHover={{
-                    scale: 1.15
-                  }} aria-label="Creative Writing">
-                      <span aria-hidden="true" style={{
-                      animation: 'floatReaction 10s ease-in-out infinite',
-                      animationDelay: '0s'
-                    }} className="block transition-all duration-[var(--dur-fast)] text-6xl">
-                        ✍🏿
-                      </span>
-                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
-                        Creative Writing
-                      </span>
+                    {/* Liquid Glass Floating Chips */}
+                    <motion.div 
+                      className="liquid-glass-chip absolute -top-8 -left-6 text-lg pointer-events-auto cursor-pointer"
+                      style={{ animation: 'floatReaction 10s ease-in-out infinite', animationDelay: '0s' }}
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Creative Writing"
+                    >
+                      <span aria-hidden="true">✍🏿</span>
+                      <span className="font-medium">Creative Writing</span>
                     </motion.div>
 
-                    <motion.div className="absolute -top-6 -right-8 text-4xl pointer-events-auto cursor-pointer group" whileHover={{
-                    scale: 1.15
-                  }} aria-label="Visual Design">
-                      <span aria-hidden="true" style={{
-                      animation: 'floatReactionAlt 12s ease-in-out infinite',
-                      animationDelay: '1.5s'
-                    }} className="block transition-all duration-[var(--dur-fast)] text-7xl">
-                        🎨
-                      </span>
-                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
-                        Visual Design
-                      </span>
+                    <motion.div 
+                      className="liquid-glass-chip absolute -top-6 -right-8 text-base pointer-events-auto cursor-pointer"
+                      style={{ animation: 'floatReactionAlt 12s ease-in-out infinite', animationDelay: '1.5s' }}
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Visual Design"
+                    >
+                      <span aria-hidden="true">🎨</span>
+                      <span className="font-medium">Visual Design</span>
                     </motion.div>
 
-                    <motion.div className="absolute top-1/2 -right-10 text-[2.2rem] pointer-events-auto cursor-pointer group" whileHover={{
-                    scale: 1.15
-                  }} aria-label="Fast Iterations">
-                      <span aria-hidden="true" style={{
-                      animation: 'floatReaction 11s ease-in-out infinite',
-                      animationDelay: '3s'
-                    }} className="block transition-all duration-[var(--dur-fast)] text-8xl">
-                        ⚡
-                      </span>
-                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
-                        Fast Iterations
-                      </span>
+                    <motion.div 
+                      className="liquid-glass-chip absolute top-1/2 -right-10 text-sm pointer-events-auto cursor-pointer"
+                      style={{ animation: 'floatReaction 11s ease-in-out infinite', animationDelay: '3s' }}
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Fast Iterations"
+                    >
+                      <span aria-hidden="true">⚡</span>
+                      <span className="font-medium">Fast Iterations</span>
                     </motion.div>
 
-                    <motion.div className="absolute -bottom-4 -left-8 text-[2.6rem] pointer-events-auto cursor-pointer group" whileHover={{
-                    scale: 1.15
-                  }} aria-label="Communication">
-                      <span aria-hidden="true" style={{
-                      animation: 'floatReactionAlt 13s ease-in-out infinite',
-                      animationDelay: '4.5s'
-                    }} className="block transition-all duration-[var(--dur-fast)] text-7xl">
-                        💬
-                      </span>
-                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
-                        Communication
-                      </span>
+                    <motion.div 
+                      className="liquid-glass-chip absolute -bottom-4 -left-8 text-base pointer-events-auto cursor-pointer"
+                      style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '4.5s' }}
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Communication"
+                    >
+                      <span aria-hidden="true">💬</span>
+                      <span className="font-medium">Communication</span>
                     </motion.div>
 
-                    <motion.div className="absolute bottom-8 -right-6 text-4xl pointer-events-auto cursor-pointer group" whileHover={{
-                    scale: 1.15
-                  }} aria-label="Problem Solving">
-                      <span aria-hidden="true" style={{
-                      animation: 'floatReaction 14s ease-in-out infinite',
-                      animationDelay: '6s'
-                    }} className="block transition-all duration-[var(--dur-fast)] text-5xl">
-                        🧠
-                      </span>
-                      <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-popover text-popover-foreground px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--dur-fast)] pointer-events-none border border-border shadow-sm">
-                        Problem Solving
-                      </span>
+                    <motion.div 
+                      className="liquid-glass-chip absolute bottom-8 -right-6 text-base pointer-events-auto cursor-pointer"
+                      style={{ animation: 'floatReaction 14s ease-in-out infinite', animationDelay: '6s' }}
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Problem Solving"
+                    >
+                      <span aria-hidden="true">🧠</span>
+                      <span className="font-medium">Problem Solving</span>
+                    </motion.div>
+
+                    <motion.div 
+                      className="liquid-glass-chip absolute -bottom-6 left-1/2 -translate-x-1/2 text-lg pointer-events-auto cursor-pointer"
+                      style={{ animation: 'floatReactionAlt 15s ease-in-out infinite', animationDelay: '2s' }}
+                      whileHover={{ scale: 1.15 }}
+                      aria-label="Brazilian Designer"
+                    >
+                      <span aria-hidden="true">🇧🇷</span>
+                      <span className="font-medium">Brazilian Designer</span>
                     </motion.div>
                   </div>
                 </Card>
@@ -314,11 +346,6 @@ const Index = () => {
                   <p className="text-muted-foreground mb-6 leading-relaxed">
                     {t.aboutDescription}
                   </p>
-                  <Button asChild variant="contrast" size="lg">
-                    <Link to="/experience">
-                      {t.fullExperience} <ChevronRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
                 </div>
               </div>
 
@@ -380,6 +407,15 @@ const Index = () => {
                   </ul>
                 </Card>
               </div>
+            </div>
+
+            {/* CTA Button - Moved to section end */}
+            <div className="flex justify-center mt-16">
+              <Button asChild variant="contrast" size="lg">
+                <Link to="/experience">
+                  {t.fullExperience} <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </AnimatedSection>
         </section>

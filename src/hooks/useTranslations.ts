@@ -76,6 +76,22 @@ export const translations = {
     // Design Process
     designProcessTitle: "Processo de design",
     designProcessIntro: "O design de experiência do usuário é muito mais do que aparenta. Colaboro com minha equipe em todos os aspectos da interação de um usuário com uma empresa e seus produtos.",
+    designProcessStrategize: {
+      title: "Estratégia",
+      description: "Explorar o problema o mais profundamente possível. Entender as necessidades dos usuários e do negócio, o contexto e a competição."
+    },
+    designProcessIterate: {
+      title: "Iterar",
+      description: "Gerar tantas ideias quanto possível. Não tenha medo de experimentar e testar novas ideias. Esboçar, criar wireframes, construir protótipos."
+    },
+    designProcessLaunch: {
+      title: "Lançar",
+      description: "Testar a viabilidade do produto e obter feedback dos usuários. Estar preparado para fazer mudanças no produto com base no feedback."
+    },
+    designProcessMeasure: {
+      title: "Medir",
+      description: "O processo de design nunca está realmente terminado. Usar métricas e dados para iterar e melhorar o produto e seu desempenho."
+    },
     
     // Experience Page
     experienceTitle: "Experiência",
@@ -180,6 +196,22 @@ export const translations = {
     // Design Process
     designProcessTitle: "Design process",
     designProcessIntro: "User experience design is much more than what meets the eye. I collaborate with my team on all aspects of a user's interaction with a company and its products.",
+    designProcessStrategize: {
+      title: "Strategize",
+      description: "Explore the problem as deeply as possible. Understand the needs of the users and business, the context and the competition."
+    },
+    designProcessIterate: {
+      title: "Iterate",
+      description: "Generate as many ideas as possible. Do not be afraid to experiment and try out new ideas. Sketch, create wireframes, build prototypes."
+    },
+    designProcessLaunch: {
+      title: "Launch",
+      description: "Test feasibility of the product and get feedback from users. Be prepared to make changes to the product based on the feedback."
+    },
+    designProcessMeasure: {
+      title: "Measure",
+      description: "The design process is never really finished. Use metrics and data to iterate and improve the product and its performance."
+    },
     
     // Experience Page
     experienceTitle: "Experience",
