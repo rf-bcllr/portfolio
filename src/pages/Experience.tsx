@@ -333,8 +333,6 @@ const Experience = () => {
         </AnimatedSection>
       </motion.div>
 
-      </motion.div>
-
       <ContactFooter />
     </div>;
 };
