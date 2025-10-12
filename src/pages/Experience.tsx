@@ -81,9 +81,9 @@ const Experience = () => {
     { name: "ChatGPT", logo: chatgptLogo },
     { name: "Lovable", logo: lovableLogo },
     { name: "Excalidraw", logo: excalidrawLogo },
-    { name: "Notion", logo: notionLogo },
-    { name: "Maze", logo: mazeLogo },
-    { name: "Mixpanel", logo: mixpanelLogo }
+  { name: "Notion", logo: notionLogo },
+  { name: "Maze", logo: mazeLogo },
+  { name: "Mixpanel", logo: mixpanelLogo }
   ];
   const languages = [{
     name: t.portuguese,

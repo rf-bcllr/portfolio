@@ -263,16 +263,6 @@ const ProjectDetail = () => {
 
           {/* Main Content */}
           <div className="space-y-16">
-            {/* Back Button */}
-            <AnimatedSection>
-              <Button variant="ghost" size="default" asChild>
-                <Link to="/">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back
-                </Link>
-              </Button>
-            </AnimatedSection>
-
             {/* Challenge */}
             <AnimatedSection>
               <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
@@ -329,6 +319,16 @@ const ProjectDetail = () => {
                   {project.impact}
                 </p>
               )}
+            </AnimatedSection>
+
+            {/* Back Button */}
+            <AnimatedSection delay={0.4}>
+              <Button variant="ghost" size="default" asChild>
+                <Link to="/">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back
+                </Link>
+              </Button>
             </AnimatedSection>
 
           </div>

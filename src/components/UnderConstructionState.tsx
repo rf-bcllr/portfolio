@@ -1,4 +1,6 @@
-import { Construction } from "lucide-react";
+import { Construction, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export const UnderConstructionState = () => {
   return (
@@ -12,9 +14,17 @@ export const UnderConstructionState = () => {
       <h3 className="text-2xl font-bold mb-3 font-display">
         Coming Soon
       </h3>
-      <p className="text-muted-foreground max-w-md">
+      <p className="text-muted-foreground max-w-md mb-8">
         This case study is currently being crafted. Check back soon for the full story!
       </p>
+
+      {/* Back Button */}
+      <Button variant="ghost" size="default" asChild>
+        <Link to="/">
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back
+        </Link>
+      </Button>
     </div>
   );
 };
