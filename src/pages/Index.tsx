@@ -199,17 +199,19 @@ const Index = () => {
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
-            {projectMedia.map((item, i) => <div key={i} className="mb-6 break-inside-avoid">
-                <ProjectCard 
-                  src={item.src} 
-                  alt={item.title ?? `Project media ${i + 1}`} 
-                  title={item.title} 
-                  chips={item.chips} 
-                  index={i}
-                  slug={item.slug}
-                />
-              </div>)}
+          {/* Projects Grid - Improved Alignment */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto">
+            {projectMedia.map((item, i) => (
+              <ProjectCard 
+                key={i}
+                src={item.src} 
+                alt={item.title ?? `Project media ${i + 1}`} 
+                title={item.title} 
+                chips={item.chips} 
+                index={i}
+                slug={item.slug}
+              />
+            ))}
           </div>
         </section>
 

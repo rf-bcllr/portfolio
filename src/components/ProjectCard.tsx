@@ -41,12 +41,12 @@ export const ProjectCard = ({
   }} viewport={{
     once: true,
     margin: "-50px"
-  }} className="group relative overflow-hidden rounded-xl cursor-pointer" onClick={handleClick}>
+  }} className="group relative overflow-hidden rounded-2xl cursor-pointer" onClick={handleClick}>
       <div className="relative">
         <img src={src} alt={alt} className={`w-full h-auto transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImageLoaded(true)} />
         
         {/* Loading placeholder */}
-        {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse rounded-xl" />}
+        {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse rounded-2xl" />}
         
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -66,7 +66,7 @@ export const ProjectCard = ({
         </div>
         
         {/* Glow effect */}
-        <div className="absolute inset-0 ring-1 ring-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+        <div className="absolute inset-0 ring-1 ring-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
       </div>
     </motion.div>;
 };

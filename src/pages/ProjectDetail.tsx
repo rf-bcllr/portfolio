@@ -8,9 +8,20 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactFooter } from "@/components/ContactFooter";
+import { UnderConstructionState } from "@/components/UnderConstructionState";
 import { projectsData } from "@/data/projects";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import abstractHeroBg from "@/assets/project-hero-bg.png";
+
+const TBDBadge = () => (
+  <Badge variant="outline" className="text-xs font-normal">
+    TBD
+  </Badge>
+);
+
+const isUnderConstruction = (text: string): boolean => {
+  return text.includes("🚧") || text.includes("under construction") || text === "Page under construction";
+};
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -159,7 +170,9 @@ const ProjectDetail = () => {
                       <Users className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Team</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground">{project.overview.team}</p>
+                    <div className="text-sm text-muted-foreground">
+                      {project.overview.team === "TBD" ? <TBDBadge /> : project.overview.team}
+                    </div>
                   </div>
 
                   {/* Duration */}
@@ -168,7 +181,9 @@ const ProjectDetail = () => {
                       <Clock className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Duration</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground">{project.overview.duration}</p>
+                    <div className="text-sm text-muted-foreground">
+                      {project.overview.duration === "TBD" ? <TBDBadge /> : project.overview.duration}
+                    </div>
                   </div>
 
                   {/* Tools */}
@@ -178,11 +193,15 @@ const ProjectDetail = () => {
                       <h3 className="font-semibold text-sm">Tools Used</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {project.overview.tools.map((tool) => (
-                        <Badge key={tool} variant="outline" className="text-xs">
-                          {tool}
-                        </Badge>
-                      ))}
+                      {project.overview.tools[0] === "TBD" ? (
+                        <TBDBadge />
+                      ) : (
+                        project.overview.tools.map((tool) => (
+                          <Badge key={tool} variant="outline" className="text-xs">
+                            {tool}
+                          </Badge>
+                        ))
+                      )}
                     </div>
                   </div>
 
@@ -193,12 +212,18 @@ const ProjectDetail = () => {
                       <h3 className="font-semibold text-sm">Key Impact</h3>
                     </div>
                     <ul className="space-y-2">
-                      {project.overview.impact.map((metric, index) => (
-                        <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0 mt-1.5" />
-                          {metric}
+                      {project.overview.impact[0] === "TBD" || isUnderConstruction(project.overview.impact[0]) ? (
+                        <li className="text-sm text-muted-foreground">
+                          <TBDBadge />
                         </li>
-                      ))}
+                      ) : (
+                        project.overview.impact.map((metric, index) => (
+                          <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0 mt-1.5" />
+                            {metric}
+                          </li>
+                        ))
+                      )}
                     </ul>
                   </div>
                 </CardContent>
@@ -213,9 +238,13 @@ const ProjectDetail = () => {
               <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
                 The Challenge
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {project.challenge}
-              </p>
+              {isUnderConstruction(project.challenge) ? (
+                <UnderConstructionState />
+              ) : (
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {project.challenge}
+                </p>
+              )}
             </AnimatedSection>
 
             {/* Process */}
@@ -223,9 +252,13 @@ const ProjectDetail = () => {
               <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
                 The Process
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                {project.process}
-              </p>
+              {isUnderConstruction(project.process) ? (
+                <UnderConstructionState />
+              ) : (
+                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {project.process}
+                </p>
+              )}
             </AnimatedSection>
 
             {/* Solution */}
@@ -233,9 +266,13 @@ const ProjectDetail = () => {
               <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
                 The Solution
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                {project.solution}
-              </p>
+              {isUnderConstruction(project.solution) ? (
+                <UnderConstructionState />
+              ) : (
+                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {project.solution}
+                </p>
+              )}
             </AnimatedSection>
 
             {/* Impact */}
@@ -243,9 +280,15 @@ const ProjectDetail = () => {
               <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
                 The Impact
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {project.impact}
-              </p>
+              {project.impact === "TBD" ? (
+                <div className="text-lg text-muted-foreground">
+                  <TBDBadge />
+                </div>
+              ) : (
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {project.impact}
+                </p>
+              )}
             </AnimatedSection>
 
             {/* Back to Projects CTA */}
