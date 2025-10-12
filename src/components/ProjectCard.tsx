@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -28,20 +27,7 @@ export const ProjectCard = ({
     }
   };
   
-  return <motion.div initial={{
-    opacity: 0,
-    y: 20
-  }} whileInView={{
-    opacity: 1,
-    y: 0
-  }} transition={{
-    duration: 0.6,
-    delay: index * 0.1,
-    ease: [0.25, 0.46, 0.45, 0.94]
-  }} viewport={{
-    once: true,
-    margin: "-50px"
-  }} className="group relative overflow-hidden rounded-2xl cursor-pointer" onClick={handleClick}>
+  return <div className="group relative overflow-hidden rounded-2xl cursor-pointer" onClick={handleClick}>
       <div className="relative">
         <img src={src} alt={alt} className={`w-full h-auto transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImageLoaded(true)} />
         
@@ -68,5 +54,5 @@ export const ProjectCard = ({
         {/* Glow effect */}
         <div className="absolute inset-0 ring-1 ring-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
       </div>
-    </motion.div>;
+    </div>;
 };
