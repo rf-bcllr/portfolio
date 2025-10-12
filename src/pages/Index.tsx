@@ -48,7 +48,12 @@ const Index = () => {
     slug: "meu-arco"
   }, {
     src: projHealthyNew,
-    title: "Health Food Delivery App",
+    title: "Healthy Food Delivery App",
+    chips: ["UI/UX", "Research"],
+    slug: "health-food-delivery"
+  }, {
+    src: projThumbNew3,
+    title: "Healthy Food Delivery App",
     chips: ["UI/UX", "Research"],
     slug: "health-food-delivery"
   }, {

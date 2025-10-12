@@ -10,6 +10,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactFooter } from "@/components/ContactFooter";
 import { projectsData } from "@/data/projects";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
+import abstractHeroBg from "@/assets/project-hero-bg.png";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -73,44 +74,41 @@ const ProjectDetail = () => {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section - Unified Design with Abstract Background */}
       <section className="relative overflow-hidden">
-        {imageError ? (
-          // Fallback gradient when image fails to load
-          <div className="relative h-[60vh] lg:h-[70vh]">
-            <div 
-              className="absolute inset-0 blur-2xl"
-              style={{ 
-                background: 'linear-gradient(135deg, hsl(var(--primary)/0.4), hsl(var(--accent)/0.3))' 
-              }}
-            />
-          </div>
-        ) : project.coverType === "vertical" ? (
-          // Vertical image with blurred background
-          <div className="relative h-[60vh] lg:h-[70vh]">
-            <div 
-              className="absolute inset-0 bg-cover bg-center blur-2xl opacity-50"
-              style={{ backgroundImage: `url(${project.heroImage})` }}
-            />
-            <div className="relative h-full flex items-center justify-center p-6">
-              <img 
-                src={project.heroImage} 
-                alt={project.title}
-                onError={() => setImageError(true)}
-                className="max-h-full max-w-full object-contain rounded-xl shadow-2xl"
-              />
-            </div>
-          </div>
-        ) : (
-          // Horizontal image - full width
-          <div className="relative h-[50vh] lg:h-[60vh]">
-            <img 
+        {/* Abstract Background Layer - Always Present */}
+        <div 
+          className="absolute inset-0 min-h-[60vh]"
+          style={{ 
+            backgroundImage: `url(${abstractHeroBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'blur(8px)',
+            transform: 'scale(1.1)' // Prevents blur edge artifacts
+          }}
+        />
+        
+        {/* Project Image Overlay - Centered (if image exists and no error) */}
+        {!imageError && project.heroImage && (
+          <div className="relative min-h-[60vh] flex items-center justify-center p-6 lg:p-12">
+            <motion.img 
               src={project.heroImage} 
               alt={project.title}
               onError={() => setImageError(true)}
-              className="w-full h-full object-cover"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="max-h-[55vh] max-w-[90%] lg:max-w-[80%] object-contain rounded-2xl shadow-2xl"
+              style={{
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.15)'
+              }}
             />
           </div>
+        )}
+        
+        {/* Fallback - Just Abstract Background (if no image or error) */}
+        {(imageError || !project.heroImage) && (
+          <div className="relative min-h-[60vh]" />
         )}
         
         {/* Hero Overlay Content */}
