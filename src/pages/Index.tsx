@@ -11,10 +11,9 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { ContactFooter } from "@/components/ContactFooter";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
-import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
+import aboutMePortrait from "@/assets/about-me-portrait.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 import projMuralNew from "@/assets/proj-mural-new.png";
@@ -28,7 +27,7 @@ const Index = () => {
     y: 0
   });
   const [scrolled, setScrolled] = useState(false);
-  const t = useTranslations();
+  const t = useTranslations("en");
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     window.addEventListener("scroll", onScroll);
@@ -71,11 +70,6 @@ const Index = () => {
     title: "AI Writing Assistant",
     chips: ["UI/UX", "AI"],
     slug: "ai-writing-assistant"
-  }, {
-    src: projThumbNew3,
-    title: "Cyberbrake",
-    chips: ["UI/UX", "Game Design"],
-    slug: "cyberbrake"
   }];
   return <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -185,30 +179,7 @@ const Index = () => {
         {/* Companies Section */}
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />
 
-        {/* Projetos */}
-        <section id="projetos" className="container mx-auto px-6 py-32">
-          <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4">
-              {t.realExperiences}
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
-          </AnimatedSection>
-
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
-            {projectMedia.map((item, i) => <div key={i} className="mb-6 break-inside-avoid">
-                <ProjectCard 
-                  src={item.src} 
-                  alt={item.title ?? `Project media ${i + 1}`} 
-                  title={item.title} 
-                  chips={item.chips} 
-                  index={i}
-                  slug={item.slug}
-                />
-              </div>)}
-          </div>
-        </section>
-
-        {/* My Design Process Section */}
+        {/* Design Process Section */}
         <section id="design-process" className="container mx-auto px-6 py-32">
           <AnimatedSection className="max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display mb-6 text-center">
@@ -229,7 +200,7 @@ const Index = () => {
                 { 
                   icon: RefreshCw, 
                   title: t.designProcessIterate?.title || "Iterate",
-                  description: t.designProcessIterate?.description || "Generate as many ideas as possible. Do not be afraid to experiment and try out new ideas. I may use AI to generate quick prototypes. Sketch, create wireframes, build prototypes.",
+                  description: t.designProcessIterate?.description || "Generate as many ideas as possible. Do not be afraid to experiment and try out new ideas. Sketch, create wireframes, build prototypes.",
                   delay: 0.1
                 },
                 { 
@@ -265,6 +236,29 @@ const Index = () => {
               ))}
             </div>
           </AnimatedSection>
+        </section>
+
+        {/* Projetos */}
+        <section id="projetos" className="container mx-auto px-6 py-32">
+          <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4">
+              {t.realExperiences}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
+          </AnimatedSection>
+
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
+            {projectMedia.map((item, i) => <div key={i} className="mb-6 break-inside-avoid">
+                <ProjectCard 
+                  src={item.src} 
+                  alt={item.title ?? `Project media ${i + 1}`} 
+                  title={item.title} 
+                  chips={item.chips} 
+                  index={i}
+                  slug={item.slug}
+                />
+              </div>)}
+          </div>
         </section>
 
         {/* Sobre */}
@@ -471,13 +465,31 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Contato */}
+        <section id="contato" className="relative isolate">
+          <div className="absolute inset-0 -z-10 opacity-[0.08]" style={{
+          background: "var(--gradient-hero)"
+        }} />
+          <div className="container mx-auto px-6 py-24 md:py-32 text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-6 text-balance">
+              {t.contactTitle}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">{t.contactDescription}</p>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <Button asChild variant="outline" size="lg" className="text-base px-8">
+                <a href="#inicio">{t.backToTop}</a>
+              </Button>
+              <Button asChild variant="contrast" size="lg" className="text-base px-8">
+                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <ContactFooter 
-        contactTitle={t.contactTitle}
-        contactDescription={t.contactDescription}
-        backToTop={t.backToTop}
-      />
+      <footer className="border-t py-10 text-center text-sm text-muted-foreground">
+        <p>© {new Date().getFullYear()} Rafael Bacellar · All rights reserved</p>
+      </footer>
     </div>;
 };
 export default Index;
