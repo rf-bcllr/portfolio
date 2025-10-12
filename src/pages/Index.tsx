@@ -41,47 +41,52 @@ const Index = () => {
       y: e.clientY - rect.top
     });
   };
-  const projectMedia = [{
-    src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
-    title: "Meu Arco",
-    chips: ["UI/UX", "Research"],
-    slug: "meu-arco"
-  }, {
-    src: projHealthyNew,
-    title: "Healthy Food Delivery App",
-    chips: ["UI/UX", "Research"],
-    slug: "health-food-delivery"
-  }, {
-    src: projThumbNew3,
-    title: "Healthy Food Delivery App",
-    chips: ["UI/UX", "Research"],
-    slug: "health-food-delivery"
-  }, {
-    src: projMuralNew,
-    title: "Mural",
-    chips: ["Branding", "UI"],
-    slug: "mural"
-  }, {
-    src: projectThumbNew1,
-    title: "Digital Signature Feature",
-    chips: ["UI/UX", "Research"],
-    slug: "digital-signature"
-  }, {
-    src: projectThumbNew2,
-    title: "Students' Transportation Feature",
-    chips: ["UI/UX", "Research"],
-    slug: "students-transportation"
-  }, {
-    src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
-    title: "AI Writing Assistant",
-    chips: ["UI/UX", "AI"],
-    slug: "ai-writing-assistant"
-  }, {
-    src: "/lovable-uploads/cyberbrake-dashboard.png",
-    title: "Risk Analysis Dashboard for Cyberbrake",
-    chips: ["UI/UX", "Data Viz"],
-    slug: "cyberbrake"
-  }];
+  const projectMedia = [
+    // Left column - Featured projects (larger)
+    {
+      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
+      title: "Meu Arco",
+      chips: ["UI/UX", "Research"],
+      slug: "meu-arco"
+    }, {
+      src: projHealthyNew,
+      title: "Healthy Food Delivery App",
+      chips: ["UI/UX", "Research"],
+      slug: "health-food-delivery"
+    }, {
+      src: projMuralNew,
+      title: "Mural",
+      chips: ["Branding", "UI"],
+      slug: "mural"
+    },
+    // Right column - Smaller projects
+    {
+      src: projectThumbNew1,
+      title: "Digital Signature Feature",
+      chips: ["UI/UX", "Research"],
+      slug: "digital-signature"
+    }, {
+      src: projectThumbNew2,
+      title: "Students' Transportation Feature",
+      chips: ["UI/UX", "Research"],
+      slug: "students-transportation"
+    }, {
+      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
+      title: "AI Writing Assistant",
+      chips: ["UI/UX", "AI"],
+      slug: "ai-writing-assistant"
+    }, {
+      src: "/lovable-uploads/cyberbrake-dashboard.png",
+      title: "Risk Analysis Dashboard for Cyberbrake",
+      chips: ["UI/UX", "Data Viz"],
+      slug: "cyberbrake"
+    }, {
+      src: projThumbNew3,
+      title: "Healthy Food Delivery App",
+      chips: ["UI/UX", "Research"],
+      slug: "health-food-delivery"
+    }
+  ];
   return <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
@@ -199,19 +204,25 @@ const Index = () => {
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
-          {/* Projects Grid - Improved Alignment */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-auto">
-            {projectMedia.map((item, i) => (
-              <ProjectCard 
-                key={i}
-                src={item.src} 
-                alt={item.title ?? `Project media ${i + 1}`} 
-                title={item.title} 
-                chips={item.chips} 
-                index={i}
-                slug={item.slug}
-              />
-            ))}
+          {/* Projects Grid - Masonry Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr] gap-6 auto-rows-auto">
+            {projectMedia.map((item, i) => {
+              // First 3 cards are featured (left column, larger)
+              const isFeatured = i < 3;
+              
+              return (
+                <ProjectCard 
+                  key={i}
+                  src={item.src} 
+                  alt={item.title ?? `Project media ${i + 1}`} 
+                  title={item.title} 
+                  chips={item.chips} 
+                  index={i}
+                  slug={item.slug}
+                  className={isFeatured ? "lg:row-span-2" : ""}
+                />
+              );
+            })}
           </div>
         </section>
 
