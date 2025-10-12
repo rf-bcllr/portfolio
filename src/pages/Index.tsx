@@ -72,7 +72,7 @@ const Index = () => {
     chips: ["UI/UX", "AI"],
     slug: "ai-writing-assistant"
   }, {
-    src: projThumbNew3,
+    src: "/lovable-uploads/cyberbrake-dashboard.png",
     title: "Risk Analysis Dashboard for Cyberbrake",
     chips: ["UI/UX", "Data Viz"],
     slug: "cyberbrake"

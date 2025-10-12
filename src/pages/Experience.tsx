@@ -9,9 +9,18 @@ import { generateResumePDF } from '@/utils/generateResumePDF';
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { AnimatedSection } from '@/components/AnimatedSection';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
-import { ToolCard } from '@/components/ToolCard';
 import { ContactFooter } from '@/components/ContactFooter';
+
+// Tool logo imports
+import figmaLogo from "@/assets/tools/figma.png";
+import figjamLogo from "@/assets/tools/figjam.png";
+import adobeCreativeCloudLogo from "@/assets/tools/adobe-creative-cloud.png";
+import chatgptLogo from "@/assets/tools/chatgpt.png";
+import lovableLogo from "@/assets/tools/lovable.png";
+import excalidrawLogo from "@/assets/tools/excalidraw.png";
+import notionLogo from "@/assets/tools/notion.png";
 
 const Experience = () => {
   const t = useTranslations();
@@ -63,7 +72,15 @@ const Experience = () => {
   }];
   const skills = ["User Research", "Visual Design", "Prototyping", "Design System", "Usability Testing", "Information Architecture", "Interaction Design", "Design Thinking", "Agile", "UX Writing", "Accessibility", "HTML/CSS"];
   const softSkills = ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
-  const tools = ["Figma", "Adobe XD", "Photoshop", "Illustrator", "Sketch", "Framer", "Miro", "FigJam", "Figma Make", "Lovable", "v0"];
+  const tools = [
+    { name: "Figma", logo: figmaLogo },
+    { name: "FigJam", logo: figjamLogo },
+    { name: "Adobe Creative Tools", logo: adobeCreativeCloudLogo },
+    { name: "ChatGPT", logo: chatgptLogo },
+    { name: "Lovable", logo: lovableLogo },
+    { name: "Excalidraw", logo: excalidrawLogo },
+    { name: "Notion", logo: notionLogo }
+  ];
   const languages = [{
     name: t.portuguese,
     level: t.native
@@ -317,19 +334,42 @@ const Experience = () => {
           </AnimatedSection>
         </div>
 
-        {/* Tools Section - Full Width */}
+        {/* Tools Section - Logo Display with Tooltips */}
         <AnimatedSection delay={0.3}>
-          <Card className="rounded-2xl p-6">
-            <h2 className="font-display text-xl font-semibold mb-6 text-primary flex items-center gap-2">
+          <div className="py-8">
+            <h2 className="font-display text-xl font-semibold mb-8 text-primary flex items-center gap-2 justify-center">
               <Wrench className="w-5 h-5" aria-hidden="true" />
-              {t.tools}
+              Tools
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {tools.map((tool, index) => (
-                <ToolCard key={tool} name={tool} index={index} />
-              ))}
-            </div>
-          </Card>
+            <TooltipProvider delayDuration={200}>
+              <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                {tools.map((tool, index) => (
+                  <Tooltip key={tool.name}>
+                    <TooltipTrigger asChild>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                        viewport={{ once: true }}
+                        className="cursor-pointer"
+                      >
+                        <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-xl bg-background hover:bg-muted transition-all duration-300 hover:scale-110 p-3">
+                          <img 
+                            src={tool.logo} 
+                            alt={`${tool.name} logo`}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </motion.div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{tool.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
+            </TooltipProvider>
+          </div>
         </AnimatedSection>
       </motion.div>
 
