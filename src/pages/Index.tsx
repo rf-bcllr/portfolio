@@ -204,26 +204,73 @@ const Index = () => {
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
-          {/* Projects Grid - Masonry Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr] gap-6 auto-rows-auto">
-            {projectMedia.map((item, i) => {
-              // First 3 cards are featured (left column, larger)
-              const isFeatured = i < 3;
-              
+          {/* Projects Grid - 3 Column Masonry Layout */}
+          {(() => {
+            // Layout configuration based on screenshot
+            const layoutConfig = [
+              { index: 6, col: 1, aspectClass: "aspect-[4/5]", order: 1 },      // Cyberbrake
+              { index: 3, col: 1, aspectClass: "aspect-square", order: 2 },     // Digital Signature
+              { index: 1, col: 1, aspectClass: "aspect-[16/10]", order: 3 },    // Healthy Food
+              { index: 5, col: 1, aspectClass: "aspect-[21/9]", order: 4 },     // AI Writing (banner)
+              { index: 0, col: 2, aspectClass: "aspect-[9/19]", order: 1 },     // Meu Arco (tall)
+              { index: 2, col: 2, aspectClass: "aspect-[9/19]", order: 2 },     // Mural (tall)
+              { index: 4, col: 3, aspectClass: "aspect-[16/9]", order: 1 },     // Students Transport
+              { index: 7, col: 3, aspectClass: "aspect-[9/19]", order: 2 },     // Healthy variant (tall)
+            ];
+
+            // Build column arrays
+            const col1 = layoutConfig.filter(c => c.col === 1).sort((a, b) => a.order - b.order);
+            const col2 = layoutConfig.filter(c => c.col === 2).sort((a, b) => a.order - b.order);
+            const col3 = layoutConfig.filter(c => c.col === 3).sort((a, b) => a.order - b.order);
+
+            const renderCard = (config: typeof layoutConfig[0]) => {
+              const item = projectMedia[config.index];
               return (
-                <ProjectCard 
-                  key={i}
-                  src={item.src} 
-                  alt={item.title ?? `Project media ${i + 1}`} 
-                  title={item.title} 
-                  chips={item.chips} 
-                  index={i}
+                <ProjectCard
+                  key={`${config.col}-${config.order}`}
+                  src={item.src}
+                  alt={item.title ?? `Project media ${config.index + 1}`}
+                  title={item.title}
+                  chips={item.chips}
+                  index={config.index}
                   slug={item.slug}
-                  className={isFeatured ? "lg:row-span-2" : ""}
+                  aspectClass={config.aspectClass}
                 />
               );
-            })}
-          </div>
+            };
+
+            return (
+              <>
+                {/* Desktop: 3 columns */}
+                <div className="hidden xl:grid xl:grid-cols-3 gap-6">
+                  <div className="flex flex-col gap-6">
+                    {col1.map(renderCard)}
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    {col2.map(renderCard)}
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    {col3.map(renderCard)}
+                  </div>
+                </div>
+
+                {/* Tablet: 2 columns */}
+                <div className="hidden sm:grid sm:grid-cols-2 xl:hidden gap-6">
+                  <div className="flex flex-col gap-6">
+                    {col1.map(renderCard)}
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    {[...col2, ...col3].map(renderCard)}
+                  </div>
+                </div>
+
+                {/* Mobile: single column */}
+                <div className="flex sm:hidden flex-col gap-6">
+                  {[...col1, ...col2, ...col3].map(renderCard)}
+                </div>
+              </>
+            );
+          })()}
         </section>
 
         {/* Design Process Section */}
