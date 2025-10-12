@@ -151,10 +151,117 @@ const ProjectDetail = () => {
         {isUnderConstruction(project.challenge) && 
          isUnderConstruction(project.process) && 
          isUnderConstruction(project.solution) ? (
-          // Show single empty state for entire project
-          <div className="flex items-center justify-center min-h-[60vh]">
-            <UnderConstructionState />
-          </div>
+          
+          // Special handling for Cyberbrake: Gallery left, Empty State right
+          project.slug === "cyberbrake" ? (
+            <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start">
+              <aside className="lg:sticky lg:top-24 h-fit space-y-6">
+                {/* Project Overview */}
+                <AnimatedSection>
+                  <Card className="rounded-2xl">
+                    <CardHeader>
+                      <CardTitle className="text-xl font-display">Project Overview</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      {/* Role */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-2 text-primary">
+                          <Users className="w-4 h-4" />
+                          <h3 className="font-semibold text-sm">Role</h3>
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {project.overview.role === "TBD" ? <TBDBadge /> : project.overview.role}
+                        </div>
+                      </div>
+
+                      {/* Team */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-2 text-primary">
+                          <Users className="w-4 h-4" />
+                          <h3 className="font-semibold text-sm">Team</h3>
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {project.overview.team === "TBD" ? <TBDBadge /> : project.overview.team}
+                        </div>
+                      </div>
+
+                      {/* Duration */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-2 text-primary">
+                          <Clock className="w-4 h-4" />
+                          <h3 className="font-semibold text-sm">Duration</h3>
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {project.overview.duration === "TBD" ? <TBDBadge /> : project.overview.duration}
+                        </div>
+                      </div>
+
+                      {/* Tools */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-3 text-primary">
+                          <Wrench className="w-4 h-4" />
+                          <h3 className="font-semibold text-sm">Tools Used</h3>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {project.overview.tools[0] === "TBD" ? (
+                            <TBDBadge />
+                          ) : (
+                            project.overview.tools.map((tool) => (
+                              <Badge key={tool} variant="outline" className="text-xs">
+                                {tool}
+                              </Badge>
+                            ))
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Impact Metrics */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-3 text-primary">
+                          <TrendingUp className="w-4 h-4" />
+                          <h3 className="font-semibold text-sm">Key Impact</h3>
+                        </div>
+                        <ul className="space-y-2">
+                          {project.overview.impact[0] === "TBD" || isUnderConstruction(project.overview.impact[0]) ? (
+                            <li className="text-sm text-muted-foreground">
+                              <TBDBadge />
+                            </li>
+                          ) : (
+                            project.overview.impact.map((metric, index) => (
+                              <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0 mt-1.5" />
+                                {metric}
+                              </li>
+                            ))
+                          )}
+                        </ul>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
+                
+                {/* Gallery */}
+                <AnimatedSection delay={0.1}>
+                  <ProjectGallery 
+                    images={
+                      project.gallery || [
+                        { src: project.heroImage, title: project.title }
+                      ]
+                    }
+                  />
+                </AnimatedSection>
+              </aside>
+              
+              <div className="flex items-center justify-center min-h-[60vh]">
+                <UnderConstructionState />
+              </div>
+            </div>
+          ) : (
+            // Standard empty state for other under-construction projects
+            <div className="flex items-center justify-center min-h-[60vh]">
+              <UnderConstructionState />
+            </div>
+          )
         ) : (
         <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start">
           {/* Sidebar - Overview Card (Sticky on desktop) */}

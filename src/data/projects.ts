@@ -1,3 +1,13 @@
+import projHealthyNew from "@/assets/proj-healthy-new.png";
+import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
+import projMuralNew from "@/assets/proj-mural-new.png";
+import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
+import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
+import cyberbrakeMain from "@/assets/cyberbrake/device-detail.png";
+import cyberbrakeReport from "@/assets/cyberbrake/generate-report.png";
+import cyberbrakeNetwork from "@/assets/cyberbrake/network-detail.png";
+import cyberbrakeExplorer from "@/assets/cyberbrake/networks-explorer.png";
+
 export interface ProjectData {
   id: string;
   slug: string;
@@ -53,7 +63,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Healthy food delivery app for busy professionals",
     year: 2023,
     company: "Personal Project",
-    heroImage: "/lovable-uploads/proj-healthy-new.png",
+    heroImage: projHealthyNew,
     coverType: "vertical",
     overview: {
       role: "Product Designer & Researcher",
@@ -67,6 +77,10 @@ export const projectsData: ProjectData[] = [
         "35% faster checkout flow than competitors"
       ]
     },
+    gallery: [
+      { src: projHealthyNew, title: "Home Screen & Order Flow" },
+      { src: projThumbNew3, title: "Product Details & Checkout" }
+    ],
     challenge: "Busy professionals struggle to maintain healthy eating habits due to time constraints and limited healthy food options. Existing food delivery apps overwhelm users with too many choices and don't adequately address nutritional needs or dietary preferences. Users often abandon the ordering process due to complex checkout flows and uncertainty about meal nutritional value. The challenge was to create a food delivery experience specifically optimized for health-conscious users who value convenience, transparency, and nutritional information without sacrificing speed or simplicity.",
     process: "I conducted 18 in-depth user interviews with busy professionals (ages 25-45) to understand their eating habits, pain points, and decision-making processes. Through competitive analysis of 8 major food delivery apps, I identified opportunities for differentiation. I created user personas representing different dietary preferences (vegetarian, vegan, low-carb, balanced) and mapped their user journeys from hunger realization to meal consumption. Using rapid prototyping, I tested multiple approaches to meal discovery and selection. Low-fidelity wireframes helped validate information architecture with 12 potential users. I iteratively refined the visual design, testing color psychology for appetite appeal while maintaining a fresh, healthy brand perception. Usability testing with 15 participants validated the checkout flow and nutritional information presentation.",
     solution: "Saúde é Ponto features a smart meal discovery system that learns user preferences and dietary restrictions, presenting personalized recommendations immediately upon opening the app. The interface emphasizes visual hierarchy with high-quality food photography, clear nutritional badges (calories, protein, carbs, fats), and ingredient transparency. A simplified three-step checkout process (meal selection, delivery time, payment) reduces friction compared to traditional seven-step flows. The design includes a meal planning calendar for users to schedule healthy eating throughout the week, a favorites system for quick reordering, and real-time delivery tracking. Nutritional insights are presented in an accessible, non-intimidating way with visual representations and comparisons to daily recommended values.",
@@ -79,7 +93,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Social collaboration and creative expression platform",
     year: 2019,
     company: "Personal Project",
-    heroImage: "/lovable-uploads/proj-mural-new.png",
+    heroImage: projMuralNew,
     coverType: "horizontal",
     overview: {
       role: "Product Designer & Brand Designer",
@@ -105,7 +119,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Streamlined digital enrollment for ClassApp",
     year: 2022,
     company: "ClassApp",
-    heroImage: "/lovable-uploads/project-thumb-new-1.jpg",
+    heroImage: projectThumbNew1,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",
@@ -131,7 +145,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Safety tracking system for school transportation",
     year: 2023,
     company: "ClassApp",
-    heroImage: "/lovable-uploads/project-thumb-new-2.jpg",
+    heroImage: projectThumbNew2,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",
@@ -193,10 +207,10 @@ export const projectsData: ProjectData[] = [
     impact: "TBD",
     gallery: [
       { src: "/lovable-uploads/90169309-3cbd-483f-8bdc-c5e96fc950da.png", title: "Dashboard Overview" },
-      { src: new URL('@/assets/cyberbrake/device-detail.png', import.meta.url).href, title: "Device Detail View" },
-      { src: new URL('@/assets/cyberbrake/generate-report.png', import.meta.url).href, title: "Generate Report Interface" },
-      { src: new URL('@/assets/cyberbrake/network-detail.png', import.meta.url).href, title: "Network Detail Dashboard" },
-      { src: new URL('@/assets/cyberbrake/networks-explorer.png', import.meta.url).href, title: "Network Analysis Explorer" }
+      { src: cyberbrakeMain, title: "Device Detail View" },
+      { src: cyberbrakeReport, title: "Generate Report Interface" },
+      { src: cyberbrakeNetwork, title: "Network Detail Dashboard" },
+      { src: cyberbrakeExplorer, title: "Network Analysis Explorer" }
     ]
   }
 ];
