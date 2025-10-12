@@ -363,7 +363,7 @@ const Index = () => {
                         aria-label="Brazilian Designer"
                       >
                         <span aria-hidden="true">🇧🇷</span>
-                        <span className="font-medium">Brazilian Designer</span>
+                        <span className="font-medium">Brazilian</span>
                       </motion.div>
                     </div>
                   </Card>
@@ -378,7 +378,7 @@ const Index = () => {
 
                 {/* CTA Button - Desktop only, bottom aligned */}
                 <div className="hidden lg:block mt-8">
-                  <Button asChild variant="contrast" size="lg">
+                  <Button asChild variant="contrast" size="default">
                     <Link to="/experience">
                       {t.fullExperience} <ChevronRight className="ml-2 h-4 w-4" />
                     </Link>

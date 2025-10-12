@@ -95,7 +95,7 @@ export const translations = {
     
     // Experience Page
     experienceTitle: "Experience",
-    fullExperience: "Check my full resume",
+    fullExperience: "Full Resume",
     downloadCV: "Download CV",
     workExperience: "Work Experience", 
     education: "Education",

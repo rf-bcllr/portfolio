@@ -21,6 +21,8 @@ import chatgptLogo from "@/assets/tools/chatgpt.png";
 import lovableLogo from "@/assets/tools/lovable.png";
 import excalidrawLogo from "@/assets/tools/excalidraw.png";
 import notionLogo from "@/assets/tools/notion.png";
+import mazeLogo from "@/assets/tools/maze.png";
+import mixpanelLogo from "@/assets/tools/mixpanel.png";
 
 const Experience = () => {
   const t = useTranslations();
@@ -79,7 +81,9 @@ const Experience = () => {
     { name: "ChatGPT", logo: chatgptLogo },
     { name: "Lovable", logo: lovableLogo },
     { name: "Excalidraw", logo: excalidrawLogo },
-    { name: "Notion", logo: notionLogo }
+    { name: "Notion", logo: notionLogo },
+    { name: "Maze", logo: mazeLogo },
+    { name: "Mixpanel", logo: mixpanelLogo }
   ];
   const languages = [{
     name: t.portuguese,
@@ -339,7 +343,7 @@ const Experience = () => {
           <div className="py-8">
             <h2 className="font-display text-xl font-semibold mb-8 text-primary flex items-center gap-2 justify-center">
               <Wrench className="w-5 h-5" aria-hidden="true" />
-              Tools
+              My Tools
             </h2>
             <TooltipProvider delayDuration={200}>
               <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">

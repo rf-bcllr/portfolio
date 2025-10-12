@@ -71,20 +71,6 @@ const ProjectDetail = () => {
         </nav>
       </header>
 
-      {/* Breadcrumb */}
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Link to="/" className="hover:text-foreground transition-colors">
-            Home
-          </Link>
-          <span>/</span>
-          <Link to="/#projetos" className="hover:text-foreground transition-colors">
-            Projects
-          </Link>
-          <span>/</span>
-          <span className="text-foreground">{project.title}</span>
-        </div>
-      </div>
 
       {/* Hero Section - Unified Design with Abstract Background */}
       <section className="relative overflow-hidden">
@@ -154,103 +140,19 @@ const ProjectDetail = () => {
           
           // Special handling for Cyberbrake: Gallery left, Empty State right
           project.slug === "cyberbrake" ? (
-            <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start">
-              <aside className="lg:sticky lg:top-24 h-fit space-y-6">
-                {/* Project Overview */}
-                <AnimatedSection>
-                  <Card className="rounded-2xl">
-                    <CardHeader>
-                      <CardTitle className="text-xl font-display">Project Overview</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      {/* Role */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-2 text-primary">
-                          <Users className="w-4 h-4" />
-                          <h3 className="font-semibold text-sm">Role</h3>
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {project.overview.role === "TBD" ? <TBDBadge /> : project.overview.role}
-                        </div>
-                      </div>
-
-                      {/* Team */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-2 text-primary">
-                          <Users className="w-4 h-4" />
-                          <h3 className="font-semibold text-sm">Team</h3>
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {project.overview.team === "TBD" ? <TBDBadge /> : project.overview.team}
-                        </div>
-                      </div>
-
-                      {/* Duration */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-2 text-primary">
-                          <Clock className="w-4 h-4" />
-                          <h3 className="font-semibold text-sm">Duration</h3>
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {project.overview.duration === "TBD" ? <TBDBadge /> : project.overview.duration}
-                        </div>
-                      </div>
-
-                      {/* Tools */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-3 text-primary">
-                          <Wrench className="w-4 h-4" />
-                          <h3 className="font-semibold text-sm">Tools Used</h3>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {project.overview.tools[0] === "TBD" ? (
-                            <TBDBadge />
-                          ) : (
-                            project.overview.tools.map((tool) => (
-                              <Badge key={tool} variant="outline" className="text-xs">
-                                {tool}
-                              </Badge>
-                            ))
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Impact Metrics */}
-                      <div>
-                        <div className="flex items-center gap-2 mb-3 text-primary">
-                          <TrendingUp className="w-4 h-4" />
-                          <h3 className="font-semibold text-sm">Key Impact</h3>
-                        </div>
-                        <ul className="space-y-2">
-                          {project.overview.impact[0] === "TBD" || isUnderConstruction(project.overview.impact[0]) ? (
-                            <li className="text-sm text-muted-foreground">
-                              <TBDBadge />
-                            </li>
-                          ) : (
-                            project.overview.impact.map((metric, index) => (
-                              <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0 mt-1.5" />
-                                {metric}
-                              </li>
-                            ))
-                          )}
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </AnimatedSection>
-                
-                {/* Gallery */}
-                <AnimatedSection delay={0.1}>
-                  <ProjectGallery 
-                    images={
-                      project.gallery || [
-                        { src: project.heroImage, title: project.title }
-                      ]
-                    }
-                  />
-                </AnimatedSection>
-              </aside>
+      <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start">
+        <aside className="lg:sticky lg:top-24 h-fit space-y-6">
+          {/* Gallery */}
+          <AnimatedSection>
+            <ProjectGallery 
+              images={
+                project.gallery || [
+                  { src: project.heroImage, title: project.title }
+                ]
+              }
+            />
+          </AnimatedSection>
+        </aside>
               
               <div className="flex items-center justify-center min-h-[60vh]">
                 <UnderConstructionState />
@@ -361,6 +263,16 @@ const ProjectDetail = () => {
 
           {/* Main Content */}
           <div className="space-y-16">
+            {/* Back Button */}
+            <AnimatedSection>
+              <Button variant="ghost" size="default" asChild>
+                <Link to="/">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back
+                </Link>
+              </Button>
+            </AnimatedSection>
+
             {/* Challenge */}
             <AnimatedSection>
               <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
@@ -419,17 +331,6 @@ const ProjectDetail = () => {
               )}
             </AnimatedSection>
 
-            {/* Back to Projects CTA */}
-            <AnimatedSection delay={0.4}>
-              <div className="flex justify-center pt-8">
-                <Button asChild variant="contrast" size="lg">
-                  <Link to="/#projetos">
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to All Projects
-                  </Link>
-                </Button>
-              </div>
-            </AnimatedSection>
           </div>
         </div>
         )}
