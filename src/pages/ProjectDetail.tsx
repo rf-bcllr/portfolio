@@ -155,7 +155,7 @@ const ProjectDetail = () => {
             <UnderConstructionState />
           </div>
         ) : (
-        <div className="grid lg:grid-cols-[350px_1px] gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16">
           {/* Sidebar - Overview Card (Sticky on desktop) */}
           <aside className="lg:sticky lg:top-24 h-fit">
             <AnimatedSection>
