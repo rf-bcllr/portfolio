@@ -10,7 +10,6 @@ interface ProjectCardProps {
   index: number;
   slug?: string;
   className?: string;
-  aspectClass?: string;
 }
 export const ProjectCard = ({
   src,
@@ -19,8 +18,7 @@ export const ProjectCard = ({
   chips,
   index,
   slug,
-  className = "",
-  aspectClass
+  className = ""
 }: ProjectCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const navigate = useNavigate();
@@ -31,9 +29,9 @@ export const ProjectCard = ({
     }
   };
   
-  return <div className={`group relative overflow-hidden rounded-2xl cursor-pointer ${aspectClass || ''} ${className}`} onClick={handleClick}>
-      <div className="relative h-full">
-        <img src={src} alt={alt} className={`${aspectClass ? 'h-full w-full object-cover' : 'w-full h-auto'} rounded-2xl transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImageLoaded(true)} />
+  return <div className={`group relative overflow-hidden rounded-2xl cursor-pointer ${className}`} onClick={handleClick}>
+      <div className="relative">
+        <img src={src} alt={alt} className="w-full h-auto rounded-2xl transition-all duration-700 group-hover:scale-105" style={{ opacity: imageLoaded ? 1 : 0 }} onLoad={() => setImageLoaded(true)} />
         
         {/* Loading placeholder */}
         {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse rounded-2xl" />}

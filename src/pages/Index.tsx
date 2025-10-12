@@ -42,49 +42,56 @@ const Index = () => {
     });
   };
   const projectMedia = [
-    // Left column - Featured projects (larger)
+    // Column 1
     {
-      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
-      title: "Meu Arco",
-      chips: ["UI/UX", "Research"],
-      slug: "meu-arco"
-    }, {
-      src: projHealthyNew,
-      title: "Healthy Food Delivery App",
-      chips: ["UI/UX", "Research"],
-      slug: "health-food-delivery"
-    }, {
+      src: "/lovable-uploads/cyberbrake-dashboard.png",
+      title: "Risk Analysis Dashboard for Cyberbrake",
+      chips: ["UI/UX", "Data Viz"],
+      slug: "cyberbrake"
+    },
+    {
       src: projMuralNew,
       title: "Mural",
       chips: ["Branding", "UI"],
       slug: "mural"
     },
-    // Right column - Smaller projects
+    {
+      src: projHealthyNew,
+      title: "Healthy Food Delivery App",
+      chips: ["UI/UX", "Research"],
+      slug: "health-food-delivery"
+    },
+    {
+      src: projectThumbNew2,
+      title: "Students' Transportation Feature",
+      chips: ["UI/UX", "Research"],
+      slug: "students-transportation"
+    },
+    // Column 2
+    {
+      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
+      title: "Meu Arco",
+      chips: ["UI/UX", "Research"],
+      slug: "meu-arco"
+    },
+    {
+      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
+      title: "AI Writing Assistant",
+      chips: ["UI/UX", "AI"],
+      slug: "ai-writing-assistant"
+    },
+    // Column 3
+    {
+      src: projThumbNew3,
+      title: "Healthy Food Delivery App",
+      chips: ["UI/UX", "Research"],
+      slug: "health-food-delivery"
+    },
     {
       src: projectThumbNew1,
       title: "Digital Signature Feature",
       chips: ["UI/UX", "Research"],
       slug: "digital-signature"
-    }, {
-      src: projectThumbNew2,
-      title: "Students' Transportation Feature",
-      chips: ["UI/UX", "Research"],
-      slug: "students-transportation"
-    }, {
-      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
-      title: "AI Writing Assistant",
-      chips: ["UI/UX", "AI"],
-      slug: "ai-writing-assistant"
-    }, {
-      src: "/lovable-uploads/cyberbrake-dashboard.png",
-      title: "Risk Analysis Dashboard for Cyberbrake",
-      chips: ["UI/UX", "Data Viz"],
-      slug: "cyberbrake"
-    }, {
-      src: projThumbNew3,
-      title: "Healthy Food Delivery App",
-      chips: ["UI/UX", "Research"],
-      slug: "health-food-delivery"
     }
   ];
   return <div className="min-h-screen bg-background text-foreground">
@@ -204,73 +211,21 @@ const Index = () => {
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
-          {/* Projects Grid - 3 Column Masonry Layout */}
-          {(() => {
-            // Layout configuration based on screenshot
-            const layoutConfig = [
-              { index: 6, col: 1, aspectClass: "aspect-[4/5]", order: 1 },      // Cyberbrake
-              { index: 3, col: 1, aspectClass: "aspect-square", order: 2 },     // Digital Signature
-              { index: 1, col: 1, aspectClass: "aspect-[16/10]", order: 3 },    // Healthy Food
-              { index: 5, col: 1, aspectClass: "aspect-[21/9]", order: 4 },     // AI Writing (banner)
-              { index: 0, col: 2, aspectClass: "aspect-[9/19]", order: 1 },     // Meu Arco (tall)
-              { index: 2, col: 2, aspectClass: "aspect-[9/19]", order: 2 },     // Mural (tall)
-              { index: 4, col: 3, aspectClass: "aspect-[16/9]", order: 1 },     // Students Transport
-              { index: 7, col: 3, aspectClass: "aspect-[9/19]", order: 2 },     // Healthy variant (tall)
-            ];
-
-            // Build column arrays
-            const col1 = layoutConfig.filter(c => c.col === 1).sort((a, b) => a.order - b.order);
-            const col2 = layoutConfig.filter(c => c.col === 2).sort((a, b) => a.order - b.order);
-            const col3 = layoutConfig.filter(c => c.col === 3).sort((a, b) => a.order - b.order);
-
-            const renderCard = (config: typeof layoutConfig[0]) => {
-              const item = projectMedia[config.index];
-              return (
-                <ProjectCard
-                  key={`${config.col}-${config.order}`}
-                  src={item.src}
-                  alt={item.title ?? `Project media ${config.index + 1}`}
-                  title={item.title}
-                  chips={item.chips}
-                  index={config.index}
+          {/* Projects Grid - CSS Multi-Column Masonry Layout */}
+          <div className="columns-1 sm:columns-2 xl:columns-3 gap-6">
+            {projectMedia.map((item, i) => (
+              <div key={i} className="break-inside-avoid mb-6">
+                <ProjectCard 
+                  src={item.src} 
+                  alt={item.title ?? `Project ${i + 1}`} 
+                  title={item.title} 
+                  chips={item.chips} 
+                  index={i}
                   slug={item.slug}
-                  aspectClass={config.aspectClass}
                 />
-              );
-            };
-
-            return (
-              <>
-                {/* Desktop: 3 columns */}
-                <div className="hidden xl:grid xl:grid-cols-3 gap-6">
-                  <div className="flex flex-col gap-6">
-                    {col1.map(renderCard)}
-                  </div>
-                  <div className="flex flex-col gap-6">
-                    {col2.map(renderCard)}
-                  </div>
-                  <div className="flex flex-col gap-6">
-                    {col3.map(renderCard)}
-                  </div>
-                </div>
-
-                {/* Tablet: 2 columns */}
-                <div className="hidden sm:grid sm:grid-cols-2 xl:hidden gap-6">
-                  <div className="flex flex-col gap-6">
-                    {col1.map(renderCard)}
-                  </div>
-                  <div className="flex flex-col gap-6">
-                    {[...col2, ...col3].map(renderCard)}
-                  </div>
-                </div>
-
-                {/* Mobile: single column */}
-                <div className="flex sm:hidden flex-col gap-6">
-                  {[...col1, ...col2, ...col3].map(renderCard)}
-                </div>
-              </>
-            );
-          })()}
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Design Process Section */}
