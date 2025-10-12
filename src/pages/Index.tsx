@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ContactFooter } from "@/components/ContactFooter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -13,7 +14,7 @@ import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
-import aboutMePortrait from "@/assets/about-me-portrait.png";
+import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 import projMuralNew from "@/assets/proj-mural-new.png";
@@ -27,7 +28,7 @@ const Index = () => {
     y: 0
   });
   const [scrolled, setScrolled] = useState(false);
-  const t = useTranslations("en");
+  const t = useTranslations();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     window.addEventListener("scroll", onScroll);
@@ -70,6 +71,11 @@ const Index = () => {
     title: "AI Writing Assistant",
     chips: ["UI/UX", "AI"],
     slug: "ai-writing-assistant"
+  }, {
+    src: projThumbNew3,
+    title: "Risk Analysis Dashboard for Cyberbrake",
+    chips: ["UI/UX", "Data Viz"],
+    slug: "cyberbrake"
   }];
   return <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -179,6 +185,29 @@ const Index = () => {
         {/* Companies Section */}
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />
 
+        {/* Projetos */}
+        <section id="projetos" className="container mx-auto px-6 py-32">
+          <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4">
+              {t.realExperiences}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
+          </AnimatedSection>
+
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
+            {projectMedia.map((item, i) => <div key={i} className="mb-6 break-inside-avoid">
+                <ProjectCard 
+                  src={item.src} 
+                  alt={item.title ?? `Project media ${i + 1}`} 
+                  title={item.title} 
+                  chips={item.chips} 
+                  index={i}
+                  slug={item.slug}
+                />
+              </div>)}
+          </div>
+        </section>
+
         {/* Design Process Section */}
         <section id="design-process" className="container mx-auto px-6 py-32">
           <AnimatedSection className="max-w-4xl mx-auto">
@@ -238,29 +267,6 @@ const Index = () => {
           </AnimatedSection>
         </section>
 
-        {/* Projetos */}
-        <section id="projetos" className="container mx-auto px-6 py-32">
-          <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4">
-              {t.realExperiences}
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
-          </AnimatedSection>
-
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
-            {projectMedia.map((item, i) => <div key={i} className="mb-6 break-inside-avoid">
-                <ProjectCard 
-                  src={item.src} 
-                  alt={item.title ?? `Project media ${i + 1}`} 
-                  title={item.title} 
-                  chips={item.chips} 
-                  index={i}
-                  slug={item.slug}
-                />
-              </div>)}
-          </div>
-        </section>
-
         {/* Sobre */}
         <section id="sobre" className="container mx-auto px-6 py-32">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-12 text-balance text-center lg:text-left">
@@ -270,87 +276,98 @@ const Index = () => {
           <AnimatedSection>
             <div className="grid gap-16 lg:gap-20 lg:grid-cols-[1fr_1.2fr] max-w-6xl mx-auto items-start">
               {/* Left Column - Visual Card (Photo + Floating Emojis + Text) */}
-              <div className="order-1 lg:order-1 flex flex-col">
-                {/* Photo Card with Floating Emojis */}
-                <Card className="relative overflow-visible p-0 mb-8 max-w-md mx-auto lg:mx-0 rounded-xl hover-lift" style={{
-                boxShadow: "var(--shadow-elegant)"
-              }}>
-                  <div className="relative">
-                    <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" loading="lazy" className="w-full max-h-[420px] object-cover object-[center_30%] rounded-xl" />
-                    
-                    {/* Liquid Glass Floating Chips */}
-                    <motion.div 
-                      className="liquid-glass-chip absolute -top-8 -left-6 text-lg pointer-events-auto cursor-pointer"
-                      style={{ animation: 'floatReaction 10s ease-in-out infinite', animationDelay: '0s' }}
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Creative Writing"
-                    >
-                      <span aria-hidden="true">✍🏿</span>
-                      <span className="font-medium">Creative Writing</span>
-                    </motion.div>
+              <div className="order-1 lg:order-1 flex flex-col justify-between">
+                <div>
+                  {/* Photo Card with Floating Emojis */}
+                  <Card className="relative overflow-visible p-0 mb-8 max-w-md mx-auto lg:mx-0 rounded-xl hover-lift" style={{
+                  boxShadow: "var(--shadow-elegant)"
+                }}>
+                    <div className="relative">
+                      <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" loading="lazy" className="w-full max-h-[420px] object-cover object-[center_30%] rounded-xl" />
+                      
+                      {/* Liquid Glass Floating Chips */}
+                      <motion.div 
+                        className="liquid-glass-chip absolute -top-8 -left-6 text-lg pointer-events-auto cursor-pointer"
+                        style={{ animation: 'floatReaction 10s ease-in-out infinite', animationDelay: '0s' }}
+                        whileHover={{ scale: 1.15 }}
+                        aria-label="Creative Writing"
+                      >
+                        <span aria-hidden="true">✍🏿</span>
+                        <span className="font-medium">Creative Writing</span>
+                      </motion.div>
 
-                    <motion.div 
-                      className="liquid-glass-chip absolute -top-6 -right-8 text-base pointer-events-auto cursor-pointer"
-                      style={{ animation: 'floatReactionAlt 12s ease-in-out infinite', animationDelay: '1.5s' }}
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Visual Design"
-                    >
-                      <span aria-hidden="true">🎨</span>
-                      <span className="font-medium">Visual Design</span>
-                    </motion.div>
+                      <motion.div 
+                        className="liquid-glass-chip absolute -top-6 -right-8 text-base pointer-events-auto cursor-pointer"
+                        style={{ animation: 'floatReactionAlt 12s ease-in-out infinite', animationDelay: '1.5s' }}
+                        whileHover={{ scale: 1.15 }}
+                        aria-label="Visual Design"
+                      >
+                        <span aria-hidden="true">🎨</span>
+                        <span className="font-medium">Visual Design</span>
+                      </motion.div>
 
-                    <motion.div 
-                      className="liquid-glass-chip absolute top-1/2 -right-10 text-sm pointer-events-auto cursor-pointer"
-                      style={{ animation: 'floatReaction 11s ease-in-out infinite', animationDelay: '3s' }}
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Fast Iterations"
-                    >
-                      <span aria-hidden="true">⚡</span>
-                      <span className="font-medium">Fast Iterations</span>
-                    </motion.div>
+                      <motion.div 
+                        className="liquid-glass-chip absolute top-1/2 -right-10 text-sm pointer-events-auto cursor-pointer"
+                        style={{ animation: 'floatReaction 11s ease-in-out infinite', animationDelay: '3s' }}
+                        whileHover={{ scale: 1.15 }}
+                        aria-label="Fast Iterations"
+                      >
+                        <span aria-hidden="true">⚡</span>
+                        <span className="font-medium">Fast Iterations</span>
+                      </motion.div>
 
-                    <motion.div 
-                      className="liquid-glass-chip absolute -bottom-4 -left-8 text-base pointer-events-auto cursor-pointer"
-                      style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '4.5s' }}
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Communication"
-                    >
-                      <span aria-hidden="true">💬</span>
-                      <span className="font-medium">Communication</span>
-                    </motion.div>
+                      <motion.div 
+                        className="liquid-glass-chip absolute -bottom-4 -left-8 text-base pointer-events-auto cursor-pointer"
+                        style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '4.5s' }}
+                        whileHover={{ scale: 1.15 }}
+                        aria-label="Communication"
+                      >
+                        <span aria-hidden="true">💬</span>
+                        <span className="font-medium">Communication</span>
+                      </motion.div>
 
-                    <motion.div 
-                      className="liquid-glass-chip absolute bottom-8 -right-6 text-base pointer-events-auto cursor-pointer"
-                      style={{ animation: 'floatReaction 14s ease-in-out infinite', animationDelay: '6s' }}
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Problem Solving"
-                    >
-                      <span aria-hidden="true">🧠</span>
-                      <span className="font-medium">Problem Solving</span>
-                    </motion.div>
+                      <motion.div 
+                        className="liquid-glass-chip absolute bottom-8 -right-6 text-base pointer-events-auto cursor-pointer"
+                        style={{ animation: 'floatReaction 14s ease-in-out infinite', animationDelay: '6s' }}
+                        whileHover={{ scale: 1.15 }}
+                        aria-label="Problem Solving"
+                      >
+                        <span aria-hidden="true">🧠</span>
+                        <span className="font-medium">Problem Solving</span>
+                      </motion.div>
 
-                    <motion.div 
-                      className="liquid-glass-chip absolute -bottom-6 left-1/2 -translate-x-1/2 text-lg pointer-events-auto cursor-pointer"
-                      style={{ animation: 'floatReactionAlt 15s ease-in-out infinite', animationDelay: '2s' }}
-                      whileHover={{ scale: 1.15 }}
-                      aria-label="Brazilian Designer"
-                    >
-                      <span aria-hidden="true">🇧🇷</span>
-                      <span className="font-medium">Brazilian Designer</span>
-                    </motion.div>
+                      <motion.div 
+                        className="liquid-glass-chip absolute -bottom-6 left-1/2 -translate-x-1/2 text-lg pointer-events-auto cursor-pointer"
+                        style={{ animation: 'floatReactionAlt 15s ease-in-out infinite', animationDelay: '2s' }}
+                        whileHover={{ scale: 1.15 }}
+                        aria-label="Brazilian Designer"
+                      >
+                        <span aria-hidden="true">🇧🇷</span>
+                        <span className="font-medium">Brazilian Designer</span>
+                      </motion.div>
+                    </div>
+                  </Card>
+
+                  {/* About Me Text */}
+                  <div className="text-center lg:text-left max-w-md mx-auto lg:mx-0">
+                    <p className="text-muted-foreground mb-6 leading-relaxed">
+                      {t.aboutDescription}
+                    </p>
                   </div>
-                </Card>
+                </div>
 
-                {/* About Me Text */}
-                <div className="text-center lg:text-left max-w-md mx-auto lg:mx-0">
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {t.aboutDescription}
-                  </p>
+                {/* CTA Button - Desktop only, bottom aligned */}
+                <div className="hidden lg:block mt-8">
+                  <Button asChild variant="contrast" size="lg">
+                    <Link to="/experience">
+                      {t.fullExperience} <ChevronRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
 
               {/* Right Column - Skills Cards */}
-              <div className="space-y-6 order-2 lg:order-2">
+              <div className="space-y-6 order-2 lg:order-2 flex flex-col justify-between">
                 {/* My Power Skills Card */}
                 <Card className="rounded-2xl p-6 hover-lift" style={{
                 boxShadow: "var(--shadow-card)"
@@ -409,8 +426,8 @@ const Index = () => {
               </div>
             </div>
 
-            {/* CTA Button - Moved to section end */}
-            <div className="flex justify-center mt-16">
+            {/* CTA Button - Mobile only, centered */}
+            <div className="flex justify-center mt-16 lg:hidden">
               <Button asChild variant="contrast" size="lg">
                 <Link to="/experience">
                   {t.fullExperience} <ChevronRight className="ml-2 h-4 w-4" />
@@ -465,31 +482,13 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Contato */}
-        <section id="contato" className="relative isolate">
-          <div className="absolute inset-0 -z-10 opacity-[0.08]" style={{
-          background: "var(--gradient-hero)"
-        }} />
-          <div className="container mx-auto px-6 py-24 md:py-32 text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-6 text-balance">
-              {t.contactTitle}
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">{t.contactDescription}</p>
-            <div className="flex justify-center gap-4 flex-wrap">
-              <Button asChild variant="outline" size="lg" className="text-base px-8">
-                <a href="#inicio">{t.backToTop}</a>
-              </Button>
-              <Button asChild variant="contrast" size="lg" className="text-base px-8">
-                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
-              </Button>
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer className="border-t py-10 text-center text-sm text-muted-foreground">
-        <p>© {new Date().getFullYear()} Rafael Bacellar · All rights reserved</p>
-      </footer>
+      <ContactFooter 
+        contactTitle={t.contactTitle}
+        contactDescription={t.contactDescription}
+        backToTop={t.backToTop}
+      />
     </div>;
 };
 export default Index;

@@ -10,15 +10,11 @@ import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
-interface ExperiencePageProps {
-  language: "pt" | "en";
-  onLanguageChange?: (lang: "pt" | "en") => void;
-}
-const Experience = ({
-  language = "pt",
-  onLanguageChange
-}: ExperiencePageProps) => {
-  const t = useTranslations(language);
+import { ToolCard } from '@/components/ToolCard';
+import { ContactFooter } from '@/components/ContactFooter';
+
+const Experience = () => {
+  const t = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -32,41 +28,41 @@ const Experience = ({
   const experiences = [{
     title: "Product Designer",
     company: "isaac",
-    period: language === "pt" ? "2024 - Presente" : "2024 - Present",
-    description: language === "pt" ? "Design de produtos digitais end-to-end, design system e interfaces escaláveis." : "End-to-end digital product design, design system and scalable interfaces.",
+    period: "2024 - Present",
+    description: "End-to-end digital product design, design system and scalable interfaces.",
     current: false,
     secondaryChips: ["Fintech", "B2B", "B2C", "SaaS"]
   }, {
     title: "Product Designer",
     company: "ClassApp",
     period: "2021 - 2024",
-    description: language === "pt" ? "Liderança em design de produto, pesquisa com usuários e colaboração com desenvolvimento." : "Product design leadership, user research and development collaboration.",
+    description: "Product design leadership, user research and development collaboration.",
     current: false,
     secondaryChips: ["Edtech", "B2B", "B2C"]
   }, {
     title: "Design Analyst",
     company: "Le biscuit",
     period: "2019 - 2021",
-    description: language === "pt" ? "Análise e design de interfaces digitais, melhoria de experiência do usuário." : "Digital interface analysis and design, user experience improvement.",
+    description: "Digital interface analysis and design, user experience improvement.",
     current: false,
     secondaryChips: ["Retail", "B2B", "B2C", "E-commerce"]
   }, {
     title: "Design & Marketing Analyst",
     company: "Sebrae Bahia",
     period: "2017 - 2019",
-    description: language === "pt" ? "Design gráfico, marketing digital e comunicação visual para empreendedores." : "Graphic design, digital marketing and visual communication for entrepreneurs.",
+    description: "Graphic design, digital marketing and visual communication for entrepreneurs.",
     current: false,
     secondaryChips: ["Govt. Agency", "B2B"]
   }, {
     title: "Brand Designer",
     company: "Sanar",
     period: "2015 - 2016",
-    description: language === "pt" ? "Desenvolvimento de identidade visual e materiais de marca para educação médica." : "Visual identity development and brand materials for medical education.",
+    description: "Visual identity development and brand materials for medical education.",
     current: false,
     secondaryChips: ["Healthtech", "B2C", "SaaS", "E-commerce"]
   }];
   const skills = ["User Research", "Visual Design", "Prototyping", "Design System", "Usability Testing", "Information Architecture", "Interaction Design", "Design Thinking", "Agile", "UX Writing", "Accessibility", "HTML/CSS"];
-  const softSkills = language === "pt" ? ["Liderança", "Comunicação", "Colaboração", "Pensamento Crítico", "Adaptabilidade", "Criatividade", "Iterações Rápidas"] : ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
+  const softSkills = ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
   const tools = ["Figma", "Adobe XD", "Photoshop", "Illustrator", "Sketch", "Framer", "Miro", "FigJam", "Figma Make", "Lovable", "v0"];
   const languages = [{
     name: t.portuguese,
@@ -128,10 +124,10 @@ const Experience = ({
           <Link to="/#sobre">
             <Button variant="ghost" size="sm" className="gap-2">
               <ArrowLeft className="w-4 h-4" />
-              {language === "pt" ? "Voltar" : "Back"}
+              Back
             </Button>
           </Link>
-          <Button variant="outline" size="sm" className="gap-2" onClick={() => generateResumePDF(language)}>
+          <Button variant="outline" size="sm" className="gap-2" onClick={() => generateResumePDF("en")}>
             <Download className="w-4 h-4" />
             Download Resume
           </Button>
@@ -169,15 +165,15 @@ const Experience = ({
             delay: 0.3
           }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm" style={{
             backgroundColor: '#10b981',
-            color: 'white'
-          }}>
+              color: 'white'
+            }}>
               <motion.div animate={{
               scale: [1, 1.2, 1]
             }} transition={{
               duration: 2,
               repeat: Infinity
             }} className="w-3 h-3 bg-white rounded-full" />
-              {language === "pt" ? "DISPONÍVEL PARA OPORTUNIDADES REMOTAS E PRESENCIAIS" : "OPEN FOR REMOTE AND ON-SITE OPPORTUNITIES"}
+              OPEN FOR REMOTE AND ON-SITE OPPORTUNITIES
             </motion.div>
           </div>
         </motion.div>
@@ -221,12 +217,12 @@ const Experience = ({
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-semibold text-lg">
-                    {language === "pt" ? "Bacharelado em Design" : "Bachelor in Design"}
+                    Bachelor in Design
                   </h3>
                   <p className="font-medium" style={{
                   color: 'hsl(var(--primary))'
                 }}>
-                    {language === "pt" ? "Universidade do Estado da Bahia" : "Bahia State University"}
+                    Bahia State University
                   </p>
                 </div>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -239,35 +235,9 @@ const Experience = ({
         </motion.section>
 
         {/* Capabilities Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {/* Hard Skills */}
-          <AnimatedSection>
-            <Card className="rounded-2xl p-6 h-full">
-              <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
-                <Lightbulb className="w-5 h-5" aria-hidden="true" />
-                Hard Skills
-              </h2>
-              <ul className="space-y-2">
-                {skills.map((skill, index) => <motion.li key={skill} initial={{
-                opacity: 0,
-                x: -10
-              }} whileInView={{
-                opacity: 1,
-                x: 0
-              }} transition={{
-                delay: index * 0.05
-              }} viewport={{
-                once: true
-              }} className="text-muted-foreground flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                    {skill}
-                  </motion.li>)}
-              </ul>
-            </Card>
-          </AnimatedSection>
-
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           {/* Soft Skills */}
-          <AnimatedSection delay={0.1}>
+          <AnimatedSection>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
                 <MessageCircle className="w-5 h-5" aria-hidden="true" />
@@ -292,15 +262,15 @@ const Experience = ({
             </Card>
           </AnimatedSection>
 
-          {/* Tools */}
-          <AnimatedSection delay={0.2}>
+          {/* Hard Skills */}
+          <AnimatedSection delay={0.1}>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
-                <Wrench className="w-5 h-5" aria-hidden="true" />
-                {t.tools}
+                <Lightbulb className="w-5 h-5" aria-hidden="true" />
+                Hard Skills
               </h2>
               <ul className="space-y-2">
-                {tools.map((tool, index) => <motion.li key={tool} initial={{
+                {skills.map((skill, index) => <motion.li key={skill} initial={{
                 opacity: 0,
                 x: -10
               }} whileInView={{
@@ -312,14 +282,14 @@ const Experience = ({
                 once: true
               }} className="text-muted-foreground flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                    {tool}
+                    {skill}
                   </motion.li>)}
               </ul>
             </Card>
           </AnimatedSection>
 
           {/* Languages */}
-          <AnimatedSection delay={0.3}>
+          <AnimatedSection delay={0.2}>
             <Card className="rounded-2xl p-6 h-full">
               <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
                 <Globe className="w-5 h-5" aria-hidden="true" />
@@ -346,7 +316,26 @@ const Experience = ({
             </Card>
           </AnimatedSection>
         </div>
+
+        {/* Tools Section - Full Width */}
+        <AnimatedSection delay={0.3}>
+          <Card className="rounded-2xl p-6">
+            <h2 className="font-display text-xl font-semibold mb-6 text-primary flex items-center gap-2">
+              <Wrench className="w-5 h-5" aria-hidden="true" />
+              {t.tools}
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {tools.map((tool, index) => (
+                <ToolCard key={tool} name={tool} index={index} />
+              ))}
+            </div>
+          </Card>
+        </AnimatedSection>
       </motion.div>
+
+      </motion.div>
+
+      <ContactFooter />
     </div>;
 };
 export default Experience;

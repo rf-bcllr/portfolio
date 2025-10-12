@@ -1,5 +1,5 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Users, Clock, Wrench, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,12 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { ContactFooter } from "@/components/ContactFooter";
 import { projectsData } from "@/data/projects";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
+  const [imageError, setImageError] = useState(false);
   
   const project = projectsData.find(p => p.slug === slug);
 
@@ -74,7 +75,17 @@ const ProjectDetail = () => {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        {project.coverType === "vertical" ? (
+        {imageError ? (
+          // Fallback gradient when image fails to load
+          <div className="relative h-[60vh] lg:h-[70vh]">
+            <div 
+              className="absolute inset-0 blur-2xl"
+              style={{ 
+                background: 'linear-gradient(135deg, hsl(var(--primary)/0.4), hsl(var(--accent)/0.3))' 
+              }}
+            />
+          </div>
+        ) : project.coverType === "vertical" ? (
           // Vertical image with blurred background
           <div className="relative h-[60vh] lg:h-[70vh]">
             <div 
@@ -85,6 +96,7 @@ const ProjectDetail = () => {
               <img 
                 src={project.heroImage} 
                 alt={project.title}
+                onError={() => setImageError(true)}
                 className="max-h-full max-w-full object-contain rounded-xl shadow-2xl"
               />
             </div>
@@ -95,6 +107,7 @@ const ProjectDetail = () => {
             <img 
               src={project.heroImage} 
               alt={project.title}
+              onError={() => setImageError(true)}
               className="w-full h-full object-cover"
             />
           </div>
@@ -252,12 +265,7 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-8 mt-24">
-        <div className="container mx-auto px-6 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Rafael Bacellar. All rights reserved.
-        </div>
-      </footer>
+      <ContactFooter />
     </div>
   );
 };
