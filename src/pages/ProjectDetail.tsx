@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactFooter } from "@/components/ContactFooter";
 import { UnderConstructionState } from "@/components/UnderConstructionState";
+import { ProjectGallery } from "@/components/ProjectGallery";
 import { projectsData } from "@/data/projects";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import abstractHeroBg from "@/assets/project-hero-bg.png";
@@ -155,9 +156,9 @@ const ProjectDetail = () => {
             <UnderConstructionState />
           </div>
         ) : (
-        <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start">
           {/* Sidebar - Overview Card (Sticky on desktop) */}
-          <aside className="lg:sticky lg:top-24 h-fit">
+          <aside className="lg:sticky lg:top-24 h-fit space-y-6">
             <AnimatedSection>
               <Card className="rounded-2xl">
                 <CardHeader>
@@ -237,6 +238,17 @@ const ProjectDetail = () => {
                   </div>
                 </CardContent>
               </Card>
+            </AnimatedSection>
+
+            {/* Gallery Section */}
+            <AnimatedSection delay={0.1}>
+              <ProjectGallery 
+                images={
+                  project.gallery || [
+                    { src: project.heroImage, title: project.title }
+                  ]
+                }
+              />
             </AnimatedSection>
           </aside>
 

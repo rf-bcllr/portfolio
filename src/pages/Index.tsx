@@ -212,7 +212,7 @@ const Index = () => {
           </AnimatedSection>
 
           {/* Projects Grid - CSS Multi-Column Masonry Layout */}
-          <div className="columns-1 sm:columns-2 xl:columns-3 gap-6">
+          <div className="columns-1 sm:columns-2 xl:columns-3 gap-6" style={{ columnFill: 'auto' }}>
             {projectMedia.map((item, i) => (
               <div key={i} className="break-inside-avoid mb-6">
                 <ProjectCard 

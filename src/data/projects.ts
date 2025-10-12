@@ -18,6 +18,10 @@ export interface ProjectData {
   process: string;
   solution: string;
   impact: string;
+  gallery?: {
+    src: string;
+    title: string;
+  }[];
 }
 
 export const projectsData: ProjectData[] = [
@@ -186,6 +190,13 @@ export const projectsData: ProjectData[] = [
     challenge: "🚧 This case study is currently under construction. Check back soon for the full story!",
     process: "🚧 Under construction...",
     solution: "🚧 Under construction...",
-    impact: "TBD"
+    impact: "TBD",
+    gallery: [
+      { src: "/lovable-uploads/90169309-3cbd-483f-8bdc-c5e96fc950da.png", title: "Dashboard Overview" },
+      { src: new URL('@/assets/cyberbrake/device-detail.png', import.meta.url).href, title: "Device Detail View" },
+      { src: new URL('@/assets/cyberbrake/generate-report.png', import.meta.url).href, title: "Generate Report Interface" },
+      { src: new URL('@/assets/cyberbrake/network-detail.png', import.meta.url).href, title: "Network Detail Dashboard" },
+      { src: new URL('@/assets/cyberbrake/networks-explorer.png', import.meta.url).href, title: "Network Analysis Explorer" }
+    ]
   }
 ];
