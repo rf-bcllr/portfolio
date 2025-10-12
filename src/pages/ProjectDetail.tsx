@@ -146,7 +146,16 @@ const ProjectDetail = () => {
 
       {/* Content Grid */}
       <section className="container mx-auto px-6 py-16 lg:py-24 max-w-6xl">
-        <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16">
+        {/* Check if entire project is under construction */}
+        {isUnderConstruction(project.challenge) && 
+         isUnderConstruction(project.process) && 
+         isUnderConstruction(project.solution) ? (
+          // Show single empty state for entire project
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <UnderConstructionState />
+          </div>
+        ) : (
+        <div className="grid lg:grid-cols-[350px_1px] gap-12 lg:gap-16">
           {/* Sidebar - Overview Card (Sticky on desktop) */}
           <aside className="lg:sticky lg:top-24 h-fit">
             <AnimatedSection>
@@ -304,6 +313,7 @@ const ProjectDetail = () => {
             </AnimatedSection>
           </div>
         </div>
+        )}
       </section>
 
       <ContactFooter />

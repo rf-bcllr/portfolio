@@ -29,7 +29,7 @@ export const ProjectCard = ({
   
   return <div className="group relative overflow-hidden rounded-2xl cursor-pointer" onClick={handleClick}>
       <div className="relative">
-        <img src={src} alt={alt} className={`w-full h-auto transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImageLoaded(true)} />
+        <img src={src} alt={alt} className={`w-full h-auto rounded-2xl transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImageLoaded(true)} />
         
         {/* Loading placeholder */}
         {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse rounded-2xl" />}
