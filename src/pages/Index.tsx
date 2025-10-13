@@ -211,20 +211,83 @@ const Index = () => {
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
-          {/* Projects Grid - CSS Multi-Column Masonry Layout */}
-          <div className="columns-1 sm:columns-2 xl:columns-3 gap-6" style={{ columnFill: 'auto' }}>
-            {projectMedia.map((item, i) => (
-              <div key={i} className="break-inside-avoid mb-6">
-                <ProjectCard 
-                  src={item.src} 
-                  alt={item.title ?? `Project ${i + 1}`} 
-                  title={item.title} 
-                  chips={item.chips} 
-                  index={i}
-                  slug={item.slug}
-                />
-              </div>
-            ))}
+          {/* Projects Grid - Manual Three-Column Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {/* Column 1: Cyberbrake, Mural, Healthy Food Delivery App, Students' Transportation Feature */}
+            <div className="space-y-6">
+              <ProjectCard 
+                src={projectMedia[0].src} 
+                alt={projectMedia[0].title ?? "Project 1"} 
+                title={projectMedia[0].title} 
+                chips={projectMedia[0].chips} 
+                index={0}
+                slug={projectMedia[0].slug}
+              />
+              <ProjectCard 
+                src={projectMedia[1].src} 
+                alt={projectMedia[1].title ?? "Project 2"} 
+                title={projectMedia[1].title} 
+                chips={projectMedia[1].chips} 
+                index={1}
+                slug={projectMedia[1].slug}
+              />
+              <ProjectCard 
+                src={projectMedia[2].src} 
+                alt={projectMedia[2].title ?? "Project 3"} 
+                title={projectMedia[2].title} 
+                chips={projectMedia[2].chips} 
+                index={2}
+                slug={projectMedia[2].slug}
+              />
+              <ProjectCard 
+                src={projectMedia[3].src} 
+                alt={projectMedia[3].title ?? "Project 4"} 
+                title={projectMedia[3].title} 
+                chips={projectMedia[3].chips} 
+                index={3}
+                slug={projectMedia[3].slug}
+              />
+            </div>
+
+            {/* Column 2: Meu Arco, AI Writing Assistant */}
+            <div className="space-y-6">
+              <ProjectCard 
+                src={projectMedia[4].src} 
+                alt={projectMedia[4].title ?? "Project 5"} 
+                title={projectMedia[4].title} 
+                chips={projectMedia[4].chips} 
+                index={4}
+                slug={projectMedia[4].slug}
+              />
+              <ProjectCard 
+                src={projectMedia[5].src} 
+                alt={projectMedia[5].title ?? "Project 6"} 
+                title={projectMedia[5].title} 
+                chips={projectMedia[5].chips} 
+                index={5}
+                slug={projectMedia[5].slug}
+              />
+            </div>
+
+            {/* Column 3: Healthy Food Delivery App, Digital Signature Feature */}
+            <div className="space-y-6">
+              <ProjectCard 
+                src={projectMedia[6].src} 
+                alt={projectMedia[6].title ?? "Project 7"} 
+                title={projectMedia[6].title} 
+                chips={projectMedia[6].chips} 
+                index={6}
+                slug={projectMedia[6].slug}
+              />
+              <ProjectCard 
+                src={projectMedia[7].src} 
+                alt={projectMedia[7].title ?? "Project 8"} 
+                title={projectMedia[7].title} 
+                chips={projectMedia[7].chips} 
+                index={7}
+                slug={projectMedia[7].slug}
+              />
+            </div>
           </div>
         </section>
 
