@@ -7,6 +7,7 @@ import cyberbrakeMain from "@/assets/cyberbrake/device-detail.png";
 import cyberbrakeReport from "@/assets/cyberbrake/generate-report.png";
 import cyberbrakeNetwork from "@/assets/cyberbrake/network-detail.png";
 import cyberbrakeExplorer from "@/assets/cyberbrake/networks-explorer.png";
+import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
 
 export interface ProjectData {
   id: string;
@@ -51,6 +52,9 @@ export const projectsData: ProjectData[] = [
       tools: ["Figma", "FigJam", "Miro", "React", "Design System"],
       impact: ["TBD"]
     },
+    gallery: [
+      { src: meuArcoOgCover, title: "Meu Arco Platform Overview" }
+    ],
     challenge: "Arco Educação needed a unified platform to integrate their educational ecosystem, replacing fragmented solutions across multiple brands. Schools, teachers, and students were struggling with disconnected tools, inconsistent experiences, and complex workflows that hindered educational outcomes. The challenge was to create a cohesive platform that would serve diverse user needs while maintaining the unique identity of each brand within the Arco ecosystem.",
     process: "We began with extensive user research across 25+ schools, conducting contextual inquiries with teachers, students, and administrators. I led design thinking workshops with stakeholders from different Arco brands to understand their specific needs and pain points. Through journey mapping and service design, we identified critical touchpoints where users experienced friction. I created multiple design iterations, starting with low-fidelity wireframes and progressing to high-fidelity prototypes. We conducted moderated usability testing sessions with 45+ participants, iterating based on feedback. Close collaboration with the engineering team ensured technical feasibility while maintaining design vision. I established a comprehensive design system to ensure consistency across the platform while allowing brand flexibility.",
     solution: "We delivered Meu Arco as a unified educational platform with three main pillars: a personalized dashboard for quick access to relevant content and tools, an integrated communication system connecting all stakeholders, and a resource library with curated educational materials. The interface features adaptive navigation that adjusts to user roles (student, teacher, administrator), a unified search experience across all Arco brands, and seamless transitions between different educational tools. The design system we created ensures visual consistency while respecting individual brand identities. We implemented progressive disclosure patterns to manage complexity and contextual help to support new users.",
