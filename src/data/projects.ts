@@ -53,7 +53,14 @@ export const projectsData: ProjectData[] = [
       impact: ["TBD"]
     },
     gallery: [
-      { src: meuArcoOgCover, title: "Meu Arco Platform Overview" }
+      { 
+        src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", 
+        title: "Meu Arco Platform Demo" 
+      },
+      { 
+        src: meuArcoOgCover, 
+        title: "Meu Arco Platform Overview" 
+      }
     ],
     challenge: "Arco Educação needed a unified platform to integrate their educational ecosystem, replacing fragmented solutions across multiple brands. Schools, teachers, and students were struggling with disconnected tools, inconsistent experiences, and complex workflows that hindered educational outcomes. The challenge was to create a cohesive platform that would serve diverse user needs while maintaining the unique identity of each brand within the Arco ecosystem.",
     process: "We began with extensive user research across 25+ schools, conducting contextual inquiries with teachers, students, and administrators. I led design thinking workshops with stakeholders from different Arco brands to understand their specific needs and pain points. Through journey mapping and service design, we identified critical touchpoints where users experienced friction. I created multiple design iterations, starting with low-fidelity wireframes and progressing to high-fidelity prototypes. We conducted moderated usability testing sessions with 45+ participants, iterating based on feedback. Close collaboration with the engineering team ensured technical feasibility while maintaining design vision. I established a comprehensive design system to ensure consistency across the platform while allowing brand flexibility.",
