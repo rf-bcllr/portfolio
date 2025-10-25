@@ -12,8 +12,6 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { AnimatedText } from "@/components/AnimatedText";
-import { SectionTransition } from "@/components/SectionTransition";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -32,12 +30,8 @@ const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations();
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 32);
-      const scrollY = window.scrollY;
-      document.documentElement.style.setProperty('--scroll-y', `${scrollY}`);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const onMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -210,24 +204,18 @@ const Index = () => {
 
         {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-32">
-          <SectionTransition type="fade" className="mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-display text-balance mb-6">
-              <AnimatedText text={t.realExperiences} staggerDelay={0.02} />
+          <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4">
+              {t.realExperiences}
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
-          </SectionTransition>
+          </AnimatedSection>
 
           {/* Projects Grid - Manual Three-Column Layout */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {/* Column 1: Cyberbrake, Mural, Healthy Food Delivery App, Students' Transportation Feature */}
-            <motion.div 
-              className="space-y-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <ProjectCard
+            <div className="space-y-6">
+              <ProjectCard 
                 src={projectMedia[0].src} 
                 alt={projectMedia[0].title ?? "Project 1"} 
                 title={projectMedia[0].title} 
@@ -259,17 +247,11 @@ const Index = () => {
                 index={3}
                 slug={projectMedia[3].slug}
               />
-            </motion.div>
+            </div>
 
             {/* Column 2: Meu Arco, AI Writing Assistant */}
-            <motion.div 
-              className="space-y-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <ProjectCard
+            <div className="space-y-6">
+              <ProjectCard 
                 src={projectMedia[4].src} 
                 alt={projectMedia[4].title ?? "Project 5"} 
                 title={projectMedia[4].title} 
@@ -285,17 +267,11 @@ const Index = () => {
                 index={5}
                 slug={projectMedia[5].slug}
               />
-            </motion.div>
+            </div>
 
             {/* Column 3: Healthy Food Delivery App, Digital Signature Feature */}
-            <motion.div 
-              className="space-y-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <ProjectCard
+            <div className="space-y-6">
+              <ProjectCard 
                 src={projectMedia[6].src} 
                 alt={projectMedia[6].title ?? "Project 7"} 
                 title={projectMedia[6].title} 
@@ -311,17 +287,17 @@ const Index = () => {
                 index={7}
                 slug={projectMedia[7].slug}
               />
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Design Process Section */}
         <section id="design-process" className="container mx-auto px-6 py-32">
-          <SectionTransition type="slide" className="max-w-4xl mx-auto">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight font-display mb-6 text-center">
+          <AnimatedSection className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display mb-6 text-center">
               {t.designProcessTitle}
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-center mb-16">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-16">
               {t.designProcessIntro}
             </p>
 
@@ -363,21 +339,21 @@ const Index = () => {
                   }}
                   viewport={{ once: true }}
                 >
-                  <Card className="rounded-2xl p-8 hover-lift h-full card-hover" style={{ boxShadow: "var(--shadow-card)" }}>
-                    <process.icon className="w-12 h-12 text-primary mb-6" />
-                    <h3 className="text-2xl font-semibold mb-4">{process.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-base">{process.description}</p>
+                  <Card className="rounded-2xl p-6 hover-lift h-full" style={{ boxShadow: "var(--shadow-card)" }}>
+                    <process.icon className="w-8 h-8 text-primary mb-4" />
+                    <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{process.description}</p>
                   </Card>
                 </motion.div>
               ))}
             </div>
-          </SectionTransition>
+          </AnimatedSection>
         </section>
 
         {/* Sobre */}
         <section id="sobre" className="container mx-auto px-6 py-32">
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-display mb-16 text-balance text-center lg:text-left">
-            <AnimatedText text={t.aboutTitle} staggerDelay={0.02} />
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-12 text-balance text-center lg:text-left">
+            {t.aboutTitle}
           </h2>
           
           <AnimatedSection>
@@ -389,8 +365,8 @@ const Index = () => {
                   <Card className="relative overflow-visible p-0 mb-8 max-w-md mx-auto lg:mx-0 rounded-xl hover-lift" style={{
                   boxShadow: "var(--shadow-elegant)"
                 }}>
-                  <div className="relative">
-                      <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" loading="lazy" className="w-full max-h-[420px] object-cover object-[center_30%] rounded-xl parallax-slow" />
+                    <div className="relative">
+                      <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" loading="lazy" className="w-full max-h-[420px] object-cover object-[center_30%] rounded-xl" />
                       
                       {/* Liquid Glass Floating Chips */}
                       <motion.div 
