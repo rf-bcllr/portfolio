@@ -12,6 +12,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { InteractiveHeadline } from "@/components/InteractiveHeadline";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -97,14 +98,14 @@ const Index = () => {
   return <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
-          {!scrolled ? <a href="#inicio" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" className="flex items-center">
+          {!scrolled ? <a href="#inicio" data-cursor-link className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" data-cursor-link className="flex items-center">
               <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
             </a>}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <ThemeToggle />
               <Button asChild variant="contrast" size="sm">
-                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link>LinkedIn</a>
               </Button>
             </div>
           </div>
@@ -182,12 +183,12 @@ const Index = () => {
               animationDelay: "0.2s"
             }}>
                 <Button asChild variant="contrast" size="lg" className="text-base px-8">
-                  <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" aria-label={t.talkOnLinkedIn}>
+                  <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
                     {t.talkOnLinkedIn}
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-base px-8">
-                  <a href="#projetos">{t.viewProjects}</a>
+                  <a href="#projetos" data-cursor-link>{t.viewProjects}</a>
                 </Button>
               </div>
               <div className="mt-10 flex flex-wrap justify-center items-center gap-3 animate-fade-in" style={{
@@ -205,9 +206,10 @@ const Index = () => {
         {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-32">
           <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4">
-              {t.realExperiences}
-            </h2>
+            <InteractiveHeadline 
+              text={t.realExperiences}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4"
+            />
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
@@ -352,9 +354,10 @@ const Index = () => {
 
         {/* Sobre */}
         <section id="sobre" className="container mx-auto px-6 py-32">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-12 text-balance text-center lg:text-left">
-            {t.aboutTitle}
-          </h2>
+          <InteractiveHeadline
+            text={t.aboutTitle}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-12 text-balance text-center lg:text-left"
+          />
           
           <AnimatedSection>
             <div className="grid gap-16 lg:gap-20 lg:grid-cols-[1fr_1.2fr] max-w-6xl mx-auto items-start">
