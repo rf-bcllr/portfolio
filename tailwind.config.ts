@@ -16,10 +16,10 @@ export default {
 			screens: { '2xl': '1400px' }
 		},
 		extend: {
-			fontFamily: {
-				'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
-				'display': ['Space Grotesk', 'Inter', 'ui-sans-serif', 'system-ui'],
-			},
+		fontFamily: {
+			'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
+			'display': ['Clash Display', 'Inter', 'ui-sans-serif', 'system-ui'],
+		},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
