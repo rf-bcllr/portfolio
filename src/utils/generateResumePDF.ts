@@ -221,7 +221,7 @@ export const generateResumePDF = (language: 'pt' | 'en') => {
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  const softSkills = 'Communication, Problem-solving, Product sense, Prototyping, Collaboration with Devs, Fast Iterations, Storytelling';
+  const softSkills = 'Communication, Problem-solving, Product sense, Collaboration with Devs, Fast Iterations, Storytelling';
   yPosition = addText(softSkills, marginLeft, yPosition, contentWidth, 10);
   yPosition += 6;
 
