@@ -25,6 +25,7 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
                 setSelectedIndex(index);
                 setLightboxOpen(true);
               }}
+              data-cursor-action="view"
               className="group relative aspect-video overflow-hidden rounded-lg bg-muted hover:ring-2 hover:ring-primary transition-all duration-300"
               aria-label={`View ${image.title || 'image'} in full size`}
             >

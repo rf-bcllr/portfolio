@@ -462,7 +462,7 @@ const Index = () => {
                 {/* CTA Button - Desktop only, bottom aligned */}
                 <div className="hidden lg:block mt-8">
                   <Button asChild variant="contrast" size="default">
-                    <Link to="/experience">
+                    <Link to="/experience" data-cursor-action="navigate-internal">
                       {t.fullExperience} <ChevronRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -532,7 +532,7 @@ const Index = () => {
             {/* CTA Button - Mobile only, centered */}
             <div className="flex justify-center mt-16 lg:hidden">
               <Button asChild variant="contrast" size="lg">
-                <Link to="/experience">
+                <Link to="/experience" data-cursor-action="navigate-internal">
                   {t.fullExperience} <ChevronRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

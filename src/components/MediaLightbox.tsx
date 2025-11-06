@@ -77,27 +77,27 @@ export function MediaLightbox({ items, index, open, onOpenChange, onIndexChange 
           {/* Controls */}
           <div className="absolute inset-x-0 bottom-4 z-10 flex items-center justify-center gap-2">
             <div className="rounded-full border border-border bg-background/90 backdrop-blur px-2 py-1.5 flex items-center gap-1">
-              <Button variant="ghost" size="icon" className="size-8" onClick={prev} aria-label="Previous">
+              <Button variant="ghost" size="icon" className="size-8" onClick={prev} aria-label="Previous" data-cursor-action="prev">
                 <ChevronLeft className="size-4" />
               </Button>
               <span className="mx-2 text-sm text-muted-foreground">
                 {index + 1} / {items.length}
               </span>
-              <Button variant="ghost" size="icon" className="size-8" onClick={next} aria-label="Next">
+              <Button variant="ghost" size="icon" className="size-8" onClick={next} aria-label="Next" data-cursor-action="next">
                 <ChevronRight className="size-4" />
               </Button>
             </div>
 
             {!video && (
               <div className="rounded-full border border-border bg-background/90 backdrop-blur px-2 py-1.5 flex items-center gap-1">
-                <Button variant="ghost" size="icon" className="size-8" onClick={zoomOut} aria-label="Zoom out">
+                <Button variant="ghost" size="icon" className="size-8" onClick={zoomOut} aria-label="Zoom out" data-cursor-action="zoom-out">
                   <Minus className="size-4" />
                 </Button>
                 <span className="w-10 text-center text-sm tabular-nums">{Math.round(zoom * 100)}%</span>
-                <Button variant="ghost" size="icon" className="size-8" onClick={zoomIn} aria-label="Zoom in">
+                <Button variant="ghost" size="icon" className="size-8" onClick={zoomIn} aria-label="Zoom in" data-cursor-action="zoom-in">
                   <Plus className="size-4" />
                 </Button>
-                <Button variant="ghost" size="icon" className="size-8" onClick={resetZoom} aria-label="Reset zoom">
+                <Button variant="ghost" size="icon" className="size-8" onClick={resetZoom} aria-label="Reset zoom" data-cursor-action="reset">
                   <RotateCcw className="size-4" />
                 </Button>
               </div>
