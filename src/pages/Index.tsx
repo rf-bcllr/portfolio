@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTranslations } from "@/hooks/useTranslations";
+import { useParallaxLayers } from "@/hooks/useParallax";
 import { ArrowRight, Heart, Zap, ChevronRight, Search, RefreshCw, Rocket, TrendingUp } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
@@ -30,6 +31,14 @@ const Index = () => {
   });
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations();
+  
+  // Parallax layers: [background, marquee, avatar]
+  const [bgParallax, marqueeParallax, avatarParallax] = useParallaxLayers([
+    { speed: 0.3, direction: 'down' }, // Background moves slower, downward
+    { speed: 0.15, direction: 'down' }, // Marquee moves even slower
+    { speed: 0.5, direction: 'up' }, // Avatar moves faster, upward
+  ]);
+  
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     window.addEventListener("scroll", onScroll);
@@ -119,11 +128,16 @@ const Index = () => {
         ['--y' as any]: `${spot.y}px`
       }} className="relative overflow-hidden min-h-[90vh] flex items-center">
           <div className="pointer-events-none absolute inset-0 -z-10 opacity-70" style={{
-          background: "radial-gradient(800px at var(--x) var(--y), hsl(var(--primary)/0.3), transparent 70%)"
+          background: "radial-gradient(800px at var(--x) var(--y), hsl(var(--primary)/0.3), transparent 70%)",
+          transform: `translateY(${bgParallax}px)`,
+          willChange: 'transform'
         }} />
           
           {/* Marquee com nome repetido */}
-          <div className="absolute top-1/3 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-5">
+          <div className="absolute top-1/3 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-5" style={{
+            transform: `translateY(${marqueeParallax}px)`,
+            willChange: 'transform'
+          }}>
             <div className="flex whitespace-nowrap animate-marquee">
               <span className="text-[clamp(4rem,15vw,12rem)] font-bold font-display px-8">
                 Rafael Bacellar · Rafael Bacellar · Rafael Bacellar · Rafael Bacellar ·
@@ -136,7 +150,10 @@ const Index = () => {
 
           <div className="container mx-auto px-6 py-20">
             <div className="max-w-5xl mx-auto text-center">
-              <div className="mb-8 animate-enter">
+              <div className="mb-8 animate-enter" style={{
+                transform: `translateY(${avatarParallax}px)`,
+                willChange: 'transform'
+              }}>
                 <img src={avatar} alt="Retrato de Rafael Bacellar, Product Designer" loading="eager" width={160} height={160} className="mx-auto aspect-square size-32 md:size-40 rounded-full border-2 border-border object-cover" style={{
                 boxShadow: "var(--shadow-elegant)"
               }} />
