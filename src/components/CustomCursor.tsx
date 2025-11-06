@@ -26,7 +26,7 @@ export const CustomCursor = () => {
 
       // Check if hovering over link or element with data-cursor-link
       const target = e.target as HTMLElement;
-      const isLink = target.closest('[data-cursor-link], a[href^="/"], a[href^="#"]');
+      const isLink = target.closest('[data-cursor-link], a[href], button, [role="button"]');
       setIsHoveringLink(!!isLink);
     };
 
