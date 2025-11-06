@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home, ArrowLeft, Download } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home, ArrowLeft, Download, ArrowRight, Eye, Plus, Minus, RotateCcw, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 export const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [cursorAction, setCursorAction] = useState<'default' | 'navigate' | 'scroll-up' | 'scroll-down' | 'theme-light' | 'theme-dark' | 'home' | 'back' | 'download'>('default');
+  const [cursorAction, setCursorAction] = useState<'default' | 'navigate' | 'navigate-internal' | 'scroll-up' | 'scroll-down' | 'theme-light' | 'theme-dark' | 'home' | 'back' | 'download' | 'view' | 'zoom-in' | 'zoom-out' | 'reset' | 'next' | 'prev' | 'close'>('default');
   const [isVisible, setIsVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -110,6 +110,22 @@ export const CustomCursor = () => {
         return <Moon className="custom-cursor-icon" size={22} strokeWidth={2.5} />;
       case 'navigate':
         return <ArrowUpRight className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      case 'navigate-internal':
+        return <ArrowRight className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      case 'view':
+        return <Eye className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      case 'zoom-in':
+        return <Plus className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      case 'zoom-out':
+        return <Minus className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      case 'reset':
+        return <RotateCcw className="custom-cursor-icon" size={18} strokeWidth={2.5} />;
+      case 'next':
+        return <ChevronRight className="custom-cursor-icon" size={22} strokeWidth={2.5} />;
+      case 'prev':
+        return <ChevronLeft className="custom-cursor-icon" size={22} strokeWidth={2.5} />;
+      case 'close':
+        return <X className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
       default:
         return null;
     }
