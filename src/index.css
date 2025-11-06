@@ -341,18 +341,32 @@ All colors MUST be HSL.
     background: hsl(var(--foreground));
   }
 
-  .custom-cursor-arrow {
+  .custom-cursor-icon {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: hsl(var(--background));
     opacity: 0;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease, transform 200ms ease;
   }
 
-  .custom-cursor.hovering-link .custom-cursor-arrow {
+  .custom-cursor.hovering-link .custom-cursor-icon {
     opacity: 1;
+  }
+
+  /* Pulsing animation for scroll actions */
+  @keyframes cursor-pulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+
+  .custom-cursor.hovering-link .custom-cursor-icon {
+    animation: cursor-pulse 1.5s ease-in-out infinite;
   }
 
   .custom-cursor-active {

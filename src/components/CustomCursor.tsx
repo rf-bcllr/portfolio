@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home } from "lucide-react";
 
 export const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHoveringLink, setIsHoveringLink] = useState(false);
+  const [cursorAction, setCursorAction] = useState<'default' | 'navigate' | 'scroll-up' | 'scroll-down' | 'theme-light' | 'theme-dark' | 'home'>('default');
   const [isVisible, setIsVisible] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
@@ -24,10 +24,33 @@ export const CustomCursor = () => {
     const handleMouseMove = (e: MouseEvent) => {
       targetPosition.current = { x: e.clientX, y: e.clientY };
 
-      // Check if hovering over link or element with data-cursor-link
       const target = e.target as HTMLElement;
-      const isLink = target.closest('[data-cursor-link], a[href], button, [role="button"]');
-      setIsHoveringLink(!!isLink);
+      
+      // Check for theme toggle - special case
+      const themeButton = target.closest('[data-cursor-action="theme-toggle"]') as HTMLElement;
+      if (themeButton) {
+        const currentTheme = themeButton.getAttribute('data-theme');
+        setCursorAction(currentTheme === 'dark' ? 'theme-light' : 'theme-dark');
+        return;
+      }
+      
+      // Check for specific action type
+      const actionElement = target.closest('[data-cursor-action]') as HTMLElement;
+      if (actionElement) {
+        const action = actionElement.getAttribute('data-cursor-action') as typeof cursorAction;
+        setCursorAction(action || 'navigate');
+        return;
+      }
+      
+      // Check for general links/buttons (navigation)
+      const isInteractive = target.closest('a[href], button, [role="button"]');
+      if (isInteractive) {
+        setCursorAction('navigate');
+        return;
+      }
+      
+      // Default state
+      setCursorAction('default');
     };
 
     const animate = () => {
@@ -52,16 +75,35 @@ export const CustomCursor = () => {
 
   if (!isVisible) return null;
 
+  const renderCursorIcon = () => {
+    switch (cursorAction) {
+      case 'home':
+        return <Home className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      case 'scroll-down':
+        return <ChevronDown className="custom-cursor-icon" size={24} strokeWidth={2.5} />;
+      case 'scroll-up':
+        return <ChevronUp className="custom-cursor-icon" size={24} strokeWidth={2.5} />;
+      case 'theme-light':
+        return <Sun className="custom-cursor-icon" size={22} strokeWidth={2.5} />;
+      case 'theme-dark':
+        return <Moon className="custom-cursor-icon" size={22} strokeWidth={2.5} />;
+      case 'navigate':
+        return <ArrowUpRight className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div
       ref={cursorRef}
-      className={`custom-cursor ${isHoveringLink ? "hovering-link" : ""}`}
+      className={`custom-cursor ${cursorAction !== 'default' ? 'hovering-link' : ''}`}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
       }}
     >
-      <ArrowUpRight className="custom-cursor-arrow" size={20} strokeWidth={2.5} />
+      {renderCursorIcon()}
     </div>
   );
 };

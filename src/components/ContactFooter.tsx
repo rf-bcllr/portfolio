@@ -37,6 +37,7 @@ export const ContactFooter = ({
               size="lg" 
               className="text-base px-8"
               onClick={scrollToTop}
+              data-cursor-action="scroll-up"
             >
               {backToTop}
             </Button>

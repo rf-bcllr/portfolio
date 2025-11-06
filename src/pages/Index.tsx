@@ -107,7 +107,7 @@ const Index = () => {
   return <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
-          {!scrolled ? <a href="#inicio" data-cursor-link className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" data-cursor-link className="flex items-center">
+          {!scrolled ? <a href="#inicio" data-cursor-action="home" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" data-cursor-action="home" className="flex items-center">
               <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
             </a>}
           <div className="flex items-center gap-4">
@@ -205,7 +205,7 @@ const Index = () => {
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-base px-8">
-                  <a href="#projetos" data-cursor-link>{t.viewProjects}</a>
+                  <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
                 </Button>
               </div>
               <div className="mt-10 flex flex-wrap justify-center items-center gap-3 animate-fade-in" style={{
