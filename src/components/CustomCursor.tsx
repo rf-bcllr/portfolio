@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home, ArrowLeft, Download } from "lucide-react";
 
 export const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [cursorAction, setCursorAction] = useState<'default' | 'navigate' | 'scroll-up' | 'scroll-down' | 'theme-light' | 'theme-dark' | 'home'>('default');
+  const [cursorAction, setCursorAction] = useState<'default' | 'navigate' | 'scroll-up' | 'scroll-down' | 'theme-light' | 'theme-dark' | 'home' | 'back' | 'download'>('default');
   const [isVisible, setIsVisible] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
   const targetPosition = useRef({ x: 0, y: 0 });
@@ -23,6 +24,9 @@ export const CustomCursor = () => {
 
     const handleMouseMove = (e: MouseEvent) => {
       targetPosition.current = { x: e.clientX, y: e.clientY };
+
+      // If cursor was just clicked, don't update action yet
+      if (isClicked) return;
 
       const target = e.target as HTMLElement;
       
@@ -61,24 +65,41 @@ export const CustomCursor = () => {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
+    const handleClick = () => {
+      // Reset cursor to default immediately
+      setCursorAction('default');
+      setIsClicked(true);
+      
+      // After a brief moment, allow cursor to update again based on hover
+      setTimeout(() => {
+        setIsClicked(false);
+      }, 150);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("click", handleClick);
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("click", handleClick);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
       document.body.classList.remove("custom-cursor-active");
     };
-  }, []);
+  }, [isClicked]);
 
   if (!isVisible) return null;
 
   const renderCursorIcon = () => {
     switch (cursorAction) {
       case 'home':
-        return <Home className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+        return <Home className="custom-cursor-icon" size={18} strokeWidth={2} />;
+      case 'back':
+        return <ArrowLeft className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      case 'download':
+        return <Download className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
       case 'scroll-down':
         return <ChevronDown className="custom-cursor-icon" size={24} strokeWidth={2.5} />;
       case 'scroll-up':
@@ -97,7 +118,7 @@ export const CustomCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className={`custom-cursor ${cursorAction !== 'default' ? 'hovering-link' : ''}`}
+      className={`custom-cursor ${cursorAction !== 'default' ? 'hovering-link' : ''} ${isClicked ? 'clicked' : ''}`}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,

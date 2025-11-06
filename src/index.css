@@ -328,7 +328,7 @@ All colors MUST be HSL.
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 200ms ease, height 200ms ease, background 200ms ease;
+    transition: width 200ms ease, height 200ms ease, background 200ms ease, transform 150ms ease;
     mix-blend-mode: difference;
     display: flex;
     align-items: center;
@@ -339,6 +339,11 @@ All colors MUST be HSL.
     width: 48px;
     height: 48px;
     background: hsl(var(--foreground));
+  }
+
+  /* Click feedback animation */
+  .custom-cursor.clicked {
+    transform: translate(-50%, -50%) scale(0.85);
   }
 
   .custom-cursor-icon {

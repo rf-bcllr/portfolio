@@ -53,7 +53,7 @@ const ProjectDetail = () => {
       {/* Navigation Header */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center">
+          <Link to="/" data-cursor-action="home" className="flex items-center">
             <img 
               src={avatar} 
               alt="Rafael Bacellar avatar" 
@@ -324,7 +324,7 @@ const ProjectDetail = () => {
             {/* Back Button */}
             <AnimatedSection delay={0.4}>
               <Button variant="ghost" size="default" asChild>
-                <Link to="/">
+                <Link to="/" data-cursor-action="back">
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back
                 </Link>

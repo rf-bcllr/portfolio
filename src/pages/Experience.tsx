@@ -127,7 +127,7 @@ const Experience = () => {
       {/* Navigation Header */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
-          {!scrolled ? <Link to="/" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</Link> : <Link to="/" className="flex items-center">
+          {!scrolled ? <Link to="/" data-cursor-action="home" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</Link> : <Link to="/" data-cursor-action="home" className="flex items-center">
               <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
             </Link>}
           <div className="flex items-center gap-2">
@@ -143,12 +143,18 @@ const Experience = () => {
         {/* Page Header */}
         <motion.div className="flex items-center justify-between mb-8" variants={itemVariants}>
           <Link to="/#sobre">
-            <Button variant="ghost" size="sm" className="gap-2">
+            <Button variant="ghost" size="sm" className="gap-2" data-cursor-action="back">
               <ArrowLeft className="w-4 h-4" />
               Back
             </Button>
           </Link>
-          <Button variant="outline" size="sm" className="gap-2" onClick={() => generateResumePDF("en")}>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="gap-2" 
+            onClick={() => generateResumePDF("en")}
+            data-cursor-action="download"
+          >
             <Download className="w-4 h-4" />
             Download Resume
           </Button>
