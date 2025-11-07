@@ -427,6 +427,20 @@ All colors MUST be HSL.
     font-weight: 700;
   }
 
+  /* ============================================
+     Custom Icon Styling - Thin & Elegant
+     ============================================ */
+  
+  /* Make all Lucide icons thinner and more elegant */
+  svg[class*="lucide"] {
+    stroke-width: 1.5 !important;
+  }
+  
+  /* Custom cursor icons - even thinner for refined look */
+  .custom-cursor svg {
+    stroke-width: 1.25 !important;
+  }
+
   /* Respect prefers-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
     *,
