@@ -146,7 +146,7 @@ const Experience = () => {
         {/* Page Header */}
         <motion.div className="flex items-center justify-between mb-8" variants={itemVariants}>
           <Link to="/#sobre">
-            <Button variant="ghost" size="sm" className="gap-2" data-cursor-action="back">
+            <Button variant="outline" size="sm" className="gap-2" data-cursor-action="back">
               <ArrowLeft className="w-4 h-4" />
               Back
             </Button>
