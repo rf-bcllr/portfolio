@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { smoothScrollToElement } from "@/utils/smoothScroll";
 
 interface ContactFooterProps {
   contactTitle?: string;
@@ -13,7 +12,10 @@ export const ContactFooter = ({
   backToTop = "Back to top"
 }: ContactFooterProps) => {
   const scrollToTop = () => {
-    smoothScrollToElement('inicio', 80);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   return (
@@ -25,7 +27,7 @@ export const ContactFooter = ({
           style={{ background: "var(--gradient-hero)" }}
         />
         <div className="container mx-auto px-6 py-24 md:py-32 text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display uppercase-title mb-6 text-balance text-foreground">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display text-normal-case mb-6 text-balance text-foreground">
             {contactTitle}
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">

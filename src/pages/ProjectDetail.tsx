@@ -179,7 +179,7 @@ const ProjectDetail = () => {
                 <CardContent className="space-y-6">
                   {/* Role */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-primary">
+                    <div className="flex items-center gap-2 mb-2 text-foreground">
                       <Users className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Role</h3>
                     </div>
@@ -188,7 +188,7 @@ const ProjectDetail = () => {
 
                   {/* Team */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-primary">
+                    <div className="flex items-center gap-2 mb-2 text-foreground">
                       <Users className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Team</h3>
                     </div>
@@ -199,7 +199,7 @@ const ProjectDetail = () => {
 
                   {/* Duration */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-primary">
+                    <div className="flex items-center gap-2 mb-2 text-foreground">
                       <Clock className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Duration</h3>
                     </div>
@@ -210,7 +210,7 @@ const ProjectDetail = () => {
 
                   {/* Tools */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3 text-primary">
+                    <div className="flex items-center gap-2 mb-3 text-foreground">
                       <Wrench className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Tools Used</h3>
                     </div>
@@ -229,7 +229,7 @@ const ProjectDetail = () => {
 
                   {/* Impact Metrics */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3 text-primary">
+                    <div className="flex items-center gap-2 mb-3 text-foreground">
                       <TrendingUp className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Key Impact</h3>
                     </div>
