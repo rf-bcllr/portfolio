@@ -10,6 +10,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactFooter } from "@/components/ContactFooter";
 import { UnderConstructionState } from "@/components/UnderConstructionState";
 import { ProjectGallery } from "@/components/ProjectGallery";
+import { OrganicBackground } from "@/components/OrganicBackground";
 import { projectsData } from "@/data/projects";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import abstractHeroBg from "@/assets/project-hero-bg.png";
@@ -50,6 +51,8 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <OrganicBackground variant="section" />
+      
       {/* Navigation Header */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
