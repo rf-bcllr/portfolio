@@ -29,12 +29,12 @@ export const ProjectCard = ({
     }
   };
   
-  return <div data-cursor-action="navigate-internal" className={`group relative overflow-hidden rounded-2xl cursor-pointer ${className}`} onClick={handleClick}>
+  return <div data-cursor-action="navigate-internal" className={`group relative overflow-hidden rounded-3xl cursor-pointer ${className}`} onClick={handleClick}>
       <div className="relative w-full">
-        <img src={src} alt={alt} className="w-full h-auto object-contain transition-all duration-700 group-hover:scale-105" style={{ opacity: imageLoaded ? 1 : 0 }} onLoad={() => setImageLoaded(true)} />
+        <img src={src} alt={alt} className="w-full h-auto object-contain transition-all duration-700 group-hover:scale-105 group-hover:blur-sm" style={{ opacity: imageLoaded ? 1 : 0 }} onLoad={() => setImageLoaded(true)} />
         
         {/* Loading placeholder */}
-        {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse rounded-2xl" />}
+        {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse rounded-3xl" />}
         
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -54,7 +54,7 @@ export const ProjectCard = ({
         </div>
         
         {/* Glow effect */}
-        <div className="absolute inset-0 ring-1 ring-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+        <div className="absolute inset-0 ring-1 ring-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
       </div>
     </div>;
 };
