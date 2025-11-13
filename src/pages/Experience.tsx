@@ -217,9 +217,7 @@ const Experience = () => {
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="font-semibold text-lg">{exp.title}</h3>
-                      <p className="font-medium" style={{
-                    color: 'hsl(var(--primary))'
-                  }}>{exp.company}</p>
+                      <p className="font-medium text-foreground">{exp.company}</p>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -249,9 +247,7 @@ const Experience = () => {
                   <h3 className="font-semibold text-lg">
                     Bachelor in Design
                   </h3>
-                  <p className="font-medium" style={{
-                  color: 'hsl(var(--primary))'
-                }}>
+                  <p className="font-medium text-foreground">
                     Bahia State University
                   </p>
                 </div>
@@ -269,7 +265,7 @@ const Experience = () => {
           {/* Soft Skills */}
           <AnimatedSection>
             <Card className="rounded-2xl p-6 h-full">
-              <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
+              <h2 className="font-display text-xl font-semibold mb-4 text-foreground flex items-center gap-2">
                 <MessageCircle className="w-5 h-5" aria-hidden="true" />
                 {t.softSkills}
               </h2>
@@ -295,7 +291,7 @@ const Experience = () => {
           {/* Hard Skills */}
           <AnimatedSection delay={0.1}>
             <Card className="rounded-2xl p-6 h-full">
-              <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
+              <h2 className="font-display text-xl font-semibold mb-4 text-foreground flex items-center gap-2">
                 <Lightbulb className="w-5 h-5" aria-hidden="true" />
                 Hard Skills
               </h2>
@@ -321,7 +317,7 @@ const Experience = () => {
           {/* Languages */}
           <AnimatedSection delay={0.2}>
             <Card className="rounded-2xl p-6 h-full">
-              <h2 className="font-display text-xl font-semibold mb-4 text-primary flex items-center gap-2">
+              <h2 className="font-display text-xl font-semibold mb-4 text-foreground flex items-center gap-2">
                 <Globe className="w-5 h-5" aria-hidden="true" />
                 {t.languages}
               </h2>
@@ -350,7 +346,7 @@ const Experience = () => {
         {/* Tools Section - Logo Display with Tooltips */}
         <AnimatedSection delay={0.3}>
           <div className="py-8">
-            <h2 className="font-display text-xl font-semibold mb-8 text-primary flex items-center gap-2 justify-center">
+            <h2 className="font-display text-xl font-semibold mb-8 text-foreground flex items-center gap-2 justify-center">
               <Wrench className="w-5 h-5" aria-hidden="true" />
               My Tools
             </h2>

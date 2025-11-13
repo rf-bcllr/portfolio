@@ -228,7 +228,7 @@ const Index = () => {
           <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
             <InteractiveHeadline 
               text={t.realExperiences}
-              className="text-4xl md:text-5xl lg:text-6xl uppercase-title font-display text-balance mb-4 text-foreground"
+              className="text-4xl md:text-5xl lg:text-6xl text-normal-case font-display text-balance mb-4 text-foreground"
             />
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
