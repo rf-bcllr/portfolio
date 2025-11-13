@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { smoothScrollToElement } from "@/utils/smoothScroll";
 
 interface ContactFooterProps {
   contactTitle?: string;
@@ -13,7 +12,7 @@ export const ContactFooter = ({
   backToTop = "Back to top"
 }: ContactFooterProps) => {
   const scrollToTop = () => {
-    smoothScrollToElement('inicio', 80);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
