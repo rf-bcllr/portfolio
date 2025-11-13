@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { OrganicBackground } from '@/components/OrganicBackground';
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ContactFooter } from '@/components/ContactFooter';
 
@@ -124,6 +125,8 @@ const Experience = () => {
     }
   };
   return <div className="min-h-screen bg-background">
+      <OrganicBackground variant="default" />
+      
       {/* Navigation Header */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">

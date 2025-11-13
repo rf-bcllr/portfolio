@@ -14,6 +14,7 @@ import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
+import { OrganicBackground } from "@/components/OrganicBackground";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -105,6 +106,8 @@ const Index = () => {
     }
   ];
   return <div className="min-h-screen bg-background text-foreground">
+      <OrganicBackground variant="hero" />
+      
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
           {!scrolled ? <a href="#inicio" data-cursor-action="home" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" data-cursor-action="home" className="flex items-center">
