@@ -161,7 +161,7 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
-              <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4" initial={{
+              <motion.h1 className="text-4xl md:text-5xl lg:text-6xl text-normal-case font-display mb-4 text-foreground" initial={{
               opacity: 0,
               y: 20
             }} animate={{
@@ -228,7 +228,7 @@ const Index = () => {
           <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
             <InteractiveHeadline 
               text={t.realExperiences}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4"
+              className="text-4xl md:text-5xl lg:text-6xl uppercase-title font-display text-balance mb-4 text-foreground"
             />
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>

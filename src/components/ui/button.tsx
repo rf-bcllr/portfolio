@@ -9,22 +9,23 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary/95 text-primary-foreground backdrop-blur-sm hover:bg-primary shadow-lg hover:shadow-xl border border-primary/20 transition-all duration-300",
+        default:
+          "bg-primary/95 text-primary-foreground backdrop-blur-sm hover:bg-[hsl(var(--primary-hover))] hover:shadow-[var(--glow-primary-intense)] shadow-md border border-primary/20 transition-all duration-300",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-border/50 bg-background/50 backdrop-blur-md hover:bg-accent/50 hover:text-accent-foreground hover:border-primary/30 transition-all duration-300",
+          "border border-primary/30 bg-background/50 backdrop-blur-md hover:bg-primary/10 hover:border-primary/50 hover:shadow-[var(--glow-primary)] text-foreground transition-all duration-300",
         secondary:
-          "bg-secondary/80 text-secondary-foreground hover:bg-secondary backdrop-blur-sm border border-border/30 transition-all duration-300",
-        ghost: "hover:bg-accent/50 hover:text-accent-foreground backdrop-blur-sm transition-all duration-300",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-secondary/80 text-foreground backdrop-blur-md hover:bg-secondary border border-border/30 transition-all duration-300",
+        ghost: "text-foreground hover:bg-accent/10 hover:text-accent-foreground backdrop-blur-sm transition-all duration-300",
+        link: "text-foreground underline-offset-4 hover:underline hover:text-primary",
         hero:
-          "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg hover:shadow-xl hover:opacity-95 border border-primary/20 transition-all duration-300",
-        glass: "bg-primary/10 text-primary border border-primary/20 backdrop-blur-xl hover:bg-primary/20 hover:border-primary/30 shadow-lg hover:shadow-xl transition-all duration-300",
+          "bg-gradient-to-r from-primary/90 to-accent/90 text-primary-foreground backdrop-blur-sm hover:from-[hsl(var(--primary-hover))] hover:to-accent hover:shadow-[var(--glow-primary-intense)] shadow-lg border border-primary/20 transition-all duration-300",
+        glass: "bg-primary/10 text-foreground border border-primary/20 backdrop-blur-xl hover:bg-primary/20 hover:border-primary/40 hover:shadow-[var(--glow-primary)] shadow-lg transition-all duration-300",
         soft:
-          "bg-secondary/70 text-foreground border border-border/50 hover:bg-secondary backdrop-blur-sm transition-all duration-300",
+          "bg-primary/5 text-foreground border border-primary/10 backdrop-blur-sm hover:bg-primary/10 hover:border-primary/20 transition-all duration-300",
         contrast:
-          "bg-foreground text-background border border-foreground hover:bg-background hover:text-foreground transition-all duration-300",
+          "bg-foreground text-background hover:bg-foreground/90 shadow-md hover:shadow-lg transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
