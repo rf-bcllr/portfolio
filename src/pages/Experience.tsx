@@ -200,7 +200,8 @@ const Experience = () => {
               duration: 2,
               repeat: Infinity
             }} className="w-3 h-3 bg-white rounded-full" />
-              OPEN FOR REMOTE AND ON-SITE OPPORTUNITIES
+              <span className="hidden md:inline">OPEN FOR REMOTE AND ON-SITE OPPORTUNITIES</span>
+              <span className="md:hidden">OPEN FOR NEW OPPORTUNITIES</span>
             </motion.div>
           </div>
         </motion.div>

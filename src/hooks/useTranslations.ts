@@ -60,7 +60,7 @@ export const translations = {
     
     hobbiesTitle: "Hobbies and things I love",
     hobbies: [
-      { emoji: "✍️", text: "Creative Writing" },
+      { emoji: "✍🏿", text: "Creative Writing" },
       { emoji: "🎨", text: "Visual Design" },
       { emoji: "🤖", text: "AI" },
       { emoji: "🐶", text: "Dogs" },
