@@ -265,7 +265,7 @@ const ProjectDetail = () => {
           <div className="space-y-16">
             {/* Challenge */}
             <AnimatedSection>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
+              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
                 The Challenge
               </h2>
               {isUnderConstruction(project.challenge) ? (
@@ -279,7 +279,7 @@ const ProjectDetail = () => {
 
             {/* Process */}
             <AnimatedSection delay={0.1}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
+              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
                 The Process
               </h2>
               {isUnderConstruction(project.process) ? (
@@ -293,7 +293,7 @@ const ProjectDetail = () => {
 
             {/* Solution */}
             <AnimatedSection delay={0.2}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
+              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
                 The Solution
               </h2>
               {isUnderConstruction(project.solution) ? (
@@ -307,7 +307,7 @@ const ProjectDetail = () => {
 
             {/* Impact */}
             <AnimatedSection delay={0.3}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
+              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
                 The Impact
               </h2>
               {project.impact === "TBD" ? (
