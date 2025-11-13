@@ -10,7 +10,6 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactFooter } from "@/components/ContactFooter";
 import { UnderConstructionState } from "@/components/UnderConstructionState";
 import { ProjectGallery } from "@/components/ProjectGallery";
-import { OrganicBackground } from "@/components/OrganicBackground";
 import { projectsData } from "@/data/projects";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import abstractHeroBg from "@/assets/project-hero-bg.png";
@@ -51,8 +50,6 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <OrganicBackground variant="section" />
-      
       {/* Navigation Header */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
@@ -179,7 +176,7 @@ const ProjectDetail = () => {
                 <CardContent className="space-y-6">
                   {/* Role */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-foreground">
+                    <div className="flex items-center gap-2 mb-2 text-primary">
                       <Users className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Role</h3>
                     </div>
@@ -188,7 +185,7 @@ const ProjectDetail = () => {
 
                   {/* Team */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-foreground">
+                    <div className="flex items-center gap-2 mb-2 text-primary">
                       <Users className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Team</h3>
                     </div>
@@ -199,7 +196,7 @@ const ProjectDetail = () => {
 
                   {/* Duration */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-foreground">
+                    <div className="flex items-center gap-2 mb-2 text-primary">
                       <Clock className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Duration</h3>
                     </div>
@@ -210,7 +207,7 @@ const ProjectDetail = () => {
 
                   {/* Tools */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3 text-foreground">
+                    <div className="flex items-center gap-2 mb-3 text-primary">
                       <Wrench className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Tools Used</h3>
                     </div>
@@ -229,7 +226,7 @@ const ProjectDetail = () => {
 
                   {/* Impact Metrics */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3 text-foreground">
+                    <div className="flex items-center gap-2 mb-3 text-primary">
                       <TrendingUp className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Key Impact</h3>
                     </div>
@@ -268,7 +265,7 @@ const ProjectDetail = () => {
           <div className="space-y-16">
             {/* Challenge */}
             <AnimatedSection>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
                 The Challenge
               </h2>
               {isUnderConstruction(project.challenge) ? (
@@ -282,7 +279,7 @@ const ProjectDetail = () => {
 
             {/* Process */}
             <AnimatedSection delay={0.1}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
                 The Process
               </h2>
               {isUnderConstruction(project.process) ? (
@@ -296,7 +293,7 @@ const ProjectDetail = () => {
 
             {/* Solution */}
             <AnimatedSection delay={0.2}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
                 The Solution
               </h2>
               {isUnderConstruction(project.solution) ? (
@@ -310,7 +307,7 @@ const ProjectDetail = () => {
 
             {/* Impact */}
             <AnimatedSection delay={0.3}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-primary">
                 The Impact
               </h2>
               {project.impact === "TBD" ? (

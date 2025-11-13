@@ -14,7 +14,6 @@ import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
-import { OrganicBackground } from "@/components/OrganicBackground";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -106,8 +105,6 @@ const Index = () => {
     }
   ];
   return <div className="min-h-screen bg-background text-foreground">
-      <OrganicBackground variant="hero" />
-      
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
           {!scrolled ? <a href="#inicio" data-cursor-action="home" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" data-cursor-action="home" className="flex items-center">
@@ -161,7 +158,7 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
-              <motion.h1 className="text-4xl md:text-5xl lg:text-6xl text-normal-case font-display font-semibold mb-4 text-foreground" initial={{
+              <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4" initial={{
               opacity: 0,
               y: 20
             }} animate={{
@@ -226,9 +223,10 @@ const Index = () => {
         {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-32">
           <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl text-normal-case font-display text-balance mb-4 text-foreground">
-          {t.realExperiences}
-        </h2>
+            <InteractiveHeadline 
+              text={t.realExperiences}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display text-balance mb-4"
+            />
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
@@ -478,8 +476,8 @@ const Index = () => {
                 boxShadow: "var(--shadow-card)"
               }}>
                   <div className="flex items-center gap-2 mb-4">
-                    <Zap className="w-5 h-5 text-foreground" aria-hidden="true" />
-                    <h3 className="text-xl font-semibold font-display text-foreground">{t.powerSkillsTitle}</h3>
+                    <Zap className="w-5 h-5 text-primary" aria-hidden="true" />
+                    <h3 className="text-xl font-semibold font-display text-primary">{t.powerSkillsTitle}</h3>
                   </div>
                   <ul className="space-y-2">
                     {t.powerSkills.map((skill, index) => <motion.li key={skill.text} initial={{
@@ -506,8 +504,8 @@ const Index = () => {
                 boxShadow: "var(--shadow-card)"
               }}>
                   <div className="flex items-center gap-2 mb-4">
-                    <Heart className="w-5 h-5 text-foreground" aria-hidden="true" />
-                    <h3 className="text-xl font-semibold font-display text-foreground">{t.hobbiesTitle}</h3>
+                    <Heart className="w-5 h-5 text-primary" aria-hidden="true" />
+                    <h3 className="text-xl font-semibold font-display text-primary">{t.hobbiesTitle}</h3>
                   </div>
                   <ul className="space-y-2">
                     {t.hobbies.map((hobby, index) => <motion.li key={hobby.text} initial={{

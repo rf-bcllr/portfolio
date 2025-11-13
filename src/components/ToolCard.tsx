@@ -19,7 +19,7 @@ export const ToolCard = ({ name, category, index }: ToolCardProps) => {
       }}
       viewport={{ once: true }}
     >
-      <Card className="rounded-3xl p-6 hover-lift aspect-square flex flex-col items-center justify-center text-center group transition-all duration-300 bg-card/80 backdrop-blur-xl border-border/50 hover:shadow-xl">
+      <Card className="rounded-2xl p-6 hover-lift aspect-square flex flex-col items-center justify-center text-center group transition-all duration-300">
         <div className="space-y-2">
           <h3 className="font-semibold text-lg group-hover:text-primary transition-colors duration-300">
             {name}
