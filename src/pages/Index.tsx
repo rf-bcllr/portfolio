@@ -161,7 +161,7 @@ const Index = () => {
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
-              <motion.h1 className="text-4xl md:text-5xl lg:text-6xl text-normal-case font-display mb-4 text-foreground" initial={{
+              <motion.h1 className="text-4xl md:text-5xl lg:text-6xl text-normal-case font-display font-semibold mb-4 text-foreground" initial={{
               opacity: 0,
               y: 20
             }} animate={{
@@ -226,10 +226,9 @@ const Index = () => {
         {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-32">
           <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
-            <InteractiveHeadline 
-              text={t.realExperiences}
-              className="text-4xl md:text-5xl lg:text-6xl text-normal-case font-display text-balance mb-4 text-foreground"
-            />
+        <h2 className="text-4xl md:text-5xl lg:text-6xl text-normal-case font-display text-balance mb-4 text-foreground">
+          {t.realExperiences}
+        </h2>
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
@@ -479,8 +478,8 @@ const Index = () => {
                 boxShadow: "var(--shadow-card)"
               }}>
                   <div className="flex items-center gap-2 mb-4">
-                    <Zap className="w-5 h-5 text-primary" aria-hidden="true" />
-                    <h3 className="text-xl font-semibold font-display text-primary">{t.powerSkillsTitle}</h3>
+                    <Zap className="w-5 h-5 text-foreground" aria-hidden="true" />
+                    <h3 className="text-xl font-semibold font-display text-foreground">{t.powerSkillsTitle}</h3>
                   </div>
                   <ul className="space-y-2">
                     {t.powerSkills.map((skill, index) => <motion.li key={skill.text} initial={{
@@ -507,8 +506,8 @@ const Index = () => {
                 boxShadow: "var(--shadow-card)"
               }}>
                   <div className="flex items-center gap-2 mb-4">
-                    <Heart className="w-5 h-5 text-primary" aria-hidden="true" />
-                    <h3 className="text-xl font-semibold font-display text-primary">{t.hobbiesTitle}</h3>
+                    <Heart className="w-5 h-5 text-foreground" aria-hidden="true" />
+                    <h3 className="text-xl font-semibold font-display text-foreground">{t.hobbiesTitle}</h3>
                   </div>
                   <ul className="space-y-2">
                     {t.hobbies.map((hobby, index) => <motion.li key={hobby.text} initial={{
