@@ -12,7 +12,13 @@ export const InteractiveHeadline = ({
   as: Component = "h2",
 }: InteractiveHeadlineProps) => {
   if (!splitChars) {
-    return <Component className={`headline-interactive ${className}`}>{text}</Component>;
+    return (
+      <div className="relative inline-block">
+        <span className="absolute -left-6 top-0 text-primary/50 font-mono text-2xl select-none">⌜</span>
+        <Component className={`headline-interactive glitch-hover ${className}`}>{text}</Component>
+        <span className="absolute -right-6 bottom-0 text-primary/50 font-mono text-2xl select-none">⌟</span>
+      </div>
+    );
   }
 
   return (

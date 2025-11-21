@@ -8,47 +8,47 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Cyberpunk Yellow on Black - Light Mode */
-    --background: 45 100% 50%;        /* Vibrant Yellow #FFC700 */
-    --foreground: 0 0% 5%;            /* Near Black */
+    /* Tech Industrial - Light Mode (White → Black) */
+    --background: 0 0% 100%;          /* Pure White */
+    --foreground: 0 0% 5%;            /* Deep Black */
 
-    --card: 45 95% 55%;
+    --card: 0 0% 98%;
     --card-foreground: 0 0% 5%;
 
-    --popover: 45 100% 50%;
+    --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    --primary: 0 0% 8%;               /* Black for primary elements */
-    --primary-foreground: 45 100% 50%; /* Yellow text on black */
+    --primary: 0 0% 10%;              /* Black for primary elements */
+    --primary-foreground: 0 0% 98%;   /* White text on black */
 
-    --secondary: 45 90% 45%;
-    --secondary-foreground: 0 0% 5%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 45 80% 60%;
-    --muted-foreground: 0 0% 25%;
+    --muted: 0 0% 40%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 45 100% 45%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 45%;
-    --destructive-foreground: 45 100% 50%;
+    --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 45 100% 50%;
+    --ring: 0 0% 10%;
 
-    --radius: 0.25rem;
+    --radius: 0rem;
 
     /* Typography - Industrial */
     --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system;
     --font-display: "IBM Plex Mono", "Courier New", monospace;
 
-    /* Effects - Cyberpunk */
-    --gradient-hero: linear-gradient(135deg, hsl(45 100% 50%), hsl(45 100% 35%));
-    --shadow-elegant: 0 0 40px hsl(45 100% 50% / 0.4), 0 20px 60px -15px hsl(0 0% 0% / 0.6);
-    --shadow-glow: 0 0 30px hsl(45 100% 50% / 0.6), 0 0 60px hsl(45 100% 50% / 0.3);
-    --shadow-card: 0 4px 24px -4px hsl(45 100% 50% / 0.2);
-    --shadow-card-hover: 0 8px 40px -8px hsl(45 100% 50% / 0.3), 0 0 20px hsl(45 100% 50% / 0.2);
+    /* Effects - Tech Industrial */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 5%));
+    --shadow-elegant: 0 20px 60px -15px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 30px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 4px 24px -4px rgba(0, 0, 0, 0.15);
+    --shadow-card-hover: 0 8px 40px -8px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 0, 0, 0.15);
     
     /* Motion System Tokens (inspired by iventions.com) */
     --dur-fast: 220ms;
@@ -70,34 +70,34 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Cyberpunk Black on Yellow - Dark Mode */
+    /* Tech Industrial - Dark Mode (Black → White) */
     --background: 0 0% 8%;            /* Deep Black */
-    --foreground: 45 100% 50%;        /* Vibrant Yellow */
+    --foreground: 0 0% 98%;           /* Pure White */
 
     --card: 0 0% 10%;
-    --card-foreground: 45 100% 50%;
+    --card-foreground: 0 0% 98%;
 
     --popover: 0 0% 8%;
-    --popover-foreground: 45 100% 50%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 45 100% 50%;           /* Yellow for primary elements */
-    --primary-foreground: 0 0% 5%;    /* Black text on yellow */
+    --primary: 0 0% 98%;              /* White for primary elements */
+    --primary-foreground: 0 0% 5%;    /* Black text on white */
 
     --secondary: 0 0% 15%;
-    --secondary-foreground: 45 100% 50%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 45 70% 40%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 45 100% 55%;
+    --accent: 0 0% 90%;
     --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 45%;
-    --destructive-foreground: 45 100% 50%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 45 50% 35%;
-    --input: 45 50% 35%;
-    --ring: 45 100% 50%;
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 0 0% 98%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -469,6 +469,16 @@ All colors MUST be HSL.
 
   .animate-technical-pulse {
     animation: technicalPulse 2s ease-in-out infinite;
+  }
+
+  /* Glitch hover effect for interactive elements */
+  .glitch-hover {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .glitch-hover:hover {
+    animation: glitch 0.3s ease-in-out;
   }
 
   /* ============================================

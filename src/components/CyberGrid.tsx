@@ -21,10 +21,10 @@ export const CyberGrid = () => {
     // Check if dark mode
     const isDark = document.documentElement.classList.contains('dark');
     
-    // Colors based on theme
-    const gridColor = isDark ? 'rgba(255, 199, 0, 0.15)' : 'rgba(0, 0, 0, 0.08)';
-    const particleColor = isDark ? 'rgba(255, 199, 0, 0.4)' : 'rgba(0, 0, 0, 0.3)';
-    const glowColor = isDark ? 'rgba(255, 199, 0, 0.6)' : 'rgba(0, 0, 0, 0.4)';
+    // Colors based on theme - Black/White
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)';
+    const particleColor = isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.3)';
+    const glowColor = isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.4)';
 
     // Grid settings
     const gridSize = 40;
@@ -55,7 +55,7 @@ export const CyberGrid = () => {
 
     // Animation loop
     const animate = () => {
-      ctx.fillStyle = isDark ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 199, 0, 0.05)';
+      ctx.fillStyle = isDark ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Draw grid
@@ -87,7 +87,7 @@ export const CyberGrid = () => {
         // Draw particle glow
         const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 3);
         gradient.addColorStop(0, glowColor);
-        gradient.addColorStop(1, 'rgba(255, 199, 0, 0)');
+        gradient.addColorStop(1, isDark ? 'rgba(255, 255, 255, 0)' : 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(p.x - p.size * 3, p.y - p.size * 3, p.size * 6, p.size * 6);
 
@@ -107,7 +107,7 @@ export const CyberGrid = () => {
       });
 
       // Draw scan line
-      ctx.strokeStyle = isDark ? 'rgba(255, 199, 0, 0.3)' : 'rgba(0, 0, 0, 0.2)';
+      ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(0, scanY);
@@ -116,9 +116,10 @@ export const CyberGrid = () => {
 
       // Scan line glow
       const scanGradient = ctx.createLinearGradient(0, scanY - 20, 0, scanY + 20);
-      scanGradient.addColorStop(0, 'rgba(255, 199, 0, 0)');
-      scanGradient.addColorStop(0.5, isDark ? 'rgba(255, 199, 0, 0.1)' : 'rgba(0, 0, 0, 0.05)');
-      scanGradient.addColorStop(1, 'rgba(255, 199, 0, 0)');
+      const scanColor = isDark ? 'rgba(255, 255, 255' : 'rgba(0, 0, 0';
+      scanGradient.addColorStop(0, `${scanColor}, 0)`);
+      scanGradient.addColorStop(0.5, isDark ? `${scanColor}, 0.1)` : `${scanColor}, 0.05)`);
+      scanGradient.addColorStop(1, `${scanColor}, 0)`);
       ctx.fillStyle = scanGradient;
       ctx.fillRect(0, scanY - 20, canvas.width, 40);
 

@@ -39,7 +39,7 @@ export const ProjectCard = ({
         
         {/* Status Indicator */}
         <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
-          <div className="w-2 h-2 bg-primary rounded-full animate-technical-pulse" />
+          <div className="w-2 h-2 bg-primary rounded-none animate-technical-pulse" />
           <span className="text-[10px] font-bold text-primary uppercase tracking-wider">ACTIVE</span>
         </div>
         
