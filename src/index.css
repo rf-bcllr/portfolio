@@ -8,47 +8,46 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Tech Industrial - Light Mode (White → Black) */
-    --background: 0 0% 100%;          /* Pure White */
-    --foreground: 0 0% 5%;            /* Deep Black */
+    --background: 0 0% 100%;
+    --foreground: 222 24% 10%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 24% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
+    --popover-foreground: 222 24% 10%;
 
-    --primary: 0 0% 10%;              /* Black for primary elements */
-    --primary-foreground: 0 0% 98%;   /* White text on black */
+    --primary: 215 16% 47%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 0 0% 90%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 215 16% 94%;
+    --secondary-foreground: 215 25% 27%;
 
-    --muted: 0 0% 40%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 215 16% 47%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 45%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 10%;
+    --border: 220 14% 92%;
+    --input: 220 14% 92%;
+    --ring: 215 16% 47%;
 
-    --radius: 0rem;
+    --radius: 0.75rem;
 
-    /* Typography - Industrial */
-    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system;
-    --font-display: "IBM Plex Mono", "Courier New", monospace;
+    /* Typography */
+    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 
-    /* Effects - Tech Industrial */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 5%));
-    --shadow-elegant: 0 20px 60px -15px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 30px rgba(0, 0, 0, 0.4);
-    --shadow-card: 0 4px 24px -4px rgba(0, 0, 0, 0.15);
-    --shadow-card-hover: 0 8px 40px -8px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 0, 0, 0.15);
+    /* Effects */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --shadow-elegant: 0 20px 60px -15px hsl(var(--primary) / 0.4);
+    --shadow-glow: 0 0 60px hsl(var(--accent) / 0.5);
+    --shadow-card: 0 4px 24px -4px hsl(var(--foreground) / 0.1);
+    --shadow-card-hover: 0 8px 40px -8px hsl(var(--foreground) / 0.15);
     
     /* Motion System Tokens (inspired by iventions.com) */
     --dur-fast: 220ms;
@@ -70,34 +69,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Tech Industrial - Dark Mode (Black → White) */
-    --background: 0 0% 8%;            /* Deep Black */
-    --foreground: 0 0% 98%;           /* Pure White */
+    --background: 240 10% 6%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 0 0% 98%;              /* White for primary elements */
-    --primary-foreground: 0 0% 5%;    /* Black text on white */
+    --primary: 215 16% 60%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 240 6% 15%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 240 6% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 0 0% 90%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 215 16% 60%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 45%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-    --ring: 0 0% 98%;
+    --border: 240 7% 20%;
+    --input: 240 7% 20%;
+    --ring: 215 16% 60%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -430,69 +428,17 @@ All colors MUST be HSL.
   }
 
   /* ============================================
-     Cyberpunk Animations
+     Custom Icon Styling - Thin & Elegant
      ============================================ */
   
-  @keyframes glitch {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(2px, -2px); }
-    60% { transform: translate(-1px, 1px); }
-    80% { transform: translate(1px, -1px); }
-  }
-
-  @keyframes scan {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-  }
-
-  @keyframes dataStream {
-    0% { transform: translateY(-100%) scale(0); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateY(100vh) scale(1); opacity: 0; }
-  }
-
-  @keyframes technicalPulse {
-    0%, 100% { 
-      box-shadow: 0 0 5px hsl(var(--primary) / 0.5), 
-                  0 0 10px hsl(var(--primary) / 0.3);
-    }
-    50% { 
-      box-shadow: 0 0 20px hsl(var(--primary) / 0.8), 
-                  0 0 40px hsl(var(--primary) / 0.4);
-    }
-  }
-
-  .animate-glitch {
-    animation: glitch 0.3s ease-in-out;
-  }
-
-  .animate-technical-pulse {
-    animation: technicalPulse 2s ease-in-out infinite;
-  }
-
-  /* Glitch hover effect for interactive elements */
-  .glitch-hover {
-    position: relative;
-    transition: all 0.3s ease;
-  }
-
-  .glitch-hover:hover {
-    animation: glitch 0.3s ease-in-out;
-  }
-
-  /* ============================================
-     Custom Icon Styling - Industrial Heavy
-     ============================================ */
-  
-  /* Make all Lucide icons heavier for industrial look */
+  /* Make all Lucide icons thinner and more elegant */
   svg[class*="lucide"] {
-    stroke-width: 2.5 !important;
+    stroke-width: 1.5 !important;
   }
   
-  /* Custom cursor icons */
+  /* Custom cursor icons - even thinner for refined look */
   .custom-cursor svg {
-    stroke-width: 2 !important;
+    stroke-width: 1.25 !important;
   }
 
   /* Respect prefers-reduced-motion */

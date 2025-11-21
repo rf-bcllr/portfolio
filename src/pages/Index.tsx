@@ -14,7 +14,6 @@ import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
-import { CyberGrid } from "@/components/CyberGrid";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -105,41 +104,21 @@ const Index = () => {
       slug: "digital-signature"
     }
   ];
-  return <div className="min-h-screen bg-background text-foreground relative">
-      {/* Cyber Grid Background */}
-      <CyberGrid />
-      
-      <header className="sticky top-0 z-40 border-b-2 border-primary/30 bg-background/90 backdrop-blur-sm">
-        <div className="relative">
-          <nav className="container mx-auto flex items-center justify-between py-4">
-            {!scrolled ? <a href="#inicio" data-cursor-action="home" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" data-cursor-action="home" className="flex items-center">
-                <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 object-cover transition-transform duration-300" />
-              </a>}
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <ThemeToggle />
-                <Button asChild variant="contrast" size="sm">
-                  <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link>LinkedIn</a>
-                </Button>
-              </div>
-            </div>
-          </nav>
-          
-          {/* Technical Status Bar */}
-          <div className="absolute bottom-0 left-0 w-full border-t border-border/30 bg-background/50 backdrop-blur-sm">
-            <div className="container mx-auto px-6 py-1 flex items-center gap-4 text-[10px] uppercase tracking-wider font-mono text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-primary animate-technical-pulse rounded-none" />
-                <span>[ACTIVE]</span>
-              </div>
-              <span className="hidden sm:inline">SYSTEM STATUS: OPERATIONAL</span>
-              <span className="hidden md:inline">|</span>
-              <span className="hidden md:inline">UPTIME: 99.8%</span>
-              <span className="hidden lg:inline">|</span>
-              <span className="hidden lg:inline">LOCATION: REMOTE</span>
+  return <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <nav className="container mx-auto flex items-center justify-between py-4">
+          {!scrolled ? <a href="#inicio" data-cursor-action="home" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" data-cursor-action="home" className="flex items-center">
+              <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
+            </a>}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <Button asChild variant="contrast" size="sm">
+                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link>LinkedIn</a>
+              </Button>
             </div>
           </div>
-        </div>
+        </nav>
       </header>
 
       <main>
@@ -171,11 +150,11 @@ const Index = () => {
 
           <div className="container mx-auto px-6 py-20">
             <div className="max-w-5xl mx-auto text-center">
-              <div className="mb-8 animate-enter glitch-hover" style={{
+              <div className="mb-8 animate-enter" style={{
                 transform: `translateY(${avatarParallax}px)`,
                 willChange: 'transform'
               }}>
-                <img src={avatar} alt="Retrato de Rafael Bacellar, Product Designer" loading="eager" width={160} height={160} className="mx-auto aspect-square size-32 md:size-40 object-cover" style={{
+                <img src={avatar} alt="Retrato de Rafael Bacellar, Product Designer" loading="eager" width={160} height={160} className="mx-auto aspect-square size-32 md:size-40 rounded-full border-2 border-border object-cover" style={{
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
@@ -379,7 +358,7 @@ const Index = () => {
                   }}
                   viewport={{ once: true }}
                 >
-                  <Card className="rounded-none p-6 hover-lift h-full glitch-hover" style={{ boxShadow: "var(--shadow-card)" }}>
+                  <Card className="rounded-2xl p-6 hover-lift h-full" style={{ boxShadow: "var(--shadow-card)" }}>
                     <process.icon className="w-8 h-8 text-primary mb-4" />
                     <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
                     <p className="text-muted-foreground leading-relaxed">{process.description}</p>
@@ -403,11 +382,11 @@ const Index = () => {
               <div className="order-1 lg:order-1 flex flex-col justify-between">
                 <div>
                   {/* Photo Card with Floating Emojis */}
-                  <Card className="relative overflow-visible p-0 mb-8 max-w-md mx-auto lg:mx-0 rounded-none hover-lift glitch-hover" style={{
+                  <Card className="relative overflow-visible p-0 mb-8 max-w-md mx-auto lg:mx-0 rounded-xl hover-lift" style={{
                   boxShadow: "var(--shadow-elegant)"
                 }}>
                     <div className="relative">
-                      <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" loading="lazy" className="w-full max-h-[420px] object-cover object-[center_30%]" />
+                      <img src={aboutMePortrait} alt="Portrait of Rafael Bacellar, Product Designer" loading="lazy" className="w-full max-h-[420px] object-cover object-[center_30%] rounded-xl" />
                       
                       {/* Liquid Glass Floating Chips */}
                       <motion.div 

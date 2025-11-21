@@ -29,14 +29,14 @@ export const CertificationCard = ({ title, href, index }: CertificationCardProps
       }}
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative bg-card border-2 border-border rounded-none p-8 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 block glitch-hover"
+      className="group relative bg-card border-2 border-border rounded-2xl p-8 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 hover:border-primary/50 block"
     >
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
       
       {/* Content */}
       <div className="relative flex items-center gap-5">
-        <div className="p-3 rounded-none bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+        <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
           {getIcon(title)}
         </div>
         
@@ -50,7 +50,7 @@ export const CertificationCard = ({ title, href, index }: CertificationCardProps
       </div>
       
       {/* Animated border */}
-      <div className="absolute inset-0 rounded-none border-2 border-transparent group-hover:border-primary/20 transition-colors duration-500" />
+      <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-primary/20 transition-colors duration-500" />
     </motion.a>
   );
 };
