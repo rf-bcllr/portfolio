@@ -441,6 +441,19 @@ All colors MUST be HSL.
     stroke-width: 1.25 !important;
   }
 
+  /* Enhanced blur for animated backgrounds */
+  .blur-3xl {
+    filter: blur(120px);
+  }
+
+  /* Ensure smooth animations */
+  @supports (backdrop-filter: blur(1px)) {
+    .backdrop-blur-smooth {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+  }
+
   /* Respect prefers-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
     *,
