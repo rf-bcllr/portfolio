@@ -14,6 +14,7 @@ import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
+import { CyberGrid } from "@/components/CyberGrid";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -104,8 +105,11 @@ const Index = () => {
       slug: "digital-signature"
     }
   ];
-  return <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  return <div className="min-h-screen bg-background text-foreground relative">
+      {/* Cyber Grid Background */}
+      <CyberGrid />
+      
+      <header className="sticky top-0 z-40 border-b-2 border-primary/30 bg-background/90 backdrop-blur-sm">
         <nav className="container mx-auto flex items-center justify-between py-4">
           {!scrolled ? <a href="#inicio" data-cursor-action="home" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</a> : <a href="#inicio" data-cursor-action="home" className="flex items-center">
               <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
