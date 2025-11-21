@@ -54,13 +54,13 @@ export function MediaLightbox({ items, index, open, onOpenChange, onIndexChange 
                 <video
                   src={current?.src}
                   controls
-                  className="max-h-[80vh] max-w-full rounded-2xl border border-border bg-black"
+                  className="max-h-[80vh] max-w-full rounded-none border border-border bg-black"
                 />
               ) : (
                 <img
                   src={current?.src}
                   alt={current?.title ?? "Project media"}
-                  className="max-h-[80vh] max-w-full rounded-2xl border border-border bg-muted/20"
+                  className="max-h-[80vh] max-w-full rounded-none border border-border bg-muted/20"
                   style={{ transform: `scale(${zoom})`, transformOrigin: "center" }}
                 />
               )}
@@ -69,14 +69,14 @@ export function MediaLightbox({ items, index, open, onOpenChange, onIndexChange 
 
           {/* Title */}
           {current?.title && (
-            <div className="absolute left-4 top-4 z-10 rounded-full bg-background/80 backdrop-blur px-3 py-1 text-xs border border-border">
+            <div className="absolute left-4 top-4 z-10 rounded-none bg-background/80 backdrop-blur px-3 py-1 text-xs border border-border">
               {current.title}
             </div>
           )}
 
           {/* Controls */}
           <div className="absolute inset-x-0 bottom-4 z-10 flex items-center justify-center gap-2">
-            <div className="rounded-full border border-border bg-background/90 backdrop-blur px-2 py-1.5 flex items-center gap-1">
+            <div className="rounded-none border border-border bg-background/90 backdrop-blur px-2 py-1.5 flex items-center gap-1">
               <Button variant="ghost" size="icon" className="size-8" onClick={prev} aria-label="Previous" data-cursor-action="prev">
                 <ChevronLeft className="size-4" />
               </Button>
@@ -89,7 +89,7 @@ export function MediaLightbox({ items, index, open, onOpenChange, onIndexChange 
             </div>
 
             {!video && (
-              <div className="rounded-full border border-border bg-background/90 backdrop-blur px-2 py-1.5 flex items-center gap-1">
+              <div className="rounded-none border border-border bg-background/90 backdrop-blur px-2 py-1.5 flex items-center gap-1">
                 <Button variant="ghost" size="icon" className="size-8" onClick={zoomOut} aria-label="Zoom out" data-cursor-action="zoom-out">
                   <Minus className="size-4" />
                 </Button>
