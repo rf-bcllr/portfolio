@@ -25,10 +25,6 @@ import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
 const Index = () => {
-  const [spot, setSpot] = useState({
-    x: 0,
-    y: 0
-  });
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations();
   
@@ -44,13 +40,6 @@ const Index = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  const onMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setSpot({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
   const projectMedia = [
     // Column 1
     {
@@ -123,15 +112,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" onMouseMove={onMove} style={{
-        ['--x' as any]: `${spot.x}px`,
-        ['--y' as any]: `${spot.y}px`
-      }} className="relative overflow-hidden min-h-[90vh] flex items-center">
-          <div className="pointer-events-none absolute inset-0 -z-10 opacity-70" style={{
-          background: "radial-gradient(800px at var(--x) var(--y), hsl(var(--primary)/0.3), transparent 70%)",
-          transform: `translateY(${bgParallax}px)`,
-          willChange: 'transform'
-        }} />
+        <section id="inicio" className="relative overflow-hidden min-h-[90vh] flex items-center">
           
           {/* Marquee com nome repetido */}
           <div className="absolute top-1/3 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-5" style={{
