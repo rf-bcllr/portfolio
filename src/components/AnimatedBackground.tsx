@@ -13,11 +13,12 @@ export const AnimatedBackground = () => {
       
       {/* Animated gradient orbs */}
       <motion.div
-        className="absolute -top-1/2 -left-1/4 w-[800px] h-[800px] rounded-full opacity-30 blur-3xl"
+        className="absolute -top-1/2 -left-1/4 w-[800px] h-[800px] rounded-full"
         style={{
           background: isDark 
-            ? "radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%)"
-            : "radial-gradient(circle, rgba(147, 197, 253, 0.4) 0%, transparent 70%)",
+            ? "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(147, 197, 253, 0.15) 0%, transparent 70%)",
+          filter: "blur(120px)",
         }}
         animate={{
           x: [0, 100, 0],
@@ -32,11 +33,12 @@ export const AnimatedBackground = () => {
       />
       
       <motion.div
-        className="absolute -bottom-1/2 -right-1/4 w-[800px] h-[800px] rounded-full opacity-30 blur-3xl"
+        className="absolute -bottom-1/2 -right-1/4 w-[800px] h-[800px] rounded-full"
         style={{
           background: isDark
-            ? "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)"
-            : "radial-gradient(circle, rgba(196, 181, 253, 0.4) 0%, transparent 70%)",
+            ? "radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(196, 181, 253, 0.15) 0%, transparent 70%)",
+          filter: "blur(120px)",
         }}
         animate={{
           x: [0, -100, 0],
@@ -51,11 +53,12 @@ export const AnimatedBackground = () => {
       />
       
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
         style={{
           background: isDark
-            ? "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)"
-            : "radial-gradient(circle, rgba(191, 219, 254, 0.4) 0%, transparent 70%)",
+            ? "radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(191, 219, 254, 0.12) 0%, transparent 70%)",
+          filter: "blur(120px)",
         }}
         animate={{
           scale: [1, 1.3, 1],
