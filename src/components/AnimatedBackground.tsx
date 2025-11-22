@@ -7,9 +7,6 @@ export const AnimatedBackground = () => {
   
   return (
     <div className="fixed inset-0 -z-20 overflow-hidden">
-      {/* Base layer */}
-      <div className="absolute inset-0 bg-background" />
-      
       {/* Animated gradient orbs - CSS only */}
       <div
         className="absolute -top-1/2 -left-1/4 w-[800px] h-[800px] rounded-full animate-float-slow"
