@@ -7,13 +7,13 @@ export const AnimatedBackground = () => {
   const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
   
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-20 overflow-hidden">
       {/* Base layer */}
       <div className="absolute inset-0 bg-background" />
       
       {/* Animated gradient orbs */}
       <motion.div
-        className="absolute -top-1/2 -left-1/4 w-[800px] h-[800px] rounded-full opacity-20 blur-3xl"
+        className="absolute -top-1/2 -left-1/4 w-[800px] h-[800px] rounded-full opacity-30 blur-3xl"
         style={{
           background: isDark 
             ? "radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%)"
@@ -32,7 +32,7 @@ export const AnimatedBackground = () => {
       />
       
       <motion.div
-        className="absolute -bottom-1/2 -right-1/4 w-[800px] h-[800px] rounded-full opacity-20 blur-3xl"
+        className="absolute -bottom-1/2 -right-1/4 w-[800px] h-[800px] rounded-full opacity-30 blur-3xl"
         style={{
           background: isDark
             ? "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)"
@@ -51,7 +51,7 @@ export const AnimatedBackground = () => {
       />
       
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20 blur-3xl"
         style={{
           background: isDark
             ? "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)"
