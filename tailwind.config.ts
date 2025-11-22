@@ -20,6 +20,9 @@ export default {
 				'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
 				'display': ['Space Grotesk', 'Inter', 'ui-sans-serif', 'system-ui'],
 			},
+			blur: {
+				'3xl': '120px',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
