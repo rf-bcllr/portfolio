@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Users, Clock, Wrench, TrendingUp } from "lucide-react";
+import { ArrowLeft, Calendar, Users, Clock, Wrench, TrendingUp, Monitor, Lightbulb, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -183,6 +183,24 @@ const ProjectDetail = () => {
                     <p className="text-sm text-muted-foreground">{project.overview.role}</p>
                   </div>
 
+                  {/* My Contributions */}
+                  {project.overview.myContributions && project.overview.myContributions.length > 0 && (
+                    <div>
+                      <div className="flex items-center gap-2 mb-2 text-primary">
+                        <CheckCircle className="w-4 h-4" />
+                        <h3 className="font-semibold text-sm">My Contributions</h3>
+                      </div>
+                      <ul className="space-y-1.5">
+                        {project.overview.myContributions.map((contribution, index) => (
+                          <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <span className="w-1 h-1 rounded-full bg-primary flex-shrink-0 mt-2" />
+                            {contribution}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
                   {/* Team */}
                   <div>
                     <div className="flex items-center gap-2 mb-2 text-primary">
@@ -204,6 +222,17 @@ const ProjectDetail = () => {
                       {project.overview.duration === "TBD" ? <TBDBadge /> : project.overview.duration}
                     </div>
                   </div>
+
+                  {/* Platform */}
+                  {project.overview.platform && (
+                    <div>
+                      <div className="flex items-center gap-2 mb-2 text-primary">
+                        <Monitor className="w-4 h-4" />
+                        <h3 className="font-semibold text-sm">Platform</h3>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{project.overview.platform}</p>
+                    </div>
+                  )}
 
                   {/* Tools */}
                   <div>
@@ -315,11 +344,24 @@ const ProjectDetail = () => {
                   <TBDBadge />
                 </div>
               ) : (
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
                   {project.impact}
                 </p>
               )}
             </AnimatedSection>
+
+            {/* Learnings */}
+            {project.learnings && (
+              <AnimatedSection delay={0.4}>
+                <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+                  <Lightbulb className="w-8 h-8 inline-block mr-3 text-primary" />
+                  Learnings & Reflections
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {project.learnings}
+                </p>
+              </AnimatedSection>
+            )}
 
             {/* Back Button */}
             <AnimatedSection delay={0.4}>
