@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Users, Clock, Wrench, TrendingUp, Monitor, Lightbulb, CheckCircle } from "lucide-react";
+import { ArrowLeft, Calendar, Users, Clock, Wrench, TrendingUp, Monitor, Lightbulb, CheckCircle, LayoutDashboard, MessageSquare, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,9 +10,22 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactFooter } from "@/components/ContactFooter";
 import { UnderConstructionState } from "@/components/UnderConstructionState";
 import { ProjectGallery } from "@/components/ProjectGallery";
+import { MetricCard } from "@/components/MetricCard";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { FeatureCard } from "@/components/FeatureCard";
+import { QuoteBlock } from "@/components/QuoteBlock";
+import { InsightCard } from "@/components/InsightCard";
 import { projectsData } from "@/data/projects";
+import { structuredProjects, StructuredProjectData } from "@/data/projectsStructured";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import abstractHeroBg from "@/assets/project-hero-bg.png";
+
+// Icon mapping for dynamic feature icons
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  LayoutDashboard,
+  MessageSquare,
+  BookOpen,
+};
 
 const TBDBadge = () => (
   <Badge variant="outline" className="text-xs font-normal">
@@ -24,11 +37,225 @@ const isUnderConstruction = (text: string): boolean => {
   return text.includes("🚧") || text.includes("under construction") || text === "Page under construction";
 };
 
+// Structured project view component
+const StructuredProjectView = ({ project }: { project: StructuredProjectData }) => {
+  return (
+    <div className="space-y-16">
+      {/* Challenge */}
+      <AnimatedSection>
+        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+          The Challenge
+        </h2>
+        <QuoteBlock quote={project.challenge.hook} author="" variant="highlight" />
+        <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+          {project.challenge.context}
+        </p>
+        <p className="text-lg text-foreground font-medium">
+          Goal: {project.challenge.goal}
+        </p>
+      </AnimatedSection>
+
+      {/* Process */}
+      <AnimatedSection delay={0.1}>
+        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-8 text-foreground">
+          The Process
+        </h2>
+        <ProcessTimeline steps={project.process.steps} />
+        
+        {project.process.insights && project.process.insights.length > 0 && (
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold text-foreground mb-4 uppercase tracking-wider">
+              Key Insights
+            </h3>
+            <div className="grid gap-3">
+              {project.process.insights.map((insight, index) => (
+                <InsightCard key={index} insight={insight.text} delay={index * 0.1} />
+              ))}
+            </div>
+          </div>
+        )}
+      </AnimatedSection>
+
+      {/* Solution */}
+      <AnimatedSection delay={0.2}>
+        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-4 text-foreground">
+          The Solution
+        </h2>
+        <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+          {project.solution.summary}
+        </p>
+        <div className="grid md:grid-cols-3 gap-6">
+          {project.solution.features.map((feature, index) => {
+            const IconComponent = iconMap[feature.icon] || BookOpen;
+            return (
+              <FeatureCard
+                key={index}
+                icon={IconComponent}
+                title={feature.title}
+                description={feature.description}
+                delay={index * 0.1}
+              />
+            );
+          })}
+        </div>
+      </AnimatedSection>
+
+      {/* Impact */}
+      <AnimatedSection delay={0.3}>
+        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-8 text-foreground">
+          The Impact
+        </h2>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {project.impact.metrics.map((metric, index) => (
+            <MetricCard
+              key={index}
+              value={metric.value}
+              label={metric.label}
+              delay={index * 0.1}
+            />
+          ))}
+        </div>
+        {project.impact.testimonial && (
+          <QuoteBlock
+            quote={project.impact.testimonial.quote}
+            author={project.impact.testimonial.author}
+            role={project.impact.testimonial.role}
+          />
+        )}
+      </AnimatedSection>
+
+      {/* Learnings */}
+      {project.learnings && project.learnings.length > 0 && (
+        <AnimatedSection delay={0.4}>
+          <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+            <Lightbulb className="w-8 h-8 inline-block mr-3 text-primary" />
+            Learnings
+          </h2>
+          <ul className="space-y-3">
+            {project.learnings.map((learning, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex items-start gap-3 text-lg text-muted-foreground"
+              >
+                <span className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2.5" />
+                {learning.text}
+              </motion.li>
+            ))}
+          </ul>
+        </AnimatedSection>
+      )}
+
+      {/* Back Button */}
+      <AnimatedSection delay={0.4}>
+        <Button variant="ghost" size="default" asChild>
+          <Link to="/" data-cursor-action="back">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back
+          </Link>
+        </Button>
+      </AnimatedSection>
+    </div>
+  );
+};
+
+// Legacy project view component (for projects not yet migrated)
+const LegacyProjectView = ({ project }: { project: typeof projectsData[0] }) => {
+  return (
+    <div className="space-y-16">
+      {/* Challenge */}
+      <AnimatedSection>
+        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+          The Challenge
+        </h2>
+        {isUnderConstruction(project.challenge) ? (
+          <UnderConstructionState />
+        ) : (
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            {project.challenge}
+          </p>
+        )}
+      </AnimatedSection>
+
+      {/* Process */}
+      <AnimatedSection delay={0.1}>
+        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+          The Process
+        </h2>
+        {isUnderConstruction(project.process) ? (
+          <UnderConstructionState />
+        ) : (
+          <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+            {project.process}
+          </p>
+        )}
+      </AnimatedSection>
+
+      {/* Solution */}
+      <AnimatedSection delay={0.2}>
+        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+          The Solution
+        </h2>
+        {isUnderConstruction(project.solution) ? (
+          <UnderConstructionState />
+        ) : (
+          <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+            {project.solution}
+          </p>
+        )}
+      </AnimatedSection>
+
+      {/* Impact */}
+      <AnimatedSection delay={0.3}>
+        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+          The Impact
+        </h2>
+        {project.impact === "TBD" ? (
+          <div className="text-lg text-muted-foreground">
+            <TBDBadge />
+          </div>
+        ) : (
+          <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+            {project.impact}
+          </p>
+        )}
+      </AnimatedSection>
+
+      {/* Learnings */}
+      {project.learnings && (
+        <AnimatedSection delay={0.4}>
+          <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+            <Lightbulb className="w-8 h-8 inline-block mr-3 text-primary" />
+            Learnings & Reflections
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+            {project.learnings}
+          </p>
+        </AnimatedSection>
+      )}
+
+      {/* Back Button */}
+      <AnimatedSection delay={0.4}>
+        <Button variant="ghost" size="default" asChild>
+          <Link to="/" data-cursor-action="back">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back
+          </Link>
+        </Button>
+      </AnimatedSection>
+    </div>
+  );
+};
+
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const [imageError, setImageError] = useState(false);
   
   const project = projectsData.find(p => p.slug === slug);
+  const structuredProject = slug ? structuredProjects[slug] : undefined;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -47,6 +274,9 @@ const ProjectDetail = () => {
       </div>
     );
   }
+
+  // Use structured data if available
+  const displayProject = structuredProject || project;
 
   return (
     <div className="min-h-screen bg-background">
@@ -87,11 +317,11 @@ const ProjectDetail = () => {
         />
         
         {/* Project Image Overlay - Centered (if image exists and no error) */}
-        {!imageError && project.heroImage && (
+        {!imageError && displayProject.heroImage && (
           <div className="relative min-h-[60vh] flex items-center justify-center p-6 lg:p-12">
             <motion.img 
-              src={project.heroImage} 
-              alt={project.title}
+              src={displayProject.heroImage} 
+              alt={displayProject.title}
               onError={() => setImageError(true)}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -105,7 +335,7 @@ const ProjectDetail = () => {
         )}
         
         {/* Fallback - Just Abstract Background (if no image or error) */}
-        {(imageError || !project.heroImage) && (
+        {(imageError || !displayProject.heroImage) && (
           <div className="relative min-h-[60vh]" />
         )}
         
@@ -118,13 +348,13 @@ const ProjectDetail = () => {
               transition={{ duration: 0.6 }}
             >
               <Badge variant="secondary" className="mb-4">
-                {project.year} · {project.company}
+                {displayProject.year} · {displayProject.company}
               </Badge>
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold font-display mb-4">
-                {project.title}
+                {displayProject.title}
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl">
-                {project.subtitle}
+                {displayProject.subtitle}
               </p>
             </motion.div>
           </div>
@@ -134,7 +364,7 @@ const ProjectDetail = () => {
       {/* Content Grid */}
       <section className="container mx-auto px-6 py-16 lg:py-24 max-w-6xl">
         {/* Check if entire project is under construction */}
-        {isUnderConstruction(project.challenge) && 
+        {!structuredProject && isUnderConstruction(project.challenge) && 
          isUnderConstruction(project.process) && 
          isUnderConstruction(project.solution) ? (
           
@@ -180,18 +410,18 @@ const ProjectDetail = () => {
                       <Users className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Role</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground">{project.overview.role}</p>
+                    <p className="text-sm text-muted-foreground">{displayProject.overview.role}</p>
                   </div>
 
                   {/* My Contributions */}
-                  {project.overview.myContributions && project.overview.myContributions.length > 0 && (
+                  {displayProject.overview.myContributions && displayProject.overview.myContributions.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2 mb-2 text-primary">
                         <CheckCircle className="w-4 h-4" />
                         <h3 className="font-semibold text-sm">My Contributions</h3>
                       </div>
                       <ul className="space-y-1.5">
-                        {project.overview.myContributions.map((contribution, index) => (
+                        {displayProject.overview.myContributions.map((contribution, index) => (
                           <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
                             <span className="w-1 h-1 rounded-full bg-primary flex-shrink-0 mt-2" />
                             {contribution}
@@ -208,7 +438,7 @@ const ProjectDetail = () => {
                       <h3 className="font-semibold text-sm">Team</h3>
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      {project.overview.team === "TBD" ? <TBDBadge /> : project.overview.team}
+                      {displayProject.overview.team === "TBD" ? <TBDBadge /> : displayProject.overview.team}
                     </div>
                   </div>
 
@@ -219,18 +449,18 @@ const ProjectDetail = () => {
                       <h3 className="font-semibold text-sm">Duration</h3>
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      {project.overview.duration === "TBD" ? <TBDBadge /> : project.overview.duration}
+                      {displayProject.overview.duration === "TBD" ? <TBDBadge /> : displayProject.overview.duration}
                     </div>
                   </div>
 
                   {/* Platform */}
-                  {project.overview.platform && (
+                  {displayProject.overview.platform && (
                     <div>
                       <div className="flex items-center gap-2 mb-2 text-primary">
                         <Monitor className="w-4 h-4" />
                         <h3 className="font-semibold text-sm">Platform</h3>
                       </div>
-                      <p className="text-sm text-muted-foreground">{project.overview.platform}</p>
+                      <p className="text-sm text-muted-foreground">{displayProject.overview.platform}</p>
                     </div>
                   )}
 
@@ -241,10 +471,10 @@ const ProjectDetail = () => {
                       <h3 className="font-semibold text-sm">Tools Used</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {project.overview.tools[0] === "TBD" ? (
+                      {displayProject.overview.tools[0] === "TBD" ? (
                         <TBDBadge />
                       ) : (
-                        project.overview.tools.map((tool) => (
+                        displayProject.overview.tools.map((tool) => (
                           <Badge key={tool} variant="outline" className="text-xs">
                             {tool}
                           </Badge>
@@ -260,12 +490,12 @@ const ProjectDetail = () => {
                       <h3 className="font-semibold text-sm">Key Impact</h3>
                     </div>
                     <ul className="space-y-2">
-                      {project.overview.impact[0] === "TBD" || isUnderConstruction(project.overview.impact[0]) ? (
+                      {displayProject.overview.impact[0] === "TBD" || isUnderConstruction(displayProject.overview.impact[0]) ? (
                         <li className="text-sm text-muted-foreground">
                           <TBDBadge />
                         </li>
                       ) : (
-                        project.overview.impact.map((metric, index) => (
+                        displayProject.overview.impact.map((metric, index) => (
                           <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0 mt-1.5" />
                             {metric}
@@ -282,98 +512,20 @@ const ProjectDetail = () => {
             <AnimatedSection delay={0.1}>
               <ProjectGallery 
                 images={
-                  project.gallery || [
-                    { src: project.heroImage, title: project.title }
+                  displayProject.gallery || [
+                    { src: displayProject.heroImage, title: displayProject.title }
                   ]
                 }
               />
             </AnimatedSection>
           </aside>
 
-          {/* Main Content */}
-          <div className="space-y-16">
-            {/* Challenge */}
-            <AnimatedSection>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
-                The Challenge
-              </h2>
-              {isUnderConstruction(project.challenge) ? (
-                <UnderConstructionState />
-              ) : (
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {project.challenge}
-                </p>
-              )}
-            </AnimatedSection>
-
-            {/* Process */}
-            <AnimatedSection delay={0.1}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
-                The Process
-              </h2>
-              {isUnderConstruction(project.process) ? (
-                <UnderConstructionState />
-              ) : (
-                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {project.process}
-                </p>
-              )}
-            </AnimatedSection>
-
-            {/* Solution */}
-            <AnimatedSection delay={0.2}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
-                The Solution
-              </h2>
-              {isUnderConstruction(project.solution) ? (
-                <UnderConstructionState />
-              ) : (
-                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {project.solution}
-                </p>
-              )}
-            </AnimatedSection>
-
-            {/* Impact */}
-            <AnimatedSection delay={0.3}>
-              <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
-                The Impact
-              </h2>
-              {project.impact === "TBD" ? (
-                <div className="text-lg text-muted-foreground">
-                  <TBDBadge />
-                </div>
-              ) : (
-                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {project.impact}
-                </p>
-              )}
-            </AnimatedSection>
-
-            {/* Learnings */}
-            {project.learnings && (
-              <AnimatedSection delay={0.4}>
-                <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
-                  <Lightbulb className="w-8 h-8 inline-block mr-3 text-primary" />
-                  Learnings & Reflections
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {project.learnings}
-                </p>
-              </AnimatedSection>
-            )}
-
-            {/* Back Button */}
-            <AnimatedSection delay={0.4}>
-              <Button variant="ghost" size="default" asChild>
-                <Link to="/" data-cursor-action="back">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back
-                </Link>
-              </Button>
-            </AnimatedSection>
-
-          </div>
+          {/* Main Content - Use structured or legacy view */}
+          {structuredProject ? (
+            <StructuredProjectView project={structuredProject} />
+          ) : (
+            <LegacyProjectView project={project} />
+          )}
         </div>
         )}
       </section>
