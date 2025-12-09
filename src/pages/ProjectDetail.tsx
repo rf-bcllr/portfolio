@@ -58,7 +58,9 @@ const StructuredProjectView = ({
         <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
           The Challenge
         </h2>
-        <QuoteBlock quote={project.challenge.hook} author="" variant="highlight" />
+        {project.challenge.hook && (
+          <QuoteBlock quote={project.challenge.hook} author="" variant="highlight" />
+        )}
         
         <p className="text-lg text-foreground font-medium">
           Goal: {project.challenge.goal}
