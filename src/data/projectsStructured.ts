@@ -1,5 +1,6 @@
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
 import projHealthyNew from "@/assets/proj-healthy-new.png";
+import projMuralNew from "@/assets/proj-mural-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
@@ -457,10 +458,101 @@ export const studentsTransportationStructured: StructuredProjectData = {
   ]
 };
 
+// =====================================================
+// MURAL - Creative Collaboration Platform
+// =====================================================
+export const muralStructured: StructuredProjectData = {
+  id: "mural",
+  slug: "mural",
+  title: "Mural",
+  subtitle: "Social collaboration and creative expression platform",
+  year: 2019,
+  company: "Personal Project",
+  heroImage: projMuralNew,
+  coverType: "horizontal",
+  overview: {
+    role: "Product Designer & Brand Designer",
+    myContributions: [
+      "Conducted competitive analysis of Behance, Dribbble, and Pinterest",
+      "Surveyed 30+ creative professionals about platform pain points",
+      "Designed complete visual identity and interface system",
+      "Created motion design explorations for micro-interactions"
+    ],
+    team: "Solo project",
+    duration: "6 weeks",
+    platform: "Web",
+    tools: ["Adobe XD", "Illustrator", "Photoshop", "After Effects"],
+    impact: [
+      "3,200+ views on Behance",
+      "88% positive feedback",
+      "Demonstrated brand + interface design skills",
+      "Contributed to job opportunities"
+    ]
+  },
+  gallery: [
+    { src: projMuralNew, title: "Mural Platform" }
+  ],
+  challenge: {
+    hook: "Creative platforms prioritize quantity over quality—cluttered feeds that don't let artwork breathe.",
+    context: "Users seeking to share creative work lack dedicated spaces that respect the artistic process and facilitate constructive feedback. Existing platforms (Behance, Dribbble, Pinterest) had strengths but also significant limitations in how they presented work.",
+    goal: "Design a platform that balances social interaction with creative showcasing—clean, distraction-free, letting content shine."
+  },
+  process: {
+    steps: [
+      { title: "Research", duration: "2 weeks", description: "Analyzed Behance, Dribbble, Pinterest; surveyed 30+ creative professionals" },
+      { title: "Brand Identity", duration: "1 week", description: "Created visual language—artistic yet accessible" },
+      { title: "Interface Design", duration: "2 weeks", description: "Tested grid vs. masonry vs. magazine-style layouts" },
+      { title: "Motion Design", duration: "1 week", description: "Animation explorations to enhance without distracting" }
+    ],
+    insights: [
+      { text: "Creatives wanted better project organization and contextual feedback tools" },
+      { text: "Algorithmic feeds felt intrusive—users wanted more control over discovery" },
+      { text: "Magazine-style layout won for visual harmony across content types" }
+    ]
+  },
+  solution: {
+    summary: "A magazine-style creative platform with curated discovery, inspiration boards, and structured feedback.",
+    features: [
+      {
+        icon: "Layout",
+        title: "Magazine-Style Layout",
+        description: "Adapts to content type and aspect ratio, generous whitespace, subtle typography."
+      },
+      {
+        icon: "Bookmark",
+        title: "Inspiration Boards",
+        description: "Collect and organize works from others while respecting attribution."
+      },
+      {
+        icon: "MessageCircle",
+        title: "Structured Feedback",
+        description: "Encourages constructive criticism through prompts rather than simple likes."
+      }
+    ]
+  },
+  impact: {
+    metrics: [
+      { value: "3.2K+", label: "Behance Views" },
+      { value: "88%", label: "Positive Feedback" },
+      { value: "30+", label: "Creatives Surveyed" }
+    ],
+    testimonial: {
+      quote: "Clean aesthetic and thoughtful interaction patterns.",
+      author: "Behance Community"
+    }
+  },
+  learnings: [
+    { text: "Brand identity and interface design should be developed together, not sequentially" },
+    { text: "Content-first design means using real creative work during prototyping" },
+    { text: "Motion design enhances experience when subtle—distracts when prominent" }
+  ]
+};
+
 // Map of structured projects by slug
 export const structuredProjects: Record<string, StructuredProjectData> = {
   "meu-arco": meuArcoStructured,
   "health-food-delivery": saudeEPontoStructured,
   "digital-signature": digitalSignatureStructured,
-  "students-transportation": studentsTransportationStructured
+  "students-transportation": studentsTransportationStructured,
+  "mural": muralStructured
 };
