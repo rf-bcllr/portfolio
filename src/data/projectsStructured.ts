@@ -261,12 +261,7 @@ export const saudeEPontoStructured: StructuredProjectData = {
       { value: "8.7/10", label: "Satisfaction" },
       { value: "35%", label: "Faster Checkout" },
       { value: "2.5K+", label: "Behance Views" }
-    ],
-    testimonial: {
-      quote: "This is the first food delivery app that doesn't make me feel guilty about ordering.",
-      author: "Paula",
-      role: "Product Manager, 29"
-    }
+    ]
   },
   learnings: [
     { text: "'Healthy' doesn't have to look boring—warm colors increased desire while fresh accents maintained health perception" },
@@ -353,12 +348,7 @@ export const digitalSignatureStructured: StructuredProjectData = {
       { value: "<1 day", label: "Enrollment Time" },
       { value: "95%", label: "Adoption Rate" },
       { value: "60%", label: "Fewer Tickets" }
-    ],
-    testimonial: {
-      quote: "I finished my daughter's enrollment while waiting in line at the grocery store. This saved my life!",
-      author: "Paula Mendes",
-      role: "Parent"
-    }
+    ]
   },
   learnings: [
     { text: "Trust is designed, not assumed—solve the emotional job, not just the functional job" },
@@ -444,12 +434,7 @@ export const studentsTransportationStructured: StructuredProjectData = {
       { value: "97%", label: "Parent Satisfaction" },
       { value: "85%", label: "Fewer Calls" },
       { value: "94%", label: "Driver Ease Rating" }
-    ],
-    testimonial: {
-      quote: "I used to be glued to my phone every morning wondering if João got on the bus. Now I get the notification and I can breathe.",
-      author: "Mariana Santos",
-      role: "Mother of 2"
-    }
+    ]
   },
   learnings: [
     { text: "Design for the context, not just the task—drivers in moving vehicles need different UX than desk workers" },
@@ -535,11 +520,7 @@ export const muralStructured: StructuredProjectData = {
       { value: "3.2K+", label: "Behance Views" },
       { value: "88%", label: "Positive Feedback" },
       { value: "30+", label: "Creatives Surveyed" }
-    ],
-    testimonial: {
-      quote: "Clean aesthetic and thoughtful interaction patterns.",
-      author: "Behance Community"
-    }
+    ]
   },
   learnings: [
     { text: "Brand identity and interface design should be developed together, not sequentially" },
