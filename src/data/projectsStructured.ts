@@ -407,7 +407,7 @@ export const studentsTransportationStructured: StructuredProjectData = {
   },
   process: {
     steps: [
-      { title: "Ethnographic Research", duration: "4 weeks", description: "20+ hours on school buses, 30 interviews" },
+      { title: "Ethnographic Research", duration: "4 weeks", description: "20+ hours on schools, 30 interviews" },
       { title: "Stakeholder Mapping", duration: "2 weeks", description: "3 parallel journeys: parent, driver, admin" },
       { title: "Design & Testing", duration: "6 weeks", description: "4 check-in methods tested, 3 usability rounds" },
       { title: "Pilot", duration: "2 weeks", description: "3 schools, 200 students, 97% satisfaction" }
