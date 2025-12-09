@@ -381,7 +381,6 @@ export const studentsTransportationStructured: StructuredProjectData = {
   overview: {
     role: "Product Designer",
     myContributions: [
-      "Conducted ethnographic research riding school buses (20+ hours)",
       "Interviewed 20 parents and 10 drivers about safety concerns",
       "Designed multi-stakeholder system (parent app, driver app, admin dashboard)",
       "Created notification strategy balancing information with privacy"
