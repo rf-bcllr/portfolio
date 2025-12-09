@@ -7,7 +7,7 @@ import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 
 // New structured data format for visual case studies
 export interface StructuredChallenge {
-  hook: string;
+  hook?: string;
   context: string;
   goal: string;
 }
@@ -391,7 +391,6 @@ export const studentsTransportationStructured: StructuredProjectData = {
     { src: projectThumbNew2, title: "Cheguei Transportation System" }
   ],
   challenge: {
-    hook: "She checks her phone for the 12th time in 5 minutes. Is the bus late or did her son miss it?",
     context: "Parents had no visibility into pickup times, no confirmation their child boarded, no way to track vehicles. Schools fielded 30+ calls/day. Drivers were expected to answer phones mid-drive.",
     goal: "Design a safety-focused tracking system that gives parents peace of mind without compromising driver safety."
   },
