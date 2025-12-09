@@ -349,7 +349,7 @@ export const digitalSignatureStructured: StructuredProjectData = {
   impact: {
     metrics: [
       { value: "78%", label: "Time Reduction" },
-      { value: "4.5d→8min", label: "Enrollment Time" },
+      { value: "<1 day", label: "Enrollment Time" },
       { value: "95%", label: "Adoption Rate" },
       { value: "60%", label: "Fewer Tickets" }
     ],
@@ -414,7 +414,7 @@ export const studentsTransportationStructured: StructuredProjectData = {
     ],
     insights: [
       { text: "Drivers had ZERO seconds of attention to spare—every interaction had to be instantaneous" },
-      { text: "One-tap check-in won over QR codes, NFC, and manual typing" },
+      { text: "One-tap method won among 4 check-in alternatives tested" },
       { text: "Parents wanted proactive notifications, not reactive info-seeking" }
     ]
   },
@@ -424,7 +424,7 @@ export const studentsTransportationStructured: StructuredProjectData = {
       {
         icon: "MousePointerClick",
         title: "One-Tap Check-in",
-        description: "Driver taps student name ONCE. 80px buttons, works with gloves, offline-first."
+        description: "Driver taps student name once. Minimal distraction, maximum safety."
       },
       {
         icon: "Bell",
@@ -434,7 +434,7 @@ export const studentsTransportationStructured: StructuredProjectData = {
       {
         icon: "MapPin",
         title: "Privacy-First Tracking",
-        description: "Neighborhood-level location, not GPS coordinates. Only authorized parents see their children."
+        description: "Geofence-based location with authorized parent access only."
       }
     ]
   },
@@ -443,7 +443,7 @@ export const studentsTransportationStructured: StructuredProjectData = {
       { value: "12K+", label: "Students" },
       { value: "97%", label: "Parent Satisfaction" },
       { value: "85%", label: "Fewer Calls" },
-      { value: "2.3s", label: "Avg Check-in Time" }
+      { value: "94%", label: "Driver Ease Rating" }
     ],
     testimonial: {
       quote: "I used to be glued to my phone every morning wondering if João got on the bus. Now I get the notification and I can breathe.",
