@@ -114,7 +114,7 @@ const StructuredProjectView = ({
       {/* Learnings */}
       {project.learnings && project.learnings.length > 0 && <AnimatedSection delay={0.4}>
           <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
-            <Lightbulb className="w-8 h-8 inline-block mr-3 text-primary" />
+            <Lightbulb className="w-8 h-8 inline-block mr-3 text-foreground" />
             Learnings
           </h2>
           <ul className="space-y-3">
@@ -130,7 +130,7 @@ const StructuredProjectView = ({
         }} viewport={{
           once: true
         }} className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2.5" />
+                <span className="w-2 h-2 rounded-full bg-foreground flex-shrink-0 mt-2.5" />
                 {learning.text}
               </motion.li>)}
           </ul>
@@ -200,7 +200,7 @@ const LegacyProjectView = ({
       {/* Learnings */}
       {project.learnings && <AnimatedSection delay={0.4}>
           <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
-            <Lightbulb className="w-8 h-8 inline-block mr-3 text-primary" />
+            <Lightbulb className="w-8 h-8 inline-block mr-3 text-foreground" />
             Learnings & Reflections
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -368,7 +368,7 @@ const ProjectDetail = () => {
                       </div>
                       <ul className="space-y-1.5">
                         {displayProject.overview.myContributions.map((contribution, index) => <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
-                            <span className="w-1 h-1 rounded-full bg-primary flex-shrink-0 mt-2" />
+                            <span className="w-1 h-1 rounded-full bg-foreground flex-shrink-0 mt-2" />
                             {contribution}
                           </li>)}
                       </ul>
