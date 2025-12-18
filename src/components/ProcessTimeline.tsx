@@ -33,7 +33,7 @@ export const ProcessTimeline = ({ steps }: ProcessTimelineProps) => {
               <div className="w-6 h-6 rounded-full bg-foreground border-4 border-background mb-4" />
               
               {/* Content */}
-              <h4 className="font-semibold text-foreground mb-1">{step.title}</h4>
+              <h4 className="font-semibold text-foreground text-base mb-1">{step.title}</h4>
               {step.duration && (
                 <span className="text-xs text-muted-foreground font-medium">{step.duration}</span>
               )}
@@ -66,7 +66,7 @@ export const ProcessTimeline = ({ steps }: ProcessTimelineProps) => {
               <div className="absolute left-[-20px] w-4 h-4 rounded-full bg-foreground border-2 border-background" />
               
               {/* Content */}
-              <h4 className="font-semibold text-foreground">{step.title}</h4>
+              <h4 className="font-semibold text-foreground text-base">{step.title}</h4>
               {step.duration && (
                 <span className="text-xs text-muted-foreground font-medium">{step.duration}</span>
               )}

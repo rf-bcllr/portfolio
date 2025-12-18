@@ -21,7 +21,7 @@ export const QuoteBlock = ({
         viewport={{ once: true }}
         className="relative pl-6 py-4 mb-6 border-l-4 border-border bg-muted/50 rounded-r-lg"
       >
-        <p className="text-xl lg:text-2xl font-medium text-foreground italic leading-relaxed">
+        <p className="text-xl md:text-2xl font-medium text-foreground italic leading-relaxed">
           "{quote}"
         </p>
       </motion.div>
