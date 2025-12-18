@@ -18,7 +18,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
-				'display': ['Space Grotesk', 'Inter', 'ui-sans-serif', 'system-ui'],
+				'display': ['"Instrument Serif"', 'Georgia', 'serif'],
 			},
 			blur: {
 				'3xl': '120px',
