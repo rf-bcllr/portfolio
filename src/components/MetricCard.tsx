@@ -13,9 +13,9 @@ export const MetricCard = ({ value, label, delay = 0 }: MetricCardProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center hover:border-primary/30 transition-all duration-300"
+      className="text-center py-4"
     >
-      <div className="text-4xl lg:text-5xl font-bold text-foreground mb-2 font-display">
+      <div className="text-5xl lg:text-6xl font-bold text-foreground mb-2 font-display">
         {value}
       </div>
       <div className="text-sm text-muted-foreground uppercase tracking-wider">

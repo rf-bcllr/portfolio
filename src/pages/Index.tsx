@@ -294,7 +294,7 @@ const Index = () => {
         {/* Design Process Section */}
         <section id="design-process" className="container mx-auto px-6 py-32">
           <AnimatedSection className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display mb-6 text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-6 text-center">
               {t.designProcessTitle}
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-16">
