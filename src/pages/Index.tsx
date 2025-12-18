@@ -14,6 +14,7 @@ import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
+import { Marquee } from "@/components/Marquee";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -189,10 +190,8 @@ const Index = () => {
                   <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
                 </Button>
               </div>
-              <div className="mt-10 flex flex-wrap justify-center items-center gap-3 animate-fade-in" style={{
-              animationDelay: "0.3s"
-            }}>
-                {t.skills.map(skill => <Badge key={skill} variant="secondary" className="text-sm px-4 py-1.5">{skill}</Badge>)}
+              <div className="mt-10 w-full max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
+                <Marquee items={t.skills} speed="slow" />
               </div>
             </div>
           </div>

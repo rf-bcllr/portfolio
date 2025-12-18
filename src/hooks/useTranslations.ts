@@ -117,7 +117,7 @@ export const translations = {
     present: "Present",
     
     // Skills
-    skills: ["UX", "UI", "Design System", "Prototyping", "AI"]
+    skills: ["User Research", "UX Design", "UI Design", "Design System", "Prototyping", "Usability Testing", "Information Architecture", "Interaction Design", "Wireframing", "Visual Design", "AI Tools"]
   }
 };
 
