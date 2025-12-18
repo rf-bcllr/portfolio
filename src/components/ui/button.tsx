@@ -24,6 +24,8 @@ const buttonVariants = cva(
           "bg-secondary/70 text-foreground border border-border hover:bg-secondary",
         contrast:
           "bg-foreground text-background border border-foreground hover:bg-background hover:text-foreground",
+        inverse:
+          "bg-background text-foreground border border-background/30 hover:bg-background/90",
       },
       size: {
         default: "h-10 px-4 py-2",
