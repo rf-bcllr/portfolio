@@ -17,6 +17,7 @@ import { InteractiveHeadline } from "@/components/InteractiveHeadline";
 import { Marquee } from "@/components/Marquee";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
+import { Interactive3DBust } from "@/components/Interactive3DBust";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
@@ -136,9 +137,7 @@ const Index = () => {
                 transform: `translateY(${avatarParallax}px)`,
                 willChange: 'transform'
               }}>
-                <img src={avatar} alt="Retrato de Rafael Bacellar, Product Designer" loading="eager" width={160} height={160} className="mx-auto aspect-square size-32 md:size-40 rounded-full border-2 border-border object-cover" style={{
-                boxShadow: "var(--shadow-elegant)"
-              }} />
+                <Interactive3DBust size={160} className="mx-auto md:size-40" />
               </div>
               <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4" initial={{
               opacity: 0,
