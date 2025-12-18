@@ -15,6 +15,7 @@ import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
 import { Marquee } from "@/components/Marquee";
+import { Avatar3D } from "@/components/Avatar3D";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -136,9 +137,10 @@ const Index = () => {
                 transform: `translateY(${avatarParallax}px)`,
                 willChange: 'transform'
               }}>
-                <img src={avatar} alt="Retrato de Rafael Bacellar, Product Designer" loading="eager" width={160} height={160} className="mx-auto aspect-square size-32 md:size-40 rounded-full border-2 border-border object-cover" style={{
-                boxShadow: "var(--shadow-elegant)"
-              }} />
+                <Avatar3D 
+                  fallbackImage={avatar} 
+                  className="mx-auto size-32 md:size-40"
+                />
               </div>
               <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4" initial={{
               opacity: 0,
