@@ -113,9 +113,9 @@ const StructuredProjectView = ({
 
       {/* Learnings */}
       {project.learnings && project.learnings.length > 0 && <AnimatedSection delay={0.4}>
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-            Learnings
-          </h2>
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
+          Takeaways
+        </h2>
           <ul className="space-y-3">
             {project.learnings.map((learning, index) => <motion.li key={index} initial={{
           opacity: 0,
@@ -129,7 +129,7 @@ const StructuredProjectView = ({
         }} viewport={{
           once: true
         }} className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0 mt-2" />
+                <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0 mt-2.5" />
                 {learning.text}
               </motion.li>)}
           </ul>
