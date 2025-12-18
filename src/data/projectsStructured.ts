@@ -345,7 +345,7 @@ export const digitalSignatureStructured: StructuredProjectData = {
   impact: {
     metrics: [
       { value: "78%", label: "Time Reduction" },
-      { value: "<1 day", label: "Enrollment Time" },
+      { value: "<1 d", label: "Enrollment Time" },
       { value: "95%", label: "Adoption Rate" },
       { value: "60%", label: "Fewer Tickets" }
     ]
