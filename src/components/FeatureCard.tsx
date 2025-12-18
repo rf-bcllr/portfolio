@@ -17,8 +17,8 @@ export const FeatureCard = ({ icon: Icon, title, description, delay = 0 }: Featu
       viewport={{ once: true }}
       className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-primary/30 transition-all duration-300 group"
     >
-      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-        <Icon className="w-6 h-6 text-primary" />
+      <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center mb-4 group-hover:bg-muted/80 transition-colors">
+        <Icon className="w-6 h-6 text-foreground" />
       </div>
       <h4 className="font-semibold text-foreground mb-2 text-lg">{title}</h4>
       <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>

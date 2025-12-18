@@ -340,7 +340,7 @@ const Index = () => {
                   viewport={{ once: true }}
                 >
                   <Card className="rounded-2xl p-6 hover-lift h-full" style={{ boxShadow: "var(--shadow-card)" }}>
-                    <process.icon className="w-8 h-8 text-primary mb-4" />
+                    <process.icon className="w-8 h-8 text-foreground mb-4" />
                     <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
                     <p className="text-muted-foreground leading-relaxed">{process.description}</p>
                   </Card>
@@ -457,7 +457,7 @@ const Index = () => {
                 boxShadow: "var(--shadow-card)"
               }}>
                   <div className="flex items-center gap-2 mb-4">
-                    <Zap className="w-5 h-5 text-primary" aria-hidden="true" />
+                    <Zap className="w-5 h-5 text-foreground" aria-hidden="true" />
                     <h3 className="text-xl font-semibold font-display text-foreground">{t.powerSkillsTitle}</h3>
                   </div>
                   <ul className="space-y-2">
@@ -485,7 +485,7 @@ const Index = () => {
                 boxShadow: "var(--shadow-card)"
               }}>
                   <div className="flex items-center gap-2 mb-4">
-                    <Heart className="w-5 h-5 text-primary" aria-hidden="true" />
+                    <Heart className="w-5 h-5 text-foreground" aria-hidden="true" />
                     <h3 className="text-xl font-semibold font-display text-foreground">{t.hobbiesTitle}</h3>
                   </div>
                   <ul className="space-y-2">

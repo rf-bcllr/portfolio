@@ -19,7 +19,7 @@ export const QuoteBlock = ({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="relative pl-6 py-4 mb-6 border-l-4 border-primary bg-primary/5 rounded-r-lg"
+        className="relative pl-6 py-4 mb-6 border-l-4 border-border bg-muted/50 rounded-r-lg"
       >
         <p className="text-xl lg:text-2xl font-medium text-foreground italic leading-relaxed">
           "{quote}"
@@ -35,7 +35,7 @@ export const QuoteBlock = ({
       viewport={{ once: true }}
       className="relative pl-8 py-6 border-l-2 border-muted"
     >
-      <Quote className="absolute left-0 top-6 w-5 h-5 text-primary -translate-x-1/2 bg-background" />
+      <Quote className="absolute left-0 top-6 w-5 h-5 text-muted-foreground -translate-x-1/2 bg-background" />
       <p className="text-lg text-muted-foreground italic leading-relaxed mb-4">
         "{quote}"
       </p>
