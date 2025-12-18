@@ -428,7 +428,7 @@ const ProjectDetail = () => {
                       {displayProject.overview.impact[0] === "TBD" || isUnderConstruction(displayProject.overview.impact[0]) ? <li className="text-sm text-muted-foreground">
                           <TBDBadge />
                         </li> : displayProject.overview.impact.map((metric, index) => <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0 mt-1.5" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0 mt-1.5" />
                             {metric}
                           </li>)}
                     </ul>
