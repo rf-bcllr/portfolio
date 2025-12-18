@@ -458,7 +458,7 @@ const Index = () => {
               }}>
                   <div className="flex items-center gap-2 mb-4">
                     <Zap className="w-5 h-5 text-primary" aria-hidden="true" />
-                    <h3 className="text-xl font-semibold font-display text-primary">{t.powerSkillsTitle}</h3>
+                    <h3 className="text-xl font-semibold font-display text-foreground">{t.powerSkillsTitle}</h3>
                   </div>
                   <ul className="space-y-2">
                     {t.powerSkills.map((skill, index) => <motion.li key={skill.text} initial={{
@@ -486,7 +486,7 @@ const Index = () => {
               }}>
                   <div className="flex items-center gap-2 mb-4">
                     <Heart className="w-5 h-5 text-primary" aria-hidden="true" />
-                    <h3 className="text-xl font-semibold font-display text-primary">{t.hobbiesTitle}</h3>
+                    <h3 className="text-xl font-semibold font-display text-foreground">{t.hobbiesTitle}</h3>
                   </div>
                   <ul className="space-y-2">
                     {t.hobbies.map((hobby, index) => <motion.li key={hobby.text} initial={{
