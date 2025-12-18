@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 220 20% 97%;
     --foreground: 222 24% 10%;
 
     --card: 0 0% 100%;
@@ -17,39 +17,39 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222 24% 10%;
 
-    --primary: 215 16% 47%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 16% 94%;
-    --secondary-foreground: 215 25% 27%;
+    --secondary: 220 20% 96%;
+    --secondary-foreground: 220 25% 30%;
 
-    --muted: 220 20% 96%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 215 16% 47%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 220 100% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 14% 92%;
-    --input: 220 14% 92%;
-    --ring: 215 16% 47%;
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 220 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1.25rem;
 
     /* Typography */
     --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-    --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
 
-    /* Effects */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    --shadow-elegant: 0 20px 60px -15px hsl(var(--primary) / 0.4);
-    --shadow-glow: 0 0 60px hsl(var(--accent) / 0.5);
-    --shadow-card: 0 4px 24px -4px hsl(var(--foreground) / 0.1);
-    --shadow-card-hover: 0 8px 40px -8px hsl(var(--foreground) / 0.15);
+    /* Effects - Bento Grid Style */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(220 100% 60%));
+    --shadow-elegant: 0 4px 20px -4px hsl(220 50% 50% / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.2);
+    --shadow-card: 0 1px 3px 0 hsl(220 20% 20% / 0.06), 0 1px 2px -1px hsl(220 20% 20% / 0.06);
+    --shadow-card-hover: 0 10px 30px -10px hsl(220 50% 50% / 0.15);
     
-    /* Motion System Tokens (inspired by iventions.com) */
+    /* Motion System Tokens */
     --dur-fast: 220ms;
     --dur-med: 420ms;
     --dur-slow: 650ms;
@@ -60,50 +60,50 @@ All colors MUST be HSL.
     /* Sidebar tokens (kept for components) */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-primary: 220 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 96%;
+    --sidebar-accent-foreground: 220 25% 10%;
+    --sidebar-border: 220 15% 91%;
+    --sidebar-ring: 220 100% 50%;
   }
 
   .dark {
-    --background: 240 10% 6%;
+    --background: 220 15% 8%;
     --foreground: 210 40% 98%;
 
-    --card: 240 10% 6%;
+    --card: 220 15% 12%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 240 10% 6%;
+    --popover: 220 15% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 215 16% 60%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 220 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 6% 15%;
+    --secondary: 220 10% 18%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 240 6% 15%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 10% 16%;
+    --muted-foreground: 220 15% 65%;
 
-    --accent: 215 16% 60%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 220 100% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 7% 20%;
-    --input: 240 7% 20%;
-    --ring: 215 16% 60%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 220 10% 22%;
+    --input: 220 10% 22%;
+    --ring: 220 100% 60%;
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 220 10% 95%;
+    --sidebar-primary: 220 100% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 10% 18%;
+    --sidebar-accent-foreground: 220 10% 95%;
+    --sidebar-border: 220 10% 20%;
+    --sidebar-ring: 220 100% 60%;
   }
 }
 
@@ -143,12 +143,13 @@ All colors MUST be HSL.
   /* Motion System - GPU-accelerated transforms only */
   .hover-lift {
     transition: transform var(--dur-fast) var(--ease-out), 
-                box-shadow var(--dur-fast) var(--ease-out);
+                box-shadow var(--dur-fast) var(--ease-out),
+                border-color var(--dur-fast) var(--ease-out);
     will-change: transform;
   }
   
   .hover-lift:hover {
-    transform: translateY(-2px) scale(1.01);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-card-hover);
   }
 
@@ -292,16 +293,12 @@ All colors MUST be HSL.
     }
   }
 
-  /* Liquid Glass Chip Styling */
+  /* Bento Chip Styling */
   .liquid-glass-chip {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
-      0 8px 32px 0 rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-card);
+    border-radius: 9999px;
     padding: 0.5rem 1rem;
     display: inline-flex;
     align-items: center;
@@ -310,12 +307,10 @@ All colors MUST be HSL.
   }
 
   .liquid-glass-chip:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 
-      0 12px 40px 0 rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-    transform: scale(1.05);
+    background: hsl(var(--card));
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
   }
 
   /* Custom Cursor */
