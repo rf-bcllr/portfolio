@@ -1,35 +1,17 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-const cardVariants = cva(
-  "rounded-[20px] border transition-all duration-300",
-  {
-    variants: {
-      variant: {
-        default: "border-border bg-card text-card-foreground shadow-[0_1px_3px_0_hsl(30_20%_20%/0.06),0_1px_2px_-1px_hsl(30_20%_20%/0.06)] hover:shadow-[0_10px_30px_-10px_hsl(30_20%_20%/0.12)] hover:-translate-y-1",
-        dark: "border-foreground/20 bg-foreground text-background shadow-[0_4px_20px_-4px_hsl(30_20%_20%/0.25)] hover:shadow-[0_16px_40px_-12px_hsl(30_20%_20%/0.35)] hover:-translate-y-1",
-        ghost: "border-transparent bg-transparent shadow-none hover:bg-muted/50",
-      }
-    },
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-)
-
-export interface CardProps 
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {}
-
 const Card = React.forwardRef<
   HTMLDivElement,
-  CardProps
->(({ className, variant, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(cardVariants({ variant }), className)}
+    className={cn(
+      "rounded-[20px] border border-border bg-card text-card-foreground shadow-[0_1px_3px_0_hsl(220_20%_20%/0.06),0_1px_2px_-1px_hsl(220_20%_20%/0.06)] transition-all duration-300 hover:shadow-[0_10px_30px_-10px_hsl(220_50%_50%/0.15)] hover:-translate-y-1",
+      className
+    )}
     {...props}
   />
 ))
@@ -94,4 +76,4 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, cardVariants }
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }

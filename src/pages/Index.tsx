@@ -14,7 +14,6 @@ import { CertificationCard } from "@/components/CertificationCard";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
-import { DecorativeScribbles, DecorativeStar } from "@/components/DecorativeScribbles";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
@@ -25,7 +24,6 @@ import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
-
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations();
@@ -133,18 +131,11 @@ const Index = () => {
 
           <div className="container mx-auto px-6 py-20">
             <div className="max-w-5xl mx-auto text-center">
-              <div className="mb-8 animate-enter relative" style={{
+              <div className="mb-8 animate-enter" style={{
                 transform: `translateY(${avatarParallax}px)`,
                 willChange: 'transform'
               }}>
-                {/* Decorative scribble around avatar */}
-                <DecorativeScribbles 
-                  variant="circle" 
-                  size="lg" 
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0" 
-                />
-                <DecorativeStar className="absolute -top-2 -right-8 md:-right-12 z-10" />
-                <img src={avatar} alt="Retrato de Rafael Bacellar, Product Designer" loading="eager" width={160} height={160} className="relative z-10 mx-auto aspect-square size-32 md:size-40 rounded-full border-2 border-border object-cover" style={{
+                <img src={avatar} alt="Retrato de Rafael Bacellar, Product Designer" loading="eager" width={160} height={160} className="mx-auto aspect-square size-32 md:size-40 rounded-full border-2 border-border object-cover" style={{
                 boxShadow: "var(--shadow-elegant)"
               }} />
               </div>
@@ -205,23 +196,6 @@ const Index = () => {
               </div>
             </div>
           </div>
-          
-          {/* Floating Dark CTA Card - Electronica Style */}
-          <motion.div 
-            className="absolute bottom-8 right-8 hidden lg:block"
-            initial={{ opacity: 0, y: 20, rotate: 3 }}
-            animate={{ opacity: 1, y: 0, rotate: 3 }}
-            transition={{ delay: 0.8, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Card variant="dark" className="p-5 max-w-[220px] rotate-3 hover:rotate-0 transition-transform duration-300">
-              <p className="text-sm font-medium mb-3">Want to work together?</p>
-              <Button asChild size="sm" variant="inverse" className="w-full">
-                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link>
-                  Let's talk <ArrowRight className="ml-2 h-3 w-3" />
-                </a>
-              </Button>
-            </Card>
-          </motion.div>
         </section>
 
         {/* Companies Section */}
