@@ -162,7 +162,7 @@ const Experience = () => {
 
         {/* Profile Header */}
         <motion.div className="text-center mb-12" variants={itemVariants}>
-          <h1 className="font-display text-4xl font-bold mb-4">Rafael Bacellar Ramos Reis</h1>
+          <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">Rafael Bacellar Ramos Reis</h1>
           <p className="text-xl text-muted-foreground mb-6">End-to-End Product Designer</p>
           
           <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground mb-4">
@@ -208,7 +208,7 @@ const Experience = () => {
 
         {/* Work Experience */}
         <motion.section className="mb-12" variants={itemVariants}>
-          <h2 className="font-display text-2xl font-semibold mb-6">{t.workExperience}</h2>
+          <h2 className="font-display text-2xl md:text-3xl font-semibold mb-6">{t.workExperience}</h2>
           <div className="space-y-6">
             {experiences.map((exp, index) => <Card key={index} className="rounded-2xl">
                 <CardContent className="p-6">
@@ -237,7 +237,7 @@ const Experience = () => {
 
         {/* Education */}
         <motion.section className="mb-12" variants={itemVariants}>
-          <h2 className="font-display text-2xl font-semibold mb-6">{t.education}</h2>
+          <h2 className="font-display text-2xl md:text-3xl font-semibold mb-6">{t.education}</h2>
           <Card className="rounded-2xl">
             <CardContent className="p-6">
               <div className="flex justify-between items-start">
@@ -279,7 +279,7 @@ const Experience = () => {
               }} viewport={{
                 once: true
               }} className="text-muted-foreground flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0" />
                     {skill}
                   </motion.li>)}
               </ul>
@@ -305,7 +305,7 @@ const Experience = () => {
               }} viewport={{
                 once: true
               }} className="text-muted-foreground flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0" />
                     {skill}
                   </motion.li>)}
               </ul>
