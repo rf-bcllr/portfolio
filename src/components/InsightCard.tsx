@@ -13,7 +13,7 @@ export const InsightCard = ({ insight, delay = 0 }: InsightCardProps) => {
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4, delay }}
       viewport={{ once: true }}
-      className="bg-muted/50 border border-border rounded-lg p-4 flex items-start gap-3"
+      className="bg-muted/50 border border-border rounded-xl p-4 flex items-start gap-3"
     >
       <Lightbulb className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
       <p className="text-sm text-foreground">{insight}</p>

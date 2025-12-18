@@ -55,7 +55,7 @@ const StructuredProjectView = ({
   return <div className="space-y-16">
       {/* Challenge */}
       <AnimatedSection>
-        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
           The Challenge
         </h2>
         {project.challenge.hook && (
@@ -69,7 +69,7 @@ const StructuredProjectView = ({
 
       {/* Process */}
       <AnimatedSection delay={0.1}>
-        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-8 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-8 text-foreground">
           The Process
         </h2>
         <ProcessTimeline steps={project.process.steps} />
@@ -86,7 +86,7 @@ const StructuredProjectView = ({
 
       {/* Solution */}
       <AnimatedSection delay={0.2}>
-        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-4 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-foreground">
           The Solution
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
@@ -102,7 +102,7 @@ const StructuredProjectView = ({
 
       {/* Impact */}
       <AnimatedSection delay={0.3}>
-        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-8 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-8 text-foreground">
           The Impact
         </h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -113,7 +113,7 @@ const StructuredProjectView = ({
 
       {/* Learnings */}
       {project.learnings && project.learnings.length > 0 && <AnimatedSection delay={0.4}>
-          <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
             <Lightbulb className="w-8 h-8 inline-block mr-3 text-foreground" />
             Learnings
           </h2>
@@ -157,7 +157,7 @@ const LegacyProjectView = ({
   return <div className="space-y-16">
       {/* Challenge */}
       <AnimatedSection>
-        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
           The Challenge
         </h2>
         {isUnderConstruction(project.challenge) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed">
@@ -167,7 +167,7 @@ const LegacyProjectView = ({
 
       {/* Process */}
       <AnimatedSection delay={0.1}>
-        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
           The Process
         </h2>
         {isUnderConstruction(project.process) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -177,7 +177,7 @@ const LegacyProjectView = ({
 
       {/* Solution */}
       <AnimatedSection delay={0.2}>
-        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
           The Solution
         </h2>
         {isUnderConstruction(project.solution) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -187,7 +187,7 @@ const LegacyProjectView = ({
 
       {/* Impact */}
       <AnimatedSection delay={0.3}>
-        <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
           The Impact
         </h2>
         {project.impact === "TBD" ? <div className="text-lg text-muted-foreground">
@@ -199,7 +199,7 @@ const LegacyProjectView = ({
 
       {/* Learnings */}
       {project.learnings && <AnimatedSection delay={0.4}>
-          <h2 className="text-3xl lg:text-4xl font-bold font-display mb-6 text-foreground">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
             <Lightbulb className="w-8 h-8 inline-block mr-3 text-foreground" />
             Learnings & Reflections
           </h2>
