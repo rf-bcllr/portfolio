@@ -56,7 +56,7 @@ const StructuredProjectView = ({
       {/* Challenge */}
       <AnimatedSection>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The Challenge
+          The challenge
         </h2>
         {project.challenge.hook && (
           <QuoteBlock quote={project.challenge.hook} author="" variant="highlight" />
@@ -70,13 +70,13 @@ const StructuredProjectView = ({
       {/* Process */}
       <AnimatedSection delay={0.1}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-8 text-foreground">
-          The Process
+          The process
         </h2>
         <ProcessTimeline steps={project.process.steps} />
         
         {project.process.insights && project.process.insights.length > 0 && <div className="mt-10">
             <h3 className="text-xl font-semibold text-foreground mb-4 uppercase tracking-wider">
-              Key Insights
+              Key insights
             </h3>
             <div className="grid gap-3">
               {project.process.insights.map((insight, index) => <InsightCard key={index} insight={insight.text} delay={index * 0.1} />)}
@@ -87,7 +87,7 @@ const StructuredProjectView = ({
       {/* Solution */}
       <AnimatedSection delay={0.2}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-foreground">
-          The Solution
+          The solution
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
           {project.solution.summary}
@@ -103,7 +103,7 @@ const StructuredProjectView = ({
       {/* Impact */}
       <AnimatedSection delay={0.3}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-8 text-foreground">
-          The Impact
+          The impact
         </h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {project.impact.metrics.map((metric, index) => <MetricCard key={index} value={metric.value} label={metric.label} delay={index * 0.1} />)}
@@ -114,7 +114,6 @@ const StructuredProjectView = ({
       {/* Learnings */}
       {project.learnings && project.learnings.length > 0 && <AnimatedSection delay={0.4}>
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-            <Lightbulb className="w-8 h-8 inline-block mr-3 text-foreground" />
             Learnings
           </h2>
           <ul className="space-y-3">
@@ -158,7 +157,7 @@ const LegacyProjectView = ({
       {/* Challenge */}
       <AnimatedSection>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The Challenge
+          The challenge
         </h2>
         {isUnderConstruction(project.challenge) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed">
             {project.challenge}
@@ -168,7 +167,7 @@ const LegacyProjectView = ({
       {/* Process */}
       <AnimatedSection delay={0.1}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The Process
+          The process
         </h2>
         {isUnderConstruction(project.process) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
             {project.process}
@@ -178,7 +177,7 @@ const LegacyProjectView = ({
       {/* Solution */}
       <AnimatedSection delay={0.2}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The Solution
+          The solution
         </h2>
         {isUnderConstruction(project.solution) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
             {project.solution}
@@ -188,7 +187,7 @@ const LegacyProjectView = ({
       {/* Impact */}
       <AnimatedSection delay={0.3}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The Impact
+          The impact
         </h2>
         {project.impact === "TBD" ? <div className="text-lg text-muted-foreground">
             <TBDBadge />
@@ -200,8 +199,7 @@ const LegacyProjectView = ({
       {/* Learnings */}
       {project.learnings && <AnimatedSection delay={0.4}>
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-            <Lightbulb className="w-8 h-8 inline-block mr-3 text-foreground" />
-            Learnings & Reflections
+            Learnings
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
             {project.learnings}
