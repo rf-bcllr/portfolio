@@ -283,7 +283,7 @@ const ProjectDetail = () => {
           scale: 1
         }} transition={{
           duration: 0.6
-        }} className="max-h-[55vh] max-w-[90%] lg:max-w-[80%] object-contain rounded-2xl shadow-2xl" style={{
+        }} className="max-h-[55vh] max-w-[90%] lg:max-w-[80%] object-contain rounded-xl shadow-2xl" style={{
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.15)'
         }} />
           </div>}
