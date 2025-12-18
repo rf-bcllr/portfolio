@@ -56,7 +56,7 @@ const StructuredProjectView = ({
       {/* Challenge */}
       <AnimatedSection>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The challenge
+          Mission
         </h2>
         {project.challenge.hook && (
           <QuoteBlock quote={project.challenge.hook} author="" variant="highlight" />
@@ -70,7 +70,7 @@ const StructuredProjectView = ({
       {/* Process */}
       <AnimatedSection delay={0.1}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-8 text-foreground">
-          The process
+          Process
         </h2>
         <ProcessTimeline steps={project.process.steps} />
         
@@ -87,7 +87,7 @@ const StructuredProjectView = ({
       {/* Solution */}
       <AnimatedSection delay={0.2}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-foreground">
-          The solution
+          Solution
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
           {project.solution.summary}
@@ -103,7 +103,7 @@ const StructuredProjectView = ({
       {/* Impact */}
       <AnimatedSection delay={0.3}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-8 text-foreground">
-          The impact
+          Impact
         </h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {project.impact.metrics.map((metric, index) => <MetricCard key={index} value={metric.value} label={metric.label} delay={index * 0.1} />)}
@@ -157,7 +157,7 @@ const LegacyProjectView = ({
       {/* Challenge */}
       <AnimatedSection>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The challenge
+          Mission
         </h2>
         {isUnderConstruction(project.challenge) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed">
             {project.challenge}
@@ -167,7 +167,7 @@ const LegacyProjectView = ({
       {/* Process */}
       <AnimatedSection delay={0.1}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The process
+          Process
         </h2>
         {isUnderConstruction(project.process) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
             {project.process}
@@ -177,7 +177,7 @@ const LegacyProjectView = ({
       {/* Solution */}
       <AnimatedSection delay={0.2}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The solution
+          Solution
         </h2>
         {isUnderConstruction(project.solution) ? <UnderConstructionState /> : <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
             {project.solution}
@@ -187,7 +187,7 @@ const LegacyProjectView = ({
       {/* Impact */}
       <AnimatedSection delay={0.3}>
         <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-foreground">
-          The impact
+          Impact
         </h2>
         {project.impact === "TBD" ? <div className="text-lg text-muted-foreground">
             <TBDBadge />
