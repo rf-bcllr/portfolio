@@ -20,7 +20,7 @@ export const SkillCard = ({ skill, category, index, level }: SkillCardProps) => 
       case "language":
         return "bg-orange-500/10 text-orange-600 border-orange-500/20 hover:bg-orange-500/20";
       default:
-        return "bg-primary/10 text-primary border-primary/20 hover:bg-primary/20";
+        return "bg-muted text-foreground border-border hover:bg-muted/80";
     }
   };
 

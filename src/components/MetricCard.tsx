@@ -15,7 +15,7 @@ export const MetricCard = ({ value, label, delay = 0 }: MetricCardProps) => {
       viewport={{ once: true }}
       className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center hover:border-primary/30 transition-all duration-300"
     >
-      <div className="text-4xl lg:text-5xl font-bold text-primary mb-2 font-display">
+      <div className="text-4xl lg:text-5xl font-bold text-foreground mb-2 font-display">
         {value}
       </div>
       <div className="text-sm text-muted-foreground uppercase tracking-wider">
