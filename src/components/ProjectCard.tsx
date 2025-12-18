@@ -45,7 +45,7 @@ export const ProjectCard = ({
             <h3 className="text-lg font-semibold mb-2">{title}</h3>
             <div className="flex flex-wrap gap-2">
               {chips.map((chip) => (
-                <Badge key={chip} variant="secondary" className="text-xs bg-white/90 text-foreground border-transparent">
+                <Badge key={chip} variant="secondary" className="text-xs bg-white/95 text-neutral-900 border-transparent shadow-sm">
                   {chip}
                 </Badge>
               ))}
