@@ -40,10 +40,10 @@ export function Marquee({
       >
         {items.map((item, index) => (
           <span key={index} className="flex items-center gap-8">
-            <span className="text-xl md:text-2xl font-semibold text-foreground/80 whitespace-nowrap uppercase tracking-widest">
+            <span className="text-sm md:text-base font-medium text-foreground/70 whitespace-nowrap uppercase tracking-widest">
               {item}
             </span>
-            <span className="text-primary/60 text-lg">✦</span>
+            <span className="text-primary/50 text-xs">✦</span>
           </span>
         ))}
       </div>
@@ -60,10 +60,10 @@ export function Marquee({
       >
         {items.map((item, index) => (
           <span key={`dup-${index}`} className="flex items-center gap-8">
-            <span className="text-xl md:text-2xl font-semibold text-foreground/80 whitespace-nowrap uppercase tracking-widest">
+            <span className="text-sm md:text-base font-medium text-foreground/70 whitespace-nowrap uppercase tracking-widest">
               {item}
             </span>
-            <span className="text-primary/60 text-lg">✦</span>
+            <span className="text-primary/50 text-xs">✦</span>
           </span>
         ))}
       </div>
