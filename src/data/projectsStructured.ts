@@ -464,7 +464,7 @@ export const muralStructured: StructuredProjectData = {
     ],
     team: "Solo project",
     duration: "6 weeks",
-    platform: "Web",
+    platform: "Mobile",
     tools: ["Adobe XD", "Illustrator", "Photoshop", "After Effects"],
     impact: [
       "3,200+ views on Behance",

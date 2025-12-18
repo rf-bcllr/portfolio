@@ -75,7 +75,7 @@ const StructuredProjectView = ({
         <ProcessTimeline steps={project.process.steps} />
         
         {project.process.insights && project.process.insights.length > 0 && <div className="mt-10">
-            <h3 className="text-lg font-semibold text-foreground mb-4 uppercase tracking-wider">
+            <h3 className="text-xl font-semibold text-foreground mb-4 uppercase tracking-wider">
               Key Insights
             </h3>
             <div className="grid gap-3">
@@ -308,10 +308,10 @@ const ProjectDetail = () => {
               <Badge variant="secondary" className="mb-4">
                 {displayProject.year} · {displayProject.company}
               </Badge>
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold font-display mb-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4">
                 {displayProject.title}
               </h1>
-              <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
                 {displayProject.subtitle}
               </p>
             </motion.div>
