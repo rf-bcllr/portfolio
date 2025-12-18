@@ -116,18 +116,21 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     font-weight: 400; /* Satoshi Regular */
+    letter-spacing: 0.01em; /* Slightly open for readability */
   }
 
   /* Clash Display - only H1/H2 (bold geometric headlines) */
   h1, h2 {
     font-family: var(--font-display);
-    font-weight: 700; /* Clash Display Bold */
+    font-weight: 600; /* Clash Display SemiBold */
+    letter-spacing: -0.02em; /* Tighter for display type */
   }
   
   /* Satoshi Medium for subheadings */
   h3, h4, h5, h6 {
     font-family: var(--font-sans);
     font-weight: 500; /* Satoshi Medium */
+    letter-spacing: 0.005em;
   }
 }
 
