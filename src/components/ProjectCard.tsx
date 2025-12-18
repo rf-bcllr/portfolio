@@ -29,32 +29,29 @@ export const ProjectCard = ({
     }
   };
   
-  return <div data-cursor-action="navigate-internal" className={`group relative overflow-hidden rounded-3xl cursor-pointer ${className}`} onClick={handleClick}>
+  return <div data-cursor-action="navigate-internal" className={`group relative overflow-hidden rounded-[20px] cursor-pointer border border-border bg-card shadow-[0_1px_3px_0_hsl(220_20%_20%/0.06),0_1px_2px_-1px_hsl(220_20%_20%/0.06)] transition-all duration-300 hover:shadow-[0_10px_30px_-10px_hsl(220_50%_50%/0.15)] hover:-translate-y-1 hover:border-primary/30 ${className}`} onClick={handleClick}>
       <div className="relative w-full">
-        <img src={src} alt={alt} className="w-full h-auto object-contain transition-all duration-700 group-hover:scale-105 group-hover:blur-sm" style={{ opacity: imageLoaded ? 1 : 0 }} onLoad={() => setImageLoaded(true)} />
+        <img src={src} alt={alt} className="w-full h-auto object-contain transition-all duration-500 group-hover:scale-[1.02]" style={{ opacity: imageLoaded ? 1 : 0 }} onLoad={() => setImageLoaded(true)} />
         
         {/* Loading placeholder */}
-        {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse rounded-3xl" />}
+        {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse" />}
         
         {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Hover content */}
         <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
           <div className="text-white">
-            <h3 className="text-lg font-semibold mb-2 title-skew-hover">{title}</h3>
+            <h3 className="text-lg font-semibold mb-2">{title}</h3>
             <div className="flex flex-wrap gap-2">
               {chips.map((chip) => (
-                <Badge key={chip} variant="secondary" className="text-xs bg-white/20 text-white border-white/30 hover:bg-white/30">
+                <Badge key={chip} variant="secondary" className="text-xs bg-white/90 text-foreground border-transparent">
                   {chip}
                 </Badge>
               ))}
             </div>
           </div>
         </div>
-        
-        {/* Glow effect */}
-        <div className="absolute inset-0 ring-1 ring-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
       </div>
     </div>;
 };
