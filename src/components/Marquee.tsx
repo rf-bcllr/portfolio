@@ -39,14 +39,13 @@ export function Marquee({
         }}
       >
         {items.map((item, index) => (
-          <span
-            key={index}
-            className="text-xl md:text-2xl font-medium text-muted-foreground/70 whitespace-nowrap uppercase tracking-widest"
-          >
-            {item}
+          <span key={index} className="flex items-center gap-8">
+            <span className="text-xl md:text-2xl font-semibold text-foreground/80 whitespace-nowrap uppercase tracking-widest">
+              {item}
+            </span>
+            <span className="text-primary/60 text-lg">✦</span>
           </span>
         ))}
-        <span className="text-muted-foreground/30 mx-4">•</span>
       </div>
       {/* Duplicate for seamless loop */}
       <div
@@ -60,14 +59,13 @@ export function Marquee({
         }}
       >
         {items.map((item, index) => (
-          <span
-            key={`dup-${index}`}
-            className="text-xl md:text-2xl font-medium text-muted-foreground/70 whitespace-nowrap uppercase tracking-widest"
-          >
-            {item}
+          <span key={`dup-${index}`} className="flex items-center gap-8">
+            <span className="text-xl md:text-2xl font-semibold text-foreground/80 whitespace-nowrap uppercase tracking-widest">
+              {item}
+            </span>
+            <span className="text-primary/60 text-lg">✦</span>
           </span>
         ))}
-        <span className="text-muted-foreground/30 mx-4">•</span>
       </div>
     </div>
   );
