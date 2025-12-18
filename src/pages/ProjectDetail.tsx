@@ -129,7 +129,7 @@ const StructuredProjectView = ({
         }} viewport={{
           once: true
         }} className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="w-2 h-2 rounded-full bg-foreground flex-shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0 mt-2" />
                 {learning.text}
               </motion.li>)}
           </ul>
@@ -366,7 +366,7 @@ const ProjectDetail = () => {
                       </div>
                       <ul className="space-y-1.5">
                         {displayProject.overview.myContributions.map((contribution, index) => <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
-                            <span className="w-1 h-1 rounded-full bg-foreground flex-shrink-0 mt-2" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-foreground flex-shrink-0 mt-1.5" />
                             {contribution}
                           </li>)}
                       </ul>
