@@ -167,7 +167,7 @@ export const meuArcoStructured: StructuredProjectData = {
   impact: {
     metrics: [
       { value: "90", label: "SUS Score" },
-      { value: "2.9→4.8★", label: "App Rating" },
+      { value: "4.8★", label: "App Rating" },
       { value: "100%", label: "Rollout Ahead" },
       { value: "35%", label: "Fewer Tickets" }
     ],
