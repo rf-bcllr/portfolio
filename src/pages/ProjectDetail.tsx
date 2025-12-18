@@ -353,7 +353,7 @@ const ProjectDetail = () => {
                 <CardContent className="space-y-6">
                   {/* Role */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-primary">
+                    <div className="flex items-center gap-2 mb-2 text-foreground">
                       <Users className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Role</h3>
                     </div>
@@ -362,7 +362,7 @@ const ProjectDetail = () => {
 
                   {/* My Contributions */}
                   {displayProject.overview.myContributions && displayProject.overview.myContributions.length > 0 && <div>
-                      <div className="flex items-center gap-2 mb-2 text-primary">
+                      <div className="flex items-center gap-2 mb-2 text-foreground">
                         <CheckCircle className="w-4 h-4" />
                         <h3 className="font-semibold text-sm">My Contributions</h3>
                       </div>
@@ -376,7 +376,7 @@ const ProjectDetail = () => {
 
                   {/* Team */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-primary">
+                    <div className="flex items-center gap-2 mb-2 text-foreground">
                       <Users className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Team</h3>
                     </div>
@@ -387,7 +387,7 @@ const ProjectDetail = () => {
 
                   {/* Duration */}
                   <div>
-                    <div className="flex items-center gap-2 mb-2 text-primary">
+                    <div className="flex items-center gap-2 mb-2 text-foreground">
                       <Clock className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Duration</h3>
                     </div>
@@ -398,7 +398,7 @@ const ProjectDetail = () => {
 
                   {/* Platform */}
                   {displayProject.overview.platform && <div>
-                      <div className="flex items-center gap-2 mb-2 text-primary">
+                      <div className="flex items-center gap-2 mb-2 text-foreground">
                         <Monitor className="w-4 h-4" />
                         <h3 className="font-semibold text-sm">Platform</h3>
                       </div>
@@ -407,7 +407,7 @@ const ProjectDetail = () => {
 
                   {/* Tools */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3 text-primary">
+                    <div className="flex items-center gap-2 mb-3 text-foreground">
                       <Wrench className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Tools Used</h3>
                     </div>
