@@ -15,8 +15,8 @@ import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
 import { Marquee } from "@/components/Marquee";
-import { Avatar3D } from "@/components/Avatar3D";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
+import heroPortrait from "@/assets/hero-portrait.png";
 import professionalPhoto from "@/assets/rafael-professional.png";
 import aboutMePortrait from "@/assets/about-me-portrait-new.jpg";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
@@ -137,9 +137,14 @@ const Index = () => {
                 transform: `translateY(${avatarParallax}px)`,
                 willChange: 'transform'
               }}>
-                <Avatar3D 
-                  fallbackImage={avatar} 
-                  className="mx-auto size-32 md:size-40"
+                <img 
+                  src={heroPortrait} 
+                  alt="Rafael Bacellar, Product Designer"
+                  className="mx-auto h-64 md:h-80 lg:h-96 w-auto object-contain"
+                  style={{
+                    maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
+                  }}
                 />
               </div>
               <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4" initial={{
