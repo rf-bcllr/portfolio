@@ -420,7 +420,7 @@ const ProjectDetail = () => {
 
                   {/* Impact Metrics */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3 text-primary">
+                    <div className="flex items-center gap-2 mb-3 text-foreground">
                       <TrendingUp className="w-4 h-4" />
                       <h3 className="font-semibold text-sm">Key Impact</h3>
                     </div>
