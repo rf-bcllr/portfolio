@@ -114,7 +114,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden min-h-[85vh] flex items-center justify-center">
+        <section id="inicio" className="relative overflow-hidden min-h-[70vh] flex items-center justify-center">
           
           {/* Marquee com nome repetido - Background */}
           <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
@@ -131,7 +131,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 py-16 md:py-20">
+          <div className="container mx-auto px-6 py-8 md:py-12">
             <div className="max-w-6xl mx-auto text-center">
               
               {/* Intro Text */}
@@ -141,25 +141,25 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0 }}
               >
-                👋🏿 Hi, my name is <span className="text-foreground font-medium">Rafa</span> and I am a
+                👋🏿 Hi, my name is
               </motion.p>
 
               {/* Layered Typography + Photo Container */}
               <div className="relative flex flex-col items-center justify-center">
                 
-                {/* Line 1: "Product" - Above photo */}
+                {/* Line 1: "Rafa" - Above photo */}
                 <motion.span 
                   className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-20"
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  Product
+                  Rafa
                 </motion.span>
 
-                {/* Photo - Positioned between the text lines */}
+                {/* Photo - Positioned between the text lines, overlapping "Rafa" */}
                 <motion.div 
-                  className="relative z-10 -my-4 md:-my-8 lg:-my-12"
+                  className="relative z-10 -mt-8 md:-mt-14 lg:-mt-20 -mb-2 md:-mb-4 lg:-mb-6"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -179,7 +179,7 @@ const Index = () => {
                   />
                 </motion.div>
 
-                {/* Line 2: "Designer" - Outline style, behind photo */}
+                {/* Line 2: "Bacellar" - Outline style, behind photo */}
                 <motion.span 
                   className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5]"
                   style={{
@@ -190,26 +190,16 @@ const Index = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  Designer
+                  Bacellar
                 </motion.span>
               </div>
 
-              {/* Location Text */}
-              <motion.p 
-                className="text-base md:text-lg text-muted-foreground mt-6 md:mt-8"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                based in <span className="text-foreground font-medium">Brazil</span>.
-              </motion.p>
-
               {/* Description */}
               <motion.p 
-                className="mt-4 max-w-xl mx-auto text-sm md:text-base text-muted-foreground"
+                className="mt-6 md:mt-8 max-w-xl mx-auto text-sm md:text-base text-muted-foreground"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.55 }}
+                transition={{ duration: 0.5, delay: 0.45 }}
               >
                 {t.heroDescription}
               </motion.p>
@@ -219,7 +209,7 @@ const Index = () => {
                 className="mt-8 flex flex-wrap justify-center gap-4"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.65 }}
+                transition={{ duration: 0.5, delay: 0.55 }}
               >
                 <Button asChild variant="contrast" size="lg" className="text-base px-8">
                   <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
@@ -236,7 +226,7 @@ const Index = () => {
                 className="mt-10 w-full max-w-3xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.75 }}
+                transition={{ duration: 0.5, delay: 0.65 }}
               >
                 <Marquee items={t.skills} speed="slow" />
               </motion.div>
