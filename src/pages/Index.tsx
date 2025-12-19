@@ -114,7 +114,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden min-h-[60vh] flex items-center justify-center">
+        <section id="inicio" className="relative overflow-hidden min-h-[55vh] flex items-center justify-center">
           
           {/* Marquee com nome repetido - Background */}
           <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
@@ -159,7 +159,7 @@ const Index = () => {
 
                 {/* Photo - On top of "Rafa", overlapping significantly */}
                 <motion.div 
-                  className="relative z-20 -mt-12 md:-mt-20 lg:-mt-28 -mb-2 md:-mb-4 lg:-mb-6"
+                  className="relative z-20 -mt-12 md:-mt-20 lg:-mt-28 -mb-0"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -171,7 +171,7 @@ const Index = () => {
                   <img 
                     src={heroPortrait} 
                     alt="Rafael Bacellar, Product Designer"
-                    className="h-[180px] md:h-[260px] lg:h-[340px] w-auto object-contain mx-auto"
+                    className="h-[140px] md:h-[200px] lg:h-[260px] w-auto object-contain mx-auto"
                     style={{
                       maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
                       WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
@@ -181,7 +181,7 @@ const Index = () => {
 
                 {/* Line 2: "Bacellar" - Outline style, behind photo */}
                 <motion.span 
-                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5]"
+                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-6 md:-mt-10 lg:-mt-14"
                   style={{
                     WebkitTextStroke: '1.5px currentColor',
                     WebkitTextFillColor: 'transparent'
