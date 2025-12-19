@@ -114,7 +114,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden flex items-center justify-center">
+        <section id="inicio" className="relative overflow-hidden h-[calc(100vh-65px)] flex flex-col">
           
           {/* Marquee com nome repetido - Background */}
           <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
@@ -131,107 +131,110 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 py-2 md:py-4">
-            <div className="max-w-6xl mx-auto text-center">
-              
-              {/* Intro Text */}
-              <motion.p 
-                className="text-sm md:text-base text-muted-foreground mb-4 tracking-wide"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0 }}
-              >
-                👋🏿 Hi, my name is
-              </motion.p>
-
-              {/* Layered Typography + Photo Container */}
-              <div className="relative flex flex-col items-center justify-center">
+          {/* Main content - centered with flex-1 */}
+          <div className="flex-1 flex items-center justify-center">
+            <div className="container mx-auto px-6">
+              <div className="max-w-6xl mx-auto text-center">
                 
-                {/* Line 1: "Rafa" - Behind photo */}
-                <motion.span 
-                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-10"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+                {/* Intro Text */}
+                <motion.p 
+                  className="text-sm md:text-base text-muted-foreground mb-2 md:mb-4 tracking-wide"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0 }}
                 >
-                  Rafa
-                </motion.span>
+                  👋🏿 Hi, my name is
+                </motion.p>
 
-                {/* Photo - On top of "Rafa", overlapping significantly */}
-                <motion.div 
-                  className="relative z-20 -mt-8 md:-mt-14 lg:-mt-20 -mb-0"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  style={{
-                    transform: `translateY(${avatarParallax * 0.5}px)`,
-                    willChange: 'transform'
-                  }}
-                >
-                  <img 
-                    src={heroPortrait} 
-                    alt="Rafael Bacellar, Product Designer"
-                    className="h-[100px] md:h-[160px] lg:h-[200px] w-auto object-contain mx-auto"
+                {/* Layered Typography + Photo Container */}
+                <div className="relative flex flex-col items-center justify-center">
+                  
+                  {/* Line 1: "Rafa" - Behind photo */}
+                  <motion.span 
+                    className="block text-[clamp(3rem,12vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-10"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  >
+                    Rafa
+                  </motion.span>
+
+                  {/* Photo - On top of "Rafa", overlapping significantly */}
+                  <motion.div 
+                    className="relative z-20 -mt-6 md:-mt-12 lg:-mt-16"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
                     style={{
-                      maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
-                      WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
+                      transform: `translateY(${avatarParallax * 0.5}px)`,
+                      willChange: 'transform'
                     }}
-                  />
-                </motion.div>
+                  >
+                    <img 
+                      src={heroPortrait} 
+                      alt="Rafael Bacellar, Product Designer"
+                      className="h-[80px] md:h-[140px] lg:h-[180px] w-auto object-contain mx-auto"
+                      style={{
+                        maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
+                      }}
+                    />
+                  </motion.div>
 
-                {/* Line 2: "Bacellar" - Outline style, behind photo */}
-                <motion.span 
-                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-4 md:-mt-8 lg:-mt-12"
-                  style={{
-                    WebkitTextStroke: '1.5px currentColor',
-                    WebkitTextFillColor: 'transparent'
-                  }}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  {/* Line 2: "Bacellar" - Outline style, behind photo */}
+                  <motion.span 
+                    className="block text-[clamp(3rem,12vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-3 md:-mt-6 lg:-mt-10"
+                    style={{
+                      WebkitTextStroke: '1.5px currentColor',
+                      WebkitTextFillColor: 'transparent'
+                    }}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  >
+                    Bacellar
+                  </motion.span>
+                </div>
+
+                {/* Description */}
+                <motion.p 
+                  className="mt-3 md:mt-4 max-w-xl mx-auto text-sm md:text-base text-muted-foreground"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.45 }}
                 >
-                  Bacellar
-                </motion.span>
+                  Your next <span className="font-bold text-foreground">Product Designer</span>.
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div 
+                  className="mt-4 md:mt-6 flex flex-wrap justify-center gap-3 md:gap-4"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.55 }}
+                >
+                  <Button asChild variant="contrast" size="lg" className="text-sm md:text-base px-6 md:px-8">
+                    <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
+                      {t.talkOnLinkedIn}
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="text-sm md:text-base px-6 md:px-8">
+                    <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
+                  </Button>
+                </motion.div>
               </div>
-
-              {/* Description */}
-              <motion.p 
-                className="mt-4 md:mt-6 max-w-xl mx-auto text-sm md:text-base text-muted-foreground"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.45 }}
-              >
-                Your next <span className="font-bold text-foreground">Product Designer</span>.
-              </motion.p>
-
-              {/* CTA Buttons */}
-              <motion.div 
-                className="mt-6 flex flex-wrap justify-center gap-4"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.55 }}
-              >
-                <Button asChild variant="contrast" size="lg" className="text-base px-8">
-                  <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
-                    {t.talkOnLinkedIn}
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="text-base px-8">
-                  <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
-                </Button>
-              </motion.div>
-
-              {/* Skills Marquee */}
-              <motion.div 
-                className="mt-6 w-full max-w-3xl mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.65 }}
-              >
-                <Marquee items={t.skills} speed="slow" />
-              </motion.div>
             </div>
           </div>
+
+          {/* Skills Marquee - Fixed at bottom */}
+          <motion.div 
+            className="w-full max-w-3xl mx-auto px-6 pb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.65 }}
+          >
+            <Marquee items={t.skills} speed="slow" />
+          </motion.div>
 
         </section>
 

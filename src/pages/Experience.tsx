@@ -23,6 +23,7 @@ import excalidrawLogo from "@/assets/tools/excalidraw.png";
 import notionLogo from "@/assets/tools/notion.png";
 import mazeLogo from "@/assets/tools/maze.png";
 import mixpanelLogo from "@/assets/tools/mixpanel.png";
+import { ToolsMarquee } from "@/components/ToolsMarquee";
 
 const Experience = () => {
   const t = useTranslations();
@@ -341,41 +342,14 @@ const Experience = () => {
           </AnimatedSection>
         </div>
 
-        {/* Tools Section - Logo Display with Tooltips */}
+        {/* Tools Section - Animated Marquee */}
         <AnimatedSection delay={0.3}>
           <div className="py-8">
             <h2 className="font-display text-xl font-semibold mb-8 text-foreground flex items-center gap-2 justify-center">
               <Wrench className="w-5 h-5" aria-hidden="true" />
               My Tools
             </h2>
-            <TooltipProvider delayDuration={200}>
-              <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                {tools.map((tool, index) => (
-                  <Tooltip key={tool.name}>
-                    <TooltipTrigger asChild>
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.05 }}
-                        viewport={{ once: true }}
-                        className="cursor-pointer"
-                      >
-                        <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-xl bg-background hover:bg-muted transition-all duration-300 hover:scale-110 p-3">
-                          <img 
-                            src={tool.logo} 
-                            alt={`${tool.name} logo`}
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                      </motion.div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{tool.name}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
-              </div>
-            </TooltipProvider>
+            <ToolsMarquee tools={tools} speed="slow" />
           </div>
         </AnimatedSection>
       </motion.div>
