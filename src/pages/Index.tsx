@@ -138,7 +138,7 @@ const Index = () => {
                 
                 {/* Intro Text */}
                 <motion.p 
-                  className="text-sm md:text-base text-muted-foreground mb-2 md:mb-4 tracking-wide"
+                  className="text-xs sm:text-sm md:text-base text-muted-foreground mb-1 sm:mb-2 md:mb-4 tracking-wide"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0 }}
@@ -151,7 +151,7 @@ const Index = () => {
                   
                   {/* Line 1: "Rafa" - Behind photo */}
                   <motion.span 
-                    className="block text-[clamp(3rem,12vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-10"
+                    className="block text-[clamp(2.5rem,12vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-10"
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -161,7 +161,7 @@ const Index = () => {
 
                   {/* Photo - On top of "Rafa", overlapping significantly */}
                   <motion.div 
-                    className="relative z-20 -mt-6 md:-mt-12 lg:-mt-16"
+                    className="relative z-20 -mt-4 sm:-mt-6 md:-mt-12 lg:-mt-20 xl:-mt-24"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -173,7 +173,7 @@ const Index = () => {
                     <img 
                       src={heroPortrait} 
                       alt="Rafael Bacellar, Product Designer"
-                      className="h-[80px] md:h-[140px] lg:h-[180px] w-auto object-contain mx-auto"
+                      className="h-[60px] sm:h-[80px] md:h-[140px] lg:h-[200px] xl:h-[220px] w-auto object-contain mx-auto"
                       style={{
                         maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
                         WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
@@ -183,7 +183,7 @@ const Index = () => {
 
                   {/* Line 2: "Bacellar" - Outline style, behind photo */}
                   <motion.span 
-                    className="block text-[clamp(3rem,12vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-3 md:-mt-6 lg:-mt-10"
+                    className="block text-[clamp(2.5rem,12vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-2 sm:-mt-3 md:-mt-6 lg:-mt-12 xl:-mt-14"
                     style={{
                       WebkitTextStroke: '1.5px currentColor',
                       WebkitTextFillColor: 'transparent'
@@ -198,7 +198,7 @@ const Index = () => {
 
                 {/* Description */}
                 <motion.p 
-                  className="mt-3 md:mt-4 max-w-xl mx-auto text-sm md:text-base text-muted-foreground"
+                  className="mt-2 sm:mt-3 md:mt-4 lg:mt-6 max-w-xl mx-auto text-xs sm:text-sm md:text-base text-muted-foreground"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.45 }}
@@ -208,17 +208,17 @@ const Index = () => {
 
                 {/* CTA Buttons */}
                 <motion.div 
-                  className="mt-4 md:mt-6 flex flex-wrap justify-center gap-3 md:gap-4"
+                  className="mt-3 sm:mt-4 md:mt-6 lg:mt-8 flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.55 }}
                 >
-                  <Button asChild variant="contrast" size="lg" className="text-sm md:text-base px-6 md:px-8">
+                  <Button asChild variant="contrast" size="lg" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 md:px-8">
                     <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
                       {t.talkOnLinkedIn}
                     </a>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="text-sm md:text-base px-6 md:px-8">
+                  <Button asChild variant="outline" size="lg" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 md:px-8">
                     <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
                   </Button>
                 </motion.div>
@@ -228,7 +228,7 @@ const Index = () => {
 
           {/* Skills Marquee - Fixed at bottom */}
           <motion.div 
-            className="w-full max-w-3xl mx-auto px-6 pb-4"
+            className="w-full max-w-3xl mx-auto px-6 pb-3 sm:pb-4 md:pb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.65 }}
@@ -242,7 +242,7 @@ const Index = () => {
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />
 
         {/* Projetos */}
-        <section id="projetos" className="container mx-auto px-6 py-32">
+        <section id="projetos" className="container mx-auto px-6 py-16 md:py-24 lg:py-32">
           <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
             <InteractiveHeadline 
               text={t.realExperiences}
@@ -332,7 +332,7 @@ const Index = () => {
         </section>
 
         {/* Design Process Section */}
-        <section id="design-process" className="container mx-auto px-6 py-32">
+        <section id="design-process" className="container mx-auto px-6 py-16 md:py-24 lg:py-32">
           <AnimatedSection className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-6 text-center">
               {t.designProcessTitle}
@@ -391,7 +391,7 @@ const Index = () => {
         </section>
 
         {/* Sobre */}
-        <section id="sobre" className="container mx-auto px-6 py-32">
+        <section id="sobre" className="container mx-auto px-6 py-16 md:py-24 lg:py-32">
           <InteractiveHeadline
             text={t.aboutTitle}
             className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-12 text-balance text-center lg:text-left"
@@ -562,7 +562,7 @@ const Index = () => {
         </section>
 
         {/* Certificações */}
-        <section id="certificacoes" className="container mx-auto px-6 py-32">
+        <section id="certificacoes" className="container mx-auto px-6 py-16 md:py-24 lg:py-32">
           <AnimatedSection className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display mb-3">{t.certificationsTitle}</h2>
             <p className="text-lg text-muted-foreground">{t.certificationsSubtitle}</p>
@@ -579,7 +579,7 @@ const Index = () => {
         </section>
 
         {/* Recomendações */}
-        <section id="recomendacoes" className="container mx-auto px-6 py-32">
+        <section id="recomendacoes" className="container mx-auto px-6 py-16 md:py-24 lg:py-32">
           <header className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight font-display">{t.recommendationsTitle}</h2>
           </header>
