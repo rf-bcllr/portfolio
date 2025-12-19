@@ -7,7 +7,7 @@ export const translations = {
     
     // Hero Section
     heroGreeting: "Hi, my name is Rafa Bacellar 👋🏿",
-    heroDescription: "Brazilian product designer with real experiences in digital products.",
+    heroDescription: "Your next Product Designer",
     talkOnLinkedIn: "Talk on LinkedIn",
     viewProjects: "View projects",
     
