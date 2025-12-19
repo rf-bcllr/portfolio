@@ -114,7 +114,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden min-h-[55vh] flex items-center justify-center">
+        <section id="inicio" className="relative overflow-hidden flex items-center justify-center">
           
           {/* Marquee com nome repetido - Background */}
           <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
@@ -131,7 +131,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 py-4 md:py-8">
+          <div className="container mx-auto px-6 py-2 md:py-4">
             <div className="max-w-6xl mx-auto text-center">
               
               {/* Intro Text */}
@@ -159,7 +159,7 @@ const Index = () => {
 
                 {/* Photo - On top of "Rafa", overlapping significantly */}
                 <motion.div 
-                  className="relative z-20 -mt-12 md:-mt-20 lg:-mt-28 -mb-0"
+                  className="relative z-20 -mt-8 md:-mt-14 lg:-mt-20 -mb-0"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -171,7 +171,7 @@ const Index = () => {
                   <img 
                     src={heroPortrait} 
                     alt="Rafael Bacellar, Product Designer"
-                    className="h-[140px] md:h-[200px] lg:h-[260px] w-auto object-contain mx-auto"
+                    className="h-[100px] md:h-[160px] lg:h-[200px] w-auto object-contain mx-auto"
                     style={{
                       maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
                       WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
@@ -181,7 +181,7 @@ const Index = () => {
 
                 {/* Line 2: "Bacellar" - Outline style, behind photo */}
                 <motion.span 
-                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-6 md:-mt-10 lg:-mt-14"
+                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-4 md:-mt-8 lg:-mt-12"
                   style={{
                     WebkitTextStroke: '1.5px currentColor',
                     WebkitTextFillColor: 'transparent'
@@ -196,7 +196,7 @@ const Index = () => {
 
               {/* Description */}
               <motion.p 
-                className="mt-6 md:mt-8 max-w-xl mx-auto text-sm md:text-base text-muted-foreground"
+                className="mt-4 md:mt-6 max-w-xl mx-auto text-sm md:text-base text-muted-foreground"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.45 }}
@@ -206,7 +206,7 @@ const Index = () => {
 
               {/* CTA Buttons */}
               <motion.div 
-                className="mt-8 flex flex-wrap justify-center gap-4"
+                className="mt-6 flex flex-wrap justify-center gap-4"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.55 }}
@@ -223,7 +223,7 @@ const Index = () => {
 
               {/* Skills Marquee */}
               <motion.div 
-                className="mt-10 w-full max-w-3xl mx-auto"
+                className="mt-6 w-full max-w-3xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.65 }}
