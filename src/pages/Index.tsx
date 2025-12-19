@@ -201,7 +201,7 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.45 }}
               >
-                {t.heroDescription}
+                Your next <span className="font-bold text-foreground">Product Designer</span>.
               </motion.p>
 
               {/* CTA Buttons */}
