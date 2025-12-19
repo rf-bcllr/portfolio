@@ -29,7 +29,7 @@ export const CertificationCard = ({ title, href, index }: CertificationCardProps
       }}
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative bg-card border-2 border-border rounded-2xl p-8 transition-all duration-500 hover:shadow-xl hover:shadow-foreground/10 hover:border-foreground/30 block"
+      className="group relative bg-card border-2 border-border rounded-[24px] p-8 transition-all duration-500 hover:shadow-xl hover:shadow-foreground/10 hover:border-foreground/30 block"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />

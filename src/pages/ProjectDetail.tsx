@@ -75,7 +75,7 @@ const StructuredProjectView = ({
         <ProcessTimeline steps={project.process.steps} />
         
         {project.process.insights && project.process.insights.length > 0 && <div className="mt-10">
-            <h3 className="text-xl font-semibold text-foreground mb-4 uppercase tracking-wider">
+            <h3 className="text-sm md:text-base font-medium text-foreground/70 mb-4 uppercase tracking-widest">
               Key insights
             </h3>
             <div className="grid gap-3">

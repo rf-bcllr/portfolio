@@ -21,7 +21,7 @@ export const SkillCard = ({ skill, category, index, level }: SkillCardProps) => 
       whileHover={{ y: -4, scale: 1.05 }}
       className="group"
     >
-      <div className="relative p-4 rounded-xl border transition-all duration-300 bg-muted/50 text-foreground border-border hover:bg-muted">
+      <div className="relative p-4 rounded-2xl border transition-all duration-300 bg-muted/50 text-foreground border-border hover:bg-muted">
         <div className="flex items-center justify-between">
           <span className="font-medium text-sm">{skill}</span>
           
@@ -45,7 +45,7 @@ export const SkillCard = ({ skill, category, index, level }: SkillCardProps) => 
         </div>
         
         {/* Hover glow effect */}
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
     </motion.div>
   );
