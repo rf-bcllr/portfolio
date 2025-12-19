@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Users, Clock, Wrench, TrendingUp, Monitor, Lightbulb, CheckCircle, LayoutDashboard, MessageSquare, BookOpen, Search, BarChart3, Zap, PenTool, Shield, MousePointerClick, Bell, MapPin, Palette, Smartphone } from "lucide-react";
+import { ArrowLeft, Calendar, Users, Clock, Wrench, TrendingUp, Monitor, Lightbulb, CheckCircle, LayoutDashboard, MessageSquare, BookOpen, Search, BarChart3, Zap, PenTool, Shield, MousePointerClick, Bell, MapPin, Palette, Smartphone, Sparkles, Eye, Layout, Bookmark, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -37,7 +37,12 @@ const iconMap: Record<string, React.ComponentType<{
   Bell,
   MapPin,
   Palette,
-  Smartphone
+  Smartphone,
+  Sparkles,
+  Eye,
+  Layout,
+  Bookmark,
+  MessageCircle
 };
 const TBDBadge = () => <Badge variant="outline" className="text-xs font-normal">
     TBD

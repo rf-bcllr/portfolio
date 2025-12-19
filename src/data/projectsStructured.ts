@@ -528,11 +528,96 @@ export const muralStructured: StructuredProjectData = {
   ]
 };
 
+// =====================================================
+// AI WRITING ASSISTANT - Content Moderation & AI Writing
+// =====================================================
+export const aiWritingAssistantStructured: StructuredProjectData = {
+  id: "ai-writing-assistant",
+  slug: "ai-writing-assistant",
+  title: "AI Writing Assistant",
+  subtitle: "Content moderation and intelligent writing suggestions for school communications",
+  year: 2025,
+  company: "isaac (Arco Educação)",
+  heroImage: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
+  coverType: "horizontal",
+  overview: {
+    role: "Product Designer",
+    myContributions: [
+      "Led feature prioritization based on impact and feasibility analysis",
+      "Designed content moderation flow with clear violation explanations",
+      "Created AI writing assistant interface with real-time preview",
+      "Validated with school staff to minimize false positives"
+    ],
+    team: "PM, 2 Frontend, 1 Backend, AI/ML Specialist",
+    duration: "10 weeks",
+    platform: "Web",
+    tools: ["Figma", "FigJam", "OpenAI API", "React", "Design System"],
+    impact: ["TBD - Project in development"]
+  },
+  gallery: [
+    { 
+      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", 
+      title: "AI Writing Assistant Demo" 
+    }
+  ],
+  challenge: {
+    hook: "One inappropriate message. Thousands of angry parents. A school's reputation in ruins.",
+    context: "Schools faced two critical problems: safety risks from inappropriate content (including a Q2 2025 security breach), and communication quality issues causing friction with families through grammar errors and inappropriate tone.",
+    goal: "Create an AI-powered system that prevents problems before they happen—blocking harmful content and elevating communication quality."
+  },
+  process: {
+    steps: [
+      { title: "Research", duration: "3 weeks", description: "Analyzed incident reports, interviewed 15+ staff, mapped pain points" },
+      { title: "Design", duration: "4 weeks", description: "Created moderation flows and AI writing interface with preview" },
+      { title: "Testing", duration: "3 weeks", description: "Validated with school staff, minimized false positives" }
+    ],
+    insights: [
+      { text: "Schools prioritized reviewing content manually, even if it delayed communications—safety over speed" },
+      { text: "Generic writing suggestions were ignored; users wanted school-specific context awareness" },
+      { text: "Pre-visualization before applying changes was essential for user adoption and trust" }
+    ]
+  },
+  solution: {
+    summary: "Two integrated AI features: Content Moderation for safety, and AI Writing Assistant for quality—both with full user control.",
+    features: [
+      {
+        icon: "Shield",
+        title: "Content Moderation",
+        description: "Real-time text and image analysis with clear explanations of what triggered alerts."
+      },
+      {
+        icon: "Sparkles",
+        title: "AI Writing Assistant",
+        description: "Context-aware suggestions with 4 customization dimensions: tone, emoji, formatting, length."
+      },
+      {
+        icon: "Eye",
+        title: "Real-time Preview",
+        description: "See suggested changes before applying—users maintain full control over their message."
+      }
+    ]
+  },
+  impact: {
+    metrics: [
+      { value: "TBD", label: "Adoption Rate" },
+      { value: "TBD", label: "Time Saved" },
+      { value: "TBD", label: "Incidents Prevented" },
+      { value: "TBD", label: "User Satisfaction" }
+    ]
+  },
+  learnings: [
+    { text: "AI assistance must preserve user agency—preview before apply is non-negotiable" },
+    { text: "Context-aware suggestions outperform generic ones in specialized domains" },
+    { text: "Clear explanations for AI decisions build trust and reduce frustration" }
+  ]
+};
+
 // Map of structured projects by slug
 export const structuredProjects: Record<string, StructuredProjectData> = {
   "meu-arco": meuArcoStructured,
   "health-food-delivery": saudeEPontoStructured,
   "digital-signature": digitalSignatureStructured,
   "students-transportation": studentsTransportationStructured,
-  "mural": muralStructured
+  "mural": muralStructured,
+  "ai-writing-assistant": aiWritingAssistantStructured
 };
