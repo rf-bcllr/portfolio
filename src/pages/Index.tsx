@@ -233,26 +233,6 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Scroll Indicator - Bottom Right */}
-          <motion.div 
-            className="absolute bottom-6 right-6 md:bottom-8 md:right-8 flex flex-col items-center gap-2 cursor-pointer"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: scrollY > 50 ? 0 : 1, y: scrollY > 50 ? 10 : 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => {
-              document.getElementById('projetos')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-medium">
-              Scroll
-            </span>
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <ChevronDown className="w-5 h-5 text-muted-foreground" />
-            </motion.div>
-          </motion.div>
         </section>
 
         {/* Companies Section */}
