@@ -114,7 +114,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden min-h-[70vh] flex items-center justify-center">
+        <section id="inicio" className="relative overflow-hidden min-h-[60vh] flex items-center justify-center">
           
           {/* Marquee com nome repetido - Background */}
           <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
@@ -131,12 +131,12 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 py-8 md:py-12">
+          <div className="container mx-auto px-6 py-4 md:py-8">
             <div className="max-w-6xl mx-auto text-center">
               
               {/* Intro Text */}
               <motion.p 
-                className="text-sm md:text-base text-muted-foreground mb-6 tracking-wide"
+                className="text-sm md:text-base text-muted-foreground mb-4 tracking-wide"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0 }}
@@ -147,9 +147,9 @@ const Index = () => {
               {/* Layered Typography + Photo Container */}
               <div className="relative flex flex-col items-center justify-center">
                 
-                {/* Line 1: "Rafa" - Above photo */}
+                {/* Line 1: "Rafa" - Behind photo */}
                 <motion.span 
-                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-20"
+                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-10"
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -157,9 +157,9 @@ const Index = () => {
                   Rafa
                 </motion.span>
 
-                {/* Photo - Positioned between the text lines, overlapping "Rafa" */}
+                {/* Photo - On top of "Rafa", overlapping significantly */}
                 <motion.div 
-                  className="relative z-10 -mt-8 md:-mt-14 lg:-mt-20 -mb-2 md:-mb-4 lg:-mb-6"
+                  className="relative z-20 -mt-12 md:-mt-20 lg:-mt-28 -mb-2 md:-mb-4 lg:-mb-6"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
