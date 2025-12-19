@@ -114,10 +114,10 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden min-h-[90vh] flex items-center">
+        <section id="inicio" className="relative overflow-hidden min-h-[85vh] flex items-center justify-center">
           
-          {/* Marquee com nome repetido */}
-          <div className="absolute top-1/3 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-5" style={{
+          {/* Marquee com nome repetido - Background */}
+          <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
             transform: `translateY(${marqueeParallax}px)`,
             willChange: 'transform'
           }}>
@@ -131,63 +131,96 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 py-20">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="mb-8 animate-enter" style={{
-                transform: `translateY(${avatarParallax}px)`,
-                willChange: 'transform'
-              }}>
-                <img 
-                  src={heroPortrait} 
-                  alt="Rafael Bacellar, Product Designer"
-                  className="mx-auto h-64 md:h-80 lg:h-96 w-auto object-contain"
-                  style={{
-                    maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
-                  }}
-                />
-              </div>
-              <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-4" initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.6,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}>
-                <motion.span initial={{
-                opacity: 0,
-                x: -20
-              }} animate={{
-                opacity: 1,
-                x: 0
-              }} transition={{
-                duration: 0.5,
-                delay: 0.2
-              }} className="inline-block">
-                  Hi, my name is{" "}
+          <div className="container mx-auto px-6 py-16 md:py-20">
+            <div className="max-w-6xl mx-auto text-center">
+              
+              {/* Intro Text */}
+              <motion.p 
+                className="text-sm md:text-base text-muted-foreground mb-6 tracking-wide"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0 }}
+              >
+                👋🏿 Hi, my name is <span className="text-foreground font-medium">Rafa</span> and I am a
+              </motion.p>
+
+              {/* Layered Typography + Photo Container */}
+              <div className="relative flex flex-col items-center justify-center">
+                
+                {/* Line 1: "Product" - Above photo */}
+                <motion.span 
+                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-20"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  Product
                 </motion.span>
-                <motion.span initial={{
-                opacity: 0,
-                x: -20
-              }} animate={{
-                opacity: 1,
-                x: 0
-              }} transition={{
-                duration: 0.5,
-                delay: 0.4
-              }} className="inline-block"> Rafa Bacellar 👋🏿</motion.span>
-              </motion.h1>
-              <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground animate-fade-in" style={{
-              animationDelay: "0.1s"
-            }}>
+
+                {/* Photo - Positioned between the text lines */}
+                <motion.div 
+                  className="relative z-10 -my-4 md:-my-8 lg:-my-12"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  style={{
+                    transform: `translateY(${avatarParallax * 0.5}px)`,
+                    willChange: 'transform'
+                  }}
+                >
+                  <img 
+                    src={heroPortrait} 
+                    alt="Rafael Bacellar, Product Designer"
+                    className="h-[180px] md:h-[260px] lg:h-[340px] w-auto object-contain mx-auto"
+                    style={{
+                      maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
+                      WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
+                    }}
+                  />
+                </motion.div>
+
+                {/* Line 2: "Designer" - Outline style, behind photo */}
+                <motion.span 
+                  className="block text-[clamp(3.5rem,14vw,11rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5]"
+                  style={{
+                    WebkitTextStroke: '1.5px currentColor',
+                    WebkitTextFillColor: 'transparent'
+                  }}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  Designer
+                </motion.span>
+              </div>
+
+              {/* Location Text */}
+              <motion.p 
+                className="text-base md:text-lg text-muted-foreground mt-6 md:mt-8"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                based in <span className="text-foreground font-medium">Brazil</span>.
+              </motion.p>
+
+              {/* Description */}
+              <motion.p 
+                className="mt-4 max-w-xl mx-auto text-sm md:text-base text-muted-foreground"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.55 }}
+              >
                 {t.heroDescription}
-              </p>
-              <div className="mt-10 flex flex-wrap justify-center gap-4 animate-fade-in" style={{
-              animationDelay: "0.2s"
-            }}>
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div 
+                className="mt-8 flex flex-wrap justify-center gap-4"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.65 }}
+              >
                 <Button asChild variant="contrast" size="lg" className="text-base px-8">
                   <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
                     {t.talkOnLinkedIn}
@@ -196,10 +229,17 @@ const Index = () => {
                 <Button asChild variant="outline" size="lg" className="text-base px-8">
                   <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
                 </Button>
-              </div>
-              <div className="mt-10 w-full max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
+              </motion.div>
+
+              {/* Skills Marquee */}
+              <motion.div 
+                className="mt-10 w-full max-w-3xl mx-auto"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.75 }}
+              >
                 <Marquee items={t.skills} speed="slow" />
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
