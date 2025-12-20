@@ -138,7 +138,7 @@ const Index = () => {
                 
                 {/* Intro Text */}
                 <motion.p 
-                  className="text-xs sm:text-sm md:text-base text-muted-foreground mb-0.5 sm:mb-2 md:mb-4 tracking-wide"
+                  className="text-sm sm:text-base md:text-lg text-muted-foreground mb-1 sm:mb-2 md:mb-4 tracking-wide"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0 }}
@@ -151,7 +151,7 @@ const Index = () => {
                   
                   {/* Line 1: "Rafa" - Behind photo */}
                   <motion.span 
-                    className="block text-[clamp(2rem,11vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-10"
+                    className="block text-[clamp(3.5rem,18vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-10"
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -161,7 +161,7 @@ const Index = () => {
 
                   {/* Photo - On top of "Rafa", overlapping significantly */}
                   <motion.div 
-                    className="relative z-20 -mt-3 sm:-mt-6 md:-mt-12 lg:-mt-20 xl:-mt-24"
+                    className="relative z-20 -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-20 xl:-mt-24"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -173,7 +173,7 @@ const Index = () => {
                     <img 
                       src={heroPortrait} 
                       alt="Rafael Bacellar, Product Designer"
-                      className="h-[50px] sm:h-[80px] md:h-[140px] lg:h-[200px] xl:h-[220px] w-auto object-contain mx-auto"
+                      className="h-[100px] sm:h-[120px] md:h-[140px] lg:h-[200px] xl:h-[220px] w-auto object-contain mx-auto"
                       style={{
                         maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
                         WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
@@ -183,7 +183,7 @@ const Index = () => {
 
                   {/* Line 2: "Bacellar" - Outline style, behind photo */}
                   <motion.span 
-                    className="block text-[clamp(2rem,11vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-1 sm:-mt-3 md:-mt-6 lg:-mt-12 xl:-mt-14"
+                    className="block text-[clamp(3.5rem,18vw,10rem)] font-bold font-display leading-[0.85] tracking-tight relative z-[5] -mt-6 sm:-mt-8 md:-mt-10 lg:-mt-12 xl:-mt-14"
                     style={{
                       WebkitTextStroke: '1.5px currentColor',
                       WebkitTextFillColor: 'transparent'
@@ -198,7 +198,7 @@ const Index = () => {
 
                 {/* Description */}
                 <motion.p 
-                  className="mt-1 sm:mt-3 md:mt-4 lg:mt-6 max-w-xl mx-auto text-xs sm:text-sm md:text-base text-muted-foreground"
+                  className="mt-2 sm:mt-3 md:mt-4 lg:mt-6 max-w-xl mx-auto text-base sm:text-lg md:text-xl text-muted-foreground"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.45 }}
@@ -208,17 +208,17 @@ const Index = () => {
 
                 {/* CTA Buttons */}
                 <motion.div 
-                  className="mt-2 sm:mt-4 md:mt-6 lg:mt-8 flex flex-wrap justify-center gap-1.5 sm:gap-3 md:gap-4"
+                  className="mt-4 sm:mt-4 md:mt-6 lg:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3 md:gap-4"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.55 }}
                 >
-                  <Button asChild variant="contrast" size="lg" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 md:px-8">
+                  <Button asChild variant="contrast" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
                     <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
                       {t.talkOnLinkedIn}
                     </a>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="text-xs sm:text-sm md:text-base px-4 sm:px-6 md:px-8">
+                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
                     <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
                   </Button>
                 </motion.div>
