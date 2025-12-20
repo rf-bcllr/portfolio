@@ -114,7 +114,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden h-[calc(100vh-65px)] flex flex-col">
+        <section id="inicio" className="relative overflow-hidden min-h-[calc(100vh-65px)] min-h-[calc(100dvh-65px)] flex flex-col">
           
           {/* Marquee com nome repetido - Background */}
           <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
@@ -208,7 +208,7 @@ const Index = () => {
 
                 {/* CTA Buttons */}
                 <motion.div 
-                  className="mt-4 sm:mt-4 md:mt-6 lg:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3 md:gap-4"
+                  className="mt-8 sm:mt-4 md:mt-6 lg:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3 md:gap-4"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.55 }}
@@ -228,7 +228,7 @@ const Index = () => {
 
           {/* Skills Marquee - Fixed at bottom */}
           <motion.div 
-            className="w-full max-w-3xl mx-auto px-6 pb-2 sm:pb-4 md:pb-6"
+            className="w-full max-w-3xl mx-auto px-6 pb-6 sm:pb-6 md:pb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.65 }}
