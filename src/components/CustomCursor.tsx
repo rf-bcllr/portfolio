@@ -1,11 +1,27 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home, ArrowLeft, Download, ArrowRight, Eye, Plus, Minus, RotateCcw, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home, ArrowLeft, Download, ArrowRight, Eye, Plus, Minus, RotateCcw, ChevronLeft, ChevronRight, X, MessageCircle } from "lucide-react";
+
+const friendlyMessages = [
+  "How are you doing?",
+  "Let's talk?",
+  "Let's make products!",
+  "Let's connect on LinkedIn :)",
+  "Need a designer?",
+  "Coffee chat? ☕",
+  "Let's build something!",
+  "Say hi! 👋",
+  "Open to new adventures!",
+  "Ready to collaborate?",
+  "What's on your mind?",
+  "Let's create magic! ✨"
+];
 
 export const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [cursorAction, setCursorAction] = useState<'default' | 'navigate' | 'navigate-internal' | 'scroll-up' | 'scroll-down' | 'theme-light' | 'theme-dark' | 'home' | 'back' | 'download' | 'view' | 'zoom-in' | 'zoom-out' | 'reset' | 'next' | 'prev' | 'close'>('default');
+  const [cursorAction, setCursorAction] = useState<'default' | 'navigate' | 'navigate-internal' | 'scroll-up' | 'scroll-down' | 'theme-light' | 'theme-dark' | 'home' | 'back' | 'download' | 'view' | 'zoom-in' | 'zoom-out' | 'reset' | 'next' | 'prev' | 'close' | 'message'>('default');
   const [isVisible, setIsVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [randomMessage, setRandomMessage] = useState('');
   const cursorRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
   const targetPosition = useRef({ x: 0, y: 0 });
@@ -29,6 +45,17 @@ export const CustomCursor = () => {
       if (isClicked) return;
 
       const target = e.target as HTMLElement;
+      
+      // Check for message action (photo hover)
+      const messageElement = target.closest('[data-cursor-action="message"]') as HTMLElement;
+      if (messageElement) {
+        // Only update message if we're not already in message mode
+        if (cursorAction !== 'message') {
+          setRandomMessage(friendlyMessages[Math.floor(Math.random() * friendlyMessages.length)]);
+        }
+        setCursorAction('message');
+        return;
+      }
       
       // Check for theme toggle - special case
       const themeButton = target.closest('[data-cursor-action="theme-toggle"]') as HTMLElement;
@@ -88,7 +115,7 @@ export const CustomCursor = () => {
       }
       document.body.classList.remove("custom-cursor-active");
     };
-  }, [isClicked]);
+  }, [isClicked, cursorAction]);
 
   if (!isVisible) return null;
 
@@ -126,15 +153,26 @@ export const CustomCursor = () => {
         return <ChevronLeft className="custom-cursor-icon" size={22} strokeWidth={2.5} />;
       case 'close':
         return <X className="custom-cursor-icon" size={20} strokeWidth={2.5} />;
+      case 'message':
+        return (
+          <div className="custom-cursor-message">
+            <MessageCircle size={14} strokeWidth={2} />
+            <span>{randomMessage}</span>
+          </div>
+        );
       default:
         return null;
     }
   };
 
+  const cursorClass = cursorAction === 'message' 
+    ? `custom-cursor message-cursor ${isClicked ? 'clicked' : ''}`
+    : `custom-cursor ${cursorAction !== 'default' ? 'hovering-link' : ''} ${isClicked ? 'clicked' : ''}`;
+
   return (
     <div
       ref={cursorRef}
-      className={`custom-cursor ${cursorAction !== 'default' ? 'hovering-link' : ''} ${isClicked ? 'clicked' : ''}`}
+      className={cursorClass}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,

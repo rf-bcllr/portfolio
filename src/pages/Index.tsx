@@ -30,11 +30,12 @@ const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations();
   
-  // Parallax layers: [background, marquee, avatar]
-  const [bgParallax, marqueeParallax, avatarParallax] = useParallaxLayers([
+  // Parallax layers: [background, marquee, avatar, chips]
+  const [bgParallax, marqueeParallax, avatarParallax, chipsParallax] = useParallaxLayers([
     { speed: 0.3, direction: 'down' }, // Background moves slower, downward
     { speed: 0.15, direction: 'down' }, // Marquee moves even slower
     { speed: 0.5, direction: 'up' }, // Avatar moves faster, upward
+    { speed: 0.2, direction: 'up' }, // Chips parallax for depth
   ]);
   
   useEffect(() => {
@@ -134,11 +135,14 @@ const Index = () => {
           {/* Floating Skill Chips */}
           <div className="absolute inset-0 pointer-events-none overflow-visible z-[30]">
             
-            {/* TIER 1 - Large chips (always visible on mobile+) */}
             {/* TIER 1 - Priority chips (always visible): Product Design, AI Tools, User Research, Design System */}
             <motion.div 
               className="liquid-glass-chip absolute top-[8%] sm:top-[75%] left-[4%] sm:left-[15%] lg:left-[18%] text-sm md:text-base pointer-events-auto cursor-pointer"
-              style={{ animation: 'floatReaction 12s ease-in-out infinite', animationDelay: '0s' }}
+              style={{ 
+                animation: 'floatReaction 12s ease-in-out infinite', 
+                animationDelay: '0s',
+                transform: `translateY(${chipsParallax * 0.8}px)`
+              }}
               whileHover={{ scale: 1.15 }}
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -150,7 +154,11 @@ const Index = () => {
 
             <motion.div 
               className="liquid-glass-chip absolute top-[12%] sm:top-[30%] right-[5%] sm:left-[2%] sm:right-auto lg:left-[5%] text-sm md:text-base pointer-events-auto cursor-pointer"
-              style={{ animation: 'floatReactionAlt 14s ease-in-out infinite', animationDelay: '0.5s' }}
+              style={{ 
+                animation: 'floatReactionAlt 14s ease-in-out infinite', 
+                animationDelay: '0.5s',
+                transform: `translateY(${chipsParallax * 0.9}px)`
+              }}
               whileHover={{ scale: 1.15 }}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -162,7 +170,11 @@ const Index = () => {
 
             <motion.div 
               className="liquid-glass-chip absolute top-[35%] sm:top-[48%] left-[8%] sm:right-[18%] sm:left-auto lg:right-[22%] text-sm md:text-base pointer-events-auto cursor-pointer"
-              style={{ animation: 'floatReactionAlt 12s ease-in-out infinite', animationDelay: '1s' }}
+              style={{ 
+                animation: 'floatReactionAlt 12s ease-in-out infinite', 
+                animationDelay: '1s',
+                transform: `translateY(${chipsParallax * 1.0}px)`
+              }}
               whileHover={{ scale: 1.15 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -174,7 +186,11 @@ const Index = () => {
 
             <motion.div 
               className="liquid-glass-chip absolute top-[42%] sm:top-[70%] right-[6%] sm:right-[12%] lg:right-[15%] text-sm md:text-base pointer-events-auto cursor-pointer"
-              style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '1.5s' }}
+              style={{ 
+                animation: 'floatReactionAlt 13s ease-in-out infinite', 
+                animationDelay: '1.5s',
+                transform: `translateY(${chipsParallax * 0.85}px)`
+              }}
               whileHover={{ scale: 1.15 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -185,7 +201,10 @@ const Index = () => {
             </motion.div>
 
             {/* TIER 2 - Secondary chips (tablet sm+): UX Design, UI Design, Prototyping, Interaction Design */}
-            <div className="hidden sm:block absolute top-[8%] left-[6%] lg:left-[10%]">
+            <div 
+              className="hidden sm:block absolute top-[8%] left-[6%] lg:left-[10%]"
+              style={{ transform: `translateY(${chipsParallax * 1.2}px)` }}
+            >
               <motion.div 
                 className="liquid-glass-chip text-xs md:text-sm pointer-events-auto cursor-pointer flex"
                 style={{ animation: 'floatReaction 10s ease-in-out infinite', animationDelay: '2s' }}
@@ -199,7 +218,10 @@ const Index = () => {
               </motion.div>
             </div>
 
-            <div className="hidden sm:block absolute top-[12%] right-[8%] lg:right-[12%]">
+            <div 
+              className="hidden sm:block absolute top-[12%] right-[8%] lg:right-[12%]"
+              style={{ transform: `translateY(${chipsParallax * 1.1}px)` }}
+            >
               <motion.div 
                 className="liquid-glass-chip text-xs md:text-sm pointer-events-auto cursor-pointer flex"
                 style={{ animation: 'floatReactionAlt 11s ease-in-out infinite', animationDelay: '2.5s' }}
@@ -213,7 +235,10 @@ const Index = () => {
               </motion.div>
             </div>
 
-            <div className="hidden sm:block absolute top-[38%] right-[3%] sm:right-[5%] lg:right-[7%]">
+            <div 
+              className="hidden sm:block absolute top-[38%] right-[3%] sm:right-[5%] lg:right-[7%]"
+              style={{ transform: `translateY(${chipsParallax * 1.3}px)` }}
+            >
               <motion.div 
                 className="liquid-glass-chip text-xs md:text-sm pointer-events-auto cursor-pointer flex"
                 style={{ animation: 'floatReaction 13s ease-in-out infinite', animationDelay: '3s' }}
@@ -227,7 +252,10 @@ const Index = () => {
               </motion.div>
             </div>
 
-            <div className="hidden sm:block absolute top-[55%] left-[1%] sm:left-[4%] lg:left-[8%]">
+            <div 
+              className="hidden sm:block absolute top-[55%] left-[1%] sm:left-[4%] lg:left-[8%]"
+              style={{ transform: `translateY(${chipsParallax * 1.25}px)` }}
+            >
               <motion.div 
                 className="liquid-glass-chip text-xs md:text-sm pointer-events-auto cursor-pointer flex"
                 style={{ animation: 'floatReaction 11s ease-in-out infinite', animationDelay: '3.5s' }}
@@ -242,7 +270,10 @@ const Index = () => {
             </div>
 
             {/* TIER 3 - Small chips (desktop lg+) */}
-            <div className="hidden lg:block absolute top-[22%] left-[18%] lg:left-[22%]">
+            <div 
+              className="hidden lg:block absolute top-[22%] left-[18%] lg:left-[22%]"
+              style={{ transform: `translateY(${chipsParallax * 1.5}px)` }}
+            >
               <motion.div 
                 className="liquid-glass-chip text-xs pointer-events-auto cursor-pointer flex"
                 style={{ animation: 'floatReaction 15s ease-in-out infinite', animationDelay: '4s' }}
@@ -256,7 +287,10 @@ const Index = () => {
               </motion.div>
             </div>
 
-            <div className="hidden lg:block absolute top-[18%] right-[22%] lg:right-[25%]">
+            <div 
+              className="hidden lg:block absolute top-[18%] right-[22%] lg:right-[25%]"
+              style={{ transform: `translateY(${chipsParallax * 1.4}px)` }}
+            >
               <motion.div 
                 className="liquid-glass-chip text-xs pointer-events-auto cursor-pointer flex"
                 style={{ animation: 'floatReactionAlt 14s ease-in-out infinite', animationDelay: '4.5s' }}
@@ -270,7 +304,10 @@ const Index = () => {
               </motion.div>
             </div>
 
-            <div className="hidden lg:block absolute top-[60%] right-[2%] lg:right-[4%]">
+            <div 
+              className="hidden lg:block absolute top-[60%] right-[2%] lg:right-[4%]"
+              style={{ transform: `translateY(${chipsParallax * 1.6}px)` }}
+            >
               <motion.div 
                 className="liquid-glass-chip text-xs pointer-events-auto cursor-pointer flex"
                 style={{ animation: 'floatReaction 16s ease-in-out infinite', animationDelay: '5s' }}
@@ -284,7 +321,10 @@ const Index = () => {
               </motion.div>
             </div>
 
-            <div className="hidden lg:block absolute top-[52%] left-[20%] lg:left-[25%]">
+            <div 
+              className="hidden lg:block absolute top-[52%] left-[20%] lg:left-[25%]"
+              style={{ transform: `translateY(${chipsParallax * 1.45}px)` }}
+            >
               <motion.div 
                 className="liquid-glass-chip text-xs pointer-events-auto cursor-pointer flex"
                 style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '5.5s' }}
@@ -330,6 +370,7 @@ const Index = () => {
                   {/* Photo - On top of "Rafa", overlapping significantly */}
                   <motion.div 
                     className="relative z-20 -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-20 xl:-mt-24"
+                    data-cursor-action="message"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
