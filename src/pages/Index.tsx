@@ -160,7 +160,7 @@ const Index = () => {
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[75%] left-[8%] sm:left-[15%] lg:left-[18%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute top-[35%] sm:top-[75%] left-[8%] sm:left-[15%] lg:left-[18%] text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ animation: 'floatReaction 12s ease-in-out infinite', animationDelay: '1s' }}
               whileHover={{ scale: 1.15 }}
               initial={{ opacity: 0, y: 20 }}
@@ -172,7 +172,7 @@ const Index = () => {
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[70%] right-[6%] sm:right-[12%] lg:right-[15%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute top-[42%] sm:top-[70%] right-[6%] sm:right-[12%] lg:right-[15%] text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '1.5s' }}
               whileHover={{ scale: 1.15 }}
               initial={{ opacity: 0, y: 20 }}
