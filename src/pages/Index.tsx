@@ -132,129 +132,153 @@ const Index = () => {
           </div>
 
           {/* Floating Skill Chips */}
-          <div className="absolute inset-0 pointer-events-none overflow-visible z-[1]">
-            {/* Left side chips */}
+          <div className="absolute inset-0 pointer-events-none overflow-visible z-[30]">
+            
+            {/* TIER 1 - Large chips (always visible on mobile+) */}
             <motion.div 
-              className="liquid-glass-chip absolute top-[12%] left-[3%] sm:left-[5%] text-xs sm:text-sm pointer-events-auto cursor-pointer hidden sm:flex"
+              className="liquid-glass-chip absolute top-[8%] left-[4%] sm:left-[6%] lg:left-[10%] text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ animation: 'floatReaction 10s ease-in-out infinite', animationDelay: '0s' }}
               whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-              <span className="font-medium">User Research</span>
-            </motion.div>
-
-            <motion.div 
-              className="liquid-glass-chip absolute top-[28%] left-[2%] sm:left-[8%] text-xs sm:text-sm pointer-events-auto cursor-pointer"
-              style={{ animation: 'floatReactionAlt 12s ease-in-out infinite', animationDelay: '1.5s' }}
-              whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-            >
+              <span className="text-primary mr-1.5">✦</span>
               <span className="font-medium">UX Design</span>
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[48%] left-[1%] sm:left-[3%] text-xs sm:text-sm pointer-events-auto cursor-pointer hidden md:flex"
-              style={{ animation: 'floatReaction 11s ease-in-out infinite', animationDelay: '3s' }}
+              className="liquid-glass-chip absolute top-[12%] right-[5%] sm:right-[8%] lg:right-[12%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              style={{ animation: 'floatReactionAlt 11s ease-in-out infinite', animationDelay: '0.5s' }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.75 }}
+            >
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">UI Design</span>
+            </motion.div>
+
+            <motion.div 
+              className="liquid-glass-chip absolute top-[75%] left-[8%] sm:left-[15%] lg:left-[18%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              style={{ animation: 'floatReaction 12s ease-in-out infinite', animationDelay: '1s' }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+            >
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">Product Design</span>
+            </motion.div>
+
+            <motion.div 
+              className="liquid-glass-chip absolute top-[70%] right-[6%] sm:right-[12%] lg:right-[15%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '1.5s' }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.85 }}
+            >
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">Design System</span>
+            </motion.div>
+
+            {/* TIER 2 - Medium chips (tablet sm+) */}
+            <motion.div 
+              className="liquid-glass-chip absolute top-[30%] left-[2%] sm:left-[3%] lg:left-[5%] text-xs md:text-sm pointer-events-auto cursor-pointer hidden sm:flex"
+              style={{ animation: 'floatReactionAlt 14s ease-in-out infinite', animationDelay: '2s' }}
               whileHover={{ scale: 1.15 }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.9 }}
             >
-              <span className="font-medium">Information Architecture</span>
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">User Research</span>
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[65%] left-[4%] sm:left-[6%] text-xs sm:text-sm pointer-events-auto cursor-pointer hidden sm:flex"
-              style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '4.5s' }}
-              whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 1.0 }}
-            >
-              <span className="font-medium">Wireframing</span>
-            </motion.div>
-
-            <motion.div 
-              className="liquid-glass-chip absolute top-[82%] left-[2%] sm:left-[10%] text-xs sm:text-sm pointer-events-auto cursor-pointer hidden lg:flex"
-              style={{ animation: 'floatReaction 14s ease-in-out infinite', animationDelay: '2s' }}
-              whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 1.1 }}
-            >
-              <span className="font-medium">Usability Testing</span>
-            </motion.div>
-
-            {/* Right side chips */}
-            <motion.div 
-              className="liquid-glass-chip absolute top-[15%] right-[3%] sm:right-[6%] text-xs sm:text-sm pointer-events-auto cursor-pointer hidden sm:flex"
-              style={{ animation: 'floatReactionAlt 11s ease-in-out infinite', animationDelay: '0.5s' }}
-              whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.75 }}
-            >
-              <span className="font-medium">UI Design</span>
-            </motion.div>
-
-            <motion.div 
-              className="liquid-glass-chip absolute top-[32%] right-[1%] sm:right-[4%] text-xs sm:text-sm pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute top-[38%] right-[3%] sm:right-[5%] lg:right-[7%] text-xs md:text-sm pointer-events-auto cursor-pointer hidden sm:flex"
               style={{ animation: 'floatReaction 13s ease-in-out infinite', animationDelay: '2.5s' }}
-              whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.85 }}
-            >
-              <span className="font-medium">Design System</span>
-            </motion.div>
-
-            <motion.div 
-              className="liquid-glass-chip absolute top-[50%] right-[2%] sm:right-[8%] text-xs sm:text-sm pointer-events-auto cursor-pointer hidden md:flex"
-              style={{ animation: 'floatReactionAlt 10s ease-in-out infinite', animationDelay: '3.5s' }}
               whileHover={{ scale: 1.15 }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.95 }}
             >
+              <span className="text-primary mr-1.5">✦</span>
               <span className="font-medium">Prototyping</span>
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[68%] right-[3%] sm:right-[5%] text-xs sm:text-sm pointer-events-auto cursor-pointer hidden sm:flex"
-              style={{ animation: 'floatReaction 12s ease-in-out infinite', animationDelay: '5s' }}
+              className="liquid-glass-chip absolute top-[55%] left-[1%] sm:left-[4%] lg:left-[8%] text-xs md:text-sm pointer-events-auto cursor-pointer hidden sm:flex"
+              style={{ animation: 'floatReaction 11s ease-in-out infinite', animationDelay: '3s' }}
               whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 1.05 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
             >
+              <span className="text-primary mr-1.5">✦</span>
               <span className="font-medium">Interaction Design</span>
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[85%] right-[6%] sm:right-[12%] text-xs sm:text-sm pointer-events-auto cursor-pointer hidden lg:flex"
-              style={{ animation: 'floatReactionAlt 15s ease-in-out infinite', animationDelay: '1s' }}
+              className="liquid-glass-chip absolute top-[88%] right-[20%] sm:right-[25%] lg:right-[30%] text-xs md:text-sm pointer-events-auto cursor-pointer hidden sm:flex"
+              style={{ animation: 'floatReactionAlt 12s ease-in-out infinite', animationDelay: '3.5s' }}
               whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 1.15 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.05 }}
             >
+              <span className="text-primary mr-1.5">✦</span>
               <span className="font-medium">AI Tools</span>
             </motion.div>
 
-            {/* Center-ish chips that overlap slightly with main content */}
+            {/* TIER 3 - Small chips (desktop lg+) */}
             <motion.div 
-              className="liquid-glass-chip absolute top-[8%] left-1/2 -translate-x-1/2 ml-[-120px] sm:ml-[-180px] text-xs sm:text-sm pointer-events-auto cursor-pointer z-[25] hidden md:flex"
-              style={{ animation: 'floatReaction 14s ease-in-out infinite', animationDelay: '4s' }}
+              className="liquid-glass-chip absolute top-[22%] left-[18%] lg:left-[22%] text-xs pointer-events-auto cursor-pointer hidden lg:flex"
+              style={{ animation: 'floatReaction 15s ease-in-out infinite', animationDelay: '4s' }}
               whileHover={{ scale: 1.15 }}
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+            >
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">Wireframing</span>
+            </motion.div>
+
+            <motion.div 
+              className="liquid-glass-chip absolute top-[18%] right-[22%] lg:right-[25%] text-xs pointer-events-auto cursor-pointer hidden lg:flex"
+              style={{ animation: 'floatReactionAlt 14s ease-in-out infinite', animationDelay: '4.5s' }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.15 }}
+            >
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">Visual Design</span>
+            </motion.div>
+
+            <motion.div 
+              className="liquid-glass-chip absolute top-[60%] right-[2%] lg:right-[4%] text-xs pointer-events-auto cursor-pointer hidden lg:flex"
+              style={{ animation: 'floatReaction 16s ease-in-out infinite', animationDelay: '5s' }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, x: 15 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 1.2 }}
             >
-              <span className="font-medium">Visual Design</span>
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">Usability Testing</span>
+            </motion.div>
+
+            <motion.div 
+              className="liquid-glass-chip absolute top-[85%] left-[25%] lg:left-[32%] text-xs pointer-events-auto cursor-pointer hidden lg:flex"
+              style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '5.5s' }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.25 }}
+            >
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">Information Architecture</span>
             </motion.div>
           </div>
 
