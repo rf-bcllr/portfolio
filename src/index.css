@@ -349,8 +349,7 @@ All colors MUST be HSL.
     max-width: 160px;
     height: auto;
     padding: 10px 14px;
-    border-radius: 16px 16px 16px 4px;
-    background: hsl(var(--foreground));
+    background: hsl(var(--primary));
     mix-blend-mode: normal;
     flex-direction: column;
   }

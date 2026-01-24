@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home, ArrowLeft, Download, ArrowRight, Eye, Plus, Minus, RotateCcw, ChevronLeft, ChevronRight, X, MessageCircle } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp, Sun, Moon, Home, ArrowLeft, Download, ArrowRight, Eye, Plus, Minus, RotateCcw, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const friendlyMessages = [
   "How are you doing?",
@@ -22,6 +22,7 @@ export const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [randomMessage, setRandomMessage] = useState('');
+  const [photoPosition, setPhotoPosition] = useState<{ x: number; y: number } | null>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
   const targetPosition = useRef({ x: 0, y: 0 });
@@ -49,6 +50,12 @@ export const CustomCursor = () => {
       // Check for message action (photo hover)
       const messageElement = target.closest('[data-cursor-action="message"]') as HTMLElement;
       if (messageElement) {
+        // Track photo position for dynamic border-radius
+        const rect = messageElement.getBoundingClientRect();
+        setPhotoPosition({
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        });
         // Only update message if we're not already in message mode
         if (cursorAction !== 'message') {
           setRandomMessage(friendlyMessages[Math.floor(Math.random() * friendlyMessages.length)]);
@@ -156,12 +163,34 @@ export const CustomCursor = () => {
       case 'message':
         return (
           <div className="custom-cursor-message">
-            <MessageCircle size={14} strokeWidth={2} />
             <span>{randomMessage}</span>
           </div>
         );
       default:
         return null;
+    }
+  };
+
+  // Calculate dynamic border-radius based on cursor position relative to photo
+  const getMessageBorderRadius = () => {
+    if (!photoPosition) return '16px 16px 16px 4px'; // default: bottom-left points
+    
+    const dx = position.x - photoPosition.x;
+    const dy = position.y - photoPosition.y;
+    
+    // Determine which quadrant the cursor is relative to the photo center
+    if (dx >= 0 && dy >= 0) {
+      // Cursor is below and to the right → top-left corner points to photo
+      return '4px 16px 16px 16px';
+    } else if (dx < 0 && dy >= 0) {
+      // Cursor is below and to the left → top-right corner points to photo
+      return '16px 4px 16px 16px';
+    } else if (dx >= 0 && dy < 0) {
+      // Cursor is above and to the right → bottom-left corner points to photo
+      return '16px 16px 16px 4px';
+    } else {
+      // Cursor is above and to the left → bottom-right corner points to photo
+      return '16px 16px 4px 16px';
     }
   };
 
@@ -176,6 +205,7 @@ export const CustomCursor = () => {
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
+        borderRadius: cursorAction === 'message' ? getMessageBorderRadius() : undefined,
       }}
     >
       {renderCursorIcon()}
