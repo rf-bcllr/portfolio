@@ -11,6 +11,12 @@ All colors MUST be HSL.
     --background: 220 20% 97%;
     --foreground: 222 24% 10%;
 
+    /* Hero Adaptive Layout System - Viewport-aware spacing */
+    --hero-top-spacing: clamp(1.5rem, 6vh, 4rem);
+    --hero-bottom-spacing: clamp(1rem, 4vh, 3rem);
+    --hero-chip-zone-height: clamp(80px, 18vh, 180px);
+    --hero-content-gap: clamp(0.5rem, 2vh, 1.5rem);
+
     --card: 0 0% 100%;
     --card-foreground: 222 24% 10%;
 
