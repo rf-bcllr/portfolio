@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 import { useParallaxLayers } from "@/hooks/useParallax";
+import { useViewportHeight } from "@/hooks/useViewportHeight";
 import { ArrowRight, Heart, Zap, ChevronRight, ChevronDown, Search, RefreshCw, Rocket, TrendingUp } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
@@ -29,6 +30,7 @@ import esdrasAvatar from "@/assets/esdras-avatar.png";
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations();
+  const { category: viewportCategory } = useViewportHeight();
   
   // Parallax layers: [background, marquee, avatar, chips]
   const [bgParallax, marqueeParallax, avatarParallax, chipsParallax] = useParallaxLayers([
@@ -115,7 +117,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden min-h-[calc(100vh-65px)] min-h-[calc(100dvh-65px)] flex flex-col">
+        <section id="inicio" className="relative overflow-hidden min-h-[calc(100vh-65px)] min-h-[calc(100dvh-65px)] flex flex-col justify-between">
           
           {/* Marquee com nome repetido - Background */}
           <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
@@ -132,13 +134,23 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Floating Skill Chips */}
-          <div className="absolute inset-0 pointer-events-none overflow-visible z-[30]">
-            
+          {/* ============================================
+              ZONE 1: Floating Skill Chips Zone (Mobile Adaptive)
+              Height adapts via CSS clamp() for different viewports
+              ============================================ */}
+          <div 
+            className="relative w-full pointer-events-none z-[30] md:absolute md:inset-0"
+            style={{ 
+              height: 'var(--hero-chip-zone-height)',
+              marginTop: 'var(--hero-top-spacing)'
+            }}
+          >
             {/* TIER 1 - Priority chips (always visible): Product Design, AI Tools, User Research, Design System */}
             <motion.div 
-              className="liquid-glass-chip absolute top-[8%] sm:top-[75%] left-[4%] sm:left-[15%] lg:left-[18%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ 
+                top: viewportCategory === 'short' ? '5%' : '10%',
+                left: '4%',
                 animation: 'floatReaction 12s ease-in-out infinite', 
                 animationDelay: '0s',
                 transform: `translateY(${chipsParallax * 0.8}px)`
@@ -153,8 +165,10 @@ const Index = () => {
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[12%] sm:top-[30%] right-[5%] sm:left-[2%] sm:right-auto lg:left-[5%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ 
+                top: viewportCategory === 'short' ? '35%' : '50%',
+                right: '5%',
                 animation: 'floatReactionAlt 14s ease-in-out infinite', 
                 animationDelay: '0.5s',
                 transform: `translateY(${chipsParallax * 0.9}px)`
@@ -169,8 +183,10 @@ const Index = () => {
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[35%] sm:top-[48%] left-[8%] sm:right-[18%] sm:left-auto lg:right-[22%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ 
+                top: viewportCategory === 'short' ? '65%' : '75%',
+                left: '8%',
                 animation: 'floatReactionAlt 12s ease-in-out infinite', 
                 animationDelay: '1s',
                 transform: `translateY(${chipsParallax * 1.0}px)`
@@ -185,8 +201,10 @@ const Index = () => {
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute top-[42%] sm:top-[70%] right-[6%] sm:right-[12%] lg:right-[15%] text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ 
+                top: viewportCategory === 'short' ? '85%' : '90%',
+                right: '6%',
                 animation: 'floatReactionAlt 13s ease-in-out infinite', 
                 animationDelay: '1.5s',
                 transform: `translateY(${chipsParallax * 0.85}px)`
@@ -339,8 +357,11 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Main content - centered with flex-1 */}
-          <div className="flex-1 flex items-center justify-center">
+          {/* ============================================
+              ZONE 2: Main Content (Name + Photo + Description)
+              Centered with flex-1 to fill remaining space
+              ============================================ */}
+          <div className="flex-1 flex items-center justify-center" style={{ gap: 'var(--hero-content-gap)' }}>
             <div className="container mx-auto px-6">
               <div className="max-w-6xl mx-auto text-center">
                 
@@ -414,25 +435,33 @@ const Index = () => {
                 >
                   Your next <span className="font-bold text-foreground">Product Designer</span>.
                 </motion.p>
-
-                {/* CTA Buttons */}
-                <motion.div 
-                  className="mt-8 sm:mt-4 md:mt-6 lg:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3 md:gap-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.55 }}
-                >
-                  <Button asChild variant="contrast" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
-                    <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
-                      {t.talkOnLinkedIn}
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
-                    <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
-                  </Button>
-                </motion.div>
               </div>
             </div>
+          </div>
+
+          {/* ============================================
+              ZONE 3: CTA Buttons (Fixed to bottom with fluid padding)
+              Uses CSS variable for bottom spacing
+              ============================================ */}
+          <div 
+            className="w-full flex justify-center"
+            style={{ paddingBottom: 'var(--hero-bottom-spacing)' }}
+          >
+            <motion.div 
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3 md:gap-4 px-6"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+            >
+              <Button asChild variant="contrast" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
+                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
+                  {t.talkOnLinkedIn}
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
+                <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
+              </Button>
+            </motion.div>
           </div>
 
         </section>
