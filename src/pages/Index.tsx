@@ -8,7 +8,6 @@ import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 import { useParallaxLayers } from "@/hooks/useParallax";
-import { useViewportHeight } from "@/hooks/useViewportHeight";
 import { ArrowRight, Heart, Zap, ChevronRight, ChevronDown, Search, RefreshCw, Rocket, TrendingUp } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CertificationCard } from "@/components/CertificationCard";
@@ -30,7 +29,6 @@ import esdrasAvatar from "@/assets/esdras-avatar.png";
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations();
-  const { category: viewportCategory } = useViewportHeight();
   
   // Parallax layers: [background, marquee, avatar, chips]
   const [bgParallax, marqueeParallax, avatarParallax, chipsParallax] = useParallaxLayers([
@@ -117,7 +115,7 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section id="inicio" className="relative overflow-hidden min-h-[calc(100vh-65px)] min-h-[calc(100dvh-65px)] flex flex-col justify-between">
+        <section id="inicio" className="relative overflow-hidden min-h-[calc(100vh-65px)] min-h-[calc(100dvh-65px)] flex flex-col">
           
           {/* Marquee com nome repetido - Background */}
           <div className="absolute top-1/2 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none -z-10" style={{
@@ -134,23 +132,13 @@ const Index = () => {
             </div>
           </div>
 
-          {/* ============================================
-              ZONE 1: Floating Skill Chips Zone (Mobile Adaptive)
-              Height adapts via CSS clamp() for different viewports
-              ============================================ */}
-          <div 
-            className="relative w-full pointer-events-none z-[30] md:absolute md:inset-0"
-            style={{ 
-              height: 'var(--hero-chip-zone-height)',
-              marginTop: 'var(--hero-top-spacing)'
-            }}
-          >
-            {/* TIER 1 - Priority chips (always visible): Product Design, AI Tools, User Research, Design System */}
+          {/* Floating Skill Chips - Hidden on mobile, visible from sm+ */}
+          <div className="absolute inset-0 pointer-events-none overflow-visible z-[30] hidden sm:block">
+            
+            {/* TIER 1 - Priority chips (tablet sm+): Product Design, AI Tools, User Research, Design System */}
             <motion.div 
-              className="liquid-glass-chip absolute text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute top-[75%] left-[15%] lg:left-[18%] text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ 
-                top: viewportCategory === 'short' ? '5%' : '10%',
-                left: '4%',
                 animation: 'floatReaction 12s ease-in-out infinite', 
                 animationDelay: '0s',
                 transform: `translateY(${chipsParallax * 0.8}px)`
@@ -165,10 +153,8 @@ const Index = () => {
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute top-[30%] left-[2%] lg:left-[5%] text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ 
-                top: viewportCategory === 'short' ? '35%' : '50%',
-                right: '5%',
                 animation: 'floatReactionAlt 14s ease-in-out infinite', 
                 animationDelay: '0.5s',
                 transform: `translateY(${chipsParallax * 0.9}px)`
@@ -183,10 +169,8 @@ const Index = () => {
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute top-[48%] right-[18%] lg:right-[22%] text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ 
-                top: viewportCategory === 'short' ? '65%' : '75%',
-                left: '8%',
                 animation: 'floatReactionAlt 12s ease-in-out infinite', 
                 animationDelay: '1s',
                 transform: `translateY(${chipsParallax * 1.0}px)`
@@ -201,10 +185,8 @@ const Index = () => {
             </motion.div>
 
             <motion.div 
-              className="liquid-glass-chip absolute text-sm md:text-base pointer-events-auto cursor-pointer"
+              className="liquid-glass-chip absolute top-[70%] right-[12%] lg:right-[15%] text-sm md:text-base pointer-events-auto cursor-pointer"
               style={{ 
-                top: viewportCategory === 'short' ? '85%' : '90%',
-                right: '6%',
                 animation: 'floatReactionAlt 13s ease-in-out infinite', 
                 animationDelay: '1.5s',
                 transform: `translateY(${chipsParallax * 0.85}px)`
@@ -219,82 +201,79 @@ const Index = () => {
             </motion.div>
 
             {/* TIER 2 - Secondary chips (tablet sm+): UX Design, UI Design, Prototyping, Interaction Design */}
-            <div 
-              className="hidden sm:block absolute top-[8%] left-[6%] lg:left-[10%]"
-              style={{ transform: `translateY(${chipsParallax * 1.2}px)` }}
+            <motion.div 
+              className="liquid-glass-chip absolute top-[8%] left-[6%] lg:left-[10%] text-xs md:text-sm pointer-events-auto cursor-pointer"
+              style={{ 
+                animation: 'floatReaction 10s ease-in-out infinite', 
+                animationDelay: '2s',
+                transform: `translateY(${chipsParallax * 1.2}px)`
+              }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
             >
-              <motion.div 
-                className="liquid-glass-chip text-xs md:text-sm pointer-events-auto cursor-pointer flex"
-                style={{ animation: 'floatReaction 10s ease-in-out infinite', animationDelay: '2s' }}
-                whileHover={{ scale: 1.15 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.9 }}
-              >
-                <span className="text-primary mr-1.5">✦</span>
-                <span className="font-medium">UX Design</span>
-              </motion.div>
-            </div>
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">UX Design</span>
+            </motion.div>
 
-            <div 
-              className="hidden sm:block absolute top-[12%] right-[8%] lg:right-[12%]"
-              style={{ transform: `translateY(${chipsParallax * 1.1}px)` }}
+            <motion.div 
+              className="liquid-glass-chip absolute top-[12%] right-[8%] lg:right-[12%] text-xs md:text-sm pointer-events-auto cursor-pointer"
+              style={{ 
+                animation: 'floatReactionAlt 11s ease-in-out infinite', 
+                animationDelay: '2.5s',
+                transform: `translateY(${chipsParallax * 1.1}px)`
+              }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.95 }}
             >
-              <motion.div 
-                className="liquid-glass-chip text-xs md:text-sm pointer-events-auto cursor-pointer flex"
-                style={{ animation: 'floatReactionAlt 11s ease-in-out infinite', animationDelay: '2.5s' }}
-                whileHover={{ scale: 1.15 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.95 }}
-              >
-                <span className="text-primary mr-1.5">✦</span>
-                <span className="font-medium">UI Design</span>
-              </motion.div>
-            </div>
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">UI Design</span>
+            </motion.div>
 
-            <div 
-              className="hidden sm:block absolute top-[38%] right-[3%] sm:right-[5%] lg:right-[7%]"
-              style={{ transform: `translateY(${chipsParallax * 1.3}px)` }}
+            <motion.div 
+              className="liquid-glass-chip absolute top-[38%] right-[3%] sm:right-[5%] lg:right-[7%] text-xs md:text-sm pointer-events-auto cursor-pointer"
+              style={{ 
+                animation: 'floatReaction 13s ease-in-out infinite', 
+                animationDelay: '3s',
+                transform: `translateY(${chipsParallax * 1.3}px)`
+              }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
             >
-              <motion.div 
-                className="liquid-glass-chip text-xs md:text-sm pointer-events-auto cursor-pointer flex"
-                style={{ animation: 'floatReaction 13s ease-in-out infinite', animationDelay: '3s' }}
-                whileHover={{ scale: 1.15 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 1.0 }}
-              >
-                <span className="text-primary mr-1.5">✦</span>
-                <span className="font-medium">Prototyping</span>
-              </motion.div>
-            </div>
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">Prototyping</span>
+            </motion.div>
 
-            <div 
-              className="hidden sm:block absolute top-[55%] left-[1%] sm:left-[4%] lg:left-[8%]"
-              style={{ transform: `translateY(${chipsParallax * 1.25}px)` }}
+            <motion.div 
+              className="liquid-glass-chip absolute top-[55%] left-[1%] sm:left-[4%] lg:left-[8%] text-xs md:text-sm pointer-events-auto cursor-pointer"
+              style={{ 
+                animation: 'floatReaction 11s ease-in-out infinite', 
+                animationDelay: '3.5s',
+                transform: `translateY(${chipsParallax * 1.25}px)`
+              }}
+              whileHover={{ scale: 1.15 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 1.05 }}
             >
-              <motion.div 
-                className="liquid-glass-chip text-xs md:text-sm pointer-events-auto cursor-pointer flex"
-                style={{ animation: 'floatReaction 11s ease-in-out infinite', animationDelay: '3.5s' }}
-                whileHover={{ scale: 1.15 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 1.05 }}
-              >
-                <span className="text-primary mr-1.5">✦</span>
-                <span className="font-medium">Interaction Design</span>
-              </motion.div>
-            </div>
+              <span className="text-primary mr-1.5">✦</span>
+              <span className="font-medium">Interaction Design</span>
+            </motion.div>
 
             {/* TIER 3 - Small chips (desktop lg+) */}
-            <div 
-              className="hidden lg:block absolute top-[22%] left-[18%] lg:left-[22%]"
-              style={{ transform: `translateY(${chipsParallax * 1.5}px)` }}
-            >
+            <div className="hidden lg:block">
               <motion.div 
-                className="liquid-glass-chip text-xs pointer-events-auto cursor-pointer flex"
-                style={{ animation: 'floatReaction 15s ease-in-out infinite', animationDelay: '4s' }}
+                className="liquid-glass-chip absolute top-[22%] left-[18%] lg:left-[22%] text-xs pointer-events-auto cursor-pointer"
+                style={{ 
+                  animation: 'floatReaction 15s ease-in-out infinite', 
+                  animationDelay: '4s',
+                  transform: `translateY(${chipsParallax * 1.5}px)`
+                }}
                 whileHover={{ scale: 1.15 }}
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -303,15 +282,14 @@ const Index = () => {
                 <span className="text-primary mr-1.5">✦</span>
                 <span className="font-medium">Wireframing</span>
               </motion.div>
-            </div>
 
-            <div 
-              className="hidden lg:block absolute top-[18%] right-[22%] lg:right-[25%]"
-              style={{ transform: `translateY(${chipsParallax * 1.4}px)` }}
-            >
               <motion.div 
-                className="liquid-glass-chip text-xs pointer-events-auto cursor-pointer flex"
-                style={{ animation: 'floatReactionAlt 14s ease-in-out infinite', animationDelay: '4.5s' }}
+                className="liquid-glass-chip absolute top-[18%] right-[22%] lg:right-[25%] text-xs pointer-events-auto cursor-pointer"
+                style={{ 
+                  animation: 'floatReactionAlt 14s ease-in-out infinite', 
+                  animationDelay: '4.5s',
+                  transform: `translateY(${chipsParallax * 1.4}px)`
+                }}
                 whileHover={{ scale: 1.15 }}
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -320,15 +298,14 @@ const Index = () => {
                 <span className="text-primary mr-1.5">✦</span>
                 <span className="font-medium">Visual Design</span>
               </motion.div>
-            </div>
 
-            <div 
-              className="hidden lg:block absolute top-[60%] right-[2%] lg:right-[4%]"
-              style={{ transform: `translateY(${chipsParallax * 1.6}px)` }}
-            >
               <motion.div 
-                className="liquid-glass-chip text-xs pointer-events-auto cursor-pointer flex"
-                style={{ animation: 'floatReaction 16s ease-in-out infinite', animationDelay: '5s' }}
+                className="liquid-glass-chip absolute top-[60%] right-[2%] lg:right-[4%] text-xs pointer-events-auto cursor-pointer"
+                style={{ 
+                  animation: 'floatReaction 16s ease-in-out infinite', 
+                  animationDelay: '5s',
+                  transform: `translateY(${chipsParallax * 1.6}px)`
+                }}
                 whileHover={{ scale: 1.15 }}
                 initial={{ opacity: 0, x: 15 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -337,15 +314,14 @@ const Index = () => {
                 <span className="text-primary mr-1.5">✦</span>
                 <span className="font-medium">Usability Testing</span>
               </motion.div>
-            </div>
 
-            <div 
-              className="hidden lg:block absolute top-[52%] left-[20%] lg:left-[25%]"
-              style={{ transform: `translateY(${chipsParallax * 1.45}px)` }}
-            >
               <motion.div 
-                className="liquid-glass-chip text-xs pointer-events-auto cursor-pointer flex"
-                style={{ animation: 'floatReactionAlt 13s ease-in-out infinite', animationDelay: '5.5s' }}
+                className="liquid-glass-chip absolute top-[52%] left-[20%] lg:left-[25%] text-xs pointer-events-auto cursor-pointer"
+                style={{ 
+                  animation: 'floatReactionAlt 13s ease-in-out infinite', 
+                  animationDelay: '5.5s',
+                  transform: `translateY(${chipsParallax * 1.45}px)`
+                }}
                 whileHover={{ scale: 1.15 }}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -357,11 +333,8 @@ const Index = () => {
             </div>
           </div>
 
-          {/* ============================================
-              ZONE 2: Main Content (Name + Photo + Description)
-              Centered with flex-1 to fill remaining space
-              ============================================ */}
-          <div className="flex-1 flex items-center justify-center" style={{ gap: 'var(--hero-content-gap)' }}>
+          {/* Main content - centered with flex-1 */}
+          <div className="flex-1 flex items-center justify-center">
             <div className="container mx-auto px-6">
               <div className="max-w-6xl mx-auto text-center">
                 
@@ -435,33 +408,25 @@ const Index = () => {
                 >
                   Your next <span className="font-bold text-foreground">Product Designer</span>.
                 </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div 
+                  className="mt-8 sm:mt-4 md:mt-6 lg:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3 md:gap-4"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.55 }}
+                >
+                  <Button asChild variant="contrast" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
+                    <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
+                      {t.talkOnLinkedIn}
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
+                    <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
+                  </Button>
+                </motion.div>
               </div>
             </div>
-          </div>
-
-          {/* ============================================
-              ZONE 3: CTA Buttons (Fixed to bottom with fluid padding)
-              Uses CSS variable for bottom spacing
-              ============================================ */}
-          <div 
-            className="w-full flex justify-center"
-            style={{ paddingBottom: 'var(--hero-bottom-spacing)' }}
-          >
-            <motion.div 
-              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3 md:gap-4 px-6"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.55 }}
-            >
-              <Button asChild variant="contrast" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
-                <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link aria-label={t.talkOnLinkedIn}>
-                  {t.talkOnLinkedIn}
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto text-sm sm:text-sm md:text-base px-6 sm:px-6 md:px-8">
-                <a href="#projetos" data-cursor-action="scroll-down">{t.viewProjects}</a>
-              </Button>
-            </motion.div>
           </div>
 
         </section>
