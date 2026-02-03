@@ -42,16 +42,6 @@ All colors MUST be HSL.
     --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-display: "Clash Display", "Satoshi", ui-sans-serif, system-ui, sans-serif;
 
-    /* Elegant Spacing System - Insany/Mares inspired */
-    --section-gap-sm: 6rem;
-    --section-gap-md: 8rem;
-    --section-gap-lg: 10rem;
-    
-    /* Fluid Typography */
-    --headline-xl: clamp(3rem, 8vw, 6rem);
-    --headline-lg: clamp(2.5rem, 6vw, 4.5rem);
-    --headline-md: clamp(2rem, 4vw, 3rem);
-
     /* Effects - Bento Grid Style */
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(220 100% 60%));
     --shadow-elegant: 0 4px 20px -4px hsl(220 50% 50% / 0.15);
@@ -63,10 +53,8 @@ All colors MUST be HSL.
     --dur-fast: 220ms;
     --dur-med: 420ms;
     --dur-slow: 650ms;
-    --dur-elegant: 500ms;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
-    --ease-elegant: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --stagger-delay: 60ms;
 
     /* Sidebar tokens (kept for components) */

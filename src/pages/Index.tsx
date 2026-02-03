@@ -15,7 +15,6 @@ import { CompanyLogos } from "@/components/CompanyLogos";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { InteractiveHeadline } from "@/components/InteractiveHeadline";
 import { Marquee } from "@/components/Marquee";
-import { ProcessTimeline } from "@/components/ProcessTimeline";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import heroPortrait from "@/assets/hero-portrait.png";
 import professionalPhoto from "@/assets/rafael-professional.png";
@@ -435,7 +434,7 @@ const Index = () => {
         {/* Companies Section */}
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />
 
-        {/* Projetos - Bento Grid */}
+        {/* Projetos */}
         <section id="projetos" className="container mx-auto px-6 py-16 md:py-24 lg:py-32">
           <AnimatedSection className="mb-16 text-center max-w-3xl mx-auto">
             <InteractiveHeadline 
@@ -445,10 +444,10 @@ const Index = () => {
             <p className="text-lg md:text-xl text-muted-foreground">{t.projectsSubtitle}</p>
           </AnimatedSection>
 
-          {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {/* A - Feature project (spans 2 cols, 2 rows on lg) */}
-            <div className="lg:col-span-2 lg:row-span-2">
+          {/* Projects Grid - Manual Three-Column Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {/* Column 1: Cyberbrake, Mural, Healthy Food Delivery App, Students' Transportation Feature */}
+            <div className="space-y-6">
               <ProjectCard 
                 src={projectMedia[0].src} 
                 alt={projectMedia[0].title ?? "Project 1"} 
@@ -456,122 +455,131 @@ const Index = () => {
                 chips={projectMedia[0].chips} 
                 index={0}
                 slug={projectMedia[0].slug}
-                className="h-full"
               />
-            </div>
-            
-            {/* B - Small project */}
-            <ProjectCard 
-              src={projectMedia[4].src} 
-              alt={projectMedia[4].title ?? "Project 5"} 
-              title={projectMedia[4].title} 
-              chips={projectMedia[4].chips} 
-              index={1}
-              slug={projectMedia[4].slug}
-            />
-            
-            {/* C - Small project */}
-            <ProjectCard 
-              src={projectMedia[5].src} 
-              alt={projectMedia[5].title ?? "Project 6"} 
-              title={projectMedia[5].title} 
-              chips={projectMedia[5].chips} 
-              index={2}
-              slug={projectMedia[5].slug}
-            />
-            
-            {/* D - Wide project (spans 2 cols) */}
-            <div className="lg:col-span-2">
               <ProjectCard 
                 src={projectMedia[1].src} 
                 alt={projectMedia[1].title ?? "Project 2"} 
                 title={projectMedia[1].title} 
                 chips={projectMedia[1].chips} 
-                index={3}
+                index={1}
                 slug={projectMedia[1].slug}
               />
+              <ProjectCard 
+                src={projectMedia[2].src} 
+                alt={projectMedia[2].title ?? "Project 3"} 
+                title={projectMedia[2].title} 
+                chips={projectMedia[2].chips} 
+                index={2}
+                slug={projectMedia[2].slug}
+              />
+              <ProjectCard 
+                src={projectMedia[3].src} 
+                alt={projectMedia[3].title ?? "Project 4"} 
+                title={projectMedia[3].title} 
+                chips={projectMedia[3].chips} 
+                index={3}
+                slug={projectMedia[3].slug}
+              />
             </div>
-            
-            {/* E - Regular project */}
-            <ProjectCard 
-              src={projectMedia[2].src} 
-              alt={projectMedia[2].title ?? "Project 3"} 
-              title={projectMedia[2].title} 
-              chips={projectMedia[2].chips} 
-              index={4}
-              slug={projectMedia[2].slug}
-            />
-            
-            {/* F - Regular project */}
-            <ProjectCard 
-              src={projectMedia[3].src} 
-              alt={projectMedia[3].title ?? "Project 4"} 
-              title={projectMedia[3].title} 
-              chips={projectMedia[3].chips} 
-              index={5}
-              slug={projectMedia[3].slug}
-            />
-            
-            {/* G - Regular project */}
-            <ProjectCard 
-              src={projectMedia[6].src} 
-              alt={projectMedia[6].title ?? "Project 7"} 
-              title={projectMedia[6].title} 
-              chips={projectMedia[6].chips} 
-              index={6}
-              slug={projectMedia[6].slug}
-            />
-            
-            {/* H - Regular project */}
-            <ProjectCard 
-              src={projectMedia[7].src} 
-              alt={projectMedia[7].title ?? "Project 8"} 
-              title={projectMedia[7].title} 
-              chips={projectMedia[7].chips} 
-              index={7}
-              slug={projectMedia[7].slug}
-            />
+
+            {/* Column 2: Meu Arco, AI Writing Assistant */}
+            <div className="space-y-6">
+              <ProjectCard 
+                src={projectMedia[4].src} 
+                alt={projectMedia[4].title ?? "Project 5"} 
+                title={projectMedia[4].title} 
+                chips={projectMedia[4].chips} 
+                index={4}
+                slug={projectMedia[4].slug}
+              />
+              <ProjectCard 
+                src={projectMedia[5].src} 
+                alt={projectMedia[5].title ?? "Project 6"} 
+                title={projectMedia[5].title} 
+                chips={projectMedia[5].chips} 
+                index={5}
+                slug={projectMedia[5].slug}
+              />
+            </div>
+
+            {/* Column 3: Healthy Food Delivery App, Digital Signature Feature */}
+            <div className="space-y-6">
+              <ProjectCard 
+                src={projectMedia[6].src} 
+                alt={projectMedia[6].title ?? "Project 7"} 
+                title={projectMedia[6].title} 
+                chips={projectMedia[6].chips} 
+                index={6}
+                slug={projectMedia[6].slug}
+              />
+              <ProjectCard 
+                src={projectMedia[7].src} 
+                alt={projectMedia[7].title ?? "Project 8"} 
+                title={projectMedia[7].title} 
+                chips={projectMedia[7].chips} 
+                index={7}
+                slug={projectMedia[7].slug}
+              />
+            </div>
           </div>
         </section>
 
-        {/* Design Process Section - Horizontal Timeline */}
+        {/* Design Process Section */}
         <section id="design-process" className="container mx-auto px-6 py-16 md:py-24 lg:py-32">
-          <AnimatedSection className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-4 text-center">
+          <AnimatedSection className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display mb-6 text-center">
               {t.designProcessTitle}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-center mb-16">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-16">
               {t.designProcessIntro}
             </p>
 
-            <ProcessTimeline 
-              steps={[
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
                 { 
                   icon: Search, 
                   title: t.designProcessStrategize?.title || "Strategize",
-                  description: t.designProcessStrategize?.description || "Explore the problem deeply. Understand user needs, business goals, and competition.",
-                  number: "01"
+                  description: t.designProcessStrategize?.description || "Explore the problem as deeply as possible. Understand the needs of the users and business, the context and the competition.",
+                  delay: 0
                 },
                 { 
                   icon: RefreshCw, 
                   title: t.designProcessIterate?.title || "Iterate",
-                  description: t.designProcessIterate?.description || "Generate ideas freely. Sketch, wireframe, and prototype without fear.",
-                  number: "02"
+                  description: t.designProcessIterate?.description || "Generate as many ideas as possible. Do not be afraid to experiment and try out new ideas. Sketch, create wireframes, build prototypes.",
+                  delay: 0.1
                 },
                 { 
                   icon: Rocket, 
                   title: t.designProcessLaunch?.title || "Launch",
-                  description: t.designProcessLaunch?.description || "Test feasibility and gather user feedback. Be ready to adapt.",
-                  number: "03"
+                  description: t.designProcessLaunch?.description || "Test feasibility of the product and get feedback from users. Be prepared to make changes to the product based on the feedback.",
+                  delay: 0.2
                 },
                 { 
                   icon: TrendingUp, 
                   title: t.designProcessMeasure?.title || "Measure",
-                  description: t.designProcessMeasure?.description || "Use metrics and data to iterate and improve continuously.",
-                  number: "04"
+                  description: t.designProcessMeasure?.description || "The design process is never really finished. Use metrics and data to iterate and improve the product and its performance.",
+                  delay: 0.3
                 }
-              ]}
-            />
+              ].map((process, index) => (
+                <motion.div
+                  key={process.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: process.delay,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="rounded-2xl p-6 hover-lift h-full" style={{ boxShadow: "var(--shadow-card)" }}>
+                    <process.icon className="w-8 h-8 text-foreground mb-4" />
+                    <h3 className="text-xl font-semibold mb-3">{process.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{process.description}</p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </AnimatedSection>
         </section>
 
