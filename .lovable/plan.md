@@ -1,32 +1,26 @@
-# Sistema de Layout Adaptativo para Hero Mobile
 
-## ✅ Implementação Concluída
 
-### Arquivos Criados/Modificados
+## Correção: Espaçamento uniforme no Marquee de Tools
 
-1. **`src/hooks/useViewportHeight.ts`** - CRIADO
-   - Hook que detecta altura do viewport e categoriza em: `short` (<600px), `medium` (600-750px), `tall` (>750px)
-   - Atualiza CSS custom property `--viewport-category`
+### Problema
+O marquee usa dois `div` flex separados lado a lado. O `gap-12` funciona apenas **dentro** de cada div, mas entre o último item do primeiro div e o primeiro item do segundo div não há gap -- eles ficam "colados".
 
-2. **`src/index.css`** - MODIFICADO
-   - Adicionadas variáveis CSS fluidas:
-     - `--hero-top-spacing`: clamp(1.5rem, 6vh, 4rem)
-     - `--hero-bottom-spacing`: clamp(1rem, 4vh, 3rem)
-     - `--hero-chip-zone-height`: clamp(80px, 18vh, 180px)
-     - `--hero-content-gap`: clamp(0.5rem, 2vh, 1.5rem)
+### Solução
+Adicionar `padding-right: 3rem` (equivalente ao `gap-12` = 48px) em cada div do marquee, garantindo que o espaço entre o último e o primeiro item seja idêntico ao espaço entre todos os outros.
 
-3. **`src/pages/Index.tsx`** - MODIFICADO
-   - Hero section reestruturada em 3 zonas:
-     - **Zone 1**: Floating Chips (altura adaptativa via CSS clamp)
-     - **Zone 2**: Main Content (nome + foto + descrição, centralizado)
-     - **Zone 3**: CTA Buttons (padding fluido no fundo)
-   - Layout usa `justify-between` para distribuir conteúdo
-   - Chips Tier 1 posicionados relativamente à zona, não ao viewport
+Alternativa mais limpa: usar `margin-left` ou `gap` no container pai flex. Porém, como o container pai já usa `flex` sem gap, a forma mais direta é adicionar `pr-12` (padding-right de 48px) em cada div interno, igualando o `gap-12`.
 
-### Benefícios Alcançados
+### Arquivo a editar
 
-- ✅ Distribuição equilibrada em qualquer altura de tela
-- ✅ Sem espaço vazio excessivo
-- ✅ Chips contidos em zona própria
-- ✅ Performance nativa com CSS clamp()
-- ✅ Valores centralizados em variáveis CSS
+**`src/components/ToolsMarquee.tsx`**
+
+- Linha 35: adicionar `pr-12` ao className do primeiro div animado
+- Linha 59: adicionar `pr-12` ao className do segundo div animado (duplicado)
+
+Isso garante que o espaço visual entre a última ferramenta e a primeira da próxima iteração seja exatamente igual ao espaço entre quaisquer duas ferramentas consecutivas.
+
+### Impacto
+- Apenas o componente ToolsMarquee é alterado
+- Nenhum efeito colateral em outros componentes ou páginas
+- O Marquee genérico (`Marquee.tsx`) tem o mesmo problema mas não foi solicitado ajuste
+
