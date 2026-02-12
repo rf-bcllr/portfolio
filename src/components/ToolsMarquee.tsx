@@ -32,7 +32,7 @@ export function ToolsMarquee({
         )}
       >
         <div
-          className="flex shrink-0 items-center gap-12 py-4 hover:[animation-play-state:paused]"
+          className="flex shrink-0 items-center gap-12 pr-12 py-4 hover:[animation-play-state:paused]"
           style={{
             animation: `marquee ${speedMap[speed]} linear infinite`,
           }}
@@ -56,7 +56,7 @@ export function ToolsMarquee({
         </div>
         {/* Duplicate for seamless loop */}
         <div
-          className="flex shrink-0 items-center gap-12 py-4 hover:[animation-play-state:paused]"
+          className="flex shrink-0 items-center gap-12 pr-12 py-4 hover:[animation-play-state:paused]"
           style={{
             animation: `marquee ${speedMap[speed]} linear infinite`,
           }}
