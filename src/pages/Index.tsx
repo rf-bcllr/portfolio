@@ -24,6 +24,8 @@ import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 import projMuralNew from "@/assets/proj-mural-new.png";
 import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
+import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
+import projThumb1 from "@/assets/proj-thumb-1.png";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
 const Index = () => {
@@ -71,13 +73,13 @@ const Index = () => {
     },
     // Column 2
     {
-      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
+      src: meuArcoOgCover,
       title: "Meu Arco",
       chips: ["UI/UX", "Research"],
       slug: "meu-arco"
     },
     {
-      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
+      src: projThumb1,
       title: "AI Writing Assistant",
       chips: ["UI/UX", "AI"],
       slug: "ai-writing-assistant"
