@@ -4,6 +4,7 @@ import projMuralNew from "@/assets/proj-mural-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
+import projThumb1 from "@/assets/proj-thumb-1.png";
 
 // New structured data format for visual case studies
 export interface StructuredChallenge {
@@ -97,7 +98,7 @@ export const meuArcoStructured: StructuredProjectData = {
   subtitle: "From Two Products to One Unified Experience",
   year: 2024,
   company: "isaac (Arco Educação)",
-  heroImage: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
+  heroImage: meuArcoOgCover,
   coverType: "horizontal",
   overview: {
     role: "Product Designer",
@@ -121,7 +122,7 @@ export const meuArcoStructured: StructuredProjectData = {
   },
   gallery: [
     { 
-      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", 
+      src: meuArcoOgCover, 
       title: "Meu Arco Platform Demo" 
     },
     { src: meuArcoOgCover, title: "Meu Arco Overview" }
@@ -538,7 +539,7 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
   subtitle: "Content moderation and intelligent writing suggestions for school communications",
   year: 2025,
   company: "isaac (Arco Educação)",
-  heroImage: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
+  heroImage: projThumb1,
   coverType: "horizontal",
   overview: {
     role: "Product Designer",
@@ -556,7 +557,7 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
   },
   gallery: [
     { 
-      src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif", 
+      src: projThumb1, 
       title: "AI Writing Assistant Demo" 
     }
   ],
