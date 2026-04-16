@@ -46,7 +46,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Educational platform for Arco Educação ecosystem",
     year: 2024,
     company: "isaac (Arco Educação)",
-    heroImage: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
+    heroImage: meuArcoOgCover,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",
@@ -72,7 +72,7 @@ export const projectsData: ProjectData[] = [
     },
     gallery: [
       { 
-        src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", 
+        src: meuArcoOgCover, 
         title: "Meu Arco Platform Demo" 
       },
       { 
