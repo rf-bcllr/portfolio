@@ -8,6 +8,7 @@ import cyberbrakeReport from "@/assets/cyberbrake/generate-report.png";
 import cyberbrakeNetwork from "@/assets/cyberbrake/network-detail.png";
 import cyberbrakeExplorer from "@/assets/cyberbrake/networks-explorer.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
+import projThumb1 from "@/assets/proj-thumb-1.png";
 
 export interface ProjectData {
   id: string;
@@ -46,7 +47,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Educational platform for Arco Educação ecosystem",
     year: 2024,
     company: "isaac (Arco Educação)",
-    heroImage: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif",
+    heroImage: meuArcoOgCover,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",
@@ -72,7 +73,7 @@ export const projectsData: ProjectData[] = [
     },
     gallery: [
       { 
-        src: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2FUKVcVl4DB6Bzva11-ScreenRecording2024-11-19at08.19.59-ezgif.com-crop.gif", 
+        src: meuArcoOgCover, 
         title: "Meu Arco Platform Demo" 
       },
       { 
@@ -232,7 +233,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Content moderation and intelligent writing suggestions for school communications",
     year: 2025,
     company: "isaac (Arco Educação)",
-    heroImage: "https://storage.googleapis.com/creatorspace-public/users%2Fclnkcjnw802u4ou01tta5rqcm%2F6fsoLs1a9Yicj3I3-IA.gif",
+    heroImage: projThumb1,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",
