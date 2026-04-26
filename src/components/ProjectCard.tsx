@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
+import { MediaThumb, type VideoSource } from "@/components/MediaThumb";
 
 interface ProjectCardProps {
-  src: string;
+  src?: string;
+  sources?: VideoSource[];
+  poster?: string;
   alt: string;
   title: string;
   chips: string[];
@@ -13,6 +16,8 @@ interface ProjectCardProps {
 }
 export const ProjectCard = ({
   src,
+  sources,
+  poster,
   alt,
   title,
   chips,
@@ -31,7 +36,16 @@ export const ProjectCard = ({
   
   return <div data-cursor-action="navigate-internal" className={`group relative overflow-hidden rounded-[24px] cursor-pointer border border-border bg-card shadow-[0_1px_3px_0_hsl(220_20%_20%/0.06),0_1px_2px_-1px_hsl(220_20%_20%/0.06)] transition-all duration-300 hover:shadow-[0_10px_30px_-10px_hsl(220_50%_50%/0.15)] hover:-translate-y-1 hover:border-primary/30 ${className}`} onClick={handleClick}>
       <div className="relative w-full">
-        <img src={src} alt={alt} className="w-full h-auto object-contain transition-all duration-500 group-hover:scale-[1.02]" style={{ opacity: imageLoaded ? 1 : 0 }} onLoad={() => setImageLoaded(true)} />
+        <MediaThumb
+          src={src}
+          sources={sources}
+          poster={poster}
+          alt={alt}
+          className="w-full h-auto object-contain transition-all duration-500 group-hover:scale-[1.02]"
+          style={{ opacity: imageLoaded ? 1 : 0 }}
+          showSkeleton={false}
+          onLoaded={() => setImageLoaded(true)}
+        />
         
         {/* Loading placeholder */}
         {!imageLoaded && <div className="absolute inset-0 bg-muted animate-pulse" />}

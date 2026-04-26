@@ -25,8 +25,7 @@ import projMuralNew from "@/assets/proj-mural-new.png";
 import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
-import meuArcoDemo from "@/assets/meu-arco-demo.gif";
-import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";
+import { animatedProjectMedia } from "@/data/animatedMedia";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
 const Index = () => {
@@ -74,13 +73,13 @@ const Index = () => {
     },
     // Column 2
     {
-      src: meuArcoDemo,
+      ...animatedProjectMedia["meu-arco"],
       title: "Meu Arco",
       chips: ["UI/UX", "Research"],
       slug: "meu-arco"
     },
     {
-      src: aiWritingAssistant,
+      ...animatedProjectMedia["ai-writing-assistant"],
       title: "AI Writing Assistant",
       chips: ["UI/UX", "AI"],
       slug: "ai-writing-assistant"
@@ -379,6 +378,9 @@ const Index = () => {
                     <img 
                       src={heroPortrait} 
                       alt="Rafael Bacellar, Product Designer"
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                       className="h-[100px] sm:h-[120px] md:h-[140px] lg:h-[200px] xl:h-[220px] w-auto object-contain mx-auto"
                       style={{
                         maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
@@ -488,7 +490,8 @@ const Index = () => {
             {/* Column 2: Meu Arco, AI Writing Assistant */}
             <div className="space-y-6">
               <ProjectCard 
-                src={projectMedia[4].src} 
+                sources={(projectMedia[4] as any).sources}
+                poster={(projectMedia[4] as any).poster}
                 alt={projectMedia[4].title ?? "Project 5"} 
                 title={projectMedia[4].title} 
                 chips={projectMedia[4].chips} 
@@ -496,7 +499,8 @@ const Index = () => {
                 slug={projectMedia[4].slug}
               />
               <ProjectCard 
-                src={projectMedia[5].src} 
+                sources={(projectMedia[5] as any).sources}
+                poster={(projectMedia[5] as any).poster}
                 alt={projectMedia[5].title ?? "Project 6"} 
                 title={projectMedia[5].title} 
                 chips={projectMedia[5].chips} 
@@ -788,7 +792,7 @@ const Index = () => {
             }}>
                   <div className="flex items-start gap-4 mb-6">
                     <a href={rec.linkedin} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 transition-opacity hover:opacity-80">
-                      <img src={avatar} alt={rec.author} className="w-16 h-16 rounded-full object-cover border-2 border-border" />
+                      <img src={avatar} alt={rec.author} loading="lazy" decoding="async" className="w-16 h-16 rounded-full object-cover border-2 border-border" />
                     </a>
                     <div>
                       <h3 className="font-semibold text-lg mb-0.5">{rec.author}</h3>
