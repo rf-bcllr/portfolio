@@ -73,13 +73,13 @@ const Index = () => {
     },
     // Column 2
     {
-      src: meuArcoDemo,
+      ...animatedProjectMedia["meu-arco"],
       title: "Meu Arco",
       chips: ["UI/UX", "Research"],
       slug: "meu-arco"
     },
     {
-      src: aiWritingAssistant,
+      ...animatedProjectMedia["ai-writing-assistant"],
       title: "AI Writing Assistant",
       chips: ["UI/UX", "AI"],
       slug: "ai-writing-assistant"
