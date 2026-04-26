@@ -66,7 +66,7 @@ const Index = () => {
       slug: "health-food-delivery"
     },
     {
-      src: projectThumbNew2,
+      ...animatedProjectMedia["students-transportation"],
       title: "Students' Transportation Feature",
       chips: ["UI/UX", "Research"],
       slug: "students-transportation"
@@ -96,6 +96,12 @@ const Index = () => {
       title: "Digital Signature Feature",
       chips: ["UI/UX", "Research"],
       slug: "digital-signature"
+    },
+    {
+      ...animatedProjectMedia["ai-question-generator"],
+      title: "AI Question Generation Tool",
+      chips: ["UI/UX", "AI"],
+      slug: "ai-question-generator"
     }
   ];
   return <div className="min-h-screen bg-background text-foreground">
