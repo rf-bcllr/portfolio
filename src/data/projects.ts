@@ -8,8 +8,8 @@ import cyberbrakeReport from "@/assets/cyberbrake/generate-report.png";
 import cyberbrakeNetwork from "@/assets/cyberbrake/network-detail.png";
 import cyberbrakeExplorer from "@/assets/cyberbrake/networks-explorer.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
-import meuArcoDemo from "@/assets/meu-arco-demo.gif";
-import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";
+import meuArcoDemo from "@/assets/meu-arco-demo-poster.jpg";
+import aiWritingAssistant from "@/assets/ai-writing-assistant-poster.jpg";
 
 export interface ProjectData {
   id: string;
