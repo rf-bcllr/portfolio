@@ -1,85 +1,106 @@
-## Otimização de carregamento das mídias do portfólio
+## Plano de mudanças
 
-### Diagnóstico
+### 1. Adicionar logo da FTD na seção de empresas
+- Copiar `user-uploads://logo_ftd_monocromatico_cmyk_branco_…png` para `src/assets/logo-ftd.png`.
+- Em `src/components/CompanyLogos.tsx`:
+  - Importar `logoFtd from "@/assets/logo-ftd.png"`.
+  - Adicionar a entrada `{ name: "FTD Educação", logo: logoFtd, url: "https://www.ftd.com.br/" }` ao array `companies`.
+- O grid já é `lg:grid-cols-6`; com 7 logos, a sétima quebrará para a próxima linha. Vou ajustar para `lg:grid-cols-7` (ou manter `grid-cols-6` e centralizar a sétima) — proposta: trocar para `lg:grid-cols-7` para manter todas alinhadas em telas largas, e em telas médias (`md`) deixar `md:grid-cols-4` para não ficar viúva.
+- Como o logo é monocromático branco, o tratamento atual `brightness-0 dark:invert` continua funcionando (no light mode vira preto, no dark mode mantém-se branco).
 
-Inspecionei `src/assets/` e os componentes que renderizam mídias. Os principais problemas:
+### 2. Trocar a imagem principal do Students' Transportation (Cheguei) pelo GIF mobile
+- Copiar `user-uploads://WhatsAppVideo2026-04-16at10.59.29AM-ezgif.com-video-to-gif-converter.gif` para `src/assets/cheguei-mobile.gif`.
+- **Otimização (consistente com o trabalho recente)**: converter via `ffmpeg` para `cheguei-mobile.mp4` + `cheguei-mobile.webm` + poster `cheguei-mobile-poster.jpg`, deletando o GIF depois.
+- Adicionar entrada em `src/data/animatedMedia.ts`:
+  ```ts
+  "students-transportation": {
+    sources: [
+      { src: chegueiMobileWebm, type: "video/webm" },
+      { src: chegueiMobileMp4, type: "video/mp4" },
+    ],
+    poster: chegueiMobilePoster,
+  }
+  ```
+- Em `src/pages/Index.tsx`:
+  - Atualizar `projectMedia[3]` (Students' Transportation) para usar `...animatedProjectMedia["students-transportation"]` em vez de `projectThumbNew2`.
+  - Atualizar a `ProjectCard` correspondente (índice 3 na Coluna 1) para passar `sources`/`poster` em vez de `src`.
+- Em `src/data/projects.ts` e `src/data/projectsStructured.ts`:
+  - Trocar `heroImage` do projeto `students-transportation` para o novo poster.
+  - Atualizar a entrada da `gallery` para `{ src: chegueiMobilePoster, title: "Cheguei mobile experience" }` (a `MediaLightbox` atualmente só lida com imagens/vídeos via URL — vou verificar se faz sentido passar o `.mp4` direto para que o lightbox abra como vídeo; pelo que vi em `MediaLightbox.tsx` já existe a checagem `isVideo` por extensão, então passarei o `.mp4` na galeria).
 
-| Asset | Tamanho | Impacto |
-|---|---|---|
-| `ai-writing-assistant.gif` | **13 MB** | Carregado eagerly no grid da Home |
-| `meu-arco-demo.gif` | **7,1 MB** | Carregado eagerly no grid da Home |
-| `project-hero-bg.png` | 1,9 MB | Background pesado |
-| `about-me-portrait.png` | 1,1 MB | Versão antiga (já existe `.jpg` de 128 KB em uso) |
-| `hero-portrait.png` | 898 KB | Hero |
+### 3. Adicionar `comms-dashboard.gif` à galeria do AI Writing Assistant + texto sobre o dashboard
+- Copiar `user-uploads://comms-dashboard.gif` para `src/assets/ai-comms-dashboard.gif` e converter via `ffmpeg` para `ai-comms-dashboard.mp4` + `.webm` + poster (`ai-comms-dashboard-poster.jpg`); deletar o GIF original.
+- Em `src/data/projectsStructured.ts` (`aiWritingAssistantStructured`):
+  - Adicionar segundo item na `gallery`:
+    ```ts
+    { src: aiCommsDashboardMp4, title: "Communications dashboard tracking AI assistant usage" }
+    ```
+  - Adicionar uma nova `SolutionFeature` ao final do array `features` mencionando o dashboard:
+    ```ts
+    {
+      icon: "BarChart3",
+      title: "Usage Dashboard",
+      description: "A dedicated dashboard tracks AI assistant adoption, message volume, NPS, and response-time metrics so school admins can monitor impact in real time."
+    }
+    ```
+  - Acrescentar uma frase no campo `solution.summary` indicando o dashboard.
+  - Atualizar uma das `learnings` (ou adicionar nova) referenciando "measuring adoption from day one with a dedicated dashboard".
+- Em `src/data/projects.ts` (`ai-writing-assistant`):
+  - Adicionar 1–2 frases ao final do campo `solution` mencionando: "Para acompanhar adoção e impacto, criamos um dashboard de Comunicação que mostra comunicados enviados/recebidos, NPS dos pais e tempo médio de resposta."
+  - Acrescentar a galeria (atualmente esse projeto não tem `gallery` no `projects.ts`) para incluir o poster do dashboard.
 
-Além disso, `ProjectCard` e a maioria dos `<img>` **não usam `loading="lazy"`** nem `decoding="async"`, e não há `width`/`height` para evitar layout shift. Apenas `CompanyLogos` e o retrato "About me" já usam lazy.
+### 4. Criar novo projeto "AI Question Generation Tool" (estado de obra, padrão Cyberbrake)
+- Copiar `user-uploads://Gravando2026-03-30115621-…gif` para `src/assets/ai-question-generator.gif` e converter para `.mp4` + `.webm` + poster (`ai-question-generator-poster.jpg`); deletar o GIF.
+- Adicionar entrada em `src/data/animatedMedia.ts`:
+  ```ts
+  "ai-question-generator": {
+    sources: [
+      { src: aiQuestionGeneratorWebm, type: "video/webm" },
+      { src: aiQuestionGeneratorMp4, type: "video/mp4" },
+    ],
+    poster: aiQuestionGeneratorPoster,
+  }
+  ```
+- Em `src/data/projects.ts` adicionar novo item ao final do array `projectsData`, espelhando o formato Cyberbrake:
+  ```ts
+  {
+    id: "ai-question-generator",
+    slug: "ai-question-generator",
+    title: "AI Question Generation Tool",
+    subtitle: "Page under construction",
+    year: 2025,
+    company: "FTD Educação",
+    heroImage: aiQuestionGeneratorPoster,
+    coverType: "horizontal",
+    overview: {
+      role: "Product Designer",
+      team: "TBD",
+      duration: "TBD",
+      tools: ["TBD"],
+      impact: ["Page under construction"]
+    },
+    challenge: "🚧 This case study is currently under construction. Check back soon for the full story!",
+    process: "🚧 Under construction...",
+    solution: "🚧 Under construction...",
+    impact: "TBD",
+    gallery: [
+      { src: aiQuestionGeneratorMp4, title: "AI Question Generator inside the FTD reader" },
+      { src: aiQuestionGeneratorPoster, title: "AI Question Generator – preview" }
+    ]
+  }
+  ```
+- Em `src/pages/ProjectDetail.tsx`: a lógica especial "Cyberbrake" (`project.slug === "cyberbrake"`) que renderiza Gallery à esquerda + UnderConstructionState à direita precisa ser estendida para também aceitar `"ai-question-generator"`. Vou trocar por `["cyberbrake", "ai-question-generator"].includes(project.slug)`.
+- Em `src/pages/Index.tsx`:
+  - Adicionar o novo projeto ao array `projectMedia` (vídeo, similar ao Meu Arco/AI Writing Assistant).
+  - **Decisão de layout do grid de projetos** (atualmente 4 / 2 / 2 = 8 cards):
+    - Opção mais limpa: adicionar à Coluna 3 como terceiro card → fica 4 / 2 / 3 (9 cards). Ainda assimétrico mas menos visível em telas grandes.
+    - Vou seguir essa abordagem.
+  - Adicionar `<ProjectCard>` correspondente na Coluna 3 usando `sources`/`poster`.
 
-Os 20 MB de GIFs são o gargalo dominante: GIFs não são streamáveis, bloqueiam decode na main thread e re-decodificam a cada repaint. A correção mais impactante é convertê-los em **MP4/WebM** (tipicamente reduzem 90–95% do tamanho mantendo qualidade) e renderizá-los via `<video autoplay loop muted playsinline>`.
+### 5. Resumo dos arquivos afetados
+- **Criados**: `src/assets/logo-ftd.png`, `src/assets/cheguei-mobile.{mp4,webm}` + poster, `src/assets/ai-comms-dashboard.{mp4,webm}` + poster, `src/assets/ai-question-generator.{mp4,webm}` + poster.
+- **Editados**: `src/components/CompanyLogos.tsx`, `src/data/animatedMedia.ts`, `src/data/projects.ts`, `src/data/projectsStructured.ts`, `src/pages/Index.tsx`, `src/pages/ProjectDetail.tsx`.
 
----
-
-### Plano de execução
-
-#### 1. Converter GIFs pesados em MP4 + WebM (ganho ~95%)
-
-Usar `ffmpeg` (via `nix run nixpkgs#ffmpeg`) para gerar:
-
-- `src/assets/ai-writing-assistant.mp4` (~500–800 KB esperado, era 13 MB)
-- `src/assets/ai-writing-assistant.webm` (fallback moderno)
-- `src/assets/meu-arco-demo.mp4` (~300–500 KB esperado, era 7 MB)
-- `src/assets/meu-arco-demo.webm`
-- Também extrair **um poster `.jpg`** do primeiro frame de cada um (para `<video poster=...>`, evita "tela preta" antes do play)
-
-Preset: `-vf "scale=1200:-2:flags=lanczos,fps=24" -c:v libx264 -preset slow -crf 23 -pix_fmt yuv420p -movflags +faststart -an` (sem áudio, mp4 web-otimizado).
-
-Os `.gif` originais permanecem no repositório por enquanto como fallback de segurança (podem ser removidos numa segunda passada quando confirmarmos que tudo funciona).
-
-#### 2. Criar componente `<MediaThumb>` reutilizável
-
-Novo arquivo `src/components/MediaThumb.tsx`:
-
-- Detecta a extensão do `src` (`.mp4`/`.webm` → `<video>`, senão `<img>`).
-- Para vídeo: aceita `sources` (array) e `poster`, atributos `autoplay loop muted playsinline preload="metadata"`.
-- Para imagem: define `loading="lazy"` e `decoding="async"` por padrão (com prop `priority` para opt-out — usado no hero).
-- Aceita `width`/`height` (para reservar espaço e eliminar CLS) e `className`.
-
-#### 3. Atualizar `ProjectCard`
-
-Substituir o `<img>` interno por `<MediaThumb>`, suportando o caso de `src` ser um vídeo (Meu Arco e AI Writing Assistant). Manter o skeleton de loading e o hover scale.
-
-#### 4. Atualizar referências dos dois projetos animados
-
-Em `src/pages/Index.tsx`, `src/data/projects.ts` e `src/data/projectsStructured.ts`:
-
-- Trocar `import meuArcoDemo from "@/assets/meu-arco-demo.gif"` por `import meuArcoDemoMp4 from "@/assets/meu-arco-demo.mp4"` (+ `.webm` + poster).
-- Mesma troca para `aiWritingAssistant`.
-- Onde hoje passamos uma string única, passar um objeto `{ mp4, webm, poster }` ou usar uma helper para o `MediaThumb`.
-
-#### 5. Lazy-load nas demais imagens da Home
-
-Adicionar `loading="lazy"` e `decoding="async"` nas `<img>` que ainda não têm:
-
-- Avatares de recomendações (linha ~791 de `Index.tsx`).
-- Imagens dentro de `ProjectGallery.tsx` (já têm `group-hover:scale-105`, falta `loading="lazy"`).
-- Imagens da `MediaLightbox` ficam eager (só montam quando aberta — ok).
-
-A imagem do **hero** (`heroPortrait`) e o **avatar do header** continuam **eager** (above the fold) com `fetchpriority="high"` no hero portrait.
-
-#### 6. Remover asset duplicado não utilizado
-
-`about-me-portrait.png` (1,1 MB) não é mais referenciado no código (uso atual é `about-me-portrait-new.jpg`). Confirmar com `rg` e deletar se zero referências, economizando download do bundle dev.
-
----
-
-### Resultado esperado
-
-- **Peso da Home cai de ~22 MB para ~2–3 MB** (redução de ~90%).
-- **LCP e TTI** melhoram drasticamente, especialmente em conexões lentas/preview iframe.
-- Sem **CLS** porque vamos definir aspect-ratio nos containers de vídeo.
-- Sem mudança visual perceptível: vídeos `autoplay muted loop` reproduzem como GIFs.
-
-### Fora do escopo (sugestões para depois)
-
-- Converter `project-hero-bg.png` (1,9 MB) e portraits `.png` para `.webp` — ganho adicional de ~70%, mas exige ajustes em vários lugares; melhor numa PR separada.
-- Implementar `srcset`/`sizes` responsivos para os thumbs (ganho marginal já que as imagens estáticas já são pequenas após a conversão dos GIFs).
-- Adotar `react-intersection-observer` para pausar vídeos fora da viewport (economia de CPU em mobile).
+### Observações / pontos para confirmar
+- A FTD será adicionada como sétima logo. Se preferir, posso reordenar para que ela apareça em uma posição específica (ex.: depois do Arco) — me avise; por padrão vou colocar no final.
+- O texto novo sobre o dashboard será adicionado tanto no campo legado (`solution` em `projects.ts`) quanto na versão estruturada (`features` + `summary` em `projectsStructured.ts`) para que apareça de fato na página renderizada (a página usa a versão estruturada quando existe).
