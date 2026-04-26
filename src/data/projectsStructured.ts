@@ -1,11 +1,11 @@
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
-import meuArcoDemo from "@/assets/meu-arco-demo.gif";
+import meuArcoDemo from "@/assets/meu-arco-demo-poster.jpg";
 import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projMuralNew from "@/assets/proj-mural-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
-import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";
+import aiWritingAssistant from "@/assets/ai-writing-assistant-poster.jpg";
 
 // New structured data format for visual case studies
 export interface StructuredChallenge {
