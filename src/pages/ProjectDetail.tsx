@@ -327,7 +327,7 @@ const ProjectDetail = () => {
         {/* Check if entire project is under construction */}
         {!structuredProject && isUnderConstruction(project.challenge) && isUnderConstruction(project.process) && isUnderConstruction(project.solution) ?
       // Special handling for Cyberbrake: Gallery left, Empty State right
-      project.slug === "cyberbrake" ? <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start">
+      ["cyberbrake", "ai-question-generator"].includes(project.slug) ? <div className="grid lg:grid-cols-[350px_1fr] gap-12 lg:gap-16 items-start">
         <aside className="lg:sticky lg:top-24 h-fit space-y-6">
           {/* Gallery */}
           <AnimatedSection>

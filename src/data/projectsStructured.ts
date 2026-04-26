@@ -564,6 +564,10 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
     { 
       src: aiWritingAssistant, 
       title: "AI Writing Assistant Demo" 
+    },
+    {
+      src: aiCommsDashboardMp4,
+      title: "Communications dashboard tracking AI assistant usage"
     }
   ],
   challenge: {
@@ -584,7 +588,7 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
     ]
   },
   solution: {
-    summary: "Two integrated AI features: Content Moderation for safety, and AI Writing Assistant for quality—both with full user control.",
+    summary: "Two integrated AI features—Content Moderation for safety and AI Writing Assistant for quality—plus a dedicated Communications dashboard so school admins can monitor adoption and impact in real time.",
     features: [
       {
         icon: "Shield",
@@ -600,6 +604,11 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
         icon: "Eye",
         title: "Real-time Preview",
         description: "See suggested changes before applying—users maintain full control over their message."
+      },
+      {
+        icon: "BarChart3",
+        title: "Communications Dashboard",
+        description: "A dedicated dashboard tracks AI assistant adoption, message volume, parent NPS, and response times so admins can measure impact from day one."
       }
     ]
   },
@@ -614,7 +623,8 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
   learnings: [
     { text: "AI assistance must preserve user agency—preview before apply is non-negotiable" },
     { text: "Context-aware suggestions outperform generic ones in specialized domains" },
-    { text: "Clear explanations for AI decisions build trust and reduce frustration" }
+    { text: "Clear explanations for AI decisions build trust and reduce frustration" },
+    { text: "Measuring adoption from day one with a dedicated dashboard turns gut feelings into evidence" }
   ]
 };
 
