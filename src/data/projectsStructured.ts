@@ -9,8 +9,6 @@ import aiWritingAssistant from "@/assets/ai-writing-assistant-poster.jpg";
 import chegueiMobilePoster from "@/assets/cheguei-mobile-poster.jpg";
 import chegueiMobileMp4 from "@/assets/cheguei-mobile.mp4";
 import aiCommsDashboardMp4 from "@/assets/ai-comms-dashboard.mp4";
-import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
-import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
 
 // New structured data format for visual case studies
 export interface StructuredChallenge {
@@ -630,38 +628,6 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
   ]
 };
 
-// =====================================================
-// AI QUESTION GENERATION TOOL - Under construction
-// =====================================================
-export const aiQuestionGeneratorStructured: StructuredProjectData = {
-  id: "ai-question-generator",
-  slug: "ai-question-generator",
-  title: "AI Question Generation Tool",
-  subtitle: "Page under construction",
-  year: 2025,
-  company: "FTD Educação",
-  heroImage: aiQuestionGeneratorPoster,
-  coverType: "horizontal",
-  overview: {
-    role: "Product Designer",
-    team: "TBD",
-    duration: "TBD",
-    tools: ["TBD"],
-    impact: ["Page under construction"]
-  },
-  challenge: {
-    context: "🚧 This case study is currently under construction. Check back soon for the full story!",
-    goal: "🚧 Under construction"
-  },
-  process: { steps: [] },
-  solution: { summary: "🚧 Under construction", features: [] },
-  impact: { metrics: [] },
-  gallery: [
-    { src: aiQuestionGeneratorMp4, title: "AI Question Generator inside the FTD reader" },
-    { src: aiQuestionGeneratorPoster, title: "AI Question Generator – preview" }
-  ]
-};
-
 // Map of structured projects by slug
 export const structuredProjects: Record<string, StructuredProjectData> = {
   "meu-arco": meuArcoStructured,
@@ -669,6 +635,5 @@ export const structuredProjects: Record<string, StructuredProjectData> = {
   "digital-signature": digitalSignatureStructured,
   "students-transportation": studentsTransportationStructured,
   "mural": muralStructured,
-  "ai-writing-assistant": aiWritingAssistantStructured,
-  "ai-question-generator": aiQuestionGeneratorStructured
+  "ai-writing-assistant": aiWritingAssistantStructured
 };
