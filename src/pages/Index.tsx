@@ -378,6 +378,9 @@ const Index = () => {
                     <img 
                       src={heroPortrait} 
                       alt="Rafael Bacellar, Product Designer"
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                       className="h-[100px] sm:h-[120px] md:h-[140px] lg:h-[200px] xl:h-[220px] w-auto object-contain mx-auto"
                       style={{
                         maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
