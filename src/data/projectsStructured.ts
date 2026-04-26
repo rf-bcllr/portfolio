@@ -9,6 +9,8 @@ import aiWritingAssistant from "@/assets/ai-writing-assistant-poster.jpg";
 import chegueiMobilePoster from "@/assets/cheguei-mobile-poster.jpg";
 import chegueiMobileMp4 from "@/assets/cheguei-mobile.mp4";
 import aiCommsDashboardMp4 from "@/assets/ai-comms-dashboard.mp4";
+import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
+import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
 
 // New structured data format for visual case studies
 export interface StructuredChallenge {
@@ -564,6 +566,10 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
     { 
       src: aiWritingAssistant, 
       title: "AI Writing Assistant Demo" 
+    },
+    {
+      src: aiCommsDashboardMp4,
+      title: "Communications dashboard tracking AI assistant usage"
     }
   ],
   challenge: {
@@ -584,7 +590,7 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
     ]
   },
   solution: {
-    summary: "Two integrated AI features: Content Moderation for safety, and AI Writing Assistant for quality—both with full user control.",
+    summary: "Two integrated AI features—Content Moderation for safety and AI Writing Assistant for quality—plus a dedicated Communications dashboard so school admins can monitor adoption and impact in real time.",
     features: [
       {
         icon: "Shield",
@@ -600,6 +606,11 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
         icon: "Eye",
         title: "Real-time Preview",
         description: "See suggested changes before applying—users maintain full control over their message."
+      },
+      {
+        icon: "BarChart3",
+        title: "Communications Dashboard",
+        description: "A dedicated dashboard tracks AI assistant adoption, message volume, parent NPS, and response times so admins can measure impact from day one."
       }
     ]
   },
@@ -614,7 +625,40 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
   learnings: [
     { text: "AI assistance must preserve user agency—preview before apply is non-negotiable" },
     { text: "Context-aware suggestions outperform generic ones in specialized domains" },
-    { text: "Clear explanations for AI decisions build trust and reduce frustration" }
+    { text: "Clear explanations for AI decisions build trust and reduce frustration" },
+    { text: "Measuring adoption from day one with a dedicated dashboard turns gut feelings into evidence" }
+  ]
+};
+
+// =====================================================
+// AI QUESTION GENERATION TOOL - Under construction
+// =====================================================
+export const aiQuestionGeneratorStructured: StructuredProjectData = {
+  id: "ai-question-generator",
+  slug: "ai-question-generator",
+  title: "AI Question Generation Tool",
+  subtitle: "Page under construction",
+  year: 2025,
+  company: "FTD Educação",
+  heroImage: aiQuestionGeneratorPoster,
+  coverType: "horizontal",
+  overview: {
+    role: "Product Designer",
+    team: "TBD",
+    duration: "TBD",
+    tools: ["TBD"],
+    impact: ["Page under construction"]
+  },
+  challenge: {
+    context: "🚧 This case study is currently under construction. Check back soon for the full story!",
+    goal: "🚧 Under construction"
+  },
+  process: { steps: [] },
+  solution: { summary: "🚧 Under construction", features: [] },
+  impact: { metrics: [] },
+  gallery: [
+    { src: aiQuestionGeneratorMp4, title: "AI Question Generator inside the FTD reader" },
+    { src: aiQuestionGeneratorPoster, title: "AI Question Generator – preview" }
   ]
 };
 
@@ -625,5 +669,6 @@ export const structuredProjects: Record<string, StructuredProjectData> = {
   "digital-signature": digitalSignatureStructured,
   "students-transportation": studentsTransportationStructured,
   "mural": muralStructured,
-  "ai-writing-assistant": aiWritingAssistantStructured
+  "ai-writing-assistant": aiWritingAssistantStructured,
+  "ai-question-generator": aiQuestionGeneratorStructured
 };
