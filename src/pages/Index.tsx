@@ -487,7 +487,8 @@ const Index = () => {
             {/* Column 2: Meu Arco, AI Writing Assistant */}
             <div className="space-y-6">
               <ProjectCard 
-                src={projectMedia[4].src} 
+                sources={(projectMedia[4] as any).sources}
+                poster={(projectMedia[4] as any).poster}
                 alt={projectMedia[4].title ?? "Project 5"} 
                 title={projectMedia[4].title} 
                 chips={projectMedia[4].chips} 
@@ -495,7 +496,8 @@ const Index = () => {
                 slug={projectMedia[4].slug}
               />
               <ProjectCard 
-                src={projectMedia[5].src} 
+                sources={(projectMedia[5] as any).sources}
+                poster={(projectMedia[5] as any).poster}
                 alt={projectMedia[5].title ?? "Project 6"} 
                 title={projectMedia[5].title} 
                 chips={projectMedia[5].chips} 
