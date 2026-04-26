@@ -4,7 +4,7 @@ import projMuralNew from "@/assets/proj-mural-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
-import projThumb1 from "@/assets/proj-thumb-1.png";
+import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";
 
 // New structured data format for visual case studies
 export interface StructuredChallenge {
@@ -539,7 +539,7 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
   subtitle: "Content moderation and intelligent writing suggestions for school communications",
   year: 2025,
   company: "isaac (Arco Educação)",
-  heroImage: projThumb1,
+  heroImage: aiWritingAssistant,
   coverType: "horizontal",
   overview: {
     role: "Product Designer",
@@ -557,7 +557,7 @@ export const aiWritingAssistantStructured: StructuredProjectData = {
   },
   gallery: [
     { 
-      src: projThumb1, 
+      src: aiWritingAssistant, 
       title: "AI Writing Assistant Demo" 
     }
   ],

@@ -8,7 +8,7 @@ import cyberbrakeReport from "@/assets/cyberbrake/generate-report.png";
 import cyberbrakeNetwork from "@/assets/cyberbrake/network-detail.png";
 import cyberbrakeExplorer from "@/assets/cyberbrake/networks-explorer.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
-import projThumb1 from "@/assets/proj-thumb-1.png";
+import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";
 
 export interface ProjectData {
   id: string;
@@ -233,7 +233,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Content moderation and intelligent writing suggestions for school communications",
     year: 2025,
     company: "isaac (Arco Educação)",
-    heroImage: projThumb1,
+    heroImage: aiWritingAssistant,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",

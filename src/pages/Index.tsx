@@ -25,7 +25,7 @@ import projMuralNew from "@/assets/proj-mural-new.png";
 import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
-import projThumb1 from "@/assets/proj-thumb-1.png";
+import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
 const Index = () => {
@@ -79,7 +79,7 @@ const Index = () => {
       slug: "meu-arco"
     },
     {
-      src: projThumb1,
+      src: aiWritingAssistant,
       title: "AI Writing Assistant",
       chips: ["UI/UX", "AI"],
       slug: "ai-writing-assistant"
