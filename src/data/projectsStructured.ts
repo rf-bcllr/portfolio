@@ -1,4 +1,5 @@
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
+import meuArcoDemo from "@/assets/meu-arco-demo.gif";
 import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projMuralNew from "@/assets/proj-mural-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
@@ -98,7 +99,7 @@ export const meuArcoStructured: StructuredProjectData = {
   subtitle: "From Two Products to One Unified Experience",
   year: 2024,
   company: "isaac (Arco Educação)",
-  heroImage: meuArcoOgCover,
+  heroImage: meuArcoDemo,
   coverType: "horizontal",
   overview: {
     role: "Product Designer",
@@ -122,7 +123,7 @@ export const meuArcoStructured: StructuredProjectData = {
   },
   gallery: [
     { 
-      src: meuArcoOgCover, 
+      src: meuArcoDemo, 
       title: "Meu Arco Platform Demo" 
     },
     { src: meuArcoOgCover, title: "Meu Arco Overview" }

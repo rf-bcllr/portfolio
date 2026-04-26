@@ -25,6 +25,7 @@ import projMuralNew from "@/assets/proj-mural-new.png";
 import projHealthyNew from "@/assets/proj-healthy-new.png";
 import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
+import meuArcoDemo from "@/assets/meu-arco-demo.gif";
 import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
@@ -73,7 +74,7 @@ const Index = () => {
     },
     // Column 2
     {
-      src: meuArcoOgCover,
+      src: meuArcoDemo,
       title: "Meu Arco",
       chips: ["UI/UX", "Research"],
       slug: "meu-arco"
