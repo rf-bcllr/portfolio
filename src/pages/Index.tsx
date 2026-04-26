@@ -66,7 +66,7 @@ const Index = () => {
       slug: "health-food-delivery"
     },
     {
-      src: projectThumbNew2,
+      ...animatedProjectMedia["students-transportation"],
       title: "Students' Transportation Feature",
       chips: ["UI/UX", "Research"],
       slug: "students-transportation"
@@ -96,6 +96,12 @@ const Index = () => {
       title: "Digital Signature Feature",
       chips: ["UI/UX", "Research"],
       slug: "digital-signature"
+    },
+    {
+      ...animatedProjectMedia["ai-question-generator"],
+      title: "AI Question Generation Tool",
+      chips: ["UI/UX", "AI"],
+      slug: "ai-question-generator"
     }
   ];
   return <div className="min-h-screen bg-background text-foreground">
@@ -478,7 +484,8 @@ const Index = () => {
                 slug={projectMedia[2].slug}
               />
               <ProjectCard 
-                src={projectMedia[3].src} 
+                sources={(projectMedia[3] as any).sources}
+                poster={(projectMedia[3] as any).poster}
                 alt={projectMedia[3].title ?? "Project 4"} 
                 title={projectMedia[3].title} 
                 chips={projectMedia[3].chips} 
@@ -526,6 +533,15 @@ const Index = () => {
                 chips={projectMedia[7].chips} 
                 index={7}
                 slug={projectMedia[7].slug}
+              />
+              <ProjectCard 
+                sources={(projectMedia[8] as any).sources}
+                poster={(projectMedia[8] as any).poster}
+                alt={projectMedia[8].title ?? "Project 9"} 
+                title={projectMedia[8].title} 
+                chips={projectMedia[8].chips} 
+                index={8}
+                slug={projectMedia[8].slug}
               />
             </div>
           </div>

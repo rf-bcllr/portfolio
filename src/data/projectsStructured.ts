@@ -6,6 +6,9 @@ import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 import aiWritingAssistant from "@/assets/ai-writing-assistant-poster.jpg";
+import chegueiMobilePoster from "@/assets/cheguei-mobile-poster.jpg";
+import chegueiMobileMp4 from "@/assets/cheguei-mobile.mp4";
+import aiCommsDashboardMp4 from "@/assets/ai-comms-dashboard.mp4";
 
 // New structured data format for visual case studies
 export interface StructuredChallenge {
@@ -369,7 +372,7 @@ export const studentsTransportationStructured: StructuredProjectData = {
   subtitle: "Safety tracking system for school transportation",
   year: 2023,
   company: "ClassApp",
-  heroImage: projectThumbNew2,
+  heroImage: chegueiMobilePoster,
   coverType: "horizontal",
   overview: {
     role: "Product Designer",
@@ -390,7 +393,8 @@ export const studentsTransportationStructured: StructuredProjectData = {
     ]
   },
   gallery: [
-    { src: projectThumbNew2, title: "Cheguei Transportation System" }
+    { src: chegueiMobileMp4, title: "Cheguei mobile experience" },
+    { src: chegueiMobilePoster, title: "Cheguei – mobile preview" }
   ],
   challenge: {
     context: "Parents had no visibility into pickup times, no confirmation their child boarded, no way to track vehicles. Schools fielded 30+ calls/day. Drivers were expected to answer phones mid-drive.",

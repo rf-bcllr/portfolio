@@ -10,6 +10,12 @@ import cyberbrakeExplorer from "@/assets/cyberbrake/networks-explorer.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
 import meuArcoDemo from "@/assets/meu-arco-demo-poster.jpg";
 import aiWritingAssistant from "@/assets/ai-writing-assistant-poster.jpg";
+import chegueiMobilePoster from "@/assets/cheguei-mobile-poster.jpg";
+import chegueiMobileMp4 from "@/assets/cheguei-mobile.mp4";
+import aiCommsDashboardMp4 from "@/assets/ai-comms-dashboard.mp4";
+import aiCommsDashboardPoster from "@/assets/ai-comms-dashboard-poster.jpg";
+import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
+import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
 
 export interface ProjectData {
   id: string;
@@ -198,7 +204,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Safety tracking system for school transportation",
     year: 2023,
     company: "ClassApp",
-    heroImage: projectThumbNew2,
+    heroImage: chegueiMobilePoster,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",
@@ -245,8 +251,12 @@ export const projectsData: ProjectData[] = [
     },
     challenge: "School communications faced two critical challenges that required immediate attention. First, safety risks emerged from inappropriate content incidents, including a significant Q2 2025 security breach that exposed schools to serious reputational damage. Attack scenarios ranged from unauthorized account access by malicious actors to disgruntled staff members posting harmful content, and even unintentional operational errors by well-meaning but careless staff. Second, communication quality issues created unnecessary friction with families. Messages often contained grammar errors, used inappropriate tone for sensitive situations, or employed confusing language that frustrated parents. Manual review processes designed to prevent these issues instead slowed response times and created bureaucratic bottlenecks, leaving families waiting for important information. Given isaac's competitive position against ClassApp and the upcoming migration to the Meu Arco platform, we needed a differentiation strategy that provided immediate, tangible value to users.",
     process: "We prioritized AI features based on comprehensive impact and technical feasibility analysis across all isaac communication modules. The research phase included analyzing incident reports and support tickets related to communication problems, interviewing 15+ school staff members about their communication workflows, mapping pain points in the existing communication creation process, and evaluating OpenAI's Moderation API capabilities and limitations. During the design phase, I created user flows for both preventive moderation scenarios and assistive writing suggestion scenarios. I designed contextual feedback interfaces for flagged content with detailed explanations to help users understand violations. The AI writing assistant interface was prototyped with real-time preview capabilities to give users confidence before applying suggestions. Testing with school staff validated usefulness while minimizing frustration from false positives. On the technical architecture side, content moderation runs automatically on text submission, with parallel processing for multiple image uploads to optimize performance. The AI writing assistant offers preset customization options (tone, emoji usage, formatting richness, length) rather than freeform prompts. All API calls are logged for monitoring, improvement, and compliance.",
-    solution: "We launched two integrated AI-powered features in the Communications module that work seamlessly together. The Content Moderation System provides real-time text analysis using OpenAI's Moderation API (leveraging the free tier for cost efficiency), automatic image moderation during upload with clear visual blocking indicators, detailed flagging with specific violation categories (violence, sexual content, harassment, hate speech), generative AI explanations showing exactly which words or phrases triggered alerts, and user-friendly error messages with actionable guidance for making corrections. The AI Writing Assistant is accessible via a prominent button next to the text field and works on both full text and selected portions. It offers four customization dimensions: Tone (Neutral, Formal, Urgent), Emoji usage (None, Regular, Many), Formatting richness (Simple, Balanced, Rich), and Length (Shorten, Maintain, Lengthen). Users see a real-time preview before applying any suggestions, ensuring they maintain control over the final message. The assistant provides grammar correction and intelligent rephrasing that's specifically context-aware for school-to-family communication scenarios. Both features were specifically implemented for the Comunicados (Announcements) module, focusing on school-initiated communications where safety and professionalism matter most.",
-    impact: "TBD"
+    solution: "We launched two integrated AI-powered features in the Communications module that work seamlessly together. The Content Moderation System provides real-time text analysis using OpenAI's Moderation API (leveraging the free tier for cost efficiency), automatic image moderation during upload with clear visual blocking indicators, detailed flagging with specific violation categories (violence, sexual content, harassment, hate speech), generative AI explanations showing exactly which words or phrases triggered alerts, and user-friendly error messages with actionable guidance for making corrections. The AI Writing Assistant is accessible via a prominent button next to the text field and works on both full text and selected portions. It offers four customization dimensions: Tone (Neutral, Formal, Urgent), Emoji usage (None, Regular, Many), Formatting richness (Simple, Balanced, Rich), and Length (Shorten, Maintain, Lengthen). Users see a real-time preview before applying any suggestions, ensuring they maintain control over the final message. The assistant provides grammar correction and intelligent rephrasing that's specifically context-aware for school-to-family communication scenarios. Both features were specifically implemented for the Comunicados (Announcements) module, focusing on school-initiated communications where safety and professionalism matter most. To measure adoption and impact from day one, we also designed a dedicated Communications dashboard that surfaces messages sent vs. received, parent NPS, and average response time—giving school administrators a clear view of how the AI Writing Assistant is performing in the wild.",
+    impact: "TBD",
+    gallery: [
+      { src: aiWritingAssistant, title: "AI Writing Assistant in action" },
+      { src: aiCommsDashboardMp4, title: "Communications dashboard tracking AI assistant usage" }
+    ]
   },
   {
     id: "cyberbrake",
@@ -274,6 +284,31 @@ export const projectsData: ProjectData[] = [
       { src: cyberbrakeReport, title: "Generate Report Interface" },
       { src: cyberbrakeNetwork, title: "Network Detail Dashboard" },
       { src: cyberbrakeExplorer, title: "Network Analysis Explorer" }
+    ]
+  },
+  {
+    id: "ai-question-generator",
+    slug: "ai-question-generator",
+    title: "AI Question Generation Tool",
+    subtitle: "Page under construction",
+    year: 2025,
+    company: "FTD Educação",
+    heroImage: aiQuestionGeneratorPoster,
+    coverType: "horizontal",
+    overview: {
+      role: "Product Designer",
+      team: "TBD",
+      duration: "TBD",
+      tools: ["TBD"],
+      impact: ["Page under construction"]
+    },
+    challenge: "🚧 This case study is currently under construction. Check back soon for the full story!",
+    process: "🚧 Under construction...",
+    solution: "🚧 Under construction...",
+    impact: "TBD",
+    gallery: [
+      { src: aiQuestionGeneratorMp4, title: "AI Question Generator inside the FTD reader" },
+      { src: aiQuestionGeneratorPoster, title: "AI Question Generator – preview" }
     ]
   }
 ];
