@@ -1,26 +1,21 @@
+## Restaurar imagem do AI Writing Assistant
 
+O GIF original foi recuperado e já copiado para `src/assets/ai-writing-assistant.gif`. Agora preciso substituir o placeholder (`projThumb1` / `proj-thumb-1.png`) pela referência correta.
 
-## Correção: Espaçamento uniforme no Marquee de Tools
+### Arquivos a editar
 
-### Problema
-O marquee usa dois `div` flex separados lado a lado. O `gap-12` funciona apenas **dentro** de cada div, mas entre o último item do primeiro div e o primeiro item do segundo div não há gap -- eles ficam "colados".
+**1. `src/pages/Index.tsx`**
+- Adicionar import: `import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";`
+- Trocar `src: projThumb1` (no card "AI Writing Assistant", linha ~82) por `src: aiWritingAssistant`
+- Remover import `projThumb1` se não houver mais uso
 
-### Solução
-Adicionar `padding-right: 3rem` (equivalente ao `gap-12` = 48px) em cada div do marquee, garantindo que o espaço entre o último e o primeiro item seja idêntico ao espaço entre todos os outros.
+**2. `src/data/projects.ts`**
+- Adicionar import do novo GIF
+- Procurar referência ao projeto AI Writing Assistant e atualizar `heroImage` + entradas de `gallery` para usar o GIF
 
-Alternativa mais limpa: usar `margin-left` ou `gap` no container pai flex. Porém, como o container pai já usa `flex` sem gap, a forma mais direta é adicionar `pr-12` (padding-right de 48px) em cada div interno, igualando o `gap-12`.
+**3. `src/data/projectsStructured.ts`**
+- Mesma atualização: import do GIF e troca de `projThumb1` no projeto AI Writing Assistant (heroImage + gallery)
 
-### Arquivo a editar
-
-**`src/components/ToolsMarquee.tsx`**
-
-- Linha 35: adicionar `pr-12` ao className do primeiro div animado
-- Linha 59: adicionar `pr-12` ao className do segundo div animado (duplicado)
-
-Isso garante que o espaço visual entre a última ferramenta e a primeira da próxima iteração seja exatamente igual ao espaço entre quaisquer duas ferramentas consecutivas.
-
-### Impacto
-- Apenas o componente ToolsMarquee é alterado
-- Nenhum efeito colateral em outros componentes ou páginas
-- O Marquee genérico (`Marquee.tsx`) tem o mesmo problema mas não foi solicitado ajuste
-
+### Observações
+- O GIF agora fica versionado dentro de `src/assets/`, não depende mais de URL externa que pode quebrar
+- O Meu Arco continua usando `meuArcoOgCover` (que é uma imagem real do projeto, não placeholder), então fica como está — a menos que você queira alterá-lo também
