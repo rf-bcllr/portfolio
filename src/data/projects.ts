@@ -8,6 +8,7 @@ import cyberbrakeReport from "@/assets/cyberbrake/generate-report.png";
 import cyberbrakeNetwork from "@/assets/cyberbrake/network-detail.png";
 import cyberbrakeExplorer from "@/assets/cyberbrake/networks-explorer.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
+import meuArcoDemo from "@/assets/meu-arco-demo.gif";
 import aiWritingAssistant from "@/assets/ai-writing-assistant.gif";
 
 export interface ProjectData {
@@ -47,7 +48,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Educational platform for Arco Educação ecosystem",
     year: 2024,
     company: "isaac (Arco Educação)",
-    heroImage: meuArcoOgCover,
+    heroImage: meuArcoDemo,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",
@@ -73,7 +74,7 @@ export const projectsData: ProjectData[] = [
     },
     gallery: [
       { 
-        src: meuArcoOgCover, 
+        src: meuArcoDemo, 
         title: "Meu Arco Platform Demo" 
       },
       { 
