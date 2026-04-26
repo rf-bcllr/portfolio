@@ -8,6 +8,12 @@ import aiWritingAssistantPoster from "@/assets/ai-writing-assistant-poster.jpg";
 import meuArcoMp4 from "@/assets/meu-arco-demo.mp4";
 import meuArcoWebm from "@/assets/meu-arco-demo.webm";
 import meuArcoPoster from "@/assets/meu-arco-demo-poster.jpg";
+import chegueiMobileMp4 from "@/assets/cheguei-mobile.mp4";
+import chegueiMobileWebm from "@/assets/cheguei-mobile.webm";
+import chegueiMobilePoster from "@/assets/cheguei-mobile-poster.jpg";
+import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
+import aiQuestionGeneratorWebm from "@/assets/ai-question-generator.webm";
+import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
 import type { VideoSource } from "@/components/MediaThumb";
 
 export interface AnimatedMedia {
@@ -29,5 +35,19 @@ export const animatedProjectMedia: Record<string, AnimatedMedia> = {
       { src: meuArcoMp4, type: "video/mp4" },
     ],
     poster: meuArcoPoster,
+  },
+  "students-transportation": {
+    sources: [
+      { src: chegueiMobileWebm, type: "video/webm" },
+      { src: chegueiMobileMp4, type: "video/mp4" },
+    ],
+    poster: chegueiMobilePoster,
+  },
+  "ai-question-generator": {
+    sources: [
+      { src: aiQuestionGeneratorWebm, type: "video/webm" },
+      { src: aiQuestionGeneratorMp4, type: "video/mp4" },
+    ],
+    poster: aiQuestionGeneratorPoster,
   },
 };
