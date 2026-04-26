@@ -789,7 +789,7 @@ const Index = () => {
             }}>
                   <div className="flex items-start gap-4 mb-6">
                     <a href={rec.linkedin} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 transition-opacity hover:opacity-80">
-                      <img src={avatar} alt={rec.author} className="w-16 h-16 rounded-full object-cover border-2 border-border" />
+                      <img src={avatar} alt={rec.author} loading="lazy" decoding="async" className="w-16 h-16 rounded-full object-cover border-2 border-border" />
                     </a>
                     <div>
                       <h3 className="font-semibold text-lg mb-0.5">{rec.author}</h3>
