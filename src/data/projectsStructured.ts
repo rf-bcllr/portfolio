@@ -372,7 +372,7 @@ export const studentsTransportationStructured: StructuredProjectData = {
   subtitle: "Safety tracking system for school transportation",
   year: 2023,
   company: "ClassApp",
-  heroImage: projectThumbNew2,
+  heroImage: chegueiMobilePoster,
   coverType: "horizontal",
   overview: {
     role: "Product Designer",
@@ -393,7 +393,8 @@ export const studentsTransportationStructured: StructuredProjectData = {
     ]
   },
   gallery: [
-    { src: projectThumbNew2, title: "Cheguei Transportation System" }
+    { src: chegueiMobileMp4, title: "Cheguei mobile experience" },
+    { src: chegueiMobilePoster, title: "Cheguei – mobile preview" }
   ],
   challenge: {
     context: "Parents had no visibility into pickup times, no confirmation their child boarded, no way to track vehicles. Schools fielded 30+ calls/day. Drivers were expected to answer phones mid-drive.",
