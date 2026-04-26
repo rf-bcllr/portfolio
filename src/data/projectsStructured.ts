@@ -6,6 +6,9 @@ import projThumbNew3 from "@/assets/proj-thumb-new-3.png";
 import projectThumbNew1 from "@/assets/project-thumb-new-1.jpg";
 import projectThumbNew2 from "@/assets/project-thumb-new-2.jpg";
 import aiWritingAssistant from "@/assets/ai-writing-assistant-poster.jpg";
+import chegueiMobilePoster from "@/assets/cheguei-mobile-poster.jpg";
+import chegueiMobileMp4 from "@/assets/cheguei-mobile.mp4";
+import aiCommsDashboardMp4 from "@/assets/ai-comms-dashboard.mp4";
 
 // New structured data format for visual case studies
 export interface StructuredChallenge {
