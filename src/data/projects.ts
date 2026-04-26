@@ -10,6 +10,12 @@ import cyberbrakeExplorer from "@/assets/cyberbrake/networks-explorer.png";
 import meuArcoOgCover from "@/assets/meu-arco/og-cover.png";
 import meuArcoDemo from "@/assets/meu-arco-demo-poster.jpg";
 import aiWritingAssistant from "@/assets/ai-writing-assistant-poster.jpg";
+import chegueiMobilePoster from "@/assets/cheguei-mobile-poster.jpg";
+import chegueiMobileMp4 from "@/assets/cheguei-mobile.mp4";
+import aiCommsDashboardMp4 from "@/assets/ai-comms-dashboard.mp4";
+import aiCommsDashboardPoster from "@/assets/ai-comms-dashboard-poster.jpg";
+import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
+import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
 
 export interface ProjectData {
   id: string;
@@ -198,7 +204,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Safety tracking system for school transportation",
     year: 2023,
     company: "ClassApp",
-    heroImage: projectThumbNew2,
+    heroImage: chegueiMobilePoster,
     coverType: "horizontal",
     overview: {
       role: "Product Designer",
