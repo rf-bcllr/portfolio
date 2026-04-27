@@ -72,16 +72,19 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
           </div>
         </div>
 
-        <div className={`figjam-grid relative flex items-center justify-center overflow-hidden border-t border-border bg-secondary/70 p-7 md:p-10 lg:border-l lg:border-t-0 ${isPhoneFrame ? "min-h-[560px]" : "min-h-[410px]"}`}>
-          <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
+        <div className={`figjam-grid relative flex items-center justify-center overflow-hidden border-t border-border bg-secondary/80 p-7 lg:border-l lg:border-t-0 ${isPhoneFrame ? "min-h-[430px]" : "min-h-[330px]"}`}>
+          <div className="absolute right-4 top-4 hidden text-3xl opacity-90 md:block" aria-hidden>
             {project.emoji}
           </div>
+          {["left-3 top-3", "right-3 top-3", "bottom-3 left-3", "bottom-3 right-3"].map((position) => (
+            <span key={position} className={`absolute size-2 rounded-[2px] border-2 border-[hsl(var(--project-accent)/0.45)] ${position}`} aria-hidden />
+          ))}
           <div
             className={`relative w-full ${project.mediaPresentation.maxWidth} ${project.mediaPresentation.rotate ?? ""}`}
           >
-            <div className={`relative overflow-hidden border border-[hsl(var(--project-accent-border))] bg-card shadow-card-hover ${isPhoneFrame ? "rounded-[34px] p-3 before:absolute before:left-1/2 before:top-3 before:z-10 before:h-1.5 before:w-16 before:-translate-x-1/2 before:rounded-full before:bg-foreground/25" : "rounded-[24px] p-2.5 pt-9 before:absolute before:left-5 before:top-4 before:size-2 before:rounded-full before:bg-muted-foreground/35 after:absolute after:left-9 after:top-4 after:size-2 after:rounded-full after:bg-muted-foreground/25"}`}>
+            <div className={`relative overflow-hidden border-[1.5px] border-border bg-card shadow-card-hover ${isPhoneFrame ? "rounded-[34px] p-3 before:absolute before:left-1/2 before:top-3 before:z-10 before:h-1.5 before:w-16 before:-translate-x-1/2 before:rounded-full before:bg-foreground/25" : "rounded-[20px] p-2.5 pt-9 before:absolute before:left-5 before:top-4 before:size-2 before:rounded-full before:bg-muted-foreground/35 after:absolute after:left-9 after:top-4 after:size-2 after:rounded-full after:bg-muted-foreground/25"}`}>
               {!isPhoneFrame && <span className="absolute left-[52px] top-4 size-2 rounded-full bg-muted-foreground/20" aria-hidden />}
-              <div className={`w-full overflow-hidden bg-secondary ${project.mediaPresentation.aspect} ${isPhoneFrame ? "rounded-[24px]" : "rounded-[16px]"}`}>
+              <div className={`w-full overflow-hidden bg-secondary ${project.mediaPresentation.aspect} ${isPhoneFrame ? "rounded-[24px]" : "rounded-[12px]"}`}>
               <MediaThumb
                 sources={project.media?.sources}
                 poster={project.poster}
