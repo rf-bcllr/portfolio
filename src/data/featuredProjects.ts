@@ -5,6 +5,7 @@ import type { AnimatedMedia } from "@/data/animatedMedia";
 export const featuredProjectSlugs = [
   "meu-arco",
   "students-transportation",
+  "health-food-delivery",
   "ai-writing-assistant",
   "ai-question-generator",
 ] as const;
@@ -27,6 +28,7 @@ export type FeaturedProject = {
 const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "meu-arco": ["Product Design", "Design System", "Research"],
   "students-transportation": ["Mobile", "Service Design", "Research"],
+  "health-food-delivery": ["Product Design", "Mobile", "Health"],
   "ai-writing-assistant": ["AI", "Dashboard", "UX Writing"],
   "ai-question-generator": ["AI", "Education", "In progress"],
 };
