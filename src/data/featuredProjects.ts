@@ -25,8 +25,14 @@ export type FeaturedProject = {
   summary: string;
   duration: string;
   outcome: string;
+  outcomeHighlights: string[];
   accent: "blue" | "green" | "amber" | "red";
-  mediaLayout: "horizontal" | "vertical";
+  mediaPresentation: {
+    frame: "phone" | "browser";
+    aspect: string;
+    maxWidth: string;
+    rotate?: string;
+  };
   media?: AnimatedMedia;
   poster: string;
   status?: "in-progress";
@@ -40,41 +46,51 @@ const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "ai-question-generator": ["AI", "Education", "In progress"],
 };
 
-const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "category" | "summary" | "outcome" | "accent">> = {
+const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "category" | "summary" | "outcome" | "outcomeHighlights" | "accent" | "mediaPresentation">> = {
   "meu-arco": {
     emoji: "🎯",
     category: "Web & Mobile App · EdTech",
-    summary: "A unified gateway for Arco Educação that replaced fragmented school tools with one role-aware experience for teachers, students and administrators — balancing brand identity, progressive disclosure and cross-platform navigation.",
-    outcome: "45% fewer support tickets · 62% higher engagement time",
+    summary: "Unified gateway for the Arco Educação ecosystem, designed after 150+ hours of school observation to reduce platform switching, preserve brand identities and adapt the experience by role for teachers, students and administrators.",
+    outcome: "10k+ active users across the Arco ecosystem",
+    outcomeHighlights: ["45% fewer support tickets", "62% higher engagement time", "20 min/day saved by teachers"],
     accent: "blue",
+    mediaPresentation: { frame: "phone", aspect: "aspect-[5/12]", maxWidth: "max-w-[245px]", rotate: "-rotate-2" },
   },
   "students-transportation": {
     emoji: "🚌",
     category: "Mobile App · EdTech · Safety",
-    summary: "A safety-first transportation flow for parents, drivers and school admins: proactive pickup/drop-off notifications, one-tap driver check-ins, privacy-preserving location design and operational dashboards.",
-    outcome: "97% parent satisfaction · 85% fewer transportation calls",
+    summary: "Safety-focused transportation system shaped by 20+ hours riding school routes and interviews with parents and drivers. The mobile experience reduces anxiety with one-tap driver check-ins, proactive parent notifications and privacy-aware status visibility.",
+    outcome: "12k+ students using Cheguei within 6 months",
+    outcomeHighlights: ["97% parent satisfaction", "85% fewer transport calls", "94% driver ease-of-use"],
     accent: "blue",
+    mediaPresentation: { frame: "phone", aspect: "aspect-[9/18.2]", maxWidth: "max-w-[260px]", rotate: "rotate-2" },
   },
   "health-food-delivery": {
     emoji: "🥗",
     category: "Mobile App · Health · Food Delivery",
-    summary: "A nutrition-first food delivery concept designed around faster meal discovery, transparent calories/macros before checkout and a 3-step ordering flow that avoids dark patterns and decision fatigue.",
-    outcome: "92% task completion · 35% faster checkout in tests",
+    summary: "Nutrition-first delivery concept for busy professionals who wanted healthy meals without decision fatigue. The interface brings calories, macros and meal goals forward while keeping appetite appeal and a 3-step checkout flow.",
+    outcome: "92% task completion in usability testing",
+    outcomeHighlights: ["8.7/10 satisfaction score", "35% faster checkout", "2,500+ Behance views"],
     accent: "green",
+    mediaPresentation: { frame: "browser", aspect: "aspect-[16/9]", maxWidth: "max-w-[560px]", rotate: "rotate-1" },
   },
   "ai-writing-assistant": {
     emoji: "✍️",
     category: "AI Workflow · Dashboard",
-    summary: "AI support for school communications combining content moderation, contextual writing suggestions, tone/length controls and a dashboard to monitor sent messages, parent NPS and response time.",
-    outcome: "Impact tracking pending · shipped with adoption dashboard",
+    summary: "AI-assisted communication workflow for schools, combining message generation, tone controls, content moderation and an adoption dashboard so teams can monitor communication quality instead of treating AI as a black box.",
+    outcome: "Shipped with adoption and quality dashboard",
+    outcomeHighlights: ["Tone and length controls", "Moderation-first workflow", "Impact tracking built in"],
     accent: "amber",
+    mediaPresentation: { frame: "browser", aspect: "aspect-[16/10]", maxWidth: "max-w-[540px]", rotate: "-rotate-1" },
   },
   "ai-question-generator": {
     emoji: "✨",
     category: "AI Tool · Education",
-    summary: "An in-progress FTD Educação tool exploring question generation inside the reader experience. The case study is intentionally kept unfinished until the real process and outcomes can be documented.",
-    outcome: "In progress · no fabricated impact metrics",
+    summary: "In-progress FTD Educação exploration for generating pedagogical questions inside the reading experience. The card keeps the work honest: process and outcomes stay limited until the real project evidence is documented.",
+    outcome: "In progress, with no fabricated impact metrics",
+    outcomeHighlights: ["Education AI workflow", "Reader-context generation", "Case study intentionally pending"],
     accent: "red",
+    mediaPresentation: { frame: "browser", aspect: "aspect-[16/9]", maxWidth: "max-w-[540px]", rotate: "rotate-1" },
   },
 };
 
@@ -98,8 +114,9 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
     summary: cardMeta[slug].summary,
     duration: project.overview.duration,
     outcome: cardMeta[slug].outcome,
+    outcomeHighlights: cardMeta[slug].outcomeHighlights,
     accent: cardMeta[slug].accent,
-    mediaLayout: project.coverType,
+    mediaPresentation: cardMeta[slug].mediaPresentation,
     media: animatedProjectMedia[slug],
     poster: animatedProjectMedia[slug]?.poster ?? project.heroImage,
     status: slug === "ai-question-generator" ? "in-progress" : undefined,
