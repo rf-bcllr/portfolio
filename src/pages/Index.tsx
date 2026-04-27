@@ -63,7 +63,7 @@ export default function Index() {
             initial={{ opacity: 0, scale: 0.96, rotate: 1 }}
             animate={{ opacity: 1, scale: 1, rotate: -1 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="relative"
+            className="relative lg:order-first"
           >
             <Card className="relative overflow-hidden border-[1.5px] p-0 shadow-card lg:order-first">
               <div className="figjam-label-strip flex items-center gap-2 px-4 py-1.5">
