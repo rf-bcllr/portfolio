@@ -59,9 +59,9 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
   "students-transportation": {
     emoji: "🚌",
     category: "Mobile App · EdTech · Safety",
-    summary: "Mobile-first student transportation experience for parents, drivers and schools, centered on predictable pickup/drop-off communication, trust signals and fast status visibility during the highest-anxiety moments of the school day.",
-    outcome: "Safety and communication redesigned around mobile use",
-    outcomeHighlights: ["Mobile GIF showcased in phone frame", "Parent, driver and admin flows", "Real-time transport status focus"],
+    summary: "Safety-focused transportation system shaped by 20+ hours riding school routes and interviews with parents and drivers. The mobile experience reduces anxiety with one-tap driver check-ins, proactive parent notifications and privacy-aware status visibility.",
+    outcome: "12k+ students using Cheguei within 6 months",
+    outcomeHighlights: ["97% parent satisfaction", "85% fewer transport calls", "94% driver ease-of-use"],
     accent: "blue",
     mediaPresentation: { frame: "phone", aspect: "aspect-[9/18.2]", maxWidth: "max-w-[260px]", rotate: "rotate-2" },
   },
