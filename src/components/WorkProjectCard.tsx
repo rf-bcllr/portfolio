@@ -80,7 +80,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
             className={`relative w-full ${project.mediaPresentation.maxWidth} ${project.mediaPresentation.rotate ?? ""}`}
           >
             <div className={`relative overflow-hidden border border-[hsl(var(--project-accent-border))] bg-card shadow-card-hover ${isPhoneFrame ? "rounded-[34px] p-3 before:absolute before:left-1/2 before:top-3 before:z-10 before:h-1.5 before:w-16 before:-translate-x-1/2 before:rounded-full before:bg-foreground/25" : "rounded-[24px] p-2.5 pt-9 before:absolute before:left-5 before:top-4 before:size-2 before:rounded-full before:bg-muted-foreground/35 after:absolute after:left-9 after:top-4 after:size-2 after:rounded-full after:bg-muted-foreground/25"}`}>
-              {!isPhoneFrame && <span className="absolute left-13 top-4 size-2 rounded-full bg-muted-foreground/20" aria-hidden />}
+              {!isPhoneFrame && <span className="absolute left-[52px] top-4 size-2 rounded-full bg-muted-foreground/20" aria-hidden />}
               <div className={`w-full overflow-hidden bg-secondary ${project.mediaPresentation.aspect} ${isPhoneFrame ? "rounded-[24px]" : "rounded-[16px]"}`}>
               <MediaThumb
                 sources={project.media?.sources}
