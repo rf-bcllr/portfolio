@@ -1,15 +1,16 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Users, Clock, Wrench, TrendingUp, Monitor, Lightbulb, CheckCircle, LayoutDashboard, MessageSquare, BookOpen, Search, BarChart3, Zap, PenTool, Shield, MousePointerClick, Bell, MapPin, Palette, Smartphone, Sparkles, Eye, Layout, Bookmark, MessageCircle } from "lucide-react";
+import { ArrowLeft, Users, Clock, Wrench, TrendingUp, Monitor, Lightbulb, CheckCircle, LayoutDashboard, MessageSquare, BookOpen, Search, BarChart3, Zap, PenTool, Shield, MousePointerClick, Bell, MapPin, Palette, Smartphone, Sparkles, Eye, Layout, Bookmark, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ContactFooter } from "@/components/ContactFooter";
 import { UnderConstructionState } from "@/components/UnderConstructionState";
 import { ProjectGallery } from "@/components/ProjectGallery";
+import { SiteNav } from "@/components/SiteNav";
+import { MediaThumb } from "@/components/MediaThumb";
 import { MetricCard } from "@/components/MetricCard";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { FeatureCard } from "@/components/FeatureCard";
@@ -17,8 +18,7 @@ import { QuoteBlock } from "@/components/QuoteBlock";
 import { InsightCard } from "@/components/InsightCard";
 import { projectsData } from "@/data/projects";
 import { structuredProjects, StructuredProjectData } from "@/data/projectsStructured";
-import avatar from "@/assets/rafael-bacellar-avatar.jpg";
-import abstractHeroBg from "@/assets/project-hero-bg.png";
+import { animatedProjectMedia } from "@/data/animatedMedia";
 
 // Icon mapping for dynamic feature icons
 const iconMap: Record<string, React.ComponentType<{
@@ -248,58 +248,13 @@ const ProjectDetail = () => {
 
   // Use structured data if available
   const displayProject = structuredProject || project;
+  const animatedHero = slug ? animatedProjectMedia[slug] : undefined;
   return <div className="min-h-screen bg-background">
-      {/* Navigation Header */}
-      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <nav className="container mx-auto flex items-center justify-between py-4">
-          <Link to="/" data-cursor-action="home" className="flex items-center">
-            <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
-          </Link>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <Button asChild variant="contrast" size="sm">
-              <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer">
-                LinkedIn
-              </a>
-            </Button>
-          </div>
-        </nav>
-      </header>
+      <SiteNav />
 
 
-      {/* Hero Section - Unified Design with Abstract Background */}
-      <section className="relative overflow-hidden">
-        {/* Abstract Background Layer - Always Present */}
-        <div className="absolute inset-0 min-h-[60vh]" style={{
-        backgroundImage: `url(${abstractHeroBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        filter: 'blur(8px)',
-        transform: 'scale(1.1)' // Prevents blur edge artifacts
-      }} />
-        
-        {/* Project Image Overlay - Centered (if image exists and no error) */}
-        {!imageError && displayProject.heroImage && <div className="relative min-h-[60vh] flex items-center justify-center p-6 lg:p-12">
-            <motion.img src={displayProject.heroImage} alt={displayProject.title} onError={() => setImageError(true)} initial={{
-          opacity: 0,
-          scale: 0.95
-        }} animate={{
-          opacity: 1,
-          scale: 1
-        }} transition={{
-          duration: 0.6
-        }} className="max-h-[55vh] max-w-[90%] lg:max-w-[80%] object-contain rounded-xl shadow-2xl" style={{
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 255, 255, 0.15)'
-        }} />
-          </div>}
-        
-        {/* Fallback - Just Abstract Background (if no image or error) */}
-        {(imageError || !displayProject.heroImage) && <div className="relative min-h-[60vh]" />}
-        
-        {/* Hero Overlay Content */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/80 to-transparent p-6 lg:p-12">
-          <div className="container mx-auto max-w-6xl">
-            <motion.div initial={{
+      <section className="mx-auto grid max-w-6xl gap-8 px-6 pb-10 pt-16 md:pt-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <motion.div initial={{
             opacity: 0,
             y: 20
           }} animate={{
@@ -308,18 +263,35 @@ const ProjectDetail = () => {
           }} transition={{
             duration: 0.6
           }}>
-              <Badge variant="secondary" className="mb-4">
-                {displayProject.year} · {displayProject.company}
-              </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4">
-                {displayProject.title}
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
-                {displayProject.subtitle}
-              </p>
-            </motion.div>
-          </div>
-        </div>
+          <Badge variant="secondary" className="mb-4">
+            {displayProject.year} · {displayProject.company}
+          </Badge>
+          <h1 className="text-5xl md:text-7xl font-semibold font-display mb-4 leading-[0.95]">
+            {displayProject.title}
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
+            {displayProject.subtitle}
+          </p>
+        </motion.div>
+        {!imageError && displayProject.heroImage && <motion.div initial={{
+          opacity: 0,
+          scale: 0.95
+        }} animate={{
+          opacity: 1,
+          scale: 1
+        }} transition={{
+          duration: 0.6
+        }} className="rounded-[24px] border border-border bg-card p-3 shadow-card-hover lg:rotate-1">
+            <MediaThumb
+              sources={animatedHero?.sources}
+              poster={animatedHero?.poster || displayProject.heroImage}
+              src={animatedHero ? undefined : displayProject.heroImage}
+              alt={displayProject.title}
+              onLoaded={() => setImageError(false)}
+              className="aspect-[16/10] w-full rounded-[18px] object-cover"
+              priority
+            />
+          </motion.div>}
       </section>
 
       {/* Content Grid */}

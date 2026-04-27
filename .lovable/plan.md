@@ -1,106 +1,86 @@
-## Plano de mudanças
+Plano de implementação
 
-### 1. Adicionar logo da FTD na seção de empresas
-- Copiar `user-uploads://logo_ftd_monocromatico_cmyk_branco_…png` para `src/assets/logo-ftd.png`.
-- Em `src/components/CompanyLogos.tsx`:
-  - Importar `logoFtd from "@/assets/logo-ftd.png"`.
-  - Adicionar a entrada `{ name: "FTD Educação", logo: logoFtd, url: "https://www.ftd.com.br/" }` ao array `companies`.
-- O grid já é `lg:grid-cols-6`; com 7 logos, a sétima quebrará para a próxima linha. Vou ajustar para `lg:grid-cols-7` (ou manter `grid-cols-6` e centralizar a sétima) — proposta: trocar para `lg:grid-cols-7` para manter todas alinhadas em telas largas, e em telas médias (`md`) deixar `md:grid-cols-4` para não ficar viúva.
-- Como o logo é monocromático branco, o tratamento atual `brightness-0 dark:invert` continua funcionando (no light mode vira preto, no dark mode mantém-se branco).
+1. Reestruturar a navegação principal
 
-### 2. Trocar a imagem principal do Students' Transportation (Cheguei) pelo GIF mobile
-- Copiar `user-uploads://WhatsAppVideo2026-04-16at10.59.29AM-ezgif.com-video-to-gif-converter.gif` para `src/assets/cheguei-mobile.gif`.
-- **Otimização (consistente com o trabalho recente)**: converter via `ffmpeg` para `cheguei-mobile.mp4` + `cheguei-mobile.webm` + poster `cheguei-mobile-poster.jpg`, deletando o GIF depois.
-- Adicionar entrada em `src/data/animatedMedia.ts`:
-  ```ts
-  "students-transportation": {
-    sources: [
-      { src: chegueiMobileWebm, type: "video/webm" },
-      { src: chegueiMobileMp4, type: "video/mp4" },
-    ],
-    poster: chegueiMobilePoster,
-  }
-  ```
-- Em `src/pages/Index.tsx`:
-  - Atualizar `projectMedia[3]` (Students' Transportation) para usar `...animatedProjectMedia["students-transportation"]` em vez de `projectThumbNew2`.
-  - Atualizar a `ProjectCard` correspondente (índice 3 na Coluna 1) para passar `sources`/`poster` em vez de `src`.
-- Em `src/data/projects.ts` e `src/data/projectsStructured.ts`:
-  - Trocar `heroImage` do projeto `students-transportation` para o novo poster.
-  - Atualizar a entrada da `gallery` para `{ src: chegueiMobilePoster, title: "Cheguei mobile experience" }` (a `MediaLightbox` atualmente só lida com imagens/vídeos via URL — vou verificar se faz sentido passar o `.mp4` direto para que o lightbox abra como vídeo; pelo que vi em `MediaLightbox.tsx` já existe a checagem `isVideo` por extensão, então passarei o `.mp4` na galeria).
+- Criar um menu fixo/flutuante no estilo FigJam com as páginas: Home, Work, Resume e Certifications.
+- Manter a identidade “Rafa Bacellar / rfbcllr.”, LinkedIn e ações principais sem transformar o portfólio em template genérico.
+- Configurar rotas dedicadas:
+  - `/` para Home
+  - `/work` para lista de projetos
+  - `/resume` para currículo/experiência
+  - `/certifications` para certificados, prêmios e recomendações
+  - `/project/:slug` para detalhes dos projetos
 
-### 3. Adicionar `comms-dashboard.gif` à galeria do AI Writing Assistant + texto sobre o dashboard
-- Copiar `user-uploads://comms-dashboard.gif` para `src/assets/ai-comms-dashboard.gif` e converter via `ffmpeg` para `ai-comms-dashboard.mp4` + `.webm` + poster (`ai-comms-dashboard-poster.jpg`); deletar o GIF original.
-- Em `src/data/projectsStructured.ts` (`aiWritingAssistantStructured`):
-  - Adicionar segundo item na `gallery`:
-    ```ts
-    { src: aiCommsDashboardMp4, title: "Communications dashboard tracking AI assistant usage" }
-    ```
-  - Adicionar uma nova `SolutionFeature` ao final do array `features` mencionando o dashboard:
-    ```ts
-    {
-      icon: "BarChart3",
-      title: "Usage Dashboard",
-      description: "A dedicated dashboard tracks AI assistant adoption, message volume, NPS, and response-time metrics so school admins can monitor impact in real time."
-    }
-    ```
-  - Acrescentar uma frase no campo `solution.summary` indicando o dashboard.
-  - Atualizar uma das `learnings` (ou adicionar nova) referenciando "measuring adoption from day one with a dedicated dashboard".
-- Em `src/data/projects.ts` (`ai-writing-assistant`):
-  - Adicionar 1–2 frases ao final do campo `solution` mencionando: "Para acompanhar adoção e impacto, criamos um dashboard de Comunicação que mostra comunicados enviados/recebidos, NPS dos pais e tempo médio de resposta."
-  - Acrescentar a galeria (atualmente esse projeto não tem `gallery` no `projects.ts`) para incluir o poster do dashboard.
+2. Aplicar nova direção visual “FigJam editorial”
 
-### 4. Criar novo projeto "AI Question Generation Tool" (estado de obra, padrão Cyberbrake)
-- Copiar `user-uploads://Gravando2026-03-30115621-…gif` para `src/assets/ai-question-generator.gif` e converter para `.mp4` + `.webm` + poster (`ai-question-generator-poster.jpg`); deletar o GIF.
-- Adicionar entrada em `src/data/animatedMedia.ts`:
-  ```ts
-  "ai-question-generator": {
-    sources: [
-      { src: aiQuestionGeneratorWebm, type: "video/webm" },
-      { src: aiQuestionGeneratorMp4, type: "video/mp4" },
-    ],
-    poster: aiQuestionGeneratorPoster,
-  }
-  ```
-- Em `src/data/projects.ts` adicionar novo item ao final do array `projectsData`, espelhando o formato Cyberbrake:
-  ```ts
-  {
-    id: "ai-question-generator",
-    slug: "ai-question-generator",
-    title: "AI Question Generation Tool",
-    subtitle: "Page under construction",
-    year: 2025,
-    company: "FTD Educação",
-    heroImage: aiQuestionGeneratorPoster,
-    coverType: "horizontal",
-    overview: {
-      role: "Product Designer",
-      team: "TBD",
-      duration: "TBD",
-      tools: ["TBD"],
-      impact: ["Page under construction"]
-    },
-    challenge: "🚧 This case study is currently under construction. Check back soon for the full story!",
-    process: "🚧 Under construction...",
-    solution: "🚧 Under construction...",
-    impact: "TBD",
-    gallery: [
-      { src: aiQuestionGeneratorMp4, title: "AI Question Generator inside the FTD reader" },
-      { src: aiQuestionGeneratorPoster, title: "AI Question Generator – preview" }
-    ]
-  }
-  ```
-- Em `src/pages/ProjectDetail.tsx`: a lógica especial "Cyberbrake" (`project.slug === "cyberbrake"`) que renderiza Gallery à esquerda + UnderConstructionState à direita precisa ser estendida para também aceitar `"ai-question-generator"`. Vou trocar por `["cyberbrake", "ai-question-generator"].includes(project.slug)`.
-- Em `src/pages/Index.tsx`:
-  - Adicionar o novo projeto ao array `projectMedia` (vídeo, similar ao Meu Arco/AI Writing Assistant).
-  - **Decisão de layout do grid de projetos** (atualmente 4 / 2 / 2 = 8 cards):
-    - Opção mais limpa: adicionar à Coluna 3 como terceiro card → fica 4 / 2 / 3 (9 cards). Ainda assimétrico mas menos visível em telas grandes.
-    - Vou seguir essa abordagem.
-  - Adicionar `<ProjectCard>` correspondente na Coluna 3 usando `sources`/`poster`.
+- Trocar a estética atual dark/glassmorphism por uma base clara/off-white com grid pontilhado, cartões brancos, bordas suaves, labels coloridos e elementos tipo sticky note/canvas.
+- Preservar Clash Display para títulos e Satoshi para corpo.
+- Usar azul royal apenas em estados interativos/glows, respeitando a memória do projeto.
+- Substituir o background animado atual por um background CSS leve, com aparência de canvas/board.
+- Ajustar botões para pill-shape e cards para `rounded-[24px]`, mantendo consistência já definida.
 
-### 5. Resumo dos arquivos afetados
-- **Criados**: `src/assets/logo-ftd.png`, `src/assets/cheguei-mobile.{mp4,webm}` + poster, `src/assets/ai-comms-dashboard.{mp4,webm}` + poster, `src/assets/ai-question-generator.{mp4,webm}` + poster.
-- **Editados**: `src/components/CompanyLogos.tsx`, `src/data/animatedMedia.ts`, `src/data/projects.ts`, `src/data/projectsStructured.ts`, `src/pages/Index.tsx`, `src/pages/ProjectDetail.tsx`.
+3. Reorganizar a Home
 
-### Observações / pontos para confirmar
-- A FTD será adicionada como sétima logo. Se preferir, posso reordenar para que ela apareça em uma posição específica (ex.: depois do Arco) — me avise; por padrão vou colocar no final.
-- O texto novo sobre o dashboard será adicionado tanto no campo legado (`solution` em `projects.ts`) quanto na versão estruturada (`features` + `summary` em `projectsStructured.ts`) para que apareça de fato na página renderizada (a página usa a versão estruturada quando existe).
+- Transformar a Home em uma entrada mais parecida com um portfolio editorial/canvas:
+  - Hero com apresentação curta de Rafa Bacellar
+  - Blocos visuais de skills, disponibilidade e foco profissional
+  - Prévia curta dos projetos principais
+  - Logos de empresas em um bloco mais clean
+  - CTA para Work e Resume
+- Reduzir a quantidade de seções longas na Home para que ela funcione como landing page principal.
+
+4. Criar/ajustar a página Work
+
+- Focar exclusivamente nestes projetos:
+  - Meu Arco
+  - Students’ Transportation Feature / Cheguei
+  - Saúde e Ponto
+  - AI Writing Assistant
+  - AI Question Generation Tool
+- Remover da experiência principal os projetos antigos/irrelevantes como Cyberbrake, Mural, Digital Signature etc. da listagem de Work.
+- Criar uma grade/lista de projetos inspirada no site de referência, mas com visual FigJam: cards horizontais, labels, tags e media previews otimizados.
+- Manter os assets MP4/WebM/posters já otimizados e o componente `MediaThumb`.
+
+5. Adaptar páginas de detalhe dos projetos
+
+- Atualizar o layout de case study para o novo visual de canvas:
+  - Header editorial do projeto
+  - Meta informações em pequenos cartões/labels
+  - Galeria visual mais forte
+  - Seções Mission, Process, Solution, Impact e Takeaways em cards/blocos de quadro
+- Manter conteúdo real vindo de `projects.ts` e `projectsStructured.ts`.
+- Manter o estado “under construction” para AI Question Generation Tool, igual ao padrão já usado para projetos incompletos.
+
+6. Criar página Resume
+
+- Migrar a página atual `/experience` para a nova rota `/resume` ou criar uma nova página baseada nela.
+- Manter experiência profissional, educação, skills, ferramentas, idiomas e botão de download do PDF.
+- Adaptar visualmente para o estilo FigJam, com blocos tipo canvas, timelines e chips.
+- Manter compatibilidade temporária de `/experience` redirecionando ou renderizando a mesma página, para não quebrar links existentes.
+
+7. Criar página Certifications
+
+- Separar certificados, prêmios e recomendações da Home.
+- Reaproveitar `CertificationCard`, mas adaptando o visual para a nova linguagem.
+- Incluir as recomendações já existentes na mesma página.
+- Preparar uma seção de “Awards” mesmo que inicialmente tenha poucos itens ou esteja vazia/placeholder controlado, sem inventar dados.
+
+8. Limpar dados e componentes usados na Home antiga
+
+- Remover imports e blocos visuais que não serão mais exibidos na nova estrutura.
+- Centralizar a lista dos quatro projetos principais para evitar inconsistência entre Home e Work.
+- Preservar os dados reais e não fabricar métricas novas.
+
+Detalhes técnicos
+
+- Arquivos principais a alterar/criar:
+  - `src/App.tsx` para novas rotas
+  - `src/pages/Index.tsx` para nova Home
+  - `src/pages/Work.tsx` nova página Work
+  - `src/pages/Resume.tsx` nova página Resume, baseada em `Experience.tsx`
+  - `src/pages/Certifications.tsx` nova página Certifications
+  - `src/pages/ProjectDetail.tsx` para adaptar case studies ao novo visual
+  - `src/index.css` e/ou componentes compartilhados para tokens e background FigJam
+  - componentes de navegação/cards compartilhados, se necessário
+- Não vou trocar o stack nem adicionar backend.
+- Depois da implementação, rodarei type-check/build para validar que as rotas, imports e componentes estão corretos.
