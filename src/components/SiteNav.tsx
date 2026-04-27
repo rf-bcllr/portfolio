@@ -12,11 +12,11 @@ const navItems = [
 
 export function SiteNav() {
   return (
-    <header className="sticky top-4 z-50 px-4">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-primary/10 bg-primary shadow-card">
+      <nav className="mx-auto flex h-[60px] max-w-7xl items-center justify-between gap-3 px-6">
         <Link to="/" data-cursor-action="home" className="flex items-center gap-2 rounded-full pr-2 text-sm font-semibold">
-          <img src={avatar} alt="Rafael Bacellar avatar" className="size-9 rounded-full border border-border object-cover" />
-          <span className="hidden sm:inline">rfbcllr.</span>
+          <img src={avatar} alt="Rafael Bacellar avatar" className="size-9 rounded-lg border border-primary-foreground/20 object-cover" />
+          <span className="hidden text-primary-foreground sm:inline">rfbcllr.</span>
         </Link>
 
         <div className="flex min-w-0 flex-1 items-center justify-center gap-1 overflow-x-auto px-1">
@@ -27,7 +27,7 @@ export function SiteNav() {
               data-cursor-action="navigate-internal"
               className={({ isActive }) =>
                 `rounded-full px-3 py-2 text-xs font-semibold transition-colors sm:text-sm ${
-                  isActive ? "bg-foreground text-background" : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  isActive ? "bg-primary-foreground text-primary" : "text-primary-foreground/75 hover:bg-primary-foreground/12 hover:text-primary-foreground"
                 }`
               }
             >
@@ -36,7 +36,7 @@ export function SiteNav() {
           ))}
         </div>
 
-        <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex">
+        <Button asChild variant="outline" size="sm" className="hidden border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground hover:text-primary sm:inline-flex">
           <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link>
             LinkedIn <ExternalLink className="size-3.5" />
           </a>
