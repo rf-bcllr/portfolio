@@ -22,7 +22,7 @@ const App = () => {
   
   return (
     <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="rfbcllr-theme-v2">
       <TooltipProvider>
         <AnimatedBackground />
         <CustomCursor />
