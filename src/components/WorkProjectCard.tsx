@@ -19,69 +19,72 @@ const accentClassMap: Record<FeaturedProject["accent"], string> = {
 
 export function WorkProjectCard({ project, index = 0, compact = false }: WorkProjectCardProps) {
   const isPhoneFrame = project.mediaPresentation.frame === "phone";
-  const rotation = index % 2 === 0 ? "-0.25deg" : "0.25deg";
+  const rotation = index % 2 === 0 ? "-0.15deg" : "0.15deg";
 
   return (
     <Link
       to={`/project/${project.slug}`}
       data-cursor-action="navigate-internal"
-      className={`group relative block overflow-hidden rounded-[24px] border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--project-accent-border))] hover:shadow-card-hover ${accentClassMap[project.accent]}`}
+      className={`group relative block overflow-hidden rounded-[24px] border-[1.5px] border-border bg-card shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover ${accentClassMap[project.accent]}`}
       style={{ transform: `rotate(${rotation})` }}
     >
-      <article className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,0.88fr)] xl:grid-cols-[minmax(0,0.86fr)_minmax(520px,0.94fr)]"}`}>
-        <div className="relative flex flex-col justify-between gap-8 p-6 md:p-8 lg:p-9">
-          <span className="absolute inset-y-0 left-0 w-1.5 bg-[hsl(var(--project-accent))]" aria-hidden />
+      <article className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.45fr)]"}`}>
+        <div className="relative flex flex-col justify-between gap-7 p-6 md:p-8">
+          <span className="absolute inset-y-0 left-0 w-1 bg-[hsl(var(--project-accent))]" aria-hidden />
           <div>
-            <div className="mb-5 flex flex-wrap items-center gap-2">
+            <div className="mb-4 flex flex-wrap items-center gap-1.5">
               {project.chips.map((chip) => (
                 <Badge
                   key={chip}
                   variant="outline"
-                  className="rounded-full border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] px-3 py-1 text-[hsl(var(--project-accent))]"
+                  className="rounded-full border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] px-2.5 py-0.5 text-[11px] font-semibold text-[hsl(var(--project-accent))]"
                 >
                   {chip}
                 </Badge>
               ))}
             </div>
-            <h3 className="font-display text-3xl font-semibold leading-tight md:text-4xl">{project.title}</h3>
-            <p className="mt-1 text-sm font-semibold text-muted-foreground">{project.category}</p>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{project.summary}</p>
+            <h3 className="font-display text-[28px] font-semibold leading-tight text-foreground md:text-[34px]">{project.title}</h3>
+            <p className="mt-1 text-[13px] font-medium text-muted-foreground">{project.category}</p>
+            <p className="mt-4 max-w-2xl text-[15px] leading-[1.7] text-muted-foreground">{project.summary}</p>
           </div>
 
-          <div className="grid gap-3 text-sm sm:grid-cols-3">
-            <div className="rounded-[18px] border border-border bg-secondary/60 p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Timeline</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground">{project.durationDisplay}</p>
+          <div className="grid gap-x-8 gap-y-4 text-sm sm:grid-cols-3">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">Timeline</p>
+              <p className="mt-1 text-[13.5px] font-semibold leading-snug text-foreground">{project.durationDisplay}</p>
             </div>
-            <div className="rounded-[18px] border border-border bg-secondary/60 p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Role</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground">{project.roleDisplay}</p>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">Role</p>
+              <p className="mt-1 text-[13.5px] font-semibold leading-snug text-foreground">{project.roleDisplay}</p>
             </div>
-            <div className="rounded-[18px] border border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Signal</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-[hsl(var(--project-accent))]">{project.outcome}</p>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">Signal</p>
+              <p className="mt-1 text-[13.5px] font-bold leading-snug text-[hsl(var(--project-accent))]">{project.outcome}</p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2">
             {project.outcomeHighlights.map((item) => (
-              <span key={item} className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground">
+              <span key={item} className="rounded-full border border-border bg-secondary/70 px-2.5 py-1 text-[12px] font-medium text-muted-foreground">
                 {item}
               </span>
             ))}
           </div>
         </div>
 
-        <div className={`figjam-grid relative flex items-center justify-center overflow-hidden border-t border-border bg-secondary/70 p-7 md:p-10 lg:border-l lg:border-t-0 ${isPhoneFrame ? "min-h-[560px]" : "min-h-[410px]"}`}>
-          <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
+        <div className={`figjam-grid relative flex items-center justify-center overflow-hidden border-t border-border bg-secondary/80 p-7 lg:border-l lg:border-t-0 ${isPhoneFrame ? "min-h-[430px]" : "min-h-[330px]"}`}>
+          <div className="absolute right-4 top-4 hidden text-3xl opacity-90 md:block" aria-hidden>
             {project.emoji}
           </div>
+          {["left-3 top-3", "right-3 top-3", "bottom-3 left-3", "bottom-3 right-3"].map((position) => (
+            <span key={position} className={`absolute size-2 rounded-[2px] border-2 border-[hsl(var(--project-accent)/0.45)] ${position}`} aria-hidden />
+          ))}
           <div
             className={`relative w-full ${project.mediaPresentation.maxWidth} ${project.mediaPresentation.rotate ?? ""}`}
           >
-            <div className={`relative overflow-hidden border border-[hsl(var(--project-accent-border))] bg-card shadow-card-hover ${isPhoneFrame ? "rounded-[34px] p-3 before:absolute before:left-1/2 before:top-3 before:z-10 before:h-1.5 before:w-16 before:-translate-x-1/2 before:rounded-full before:bg-foreground/25" : "rounded-[24px] p-2.5 pt-9 before:absolute before:left-5 before:top-4 before:size-2 before:rounded-full before:bg-muted-foreground/35 after:absolute after:left-9 after:top-4 after:size-2 after:rounded-full after:bg-muted-foreground/25"}`}>
+            <div className={`relative overflow-hidden border-[1.5px] border-border bg-card shadow-card-hover ${isPhoneFrame ? "rounded-[34px] p-3 before:absolute before:left-1/2 before:top-3 before:z-10 before:h-1.5 before:w-16 before:-translate-x-1/2 before:rounded-full before:bg-foreground/25" : "rounded-[20px] p-2.5 pt-9 before:absolute before:left-5 before:top-4 before:size-2 before:rounded-full before:bg-muted-foreground/35 after:absolute after:left-9 after:top-4 after:size-2 after:rounded-full after:bg-muted-foreground/25"}`}>
               {!isPhoneFrame && <span className="absolute left-[52px] top-4 size-2 rounded-full bg-muted-foreground/20" aria-hidden />}
-              <div className={`w-full overflow-hidden bg-secondary ${project.mediaPresentation.aspect} ${isPhoneFrame ? "rounded-[24px]" : "rounded-[16px]"}`}>
+              <div className={`w-full overflow-hidden bg-secondary ${project.mediaPresentation.aspect} ${isPhoneFrame ? "rounded-[24px]" : "rounded-[12px]"}`}>
               <MediaThumb
                 sources={project.media?.sources}
                 poster={project.poster}

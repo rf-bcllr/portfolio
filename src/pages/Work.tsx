@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { WorkProjectCard } from "@/components/WorkProjectCard";
 import { ContactFooter } from "@/components/ContactFooter";
@@ -10,34 +10,30 @@ export default function Work() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
-      <main className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
+      <main className="mx-auto max-w-[1020px] px-6 pb-20 pt-24 md:pt-28">
         <motion.section
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end"
+          className="mb-11"
         >
-          <div>
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[hsl(var(--tag-blue-border))] bg-[hsl(var(--tag-blue-bg))] px-4 py-2 text-sm font-semibold text-[hsl(var(--tag-blue))] shadow-card">
-              <Sparkles className="size-4" /> Selected work
-            </span>
-            <h1 className="font-display text-5xl font-semibold leading-[0.95] md:text-7xl">
-              Project cards shaped like a working board.
-            </h1>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-[7px] bg-primary px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-primary-foreground shadow-card">
+            <span className="size-1.5 rounded-[1px] bg-primary-foreground/60" aria-hidden /> Work
           </div>
-          <div className="rounded-[24px] border border-border bg-card p-6 shadow-card lg:rotate-1">
-            <p className="text-lg leading-relaxed text-muted-foreground">
+          <h1 className="font-display text-[42px] font-semibold leading-none text-foreground md:text-6xl">
+            Selected Projects
+          </h1>
+          <div className="mt-3 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
               Compact case-study summaries with the key context, role, duration and outcome upfront — then you can open each project only if you want the full deep dive.
             </p>
-            <Button asChild variant="contrast" className="mt-6">
-              <a href="/resume" data-cursor-action="navigate-internal">
-                Resume <ArrowRight className="size-4" />
-              </a>
+            <Button asChild variant="outline" className="w-fit border-[1.5px] bg-card">
+              <a href="/resume" data-cursor-action="navigate-internal">Resume <ArrowRight className="size-4" /></a>
             </Button>
           </div>
         </motion.section>
 
-        <section className="space-y-7">
+        <section className="space-y-4">
           {featuredProjects.map((project, index) => (
             <WorkProjectCard key={project.slug} project={project} index={index} />
           ))}
