@@ -6,10 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { CompanyLogos } from "@/components/CompanyLogos";
-import { WorkProjectCard } from "@/components/WorkProjectCard";
 import { ContactFooter } from "@/components/ContactFooter";
 import { useTranslations } from "@/hooks/useTranslations";
-import { featuredProjects } from "@/data/featuredProjects";
 import heroPortrait from "@/assets/hero-portrait.png";
 
 const capabilities = [
@@ -23,7 +21,6 @@ const capabilities = [
 
 export default function Index() {
   const t = useTranslations();
-  const previewProjects = featuredProjects.slice(0, 2);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -113,27 +110,6 @@ export default function Index() {
               <h2 className="font-display text-2xl font-semibold">Fast iterations</h2>
               <p className="mt-2 text-muted-foreground">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
             </Card>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-6xl px-6 py-16">
-          <div className="mb-9 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <span className="mb-3 inline-flex rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-muted-foreground">
-                Focused work
-              </span>
-              <h2 className="font-display text-4xl font-semibold md:text-6xl">Selected projects</h2>
-            </div>
-            <Button asChild variant="outline">
-              <Link to="/work" data-cursor-action="navigate-internal">
-                All work <ArrowRight className="size-4" />
-              </Link>
-            </Button>
-          </div>
-          <div className="grid gap-7">
-            {previewProjects.map((project, index) => (
-              <WorkProjectCard key={project.slug} project={project} index={index} compact />
-            ))}
           </div>
         </section>
 
