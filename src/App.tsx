@@ -8,7 +8,6 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import Index from "./pages/Index";
-import Experience from "./pages/Experience";
 import Work from "./pages/Work";
 import Resume from "./pages/Resume";
 import Certifications from "./pages/Certifications";
@@ -36,7 +35,7 @@ const App = () => {
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/project/:slug" element={<ProjectDetail />} />
             <Route path="/projetos/:slug" element={<ProjectDetail />} />
-            <Route path="/experience" element={<Experience />} />
+            <Route path="/experience" element={<Resume />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
