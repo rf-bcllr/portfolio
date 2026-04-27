@@ -26,6 +26,7 @@ export type FeaturedProject = {
   duration: string;
   outcome: string;
   accent: "blue" | "green" | "amber" | "red";
+  mediaLayout: "horizontal" | "vertical";
   media?: AnimatedMedia;
   poster: string;
   status?: "in-progress";
@@ -43,36 +44,36 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
   "meu-arco": {
     emoji: "🎯",
     category: "Web & Mobile App · EdTech",
-    summary: "Unified fragmented tools across Arco Educação into one role-aware gateway for teachers, students and administrators.",
-    outcome: "45% reduction in support tickets",
+    summary: "A unified gateway for Arco Educação that replaced fragmented school tools with one role-aware experience for teachers, students and administrators — balancing brand identity, progressive disclosure and cross-platform navigation.",
+    outcome: "45% fewer support tickets · 62% higher engagement time",
     accent: "blue",
   },
   "students-transportation": {
     emoji: "🚌",
     category: "Mobile App · EdTech · Safety",
-    summary: "Designed a school transportation tracking system focused on parent reassurance, driver safety and school operations.",
-    outcome: "97% parent satisfaction",
+    summary: "A safety-first transportation flow for parents, drivers and school admins: proactive pickup/drop-off notifications, one-tap driver check-ins, privacy-preserving location design and operational dashboards.",
+    outcome: "97% parent satisfaction · 85% fewer transportation calls",
     accent: "blue",
   },
   "health-food-delivery": {
     emoji: "🥗",
     category: "Mobile App · Health · Food Delivery",
-    summary: "Created a health-first food delivery experience with upfront nutrition, faster checkout and clearer meal discovery.",
-    outcome: "92% task completion rate",
+    summary: "A nutrition-first food delivery concept designed around faster meal discovery, transparent calories/macros before checkout and a 3-step ordering flow that avoids dark patterns and decision fatigue.",
+    outcome: "92% task completion · 35% faster checkout in tests",
     accent: "green",
   },
   "ai-writing-assistant": {
     emoji: "✍️",
     category: "AI Workflow · Dashboard",
-    summary: "Designed an AI-assisted writing workflow to help teams draft, review and improve communication with more consistency.",
-    outcome: "AI-assisted writing workflow",
+    summary: "AI support for school communications combining content moderation, contextual writing suggestions, tone/length controls and a dashboard to monitor sent messages, parent NPS and response time.",
+    outcome: "Impact tracking pending · shipped with adoption dashboard",
     accent: "amber",
   },
   "ai-question-generator": {
     emoji: "✨",
     category: "AI Tool · Education",
-    summary: "Exploring a question generation tool for education teams, currently kept as an in-progress case study.",
-    outcome: "In progress",
+    summary: "An in-progress FTD Educação tool exploring question generation inside the reader experience. The case study is intentionally kept unfinished until the real process and outcomes can be documented.",
+    outcome: "In progress · no fabricated impact metrics",
     accent: "red",
   },
 };
@@ -98,6 +99,7 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
     duration: project.overview.duration,
     outcome: cardMeta[slug].outcome,
     accent: cardMeta[slug].accent,
+    mediaLayout: project.coverType,
     media: animatedProjectMedia[slug],
     poster: animatedProjectMedia[slug]?.poster ?? project.heroImage,
     status: slug === "ai-question-generator" ? "in-progress" : undefined,
