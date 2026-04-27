@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MediaLightbox, MediaItem } from "@/components/MediaLightbox";
+import { MediaThumb } from "@/components/MediaThumb";
 import { ImageIcon } from "lucide-react";
 
 interface ProjectGalleryProps {
@@ -26,17 +27,16 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
                 setLightboxOpen(true);
               }}
               data-cursor-action="view"
-              className="group relative aspect-video overflow-hidden rounded-lg bg-muted hover:ring-2 hover:ring-primary transition-all duration-300"
+              className="group relative aspect-video overflow-hidden rounded-[18px] border border-border bg-muted hover:ring-2 hover:ring-primary transition-all duration-300"
               aria-label={`View ${image.title || 'image'} in full size`}
             >
-              <img
+              <MediaThumb
                 src={image.src}
                 alt={image.title || `Gallery image ${index + 1}`}
-                loading="lazy"
-                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                showSkeleton
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
             </button>
           ))}
         </div>
