@@ -19,53 +19,53 @@ const accentClassMap: Record<FeaturedProject["accent"], string> = {
 
 export function WorkProjectCard({ project, index = 0, compact = false }: WorkProjectCardProps) {
   const isPhoneFrame = project.mediaPresentation.frame === "phone";
-  const rotation = index % 2 === 0 ? "-0.25deg" : "0.25deg";
+  const rotation = index % 2 === 0 ? "-0.15deg" : "0.15deg";
 
   return (
     <Link
       to={`/project/${project.slug}`}
       data-cursor-action="navigate-internal"
-      className={`group relative block overflow-hidden rounded-[24px] border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--project-accent-border))] hover:shadow-card-hover ${accentClassMap[project.accent]}`}
+      className={`group relative block overflow-hidden rounded-[24px] border-[1.5px] border-border bg-card shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover ${accentClassMap[project.accent]}`}
       style={{ transform: `rotate(${rotation})` }}
     >
-      <article className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,0.88fr)] xl:grid-cols-[minmax(0,0.86fr)_minmax(520px,0.94fr)]"}`}>
-        <div className="relative flex flex-col justify-between gap-8 p-6 md:p-8 lg:p-9">
-          <span className="absolute inset-y-0 left-0 w-1.5 bg-[hsl(var(--project-accent))]" aria-hidden />
+      <article className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.45fr)]"}`}>
+        <div className="relative flex flex-col justify-between gap-7 p-6 md:p-8">
+          <span className="absolute inset-y-0 left-0 w-1 bg-[hsl(var(--project-accent))]" aria-hidden />
           <div>
-            <div className="mb-5 flex flex-wrap items-center gap-2">
+            <div className="mb-4 flex flex-wrap items-center gap-1.5">
               {project.chips.map((chip) => (
                 <Badge
                   key={chip}
                   variant="outline"
-                  className="rounded-full border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] px-3 py-1 text-[hsl(var(--project-accent))]"
+                  className="rounded-full border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] px-2.5 py-0.5 text-[11px] font-semibold text-[hsl(var(--project-accent))]"
                 >
                   {chip}
                 </Badge>
               ))}
             </div>
-            <h3 className="font-display text-3xl font-semibold leading-tight md:text-4xl">{project.title}</h3>
-            <p className="mt-1 text-sm font-semibold text-muted-foreground">{project.category}</p>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{project.summary}</p>
+            <h3 className="font-display text-[28px] font-semibold leading-tight text-foreground md:text-[34px]">{project.title}</h3>
+            <p className="mt-1 text-[13px] font-medium text-muted-foreground">{project.category}</p>
+            <p className="mt-4 max-w-2xl text-[15px] leading-[1.7] text-muted-foreground">{project.summary}</p>
           </div>
 
-          <div className="grid gap-3 text-sm sm:grid-cols-3">
-            <div className="rounded-[18px] border border-border bg-secondary/60 p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Timeline</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground">{project.durationDisplay}</p>
+          <div className="grid gap-x-8 gap-y-4 text-sm sm:grid-cols-3">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">Timeline</p>
+              <p className="mt-1 text-[13.5px] font-semibold leading-snug text-foreground">{project.durationDisplay}</p>
             </div>
-            <div className="rounded-[18px] border border-border bg-secondary/60 p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Role</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground">{project.roleDisplay}</p>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">Role</p>
+              <p className="mt-1 text-[13.5px] font-semibold leading-snug text-foreground">{project.roleDisplay}</p>
             </div>
-            <div className="rounded-[18px] border border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Signal</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-[hsl(var(--project-accent))]">{project.outcome}</p>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">Signal</p>
+              <p className="mt-1 text-[13.5px] font-bold leading-snug text-[hsl(var(--project-accent))]">{project.outcome}</p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2">
             {project.outcomeHighlights.map((item) => (
-              <span key={item} className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground">
+              <span key={item} className="rounded-full border border-border bg-secondary/70 px-2.5 py-1 text-[12px] font-medium text-muted-foreground">
                 {item}
               </span>
             ))}
