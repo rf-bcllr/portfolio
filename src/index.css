@@ -158,8 +158,18 @@ All colors MUST be HSL.
   }
 
   .figjam-grid {
-    background-image: radial-gradient(hsl(220 10% 46% / 0.34) 1px, transparent 1px);
-    background-size: 22px 22px;
+    background-image: radial-gradient(hsl(225 22% 54% / 0.16) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .app-blue-panel {
+    background: var(--gradient-panel);
+  }
+
+  .dashboard-shell {
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--card));
+    box-shadow: var(--shadow-card);
   }
 
   .project-card-blue {
