@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, MapPin, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { ContactFooter } from "@/components/ContactFooter";
 import { useTranslations } from "@/hooks/useTranslations";
@@ -27,25 +26,25 @@ export default function Index() {
       <SiteNav />
 
       <main>
-        <section className="mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl gap-10 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <section className="mx-auto grid min-h-[calc(100vh-92px)] max-w-6xl gap-10 px-6 pb-16 pt-12 md:pt-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.72fr)] lg:items-end">
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="mb-6 flex flex-wrap gap-2">
-              <Badge variant="outline" className="bg-card px-4 py-2 text-sm shadow-card">
+            <div className="mb-8 flex flex-wrap gap-2">
+              <Badge variant="outline" className="border-border/80 bg-card/70 px-4 py-2 text-sm shadow-card backdrop-blur">
                 Rafa Bacellar
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2 text-sm">
+              <Badge variant="secondary" className="px-4 py-2 text-sm shadow-card">
                 End-to-End Product Designer
               </Badge>
             </div>
 
-            <h1 className="font-display text-6xl font-semibold leading-[0.9] md:text-8xl lg:text-9xl">
+            <h1 className="max-w-5xl font-display text-6xl font-semibold leading-[0.86] md:text-8xl lg:text-[8.8rem]">
               Designing useful things with a little chaos.
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
               Product Designer with 8+ years creating digital products, research systems, design systems and AI-assisted workflows for real teams.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="contrast" size="lg">
                 <Link to="/work" data-cursor-action="navigate-internal">
                   View work <ArrowRight className="size-4" />
@@ -65,11 +64,11 @@ export default function Index() {
             transition={{ duration: 0.55, delay: 0.1 }}
             className="relative"
           >
-            <Card className="relative overflow-hidden p-5 shadow-card-hover">
+            <div className="relative overflow-hidden rounded-[24px] border border-border bg-card/75 p-4 shadow-card-hover backdrop-blur">
               <div className="absolute left-6 top-6 z-10 rounded-full border border-border bg-card/85 px-4 py-2 text-sm font-semibold backdrop-blur">
                 rfbcllr.fig
               </div>
-              <div className="rounded-[20px] border border-border bg-secondary pt-10">
+              <div className="figjam-grid rounded-[20px] border border-border bg-secondary/70 pt-10">
                 <img
                   src={heroPortrait}
                   alt="Rafael Bacellar, Product Designer"
@@ -79,9 +78,9 @@ export default function Index() {
                   className="mx-auto h-[360px] w-auto object-contain md:h-[480px]"
                 />
               </div>
-            </Card>
+            </div>
 
-            <div className="absolute -bottom-5 left-4 rounded-[24px] border border-border bg-card p-4 shadow-card md:-left-8">
+            <div className="absolute -bottom-5 left-4 rounded-[24px] border border-border bg-card/90 p-4 shadow-card backdrop-blur md:-left-8">
               <div className="flex items-center gap-3">
                 <span className="rounded-full bg-secondary p-3"><MapPin className="size-5" /></span>
                 <div>
@@ -93,37 +92,38 @@ export default function Index() {
           </motion.div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-14">
-          <div className="grid gap-4 md:grid-cols-3">
-            <Card className="p-6 md:rotate-[-0.7deg]">
-              <Briefcase className="mb-5 size-7" />
-              <h2 className="font-display text-2xl font-semibold">8+ years</h2>
-              <p className="mt-2 text-muted-foreground">Across edtech, fintech, retail, health and AI product workflows.</p>
-            </Card>
-            <Card className="p-6 md:translate-y-6 md:rotate-[0.5deg]">
-              <Sparkles className="mb-5 size-7" />
-              <h2 className="font-display text-2xl font-semibold">Systems thinker</h2>
-              <p className="mt-2 text-muted-foreground">From research synthesis to component libraries and product storytelling.</p>
-            </Card>
-            <Card className="p-6 md:rotate-[-0.4deg]">
-              <Zap className="mb-5 size-7" />
-              <h2 className="font-display text-2xl font-semibold">Fast iterations</h2>
-              <p className="mt-2 text-muted-foreground">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
-            </Card>
+        <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+          <div className="grid gap-0 overflow-hidden rounded-[24px] border border-border bg-card/65 shadow-card backdrop-blur md:grid-cols-3">
+            <div className="border-b border-border p-6 md:border-b-0 md:border-r md:p-8">
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-muted-foreground">Experience</p>
+              <h2 className="mt-5 font-display text-4xl font-semibold">8+ years</h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground">Across edtech, fintech, retail, health and AI product workflows.</p>
+            </div>
+            <div className="border-b border-border p-6 md:border-b-0 md:border-r md:p-8">
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-muted-foreground">Practice</p>
+              <h2 className="mt-5 font-display text-4xl font-semibold">Systems thinker</h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground">From research synthesis to component libraries and product storytelling.</p>
+            </div>
+            <div className="p-6 md:p-8">
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-muted-foreground">Pace</p>
+              <h2 className="mt-5 font-display text-4xl font-semibold">Fast iterations</h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
+            </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-12">
-          <Card className="p-6">
-            <h2 className="mb-5 font-display text-3xl font-semibold">Core capabilities</h2>
-            <div className="flex flex-wrap gap-3">
+        <section className="mx-auto grid max-w-6xl gap-8 px-6 py-16 md:grid-cols-[0.76fr_1.24fr] md:items-start md:py-24">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-muted-foreground">Capabilities</p>
+            <h2 className="mt-4 font-display text-5xl font-semibold leading-[0.95]">Core capabilities</h2>
+          </div>
+            <div className="flex flex-wrap gap-3 border-t border-border pt-6 md:pt-8">
               {capabilities.map((capability) => (
-                <span key={capability} className="rounded-full border border-border bg-secondary px-4 py-2 text-sm font-semibold text-muted-foreground">
+                <span key={capability} className="rounded-full border border-border bg-card/70 px-4 py-2 text-sm font-semibold text-muted-foreground shadow-card backdrop-blur">
                   {capability}
                 </span>
               ))}
             </div>
-          </Card>
         </section>
 
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />

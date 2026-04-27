@@ -8,11 +8,11 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 216 45% 96%;
-    --foreground: 222 18% 12%;
+    --background: 214 42% 96%;
+    --foreground: 222 16% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 18% 12%;
+    --card-foreground: 222 16% 11%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 24% 10%;
@@ -20,11 +20,11 @@ All colors MUST be HSL.
     --primary: 220 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 48% 98%;
-    --secondary-foreground: 222 18% 22%;
+    --secondary: 215 36% 93%;
+    --secondary-foreground: 222 14% 24%;
 
-    --muted: 220 18% 93%;
-    --muted-foreground: 222 10% 43%;
+    --muted: 216 24% 90%;
+    --muted-foreground: 222 9% 42%;
 
     --accent: 220 100% 50%;
     --accent-foreground: 0 0% 100%;
@@ -32,8 +32,8 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 86%;
-    --input: 220 20% 86%;
+    --border: 216 22% 84%;
+    --input: 216 22% 84%;
     --ring: 220 100% 50%;
 
     --radius: 1.25rem;
@@ -46,8 +46,8 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(220 100% 60%));
     --shadow-elegant: 0 18px 45px -28px hsl(222 18% 12% / 0.28);
     --shadow-glow: 0 0 40px hsl(var(--primary) / 0.2);
-    --shadow-card: 0 1px 3px hsl(222 18% 12% / 0.08), 0 1px 2px -1px hsl(222 18% 12% / 0.06);
-    --shadow-card-hover: 0 14px 34px -24px hsl(222 18% 12% / 0.24), 0 1px 0 hsl(222 18% 12% / 0.08);
+    --shadow-card: 0 1px 0 hsl(222 16% 11% / 0.06), 0 18px 42px -38px hsl(222 16% 11% / 0.22);
+    --shadow-card-hover: 0 1px 0 hsl(222 16% 11% / 0.08), 0 24px 54px -38px hsl(222 16% 11% / 0.28);
 
     --tag-blue: 207 100% 45%;
     --tag-blue-bg: 207 100% 96%;
@@ -126,24 +126,24 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
     font-weight: 400; /* Satoshi Regular */
-    letter-spacing: 0;
+    letter-spacing: 0.01em;
   }
 
   /* Clash Display - only H1/H2 (bold geometric headlines) */
   h1, h2 {
     font-family: var(--font-display);
     font-weight: 600; /* Clash Display SemiBold */
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
   }
   
   /* Satoshi Medium for subheadings */
   h3, h4, h5, h6 {
     font-family: var(--font-sans);
     font-weight: 500; /* Satoshi Medium */
-    letter-spacing: 0;
+    letter-spacing: 0.005em;
   }
 }
 
@@ -157,8 +157,8 @@ All colors MUST be HSL.
   }
 
   .figjam-grid {
-    background-image: radial-gradient(hsl(220 10% 46% / 0.34) 1px, transparent 1px);
-    background-size: 22px 22px;
+    background-image: radial-gradient(hsl(222 12% 34% / 0.18) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
   .project-card-blue {
