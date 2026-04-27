@@ -8,11 +8,11 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 222 24% 10%;
+    --background: 42 42% 96%;
+    --foreground: 222 18% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 24% 10%;
+    --card-foreground: 222 18% 12%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 24% 10%;
@@ -20,11 +20,11 @@ All colors MUST be HSL.
     --primary: 220 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 96%;
-    --secondary-foreground: 220 25% 30%;
+    --secondary: 45 35% 92%;
+    --secondary-foreground: 222 18% 22%;
 
-    --muted: 220 15% 94%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 44 28% 90%;
+    --muted-foreground: 222 10% 43%;
 
     --accent: 220 100% 50%;
     --accent-foreground: 0 0% 100%;
@@ -32,8 +32,8 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 90%;
-    --input: 220 15% 90%;
+    --border: 36 20% 82%;
+    --input: 36 20% 82%;
     --ring: 220 100% 50%;
 
     --radius: 1.25rem;
@@ -44,10 +44,10 @@ All colors MUST be HSL.
 
     /* Effects - Bento Grid Style */
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(220 100% 60%));
-    --shadow-elegant: 0 4px 20px -4px hsl(220 50% 50% / 0.15);
+    --shadow-elegant: 0 18px 45px -28px hsl(222 18% 12% / 0.28);
     --shadow-glow: 0 0 40px hsl(var(--primary) / 0.2);
-    --shadow-card: 0 1px 3px 0 hsl(220 20% 20% / 0.06), 0 1px 2px -1px hsl(220 20% 20% / 0.06);
-    --shadow-card-hover: 0 10px 30px -10px hsl(220 50% 50% / 0.15);
+    --shadow-card: 0 1px 0 hsl(222 18% 12% / 0.08), 0 14px 35px -28px hsl(222 18% 12% / 0.24);
+    --shadow-card-hover: 0 20px 45px -30px hsl(var(--primary) / 0.32), 0 1px 0 hsl(222 18% 12% / 0.08);
     
     /* Motion System Tokens */
     --dur-fast: 220ms;
