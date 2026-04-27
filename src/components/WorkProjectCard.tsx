@@ -22,7 +22,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
     <Link
       to={`/project/${project.slug}`}
       data-cursor-action="navigate-internal"
-      className={`group block overflow-hidden rounded-[24px] border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--project-accent-border))] hover:shadow-card-hover ${accentClassMap[project.accent]}`}
+      className={`group relative block overflow-hidden rounded-[24px] border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--project-accent-border))] hover:shadow-card-hover ${accentClassMap[project.accent]}`}
       style={{ transform: `rotate(${index % 2 === 0 ? "-0.35deg" : "0.35deg"})` }}
     >
       <article className={`grid ${compact ? "" : "lg:grid-cols-[1fr_260px] xl:grid-cols-[1fr_300px]"}`}>
