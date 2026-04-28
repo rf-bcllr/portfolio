@@ -30,6 +30,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
   const activePresentation = activeMedia.presentation;
   const isPhoneFrame = activePresentation.frame === "phone";
   const hasMultipleMedia = mediaItems.length > 1;
+  const mediaAreaHeight = isPhoneFrame ? "min-h-[560px]" : activePresentation.aspect === "aspect-[1972/1616]" ? "min-h-[520px]" : "min-h-[430px]";
   const rotation = index % 2 === 0 ? "-0.25deg" : "0.25deg";
 
   const showPrevious = () => setActiveMediaIndex((current) => (current - 1 + mediaItems.length) % mediaItems.length);
@@ -84,7 +85,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
           </div>
         </div>
 
-        <div className={`relative flex items-center justify-center overflow-hidden border-t border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:border-l lg:border-t-0 ${isPhoneFrame ? "min-h-[560px]" : "min-h-[430px]"}`}>
+        <div className={`relative flex items-center justify-center overflow-hidden border-t border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:border-l lg:border-t-0 ${mediaAreaHeight}`}>
           <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
             {project.emoji}
           </div>
@@ -99,7 +100,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
                 poster={activeMedia.poster}
                 src={activeMedia.sources ? undefined : activeMedia.src ?? activeMedia.poster}
                 alt={activeMedia.title}
-                className="size-full object-contain transition-transform duration-500 group-hover:scale-[1.025]"
+                className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
                 priority={index === 0}
                 showSkeleton
               />
@@ -107,8 +108,8 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
             </div>
           </div>
           {hasMultipleMedia && (
-            <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3">
-              <button type="button" onClick={showPrevious} className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Previous project media">
+            <div className="pointer-events-none absolute inset-x-5 bottom-5 flex items-center justify-between gap-3">
+              <button type="button" onClick={showPrevious} className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Previous project media">
                 <ChevronLeft className="size-4" />
               </button>
               <div className="flex items-center gap-1.5 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur" aria-label={`${activeMediaIndex + 1} of ${mediaItems.length}`}>
@@ -116,7 +117,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
                   <span key={`${item.title}-${itemIndex}`} className={`size-1.5 rounded-full ${itemIndex === activeMediaIndex ? "bg-[hsl(var(--project-accent))]" : "bg-muted-foreground/30"}`} />
                 ))}
               </div>
-              <button type="button" onClick={showNext} className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Next project media">
+              <button type="button" onClick={showNext} className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Next project media">
                 <ChevronRight className="size-4" />
               </button>
             </div>
