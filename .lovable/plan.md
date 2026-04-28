@@ -1,46 +1,52 @@
-Plano para refinar a página de projetos
+Plano para refinar os cards de projetos em /work
 
-1. Corrigir o tipo de frame por projeto
-- Meu Arco: tratar como mídia vertical/mobile, usando frame de smartphone alto, já que o vídeo/poster real é 1200x2880.
-- Cheguei: tratar como mídia vertical/mobile, usando frame de smartphone alto, já que o vídeo/poster real é 720x1458.
-- Saúde e Ponto: tratar como mídia horizontal/desktop-canvas, porque a imagem real é 1920x1031 e hoje está herdando `coverType: vertical` do projeto.
-- AI Writing Assistant e AI Question Generator: manter frames horizontais/laptop ou browser, pois as mídias são horizontais.
+1. Remover navegação para páginas individuais
+- Trocar o wrapper atual do card de `Link` para um container/`article` não clicável.
+- Remover o ícone/botão visual de seta no canto superior direito que sugeria abrir o projeto.
+- Atualizar o texto introdutório da página Work para não dizer que o usuário pode abrir cada projeto para um deep dive.
+- Manter o cursor/hover refinado apenas como feedback visual do card, sem ação de navegação.
 
-2. Adicionar configuração visual individual por projeto
-- Expandir `FeaturedProject` com um campo de apresentação de mídia, por exemplo `mediaPresentation`, separado do `coverType` do case study.
-- Esse campo controlará: tipo de frame, tamanho máximo, alinhamento, pequenas rotações/offsets, tratamento de background e proporção interna.
-- Isso evita o erro atual de usar automaticamente `project.coverType`, que não representa corretamente a mídia destacada do card.
+2. Criar carousel de mídia dentro do card
+- Expandir os dados de `featuredProjects` para suportar uma lista de mídias por projeto, não apenas um `poster`/`media` único.
+- Usar as galerias reais de `projects.ts` e os vídeos otimizados de `animatedMedia.ts` como fonte.
+- Para projetos com mais de uma mídia, adicionar setas discretas na área direita do card, sobre/ao lado do mockup.
+- Ao trocar a mídia, o mockup também troca de formato conforme o item ativo:
+  - vídeos mobile de Meu Arco e Cheguei em frame de celular;
+  - imagens horizontais em frame browser;
+  - imagens verticais em frame de celular ou frame vertical, conforme o caso do projeto;
+  - Saúde e Ponto mantendo tratamento especial para imagem horizontal dentro de composição vertical quando fizer sentido.
+- Exibir um pequeno indicador de posição quando houver múltiplas mídias, evitando poluir o visual.
 
-3. Recriar a área visual dos cards para valorizar as interfaces
-- Substituir o preview pequeno central por uma “stage area” maior, com mockup adequado:
-  - Smartphone frame para mobile: borda arredondada, notch/ilha, inner screen 9:19 ou 9:18, sombra neutra e mídia com `object-contain`.
-  - Browser/laptop/canvas frame para horizontal: barra superior discreta, tela ampla 16:10 ou proporção custom, mídia ocupando boa parte do card sem cortes.
-- A mídia ficará sempre centralizada dentro da área direita, mas com escala maior e respiro suficiente.
-- Remover ou reduzir elementos decorativos que competem com a interface, mantendo apenas detalhes sutis de “working board”.
+3. Refinar fundo dos mockups e background geral
+- Mover o grid pontilhado cinza para o background geral do site, usando o componente `AnimatedBackground`/classe `figjam-grid` como base visual global.
+- Remover o grid pontilhado da área interna dos mockups/cards.
+- Fazer a área de mídia dos cards usar uma versão clara da cor principal de cada card, via tokens já existentes:
+  - azul: `--project-accent-bg`/variação leve;
+  - verde: equivalente;
+  - âmbar: equivalente;
+  - vermelho: equivalente.
+- Ajustar bordas, sombras e padding para o mockup parecer mais integrado ao card e menos “preview pequeno”.
 
-4. Refinar layout, espaçamentos e hierarquia dos cards
-- Ajustar grid desktop para dar mais presença à coluna visual sem esmagar o texto.
-- Aumentar altura mínima dos cards de projetos com mídia vertical para permitir que o mockup apareça de forma digna.
-- Melhorar padding interno, gap entre chips/título/resumo/metadados e alinhamento do botão/ícone de navegação.
-- Manter a leve irregularidade/rotação dos cards, mas de forma mais controlada para não prejudicar leitura.
+4. Revisar dados e tom editorial dos projetos
+- Atualizar `featuredProjects.ts` para puxar mais informações reais de `projects.ts`/`projectsStructured.ts`, evitando claims soltos ou inconsistentes.
+- Corrigir Meu Arco para incluir o dado importante de rating do app, usando a versão real encontrada na base: `2.9 → 4.8★`.
+- Remover frases ruins ou provisórias como “case study intentionally pending” e “impact not documented yet” do Question Generation.
+- Reescrever os blocos de resumo, timeline/role/signal e highlights com tom editorial consistente, sem inventar métricas.
+- Para projetos em desenvolvimento, usar linguagem honesta e mais premium, por exemplo “Concept validation in progress”, “AI workflow exploration” ou similar, sem parecer placeholder.
 
-5. Melhorar resumo e outcomes sem inventar dados
-- Reescrever summaries e outcomes usando apenas dados reais já existentes em `projects.ts`.
-- Transformar outcomes pobres em blocos mais escaneáveis, usando métricas reais quando disponíveis:
-  - Meu Arco: 10k+ usuários, 45% menos tickets, 62% aumento de engajamento, 20 min/dia economizados etc.
-  - Cheguei: dados reais presentes no projeto, sem extrapolar.
-  - Saúde e Ponto: 92% task completion, 8.7/10 satisfação, 35% checkout mais rápido, 2.500+ views no Behance.
-  - AI projects: manter honestidade quando impacto real ainda estiver pendente.
-- Se necessário, trocar o campo `outcome` simples por uma lista curta de highlights para cada card.
+5. Ajustes visuais finos dos cards
+- Refinar espaçamentos entre chips, título, resumo, metadados e highlights.
+- Melhorar hierarquia dos blocos Timeline/Role/Signal para ficarem mais consistentes e menos densos.
+- Garantir que setas do carousel não conflitem com o clique/hover do card.
+- Validar responsividade: no desktop a área de mídia continua valorizada; no mobile o carousel continua utilizável sem quebrar os cards.
 
-6. Ajustar a página Work ao novo padrão
-- Refinar a intro para combinar com cards mais editoriais e menos “thumbnail grid”.
-- Garantir consistência visual com as regras do projeto: Clash Display/Satoshi, cards rounded-[24px], cores neutras em texto estático e azul reservado para interações/glows.
+Arquivos principais a alterar
+- `src/components/WorkProjectCard.tsx`
+- `src/data/featuredProjects.ts`
+- `src/pages/Work.tsx`
+- `src/components/AnimatedBackground.tsx` e/ou `src/index.css` para o grid global e tokens de background
 
-Validação
-- Rodar build de produção após a implementação.
-- Revisar visualmente a rota `/work` em desktop e mobile para confirmar:
-  - Meu Arco e Cheguei aparecem em mockup mobile vertical.
-  - Saúde e Ponto aparece em frame horizontal.
-  - Nenhuma mídia está cortada desnecessariamente.
-  - Os cards têm espaçamento, hierarquia e tamanho de mídia melhores.
+Notas técnicas
+- A implementação deve continuar usando React/Vite/Tailwind existentes.
+- O carousel será local ao card com estado React simples ou reaproveitando o componente `Carousel` existente se ele não criar complexidade visual desnecessária.
+- A mídia seguirá usando `MediaThumb`, mantendo suporte para imagem, poster e vídeo otimizado.

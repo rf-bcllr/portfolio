@@ -22,7 +22,7 @@ export default function Certifications() {
   const t = useTranslations();
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <SiteNav />
       <main className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
         <section className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">

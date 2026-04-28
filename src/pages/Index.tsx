@@ -23,7 +23,7 @@ export default function Index() {
   const t = useTranslations();
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <SiteNav />
 
       <main>

@@ -124,7 +124,7 @@ const Experience = () => {
       }
     }
   };
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen">
       {/* Navigation Header */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">

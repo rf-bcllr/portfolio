@@ -235,7 +235,7 @@ const ProjectDetail = () => {
     window.scrollTo(0, 0);
   }, [slug]);
   if (!project) {
-    return <div className="min-h-screen bg-background flex items-center justify-center">
+    return <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
           <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
@@ -249,7 +249,7 @@ const ProjectDetail = () => {
   // Use structured data if available
   const displayProject = structuredProject || project;
   const animatedHero = slug ? animatedProjectMedia[slug] : undefined;
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen">
       <SiteNav />
 
 

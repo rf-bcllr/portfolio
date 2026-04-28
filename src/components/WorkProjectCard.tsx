@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
 import type { FeaturedProject } from "@/data/featuredProjects";
@@ -18,21 +18,33 @@ const accentClassMap: Record<FeaturedProject["accent"], string> = {
 };
 
 export function WorkProjectCard({ project, index = 0, compact = false }: WorkProjectCardProps) {
-  const isPhoneFrame = project.mediaPresentation.frame === "phone";
+  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  const mediaItems = project.mediaItems.length > 0 ? project.mediaItems : [{
+    title: project.title,
+    sources: project.media?.sources,
+    poster: project.poster,
+    src: project.media ? undefined : project.poster,
+    presentation: project.mediaPresentation,
+  }];
+  const activeMedia = mediaItems[activeMediaIndex] ?? mediaItems[0];
+  const activePresentation = activeMedia.presentation;
+  const isPhoneFrame = activePresentation.frame === "phone";
+  const hasMultipleMedia = mediaItems.length > 1;
   const rotation = index % 2 === 0 ? "-0.25deg" : "0.25deg";
 
+  const showPrevious = () => setActiveMediaIndex((current) => (current - 1 + mediaItems.length) % mediaItems.length);
+  const showNext = () => setActiveMediaIndex((current) => (current + 1) % mediaItems.length);
+
   return (
-    <Link
-      to={`/project/${project.slug}`}
-      data-cursor-action="navigate-internal"
+    <article
       className={`group relative block overflow-hidden rounded-[24px] border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--project-accent-border))] hover:shadow-card-hover ${accentClassMap[project.accent]}`}
       style={{ transform: `rotate(${rotation})` }}
     >
-      <article className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,0.88fr)] xl:grid-cols-[minmax(0,0.86fr)_minmax(520px,0.94fr)]"}`}>
-        <div className="relative flex flex-col justify-between gap-8 p-6 md:p-8 lg:p-9">
+      <div className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,0.9fr)_minmax(440px,0.92fr)] xl:grid-cols-[minmax(0,0.82fr)_minmax(560px,1fr)]"}`}>
+        <div className="relative flex flex-col justify-between gap-7 p-6 md:p-8 lg:p-9">
           <span className="absolute inset-y-0 left-0 w-1.5 bg-[hsl(var(--project-accent))]" aria-hidden />
           <div>
-            <div className="mb-5 flex flex-wrap items-center gap-2">
+            <div className="mb-4 flex flex-wrap items-center gap-2">
               {project.chips.map((chip) => (
                 <Badge
                   key={chip}
@@ -72,21 +84,21 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
           </div>
         </div>
 
-        <div className={`figjam-grid relative flex items-center justify-center overflow-hidden border-t border-border bg-secondary/70 p-7 md:p-10 lg:border-l lg:border-t-0 ${isPhoneFrame ? "min-h-[560px]" : "min-h-[410px]"}`}>
+        <div className={`relative flex items-center justify-center overflow-hidden border-t border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:border-l lg:border-t-0 ${isPhoneFrame ? "min-h-[560px]" : "min-h-[430px]"}`}>
           <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
             {project.emoji}
           </div>
           <div
-            className={`relative w-full ${project.mediaPresentation.maxWidth} ${project.mediaPresentation.rotate ?? ""}`}
+            className={`relative w-full transition-all duration-300 ${activePresentation.maxWidth} ${activePresentation.rotate ?? ""}`}
           >
             <div className={`relative overflow-hidden border border-[hsl(var(--project-accent-border))] bg-card shadow-card-hover ${isPhoneFrame ? "rounded-[34px] p-3 before:absolute before:left-1/2 before:top-3 before:z-10 before:h-1.5 before:w-16 before:-translate-x-1/2 before:rounded-full before:bg-foreground/25" : "rounded-[24px] p-2.5 pt-9 before:absolute before:left-5 before:top-4 before:size-2 before:rounded-full before:bg-muted-foreground/35 after:absolute after:left-9 after:top-4 after:size-2 after:rounded-full after:bg-muted-foreground/25"}`}>
               {!isPhoneFrame && <span className="absolute left-[52px] top-4 size-2 rounded-full bg-muted-foreground/20" aria-hidden />}
-              <div className={`w-full overflow-hidden bg-secondary ${project.mediaPresentation.aspect} ${isPhoneFrame ? "rounded-[24px]" : "rounded-[16px]"}`}>
+              <div className={`w-full overflow-hidden bg-secondary ${activePresentation.aspect} ${isPhoneFrame ? "rounded-[24px]" : "rounded-[16px]"}`}>
               <MediaThumb
-                sources={project.media?.sources}
-                poster={project.poster}
-                src={project.media ? undefined : project.poster}
-                alt={project.title}
+                sources={activeMedia.sources}
+                poster={activeMedia.poster}
+                src={activeMedia.sources ? undefined : activeMedia.src ?? activeMedia.poster}
+                alt={activeMedia.title}
                 className="size-full object-contain transition-transform duration-500 group-hover:scale-[1.025]"
                 priority={index === 0}
                 showSkeleton
@@ -94,16 +106,28 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
               </div>
             </div>
           </div>
+          {hasMultipleMedia && (
+            <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3">
+              <button type="button" onClick={showPrevious} className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Previous project media">
+                <ChevronLeft className="size-4" />
+              </button>
+              <div className="flex items-center gap-1.5 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur" aria-label={`${activeMediaIndex + 1} of ${mediaItems.length}`}>
+                {mediaItems.map((item, itemIndex) => (
+                  <span key={`${item.title}-${itemIndex}`} className={`size-1.5 rounded-full ${itemIndex === activeMediaIndex ? "bg-[hsl(var(--project-accent))]" : "bg-muted-foreground/30"}`} />
+                ))}
+              </div>
+              <button type="button" onClick={showNext} className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Next project media">
+                <ChevronRight className="size-4" />
+              </button>
+            </div>
+          )}
           {project.status && (
             <Badge variant="secondary" className="absolute left-5 top-5 border border-border bg-card/90 backdrop-blur">
               In progress
             </Badge>
           )}
         </div>
-        <span className="absolute right-5 top-5 hidden rounded-full bg-foreground p-2 text-background transition-transform duration-300 group-hover:rotate-12 md:inline-flex">
-          <ArrowUpRight className="size-4" />
-        </span>
-      </article>
-    </Link>
+      </div>
+    </article>
   );
 }

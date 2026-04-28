@@ -12,6 +12,21 @@ export const featuredProjectSlugs = [
 
 export type FeaturedProjectSlug = (typeof featuredProjectSlugs)[number];
 
+export type FeaturedProjectMediaPresentation = {
+  frame: "phone" | "browser";
+  aspect: string;
+  maxWidth: string;
+  rotate?: string;
+};
+
+export type FeaturedProjectMediaItem = {
+  title: string;
+  src?: string;
+  sources?: AnimatedMedia["sources"];
+  poster?: string;
+  presentation: FeaturedProjectMediaPresentation;
+};
+
 export type FeaturedProject = {
   slug: FeaturedProjectSlug;
   title: string;
@@ -29,16 +44,26 @@ export type FeaturedProject = {
   outcome: string;
   outcomeHighlights: string[];
   accent: "blue" | "green" | "amber" | "red";
-  mediaPresentation: {
-    frame: "phone" | "browser";
-    aspect: string;
-    maxWidth: string;
-    rotate?: string;
-  };
+  mediaPresentation: FeaturedProjectMediaPresentation;
+  mediaItems: FeaturedProjectMediaItem[];
   media?: AnimatedMedia;
   poster: string;
   status?: "in-progress";
 };
+
+const browserFrame = (maxWidth = "max-w-[560px]", rotate?: string): FeaturedProjectMediaPresentation => ({
+  frame: "browser",
+  aspect: "aspect-[16/9]",
+  maxWidth,
+  rotate,
+});
+
+const phoneFrame = (maxWidth = "max-w-[260px]", rotate?: string): FeaturedProjectMediaPresentation => ({
+  frame: "phone",
+  aspect: "aspect-[9/18.2]",
+  maxWidth,
+  rotate,
+});
 
 const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "meu-arco": ["Product Design", "Design System", "Research"],
@@ -52,11 +77,11 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
   "meu-arco": {
     emoji: "🎯",
     category: "Web & Mobile App · EdTech",
-    summary: "A unified access layer for Arco Educação, shaped by school research and designed to make fragmented tools feel like one coherent ecosystem without erasing each brand's identity.",
-    durationDisplay: "16 weeks · Q1–Q2 2024",
-    roleDisplay: "Product design lead",
-    outcome: "10k+ active users",
-    outcomeHighlights: ["45% fewer support tickets", "62% higher engagement time", "20 min/day saved by teachers"],
+    summary: "A unified product experience for Arco Educação, merging overlapping school workflows into one modular app with Gravity as the design system foundation.",
+    durationDisplay: "16 weeks",
+    roleDisplay: "Product designer · Research to handoff",
+    outcome: "App rating 2.9 → 4.8★",
+    outcomeHighlights: ["SUS score 90", "100% rollout ahead of schedule", "35% fewer support tickets"],
     accent: "blue",
     mediaPresentation: { frame: "phone", aspect: "aspect-[5/12]", maxWidth: "max-w-[245px]", rotate: "-rotate-2" },
   },
@@ -96,14 +121,25 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
   "ai-question-generator": {
     emoji: "✨",
     category: "AI Tool · Education",
-    summary: "An in-progress exploration for generating pedagogical questions inside the reader experience, shown as a preview while the full process and measurable impact remain intentionally undocumented.",
-    durationDisplay: "TBD · in progress",
-    roleDisplay: "Product designer",
-    outcome: "Impact not documented yet",
-    outcomeHighlights: ["Education AI workflow", "Reader-context generation", "Case study intentionally pending"],
+    summary: "An AI workflow exploration for generating pedagogical questions directly inside the FTD reader, keeping authoring close to the learning context.",
+    durationDisplay: "2025 · in progress",
+    roleDisplay: "Product designer · AI workflow exploration",
+    outcome: "Concept validation in progress",
+    outcomeHighlights: ["Reader-context generation", "Education AI workflow", "FTD learning environment"],
     accent: "red",
     mediaPresentation: { frame: "browser", aspect: "aspect-[16/9]", maxWidth: "max-w-[540px]", rotate: "rotate-1" },
   },
+};
+
+const presentationBySlug: Partial<Record<FeaturedProjectSlug, FeaturedProject["mediaPresentation"][]>> = {
+  "meu-arco": [
+    { frame: "phone", aspect: "aspect-[5/12]", maxWidth: "max-w-[245px]", rotate: "-rotate-2" },
+    browserFrame("max-w-[560px]", "rotate-1"),
+  ],
+  "students-transportation": [phoneFrame("max-w-[260px]", "rotate-2"), phoneFrame("max-w-[260px]", "-rotate-1")],
+  "health-food-delivery": [phoneFrame("max-w-[275px]", "-rotate-1"), phoneFrame("max-w-[275px]", "rotate-1")],
+  "ai-writing-assistant": [browserFrame("max-w-[560px]", "-rotate-1"), browserFrame("max-w-[560px]", "rotate-1")],
+  "ai-question-generator": [browserFrame("max-w-[540px]", "rotate-1"), browserFrame("max-w-[540px]", "-rotate-1")],
 };
 
 export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slug) => {
@@ -131,6 +167,17 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
     outcomeHighlights: cardMeta[slug].outcomeHighlights,
     accent: cardMeta[slug].accent,
     mediaPresentation: cardMeta[slug].mediaPresentation,
+    mediaItems: [
+      ...(animatedProjectMedia[slug]
+        ? [{ title: `${project.title} motion preview`, sources: animatedProjectMedia[slug].sources, poster: animatedProjectMedia[slug].poster }]
+        : []),
+      ...(project.gallery ?? [{ src: project.heroImage, title: project.title }]).filter(
+        (item) => !animatedProjectMedia[slug]?.sources.some((source) => source.src === item.src)
+      ),
+    ].map((item, itemIndex) => ({
+      ...item,
+      presentation: presentationBySlug[slug]?.[itemIndex] ?? cardMeta[slug].mediaPresentation,
+    })),
     media: animatedProjectMedia[slug],
     poster: animatedProjectMedia[slug]?.poster ?? project.heroImage,
     status: slug === "ai-question-generator" ? "in-progress" : undefined,
