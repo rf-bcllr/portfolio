@@ -1,42 +1,46 @@
-Plano de implementação
+Plano para refinar a página de projetos
 
-Objetivo: aproximar o visual global do portfólio ao HTML de referência com bastante rigor, mas preservando exatamente o que você pediu: fontes atuais, dados/informações reais, imagens existentes e o design recém-refinado dos cards de projeto.
+1. Corrigir o tipo de frame por projeto
+- Meu Arco: tratar como mídia vertical/mobile, usando frame de smartphone alto, já que o vídeo/poster real é 1200x2880.
+- Cheguei: tratar como mídia vertical/mobile, usando frame de smartphone alto, já que o vídeo/poster real é 720x1458.
+- Saúde e Ponto: tratar como mídia horizontal/desktop-canvas, porque a imagem real é 1920x1031 e hoje está herdando `coverType: vertical` do projeto.
+- AI Writing Assistant e AI Question Generator: manter frames horizontais/laptop ou browser, pois as mídias são horizontais.
 
-1. Preservar o que não deve mudar
-- Manter Clash Display para headings e Satoshi para corpo.
-- Manter todos os dados vindos dos arquivos atuais, sem inventar métricas ou alterar conteúdo essencial.
-- Manter as imagens atuais do portfólio.
-- Não alterar a estrutura interna nem o visual do `WorkProjectCard.tsx` e não desfazer as melhorias feitas nos cards de projeto.
+2. Adicionar configuração visual individual por projeto
+- Expandir `FeaturedProject` com um campo de apresentação de mídia, por exemplo `mediaPresentation`, separado do `coverType` do case study.
+- Esse campo controlará: tipo de frame, tamanho máximo, alinhamento, pequenas rotações/offsets, tratamento de background e proporção interna.
+- Isso evita o erro atual de usar automaticamente `project.coverType`, que não representa corretamente a mídia destacada do card.
 
-2. Reaproximar o visual global do HTML de referência
-- Ajustar o sistema visual em `src/index.css` para um canvas mais editorial/minimalista, com fundo claro, textura/dot-grid discreta, bordas suaves e sombras mais contidas.
-- Remover excesso de sensação “app dashboard” fora dos cards, deixando a página respirar mais e os cards serem o foco visual.
-- Manter o azul royal apenas em estados interativos/glows, respeitando a regra do projeto.
+3. Recriar a área visual dos cards para valorizar as interfaces
+- Substituir o preview pequeno central por uma “stage area” maior, com mockup adequado:
+  - Smartphone frame para mobile: borda arredondada, notch/ilha, inner screen 9:19 ou 9:18, sombra neutra e mídia com `object-contain`.
+  - Browser/laptop/canvas frame para horizontal: barra superior discreta, tela ampla 16:10 ou proporção custom, mídia ocupando boa parte do card sem cortes.
+- A mídia ficará sempre centralizada dentro da área direita, mas com escala maior e respiro suficiente.
+- Remover ou reduzir elementos decorativos que competem com a interface, mantendo apenas detalhes sutis de “working board”.
 
-3. Refinar a Home sem perder informações
-- Reorganizar `src/pages/Index.tsx` para uma composição mais parecida com a referência: hero textual forte, blocos editoriais simples, colunas/listas mais limpas e menos elementos decorativos pesados.
-- Manter foto, CTAs, anos de experiência, capacidades, empresas/logos e informações principais.
-- Trocar cards genéricos muito “componentizados” por blocos mais leves e alinhados ao estilo do HTML.
+4. Refinar layout, espaçamentos e hierarquia dos cards
+- Ajustar grid desktop para dar mais presença à coluna visual sem esmagar o texto.
+- Aumentar altura mínima dos cards de projetos com mídia vertical para permitir que o mockup apareça de forma digna.
+- Melhorar padding interno, gap entre chips/título/resumo/metadados e alinhamento do botão/ícone de navegação.
+- Manter a leve irregularidade/rotação dos cards, mas de forma mais controlada para não prejudicar leitura.
 
-4. Refinar a página Work mantendo os cards exatamente como estão
-- Ajustar apenas o entorno dos cards em `src/pages/Work.tsx`: cabeçalho, texto introdutório, espaçamento, largura, ritmo vertical e densidade editorial.
-- Preservar `WorkProjectCard.tsx` como está, incluindo frames/mockups, espaçamentos internos, mídias e metadados.
-- Garantir que os cards se integrem ao novo canvas sem competir visualmente com a introdução.
+5. Melhorar resumo e outcomes sem inventar dados
+- Reescrever summaries e outcomes usando apenas dados reais já existentes em `projects.ts`.
+- Transformar outcomes pobres em blocos mais escaneáveis, usando métricas reais quando disponíveis:
+  - Meu Arco: 10k+ usuários, 45% menos tickets, 62% aumento de engajamento, 20 min/dia economizados etc.
+  - Cheguei: dados reais presentes no projeto, sem extrapolar.
+  - Saúde e Ponto: 92% task completion, 8.7/10 satisfação, 35% checkout mais rápido, 2.500+ views no Behance.
+  - AI projects: manter honestidade quando impacto real ainda estiver pendente.
+- Se necessário, trocar o campo `outcome` simples por uma lista curta de highlights para cada card.
 
-5. Ajustar navegação e footer para o mesmo idioma visual
-- Refinar `src/components/SiteNav.tsx` para ficar mais minimalista, com menos peso visual, preservando links e avatar.
-- Refinar `src/components/ContactFooter.tsx` para um encerramento mais editorial e limpo, mantendo CTA, LinkedIn e copyright.
+6. Ajustar a página Work ao novo padrão
+- Refinar a intro para combinar com cards mais editoriais e menos “thumbnail grid”.
+- Garantir consistência visual com as regras do projeto: Clash Display/Satoshi, cards rounded-[24px], cores neutras em texto estático e azul reservado para interações/glows.
 
-Arquivos previstos
-- `src/index.css`
-- `src/pages/Index.tsx`
-- `src/pages/Work.tsx`
-- `src/components/SiteNav.tsx`
-- `src/components/ContactFooter.tsx`
-
-Critérios de aceite
-- A aparência geral fica mais próxima do HTML de referência.
-- Fontes atuais continuam as mesmas: Clash Display e Satoshi.
-- Dados, informações e imagens permanecem reais e preservados.
-- Cards de projeto permanecem exatamente com o design atual.
-- O resultado final fica mais criterioso em espaçamento, hierarquia, respiro e consistência visual.
+Validação
+- Rodar build de produção após a implementação.
+- Revisar visualmente a rota `/work` em desktop e mobile para confirmar:
+  - Meu Arco e Cheguei aparecem em mockup mobile vertical.
+  - Saúde e Ponto aparece em frame horizontal.
+  - Nenhuma mídia está cortada desnecessariamente.
+  - Os cards têm espaçamento, hierarquia e tamanho de mídia melhores.

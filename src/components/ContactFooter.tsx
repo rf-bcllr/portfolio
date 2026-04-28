@@ -17,26 +17,24 @@ export const ContactFooter = ({
 
   return (
     <>
+      {/* Let's Talk Section */}
       <section id="contato" className="relative isolate">
         <div 
-          className="absolute inset-0 -z-10 opacity-[0.04]" 
+          className="absolute inset-0 -z-10 opacity-[0.08]" 
           style={{ background: "var(--gradient-hero)" }}
         />
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <div className="grid gap-8 border-t border-border pt-12 md:grid-cols-[0.95fr_1.05fr] md:items-end">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-muted-foreground">Contact</p>
-            <div>
-          <h2 className="mb-5 max-w-3xl font-display text-5xl font-semibold leading-[0.92] md:text-7xl text-balance">
+        <div className="container mx-auto px-6 py-24 md:py-32 text-center">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-display mb-6 text-balance">
             {contactTitle}
           </h2>
-          <p className="mb-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             {contactDescription}
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex justify-center gap-4 flex-wrap">
             <Button 
               variant="outline" 
               size="lg" 
-              className="px-8 text-base"
+              className="text-base px-8"
               onClick={scrollToTop}
               data-cursor-action="scroll-up"
             >
@@ -52,16 +50,12 @@ export const ContactFooter = ({
               </a>
             </Button>
           </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      <footer className="border-t border-border/80 py-8 text-sm text-muted-foreground">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Rafael Bacellar</p>
-          <p>Product Design · Research · Systems</p>
-        </div>
+      {/* Footer */}
+      <footer className="border-t py-10 text-center text-sm text-muted-foreground">
+        <p>© {new Date().getFullYear()} Rafael Bacellar · All rights reserved</p>
       </footer>
     </>
   );
