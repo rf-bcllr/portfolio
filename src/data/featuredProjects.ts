@@ -172,7 +172,7 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
         ? [{ title: `${project.title} motion preview`, sources: animatedProjectMedia[slug].sources, poster: animatedProjectMedia[slug].poster }]
         : []),
       ...(project.gallery ?? [{ src: project.heroImage, title: project.title }]).filter(
-        (item) => item.src !== animatedProjectMedia[slug]?.poster && !animatedProjectMedia[slug]?.sources.some((source) => source.src === item.src)
+        (item) => !animatedProjectMedia[slug]?.sources.some((source) => source.src === item.src)
       ),
     ].map((item, itemIndex) => ({
       ...item,
