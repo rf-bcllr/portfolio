@@ -8,7 +8,7 @@ import { featuredProjects } from "@/data/featuredProjects";
 
 export default function Work() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <SiteNav />
       <main className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
         <motion.section
@@ -27,7 +27,7 @@ export default function Work() {
           </div>
           <div className="rounded-[24px] border border-border bg-card p-6 shadow-card lg:rotate-1">
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Compact case-study summaries with the key context, role, duration and outcome upfront — then you can open each project only if you want the full deep dive.
+              Editorial case-study summaries with the key context, role, timeline and signal upfront — with richer interface mockups directly inside each project card.
             </p>
             <Button asChild variant="contrast" className="mt-6">
               <a href="/resume" data-cursor-action="navigate-internal">
