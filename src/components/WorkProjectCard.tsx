@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
@@ -15,6 +15,38 @@ const accentClassMap: Record<FeaturedProject["accent"], string> = {
   green: "project-card-green",
   amber: "project-card-amber",
   red: "project-card-red",
+};
+
+const prefetchMedia = (item?: FeaturedProject["mediaItems"][number]) => {
+  if (!item) return;
+
+  if (item.poster) {
+    const posterImage = new Image();
+    posterImage.decoding = "async";
+    posterImage.src = item.poster;
+  }
+
+  if (item.src) {
+    const image = new Image();
+    image.decoding = "async";
+    image.src = item.src;
+  }
+
+  if (item.sources?.length) {
+    const video = document.createElement("video");
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
+
+    item.sources.forEach((source) => {
+      const sourceElement = document.createElement("source");
+      sourceElement.src = source.src;
+      sourceElement.type = source.type;
+      video.appendChild(sourceElement);
+    });
+
+    video.load();
+  }
 };
 
 export function WorkProjectCard({ project, index = 0, compact = false }: WorkProjectCardProps) {
@@ -34,7 +66,15 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
   const mediaAreaHeight = isPhoneFrame ? "min-h-[560px]" : activeMedia.orientation === "square" || activePresentation.aspect === "aspect-[1972/1616]" ? "min-h-[520px]" : "min-h-[430px]";
   const mediaFitClass = isPhoneFrame ? "object-contain" : "object-cover";
   const activeMediaKey = activeMedia.sources?.map((source) => source.src).join("|") ?? activeMedia.src ?? activeMedia.poster ?? activeMedia.title;
+  const nextMediaIndex = hasMultipleMedia ? (activeMediaIndex + 1) % mediaItems.length : activeMediaIndex;
+  const previousMediaIndex = hasMultipleMedia ? (activeMediaIndex - 1 + mediaItems.length) % mediaItems.length : activeMediaIndex;
   const rotation = index % 2 === 0 ? "-0.25deg" : "0.25deg";
+
+  useEffect(() => {
+    if (!hasMultipleMedia) return;
+
+    prefetchMedia(mediaItems[nextMediaIndex]);
+  }, [hasMultipleMedia, mediaItems, nextMediaIndex]);
 
   const showPrevious = () => setActiveMediaIndex((current) => (current - 1 + mediaItems.length) % mediaItems.length);
   const showNext = () => setActiveMediaIndex((current) => (current + 1) % mediaItems.length);
@@ -113,7 +153,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
           </div>
           {hasMultipleMedia && (
             <div className="pointer-events-none absolute inset-x-5 bottom-5 flex items-center justify-between gap-3">
-              <button type="button" onClick={showPrevious} className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Previous project media">
+              <button type="button" onMouseEnter={() => prefetchMedia(mediaItems[previousMediaIndex])} onFocus={() => prefetchMedia(mediaItems[previousMediaIndex])} onClick={showPrevious} className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Previous project media">
                 <ChevronLeft className="size-4" />
               </button>
               <div className="flex items-center gap-1.5 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur" aria-label={`${activeMediaIndex + 1} of ${mediaItems.length}`}>
@@ -121,7 +161,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
                   <span key={`${item.title}-${itemIndex}`} className={`size-1.5 rounded-full ${itemIndex === activeMediaIndex ? "bg-[hsl(var(--project-accent))]" : "bg-muted-foreground/30"}`} />
                 ))}
               </div>
-              <button type="button" onClick={showNext} className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Next project media">
+              <button type="button" onMouseEnter={() => prefetchMedia(mediaItems[nextMediaIndex])} onFocus={() => prefetchMedia(mediaItems[nextMediaIndex])} onClick={showNext} className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Next project media">
                 <ChevronRight className="size-4" />
               </button>
             </div>
