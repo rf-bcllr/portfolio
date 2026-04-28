@@ -12,6 +12,21 @@ export const featuredProjectSlugs = [
 
 export type FeaturedProjectSlug = (typeof featuredProjectSlugs)[number];
 
+export type FeaturedProjectMediaPresentation = {
+  frame: "phone" | "browser";
+  aspect: string;
+  maxWidth: string;
+  rotate?: string;
+};
+
+export type FeaturedProjectMediaItem = {
+  title: string;
+  src?: string;
+  sources?: AnimatedMedia["sources"];
+  poster?: string;
+  presentation: FeaturedProjectMediaPresentation;
+};
+
 export type FeaturedProject = {
   slug: FeaturedProjectSlug;
   title: string;
@@ -29,34 +44,21 @@ export type FeaturedProject = {
   outcome: string;
   outcomeHighlights: string[];
   accent: "blue" | "green" | "amber" | "red";
-  mediaPresentation: {
-    frame: "phone" | "browser";
-    aspect: string;
-    maxWidth: string;
-    rotate?: string;
-  };
+  mediaPresentation: FeaturedProjectMediaPresentation;
   mediaItems: FeaturedProjectMediaItem[];
   media?: AnimatedMedia;
   poster: string;
   status?: "in-progress";
 };
 
-export type FeaturedProjectMediaItem = {
-  title: string;
-  src?: string;
-  sources?: AnimatedMedia["sources"];
-  poster?: string;
-  presentation: FeaturedProject["mediaPresentation"];
-};
-
-const browserFrame = (maxWidth = "max-w-[560px]", rotate?: string): FeaturedProject["mediaPresentation"] => ({
+const browserFrame = (maxWidth = "max-w-[560px]", rotate?: string): FeaturedProjectMediaPresentation => ({
   frame: "browser",
   aspect: "aspect-[16/9]",
   maxWidth,
   rotate,
 });
 
-const phoneFrame = (maxWidth = "max-w-[260px]", rotate?: string): FeaturedProject["mediaPresentation"] => ({
+const phoneFrame = (maxWidth = "max-w-[260px]", rotate?: string): FeaturedProjectMediaPresentation => ({
   frame: "phone",
   aspect: "aspect-[9/18.2]",
   maxWidth,
