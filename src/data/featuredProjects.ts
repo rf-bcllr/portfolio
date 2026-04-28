@@ -80,7 +80,7 @@ const resolveMediaPresentation = ({
   aspect?: string;
   maxWidth?: string;
   rotate?: string;
-;}): FeaturedProjectMediaPresentation => {
+}): FeaturedProjectMediaPresentation => {
   if (orientation === "vertical") {
     return {
       frame: "phone",
