@@ -14,6 +14,9 @@ import chegueiMobilePoster from "@/assets/cheguei-mobile-poster.jpg";
 import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
 import aiQuestionGeneratorWebm from "@/assets/ai-question-generator.webm";
 import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
+import aiCommsDashboardMp4 from "@/assets/ai-comms-dashboard.mp4";
+import aiCommsDashboardWebm from "@/assets/ai-comms-dashboard.webm";
+import aiCommsDashboardPoster from "@/assets/ai-comms-dashboard-poster.jpg";
 import type { VideoSource } from "@/components/MediaThumb";
 
 export interface AnimatedMedia {
@@ -49,5 +52,12 @@ export const animatedProjectMedia: Record<string, AnimatedMedia> = {
       { src: aiQuestionGeneratorMp4, type: "video/mp4" },
     ],
     poster: aiQuestionGeneratorPoster,
+  },
+  "ai-comms-dashboard": {
+    sources: [
+      { src: aiCommsDashboardWebm, type: "video/webm" },
+      { src: aiCommsDashboardMp4, type: "video/mp4" },
+    ],
+    poster: aiCommsDashboardPoster,
   },
 };
