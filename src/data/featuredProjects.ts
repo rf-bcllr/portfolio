@@ -51,9 +51,13 @@ export type FeaturedProject = {
   status?: "in-progress";
 };
 
-const browserFrame = (maxWidth = "max-w-[560px]", rotate?: string): FeaturedProjectMediaPresentation => ({
+const browserFrame = (
+  maxWidth = "max-w-[560px]",
+  rotate?: string,
+  aspect = "aspect-[16/9]"
+): FeaturedProjectMediaPresentation => ({
   frame: "browser",
-  aspect: "aspect-[16/9]",
+  aspect,
   maxWidth,
   rotate,
 });
@@ -134,10 +138,10 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
 const presentationBySlug: Partial<Record<FeaturedProjectSlug, FeaturedProject["mediaPresentation"][]>> = {
   "meu-arco": [
     { frame: "phone", aspect: "aspect-[5/12]", maxWidth: "max-w-[245px]", rotate: "-rotate-2" },
-    browserFrame("max-w-[560px]", "rotate-1"),
+    browserFrame("max-w-[520px]", "rotate-1", "aspect-[1972/1616]"),
   ],
   "students-transportation": [phoneFrame("max-w-[260px]", "rotate-2"), phoneFrame("max-w-[260px]", "-rotate-1")],
-  "health-food-delivery": [phoneFrame("max-w-[275px]", "-rotate-1"), phoneFrame("max-w-[275px]", "rotate-1")],
+  "health-food-delivery": [browserFrame("max-w-[575px]", "-rotate-1"), browserFrame("max-w-[575px]", "rotate-1")],
   "ai-writing-assistant": [browserFrame("max-w-[560px]", "-rotate-1"), browserFrame("max-w-[560px]", "rotate-1")],
   "ai-question-generator": [browserFrame("max-w-[540px]", "rotate-1"), browserFrame("max-w-[540px]", "-rotate-1")],
 };
@@ -172,7 +176,9 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
         ? [{ title: `${project.title} motion preview`, sources: animatedProjectMedia[slug].sources, poster: animatedProjectMedia[slug].poster }]
         : []),
       ...(project.gallery ?? [{ src: project.heroImage, title: project.title }]).filter(
-        (item) => !animatedProjectMedia[slug]?.sources.some((source) => source.src === item.src)
+        (item) =>
+          item.src !== animatedProjectMedia[slug]?.poster &&
+          !animatedProjectMedia[slug]?.sources.some((source) => source.src === item.src)
       ),
     ].map((item, itemIndex) => ({
       ...item,
