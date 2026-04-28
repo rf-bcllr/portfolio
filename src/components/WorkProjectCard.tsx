@@ -15,6 +15,10 @@ const accentClassMap: Record<FeaturedProject["accent"], string> = {
   green: "project-card-green",
   amber: "project-card-amber",
   red: "project-card-red",
+  purple: "project-card-purple",
+  teal: "project-card-teal",
+  claudeOrange: "project-card-claude-orange",
+  guavaRed: "project-card-guava-red",
 };
 
 const prefetchMedia = (item?: FeaturedProject["mediaItems"][number]) => {

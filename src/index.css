@@ -61,6 +61,18 @@ All colors MUST be HSL.
     --tag-red: 0 72% 51%;
     --tag-red-bg: 0 86% 97%;
     --tag-red-border: 0 93% 88%;
+    --tag-purple: 264 62% 52%;
+    --tag-purple-bg: 264 76% 97%;
+    --tag-purple-border: 264 68% 86%;
+    --tag-teal: 176 72% 34%;
+    --tag-teal-bg: 176 72% 96%;
+    --tag-teal-border: 176 54% 82%;
+    --tag-claude-orange: 24 82% 48%;
+    --tag-claude-orange-bg: 28 92% 96%;
+    --tag-claude-orange-border: 27 86% 84%;
+    --tag-guava-red: 350 68% 54%;
+    --tag-guava-red-bg: 350 86% 97%;
+    --tag-guava-red-border: 350 78% 86%;
     
     /* Motion System Tokens */
     --dur-fast: 220ms;
@@ -183,6 +195,30 @@ All colors MUST be HSL.
     --project-accent: var(--tag-red);
     --project-accent-bg: var(--tag-red-bg);
     --project-accent-border: var(--tag-red-border);
+  }
+
+  .project-card-purple {
+    --project-accent: var(--tag-purple);
+    --project-accent-bg: var(--tag-purple-bg);
+    --project-accent-border: var(--tag-purple-border);
+  }
+
+  .project-card-teal {
+    --project-accent: var(--tag-teal);
+    --project-accent-bg: var(--tag-teal-bg);
+    --project-accent-border: var(--tag-teal-border);
+  }
+
+  .project-card-claude-orange {
+    --project-accent: var(--tag-claude-orange);
+    --project-accent-bg: var(--tag-claude-orange-bg);
+    --project-accent-border: var(--tag-claude-orange-border);
+  }
+
+  .project-card-guava-red {
+    --project-accent: var(--tag-guava-red);
+    --project-accent-bg: var(--tag-guava-red-bg);
+    --project-accent-border: var(--tag-guava-red-border);
   }
 
   .text-balance {

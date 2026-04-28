@@ -47,7 +47,7 @@ export type FeaturedProject = {
   roleDisplay: string;
   outcome: string;
   outcomeHighlights: string[];
-  accent: "blue" | "green" | "amber" | "red";
+  accent: "blue" | "green" | "amber" | "red" | "purple" | "teal" | "claudeOrange" | "guavaRed";
   mediaPresentation: FeaturedProjectMediaPresentation;
   mediaItems: FeaturedProjectMediaItem[];
   media?: AnimatedMedia;
@@ -127,7 +127,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     roleDisplay: "Product designer · Research to handoff",
     outcome: "App rating 2.9 → 4.8★",
     outcomeHighlights: ["SUS score 90", "100% rollout ahead of schedule", "35% fewer support tickets"],
-    accent: "blue",
+    accent: "purple",
     mediaPresentation: resolveMediaPresentation({ orientation: "vertical", aspect: "aspect-[5/12]", maxWidth: "max-w-[245px]", rotate: "-rotate-2" }),
   },
   "students-transportation": {
@@ -149,7 +149,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     roleDisplay: "Solo design & research",
     outcome: "92% task completion",
     outcomeHighlights: ["8.7/10 satisfaction score", "35% faster checkout", "2,500+ Behance views"],
-    accent: "green",
+    accent: "teal",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1920/1031]", maxWidth: "max-w-[575px]", rotate: "-rotate-1" }),
   },
   "ai-writing-assistant": {
@@ -160,7 +160,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     roleDisplay: "Product designer",
     outcome: "Dashboard shipped",
     outcomeHighlights: ["Tone and length controls", "Moderation-first workflow", "Impact tracking built in"],
-    accent: "amber",
+    accent: "claudeOrange",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1200/732]", maxWidth: "max-w-[560px]", rotate: "-rotate-1" }),
   },
   "ai-question-generator": {
@@ -171,7 +171,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     roleDisplay: "Product designer · AI workflow exploration",
     outcome: "Concept validation in progress",
     outcomeHighlights: ["Reader-context generation", "Education AI workflow", "FTD learning environment"],
-    accent: "red",
+    accent: "guavaRed",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1200/646]", maxWidth: "max-w-[540px]", rotate: "rotate-1" }),
   },
 };
