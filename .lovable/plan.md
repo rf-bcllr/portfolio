@@ -1,38 +1,51 @@
-Plano para corrigir os cards com validação automática e acabamento pixel-perfect:
+Plano de implementação:
 
-1. Criar uma regra central de orientação de mídia
-- Adicionar metadados de orientação em cada item de mídia dos cards: `horizontal`, `vertical` ou `square`.
-- Implementar uma função única que escolhe automaticamente o mockup correto:
-  - mídia vertical → frame de celular
-  - mídia horizontal → frame de browser/desktop
-  - mídia quadrada → frame neutro/browser compacto, se aparecer no futuro
-- A função também definirá o aspect ratio, largura máxima e altura do palco, evitando mapeamentos manuais frágeis.
+1. Remover a seção superior inteira da página /work
+- Apagar o primeiro `<motion.section>` em `src/pages/Work.tsx`, incluindo:
+  - badge “Selected work”
+  - headline “Project cards shaped like a working board.”
+  - texto editorial
+  - botão “Resume”
+- Remover imports que ficarem sem uso nessa página (`motion`, `ArrowRight`, `Sparkles`, `Button`).
+- Ajustar o espaçamento do `<main>` para que a lista de cards comece de forma intencional, sem parecer que ficou um “buraco” onde a seção foi removida.
 
-2. Corrigir os dados dos projetos com base nas dimensões reais
-- Saúde e Ponto: as duas imagens reais são horizontais, então ambas devem usar mockup horizontal/browser. Manter carrossel porque existem duas imagens distintas, mas garantir que a troca seja visível.
-- AI Writing Assistant: poster e vídeo/dashboard são horizontais, então ambos devem usar browser. Corrigir a mídia do segundo slide para usar poster/fonte correta do dashboard, evitando parecer que nada mudou.
-- Meu Arco e Cheguei: vídeos/posters verticais devem permanecer em phone frame.
-- AI Question Generator: vídeo e poster horizontais devem usar browser; como podem representar o mesmo asset visual, remover item redundante se a troca não agregar.
+2. Expandir o sistema de cores dos cards
+- Hoje os cards usam apenas `blue`, `green`, `amber` e `red`, mapeados para classes CSS como `project-card-blue`.
+- Vou adicionar novos accents mais específicos para os projetos destacados:
+  - `purple` para Meu Arco: roxo frio, moderno, não royal blue.
+  - `teal` para Saúde e Ponto: verde-azulado mais fresco, com cara health/food tech.
+  - `claudeOrange` para AI Writing Assistant: laranja quente inspirado no Claude, sem ficar amarelo demais.
+  - `guavaRed` para AI Question Generator: vermelho mais rosado/guava, menos vermelho puro.
+- Manterei os tons em HSL no `src/index.css`, seguindo o padrão atual do design system.
 
-3. Corrigir o bug de carrossel que parece não mudar imagem
-- Ajustar a construção de `mediaItems` em `featuredProjects.ts` para deduplicar por asset real e não apenas por comparação simples com poster.
-- Para itens de vídeo vindos da galeria, renderizar como vídeo quando for `.mp4/.webm`, não como imagem quebrada/estática.
-- Para o AI Writing Assistant, incluir explicitamente o vídeo/preview do dashboard com poster correto (`ai-comms-dashboard-poster.jpg`) para o segundo slide.
-- Adicionar uma `key` no render do `MediaThumb` baseada no asset ativo para forçar troca limpa entre mídia anterior e próxima.
+3. Aplicar as novas cores no data source dos projetos
+- Atualizar `src/data/featuredProjects.ts` para trocar os accents:
+  - Meu Arco: `purple`
+  - Students Transportation: pode permanecer `blue`
+  - Saúde e Ponto: `teal`
+  - AI Writing Assistant: `claudeOrange`
+  - AI Question Generator: `guavaRed`
+- Ajustar o type `FeaturedProject["accent"]` para aceitar os novos nomes sem quebrar o componente.
 
-4. Refinar o componente visualmente
-- Fazer o palco do mockup reagir ao frame ativo sem saltos bruscos.
-- Preservar o fundo claro da cor principal do card.
-- Ajustar `object-fit`: browser com imagens horizontais deve preencher com boa leitura, phone deve preservar proporção vertical sem crop agressivo.
-- Manter setas e dots apenas quando houver mais de uma mídia realmente distinta.
+4. Garantir consistência visual nos estados do card
+- Atualizar `src/components/WorkProjectCard.tsx` para mapear os novos accents para as novas classes CSS.
+- As novas cores serão usadas automaticamente em:
+  - faixa lateral do card
+  - chips/badges
+  - borda no hover
+  - fundo da área de mockup
+  - card “Signal”
+  - dots ativos do carrossel
+- Vou manter o princípio da memória do projeto: royal blue continua reservado para estados interativos/glows, então os novos accents serão específicos e não vão disputar com o azul principal.
 
 Arquivos a alterar após aprovação:
+- `src/pages/Work.tsx`
 - `src/data/featuredProjects.ts`
 - `src/components/WorkProjectCard.tsx`
-- Se necessário, `src/data/animatedMedia.ts` para expor o poster correto do dashboard do AI Writing Assistant.
+- `src/index.css`
 
 Resultado esperado:
-- Nenhuma imagem horizontal aparecerá em mockup vertical, nem imagem vertical em browser.
-- Projetos com uma única mídia não mostrarão carrossel.
-- Saúde e Ponto e AI Writing Assistant terão troca de mídia perceptível e correta.
-- A regra ficará estrutural, reduzindo risco de novos mismatches quando novas mídias forem adicionadas.
+- A página `/work` começa diretamente nos cards, sem a seção superior selecionada.
+- Cada projeto ganha uma identidade cromática mais precisa e menos genérica.
+- Meu Arco fica com roxo frio; Saúde e Ponto com teal; AI Writing Assistant com laranja estilo Claude; AI Question Generator com vermelho guava/rosado.
+- O sistema continua centralizado e reutilizável para futuros cards.
