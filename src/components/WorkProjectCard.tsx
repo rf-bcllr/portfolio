@@ -24,6 +24,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
     sources: project.media?.sources,
     poster: project.poster,
     src: project.media ? undefined : project.poster,
+    orientation: project.mediaPresentation.orientation,
     presentation: project.mediaPresentation,
   }];
   const activeMedia = mediaItems[activeMediaIndex] ?? mediaItems[0];
