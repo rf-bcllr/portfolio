@@ -68,7 +68,7 @@ export const DrawingCanvas = () => {
 
   // Detect desktop (fine pointer) only
   useEffect(() => {
-    const mq = window.matchMedia("(pointer: fine)");
+    const mq = window.matchMedia("(pointer: fine) and (hover: hover) and (min-width: 1024px)");
     setIsDesktop(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
     mq.addEventListener("change", handler);
