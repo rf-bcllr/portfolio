@@ -1,21 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-
-// FigJam-style cursor colors
-const CURSOR_COLORS = [
-  "#F24822", // red
-  "#FFA629", // orange
-  "#FFCD29", // yellow
-  "#14AE5C", // green
-  "#0D99FF", // blue
-  "#9747FF", // purple
-  "#E91E63", // pink
-  "#00B8D9", // cyan
-  "#B8860B", // gold
-  "#8B5CF6", // violet
-];
-
-const pickRandomColor = () =>
-  CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)];
+import { getSessionCursorColor } from "@/lib/cursorColor";
 
 export const CustomCursor = () => {
   const [position, setPosition] = useState({ x: -100, y: -100 });
@@ -23,8 +7,8 @@ export const CustomCursor = () => {
   const animationFrameRef = useRef<number>();
   const targetPosition = useRef({ x: -100, y: -100 });
 
-  // Random color per visit (stable for the session)
-  const color = useMemo(() => pickRandomColor(), []);
+  // Random color per visit (stable for the session, shared with DrawingCanvas)
+  const color = useMemo(() => getSessionCursorColor(), []);
 
   useEffect(() => {
     const hasFinePo = window.matchMedia("(pointer: fine)").matches;
