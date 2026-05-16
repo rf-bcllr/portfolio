@@ -272,7 +272,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
       company: "isaac",
       location: "Brasil",
       role: "Product Designer | Core Product & Design System",
-      period: "2024 – 2025",
+      period: "2024 – 2026",
       bullets: [
         [
           { text: "Owned " },
