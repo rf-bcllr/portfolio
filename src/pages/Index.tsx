@@ -102,10 +102,10 @@ export default function Index() {
               Hello,
             </h1>
 
-            <p className="mt-6 max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground sm:hidden">
+            <p className="mt-6 max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground lg:hidden">
               I'm your next end-to-end product designer
             </p>
-            <p className="mt-6 hidden max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground sm:block">
+            <p className="mt-6 hidden max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground lg:block">
               I'm a Senior Product Designer with{" "}
               <strong className="font-semibold text-foreground">10+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
