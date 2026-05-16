@@ -249,7 +249,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
       company: "FTD Educação",
       location: "Brasil",
       role: "Senior Product Designer | Design Lead @ AI Center of Excellence",
-      period: "2025 – Present",
+      period: "2026 – Present",
       bullets: [
         [
           { text: "Lead " },
