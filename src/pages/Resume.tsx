@@ -9,9 +9,11 @@ import { ToolsMarquee } from "@/components/ToolsMarquee";
 import { useTranslations } from "@/hooks/useTranslations";
 import { generateResumePDF } from "@/utils/generateResumePDF";
 import figmaLogo from "@/assets/tools/figma.png";
-import figjamLogo from "@/assets/tools/figjam.png";
 import adobeCreativeCloudLogo from "@/assets/tools/adobe-creative-cloud.png";
 import chatgptLogo from "@/assets/tools/chatgpt.png";
+import claudeLogo from "@/assets/tools/claude.svg";
+import claudeCodeLogo from "@/assets/tools/claude-code.png";
+import githubLogo from "@/assets/tools/github.png";
 import lovableLogo from "@/assets/tools/lovable.png";
 import excalidrawLogo from "@/assets/tools/excalidraw.png";
 import notionLogo from "@/assets/tools/notion.png";
@@ -31,9 +33,11 @@ const skills = ["User Research", "Visual Design", "Prototyping", "Design System"
 const softSkills = ["Leadership", "Communication", "Collaboration", "Critical Thinking", "Adaptability", "Creativity", "Fast Iterations"];
 const tools = [
   { name: "Figma", logo: figmaLogo },
-  { name: "FigJam", logo: figjamLogo },
   { name: "Adobe Creative Tools", logo: adobeCreativeCloudLogo },
   { name: "ChatGPT", logo: chatgptLogo },
+  { name: "Claude", logo: claudeLogo },
+  { name: "Claude Code", logo: claudeCodeLogo },
+  { name: "GitHub", logo: githubLogo },
   { name: "Lovable", logo: lovableLogo },
   { name: "Excalidraw", logo: excalidrawLogo },
   { name: "Notion", logo: notionLogo },
@@ -102,10 +106,8 @@ export default function Resume() {
         </section>
 
         <section className="mb-14">
-          <Card className="p-6">
-            <h2 className="mb-8 flex items-center justify-center gap-2 font-display text-2xl font-semibold"><Wrench className="size-5" /> My Tools</h2>
-            <ToolsMarquee tools={tools} speed="slow" />
-          </Card>
+          <h2 className="mb-8 flex items-center justify-center gap-2 font-display text-2xl font-semibold"><Wrench className="size-5" /> My Tools</h2>
+          <ToolsMarquee tools={tools} speed="slow" />
         </section>
 
       </main>
