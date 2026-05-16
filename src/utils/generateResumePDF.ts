@@ -456,7 +456,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
       5.2,
       { justify: false }
     );
-    y += 1.8;
+    y += 2.5;
   });
 
   // ========== LANGUAGES ==========
