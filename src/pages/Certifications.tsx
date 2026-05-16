@@ -38,7 +38,7 @@ export default function Certifications() {
         </section>
 
         <section className="mb-16">
-          <h2 className="mb-6 font-display text-3xl font-semibold">{t.certificationsTitle}</h2>
+          
           <div className="grid gap-4 md:grid-cols-2">
             {certifications.map((cert, index) => (
               <CertificationCard key={cert.title} title={cert.title} href={cert.href} index={index} />
