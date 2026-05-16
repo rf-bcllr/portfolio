@@ -366,41 +366,41 @@ export const generateResumePDF = (language: "pt" | "en") => {
   ];
 
   experiences.forEach((exp, idx) => {
-    ensureSpace(28);
-    if (idx > 0) y += 2;
+    ensureSpace(26);
+    if (idx > 0) y += 1.5;
 
     // Company - Location (bold)
-    setFont(11.5, "bold");
+    setFont(11, "bold");
     setColor(BLACK);
     doc.text(`${exp.company} – ${exp.location}`, marginX, y);
-    y += 5;
+    y += 4.5;
 
     // Role (italic)
-    setFont(10.5, "normal", "italic");
+    setFont(10, "normal", "italic");
     doc.text(exp.role, marginX, y);
-    y += 4.6;
+    y += 4.2;
 
     // Period (italic)
-    setFont(10.5, "normal", "italic");
+    setFont(10, "normal", "italic");
     doc.text(exp.period, marginX, y);
-    y += 5.5;
+    y += 4.8;
 
     // Bullets
     exp.bullets.forEach((bullet) => {
-      ensureSpace(6);
-      setFont(10.5, "normal");
+      ensureSpace(5.5);
+      setFont(10, "normal");
       setColor(BLACK);
       doc.text("•", marginX + 2, y);
-      const bulletIndent = 7;
+      const bulletIndent = 6.5;
       renderRuns(
         bullet,
         marginX + bulletIndent,
         contentWidth - bulletIndent,
-        10.5,
-        5,
+        10,
+        4.6,
         { justify: false }
       );
-      y += 1;
+      y += 0.6;
     });
   });
 
