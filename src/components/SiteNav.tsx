@@ -18,7 +18,7 @@ export function SiteNav() {
 
   return (
     <header className="sticky top-4 z-50 px-4">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur-xl">
+      <nav className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur-xl">
         <Link to="/" data-cursor-action="home" className="flex items-center gap-2 rounded-full pr-2 text-sm font-semibold">
           <img src={avatar} alt="Rafael Bacellar avatar" className="size-9 rounded-full border border-border object-cover" />
           <span className="hidden sm:inline">rfbcllr.</span>
@@ -63,37 +63,36 @@ export function SiteNav() {
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
         </div>
-      </nav>
-
-      {/* Mobile collapsible panel */}
-      {open && (
-        <div className="mx-auto mt-2 max-w-6xl rounded-[24px] border border-border bg-card/95 p-2 shadow-card backdrop-blur-xl md:hidden">
-          <div className="flex flex-col gap-1">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `rounded-full px-4 py-2.5 text-sm font-semibold transition-colors ${
-                    isActive ? "bg-foreground text-background" : "text-muted-foreground hover:bg-secondary hover:text-foreground"
-                  }`
-                }
+        {/* Mobile collapsible panel - floats over content */}
+        {open && (
+          <div className="absolute inset-x-0 top-full z-50 mt-2 rounded-[24px] border border-border bg-card/95 p-2 shadow-card backdrop-blur-xl md:hidden">
+            <div className="flex flex-col gap-1">
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `rounded-full px-4 py-2.5 text-sm font-semibold transition-colors ${
+                      isActive ? "bg-foreground text-background" : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+              <a
+                href="https://linkedin.com/in/rfbcllr"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-full border border-border px-4 py-2.5 text-sm font-semibold text-foreground"
               >
-                {item.label}
-              </NavLink>
-            ))}
-            <a
-              href="https://linkedin.com/in/rfbcllr"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-full border border-border px-4 py-2.5 text-sm font-semibold text-foreground"
-            >
-              LinkedIn <ExternalLink className="size-3.5" />
-            </a>
+                LinkedIn <ExternalLink className="size-3.5" />
+              </a>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </nav>
     </header>
   );
 }
