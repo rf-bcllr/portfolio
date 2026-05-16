@@ -2,8 +2,59 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Eraser } from "lucide-react";
 import { getSessionCursorColor } from "@/lib/cursorColor";
 
-const INTERACTIVE_SELECTOR =
-  'a, button, input, textarea, select, label, [role="button"], [role="link"], [data-cursor-action], [data-cursor-link], [data-no-draw], .shadow-card';
+const INTERACTIVE_SELECTOR = [
+  "a",
+  "button",
+  "input",
+  "textarea",
+  "select",
+  "option",
+  "label",
+  "summary",
+  "details",
+  "video",
+  "audio",
+  "iframe",
+  "img",
+  "picture",
+  "svg",
+  "canvas",
+  "[onclick]",
+  "[tabindex]",
+  '[role="button"]',
+  '[role="link"]',
+  '[role="menuitem"]',
+  '[role="tab"]',
+  '[role="checkbox"]',
+  '[role="radio"]',
+  '[role="switch"]',
+  '[role="option"]',
+  '[role="combobox"]',
+  '[role="listbox"]',
+  '[role="slider"]',
+  '[contenteditable="true"]',
+  "[data-cursor-action]",
+  "[data-cursor-link]",
+  "[data-no-draw]",
+  "[data-state]", // shadcn/radix interactive primitives
+  "[data-radix-collection-item]",
+  ".shadow-card",
+].join(", ");
+
+const isInteractiveElement = (target: EventTarget | null): boolean => {
+  if (!(target instanceof Element)) return false;
+  if (target.closest(INTERACTIVE_SELECTOR)) return true;
+  // Walk ancestors and check computed cursor: pointer (covers custom clickable wrappers)
+  let node: Element | null = target;
+  let depth = 0;
+  while (node && depth < 8 && node !== document.body) {
+    const cursor = window.getComputedStyle(node).cursor;
+    if (cursor === "pointer") return true;
+    node = node.parentElement;
+    depth += 1;
+  }
+  return false;
+};
 
 export const DrawingCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
