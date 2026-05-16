@@ -9,14 +9,6 @@ import { ContactFooter } from "@/components/ContactFooter";
 import { useTranslations } from "@/hooks/useTranslations";
 import heroPortrait from "@/assets/hero-portrait.png";
 
-const capabilities = [
-  "Product Design",
-  "User Research",
-  "Design Systems",
-  "AI Workflows",
-  "UX Writing",
-  "Prototyping",
-];
 
 const profileSkills = ["UX Design", "AI Tools", "UX/UI Design", "Research"];
 
