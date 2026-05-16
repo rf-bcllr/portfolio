@@ -18,7 +18,7 @@ const capabilities = [
   "Prototyping",
 ];
 
-const profileSkills = ["UX Design", "AI Tools", "Systems", "Research"];
+const profileSkills = ["UX Design", "AI Tools", "UX/UI Design", "Research"];
 
 export default function Index() {
   const t = useTranslations();
@@ -60,7 +60,7 @@ export default function Index() {
                     Rafael Bacellar
                   </div>
                   <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
-                    Product Designer
+                    Senior Product Designer
                   </div>
                   <div className="mx-auto mt-2.5 h-[2.5px] w-7 rounded-sm bg-primary" />
                 </div>
@@ -111,7 +111,7 @@ export default function Index() {
             </h1>
 
             <p className="mt-6 max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground">
-              I'm a Product Designer with{" "}
+              I'm a Senior Product Designer with{" "}
               <strong className="font-semibold text-foreground">8+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
