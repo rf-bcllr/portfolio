@@ -108,9 +108,6 @@ export default function Resume() {
           </Card>
         </section>
 
-        <div className="text-center">
-          <Button asChild variant="outline"><Link to="/certifications">Certifications & recommendations</Link></Button>
-        </div>
       </main>
       <ContactFooter />
     </div>
