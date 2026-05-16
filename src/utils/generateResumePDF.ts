@@ -179,7 +179,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
   y += 5.2;
 
   // Contact line with clickable email + linkedin
-  setFont(9, "normal");
+  setFont(8.5, "normal");
   setColor(BLACK);
   const contactParts = [
     { text: "Aracaju, SE, Brazil", link: null as string | null },
