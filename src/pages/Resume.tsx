@@ -21,7 +21,7 @@ import mazeLogo from "@/assets/tools/maze.png";
 import mixpanelLogo from "@/assets/tools/mixpanel.png";
 
 const experiences = [
-  { title: "Senior Product Designer", company: "FTD Educação", period: "2025 - Present", description: "Senior Product Designer and Design representative at the AI Center of Excellence (COE) for Grupo Marista, leading GenAI-powered product initiatives across edtech experiences.", chips: ["Edtech", "GenAI", "B2B", "B2C"] },
+  { title: "Senior Product Designer", company: "FTD Educação", period: "2026 - Present", description: "Senior Product Designer and Design representative at the AI Center of Excellence (COE) for Grupo Marista, leading GenAI-powered product initiatives across edtech experiences.", chips: ["Edtech", "GenAI", "B2B", "B2C"] },
   { title: "Product Designer", company: "isaac", period: "2024 - 2026", description: "End-to-end digital product design, design system and scalable interfaces.", chips: ["Fintech", "B2B", "B2C", "SaaS"] },
   { title: "Product Designer", company: "ClassApp", period: "2021 - 2024", description: "Product design leadership, user research and development collaboration.", chips: ["Edtech", "B2B", "B2C"] },
   { title: "Design Analyst", company: "Le biscuit", period: "2019 - 2021", description: "Digital interface analysis and design, user experience improvement.", chips: ["Retail", "E-commerce"] },
