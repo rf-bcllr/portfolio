@@ -62,7 +62,7 @@ export default function Resume() {
           <div>
             
             <h1 className="font-display text-5xl font-semibold leading-[0.95] md:text-7xl">Rafael Bacellar Ramos Reis</h1>
-            <p className="mt-5 hidden text-xl text-muted-foreground md:block">End-to-End Product Designer</p>
+            <p className="mt-5 hidden text-xl text-muted-foreground sm:block">End-to-End Product Designer</p>
           </div>
           <Card className="p-6 lg:rotate-1">
             <div className="mb-5 grid gap-3 text-sm text-muted-foreground">
