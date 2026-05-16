@@ -226,7 +226,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
         ]
       : [
           { text: "Senior Product Designer with over " },
-          { text: "8 years of experience", bold: true },
+          { text: "10 years of experience", bold: true },
           { text: " in " },
           { text: "end-to-end digital product design", bold: true },
           { text: ", " },
