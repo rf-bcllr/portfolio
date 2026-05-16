@@ -49,39 +49,38 @@ export default function Certifications() {
 
         <section className="mb-16">
           <h2 className="mb-6 flex items-center gap-3 font-display text-3xl font-semibold"><Award className="size-7" /> Awards</h2>
-          <Card className="p-8">
-            <div className="grid items-center gap-8 md:grid-cols-[0.7fr_1.3fr]">
+          <div className="relative">
+            <Card className="p-8 md:pr-56 lg:pr-64">
+              <h3 className="font-display text-2xl font-semibold">Cada um na Sua — 2nd place, Feyh Bier label contest (2019)</h3>
+              <p className="mt-3 text-muted-foreground leading-relaxed">
+                Craft beer label designed for a Feyh Bier design contest celebrating a Catharina Sour brewed with mango and umbu — two tropical fruits from my home state. The illustration of a native couple harvesting the ingredients in the woods speaks to the brief's themes of diversity and identity. The submission finished in 2nd place.
+              </p>
               <a
                 href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block transition-transform duration-300 hover:-rotate-2 hover:scale-105"
-                style={{ transform: "rotate(-4deg)" }}
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline-offset-4 hover:underline"
               >
-                <img
-                  src={cadaUmNaSua}
-                  alt="Cada um na Sua — craft beer label sticker"
-                  loading="lazy"
-                  decoding="async"
-                  className="mx-auto w-full max-w-[260px] drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)]"
-                />
+                View on Behance →
               </a>
-              <div>
-                <h3 className="font-display text-2xl font-semibold">Cada um na Sua — 2nd place, Feyh Bier label contest (2019)</h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed">
-                  Craft beer label designed for a Feyh Bier design contest celebrating a Catharina Sour brewed with mango and umbu — two tropical fruits from my home state. The illustration of a native couple harvesting the ingredients in the woods speaks to the brief's themes of diversity and identity. The submission finished in 2nd place.
-                </p>
-                <a
-                  href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline-offset-4 hover:underline"
-                >
-                  View on Behance →
-                </a>
-              </div>
-            </div>
-          </Card>
+            </Card>
+            <a
+              href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute -top-10 right-2 block w-[140px] transition-transform duration-300 hover:-rotate-2 hover:scale-105 md:-top-12 md:-right-6 md:w-[220px] lg:w-[240px]"
+              style={{ transform: "rotate(-6deg)" }}
+              aria-label="Cada um na Sua on Behance"
+            >
+              <img
+                src={cadaUmNaSua}
+                alt="Cada um na Sua — craft beer label sticker"
+                loading="lazy"
+                decoding="async"
+                className="w-full drop-shadow-[0_18px_28px_rgba(0,0,0,0.22)]"
+              />
+            </a>
+          </div>
         </section>
 
         <section>

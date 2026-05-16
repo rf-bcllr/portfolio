@@ -1,51 +1,16 @@
-Plano de implementação:
+## Ajuste no Award "Cada um na Sua"
 
-1. Remover a seção superior inteira da página /work
-- Apagar o primeiro `<motion.section>` em `src/pages/Work.tsx`, incluindo:
-  - badge “Selected work”
-  - headline “Project cards shaped like a working board.”
-  - texto editorial
-  - botão “Resume”
-- Remover imports que ficarem sem uso nessa página (`motion`, `ArrowRight`, `Sparkles`, `Button`).
-- Ajustar o espaçamento do `<main>` para que a lista de cards comece de forma intencional, sem parecer que ficou um “buraco” onde a seção foi removida.
+Atualmente o sticker e o texto estão lado a lado dentro do mesmo `Card`. O objetivo é separar visualmente os dois elementos: o card mantém apenas o conteúdo textual, enquanto o sticker "flutua" sobre o fundo cinza da página, levemente sobreposto ao card — como um sticker colado por cima.
 
-2. Expandir o sistema de cores dos cards
-- Hoje os cards usam apenas `blue`, `green`, `amber` e `red`, mapeados para classes CSS como `project-card-blue`.
-- Vou adicionar novos accents mais específicos para os projetos destacados:
-  - `purple` para Meu Arco: roxo frio, moderno, não royal blue.
-  - `teal` para Saúde e Ponto: verde-azulado mais fresco, com cara health/food tech.
-  - `claudeOrange` para AI Writing Assistant: laranja quente inspirado no Claude, sem ficar amarelo demais.
-  - `guavaRed` para AI Question Generator: vermelho mais rosado/guava, menos vermelho puro.
-- Manterei os tons em HSL no `src/index.css`, seguindo o padrão atual do design system.
+### Mudanças em `src/pages/Certifications.tsx` (seção Awards)
 
-3. Aplicar as novas cores no data source dos projetos
-- Atualizar `src/data/featuredProjects.ts` para trocar os accents:
-  - Meu Arco: `purple`
-  - Students Transportation: pode permanecer `blue`
-  - Saúde e Ponto: `teal`
-  - AI Writing Assistant: `claudeOrange`
-  - AI Question Generator: `guavaRed`
-- Ajustar o type `FeaturedProject["accent"]` para aceitar os novos nomes sem quebrar o componente.
+1. **Wrapper relativo** ao redor do `Card` para permitir posicionar o sticker absolutamente em relação a ele.
+2. **Card de texto puro**: remover o grid de duas colunas e a imagem de dentro do `Card`. Manter apenas o título, descrição e link "View on Behance". Adicionar padding à direita (ex.: `md:pr-48`) para reservar espaço visual e evitar que o sticker cubra o texto em telas maiores.
+3. **Sticker como elemento sobreposto**:
+   - Posicionado com `absolute` no canto superior-direito do wrapper, deslocado para fora do card (ex.: `-top-8 -right-6` em desktop; menor deslocamento em mobile).
+   - Sem fundo, sem borda — apenas o PNG com `drop-shadow` para reforçar a sensação de adesivo.
+   - Mantém a leve rotação (`-rotate-[4deg]`) e o hover sutil.
+   - Continua envolto em `<a>` para o Behance.
+4. **Responsivo**: em mobile, o sticker fica menor e posicionado no topo-direito sem cobrir texto crítico (ou pode ir acima do card centralizado, se preferir — confirmar se necessário).
 
-4. Garantir consistência visual nos estados do card
-- Atualizar `src/components/WorkProjectCard.tsx` para mapear os novos accents para as novas classes CSS.
-- As novas cores serão usadas automaticamente em:
-  - faixa lateral do card
-  - chips/badges
-  - borda no hover
-  - fundo da área de mockup
-  - card “Signal”
-  - dots ativos do carrossel
-- Vou manter o princípio da memória do projeto: royal blue continua reservado para estados interativos/glows, então os novos accents serão específicos e não vão disputar com o azul principal.
-
-Arquivos a alterar após aprovação:
-- `src/pages/Work.tsx`
-- `src/data/featuredProjects.ts`
-- `src/components/WorkProjectCard.tsx`
-- `src/index.css`
-
-Resultado esperado:
-- A página `/work` começa diretamente nos cards, sem a seção superior selecionada.
-- Cada projeto ganha uma identidade cromática mais precisa e menos genérica.
-- Meu Arco fica com roxo frio; Saúde e Ponto com teal; AI Writing Assistant com laranja estilo Claude; AI Question Generator com vermelho guava/rosado.
-- O sistema continua centralizado e reutilizável para futuros cards.
+Nenhuma outra seção é afetada.
