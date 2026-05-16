@@ -132,9 +132,20 @@ export const DrawingCanvas = () => {
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
       if (isInteractive(e.target)) return;
+      // Prevent native text/image selection while drawing
+      e.preventDefault();
       drawingRef.current = true;
       movedRef.current = false;
       lastPointRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const onSelectStart = (e: Event) => {
+      if (drawingRef.current) e.preventDefault();
+    };
+    const onDragStart = (e: DragEvent) => {
+      if (isInteractive(e.target)) return;
+      // Block native image/text drag on background so drawing stays fluid
+      e.preventDefault();
     };
 
     const onMove = (e: PointerEvent) => {
