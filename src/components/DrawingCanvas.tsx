@@ -156,6 +156,9 @@ export const DrawingCanvas = () => {
       const dy = e.clientY - last.y;
       if (!movedRef.current && dx * dx + dy * dy < 4) return; // ignore tiny jitter
       movedRef.current = true;
+      // Clear any selection that started before we recognized the draw gesture
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0 && !sel.isCollapsed) sel.removeAllRanges();
       ctx.strokeStyle = color;
       ctx.lineWidth = 3;
       ctx.globalAlpha = 0.92;
