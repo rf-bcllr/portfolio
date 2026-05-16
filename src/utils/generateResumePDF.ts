@@ -376,7 +376,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     y += 4.6;
 
     // Role (italic)
-    setFont(9, "normal", "italic");
+    setFont(8.5, "normal", "italic");
     doc.text(exp.role, marginX, y);
     y += 4.2;
 
