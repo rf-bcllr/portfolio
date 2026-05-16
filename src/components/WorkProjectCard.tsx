@@ -89,7 +89,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
       style={{ transform: `rotate(${rotation})` }}
     >
       <div className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,0.9fr)_minmax(440px,0.92fr)] xl:grid-cols-[minmax(0,0.82fr)_minmax(560px,1fr)]"}`}>
-        <div className="relative flex flex-col justify-between gap-7 p-6 md:p-8 lg:p-9">
+        <div className="relative order-2 flex flex-col justify-between gap-7 p-6 md:p-8 lg:order-1 lg:p-9">
           <span className="absolute inset-y-0 left-0 w-1.5 bg-[hsl(var(--project-accent))]" aria-hidden />
           <div>
             <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -132,7 +132,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
           </div>
         </div>
 
-        <div className={`relative flex items-center justify-center overflow-hidden border-t border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:border-l lg:border-t-0 ${mediaAreaHeight}`}>
+        <div className={`relative order-1 flex items-center justify-center overflow-hidden border-b border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:order-2 lg:border-b-0 lg:border-l ${mediaAreaHeight}`}>
           <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
             {project.emoji}
           </div>

@@ -156,27 +156,27 @@ export const generateResumePDF = (language: "pt" | "en") => {
   };
 
   const sectionHeader = (label: string) => {
-    ensureSpace(14);
-    y += 4;
-    setFont(14, "bold");
+    ensureSpace(12);
+    y += 3.5;
+    setFont(12, "bold");
     setColor(BLACK);
     doc.text(label.toUpperCase(), marginX, y);
-    y += 7;
+    y += 5.5;
   };
 
   // ========== HEADER ==========
-  setFont(32, "bold");
+  setFont(24, "bold");
   setColor(BLACK);
   doc.text("Rafael Bacellar", marginX, y);
-  y += 11;
+  y += 9;
 
-  setFont(11, "bold");
+  setFont(10.5, "bold");
   doc.text(
     "Senior Product Designer | AI-Driven Design | Design Systems",
     marginX,
     y
   );
-  y += 6;
+  y += 4.8;
 
   // Contact line with clickable email + linkedin
   setFont(10, "normal");
@@ -203,7 +203,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     }
     cx += doc.getTextWidth(part.text);
   });
-  y += 4;
+  y += 3;
 
   // ========== PROFILE ==========
   sectionHeader("Profile");
@@ -239,7 +239,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
           { text: "fintech, edtech, and B2B/B2C environments", bold: true },
           { text: ". Fluent in Portuguese and English." },
         ];
-  renderRuns(profile, marginX, contentWidth, 10.5, 5.2, { justify: true });
+  renderRuns(profile, marginX, contentWidth, 10, 4.8, { justify: true });
 
   // ========== EXPERIENCE ==========
   sectionHeader(language === "pt" ? "Experiência" : "Experience");
@@ -366,41 +366,41 @@ export const generateResumePDF = (language: "pt" | "en") => {
   ];
 
   experiences.forEach((exp, idx) => {
-    ensureSpace(28);
-    if (idx > 0) y += 2;
+    ensureSpace(26);
+    if (idx > 0) y += 1.5;
 
     // Company - Location (bold)
-    setFont(11.5, "bold");
+    setFont(11, "bold");
     setColor(BLACK);
     doc.text(`${exp.company} – ${exp.location}`, marginX, y);
-    y += 5;
+    y += 4.5;
 
     // Role (italic)
-    setFont(10.5, "normal", "italic");
+    setFont(10, "normal", "italic");
     doc.text(exp.role, marginX, y);
-    y += 4.6;
+    y += 4.2;
 
     // Period (italic)
-    setFont(10.5, "normal", "italic");
+    setFont(10, "normal", "italic");
     doc.text(exp.period, marginX, y);
-    y += 5.5;
+    y += 4.8;
 
     // Bullets
     exp.bullets.forEach((bullet) => {
-      ensureSpace(6);
-      setFont(10.5, "normal");
+      ensureSpace(5.5);
+      setFont(10, "normal");
       setColor(BLACK);
       doc.text("•", marginX + 2, y);
-      const bulletIndent = 7;
+      const bulletIndent = 6.5;
       renderRuns(
         bullet,
         marginX + bulletIndent,
         contentWidth - bulletIndent,
-        10.5,
-        5,
+        10,
+        4.6,
         { justify: false }
       );
-      y += 1;
+      y += 0.6;
     });
   });
 
@@ -419,14 +419,14 @@ export const generateResumePDF = (language: "pt" | "en") => {
   ];
 
   education.forEach((edu) => {
-    ensureSpace(14);
-    setFont(11.5, "bold");
+    ensureSpace(12);
+    setFont(11, "bold");
     setColor(BLACK);
     doc.text(`${edu.school} – ${edu.location}`, marginX, y);
-    y += 5;
-    setFont(10.5, "normal", "italic");
+    y += 4.5;
+    setFont(10, "normal", "italic");
     doc.text(`${edu.degree} | ${edu.period}`, marginX, y);
-    y += 6;
+    y += 5;
   });
 
   // ========== SKILLS ==========
@@ -452,11 +452,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
       [{ text: `${label}: `, bold: true }, { text: value }],
       marginX,
       contentWidth,
-      10.5,
-      5,
+      10,
+      4.6,
       { justify: false }
     );
-    y += 1.5;
+    y += 1;
   });
 
   // ========== LANGUAGES ==========
@@ -465,7 +465,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     language === "pt"
       ? "Português (Nativo) • Inglês (Avançado) • Alemão (Básico) • Espanhol (Básico)"
       : "Portuguese (Native) • English (Advanced) • German (Basic) • Spanish (Basic)";
-  setFont(10.5, "normal");
+  setFont(10, "normal");
   setColor(BLACK);
   doc.text(langs, marginX, y);
 
