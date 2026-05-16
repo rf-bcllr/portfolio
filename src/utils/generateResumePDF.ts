@@ -161,7 +161,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     setFont(10.5, "bold");
     setColor(BLACK);
     doc.text(label.toUpperCase(), marginX, y);
-    y += 6;
+    y += 7;
   };
 
   // ========== HEADER ==========
