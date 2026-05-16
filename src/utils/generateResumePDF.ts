@@ -367,7 +367,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
 
   experiences.forEach((exp, idx) => {
     ensureSpace(28);
-    if (idx > 0) y += 3;
+    if (idx > 0) y += 5;
 
     // Company - Location (bold)
     setFont(10, "bold");
