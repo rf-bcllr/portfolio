@@ -239,7 +239,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
           { text: "fintech, edtech, and B2B/B2C environments", bold: true },
           { text: ". Fluent in Portuguese and English." },
         ];
-  renderRuns(profile, marginX, contentWidth, 10, 4.8, { justify: true });
+  renderRuns(profile, marginX, contentWidth, 9, 5, { justify: true });
 
   // ========== EXPERIENCE ==========
   sectionHeader(language === "pt" ? "Experiência" : "Experience");
