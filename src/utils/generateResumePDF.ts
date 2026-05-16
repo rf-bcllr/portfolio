@@ -366,29 +366,29 @@ export const generateResumePDF = (language: "pt" | "en") => {
   ];
 
   experiences.forEach((exp, idx) => {
-    ensureSpace(26);
-    if (idx > 0) y += 1.5;
+    ensureSpace(28);
+    if (idx > 0) y += 3;
 
     // Company - Location (bold)
-    setFont(11, "bold");
+    setFont(10, "bold");
     setColor(BLACK);
     doc.text(`${exp.company} – ${exp.location}`, marginX, y);
-    y += 4.5;
+    y += 4.6;
 
     // Role (italic)
-    setFont(10, "normal", "italic");
+    setFont(9, "normal", "italic");
     doc.text(exp.role, marginX, y);
     y += 4.2;
 
     // Period (italic)
-    setFont(10, "normal", "italic");
+    setFont(9, "normal", "italic");
     doc.text(exp.period, marginX, y);
-    y += 4.8;
+    y += 5;
 
     // Bullets
     exp.bullets.forEach((bullet) => {
       ensureSpace(5.5);
-      setFont(10, "normal");
+      setFont(9, "normal");
       setColor(BLACK);
       doc.text("•", marginX + 2, y);
       const bulletIndent = 6.5;
@@ -396,11 +396,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
         bullet,
         marginX + bulletIndent,
         contentWidth - bulletIndent,
-        10,
-        4.6,
+        9,
+        4.8,
         { justify: false }
       );
-      y += 0.6;
+      y += 1.2;
     });
   });
 
