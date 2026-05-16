@@ -50,7 +50,37 @@ export default function Certifications() {
         <section className="mb-16">
           <h2 className="mb-6 flex items-center gap-3 font-display text-3xl font-semibold"><Award className="size-7" /> Awards</h2>
           <Card className="p-8">
-            <p className="text-muted-foreground">Awards and public recognitions will be added here when the source information is available.</p>
+            <div className="grid items-center gap-8 md:grid-cols-[0.7fr_1.3fr]">
+              <a
+                href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block transition-transform duration-300 hover:-rotate-2 hover:scale-105"
+                style={{ transform: "rotate(-4deg)" }}
+              >
+                <img
+                  src={cadaUmNaSua}
+                  alt="Cada um na Sua — craft beer label sticker"
+                  loading="lazy"
+                  decoding="async"
+                  className="mx-auto w-full max-w-[260px] drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)]"
+                />
+              </a>
+              <div>
+                <h3 className="font-display text-2xl font-semibold">Cada um na Sua — 2nd place, Feyh Bier label contest (2019)</h3>
+                <p className="mt-3 text-muted-foreground leading-relaxed">
+                  Craft beer label designed for a Feyh Bier design contest celebrating a Catharina Sour brewed with mango and umbu — two tropical fruits from my home state. The illustration of a native couple harvesting the ingredients in the woods speaks to the brief's themes of diversity and identity. The submission finished in 2nd place.
+                </p>
+                <a
+                  href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline-offset-4 hover:underline"
+                >
+                  View on Behance →
+                </a>
+              </div>
+            </div>
           </Card>
         </section>
 
