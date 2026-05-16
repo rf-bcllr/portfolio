@@ -381,7 +381,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     y += 4.2;
 
     // Period (italic)
-    setFont(9, "normal", "italic");
+    setFont(8.5, "normal", "italic");
     doc.text(exp.period, marginX, y);
     y += 5;
 
