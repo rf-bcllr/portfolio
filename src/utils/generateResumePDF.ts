@@ -156,12 +156,12 @@ export const generateResumePDF = (language: "pt" | "en") => {
   };
 
   const sectionHeader = (label: string) => {
-    ensureSpace(14);
-    y += 4.5;
+    ensureSpace(16);
+    y += 6.5;
     setFont(10.5, "bold");
     setColor(BLACK);
     doc.text(label.toUpperCase(), marginX, y);
-    y += 6;
+    y += 7;
   };
 
   // ========== HEADER ==========
@@ -179,7 +179,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
   y += 5.2;
 
   // Contact line with clickable email + linkedin
-  setFont(9, "normal");
+  setFont(8.5, "normal");
   setColor(BLACK);
   const contactParts = [
     { text: "Aracaju, SE, Brazil", link: null as string | null },
@@ -203,7 +203,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     }
     cx += doc.getTextWidth(part.text);
   });
-  y += 3;
+  y += 5;
 
   // ========== PROFILE ==========
   sectionHeader("Profile");
@@ -211,7 +211,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     language === "pt"
       ? [
           { text: "Senior Product Designer com mais de " },
-          { text: "8 anos de experiência", bold: true },
+          { text: "10 anos de experiência", bold: true },
           { text: " em " },
           { text: "design end-to-end de produtos digitais", bold: true },
           { text: ", " },
@@ -226,7 +226,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
         ]
       : [
           { text: "Senior Product Designer with over " },
-          { text: "8 years of experience", bold: true },
+          { text: "10 years of experience", bold: true },
           { text: " in " },
           { text: "end-to-end digital product design", bold: true },
           { text: ", " },
@@ -239,7 +239,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
           { text: "fintech, edtech, and B2B/B2C environments", bold: true },
           { text: ". Fluent in Portuguese and English." },
         ];
-  renderRuns(profile, marginX, contentWidth, 9, 5, { justify: true });
+  renderRuns(profile, marginX, contentWidth, 8.5, 5, { justify: true });
 
   // ========== EXPERIENCE ==========
   sectionHeader(language === "pt" ? "Experiência" : "Experience");
@@ -249,7 +249,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
       company: "FTD Educação",
       location: "Brasil",
       role: "Senior Product Designer | Design Lead @ AI Center of Excellence",
-      period: "2025 – Present",
+      period: "2026 – Present",
       bullets: [
         [
           { text: "Lead " },
@@ -272,7 +272,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
       company: "isaac",
       location: "Brasil",
       role: "Product Designer | Core Product & Design System",
-      period: "2024 – 2025",
+      period: "2024 – 2026",
       bullets: [
         [
           { text: "Owned " },
@@ -367,7 +367,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
 
   experiences.forEach((exp, idx) => {
     ensureSpace(28);
-    if (idx > 0) y += 3;
+    if (idx > 0) y += 5;
 
     // Company - Location (bold)
     setFont(10, "bold");
@@ -376,19 +376,19 @@ export const generateResumePDF = (language: "pt" | "en") => {
     y += 4.6;
 
     // Role (italic)
-    setFont(9, "normal", "italic");
+    setFont(8.5, "normal", "italic");
     doc.text(exp.role, marginX, y);
     y += 4.2;
 
     // Period (italic)
-    setFont(9, "normal", "italic");
+    setFont(8.5, "normal", "italic");
     doc.text(exp.period, marginX, y);
-    y += 5;
+    y += 6;
 
     // Bullets
     exp.bullets.forEach((bullet) => {
       ensureSpace(5.5);
-      setFont(9, "normal");
+      setFont(8.5, "normal");
       setColor(BLACK);
       doc.text("•", marginX + 2, y);
       const bulletIndent = 6.5;
@@ -396,11 +396,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
         bullet,
         marginX + bulletIndent,
         contentWidth - bulletIndent,
-        9,
-        4.8,
+        8.5,
+        5.2,
         { justify: false }
       );
-      y += 1.2;
+      y += 2.2;
     });
   });
 
@@ -424,9 +424,9 @@ export const generateResumePDF = (language: "pt" | "en") => {
     setColor(BLACK);
     doc.text(`${edu.school} – ${edu.location}`, marginX, y);
     y += 4.6;
-    setFont(9, "normal", "italic");
+    setFont(8.5, "normal", "italic");
     doc.text(`${edu.degree} | ${edu.period}`, marginX, y);
-    y += 5;
+    y += 6;
   });
 
   // ========== SKILLS ==========
@@ -452,11 +452,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
       [{ text: `${label}: `, bold: true }, { text: value }],
       marginX,
       contentWidth,
-      9,
-      4.8,
+      8.5,
+      5.2,
       { justify: false }
     );
-    y += 1.8;
+    y += 2.5;
   });
 
   // ========== LANGUAGES ==========
@@ -465,7 +465,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     language === "pt"
       ? "Português (Nativo) • Inglês (Avançado) • Alemão (Básico) • Espanhol (Básico)"
       : "Portuguese (Native) • English (Advanced) • German (Basic) • Spanish (Basic)";
-  setFont(9, "normal");
+  setFont(8.5, "normal");
   setColor(BLACK);
   doc.text(langs, marginX, y);
 

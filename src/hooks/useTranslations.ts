@@ -21,7 +21,7 @@ export const translations = {
     
     // About Section
     aboutTitle: "About me",
-    aboutDescription: "Product Designer with 8+ years of experience creating digital products that connect people and solve real problems.",
+    aboutDescription: "Product Designer with 10+ years of experience creating digital products that connect people and solve real problems.",
     
     // Certifications
     certificationsTitle: "Certifications",

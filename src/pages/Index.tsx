@@ -104,12 +104,12 @@ export default function Index() {
 
             <p className="mt-6 max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground md:hidden">
               Senior Product Designer with{" "}
-              <strong className="font-semibold text-foreground">8+ years</strong>{" "}
+              <strong className="font-semibold text-foreground">10+ years</strong>{" "}
               crafting digital products — from apps to AI-powered tools.
             </p>
             <p className="mt-6 hidden max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground md:block">
               I'm a Senior Product Designer with{" "}
-              <strong className="font-semibold text-foreground">8+ years of experience</strong>{" "}
+              <strong className="font-semibold text-foreground">10+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
 
@@ -139,7 +139,7 @@ export default function Index() {
           <div className="grid gap-4 md:grid-cols-3">
             <Card className="p-6 md:rotate-[-0.7deg]">
               <Briefcase className="mb-5 size-7" />
-              <h2 className="font-display text-2xl font-semibold">8+ years</h2>
+              <h2 className="font-display text-2xl font-semibold">10+ years</h2>
               <p className="mt-2 text-muted-foreground">Across edtech, fintech, retail, health and AI product workflows.</p>
             </Card>
             <Card className="p-6 md:translate-y-6 md:rotate-[0.5deg]">
