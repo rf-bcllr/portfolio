@@ -68,7 +68,7 @@ export default function Certifications() {
               href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute -bottom-8 -right-2 block w-[160px] transition-transform duration-300 hover:-rotate-2 hover:scale-105 md:bottom-auto md:-top-12 md:-right-6 md:w-[220px] lg:w-[240px]"
+              className="pointer-events-auto absolute -bottom-6 -right-4 block w-[130px] transition-transform duration-300 hover:-rotate-2 hover:scale-105 md:bottom-auto md:-top-12 md:-right-6 md:w-[220px] lg:w-[240px]"
               style={{ transform: "rotate(-6deg)" }}
               aria-label="Cada um na Sua on Behance"
             >
