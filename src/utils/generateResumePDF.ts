@@ -156,27 +156,27 @@ export const generateResumePDF = (language: "pt" | "en") => {
   };
 
   const sectionHeader = (label: string) => {
-    ensureSpace(14);
-    y += 4;
-    setFont(14, "bold");
+    ensureSpace(12);
+    y += 3.5;
+    setFont(12, "bold");
     setColor(BLACK);
     doc.text(label.toUpperCase(), marginX, y);
-    y += 7;
+    y += 5.5;
   };
 
   // ========== HEADER ==========
-  setFont(32, "bold");
+  setFont(24, "bold");
   setColor(BLACK);
   doc.text("Rafael Bacellar", marginX, y);
-  y += 11;
+  y += 9;
 
-  setFont(11, "bold");
+  setFont(10.5, "bold");
   doc.text(
     "Senior Product Designer | AI-Driven Design | Design Systems",
     marginX,
     y
   );
-  y += 6;
+  y += 4.8;
 
   // Contact line with clickable email + linkedin
   setFont(10, "normal");
@@ -203,7 +203,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     }
     cx += doc.getTextWidth(part.text);
   });
-  y += 4;
+  y += 3;
 
   // ========== PROFILE ==========
   sectionHeader("Profile");
@@ -239,7 +239,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
           { text: "fintech, edtech, and B2B/B2C environments", bold: true },
           { text: ". Fluent in Portuguese and English." },
         ];
-  renderRuns(profile, marginX, contentWidth, 10.5, 5.2, { justify: true });
+  renderRuns(profile, marginX, contentWidth, 10, 4.8, { justify: true });
 
   // ========== EXPERIENCE ==========
   sectionHeader(language === "pt" ? "Experiência" : "Experience");
