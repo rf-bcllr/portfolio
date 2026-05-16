@@ -156,7 +156,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
   };
 
   const sectionHeader = (label: string) => {
-    ensureSpace(14);
+    ensureSpace(16);
     y += 6.5;
     setFont(10.5, "bold");
     setColor(BLACK);
