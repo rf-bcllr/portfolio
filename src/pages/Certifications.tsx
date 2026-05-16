@@ -52,7 +52,7 @@ export default function Certifications() {
           <div className="relative">
             <Card className="p-8 md:pr-56 lg:pr-64">
               <h3 className="font-display text-2xl font-semibold">Cada um na Sua — 2nd place, Feyh Bier label contest (2019)</h3>
-              <p className="mt-3 text-muted-foreground leading-relaxed">
+              <p className="mt-3 hidden text-muted-foreground leading-relaxed md:block">
                 Craft beer label designed for a Feyh Bier design contest celebrating a Catharina Sour brewed with mango and umbu — two tropical fruits from my home state. The illustration of a native couple harvesting the ingredients in the woods speaks to the brief's themes of diversity and identity. The submission finished in 2nd place.
               </p>
               <a
@@ -68,7 +68,7 @@ export default function Certifications() {
               href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute -top-10 right-2 block w-[140px] transition-transform duration-300 hover:-rotate-2 hover:scale-105 md:-top-12 md:-right-6 md:w-[220px] lg:w-[240px]"
+              className="absolute -bottom-8 -right-2 block w-[160px] transition-transform duration-300 hover:-rotate-2 hover:scale-105 md:bottom-auto md:-top-12 md:-right-6 md:w-[220px] lg:w-[240px]"
               style={{ transform: "rotate(-6deg)" }}
               aria-label="Cada um na Sua on Behance"
             >
