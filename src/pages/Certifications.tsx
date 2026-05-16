@@ -27,7 +27,7 @@ export default function Certifications() {
       <main className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
         <section className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <Badge variant="outline" className="mb-5 bg-card px-4 py-2 text-sm shadow-card">Certifications</Badge>
+            
             <h1 className="font-display text-5xl font-semibold leading-[0.95] md:text-7xl">Proofs, praise and learning loops.</h1>
           </div>
           <Card className="p-6 lg:rotate-1">
