@@ -139,7 +139,7 @@ export default function Index() {
           <div className="grid gap-4 md:grid-cols-3">
             <Card className="p-6 md:rotate-[-0.7deg]">
               <Briefcase className="mb-5 size-7" />
-              <h2 className="font-display text-2xl font-semibold">8+ years</h2>
+              <h2 className="font-display text-2xl font-semibold">10+ years</h2>
               <p className="mt-2 text-muted-foreground">Across edtech, fintech, retail, health and AI product workflows.</p>
             </Card>
             <Card className="p-6 md:translate-y-6 md:rotate-[0.5deg]">
