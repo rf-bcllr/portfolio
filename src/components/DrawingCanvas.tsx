@@ -185,10 +185,14 @@ export const DrawingCanvas = () => {
     window.addEventListener("pointerdown", onDown);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+    document.addEventListener("selectstart", onSelectStart);
+    document.addEventListener("dragstart", onDragStart);
     return () => {
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      document.removeEventListener("selectstart", onSelectStart);
+      document.removeEventListener("dragstart", onDragStart);
     };
   }, [isDesktop, color, hasStrokes]);
 
