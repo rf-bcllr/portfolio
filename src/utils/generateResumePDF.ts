@@ -156,30 +156,30 @@ export const generateResumePDF = (language: "pt" | "en") => {
   };
 
   const sectionHeader = (label: string) => {
-    ensureSpace(12);
-    y += 3.5;
-    setFont(12, "bold");
+    ensureSpace(14);
+    y += 4.5;
+    setFont(10.5, "bold");
     setColor(BLACK);
     doc.text(label.toUpperCase(), marginX, y);
-    y += 5.5;
+    y += 6;
   };
 
   // ========== HEADER ==========
-  setFont(24, "bold");
+  setFont(22, "bold");
   setColor(BLACK);
   doc.text("Rafael Bacellar", marginX, y);
   y += 9;
 
-  setFont(10.5, "bold");
+  setFont(9.5, "bold");
   doc.text(
     "Senior Product Designer | AI-Driven Design | Design Systems",
     marginX,
     y
   );
-  y += 4.8;
+  y += 5.2;
 
   // Contact line with clickable email + linkedin
-  setFont(10, "normal");
+  setFont(9, "normal");
   setColor(BLACK);
   const contactParts = [
     { text: "Aracaju, SE, Brazil", link: null as string | null },
