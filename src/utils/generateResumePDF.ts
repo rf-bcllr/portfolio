@@ -397,7 +397,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
         marginX + bulletIndent,
         contentWidth - bulletIndent,
         8.5,
-        4.8,
+        5.2,
         { justify: false }
       );
       y += 1.2;
