@@ -62,10 +62,10 @@ export const CompanyLogos = ({
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8 md:gap-12 items-center justify-items-center">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:grid lg:grid-cols-7 lg:justify-items-center">
             {companies.map((company, index) => <a key={company.name} href={company.url} target="_blank" rel="noopener noreferrer" style={{
             animationDelay: `${index * 0.1}s`
-          }} className={`group relative w-full aspect-square max-w-[120px] flex items-center justify-center p-6 transition-all duration-300 hover:scale-110 px-[12px] ${index === companies.length - 1 ? "col-span-2 md:col-span-1" : ""}`}>
+          }} className="group relative aspect-square w-[40%] max-w-[120px] flex items-center justify-center p-6 transition-all duration-300 hover:scale-110 px-[12px] md:w-[20%] lg:w-full">
                 <img src={company.logo} alt={`${company.name} logo`} className={`w-full h-full object-contain brightness-0 dark:invert transition-all duration-300 ${company.logoClassName ?? ""}`} loading="lazy" />
               </a>)}
           </div>
