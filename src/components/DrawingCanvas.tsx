@@ -1,15 +1,17 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Eraser, Pencil } from "lucide-react";
+import { Eraser } from "lucide-react";
 import { getSessionCursorColor } from "@/lib/cursorColor";
+
+const INTERACTIVE_SELECTOR =
+  'a, button, input, textarea, select, label, [role="button"], [role="link"], [data-cursor-action], [data-cursor-link], [data-no-draw], .shadow-card';
 
 export const DrawingCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawingRef = useRef(false);
   const lastPointRef = useRef<{ x: number; y: number } | null>(null);
+  const movedRef = useRef(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [armed, setArmed] = useState(false); // space held -> ready to draw
   const [hasStrokes, setHasStrokes] = useState(false);
-  const [showHint, setShowHint] = useState(false);
 
   const color = useMemo(() => getSessionCursorColor(), []);
 
@@ -22,23 +24,7 @@ export const DrawingCanvas = () => {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // First-load hint
-  useEffect(() => {
-    if (!isDesktop) return;
-    try {
-      const seen = sessionStorage.getItem("rfbcllr-draw-hint");
-      if (!seen) {
-        setShowHint(true);
-        sessionStorage.setItem("rfbcllr-draw-hint", "1");
-        const t = setTimeout(() => setShowHint(false), 5000);
-        return () => clearTimeout(t);
-      }
-    } catch {
-      // ignore
-    }
-  }, [isDesktop]);
-
-  // Resize canvas to viewport with DPR
+  // Resize canvas to viewport with DPR; preserve drawing on resize
   useEffect(() => {
     if (!isDesktop) return;
     const canvas = canvasRef.current;
@@ -48,7 +34,6 @@ export const DrawingCanvas = () => {
       const dpr = window.devicePixelRatio || 1;
       const w = window.innerWidth;
       const h = window.innerHeight;
-      // Preserve existing drawing on resize
       const prev = document.createElement("canvas");
       prev.width = canvas.width;
       prev.height = canvas.height;
@@ -75,55 +60,43 @@ export const DrawingCanvas = () => {
     return () => window.removeEventListener("resize", resize);
   }, [isDesktop]);
 
-  // Space-to-arm
+  // Global drawing handlers — works anywhere the user is not clicking an interactive element
   useEffect(() => {
     if (!isDesktop) return;
-    const isTypingTarget = (el: EventTarget | null) => {
-      if (!(el instanceof HTMLElement)) return false;
-      const tag = el.tagName;
-      return (
-        tag === "INPUT" ||
-        tag === "TEXTAREA" ||
-        tag === "SELECT" ||
-        el.isContentEditable
-      );
-    };
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.code !== "Space" || e.repeat) return;
-      if (isTypingTarget(e.target)) return;
-      e.preventDefault();
-      setArmed(true);
-    };
-    const onKeyUp = (e: KeyboardEvent) => {
-      if (e.code !== "Space") return;
-      setArmed(false);
-      drawingRef.current = false;
-      lastPointRef.current = null;
-    };
-    window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("keyup", onKeyUp);
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("keyup", onKeyUp);
-    };
-  }, [isDesktop]);
-
-  // Drawing handlers
-  useEffect(() => {
-    if (!isDesktop || !armed) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const isInteractive = (target: EventTarget | null) => {
+      if (!(target instanceof Element)) return false;
+      return !!target.closest(INTERACTIVE_SELECTOR);
+    };
+
+    const drawDot = (x: number, y: number) => {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.92;
+      ctx.beginPath();
+      ctx.arc(x, y, 2.2, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
     const onDown = (e: PointerEvent) => {
+      if (e.button !== 0) return;
+      if (isInteractive(e.target)) return;
       drawingRef.current = true;
+      movedRef.current = false;
       lastPointRef.current = { x: e.clientX, y: e.clientY };
     };
+
     const onMove = (e: PointerEvent) => {
       if (!drawingRef.current) return;
       const last = lastPointRef.current;
       if (!last) return;
+      const dx = e.clientX - last.x;
+      const dy = e.clientY - last.y;
+      if (!movedRef.current && dx * dx + dy * dy < 4) return; // ignore tiny jitter
+      movedRef.current = true;
       ctx.strokeStyle = color;
       ctx.lineWidth = 3;
       ctx.globalAlpha = 0.92;
@@ -134,19 +107,28 @@ export const DrawingCanvas = () => {
       lastPointRef.current = { x: e.clientX, y: e.clientY };
       if (!hasStrokes) setHasStrokes(true);
     };
-    const onUp = () => {
+
+    const onUp = (e: PointerEvent) => {
+      if (!drawingRef.current) return;
+      // No drag → leave a dot at the click location
+      if (!movedRef.current) {
+        drawDot(e.clientX, e.clientY);
+        if (!hasStrokes) setHasStrokes(true);
+      }
       drawingRef.current = false;
+      movedRef.current = false;
       lastPointRef.current = null;
     };
-    canvas.addEventListener("pointerdown", onDown);
+
+    window.addEventListener("pointerdown", onDown);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
     return () => {
-      canvas.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
     };
-  }, [isDesktop, armed, color, hasStrokes]);
+  }, [isDesktop, color, hasStrokes]);
 
   const clear = () => {
     const canvas = canvasRef.current;
@@ -166,47 +148,19 @@ export const DrawingCanvas = () => {
     <>
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 -z-10"
-        style={{
-          pointerEvents: armed ? "auto" : "none",
-          cursor: armed
-            ? `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'><circle cx='11' cy='11' r='5' fill='${encodeURIComponent(
-                color
-              )}' stroke='white' stroke-width='2'/></svg>") 11 11, crosshair`
-            : "auto",
-        }}
+        className="pointer-events-none fixed inset-0 -z-10"
         aria-hidden="true"
       />
-
-      {/* Floating hint / control */}
-      <div className="pointer-events-none fixed bottom-5 right-5 z-40 hidden flex-col items-end gap-2 md:flex">
-        {(showHint || armed) && (
-          <div
-            className="pointer-events-none rounded-full border border-border bg-card/95 px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-card backdrop-blur-xl"
-            style={armed ? { borderColor: color, color } : undefined}
-          >
-            {armed ? "Drawing — release Space to stop" : "Hold Space to draw on the background"}
-          </div>
-        )}
-        {hasStrokes && (
-          <button
-            type="button"
-            onClick={clear}
-            className="pointer-events-auto inline-flex items-center gap-1.5 rounded-full border border-border bg-card/95 px-3 py-1.5 text-xs font-semibold text-foreground shadow-card backdrop-blur-xl transition-colors hover:bg-secondary"
-            aria-label="Clear drawing"
-          >
-            <Eraser className="size-3.5" /> Clear
-          </button>
-        )}
-        {!hasStrokes && !showHint && !armed && (
-          <div
-            className="pointer-events-none inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 px-2.5 py-1 text-[11px] font-medium text-muted-foreground shadow-card backdrop-blur-xl opacity-60"
-            aria-hidden="true"
-          >
-            <Pencil className="size-3" /> Space to draw
-          </div>
-        )}
-      </div>
+      {hasStrokes && (
+        <button
+          type="button"
+          onClick={clear}
+          className="fixed bottom-5 right-5 z-40 hidden items-center gap-1.5 rounded-full border border-border bg-card/95 px-3 py-1.5 text-xs font-semibold text-foreground shadow-card backdrop-blur-xl transition-colors hover:bg-secondary md:inline-flex"
+          aria-label="Clear drawing"
+        >
+          <Eraser className="size-3.5" /> Clear drawing
+        </button>
+      )}
     </>
   );
 };
