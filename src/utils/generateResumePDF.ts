@@ -424,7 +424,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     setColor(BLACK);
     doc.text(`${edu.school} – ${edu.location}`, marginX, y);
     y += 4.6;
-    setFont(9, "normal", "italic");
+    setFont(8.5, "normal", "italic");
     doc.text(`${edu.degree} | ${edu.period}`, marginX, y);
     y += 5;
   });
