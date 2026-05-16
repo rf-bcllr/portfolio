@@ -156,30 +156,30 @@ export const generateResumePDF = (language: "pt" | "en") => {
   };
 
   const sectionHeader = (label: string) => {
-    ensureSpace(12);
-    y += 3.5;
-    setFont(12, "bold");
+    ensureSpace(14);
+    y += 4.5;
+    setFont(10.5, "bold");
     setColor(BLACK);
     doc.text(label.toUpperCase(), marginX, y);
-    y += 5.5;
+    y += 6;
   };
 
   // ========== HEADER ==========
-  setFont(24, "bold");
+  setFont(22, "bold");
   setColor(BLACK);
   doc.text("Rafael Bacellar", marginX, y);
   y += 9;
 
-  setFont(10.5, "bold");
+  setFont(9.5, "bold");
   doc.text(
     "Senior Product Designer | AI-Driven Design | Design Systems",
     marginX,
     y
   );
-  y += 4.8;
+  y += 5.2;
 
   // Contact line with clickable email + linkedin
-  setFont(10, "normal");
+  setFont(9, "normal");
   setColor(BLACK);
   const contactParts = [
     { text: "Aracaju, SE, Brazil", link: null as string | null },
@@ -239,7 +239,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
           { text: "fintech, edtech, and B2B/B2C environments", bold: true },
           { text: ". Fluent in Portuguese and English." },
         ];
-  renderRuns(profile, marginX, contentWidth, 10, 4.8, { justify: true });
+  renderRuns(profile, marginX, contentWidth, 9, 5, { justify: true });
 
   // ========== EXPERIENCE ==========
   sectionHeader(language === "pt" ? "Experiência" : "Experience");
@@ -366,29 +366,29 @@ export const generateResumePDF = (language: "pt" | "en") => {
   ];
 
   experiences.forEach((exp, idx) => {
-    ensureSpace(26);
-    if (idx > 0) y += 1.5;
+    ensureSpace(28);
+    if (idx > 0) y += 3;
 
     // Company - Location (bold)
-    setFont(11, "bold");
+    setFont(10, "bold");
     setColor(BLACK);
     doc.text(`${exp.company} – ${exp.location}`, marginX, y);
-    y += 4.5;
+    y += 4.6;
 
     // Role (italic)
-    setFont(10, "normal", "italic");
+    setFont(9, "normal", "italic");
     doc.text(exp.role, marginX, y);
     y += 4.2;
 
     // Period (italic)
-    setFont(10, "normal", "italic");
+    setFont(9, "normal", "italic");
     doc.text(exp.period, marginX, y);
-    y += 4.8;
+    y += 5;
 
     // Bullets
     exp.bullets.forEach((bullet) => {
       ensureSpace(5.5);
-      setFont(10, "normal");
+      setFont(9, "normal");
       setColor(BLACK);
       doc.text("•", marginX + 2, y);
       const bulletIndent = 6.5;
@@ -396,11 +396,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
         bullet,
         marginX + bulletIndent,
         contentWidth - bulletIndent,
-        10,
-        4.6,
+        9,
+        4.8,
         { justify: false }
       );
-      y += 0.6;
+      y += 1.2;
     });
   });
 
@@ -420,11 +420,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
 
   education.forEach((edu) => {
     ensureSpace(12);
-    setFont(11, "bold");
+    setFont(10, "bold");
     setColor(BLACK);
     doc.text(`${edu.school} – ${edu.location}`, marginX, y);
-    y += 4.5;
-    setFont(10, "normal", "italic");
+    y += 4.6;
+    setFont(9, "normal", "italic");
     doc.text(`${edu.degree} | ${edu.period}`, marginX, y);
     y += 5;
   });
@@ -452,11 +452,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
       [{ text: `${label}: `, bold: true }, { text: value }],
       marginX,
       contentWidth,
-      10,
-      4.6,
+      9,
+      4.8,
       { justify: false }
     );
-    y += 1;
+    y += 1.8;
   });
 
   // ========== LANGUAGES ==========
@@ -465,7 +465,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     language === "pt"
       ? "Português (Nativo) • Inglês (Avançado) • Alemão (Básico) • Espanhol (Básico)"
       : "Portuguese (Native) • English (Advanced) • German (Basic) • Spanish (Basic)";
-  setFont(10, "normal");
+  setFont(9, "normal");
   setColor(BLACK);
   doc.text(langs, marginX, y);
 
