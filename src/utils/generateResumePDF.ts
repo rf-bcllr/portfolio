@@ -465,7 +465,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     language === "pt"
       ? "Português (Nativo) • Inglês (Avançado) • Alemão (Básico) • Espanhol (Básico)"
       : "Portuguese (Native) • English (Advanced) • German (Basic) • Spanish (Basic)";
-  setFont(9, "normal");
+  setFont(8.5, "normal");
   setColor(BLACK);
   doc.text(langs, marginX, y);
 
