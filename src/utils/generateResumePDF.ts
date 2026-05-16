@@ -203,7 +203,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     }
     cx += doc.getTextWidth(part.text);
   });
-  y += 3;
+  y += 5;
 
   // ========== PROFILE ==========
   sectionHeader("Profile");
