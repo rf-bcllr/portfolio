@@ -420,11 +420,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
 
   education.forEach((edu) => {
     ensureSpace(12);
-    setFont(11, "bold");
+    setFont(10, "bold");
     setColor(BLACK);
     doc.text(`${edu.school} – ${edu.location}`, marginX, y);
-    y += 4.5;
-    setFont(10, "normal", "italic");
+    y += 4.6;
+    setFont(9, "normal", "italic");
     doc.text(`${edu.degree} | ${edu.period}`, marginX, y);
     y += 5;
   });
@@ -452,11 +452,11 @@ export const generateResumePDF = (language: "pt" | "en") => {
       [{ text: `${label}: `, bold: true }, { text: value }],
       marginX,
       contentWidth,
-      10,
-      4.6,
+      9,
+      4.8,
       { justify: false }
     );
-    y += 1;
+    y += 1.8;
   });
 
   // ========== LANGUAGES ==========
@@ -465,7 +465,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     language === "pt"
       ? "Português (Nativo) • Inglês (Avançado) • Alemão (Básico) • Espanhol (Básico)"
       : "Portuguese (Native) • English (Advanced) • German (Basic) • Spanish (Basic)";
-  setFont(10, "normal");
+  setFont(9, "normal");
   setColor(BLACK);
   doc.text(langs, marginX, y);
 
