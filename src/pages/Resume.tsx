@@ -56,7 +56,7 @@ export default function Resume() {
       <main className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
         <section className="mb-14 grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
           <div>
-            <Badge variant="outline" className="mb-5 bg-card px-4 py-2 text-sm shadow-card">Resume</Badge>
+            
             <h1 className="font-display text-5xl font-semibold leading-[0.95] md:text-7xl">Rafael Bacellar Ramos Reis</h1>
             <p className="mt-5 text-xl text-muted-foreground">End-to-End Product Designer</p>
           </div>
