@@ -132,9 +132,20 @@ export const DrawingCanvas = () => {
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
       if (isInteractive(e.target)) return;
+      // Prevent native text/image selection while drawing
+      e.preventDefault();
       drawingRef.current = true;
       movedRef.current = false;
       lastPointRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const onSelectStart = (e: Event) => {
+      if (drawingRef.current) e.preventDefault();
+    };
+    const onDragStart = (e: DragEvent) => {
+      if (isInteractive(e.target)) return;
+      // Block native image/text drag on background so drawing stays fluid
+      e.preventDefault();
     };
 
     const onMove = (e: PointerEvent) => {
@@ -145,6 +156,9 @@ export const DrawingCanvas = () => {
       const dy = e.clientY - last.y;
       if (!movedRef.current && dx * dx + dy * dy < 4) return; // ignore tiny jitter
       movedRef.current = true;
+      // Clear any selection that started before we recognized the draw gesture
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0 && !sel.isCollapsed) sel.removeAllRanges();
       ctx.strokeStyle = color;
       ctx.lineWidth = 3;
       ctx.globalAlpha = 0.92;
@@ -171,10 +185,14 @@ export const DrawingCanvas = () => {
     window.addEventListener("pointerdown", onDown);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+    document.addEventListener("selectstart", onSelectStart);
+    document.addEventListener("dragstart", onDragStart);
     return () => {
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      document.removeEventListener("selectstart", onSelectStart);
+      document.removeEventListener("dragstart", onDragStart);
     };
   }, [isDesktop, color, hasStrokes]);
 
