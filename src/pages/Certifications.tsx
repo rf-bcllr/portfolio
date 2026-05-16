@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "@/hooks/useTranslations";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
+import cadaUmNaSua from "@/assets/cada-um-na-sua.png";
 
 const certifications = [
   { title: "Foundations of UX Design by Google", href: "https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98" },
