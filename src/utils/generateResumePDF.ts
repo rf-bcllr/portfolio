@@ -452,7 +452,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
       [{ text: `${label}: `, bold: true }, { text: value }],
       marginX,
       contentWidth,
-      9,
+      8.5,
       4.8,
       { justify: false }
     );
