@@ -388,7 +388,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     // Bullets
     exp.bullets.forEach((bullet) => {
       ensureSpace(5.5);
-      setFont(9, "normal");
+      setFont(8.5, "normal");
       setColor(BLACK);
       doc.text("•", marginX + 2, y);
       const bulletIndent = 6.5;
