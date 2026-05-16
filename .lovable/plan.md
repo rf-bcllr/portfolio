@@ -1,9 +1,13 @@
-## Two small text changes
+## Problem
 
-### 1. `src/pages/Resume.tsx` (line 65)
-Hide the "End-to-End Product Designer" subtitle on mobile, keep it on desktop. Add `hidden md:block` to the `<p>`.
+The preview loads at `/portfolio/` and shows a 404 — the whole site looks blank. Console confirms: `404 Error: User attempted to access non-existent route: /portfolio/`.
 
-### 2. `src/pages/Index.tsx` (hero description)
-Replace both the mobile and desktop hero paragraphs (currently two `<p>` variants with bold "8+/10+ years") with a single line: **"I'm your next end-to-end product designer"**. One `<p>` shared across breakpoints, keeping current typography (`text-[17px] leading-[1.75] text-muted-foreground`, `max-w-[430px]`, `mt-6`).
+Cause: `vite.config.ts` sets `base: '/portfolio/'` (for GitHub Pages deploy), so all assets and the preview URL are served under `/portfolio/`. But `BrowserRouter` in `src/App.tsx` has no `basename`, so when the browser is at `/portfolio/`, React Router looks for a route literally matching `/portfolio/` — none exists, so the catch-all `*` renders `NotFound`.
 
-No other content or styling changes.
+## Fix
+
+Pass `basename={import.meta.env.BASE_URL}` to `BrowserRouter` in `src/App.tsx`. This automatically uses `/portfolio` in production/preview (matching `vite.config.ts`) and `/` in environments where base is root, so no route definitions need to change.
+
+## Verification
+
+After the change, reload `/portfolio/` — the Home page (`Index`) should render instead of NotFound, and internal `<Link to="/work">` etc. will correctly navigate to `/portfolio/work`.
