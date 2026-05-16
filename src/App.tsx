@@ -25,6 +25,7 @@ const App = () => {
     <ThemeProvider defaultTheme="light" storageKey="rfbcllr-theme-v2">
       <TooltipProvider>
         <AnimatedBackground />
+        <DrawingCanvas />
         <CustomCursor />
         <Toaster />
         <Sonner />
