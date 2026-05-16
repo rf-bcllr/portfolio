@@ -383,7 +383,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
     // Period (italic)
     setFont(8.5, "normal", "italic");
     doc.text(exp.period, marginX, y);
-    y += 5;
+    y += 6;
 
     // Bullets
     exp.bullets.forEach((bullet) => {
