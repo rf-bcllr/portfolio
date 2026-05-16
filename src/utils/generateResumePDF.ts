@@ -453,7 +453,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
       marginX,
       contentWidth,
       8.5,
-      4.8,
+      5.2,
       { justify: false }
     );
     y += 1.8;
