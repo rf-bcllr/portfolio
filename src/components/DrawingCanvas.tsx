@@ -119,10 +119,7 @@ export const DrawingCanvas = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const isInteractive = (target: EventTarget | null) => {
-      if (!(target instanceof Element)) return false;
-      return !!target.closest(INTERACTIVE_SELECTOR);
-    };
+    const isInteractive = (target: EventTarget | null) => isInteractiveElement(target);
 
     const drawDot = (x: number, y: number) => {
       ctx.fillStyle = color;
