@@ -102,8 +102,13 @@ export default function Index() {
               Hello,
             </h1>
 
-            <p className="mt-6 max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground">
+            <p className="mt-6 max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground sm:hidden">
               I'm your next end-to-end product designer
+            </p>
+            <p className="mt-6 hidden max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground sm:block">
+              I'm a Senior Product Designer with{" "}
+              <strong className="font-semibold text-foreground">10+ years of experience</strong>{" "}
+              creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-2.5">
