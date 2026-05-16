@@ -9,14 +9,6 @@ import { ContactFooter } from "@/components/ContactFooter";
 import { useTranslations } from "@/hooks/useTranslations";
 import heroPortrait from "@/assets/hero-portrait.png";
 
-const capabilities = [
-  "Product Design",
-  "User Research",
-  "Design Systems",
-  "AI Workflows",
-  "UX Writing",
-  "Prototyping",
-];
 
 const profileSkills = ["UX Design", "AI Tools", "UX/UI Design", "Research"];
 
@@ -156,19 +148,6 @@ export default function Index() {
               <p className="mt-2 text-muted-foreground">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
             </Card>
           </div>
-        </section>
-
-        <section className="mx-auto max-w-6xl px-6 py-12">
-          <Card className="p-6">
-            <h2 className="mb-5 font-display text-3xl font-semibold">Core capabilities</h2>
-            <div className="flex flex-wrap gap-3">
-              {capabilities.map((capability) => (
-                <span key={capability} className="rounded-full border border-border bg-secondary px-4 py-2 text-sm font-semibold text-muted-foreground">
-                  {capability}
-                </span>
-              ))}
-            </div>
-          </Card>
         </section>
 
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />
