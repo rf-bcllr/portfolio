@@ -452,17 +452,19 @@ All colors MUST be HSL.
   }
 
   .figjam-cursor-label {
-    margin-left: 14px;
-    padding: 3px 8px;
-    border-radius: 6px;
+    margin-left: 18px;
+    padding: 4px 10px;
+    border-radius: 8px;
     font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 1.2;
     color: #ffffff;
     white-space: nowrap;
-    letter-spacing: 0.01em;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0 0 #000;
   }
 
   .custom-cursor-active {
