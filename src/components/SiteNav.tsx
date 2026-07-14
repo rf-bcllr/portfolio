@@ -26,9 +26,10 @@ function ConnectButton({
       rel="noreferrer"
       onClick={onClick}
       data-cursor-link
-      className={`inline-flex items-center justify-center whitespace-nowrap rounded-full bg-[#2F6BFF] px-4 py-2 text-sm font-semibold text-white shadow-[0_6px_18px_-6px_rgba(47,107,255,0.65)] transition-all duration-150 hover:bg-[#1F58EA] hover:shadow-[0_10px_24px_-6px_rgba(47,107,255,0.75)] active:scale-[0.98] ${className}`}
+      aria-label="Let's connect on LinkedIn (opens in a new tab)"
+      className={`group inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-[#2F6BFF] px-4 py-2 text-sm font-semibold text-white shadow-[0_6px_18px_-6px_rgba(47,107,255,0.65)] transition-all duration-150 hover:bg-[#1F58EA] hover:shadow-[0_10px_24px_-6px_rgba(47,107,255,0.75)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2F6BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] ${className}`}
     >
-      Let&apos;s connect
+      <span aria-hidden="true">Let&apos;s connect</span>
     </a>
   );
 }
