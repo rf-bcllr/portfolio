@@ -10,6 +10,16 @@ export const CustomCursor = () => {
   // Random color per visit (stable for the session, shared with DrawingCanvas)
   const color = useMemo(() => getSessionCursorColor(), []);
 
+  // Pick black or white text for the colored tag based on background luminance
+  const tagFg = useMemo(() => {
+    const hex = color.replace("#", "");
+    const r = parseInt(hex.slice(0, 2), 16);
+    const g = parseInt(hex.slice(2, 4), 16);
+    const b = parseInt(hex.slice(4, 6), 16);
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.6 ? "#000000" : "#FFFFFF";
+  }, [color]);
+
   useEffect(() => {
     const hasFinePo = window.matchMedia("(pointer: fine)").matches;
     if (!hasFinePo) return;
@@ -60,27 +70,27 @@ export const CustomCursor = () => {
         top: `${position.y}px`,
       }}
     >
-      {/* Arrow pointer - neo-brutalist black arrowhead */}
+      {/* Arrow pointer - FigJam-style colored cursor */}
       <svg
         width="24"
-        height="24"
-        viewBox="0 0 16 16"
+        height="26"
+        viewBox="0 0 20 22"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ display: "block", filter: "drop-shadow(2px 2px 0 #000)" }}
+        style={{ display: "block" }}
       >
         <path
-          d="M2 2L2 14L14 8L2 2Z"
-          fill="#000"
-          stroke="#000"
-          strokeWidth="2"
+          d="M3 2.5L3 17.5L7.5 13.5L10.5 20L13.5 18.5L10.5 12L16.5 12L3 2.5Z"
+          fill={color}
+          stroke="#ffffff"
+          strokeWidth="1.5"
           strokeLinejoin="round"
         />
       </svg>
       {/* Visitor label */}
       <span
         className="figjam-cursor-label"
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: color, color: tagFg }}
       >
         Visitor
       </span>
