@@ -85,7 +85,7 @@ export default function Resume() {
                   <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
                     <div>
                       <h3 className="text-xl font-semibold">{exp.title}</h3>
-                      <p className="font-medium text-foreground">{exp.company}</p>
+                      <p className="font-normal text-foreground">{exp.company}</p>
                     </div>
                     <span className="flex items-center gap-2 text-sm text-muted-foreground"><Calendar className="size-4" /> {exp.period}</span>
                   </div>

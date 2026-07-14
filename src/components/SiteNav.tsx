@@ -27,7 +27,7 @@ function ConnectButton({
       onClick={onClick}
       data-cursor-link
       aria-label="Let's connect on LinkedIn (opens in a new tab)"
-      className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-semibold leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
+      className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-normal leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
     >
       Let&apos;s connect
     </a>
@@ -54,7 +54,7 @@ export function SiteNav() {
         <Link
           to="/"
           data-cursor-action="home"
-          className="flex shrink-0 items-center gap-2.5 rounded-full pr-2 text-lg font-semibold leading-none"
+          className="flex shrink-0 items-center gap-2.5 rounded-full pr-2 text-lg font-normal leading-none"
         >
           <img
             src={avatar}
@@ -72,7 +72,7 @@ export function SiteNav() {
               to={item.to}
               data-cursor-action="navigate-internal"
               className={({ isActive }) =>
-                `inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
+                `inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-normal leading-none transition-colors ${
                   isActive
                     ? "bg-foreground text-background"
                     : "text-muted-foreground hover:bg-secondary hover:text-foreground"
@@ -119,7 +119,7 @@ export function SiteNav() {
                   onClick={() => setOpen(false)}
                   aria-current={location.pathname === item.to ? "page" : undefined}
                   className={({ isActive }) =>
-                    `inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
+                    `inline-flex min-h-11 items-center rounded-full px-4 text-sm font-normal leading-none transition-colors ${
                       isActive
                         ? "bg-foreground text-background"
                         : "text-muted-foreground hover:bg-secondary hover:text-foreground"
