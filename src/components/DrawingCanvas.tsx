@@ -59,10 +59,12 @@ const isInteractiveElement = (target: EventTarget | null): boolean => {
 export const DrawingCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawingRef = useRef(false);
-  const lastPointRef = useRef<{ x: number; y: number } | null>(null);
+  const pointsRef = useRef<{ x: number; y: number }[]>([]);
+  const committedRef = useRef<ImageData | null>(null);
   const movedRef = useRef(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [hasStrokes, setHasStrokes] = useState(false);
+
 
   const color = useMemo(() => getSessionCursorColor(), []);
 
