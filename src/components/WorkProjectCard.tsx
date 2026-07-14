@@ -108,20 +108,28 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{project.summary}</p>
           </div>
 
-          <div className="grid gap-3 text-sm sm:grid-cols-3">
-            <div className="rounded-[18px] border border-border bg-secondary/60 p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Timeline</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground">{project.durationDisplay}</p>
-            </div>
-            <div className="rounded-[18px] border border-border bg-secondary/60 p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Role</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground">{project.roleDisplay}</p>
-            </div>
-            <div className="rounded-[18px] border border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Signal</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-[hsl(var(--project-accent))]">{project.outcome}</p>
+          <div className="relative overflow-hidden rounded-[22px] border border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-6 md:p-7">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-70"
+              style={{
+                background:
+                  "radial-gradient(120% 100% at 100% 0%, hsl(var(--project-accent) / 0.35) 0%, transparent 55%), radial-gradient(80% 80% at 0% 100%, hsl(var(--project-accent) / 0.18) 0%, transparent 60%)",
+              }}
+              aria-hidden
+            />
+            <div className="relative flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div className="flex-1">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[hsl(var(--project-accent))]">Outcome</p>
+                <p className="mt-2 font-display text-5xl font-semibold leading-none tracking-tight text-[hsl(var(--project-accent))] md:text-6xl">
+                  {project.outcomeValue}
+                </p>
+                <p className="mt-3 max-w-sm text-sm font-medium leading-snug text-foreground/80 md:text-[15px]">
+                  {project.outcomeLabel}
+                </p>
+              </div>
             </div>
           </div>
+
 
           <div className="flex flex-wrap gap-2">
             {project.outcomeHighlights.map((item) => (

@@ -46,6 +46,8 @@ export type FeaturedProject = {
   durationDisplay: string;
   roleDisplay: string;
   outcome: string;
+  outcomeValue: string;
+  outcomeLabel: string;
   outcomeHighlights: string[];
   accent: "blue" | "green" | "amber" | "red" | "purple" | "teal" | "claudeOrange" | "guavaRed";
   mediaPresentation: FeaturedProjectMediaPresentation;
@@ -118,7 +120,7 @@ const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "ai-question-generator": ["AI", "Education", "In progress"],
 };
 
-const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "category" | "summary" | "durationDisplay" | "roleDisplay" | "outcome" | "outcomeHighlights" | "accent"> & { mediaPresentation: FeaturedProjectMediaPresentation }> = {
+const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "category" | "summary" | "durationDisplay" | "roleDisplay" | "outcome" | "outcomeValue" | "outcomeLabel" | "outcomeHighlights" | "accent"> & { mediaPresentation: FeaturedProjectMediaPresentation }> = {
   "meu-arco": {
     emoji: "🎯",
     category: "Web & Mobile App · EdTech",
@@ -126,6 +128,8 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     durationDisplay: "16 weeks",
     roleDisplay: "Product designer · Research to handoff",
     outcome: "App rating 2.9 → 4.8★",
+    outcomeValue: "4.8★",
+    outcomeLabel: "App rating, up from 2.9",
     outcomeHighlights: ["SUS score 90", "100% rollout ahead of schedule", "35% fewer support tickets"],
     accent: "purple",
     mediaPresentation: resolveMediaPresentation({ orientation: "vertical", aspect: "aspect-[5/12]", maxWidth: "max-w-[245px]", rotate: "-rotate-2" }),
@@ -137,6 +141,8 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     durationDisplay: "14 weeks · Q2–Q3 2023",
     roleDisplay: "Product designer",
     outcome: "12k+ students in 6 months",
+    outcomeValue: "12k+",
+    outcomeLabel: "Students onboarded in 6 months",
     outcomeHighlights: ["97% parent satisfaction", "85% fewer transport calls", "94% driver ease-of-use"],
     accent: "blue",
     mediaPresentation: resolveMediaPresentation({ orientation: "vertical", rotate: "rotate-2" }),
@@ -148,6 +154,8 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     durationDisplay: "8 weeks",
     roleDisplay: "Solo design & research",
     outcome: "92% task completion",
+    outcomeValue: "92%",
+    outcomeLabel: "Task completion rate",
     outcomeHighlights: ["8.7/10 satisfaction score", "35% faster checkout", "2,500+ Behance views"],
     accent: "teal",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1920/1031]", maxWidth: "max-w-[575px]", rotate: "-rotate-1" }),
@@ -158,7 +166,9 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     summary: "An AI layer for school communications that pairs moderation safeguards with writing assistance, giving teams more control over tone, clarity and the quality of messages sent to families.",
     durationDisplay: "10 weeks · Q2–Q3 2025",
     roleDisplay: "Product designer",
-    outcome: "Dashboard shipped",
+    outcome: "TBD",
+    outcomeValue: "TBD",
+    outcomeLabel: "Impact metrics coming soon",
     outcomeHighlights: ["Tone and length controls", "Moderation-first workflow", "Impact tracking built in"],
     accent: "claudeOrange",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1200/732]", maxWidth: "max-w-[560px]", rotate: "-rotate-1" }),
@@ -169,7 +179,9 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     summary: "An AI workflow exploration for generating pedagogical questions directly inside the FTD reader, keeping authoring close to the learning context.",
     durationDisplay: "2026 · in progress",
     roleDisplay: "Product designer · AI workflow exploration",
-    outcome: "Concept validation in progress",
+    outcome: "TBD",
+    outcomeValue: "TBD",
+    outcomeLabel: "Impact metrics coming soon",
     outcomeHighlights: ["Reader-context generation", "Education AI workflow", "FTD learning environment"],
     accent: "guavaRed",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1200/646]", maxWidth: "max-w-[540px]", rotate: "rotate-1" }),
@@ -324,6 +336,8 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
     durationDisplay: cardMeta[slug].durationDisplay,
     roleDisplay: cardMeta[slug].roleDisplay,
     outcome: cardMeta[slug].outcome,
+    outcomeValue: cardMeta[slug].outcomeValue,
+    outcomeLabel: cardMeta[slug].outcomeLabel,
     outcomeHighlights: cardMeta[slug].outcomeHighlights,
     accent: cardMeta[slug].accent,
     mediaPresentation: mediaItems[0]?.presentation ?? cardMeta[slug].mediaPresentation,
