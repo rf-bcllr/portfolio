@@ -526,6 +526,43 @@ All colors MUST be HSL.
   svg[class*="lucide"] {
     stroke-width: 1.5 !important;
   }
+
+  /* Consistent focus-visible ring for all interactive elements */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  [role="link"]:focus-visible,
+  [tabindex]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Skip link — visible only on keyboard focus */
+  .skip-to-content {
+    position: fixed;
+    top: -100px;
+    left: 12px;
+    z-index: 10000;
+    padding: 10px 16px;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: top 200ms ease;
+  }
+  .skip-to-content:focus {
+    top: 12px;
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+
   
 
   /* Enhanced blur for animated backgrounds */

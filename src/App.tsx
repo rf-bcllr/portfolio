@@ -29,6 +29,7 @@ const App = () => {
         <CustomCursor />
         <Toaster />
         <Sonner />
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<Index />} />

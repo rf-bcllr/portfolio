@@ -16,10 +16,10 @@ export default function Index() {
   const t = useTranslations();
 
   return (
-    <div className="min-h-screen text-foreground">
+    <div className="min-h-dvh text-foreground">
       <SiteNav />
 
-      <main>
+      <main id="main-content">
         <section className="mx-auto flex min-h-[calc(100vh-88px)] max-w-6xl flex-wrap items-center justify-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20">
           {/* Profile Card */}
           <motion.div
