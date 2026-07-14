@@ -12,21 +12,13 @@ export const CURSOR_COLORS = [
   "#8B5CF6", // violet
 ];
 
-const STORAGE_KEY = "rfbcllr-cursor-color";
+// Module-level cache: shared between CustomCursor and DrawingCanvas within the
+// same page load, but re-rolled on every reload (unlike sessionStorage, which
+// persisted the same color across reloads and made the palette feel static).
+let cachedColor: string | null = null;
 
 export const getSessionCursorColor = (): string => {
-  if (typeof window === "undefined") return CURSOR_COLORS[0];
-  try {
-    const stored = sessionStorage.getItem(STORAGE_KEY);
-    if (stored && CURSOR_COLORS.includes(stored)) return stored;
-  } catch {
-    // ignore
-  }
-  const picked = CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)];
-  try {
-    sessionStorage.setItem(STORAGE_KEY, picked);
-  } catch {
-    // ignore
-  }
-  return picked;
+  if (cachedColor) return cachedColor;
+  cachedColor = CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)];
+  return cachedColor;
 };

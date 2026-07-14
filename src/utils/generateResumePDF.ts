@@ -183,6 +183,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
   setColor(BLACK);
   const contactParts = [
     { text: "Aracaju, SE, Brazil", link: null as string | null },
+    { text: "Portfolio", link: "https://rf-bcllr.github.io/portfolio/" },
     { text: "LinkedIn", link: "https://www.linkedin.com/in/rfbcllr/" },
     { text: "rfbcllr@gmail.com", link: "mailto:rfbcllr@gmail.com" },
     { text: "+55 71 99137-3998", link: null },
