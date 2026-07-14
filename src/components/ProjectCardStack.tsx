@@ -13,8 +13,8 @@ const VISIBLE = 3;
 // Positional styling for each slot in the stack (0 = front)
 const slotStyles = [
   { scale: 1, y: 0, opacity: 1 },
-  { scale: 0.94, y: -28, opacity: 1 },
-  { scale: 0.88, y: -52, opacity: 1 },
+  { scale: 0.94, y: -28, opacity: 0.75 },
+  { scale: 0.88, y: -52, opacity: 0.5 },
 ];
 
 export function ProjectCardStack({ projects }: ProjectCardStackProps) {

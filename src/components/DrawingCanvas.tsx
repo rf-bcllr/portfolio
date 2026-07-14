@@ -165,8 +165,8 @@ export const DrawingCanvas = () => {
       drawingRef.current = true;
       movedRef.current = false;
       pointsRef.current = [{ x: e.clientX, y: e.clientY }];
+      // Snapshot current canvas so we can redraw the current stroke smoothly on each move
       committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      window.dispatchEvent(new CustomEvent("rfbcllr:draw-start"));
     };
 
     const onSelectStart = (e: Event) => {
@@ -211,7 +211,6 @@ export const DrawingCanvas = () => {
       movedRef.current = false;
       pointsRef.current = [];
       committedRef.current = null;
-      window.dispatchEvent(new CustomEvent("rfbcllr:draw-end"));
     };
 
 
