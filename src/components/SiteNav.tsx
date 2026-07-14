@@ -26,7 +26,7 @@ function ConnectButton({
       rel="noreferrer"
       onClick={onClick}
       data-cursor-link
-      className={`inline-flex items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
+      className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-semibold leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
     >
       Let&apos;s connect
     </a>
