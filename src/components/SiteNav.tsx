@@ -26,7 +26,7 @@ function ConnectButton({
       rel="noreferrer"
       onClick={onClick}
       data-cursor-link
-      className={`inline-flex items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 py-2 text-sm font-semibold text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
+      className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-semibold leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
     >
       Let&apos;s connect
     </a>
@@ -41,7 +41,7 @@ export function SiteNav() {
   return (
     <header className="sticky top-4 z-50 px-4">
       <nav
-        className="relative mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full px-4 py-2 backdrop-blur-2xl backdrop-saturate-150"
+        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full px-3 backdrop-blur-2xl backdrop-saturate-150"
         style={{
           background:
             "linear-gradient(135deg, hsl(var(--card) / 0.55), hsl(var(--card) / 0.25))",
@@ -53,12 +53,12 @@ export function SiteNav() {
         <Link
           to="/"
           data-cursor-action="home"
-          className="flex shrink-0 items-center gap-2.5 rounded-full pr-2 text-lg font-semibold"
+          className="flex shrink-0 items-center gap-2.5 rounded-full pr-2 text-lg font-semibold leading-none"
         >
           <img
             src={avatar}
             alt="Rafael Bacellar avatar"
-            className="size-10 rounded-full border border-border object-cover"
+            className="size-9 rounded-full border border-border object-cover"
           />
           <span className="hidden sm:inline">rfbcllr.</span>
         </Link>
@@ -71,7 +71,7 @@ export function SiteNav() {
               to={item.to}
               data-cursor-action="navigate-internal"
               className={({ isActive }) =>
-                `rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                `inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
                   isActive
                     ? "bg-foreground text-background"
                     : "text-muted-foreground hover:bg-secondary hover:text-foreground"
@@ -88,13 +88,13 @@ export function SiteNav() {
 
         {/* Mobile: CTA + toggle */}
         <div className="flex shrink-0 items-center gap-2 md:hidden">
-          <ConnectButton className="px-3.5 py-1.5 text-xs" />
+          <ConnectButton className="h-8 px-3 text-xs" />
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex size-9 items-center justify-center rounded-full border border-border bg-card text-foreground"
+            className="inline-flex size-8 items-center justify-center rounded-full border border-border bg-card text-foreground"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
@@ -110,7 +110,7 @@ export function SiteNav() {
                   to={item.to}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `rounded-full px-4 py-2.5 text-sm font-semibold transition-colors ${
+                    `inline-flex h-10 items-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
                       isActive
                         ? "bg-foreground text-background"
                         : "text-muted-foreground hover:bg-secondary hover:text-foreground"
