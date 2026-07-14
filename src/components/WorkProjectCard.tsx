@@ -85,12 +85,8 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
   return (
     <article
-      className={`group relative block overflow-hidden rounded-[24px] border shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover ${accentClassMap[project.accent]}`}
-      style={{
-        transform: `rotate(${rotation})`,
-        backgroundColor: "hsl(var(--project-accent-bg))",
-        borderColor: "hsl(var(--project-accent-border))",
-      }}
+      className={`group relative block overflow-hidden rounded-[24px] border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--project-accent-border))] hover:shadow-card-hover ${accentClassMap[project.accent]}`}
+      style={{ transform: `rotate(${rotation})` }}
     >
       <div className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,0.9fr)_minmax(440px,0.92fr)] xl:grid-cols-[minmax(0,0.82fr)_minmax(560px,1fr)]"}`}>
         <div className="relative order-2 flex flex-col justify-between gap-7 p-6 md:p-8 lg:order-1 lg:p-9">
@@ -101,43 +97,42 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
                 <Badge
                   key={chip}
                   variant="outline"
-                  className="rounded-full border-transparent bg-card px-3 py-1 text-foreground shadow-sm"
+                  className="rounded-full border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] px-3 py-1 text-[hsl(var(--project-accent))]"
                 >
                   {chip}
                 </Badge>
               ))}
             </div>
-            <h3 className="font-display text-3xl font-semibold leading-tight text-foreground md:text-4xl">{project.title}</h3>
-            <p className="mt-1 text-sm font-semibold text-foreground/70">{project.category}</p>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/80 md:text-[17px]">{project.summary}</p>
+            <h3 className="font-display text-3xl font-semibold leading-tight md:text-4xl">{project.title}</h3>
+            <p className="mt-1 text-sm font-semibold text-muted-foreground">{project.category}</p>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{project.summary}</p>
           </div>
 
           <div className="grid gap-3 text-sm sm:grid-cols-3">
-            <div className="rounded-[18px] border border-transparent bg-card/80 p-4 backdrop-blur-sm">
+            <div className="rounded-[18px] border border-border bg-secondary/60 p-4">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Timeline</p>
               <p className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground">{project.durationDisplay}</p>
             </div>
-            <div className="rounded-[18px] border border-transparent bg-card/80 p-4 backdrop-blur-sm">
+            <div className="rounded-[18px] border border-border bg-secondary/60 p-4">
               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Role</p>
               <p className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground">{project.roleDisplay}</p>
             </div>
-            <div className="rounded-[18px] border border-transparent bg-foreground p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-background/70">Signal</p>
-              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-background">{project.outcome}</p>
+            <div className="rounded-[18px] border border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Signal</p>
+              <p className="mt-1.5 text-[15px] font-semibold leading-snug text-[hsl(var(--project-accent))]">{project.outcome}</p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2">
             {project.outcomeHighlights.map((item) => (
-              <span key={item} className="rounded-full border border-transparent bg-card/70 px-3 py-1.5 text-sm font-medium text-foreground/80 backdrop-blur-sm">
+              <span key={item} className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground">
                 {item}
               </span>
             ))}
           </div>
         </div>
 
-        <div className={`relative order-1 flex items-center justify-center overflow-hidden border-b border-[hsl(var(--project-accent-border))] p-7 md:p-10 lg:order-2 lg:border-b-0 lg:border-l ${mediaAreaHeight}`}>
-
+        <div className={`relative order-1 flex items-center justify-center overflow-hidden border-b border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:order-2 lg:border-b-0 lg:border-l ${mediaAreaHeight}`}>
           <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
             {project.emoji}
           </div>

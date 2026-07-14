@@ -135,20 +135,20 @@ export default function Index() {
 
         <section className="mx-auto max-w-6xl px-6 py-14">
           <div className="grid gap-4 md:grid-cols-3">
-            <Card className="vivid-card vivid-orange p-6 md:rotate-[-0.7deg]">
+            <Card className="p-6 md:rotate-[-0.7deg]">
               <Briefcase className="mb-5 size-7" />
               <h2 className="font-display text-2xl font-semibold">10+ years</h2>
-              <p className="mt-2 opacity-90">Across edtech, fintech, retail, health and AI product workflows.</p>
+              <p className="mt-2 text-muted-foreground">Across edtech, fintech, retail, health and AI product workflows.</p>
             </Card>
-            <Card className="vivid-card vivid-lilac p-6 md:translate-y-6 md:rotate-[0.5deg]">
+            <Card className="p-6 md:translate-y-6 md:rotate-[0.5deg]">
               <Sparkles className="mb-5 size-7" />
               <h2 className="font-display text-2xl font-semibold">Systems thinker</h2>
-              <p className="mt-2 opacity-80">From research synthesis to component libraries and product storytelling.</p>
+              <p className="mt-2 text-muted-foreground">From research synthesis to component libraries and product storytelling.</p>
             </Card>
-            <Card className="vivid-card vivid-sage p-6 md:rotate-[-0.4deg]">
+            <Card className="p-6 md:rotate-[-0.4deg]">
               <Zap className="mb-5 size-7" />
               <h2 className="font-display text-2xl font-semibold">Fast iterations</h2>
-              <p className="mt-2 opacity-80">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
+              <p className="mt-2 text-muted-foreground">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
             </Card>
           </div>
         </section>
