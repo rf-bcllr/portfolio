@@ -31,7 +31,7 @@ export default function Index() {
             <Card className="overflow-hidden p-0 shadow-card">
               <div className="flex items-center gap-2 bg-primary px-4 py-1.5">
                 <span className="inline-block size-2 rounded-sm bg-white/60" />
-                <span className="text-[10.5px] font-normal uppercase tracking-[0.09em] text-primary-foreground">
+                <span className="text-[10.5px] font-semibold uppercase tracking-[0.09em] text-primary-foreground">
                   Profile
                 </span>
               </div>
@@ -48,7 +48,7 @@ export default function Index() {
                 </div>
 
                 <div className="text-center">
-                  <div className="font-display text-[24px] font-normal leading-tight text-foreground">
+                  <div className="font-display text-[24px] font-semibold leading-tight text-foreground">
                     Rafael Bacellar
                   </div>
                   <div className="mt-1.5 text-[11px] font-normal uppercase tracking-[0.1em] text-muted-foreground">
