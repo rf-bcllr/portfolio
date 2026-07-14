@@ -3,10 +3,10 @@ import { ProjectCardStack } from "@/components/ProjectCardStack";
 import { WorkProjectCard } from "@/components/WorkProjectCard";
 import { ContactFooter } from "@/components/ContactFooter";
 import { featuredProjects } from "@/data/featuredProjects";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsTabletOrBelow } from "@/hooks/use-tablet-or-below";
 
 export default function Work() {
-  const isMobile = useIsMobile();
+  const stackAsList = useIsTabletOrBelow();
 
   return (
     <div className="min-h-screen text-foreground">
