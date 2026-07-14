@@ -168,7 +168,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     roleDisplay: "Product designer",
     outcome: "TBD",
     outcomeValue: "TBD",
-    outcomeLabel: "Concept valuation in progress",
+    outcomeLabel: "Impact metrics coming soon",
     outcomeHighlights: ["Tone and length controls", "Moderation-first workflow", "Impact tracking built in"],
     accent: "claudeOrange",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1200/732]", maxWidth: "max-w-[560px]", rotate: "-rotate-1" }),
