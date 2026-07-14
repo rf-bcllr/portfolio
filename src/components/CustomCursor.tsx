@@ -10,6 +10,16 @@ export const CustomCursor = () => {
   // Random color per visit (stable for the session, shared with DrawingCanvas)
   const color = useMemo(() => getSessionCursorColor(), []);
 
+  // Pick black or white text for the colored tag based on background luminance
+  const tagFg = useMemo(() => {
+    const hex = color.replace("#", "");
+    const r = parseInt(hex.slice(0, 2), 16);
+    const g = parseInt(hex.slice(2, 4), 16);
+    const b = parseInt(hex.slice(4, 6), 16);
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.6 ? "#000000" : "#FFFFFF";
+  }, [color]);
+
   useEffect(() => {
     const hasFinePo = window.matchMedia("(pointer: fine)").matches;
     if (!hasFinePo) return;
@@ -20,7 +30,7 @@ export const CustomCursor = () => {
     const lerp = (start: number, end: number, factor: number) =>
       start + (end - start) * factor;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handlePointerMove = (e: PointerEvent) => {
       targetPosition.current = { x: e.clientX, y: e.clientY };
     };
 
@@ -36,12 +46,14 @@ export const CustomCursor = () => {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    // Use pointermove so the cursor keeps tracking while drawing (pointerdown
+    // preventDefault on the canvas suppresses compatibility mouse events).
+    window.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("mouseleave", handleMouseLeave);
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -60,10 +72,10 @@ export const CustomCursor = () => {
         top: `${position.y}px`,
       }}
     >
-      {/* Arrow pointer */}
+      {/* Arrow pointer - FigJam-style colored cursor */}
       <svg
-        width="20"
-        height="22"
+        width="24"
+        height="26"
         viewBox="0 0 20 22"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -72,15 +84,15 @@ export const CustomCursor = () => {
         <path
           d="M3 2.5L3 17.5L7.5 13.5L10.5 20L13.5 18.5L10.5 12L16.5 12L3 2.5Z"
           fill={color}
-          stroke="white"
-          strokeWidth="1.2"
+          stroke="#ffffff"
+          strokeWidth="1.5"
           strokeLinejoin="round"
         />
       </svg>
       {/* Visitor label */}
       <span
         className="figjam-cursor-label"
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: color, color: tagFg }}
       >
         Visitor
       </span>
