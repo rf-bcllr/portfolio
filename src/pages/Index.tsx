@@ -10,7 +10,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import heroPortrait from "@/assets/hero-portrait.png";
 
 
-const profileSkills = ["UX Design", "AI Tools", "UX/UI Design", "Research"];
+const profileSkills = ["UX Design", "AI Tools", "Design Systems", "Research"];
 
 export default function Index() {
   const t = useTranslations();
