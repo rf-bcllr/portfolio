@@ -58,9 +58,9 @@ export function SiteNav() {
           rel="noreferrer"
           data-cursor-link
           aria-label="LinkedIn"
-          className="hidden size-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
+          className="hidden size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
         >
-          <Linkedin className="size-4" />
+          <Linkedin className="size-5" />
         </a>
 
         {/* Mobile: active label + toggle */}
