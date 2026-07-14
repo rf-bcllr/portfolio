@@ -12,7 +12,7 @@ export default function Work() {
     <div className="min-h-screen text-foreground">
       <SiteNav />
       <main className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
-        {isMobile ? (
+        {stackAsList ? (
           <div className="flex flex-col gap-8">
             {featuredProjects.map((project, index) => (
               <WorkProjectCard key={project.slug} project={project} index={index} />
