@@ -30,7 +30,7 @@ export const CustomCursor = () => {
     const lerp = (start: number, end: number, factor: number) =>
       start + (end - start) * factor;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handlePointerMove = (e: PointerEvent) => {
       targetPosition.current = { x: e.clientX, y: e.clientY };
     };
 
@@ -46,12 +46,14 @@ export const CustomCursor = () => {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    // Use pointermove so the cursor keeps tracking while drawing (pointerdown
+    // preventDefault on the canvas suppresses compatibility mouse events).
+    window.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("mouseleave", handleMouseLeave);
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
