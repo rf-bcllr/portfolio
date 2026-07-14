@@ -53,12 +53,12 @@ export function SiteNav() {
         <Link
           to="/"
           data-cursor-action="home"
-          className="flex shrink-0 items-center gap-2.5 rounded-full pr-2 text-lg font-semibold"
+          className="flex shrink-0 items-center gap-2.5 rounded-full pr-2 text-lg font-semibold leading-none"
         >
           <img
             src={avatar}
             alt="Rafael Bacellar avatar"
-            className="size-10 rounded-full border border-border object-cover"
+            className="size-9 rounded-full border border-border object-cover"
           />
           <span className="hidden sm:inline">rfbcllr.</span>
         </Link>
