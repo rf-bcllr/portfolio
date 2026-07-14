@@ -88,13 +88,13 @@ export function SiteNav() {
 
         {/* Mobile: CTA + toggle */}
         <div className="flex shrink-0 items-center gap-2 md:hidden">
-          <ConnectButton className="px-3.5 py-1.5 text-xs" />
+          <ConnectButton className="h-8 px-3 text-xs" />
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex size-9 items-center justify-center rounded-full border border-border bg-card text-foreground"
+            className="inline-flex size-8 items-center justify-center rounded-full border border-border bg-card text-foreground"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
