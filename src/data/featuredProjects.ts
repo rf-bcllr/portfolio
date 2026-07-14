@@ -336,6 +336,8 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
     durationDisplay: cardMeta[slug].durationDisplay,
     roleDisplay: cardMeta[slug].roleDisplay,
     outcome: cardMeta[slug].outcome,
+    outcomeValue: cardMeta[slug].outcomeValue,
+    outcomeLabel: cardMeta[slug].outcomeLabel,
     outcomeHighlights: cardMeta[slug].outcomeHighlights,
     accent: cardMeta[slug].accent,
     mediaPresentation: mediaItems[0]?.presentation ?? cardMeta[slug].mediaPresentation,
