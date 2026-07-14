@@ -60,18 +60,18 @@ export const CustomCursor = () => {
         top: `${position.y}px`,
       }}
     >
-      {/* Arrow pointer - neo-brutalist */}
+      {/* Arrow pointer - neo-brutalist black arrowhead */}
       <svg
-        width="26"
-        height="28"
-        viewBox="0 0 20 22"
+        width="24"
+        height="24"
+        viewBox="0 0 16 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ display: "block", filter: "drop-shadow(1.5px 2px 0 #000)" }}
+        style={{ display: "block", filter: "drop-shadow(2px 2px 0 #000)" }}
       >
         <path
-          d="M3 2.5L3 17.5L7.5 13.5L10.5 20L13.5 18.5L10.5 12L16.5 12L3 2.5Z"
-          fill={color}
+          d="M2 2L2 14L14 8L2 2Z"
+          fill="#000"
           stroke="#000"
           strokeWidth="2"
           strokeLinejoin="round"
