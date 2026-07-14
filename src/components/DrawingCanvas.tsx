@@ -211,6 +211,7 @@ export const DrawingCanvas = () => {
       movedRef.current = false;
       pointsRef.current = [];
       committedRef.current = null;
+      window.dispatchEvent(new CustomEvent("rfbcllr:draw-end"));
     };
 
 
