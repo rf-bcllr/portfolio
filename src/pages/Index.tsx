@@ -48,7 +48,7 @@ export default function Index() {
                 </div>
 
                 <div className="text-center">
-                  <div className="font-display text-[19px] font-bold leading-tight text-foreground">
+                  <div className="font-display text-[24px] font-bold leading-tight text-foreground">
                     Rafael Bacellar
                   </div>
                   <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
