@@ -443,12 +443,13 @@ All colors MUST be HSL.
     left: 0;
     pointer-events: none;
     z-index: 9999;
-    transform: translate(-2px, -2px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 2px;
-    will-change: transform, left, top;
+    will-change: transform;
+    /* Nudge so the arrow tip (not the SVG's top-left) aligns to the pointer. */
+    margin: -2px 0 0 -2px;
   }
 
   .figjam-cursor-label {
