@@ -30,6 +30,8 @@ export function ToolsMarquee({
           "relative flex w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]",
           className
         )}
+        role="list"
+        aria-label="Tools I use"
       >
         <div
           className="flex shrink-0 items-center gap-12 pr-12 py-4 hover:[animation-play-state:paused]"
@@ -60,6 +62,7 @@ export function ToolsMarquee({
           style={{
             animation: `marquee ${speedMap[speed]} linear infinite`,
           }}
+          aria-hidden="true"
         >
           {tools.map((tool, index) => (
             <Tooltip key={`dup-${tool.name}-${index}`}>

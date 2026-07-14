@@ -57,6 +57,7 @@ export function Marquee({
           animation: `marquee ${speedMap[speed]} linear infinite`,
           animationDirection: direction === "right" ? "reverse" : "normal",
         }}
+        aria-hidden="true"
       >
         {items.map((item, index) => (
           <span key={`dup-${index}`} className="flex items-center gap-8">
