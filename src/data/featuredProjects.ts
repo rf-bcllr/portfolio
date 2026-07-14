@@ -46,6 +46,8 @@ export type FeaturedProject = {
   durationDisplay: string;
   roleDisplay: string;
   outcome: string;
+  outcomeValue: string;
+  outcomeLabel: string;
   outcomeHighlights: string[];
   accent: "blue" | "green" | "amber" | "red" | "purple" | "teal" | "claudeOrange" | "guavaRed";
   mediaPresentation: FeaturedProjectMediaPresentation;
