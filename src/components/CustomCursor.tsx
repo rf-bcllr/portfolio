@@ -1,16 +1,16 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { getSessionCursorColor } from "@/lib/cursorColor";
 
 export const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
-  const targetPosition = useRef({ x: -100, y: -100 });
+  const targetRef = useRef({ x: -100, y: -100 });
+  const currentRef = useRef({ x: -100, y: -100 });
+  const hasSeenPointerRef = useRef(false);
 
-  // Random color per visit (stable for the session, shared with DrawingCanvas)
   const color = useMemo(() => getSessionCursorColor(), []);
 
-  // Pick black or white text for the colored tag based on background luminance
   const tagFg = useMemo(() => {
     const hex = color.replace("#", "");
     const r = parseInt(hex.slice(0, 2), 16);
@@ -21,34 +21,48 @@ export const CustomCursor = () => {
   }, [color]);
 
   useEffect(() => {
-    const hasFinePo = window.matchMedia("(pointer: fine)").matches;
-    if (!hasFinePo) return;
+    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!hasFinePointer) return;
 
     setIsVisible(true);
     document.body.classList.add("custom-cursor-active");
 
-    const lerp = (start: number, end: number, factor: number) =>
-      start + (end - start) * factor;
-
     const handlePointerMove = (e: PointerEvent) => {
-      targetPosition.current = { x: e.clientX, y: e.clientY };
+      targetRef.current.x = e.clientX;
+      targetRef.current.y = e.clientY;
+      if (!hasSeenPointerRef.current) {
+        // Snap on first sighting so the cursor doesn't fly in from -100/-100.
+        currentRef.current.x = e.clientX;
+        currentRef.current.y = e.clientY;
+        hasSeenPointerRef.current = true;
+      }
     };
 
     const handleMouseLeave = () => {
-      targetPosition.current = { x: -100, y: -100 };
+      targetRef.current.x = -100;
+      targetRef.current.y = -100;
     };
 
     const animate = () => {
-      setPosition((prev) => ({
-        x: lerp(prev.x, targetPosition.current.x, 0.22),
-        y: lerp(prev.y, targetPosition.current.y, 0.22),
-      }));
+      const factor = 0.35;
+      const cur = currentRef.current;
+      const tgt = targetRef.current;
+      const dx = tgt.x - cur.x;
+      const dy = tgt.y - cur.y;
+      // Snap when arbitrarily close to avoid infinite sub-pixel drift.
+      cur.x = Math.abs(dx) < 0.05 ? tgt.x : cur.x + dx * factor;
+      cur.y = Math.abs(dy) < 0.05 ? tgt.y : cur.y + dy * factor;
+
+      const el = containerRef.current;
+      if (el) {
+        // translate3d = single GPU-composited transform for both arrow + tag,
+        // so they always stay pixel-locked together. No React re-render per frame.
+        el.style.transform = `translate3d(${cur.x}px, ${cur.y}px, 0)`;
+      }
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    // Use pointermove so the cursor keeps tracking while drawing (pointerdown
-    // preventDefault on the canvas suppresses compatibility mouse events).
-    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
     animationFrameRef.current = requestAnimationFrame(animate);
 
@@ -65,14 +79,7 @@ export const CustomCursor = () => {
   if (!isVisible) return null;
 
   return (
-    <div
-      className="figjam-cursor"
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
-    >
-      {/* Arrow pointer - FigJam-style colored cursor */}
+    <div ref={containerRef} className="figjam-cursor">
       <svg
         width="24"
         height="26"
@@ -89,7 +96,6 @@ export const CustomCursor = () => {
           strokeLinejoin="round"
         />
       </svg>
-      {/* Visitor label */}
       <span
         className="figjam-cursor-label"
         style={{ backgroundColor: color, color: tagFg }}
