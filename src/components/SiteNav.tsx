@@ -41,7 +41,7 @@ export function SiteNav() {
   return (
     <header className="sticky top-4 z-50 px-4">
       <nav
-        className="relative mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-full px-4 py-2 backdrop-blur-2xl backdrop-saturate-150"
+        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full px-3 backdrop-blur-2xl backdrop-saturate-150"
         style={{
           background:
             "linear-gradient(135deg, hsl(var(--card) / 0.55), hsl(var(--card) / 0.25))",
