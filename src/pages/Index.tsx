@@ -31,7 +31,7 @@ export default function Index() {
             <Card className="overflow-hidden p-0 shadow-card">
               <div className="flex items-center gap-2 bg-primary px-4 py-1.5">
                 <span className="inline-block size-2 rounded-sm bg-white/60" />
-                <span className="text-[10.5px] font-bold uppercase tracking-[0.09em] text-primary-foreground">
+                <span className="text-[10.5px] font-normal uppercase tracking-[0.09em] text-primary-foreground">
                   Profile
                 </span>
               </div>
@@ -48,10 +48,10 @@ export default function Index() {
                 </div>
 
                 <div className="text-center">
-                  <div className="font-display text-[24px] font-bold leading-tight text-foreground">
+                  <div className="font-display text-[24px] font-normal leading-tight text-foreground">
                     Rafael Bacellar
                   </div>
-                  <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                  <div className="mt-1.5 text-[11px] font-normal uppercase tracking-[0.1em] text-muted-foreground">
                     Senior Product Designer
                   </div>
                   <div className="mx-auto mt-2.5 h-[2.5px] w-7 rounded-sm bg-primary" />
@@ -61,14 +61,14 @@ export default function Index() {
                   {profileSkills.map((s) => (
                     <span
                       key={s}
-                      className="rounded-full border border-border px-2.5 py-[3px] text-[11px] font-medium text-muted-foreground"
+                      className="rounded-full border border-border px-2.5 py-[3px] text-[11px] font-normal text-muted-foreground"
                     >
                       {s}
                     </span>
                   ))}
                 </div>
 
-                <div className="mt-1 flex items-center gap-3.5 text-[13px] font-medium">
+                <div className="mt-1 flex items-center gap-3.5 text-[13px] font-normal">
                   <a
                     href="https://linkedin.com/in/rfbcllr"
                     target="_blank"
@@ -93,7 +93,7 @@ export default function Index() {
             transition={{ duration: 0.55, delay: 0.1 }}
             className="max-w-[500px]"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[hsl(var(--tag-green-border))] bg-[hsl(var(--tag-green-bg))] px-3 py-1.5 text-xs font-semibold text-[hsl(var(--tag-green))]">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[hsl(var(--tag-green-border))] bg-[hsl(var(--tag-green-bg))] px-3 py-1.5 text-xs font-normal text-[hsl(var(--tag-green))]">
               <span className="relative inline-flex size-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-[hsl(var(--tag-green))]" />
@@ -112,7 +112,7 @@ export default function Index() {
             </p>
             <p className="mt-6 hidden max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground sm:block">
               I'm a Senior Product Designer with{" "}
-              <strong className="font-semibold text-foreground">10+ years of experience</strong>{" "}
+              <strong className="font-normal text-foreground">10+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
 
@@ -132,7 +132,7 @@ export default function Index() {
             <div className="mt-11 inline-flex items-center gap-2.5 rounded-[10px] border border-border bg-primary/[0.04] px-5 py-3 shadow-card [border-left-width:3px] [border-left-color:hsl(var(--primary))]">
               <span className="text-base">📍</span>
               <span className="text-sm leading-snug text-muted-foreground">
-                Based in <strong className="font-semibold text-foreground">Brazil</strong> · Open to remote worldwide
+                Based in <strong className="font-normal text-foreground">Brazil</strong> · Open to remote worldwide
               </span>
             </div>
           </motion.div>

@@ -23,7 +23,7 @@ export const SkillCard = ({ skill, category, index, level }: SkillCardProps) => 
     >
       <div className="relative p-4 rounded-2xl border transition-all duration-300 bg-muted/50 text-foreground border-border hover:bg-muted">
         <div className="flex items-center justify-between">
-          <span className="font-medium text-sm">{skill}</span>
+          <span className="font-normal text-sm">{skill}</span>
           
           {level && (
             <div className="flex gap-1 ml-2">

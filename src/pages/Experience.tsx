@@ -128,7 +128,7 @@ const Experience = () => {
       {/* Navigation Header */}
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex items-center justify-between py-4">
-          {!scrolled ? <Link to="/" data-cursor-action="home" className="font-semibold text-lg transition-opacity duration-300">rfbcllr.</Link> : <Link to="/" data-cursor-action="home" className="flex items-center">
+          {!scrolled ? <Link to="/" data-cursor-action="home" className="font-normal text-lg transition-opacity duration-300">rfbcllr.</Link> : <Link to="/" data-cursor-action="home" className="flex items-center">
               <img src={avatar} alt="Rafael Bacellar avatar" className="h-8 w-8 rounded-full border border-border object-cover transition-transform duration-300" />
             </Link>}
           <div className="flex items-center gap-2">
@@ -191,7 +191,7 @@ const Experience = () => {
           }} transition={{
             duration: 0.5,
             delay: 0.3
-          }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm" style={{
+          }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-normal text-sm" style={{
             backgroundColor: '#10b981',
               color: 'white'
             }}>
@@ -216,7 +216,7 @@ const Experience = () => {
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="font-semibold text-lg">{exp.title}</h3>
-                      <p className="font-medium text-foreground">{exp.company}</p>
+                      <p className="font-normal text-foreground">{exp.company}</p>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -246,7 +246,7 @@ const Experience = () => {
                   <h3 className="font-semibold text-lg">
                     Bachelor in Design
                   </h3>
-                  <p className="font-medium text-foreground">
+                  <p className="font-normal text-foreground">
                     Bahia State University
                   </p>
                 </div>
@@ -333,7 +333,7 @@ const Experience = () => {
                 once: true
               }} className="flex items-center gap-2">
                     <div className="flex flex-col">
-                      <span className="text-base font-semibold text-foreground">{lang.name}</span>
+                      <span className="text-base font-normal text-foreground">{lang.name}</span>
                       <span className="text-sm text-muted-foreground">{lang.level}</span>
                     </div>
                   </motion.li>)}

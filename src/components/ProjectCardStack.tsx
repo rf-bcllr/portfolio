@@ -103,7 +103,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
       </div>
 
       <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground">
+        <div className="flex items-center gap-3 text-sm font-normal text-muted-foreground">
           <span className="tabular-nums text-foreground">
             {String(activeIndex + 1).padStart(2, "0")}
           </span>
