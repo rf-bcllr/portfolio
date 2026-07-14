@@ -110,7 +110,7 @@ export function SiteNav() {
                   to={item.to}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `rounded-full px-4 py-2.5 text-sm font-semibold transition-colors ${
+                    `inline-flex h-10 items-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
                       isActive
                         ? "bg-foreground text-background"
                         : "text-muted-foreground hover:bg-secondary hover:text-foreground"
