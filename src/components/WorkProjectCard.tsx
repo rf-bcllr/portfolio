@@ -53,8 +53,41 @@ const prefetchMedia = (item?: FeaturedProject["mediaItems"][number]) => {
   }
 };
 
+const parseHslString = (value: string): [number, number, number] | null => {
+  const match = value.trim().match(/([\d.]+)\s+([\d.]+)%\s+([\d.]+)%/);
+  if (!match) return null;
+  return [parseFloat(match[1]), parseFloat(match[2]), parseFloat(match[3])];
+};
+
+const hslToRgb = (h: number, s: number, l: number): [number, number, number] => {
+  const sn = s / 100;
+  const ln = l / 100;
+  const c = (1 - Math.abs(2 * ln - 1)) * sn;
+  const hp = h / 60;
+  const x = c * (1 - Math.abs((hp % 2) - 1));
+  let r = 0, g = 0, b = 0;
+  if (hp >= 0 && hp < 1) [r, g, b] = [c, x, 0];
+  else if (hp < 2) [r, g, b] = [x, c, 0];
+  else if (hp < 3) [r, g, b] = [0, c, x];
+  else if (hp < 4) [r, g, b] = [0, x, c];
+  else if (hp < 5) [r, g, b] = [x, 0, c];
+  else [r, g, b] = [c, 0, x];
+  const m = ln - c / 2;
+  return [(r + m) * 255, (g + m) * 255, (b + m) * 255];
+};
+
+const relativeLuminance = (r: number, g: number, b: number) => {
+  const toLin = (v: number) => {
+    const s = v / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  };
+  return 0.2126 * toLin(r) + 0.7152 * toLin(g) + 0.0722 * toLin(b);
+};
+
 export function WorkProjectCard({ project, index = 0, compact = false }: WorkProjectCardProps) {
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  const outcomeRef = useRef<HTMLDivElement | null>(null);
+  const [outcomeTextColor, setOutcomeTextColor] = useState<string>("hsl(0 0% 8%)");
   const mediaItems = project.mediaItems.length > 0 ? project.mediaItems : [{
     title: project.title,
     sources: project.media?.sources,
@@ -79,6 +112,19 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
     prefetchMedia(mediaItems[nextMediaIndex]);
   }, [hasMultipleMedia, mediaItems, nextMediaIndex]);
+
+  useEffect(() => {
+    if (!outcomeRef.current) return;
+    const raw = getComputedStyle(outcomeRef.current).getPropertyValue("--project-accent-bg").trim();
+    const hsl = parseHslString(raw);
+    if (!hsl) return;
+    const [r, g, b] = hslToRgb(hsl[0], hsl[1], hsl[2]);
+    const lum = relativeLuminance(r, g, b);
+    // WCAG contrast vs white and black; pick whichever gives higher contrast
+    const contrastWhite = 1.05 / (lum + 0.05);
+    const contrastBlack = (lum + 0.05) / 0.05;
+    setOutcomeTextColor(contrastBlack >= contrastWhite ? "hsl(0 0% 8%)" : "hsl(0 0% 100%)");
+  }, [project.accent]);
 
   const showPrevious = () => setActiveMediaIndex((current) => (current - 1 + mediaItems.length) % mediaItems.length);
   const showNext = () => setActiveMediaIndex((current) => (current + 1) % mediaItems.length);
