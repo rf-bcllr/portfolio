@@ -131,14 +131,42 @@ export const DrawingCanvas = () => {
       ctx.fill();
     };
 
+    const renderSmoothStroke = (pts: { x: number; y: number }[]) => {
+      if (pts.length < 2) return;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      ctx.globalAlpha = 0.92;
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      if (pts.length === 2) {
+        ctx.lineTo(pts[1].x, pts[1].y);
+      } else {
+        // Quadratic midpoint smoothing: perfect continuous curves
+        for (let i = 1; i < pts.length - 1; i++) {
+          const midX = (pts[i].x + pts[i + 1].x) / 2;
+          const midY = (pts[i].y + pts[i + 1].y) / 2;
+          ctx.quadraticCurveTo(pts[i].x, pts[i].y, midX, midY);
+        }
+        const last = pts[pts.length - 1];
+        ctx.quadraticCurveTo(
+          pts[pts.length - 2].x,
+          pts[pts.length - 2].y,
+          last.x,
+          last.y
+        );
+      }
+      ctx.stroke();
+    };
+
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
       if (isInteractive(e.target)) return;
-      // Prevent native text/image selection while drawing
       e.preventDefault();
       drawingRef.current = true;
       movedRef.current = false;
-      lastPointRef.current = { x: e.clientX, y: e.clientY };
+      pointsRef.current = [{ x: e.clientX, y: e.clientY }];
+      // Snapshot current canvas so we can redraw the current stroke smoothly on each move
+      committedRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
     };
 
     const onSelectStart = (e: Event) => {
@@ -146,43 +174,45 @@ export const DrawingCanvas = () => {
     };
     const onDragStart = (e: DragEvent) => {
       if (isInteractive(e.target)) return;
-      // Block native image/text drag on background so drawing stays fluid
       e.preventDefault();
     };
 
     const onMove = (e: PointerEvent) => {
       if (!drawingRef.current) return;
-      const last = lastPointRef.current;
+      const pts = pointsRef.current;
+      const last = pts[pts.length - 1];
       if (!last) return;
       const dx = e.clientX - last.x;
       const dy = e.clientY - last.y;
-      if (!movedRef.current && dx * dx + dy * dy < 4) return; // ignore tiny jitter
+      if (!movedRef.current && dx * dx + dy * dy < 4) return;
+      if (movedRef.current && dx * dx + dy * dy < 2.25) return; // sample throttle
       movedRef.current = true;
-      // Clear any selection that started before we recognized the draw gesture
       const sel = window.getSelection();
       if (sel && sel.rangeCount > 0 && !sel.isCollapsed) sel.removeAllRanges();
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 3;
-      ctx.globalAlpha = 0.92;
-      ctx.beginPath();
-      ctx.moveTo(last.x, last.y);
-      ctx.lineTo(e.clientX, e.clientY);
-      ctx.stroke();
-      lastPointRef.current = { x: e.clientX, y: e.clientY };
+      pts.push({ x: e.clientX, y: e.clientY });
+      // Restore snapshot, then render the whole stroke as one smooth curve
+      if (committedRef.current) {
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.putImageData(committedRef.current, 0, 0);
+        ctx.restore();
+      }
+      renderSmoothStroke(pts);
       if (!hasStrokes) setHasStrokes(true);
     };
 
     const onUp = (e: PointerEvent) => {
       if (!drawingRef.current) return;
-      // No drag → leave a dot at the click location
       if (!movedRef.current) {
         drawDot(e.clientX, e.clientY);
         if (!hasStrokes) setHasStrokes(true);
       }
       drawingRef.current = false;
       movedRef.current = false;
-      lastPointRef.current = null;
+      pointsRef.current = [];
+      committedRef.current = null;
     };
+
 
     window.addEventListener("pointerdown", onDown);
     window.addEventListener("pointermove", onMove);
