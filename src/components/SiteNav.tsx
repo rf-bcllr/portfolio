@@ -29,7 +29,7 @@ export function SiteNav() {
         }}
       >
 
-        <Link to="/" data-cursor-action="home" className="flex items-center gap-2 rounded-full pr-2 text-sm font-semibold">
+        <Link to="/" data-cursor-action="home" className="flex items-center gap-2 rounded-full pr-2 text-base font-semibold">
           <img src={avatar} alt="Rafael Bacellar avatar" className="size-9 rounded-full border border-border object-cover" />
           <span className="hidden sm:inline">rfbcllr.</span>
         </Link>
