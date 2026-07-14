@@ -235,7 +235,7 @@ const ProjectDetail = () => {
     window.scrollTo(0, 0);
   }, [slug]);
   if (!project) {
-    return <div className="min-h-screen flex items-center justify-center">
+    return <main id="main-content" className="min-h-dvh flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
           <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist.</p>
@@ -243,14 +243,15 @@ const ProjectDetail = () => {
             <Link to="/">Back to Home</Link>
           </Button>
         </div>
-      </div>;
+      </main>;
   }
 
   // Use structured data if available
   const displayProject = structuredProject || project;
   const animatedHero = slug ? animatedProjectMedia[slug] : undefined;
-  return <div className="min-h-screen">
+  return <div className="min-h-dvh">
       <SiteNav />
+      <main id="main-content">
 
 
       <section className="mx-auto grid max-w-6xl gap-8 px-6 pb-10 pt-16 md:pt-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -425,7 +426,7 @@ const ProjectDetail = () => {
           {structuredProject ? <StructuredProjectView project={structuredProject} /> : <LegacyProjectView project={project} />}
         </div>}
       </section>
-
+      </main>
       <ContactFooter />
     </div>;
 };

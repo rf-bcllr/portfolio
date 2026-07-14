@@ -23,9 +23,10 @@ function ConnectButton({
     <a
       href={CONNECT_URL}
       target="_blank"
-      rel="noreferrer"
+      rel="noreferrer noopener"
       onClick={onClick}
       data-cursor-link
+      aria-label="Let's connect on LinkedIn (opens in a new tab)"
       className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-semibold leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
     >
       Let&apos;s connect
@@ -64,7 +65,7 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 md:flex">
+        <div className="hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 md:flex" role="navigation" aria-label="Primary">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -77,6 +78,7 @@ export function SiteNav() {
                     : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                 }`
               }
+              aria-current={location.pathname === item.to ? "page" : undefined}
             >
               {item.label}
             </NavLink>
@@ -88,13 +90,14 @@ export function SiteNav() {
 
         {/* Mobile: CTA + toggle */}
         <div className="flex shrink-0 items-center gap-2 md:hidden">
-          <ConnectButton className="h-8 px-3 text-xs" />
+          <ConnectButton className="h-11 px-3 text-xs" />
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            aria-controls="mobile-nav-panel"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex size-8 items-center justify-center rounded-full border border-border bg-card text-foreground"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-border bg-card text-foreground"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
@@ -102,15 +105,21 @@ export function SiteNav() {
 
         {/* Mobile collapsible panel */}
         {open && (
-          <div className="absolute inset-x-0 top-full z-50 mt-2 rounded-[24px] border border-border bg-card/95 p-2 shadow-card backdrop-blur-xl md:hidden">
+          <div
+            id="mobile-nav-panel"
+            role="navigation"
+            aria-label="Mobile"
+            className="absolute inset-x-0 top-full z-50 mt-2 rounded-[24px] border border-border bg-card/95 p-2 shadow-card backdrop-blur-xl md:hidden"
+          >
             <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
+                  aria-current={location.pathname === item.to ? "page" : undefined}
                   className={({ isActive }) =>
-                    `inline-flex h-10 items-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
+                    `inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
                       isActive
                         ? "bg-foreground text-background"
                         : "text-muted-foreground hover:bg-secondary hover:text-foreground"

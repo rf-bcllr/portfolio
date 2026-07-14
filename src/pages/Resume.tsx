@@ -55,9 +55,9 @@ export default function Resume() {
   ];
 
   return (
-    <div className="min-h-screen text-foreground">
+    <div className="min-h-dvh text-foreground">
       <SiteNav />
-      <main className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
+      <main id="main-content" className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
         <section className="mb-14 grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
           <div>
             

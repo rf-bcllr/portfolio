@@ -79,7 +79,7 @@ export const CustomCursor = () => {
   if (!isVisible) return null;
 
   return (
-    <div ref={containerRef} className="figjam-cursor">
+    <div ref={containerRef} className="figjam-cursor" aria-hidden="true">
       <svg
         width="24"
         height="26"
