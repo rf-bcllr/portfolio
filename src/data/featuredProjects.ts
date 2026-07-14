@@ -167,7 +167,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     emoji: "✨",
     category: "AI Tool · Education",
     summary: "An AI workflow exploration for generating pedagogical questions directly inside the FTD reader, keeping authoring close to the learning context.",
-    durationDisplay: "2025 · in progress",
+    durationDisplay: "2026 · in progress",
     roleDisplay: "Product designer · AI workflow exploration",
     outcome: "Concept validation in progress",
     outcomeHighlights: ["Reader-context generation", "Education AI workflow", "FTD learning environment"],
