@@ -58,9 +58,10 @@ export function SiteNav() {
           rel="noreferrer"
           data-cursor-link
           aria-label="LinkedIn"
-          className="hidden size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
+          className="hidden size-10 items-center justify-center rounded-xl border-2 border-foreground bg-card text-foreground transition-transform duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 md:inline-flex"
+          style={{ boxShadow: "3px 3px 0 0 hsl(var(--foreground))" }}
         >
-          <Linkedin className="size-5" />
+          <Linkedin className="size-5" strokeWidth={2.5} />
         </a>
 
         {/* Mobile: active label + toggle */}
