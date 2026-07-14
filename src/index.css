@@ -177,48 +177,56 @@ All colors MUST be HSL.
     --project-accent: var(--tag-blue);
     --project-accent-bg: var(--tag-blue-bg);
     --project-accent-border: var(--tag-blue-border);
+    --project-accent-fg: 0 0% 100%;
   }
 
   .project-card-green {
     --project-accent: var(--tag-green);
     --project-accent-bg: var(--tag-green-bg);
     --project-accent-border: var(--tag-green-border);
+    --project-accent-fg: 150 40% 12%;
   }
 
   .project-card-amber {
     --project-accent: var(--tag-amber);
     --project-accent-bg: var(--tag-amber-bg);
     --project-accent-border: var(--tag-amber-border);
+    --project-accent-fg: 30 60% 12%;
   }
 
   .project-card-red {
     --project-accent: var(--tag-red);
     --project-accent-bg: var(--tag-red-bg);
     --project-accent-border: var(--tag-red-border);
+    --project-accent-fg: 0 0% 100%;
   }
 
   .project-card-purple {
     --project-accent: var(--tag-purple);
     --project-accent-bg: var(--tag-purple-bg);
     --project-accent-border: var(--tag-purple-border);
+    --project-accent-fg: 0 0% 100%;
   }
 
   .project-card-teal {
     --project-accent: var(--tag-teal);
     --project-accent-bg: var(--tag-teal-bg);
     --project-accent-border: var(--tag-teal-border);
+    --project-accent-fg: 180 60% 10%;
   }
 
   .project-card-claude-orange {
     --project-accent: var(--tag-claude-orange);
     --project-accent-bg: var(--tag-claude-orange-bg);
     --project-accent-border: var(--tag-claude-orange-border);
+    --project-accent-fg: 0 0% 100%;
   }
 
   .project-card-guava-red {
     --project-accent: var(--tag-guava-red);
     --project-accent-bg: var(--tag-guava-red-bg);
     --project-accent-border: var(--tag-guava-red-border);
+    --project-accent-fg: 0 0% 100%;
   }
 
   .text-balance {
