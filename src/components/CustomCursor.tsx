@@ -60,20 +60,20 @@ export const CustomCursor = () => {
         top: `${position.y}px`,
       }}
     >
-      {/* Arrow pointer */}
+      {/* Arrow pointer - neo-brutalist */}
       <svg
-        width="20"
-        height="22"
+        width="26"
+        height="28"
         viewBox="0 0 20 22"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ display: "block" }}
+        style={{ display: "block", filter: "drop-shadow(1.5px 2px 0 #000)" }}
       >
         <path
           d="M3 2.5L3 17.5L7.5 13.5L10.5 20L13.5 18.5L10.5 12L16.5 12L3 2.5Z"
           fill={color}
-          stroke="white"
-          strokeWidth="1.2"
+          stroke="#000"
+          strokeWidth="2"
           strokeLinejoin="round"
         />
       </svg>
