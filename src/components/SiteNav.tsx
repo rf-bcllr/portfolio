@@ -18,7 +18,17 @@ export function SiteNav() {
 
   return (
     <header className="sticky top-4 z-50 px-4">
-      <nav className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur-xl">
+      <nav
+        className="relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full px-3 py-2 backdrop-blur-2xl backdrop-saturate-150"
+        style={{
+          background:
+            "linear-gradient(135deg, hsl(var(--card) / 0.55), hsl(var(--card) / 0.25))",
+          border: "1px solid hsl(var(--card) / 0.6)",
+          boxShadow:
+            "0 10px 40px -12px hsl(222 18% 12% / 0.18), inset 0 1px 0 hsl(0 0% 100% / 0.55), inset 0 -1px 0 hsl(var(--foreground) / 0.06)",
+        }}
+      >
+
         <Link to="/" data-cursor-action="home" className="flex items-center gap-2 rounded-full pr-2 text-sm font-semibold">
           <img src={avatar} alt="Rafael Bacellar avatar" className="size-9 rounded-full border border-border object-cover" />
           <span className="hidden sm:inline">rfbcllr.</span>
