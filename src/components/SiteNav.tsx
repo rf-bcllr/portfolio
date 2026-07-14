@@ -71,7 +71,7 @@ export function SiteNav() {
               to={item.to}
               data-cursor-action="navigate-internal"
               className={({ isActive }) =>
-                `rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                `inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
                   isActive
                     ? "bg-foreground text-background"
                     : "text-muted-foreground hover:bg-secondary hover:text-foreground"
