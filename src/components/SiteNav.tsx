@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ExternalLink, Menu, X } from "lucide-react";
+import { ExternalLink, Linkedin, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 
@@ -52,11 +52,16 @@ export function SiteNav() {
           ))}
         </div>
 
-        <Button asChild variant="outline" size="sm" className="hidden md:inline-flex">
-          <a href="https://linkedin.com/in/rfbcllr" target="_blank" rel="noreferrer" data-cursor-link>
-            LinkedIn <ExternalLink className="size-3.5" />
-          </a>
-        </Button>
+        <a
+          href="https://linkedin.com/in/rfbcllr"
+          target="_blank"
+          rel="noreferrer"
+          data-cursor-link
+          aria-label="LinkedIn"
+          className="hidden size-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
+        >
+          <Linkedin className="size-4" />
+        </a>
 
         {/* Mobile: active label + toggle */}
         <div className="flex items-center gap-2 md:hidden">
