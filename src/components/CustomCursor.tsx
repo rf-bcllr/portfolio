@@ -99,7 +99,7 @@ export const CustomCursor = () => {
       {!isDrawing && (
         <span
           className="figjam-cursor-label"
-          style={{ backgroundColor: color, color: "#FFFFFF" }}
+          style={{ backgroundColor: color, color: tagFg }}
         >
           Visitor
         </span>
