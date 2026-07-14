@@ -94,9 +94,14 @@ export default function Index() {
             className="max-w-[500px]"
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[hsl(var(--tag-green-border))] bg-[hsl(var(--tag-green-bg))] px-3 py-1.5 text-xs font-semibold text-[hsl(var(--tag-green))]">
-              <span className="inline-block size-[7px] rounded-full bg-[hsl(var(--tag-green))]" />
+              <span className="relative inline-flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-[hsl(var(--tag-green))]" />
+              </span>
               Available for new projects
             </div>
+
+
 
             <h1 className="font-display text-7xl font-semibold leading-[1] tracking-[-0.04em] text-foreground md:text-8xl">
               Hello,
