@@ -4,13 +4,13 @@ import { getSessionCursorColor } from "@/lib/cursorColor";
 export const CustomCursor = () => {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isVisible, setIsVisible] = useState(false);
+  const [isDrawing, setIsDrawing] = useState(false);
   const animationFrameRef = useRef<number>();
   const targetPosition = useRef({ x: -100, y: -100 });
 
   // Random color per visit (stable for the session, shared with DrawingCanvas)
   const color = useMemo(() => getSessionCursorColor(), []);
 
-  // Pick black or white text for the colored tag based on background luminance
   const tagFg = useMemo(() => {
     const hex = color.replace("#", "");
     const r = parseInt(hex.slice(0, 2), 16);
@@ -38,6 +38,9 @@ export const CustomCursor = () => {
       targetPosition.current = { x: -100, y: -100 };
     };
 
+    const handleDrawStart = () => setIsDrawing(true);
+    const handleDrawEnd = () => setIsDrawing(false);
+
     const animate = () => {
       setPosition((prev) => ({
         x: lerp(prev.x, targetPosition.current.x, 0.22),
@@ -46,15 +49,17 @@ export const CustomCursor = () => {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    // Use pointermove so the cursor keeps tracking while drawing (pointerdown
-    // preventDefault on the canvas suppresses compatibility mouse events).
     window.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("rfbcllr:draw-start", handleDrawStart);
+    window.addEventListener("rfbcllr:draw-end", handleDrawEnd);
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("rfbcllr:draw-start", handleDrawStart);
+      window.removeEventListener("rfbcllr:draw-end", handleDrawEnd);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -71,8 +76,9 @@ export const CustomCursor = () => {
         left: `${position.x}px`,
         top: `${position.y}px`,
       }}
+      aria-hidden="true"
     >
-      {/* Arrow pointer - FigJam-style colored cursor */}
+      {/* Black arrow with white outline */}
       <svg
         width="24"
         height="26"
@@ -83,19 +89,22 @@ export const CustomCursor = () => {
       >
         <path
           d="M3 2.5L3 17.5L7.5 13.5L10.5 20L13.5 18.5L10.5 12L16.5 12L3 2.5Z"
-          fill={color}
+          fill="#000000"
           stroke="#ffffff"
           strokeWidth="1.5"
           strokeLinejoin="round"
         />
       </svg>
-      {/* Visitor label */}
-      <span
-        className="figjam-cursor-label"
-        style={{ backgroundColor: color, color: tagFg }}
-      >
-        Visitor
-      </span>
+      {/* Visitor label — hidden while drawing */}
+      {!isDrawing && (
+        <span
+          className="figjam-cursor-label"
+          style={{ backgroundColor: color, color: tagFg }}
+        >
+          Visitor
+        </span>
+      )}
     </div>
   );
 };
+
