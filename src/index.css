@@ -454,8 +454,8 @@ All colors MUST be HSL.
   .figjam-cursor-label {
     margin-left: 16px;
     margin-top: -2px;
-    padding: 4px 10px;
-    border-radius: 999px;
+    padding: 3px 7px;
+    border-radius: 6px;
     font-family: "Satoshi", ui-sans-serif, system-ui, sans-serif;
     font-size: 12px;
     font-weight: 700;
