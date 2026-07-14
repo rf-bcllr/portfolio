@@ -155,20 +155,22 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
           </div>
 
           <div
+            ref={outcomeRef}
             className="relative overflow-hidden rounded-[22px] p-6 md:p-7"
             style={{
-              backgroundColor: "hsl(var(--project-accent))",
-              color: "hsl(var(--project-accent-fg))",
+              backgroundColor: "hsl(var(--project-accent-bg))",
+              color: outcomeTextColor,
             }}
           >
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] opacity-80">Outcome</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] opacity-70">Outcome</p>
             <p className="mt-2 font-display text-5xl font-semibold leading-none tracking-tight md:text-6xl">
               {project.outcomeValue}
             </p>
-            <p className="mt-3 max-w-sm text-sm font-medium leading-snug opacity-90 md:text-[15px]">
+            <p className="mt-3 max-w-sm text-sm font-medium leading-snug opacity-80 md:text-[15px]">
               {project.outcomeLabel}
             </p>
           </div>
+
 
 
 
