@@ -14,7 +14,10 @@ const getIcon = (title: string) => {
   return <Award className="w-6 h-6" />;
 };
 
+const palettes = ["vivid-lilac", "vivid-sage", "vivid-yellow", "vivid-sky", "vivid-coral", "vivid-orange"];
+
 export const CertificationCard = ({ title, href, index }: CertificationCardProps) => {
+  const palette = palettes[index % palettes.length];
   return (
     <motion.a
       href={href}
@@ -29,28 +32,22 @@ export const CertificationCard = ({ title, href, index }: CertificationCardProps
       }}
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative bg-card border border-border rounded-[24px] p-8 transition-all duration-500 hover:shadow-card-hover hover:border-primary/40 block"
+      className={`vivid-card ${palette} group relative border rounded-[24px] p-8 transition-all duration-500 hover:shadow-card-hover block`}
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[24px]" />
-      
       {/* Content */}
       <div className="relative flex items-center gap-5">
-        <div className="p-3 rounded-full bg-secondary text-foreground group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+        <div className="p-3 rounded-full bg-card/70 backdrop-blur-sm text-foreground group-hover:bg-foreground group-hover:text-background transition-all duration-300">
           {getIcon(title)}
         </div>
         
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg text-foreground transition-colors duration-300">
+          <h3 className="font-semibold text-lg transition-colors duration-300">
             {title}
           </h3>
         </div>
         
-        <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-300 flex-shrink-0 mt-1" />
+        <ExternalLink className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0 mt-1" />
       </div>
-      
-      {/* Animated border */}
-      <div className="absolute inset-0 rounded-[24px] border border-transparent group-hover:border-primary/20 transition-colors duration-500" />
     </motion.a>
   );
 };
