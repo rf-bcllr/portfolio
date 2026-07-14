@@ -15,7 +15,7 @@ export const MetricCard = ({ value, label, delay = 0 }: MetricCardProps) => {
       viewport={{ once: true }}
       className="text-center py-4"
     >
-      <div className="text-5xl lg:text-6xl font-normal text-foreground mb-2 font-display">
+      <div className="text-5xl lg:text-6xl font-bold text-foreground mb-2 font-display">
         {value}
       </div>
       <div className="text-sm text-muted-foreground uppercase tracking-wider">

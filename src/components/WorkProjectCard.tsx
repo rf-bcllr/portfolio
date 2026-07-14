@@ -150,7 +150,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
               ))}
             </div>
             <h3 className="font-display text-3xl font-semibold leading-tight md:text-4xl">{project.title}</h3>
-            <p className="mt-1 text-sm font-normal text-muted-foreground">{project.category}</p>
+            <p className="mt-1 text-sm font-semibold text-muted-foreground">{project.category}</p>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{project.summary}</p>
           </div>
 
@@ -162,11 +162,11 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
               color: outcomeTextColor,
             }}
           >
-            <p className="text-[11px] font-normal uppercase tracking-[0.18em] opacity-70">Outcome</p>
-            <p className="mt-2 font-display text-5xl font-normal leading-none tracking-tight md:text-6xl">
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] opacity-70">Outcome</p>
+            <p className="mt-2 font-display text-5xl font-semibold leading-none tracking-tight md:text-6xl">
               {project.outcomeValue}
             </p>
-            <p className="mt-3 max-w-sm text-sm font-normal leading-snug opacity-80 md:text-[15px]">
+            <p className="mt-3 max-w-sm text-sm font-medium leading-snug opacity-80 md:text-[15px]">
               {project.outcomeLabel}
             </p>
           </div>
@@ -176,7 +176,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
           <div className="flex flex-wrap gap-2">
             {project.outcomeHighlights.map((item) => (
-              <span key={item} className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-normal text-muted-foreground">
+              <span key={item} className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground">
                 {item}
               </span>
             ))}

@@ -67,7 +67,7 @@ const StructuredProjectView = ({
           <QuoteBlock quote={project.challenge.hook} author="" variant="highlight" />
         )}
         
-        <p className="text-lg text-foreground font-normal">
+        <p className="text-lg text-foreground font-medium">
           Goal: {project.challenge.goal}
         </p>
       </AnimatedSection>

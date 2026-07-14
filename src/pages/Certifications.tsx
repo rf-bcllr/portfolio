@@ -59,7 +59,7 @@ export default function Certifications() {
                 href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-normal text-foreground underline-offset-4 hover:underline"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline-offset-4 hover:underline"
               >
                 View on Behance →
               </a>

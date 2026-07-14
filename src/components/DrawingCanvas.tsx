@@ -253,7 +253,7 @@ export const DrawingCanvas = () => {
         <button
           type="button"
           onClick={clear}
-          className="fixed bottom-5 right-5 z-40 hidden items-center gap-1.5 rounded-full border border-border bg-card/95 px-3 py-1.5 text-xs font-normal text-foreground shadow-card backdrop-blur-xl transition-colors hover:bg-secondary md:inline-flex"
+          className="fixed bottom-5 right-5 z-40 hidden items-center gap-1.5 rounded-full border border-border bg-card/95 px-3 py-1.5 text-xs font-semibold text-foreground shadow-card backdrop-blur-xl transition-colors hover:bg-secondary md:inline-flex"
           aria-label="Clear drawing"
         >
           <Eraser className="size-3.5" /> Clear drawing

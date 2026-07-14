@@ -35,7 +35,7 @@ export const ProcessTimeline = ({ steps }: ProcessTimelineProps) => {
               {/* Content */}
               <h4 className="font-semibold text-foreground text-base mb-1">{step.title}</h4>
               {step.duration && (
-                <span className="text-xs text-muted-foreground font-normal">{step.duration}</span>
+                <span className="text-xs text-muted-foreground font-medium">{step.duration}</span>
               )}
               {step.description && (
                 <p className="text-sm text-muted-foreground mt-2 max-w-[150px]">
@@ -68,7 +68,7 @@ export const ProcessTimeline = ({ steps }: ProcessTimelineProps) => {
               {/* Content */}
               <h4 className="font-semibold text-foreground text-base">{step.title}</h4>
               {step.duration && (
-                <span className="text-xs text-muted-foreground font-normal">{step.duration}</span>
+                <span className="text-xs text-muted-foreground font-medium">{step.duration}</span>
               )}
               {step.description && (
                 <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
