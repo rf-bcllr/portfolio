@@ -426,7 +426,7 @@ const ProjectDetail = () => {
           {structuredProject ? <StructuredProjectView project={structuredProject} /> : <LegacyProjectView project={project} />}
         </div>}
       </section>
-
+      </main>
       <ContactFooter />
     </div>;
 };
