@@ -77,7 +77,7 @@ export default function Index() {
             </div>
 
             {/* Bottom editorial rule — location as metadata */}
-            <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t-2 border-foreground pt-6">
+            <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t-2 border-foreground pt-6 w-full md:w-full">
               <div>
                 <p
                   className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
