@@ -66,9 +66,9 @@ export function DJWidget() {
   const controllerRef = useRef<SpotifyController | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
-  // Same random palette color as the visitor's cursor.
+  // Cursor color used ONLY as a slim accent stripe so the panel stays legible.
   const cursorColor = useMemo(() => getSessionCursorColor(), []);
-  const fg = useMemo(() => readableFg(cursorColor), [cursorColor]);
+
 
   // Initialize Spotify IFrame controller once, keep it mounted forever.
   useEffect(() => {
