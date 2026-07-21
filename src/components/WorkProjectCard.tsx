@@ -207,9 +207,14 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
 
         <div className={`relative order-1 flex items-center justify-center overflow-hidden border-b border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:order-2 lg:border-b-0 lg:border-l ${mediaAreaHeight}`}>
-          <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
-            {project.emoji}
-          </div>
+          {(() => {
+            const Icon = projectIconMap[project.slug];
+            return Icon ? (
+              <div className="absolute right-5 top-6 hidden opacity-80 md:block text-foreground" aria-hidden>
+                <Icon className="size-9" strokeWidth={1.75} />
+              </div>
+            ) : null;
+          })()}
           <div
             className={`relative w-full transition-all duration-300 ${activePresentation.maxWidth} ${activePresentation.rotate ?? ""}`}
           >
