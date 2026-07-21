@@ -9,8 +9,9 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-[20px] border border-foreground/12 bg-card text-card-foreground shadow-none transition-all duration-300 hover:border-foreground/25 hover:-translate-y-0.5",
-
+      // Editorial spec — matches the hero profile card:
+      // 2px foreground border, hard offset shadow, square corners.
+      "relative rounded-none border-2 border-foreground bg-card text-card-foreground shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-all duration-200 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[8px_8px_0_0_hsl(var(--foreground))]",
       className
     )}
     {...props}
@@ -37,7 +38,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-2xl font-bold leading-[1.05] tracking-[-0.02em]",
+      "font-display text-2xl font-bold leading-[1] tracking-[-0.03em]",
       className
     )}
     {...props}
