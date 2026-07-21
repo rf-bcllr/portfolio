@@ -200,7 +200,7 @@ export const projectsData: ProjectData[] = [
   {
     id: "students-transportation",
     slug: "students-transportation",
-    title: "Cheguei - Students' Transportation Feature",
+    title: "Students' Transportation Feature",
     subtitle: "Safety tracking system for school transportation",
     year: 2023,
     company: "ClassApp",

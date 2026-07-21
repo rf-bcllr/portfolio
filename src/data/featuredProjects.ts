@@ -137,7 +137,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
   "students-transportation": {
     emoji: "🚌",
     category: "Mobile App · EdTech · Safety",
-    summary: "A safety-first transportation flow built around the morning anxiety of parents and the limited attention of drivers, turning pickup and drop-off into a clear, proactive mobile experience.",
+    summary: "A safety-first transportation flow built around the limited attention of drivers, turning pickup and drop-off into a clear, proactive mobile experience.",
     durationDisplay: "14 weeks · Q2–Q3 2023",
     roleDisplay: "Product designer",
     outcome: "12k+ students in 6 months",
