@@ -58,14 +58,21 @@ export default function Resume() {
     <div className="min-h-dvh text-foreground">
       <SiteNav />
       <main id="main-content" className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
-        <section className="mb-14 grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
+        <section className="mb-16 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div>
-            
-            <h1 className="font-display text-5xl font-semibold leading-[0.95] md:text-7xl">Rafael Bacellar Ramos Reis</h1>
-            <p className="mt-5 hidden text-xl text-muted-foreground sm:block">End-to-End Product Designer</p>
+            <p
+              className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Resume · 01
+            </p>
+            <h1 className="font-display text-6xl font-bold leading-[0.82] tracking-[-0.05em] md:text-[112px]">
+              Rafael<br />Bacellar<span className="text-primary">.</span>
+            </h1>
+            <p className="mt-6 hidden text-xl font-medium text-foreground sm:block">End-to-End Product Designer</p>
           </div>
-          <Card className="p-6 lg:rotate-1">
-            <div className="mb-5 grid gap-3 text-sm text-muted-foreground">
+          <Card className="p-6">
+            <div className="mb-5 grid gap-3 text-sm text-foreground">
               <span className="flex items-center gap-2"><Mail className="size-4" /> rfbcllr@gmail.com</span>
               <span className="flex items-center gap-2"><Phone className="size-4" /> +55 71 991373998</span>
               <span className="flex items-center gap-2"><MapPin className="size-4" /> Aracaju, SE, Brasil</span>
@@ -76,20 +83,28 @@ export default function Resume() {
           </Card>
         </section>
 
-        <section className="mb-14">
-          <h2 className="mb-6 font-display text-3xl font-semibold">{t.workExperience}</h2>
-          <div className="space-y-5">
-            {experiences.map((exp, index) => (
-              <Card key={exp.company} className="p-0" style={{ transform: `rotate(${index % 2 === 0 ? "-0.2deg" : "0.2deg"})` }}>
+        <section className="mb-16">
+          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
+            <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">{t.workExperience}</h2>
+            <span
+              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              02 · Trajectory
+            </span>
+          </div>
+          <div className="space-y-6">
+            {experiences.map((exp) => (
+              <Card key={exp.company} className="p-0">
                 <CardContent className="p-6">
                   <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
                     <div>
-                      <h3 className="text-xl font-semibold">{exp.title}</h3>
+                      <h3 className="font-display text-xl font-bold tracking-[-0.02em]">{exp.title}</h3>
                       <p className="font-medium text-foreground">{exp.company}</p>
                     </div>
                     <span className="flex items-center gap-2 text-sm text-muted-foreground"><Calendar className="size-4" /> {exp.period}</span>
                   </div>
-                  <div className="my-4 flex flex-wrap gap-2">
+                  <div className="my-4 flex flex-wrap gap-1.5">
                     {exp.chips.map((chip) => <Badge key={chip} variant="outline">{chip}</Badge>)}
                   </div>
                   <p className="text-muted-foreground">{exp.description}</p>
@@ -99,16 +114,37 @@ export default function Resume() {
           </div>
         </section>
 
-        <section className="mb-14 grid gap-5 md:grid-cols-3">
-          <Card className="p-6"><h2 className="mb-4 flex items-center gap-2 font-display text-xl font-semibold"><MessageCircle className="size-5" /> {t.softSkills}</h2><div className="flex flex-wrap gap-2">{softSkills.map((skill) => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></Card>
-          <Card className="p-6"><h2 className="mb-4 flex items-center gap-2 font-display text-xl font-semibold"><Lightbulb className="size-5" /> Hard Skills</h2><div className="flex flex-wrap gap-2">{skills.map((skill) => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></Card>
-          <Card className="p-6"><h2 className="mb-4 flex items-center gap-2 font-display text-xl font-semibold"><Globe className="size-5" /> {t.languages}</h2><div className="space-y-3">{languages.map((lang) => <div key={lang.name}><p className="font-semibold">{lang.name}</p><p className="text-sm text-muted-foreground">{lang.level}</p></div>)}</div></Card>
+        <section className="mb-16">
+          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
+            <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">Skills &amp; Languages</h2>
+            <span
+              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              03 · Craft
+            </span>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <Card className="p-6"><h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold tracking-[-0.02em]"><MessageCircle className="size-5" /> {t.softSkills}</h3><div className="flex flex-wrap gap-1.5">{softSkills.map((skill) => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></Card>
+            <Card className="p-6"><h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold tracking-[-0.02em]"><Lightbulb className="size-5" /> Hard Skills</h3><div className="flex flex-wrap gap-1.5">{skills.map((skill) => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></Card>
+            <Card className="p-6"><h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold tracking-[-0.02em]"><Globe className="size-5" /> {t.languages}</h3><div className="space-y-3">{languages.map((lang) => <div key={lang.name}><p className="font-semibold">{lang.name}</p><p className="text-sm text-muted-foreground">{lang.level}</p></div>)}</div></Card>
+          </div>
         </section>
 
         <section className="mb-14">
-          <h2 className="mb-8 flex items-center justify-center gap-2 font-display text-2xl font-semibold"><Wrench className="size-5" /> My Tools</h2>
+          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
+            <h2 className="flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl"><Wrench className="size-7" /> My Tools</h2>
+            <span
+              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              04 · Stack
+            </span>
+          </div>
           <ToolsMarquee tools={tools} speed="slow" />
         </section>
+
+
 
       </main>
       <ContactFooter />
