@@ -91,11 +91,6 @@ export function SiteNav() {
           <ConnectButton />
         </div>
 
-        {/* DJ widget — single instance shared across breakpoints so Spotify only mounts once */}
-        <div className="shrink-0">
-          <DJWidget />
-        </div>
-
         {/* Mobile: CTA + toggle */}
         <div className="flex shrink-0 items-center gap-2 md:hidden">
           <ThemeToggle />
