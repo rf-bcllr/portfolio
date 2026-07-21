@@ -62,12 +62,25 @@ export const CompanyLogos = ({
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>
-          <ul className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:grid lg:grid-cols-7 lg:justify-items-center list-none p-0 m-0">
-            {companies.map((company, index) => <li key={company.name}><a href={company.url} target="_blank" rel="noopener noreferrer" aria-label={`${company.name} (opens in a new tab)`} style={{
-            animationDelay: `${index * 0.1}s`
-          }} className="group relative aspect-square w-[40%] max-w-[120px] flex items-center justify-center p-6 transition-all duration-300 hover:scale-110 px-[12px] md:w-[20%] lg:w-full">
-                <img src={company.logo} alt="" className={`w-full h-full object-contain brightness-0 dark:invert transition-all duration-300 ${company.logoClassName ?? ""}`} loading="lazy" />
-              </a></li>)}
+          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-8 md:gap-10 lg:grid lg:grid-cols-7 lg:justify-items-center list-none p-0 m-0">
+            {companies.map((company) => (
+              <li key={company.name} className="flex items-center justify-center">
+                <a
+                  href={company.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${company.name} (opens in a new tab)`}
+                  className="group flex h-16 w-24 items-center justify-center transition-all duration-300 hover:scale-110 sm:h-20 sm:w-28 lg:h-24 lg:w-full"
+                >
+                  <img
+                    src={company.logo}
+                    alt=""
+                    className={`max-h-full max-w-full object-contain brightness-0 dark:invert transition-all duration-300 ${company.logoClassName ?? ""}`}
+                    loading="lazy"
+                  />
+                </a>
+              </li>
+            ))}
           </ul>
         </AnimatedSection>
       </div>
