@@ -80,7 +80,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
           type="button"
           onClick={goPrev}
           aria-label="Previous project"
-          className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[2px] hover:translate-y-[calc(-50%+2px)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground))] lg:inline-flex lg:size-12 xl:left-8"
+          className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-colors hover:bg-primary hover:text-primary-foreground lg:inline-flex lg:size-12 xl:left-8"
         >
           <ChevronLeft className="size-5" />
         </button>
@@ -88,7 +88,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
           type="button"
           onClick={goNext}
           aria-label="Next project"
-          className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[2px] hover:translate-y-[calc(-50%+2px)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground))] lg:inline-flex lg:size-12 xl:right-8"
+          className="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-colors hover:bg-primary hover:text-primary-foreground lg:inline-flex lg:size-12 xl:right-8"
         >
           <ChevronRight className="size-5" />
         </button>
