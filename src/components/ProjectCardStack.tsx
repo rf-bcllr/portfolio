@@ -149,30 +149,24 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
 
       {/* Progress + instruction */}
       <div className="flex flex-col items-center gap-3 pt-2">
-        <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground">
-          <span className="tabular-nums text-foreground">
-            {String(activeIndex + 1).padStart(2, "0")}
-          </span>
-          <span className="text-muted-foreground/60">/ {String(total).padStart(2, "0")}</span>
-          <div className="ml-3 flex items-center gap-1.5">
-            {projects.map((p, i) => (
-              <button
-                key={p.slug}
-                type="button"
-                aria-label={`Go to project ${i + 1}`}
-                aria-current={i === activeIndex ? "true" : undefined}
-                onClick={() => {
-                  setDirection(i >= activeIndex ? 1 : -1);
-                  setActiveIndex(i);
-                }}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === activeIndex
-                    ? "w-6 bg-foreground"
-                    : "w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
-                }`}
-              />
-            ))}
-          </div>
+        <div className="flex items-center gap-1.5">
+          {projects.map((p, i) => (
+            <button
+              key={p.slug}
+              type="button"
+              aria-label={`Go to project ${i + 1}`}
+              aria-current={i === activeIndex ? "true" : undefined}
+              onClick={() => {
+                setDirection(i >= activeIndex ? 1 : -1);
+                setActiveIndex(i);
+              }}
+              className={`h-1.5 rounded-full transition-all ${
+                i === activeIndex
+                  ? "w-6 bg-foreground"
+                  : "w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+              }`}
+            />
+          ))}
         </div>
         <p
           className="text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground"
