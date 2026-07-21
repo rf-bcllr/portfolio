@@ -1,4 +1,5 @@
-import { Moon, Sun, Sunset } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
+import { DuneIcon } from "@/components/DuneIcon";
 import { useTheme, type Theme } from "@/components/ThemeProvider";
 
 const ORDER: Theme[] = ["light", "dune", "dark"];
