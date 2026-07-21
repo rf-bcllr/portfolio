@@ -131,39 +131,48 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
   return (
     <article
-      className={`group relative block overflow-hidden rounded-[24px] border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--project-accent-border))] hover:shadow-card-hover ${accentClassMap[project.accent]}`}
-      style={{ transform: `rotate(${rotation})` }}
+      className={`group relative block overflow-hidden rounded-none border-2 border-foreground bg-card shadow-[8px_8px_0_0_hsl(var(--foreground))] transition-all duration-200 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[11px_11px_0_0_hsl(var(--foreground))] ${accentClassMap[project.accent]}`}
     >
       <div className={`grid ${compact ? "" : "lg:grid-cols-[minmax(0,0.9fr)_minmax(440px,0.92fr)] xl:grid-cols-[minmax(0,0.82fr)_minmax(560px,1fr)]"}`}>
         <div className="relative order-2 flex flex-col justify-between gap-7 p-6 md:p-8 lg:order-1 lg:p-9">
-          <span className="absolute inset-y-0 left-0 w-1.5 bg-[hsl(var(--project-accent))]" aria-hidden />
+          <span className="absolute inset-y-0 left-0 w-2 bg-[hsl(var(--project-accent))]" aria-hidden />
           <div>
-            <div className="mb-4 flex flex-wrap items-center gap-2">
+            <div className="mb-5 flex flex-wrap items-center gap-1.5">
               {project.chips.map((chip) => (
-                <Badge
+                <span
                   key={chip}
-                  variant="outline"
-                  className="rounded-full border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] px-3 py-1 text-[hsl(var(--project-accent))]"
+                  className="inline-flex items-center border border-foreground bg-transparent px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-foreground"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
                   {chip}
-                </Badge>
+                </span>
               ))}
             </div>
-            <h3 className="font-display text-3xl font-semibold leading-tight md:text-4xl">{project.title}</h3>
-            <p className="mt-1 text-sm font-semibold text-muted-foreground">{project.category}</p>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-[17px]">{project.summary}</p>
+            <h3 className="font-display text-3xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">{project.title}</h3>
+            <p
+              className="mt-3 text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {project.category}
+            </p>
+            <p className="mt-5 max-w-3xl border-l-[6px] border-[hsl(var(--project-accent))] pl-5 text-base leading-relaxed text-foreground md:text-[17px]">{project.summary}</p>
           </div>
 
           <div
             ref={outcomeRef}
-            className="relative overflow-hidden rounded-[22px] p-6 md:p-7"
+            className="relative overflow-hidden border-2 border-foreground p-6 md:p-7"
             style={{
               backgroundColor: "hsl(var(--project-accent-bg))",
               color: outcomeTextColor,
             }}
           >
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] opacity-70">Outcome</p>
-            <p className="mt-2 font-display text-5xl font-semibold leading-none tracking-tight md:text-6xl">
+            <p
+              className="text-[10px] font-bold uppercase tracking-[0.22em] opacity-70"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Outcome
+            </p>
+            <p className="mt-2 font-display text-5xl font-bold leading-[0.9] tracking-[-0.04em] md:text-6xl">
               {project.outcomeValue}
             </p>
             <p className="mt-3 max-w-sm text-sm font-medium leading-snug opacity-80 md:text-[15px]">
@@ -174,14 +183,20 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
 
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {project.outcomeHighlights.map((item) => (
-              <span key={item} className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground">
+              <span
+                key={item}
+                className="inline-flex items-center border border-foreground bg-transparent px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-foreground"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
                 {item}
               </span>
             ))}
           </div>
         </div>
+
+
 
         <div className={`relative order-1 flex items-center justify-center overflow-hidden border-b border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:order-2 lg:border-b-0 lg:border-l ${mediaAreaHeight}`}>
           <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
