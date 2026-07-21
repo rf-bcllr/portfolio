@@ -28,29 +28,28 @@ export const CertificationCard = ({ title, href, index }: CertificationCardProps
         ease: [0.25, 0.46, 0.45, 0.94]
       }}
       viewport={{ once: true, margin: "-50px" }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative bg-card border border-border rounded-[24px] p-8 transition-all duration-500 hover:shadow-card-hover hover:border-primary/40 block"
+      whileHover={{ y: -3, x: -3 }}
+      className="group relative block rounded-none border-2 border-foreground bg-card p-7 shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-shadow duration-200 hover:shadow-[9px_9px_0_0_hsl(var(--foreground))]"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[24px]" />
-      
-      {/* Content */}
       <div className="relative flex items-center gap-5">
-        <div className="p-3 rounded-full bg-secondary text-foreground group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+        <div className="flex size-12 shrink-0 items-center justify-center border-2 border-foreground bg-secondary text-foreground transition-colors duration-200 group-hover:bg-foreground group-hover:text-background">
           {getIcon(title)}
         </div>
-        
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg text-foreground transition-colors duration-300">
-            {title}
+
+        <div className="min-w-0 flex-1">
+          <h3
+            className="text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Certificate
           </h3>
+          <p className="mt-1 font-display text-lg font-bold leading-tight tracking-[-0.02em] text-foreground">
+            {title}
+          </p>
         </div>
-        
-        <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-300 flex-shrink-0 mt-1" />
+
+        <ExternalLink className="mt-1 size-5 shrink-0 text-muted-foreground transition-colors duration-200 group-hover:text-primary" />
       </div>
-      
-      {/* Animated border */}
-      <div className="absolute inset-0 rounded-[24px] border border-transparent group-hover:border-primary/20 transition-colors duration-500" />
     </motion.a>
   );
 };

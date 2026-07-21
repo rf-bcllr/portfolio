@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Bus, ChevronLeft, ChevronRight, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
 import type { FeaturedProject } from "@/data/featuredProjects";
+
+const projectIconMap: Record<string, LucideIcon> = {
+  "meu-arco": Target,
+  "students-transportation": Bus,
+  "health-food-delivery": Salad,
+  "ai-writing-assistant": PenLine,
+  "ai-question-generator": Sparkles,
+};
 
 interface WorkProjectCardProps {
   project: FeaturedProject;
@@ -160,7 +168,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
           <div
             ref={outcomeRef}
-            className="relative overflow-hidden border-2 border-foreground p-6 md:p-7"
+            className="relative overflow-hidden p-6 md:p-7"
             style={{
               backgroundColor: "hsl(var(--project-accent-bg))",
               color: outcomeTextColor,
@@ -199,9 +207,14 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
 
         <div className={`relative order-1 flex items-center justify-center overflow-hidden border-b border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:order-2 lg:border-b-0 lg:border-l ${mediaAreaHeight}`}>
-          <div className="absolute right-5 top-6 hidden text-4xl opacity-80 md:block" aria-hidden>
-            {project.emoji}
-          </div>
+          {(() => {
+            const Icon = projectIconMap[project.slug];
+            return Icon ? (
+              <div className="absolute right-5 top-6 hidden opacity-80 md:block text-foreground" aria-hidden>
+                <Icon className="size-9" strokeWidth={1.75} />
+              </div>
+            ) : null;
+          })()}
           <div
             className={`relative w-full transition-all duration-300 ${activePresentation.maxWidth} ${activePresentation.rotate ?? ""}`}
           >

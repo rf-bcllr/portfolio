@@ -45,13 +45,10 @@ export function SiteNav() {
   return (
     <header className="sticky top-4 z-50 px-4">
       <nav
-        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full px-3 backdrop-blur-2xl backdrop-saturate-150"
+        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border-2 border-foreground px-3 shadow-[4px_4px_0_0_hsl(var(--foreground))] backdrop-blur-2xl backdrop-saturate-150"
         style={{
           background:
             "linear-gradient(135deg, hsl(var(--card) / 0.55), hsl(var(--card) / 0.25))",
-          border: "1px solid hsl(var(--card) / 0.6)",
-          boxShadow:
-            "0 10px 40px -12px hsl(222 18% 12% / 0.18), inset 0 1px 0 hsl(0 0% 100% / 0.55), inset 0 -1px 0 hsl(var(--foreground) / 0.06)",
         }}
       >
         <Link
