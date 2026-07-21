@@ -15,32 +15,38 @@ interface Company {
 const companies: Company[] = [{
   name: "Sanar",
   logo: logoSanar,
-  url: "https://sanarsaude.com/"
+  url: "https://sanarsaude.com/",
+  logoClassName: "max-h-7 max-w-[108px] sm:max-h-8 sm:max-w-[122px]"
 }, {
   name: "Sebrae",
   logo: logoSebrae,
-  url: "https://sebrae.com.br/"
+  url: "https://sebrae.com.br/",
+  logoClassName: "max-h-11 max-w-[92px] sm:max-h-12 sm:max-w-[104px]"
 }, {
   name: "CVLB Group",
   logo: logoCvlb,
-  url: "https://www.grupocvlb.com.br/"
+  url: "https://www.grupocvlb.com.br/",
+  logoClassName: "max-h-9 max-w-[108px] sm:max-h-10 sm:max-w-[118px]"
 }, {
   name: "ClassApp",
   logo: logoClassapp,
-  url: "https://www.classapp.com.br/"
+  url: "https://www.classapp.com.br/",
+  logoClassName: "max-h-7 max-w-[116px] sm:max-h-8 sm:max-w-[128px]"
 }, {
   name: "isaac",
   logo: logoIsaac,
-  url: "https://isaac.com.br/"
+  url: "https://isaac.com.br/",
+  logoClassName: "max-h-8 max-w-[96px] sm:max-h-9 sm:max-w-[108px]"
 }, {
   name: "Arco Educação",
   logo: logoArco,
-  url: "https://www.arcoeducacao.com.br/"
+  url: "https://www.arcoeducacao.com.br/",
+  logoClassName: "max-h-12 max-w-[78px] sm:max-h-14 sm:max-w-[88px]"
 }, {
   name: "FTD Educação",
   logo: logoFtd,
   url: "https://ftd.com.br/",
-  logoClassName: "scale-[0.7]"
+  logoClassName: "max-h-9 max-w-[96px] sm:max-h-10 sm:max-w-[108px]"
 }];
 interface CompanyLogosProps {
   title: string;
@@ -62,20 +68,20 @@ export const CompanyLogos = ({
         </AnimatedSection>
 
         <AnimatedSection delay={0.2}>
-          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-8 md:gap-10 lg:grid lg:grid-cols-7 lg:justify-items-center list-none p-0 m-0">
+          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-7 md:gap-x-8 md:gap-y-9 list-none p-0 m-0">
             {companies.map((company) => (
-              <li key={company.name} className="flex items-center justify-center">
+              <li key={company.name} className="flex h-16 w-32 items-center justify-center sm:h-20 sm:w-36 lg:h-24 lg:w-36">
                 <a
                   href={company.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${company.name} (opens in a new tab)`}
-                  className="group flex h-16 w-24 items-center justify-center transition-all duration-300 hover:scale-110 sm:h-20 sm:w-28 lg:h-24 lg:w-full"
+                  className="group flex size-full items-center justify-center transition-transform duration-300 hover:scale-105"
                 >
                   <img
                     src={company.logo}
                     alt=""
-                    className={`max-h-full max-w-full object-contain brightness-0 dark:invert transition-all duration-300 ${company.logoClassName ?? ""}`}
+                    className={`h-auto w-auto object-contain brightness-0 dark:invert transition-all duration-300 ${company.logoClassName ?? "max-h-10 max-w-[112px]"}`}
                     loading="lazy"
                   />
                 </a>
