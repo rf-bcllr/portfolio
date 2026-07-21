@@ -14,9 +14,9 @@ export function DuneIcon(props: LucideProps) {
       strokeLinejoin="round"
       {...props}
     >
-      {/* Minimalist sunset: semi-circle sun + horizon line */}
-      <path d="M4 12a8 8 0 0 1 16 0" />
-      <line x1="2" y1="12" x2="22" y2="12" />
+      {/* Minimalist sunset: semi-circle sun + horizon line, vertically centered */}
+      <path d="M4 16a8 8 0 0 1 16 0" />
+      <line x1="2" y1="16" x2="22" y2="16" />
     </svg>
   );
 }
