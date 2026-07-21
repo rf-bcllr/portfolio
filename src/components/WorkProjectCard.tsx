@@ -168,7 +168,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
           <div
             ref={outcomeRef}
-            className="relative overflow-hidden border-2 border-foreground p-6 md:p-7"
+            className="relative overflow-hidden p-6 md:p-7"
             style={{
               backgroundColor: "hsl(var(--project-accent-bg))",
               color: outcomeTextColor,
