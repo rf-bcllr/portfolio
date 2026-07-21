@@ -91,14 +91,17 @@ export function SiteNav() {
         {/* Desktop CTA cluster */}
         <div className="hidden shrink-0 items-center gap-2 md:flex">
           <ThemeToggle />
-          <DJWidget />
           <ConnectButton />
+        </div>
+
+        {/* DJ widget — single instance shared across breakpoints so Spotify only mounts once */}
+        <div className="shrink-0">
+          <DJWidget />
         </div>
 
         {/* Mobile: CTA + toggle */}
         <div className="flex shrink-0 items-center gap-2 md:hidden">
           <ThemeToggle />
-          <DJWidget />
           <ConnectButton className="h-11 px-3 text-xs" />
 
           <button
@@ -112,6 +115,7 @@ export function SiteNav() {
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
         </div>
+
 
         {/* Mobile collapsible panel */}
         {open && (

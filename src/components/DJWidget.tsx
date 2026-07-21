@@ -47,14 +47,8 @@ function loadSpotifyApi(cb: (api: NonNullable<typeof cachedApi>) => void) {
   document.body.appendChild(s);
 }
 
-// Perceived-luminance helper — decides black vs. white foreground on the tint.
-function readableFg(hex: string) {
-  const h = hex.replace("#", "");
-  const r = parseInt(h.slice(0, 2), 16);
-  const g = parseInt(h.slice(2, 4), 16);
-  const b = parseInt(h.slice(4, 6), 16);
-  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.6 ? "#0a0a0a" : "#ffffff";
-}
+
+
 
 export function DJWidget() {
   const [open, setOpen] = useState(false);
@@ -66,9 +60,9 @@ export function DJWidget() {
   const controllerRef = useRef<SpotifyController | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
-  // Same random palette color as the visitor's cursor.
+  // Cursor color used ONLY as a slim accent stripe so the panel stays legible.
   const cursorColor = useMemo(() => getSessionCursorColor(), []);
-  const fg = useMemo(() => readableFg(cursorColor), [cursorColor]);
+
 
   // Initialize Spotify IFrame controller once, keep it mounted forever.
   useEffect(() => {
@@ -206,26 +200,15 @@ export function DJWidget() {
         role="dialog"
         aria-label="DJ player"
         aria-hidden={!open}
-        style={{
-          backgroundColor: cursorColor,
-          color: fg,
-          borderColor: fg === "#0a0a0a" ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.2)",
-          boxShadow: `0 20px 50px -20px ${cursorColor}80`,
-        }}
-        className={`absolute right-0 top-full z-50 mt-3 w-[340px] origin-top-right overflow-hidden rounded-[20px] border transition-all duration-200 ${
+        className={`absolute right-0 top-full z-50 mt-3 w-[340px] origin-top-right overflow-hidden rounded-[20px] border border-border bg-card text-card-foreground shadow-[0_20px_50px_-20px_rgba(0,0,0,0.25)] transition-all duration-200 ${
           open
             ? "pointer-events-auto scale-100 opacity-100"
             : "pointer-events-none scale-95 opacity-0"
         }`}
       >
-        <div
-          className="flex items-center justify-between px-4 py-2.5"
-          style={{
-            borderBottom: `1px solid ${
-              fg === "#0a0a0a" ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.18)"
-            }`,
-          }}
-        >
+        {/* Slim accent stripe uses the visitor's cursor color */}
+        <div style={{ backgroundColor: cursorColor }} className="h-1 w-full" />
+        <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
           <div className="flex items-center gap-2">
             <Disc3
               className={`size-4 ${isPlaying ? "animate-spin" : ""}`}
@@ -233,7 +216,7 @@ export function DJWidget() {
               aria-hidden="true"
             />
             <span
-              className="text-[10px] font-semibold uppercase tracking-[0.22em] opacity-80"
+              className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Now spinning
@@ -243,8 +226,7 @@ export function DJWidget() {
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close DJ player"
-            className="inline-flex size-6 items-center justify-center rounded-full opacity-80 transition hover:opacity-100"
-            style={{ color: fg }}
+            className="inline-flex size-6 items-center justify-center rounded-full text-muted-foreground transition hover:text-foreground"
           >
             <X className="size-3.5" />
           </button>
@@ -255,3 +237,4 @@ export function DJWidget() {
     </div>
   );
 }
+
