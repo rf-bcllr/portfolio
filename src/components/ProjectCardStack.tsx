@@ -101,7 +101,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
         className="relative"
         style={{ minHeight: stackMinHeight ? stackMinHeight + 8 : undefined }}
       >
-        <div className="pointer-events-none invisible absolute inset-x-0 top-0 -z-10" aria-hidden="true">
+        <div className="pointer-events-none invisible absolute inset-x-0 top-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
           {projects.map((project, index) => (
             <div
               key={`measure-${project.slug}`}
