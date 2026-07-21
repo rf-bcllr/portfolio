@@ -51,9 +51,25 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [goNext, goPrev]);
 
+  const frontRef = useRef<HTMLDivElement | null>(null);
+  const [frontHeight, setFrontHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    const el = frontRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const update = () => setFrontHeight(el.offsetHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [activeIndex]);
+
   return (
     <div className="flex flex-col gap-8">
-      <div className="relative min-h-[760px] lg:min-h-[680px]">
+      <div
+        className="relative"
+        style={{ minHeight: frontHeight ? frontHeight + 8 : undefined }}
+      >
         <AnimatePresence initial={false} custom={direction}>
           {visible.map(({ project, projectIndex, slot }) => {
             const target = slotStyles[slot];
@@ -75,6 +91,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
             return (
               <motion.div
                 key={project.slug}
+                ref={isFront ? frontRef : undefined}
                 custom={direction}
                 initial={initial}
                 animate={{
@@ -88,7 +105,12 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
                     ? { duration: 0.2 }
                     : { type: "spring", stiffness: 260, damping: 32, mass: 0.9 }
                 }
-                style={{ zIndex }}
+                style={{
+                  zIndex,
+                  ...(isFront || !frontHeight
+                    ? {}
+                    : { height: frontHeight, overflow: "hidden" }),
+                }}
                 className={`absolute inset-x-0 top-0 origin-top ${
                   isFront ? "" : "pointer-events-none"
                 }`}
