@@ -61,7 +61,7 @@ export function SiteNav() {
             alt="Rafael Bacellar avatar"
             className="size-9 rounded-full border border-border object-cover"
           />
-          <span className="hidden sm:inline">rfbcllr.</span>
+          <span className="hidden sm:inline font-display tracking-tight">rfbcllr.</span>
         </Link>
 
         {/* Desktop nav */}
