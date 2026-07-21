@@ -4,18 +4,21 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  // Editorial spec — square, hairline, uppercase Clash Display micro-labels
+  "inline-flex items-center rounded-none border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] [font-family:var(--font-display)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm",
+          "border-foreground bg-foreground text-background hover:bg-foreground/90",
         secondary:
-          "border-border bg-card text-secondary-foreground hover:bg-muted hover:border-primary/30",
+          "border-foreground bg-card text-foreground hover:bg-foreground hover:text-background",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border-border text-foreground hover:bg-muted hover:border-primary/30",
-        muted: "border-transparent bg-muted text-muted-foreground hover:bg-muted/80",
+          "border-destructive bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border-foreground text-foreground hover:bg-foreground hover:text-background",
+        muted:
+          "border-foreground/40 bg-transparent text-muted-foreground hover:border-foreground hover:text-foreground",
       },
     },
     defaultVariants: {
