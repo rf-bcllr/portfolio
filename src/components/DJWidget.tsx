@@ -47,14 +47,8 @@ function loadSpotifyApi(cb: (api: NonNullable<typeof cachedApi>) => void) {
   document.body.appendChild(s);
 }
 
-// Perceived-luminance helper — decides black vs. white foreground on the tint.
-function readableFg(hex: string) {
-  const h = hex.replace("#", "");
-  const r = parseInt(h.slice(0, 2), 16);
-  const g = parseInt(h.slice(2, 4), 16);
-  const b = parseInt(h.slice(4, 6), 16);
-  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.6 ? "#0a0a0a" : "#ffffff";
-}
+
+
 
 export function DJWidget() {
   const [open, setOpen] = useState(false);
