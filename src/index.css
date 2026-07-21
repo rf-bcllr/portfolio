@@ -130,6 +130,53 @@ All colors MUST be HSL.
     --sidebar-border: 220 10% 20%;
     --sidebar-ring: 220 100% 60%;
   }
+
+  /* Dune — warm, easy-on-eyes beige base */
+  .dune {
+    --background: 39 38% 90%;
+    --foreground: 28 30% 14%;
+
+    --card: 40 45% 96%;
+    --card-foreground: 28 30% 14%;
+
+    --popover: 40 45% 96%;
+    --popover-foreground: 28 30% 14%;
+
+    --primary: 220 90% 45%;
+    --primary-foreground: 40 45% 97%;
+
+    --secondary: 38 34% 87%;
+    --secondary-foreground: 28 30% 18%;
+
+    --muted: 36 28% 84%;
+    --muted-foreground: 28 14% 38%;
+
+    --accent: 220 90% 45%;
+    --accent-foreground: 40 45% 97%;
+
+    --destructive: 0 62% 48%;
+    --destructive-foreground: 40 45% 97%;
+
+    --border: 34 24% 76%;
+    --input: 34 24% 76%;
+    --ring: 220 90% 45%;
+
+    --shadow-card: 0 1px 3px hsl(28 30% 14% / 0.10), 0 1px 2px -1px hsl(28 30% 14% / 0.06);
+    --shadow-card-hover: 0 14px 34px -24px hsl(28 30% 14% / 0.28), 0 1px 0 hsl(28 30% 14% / 0.10);
+
+    --sidebar-background: 40 45% 96%;
+    --sidebar-foreground: 28 30% 18%;
+    --sidebar-primary: 220 90% 45%;
+    --sidebar-primary-foreground: 40 45% 97%;
+    --sidebar-accent: 38 34% 87%;
+    --sidebar-accent-foreground: 28 30% 18%;
+    --sidebar-border: 34 24% 76%;
+    --sidebar-ring: 220 90% 45%;
+  }
+
+  .dune .figjam-grid {
+    background-image: radial-gradient(hsl(28 22% 32% / 0.28) 1px, transparent 1px);
+  }
 }
 
 @layer base {
@@ -140,24 +187,24 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
-    font-weight: 400; /* Satoshi Regular */
+    font-weight: 400;
     letter-spacing: 0;
   }
 
-  /* Clash Display - only H1/H2 (bold geometric headlines) */
+  /* Especular-inspired: heavier, tighter display type */
   h1, h2 {
     font-family: var(--font-display);
-    font-weight: 600; /* Clash Display SemiBold */
-    letter-spacing: 0;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
-  
-  /* Satoshi Medium for subheadings */
+
   h3, h4, h5, h6 {
     font-family: var(--font-sans);
-    font-weight: 500; /* Satoshi Medium */
-    letter-spacing: 0;
+    font-weight: 600;
+    letter-spacing: -0.005em;
   }
 }
+
 
 @layer utilities {
   .shadow-card {

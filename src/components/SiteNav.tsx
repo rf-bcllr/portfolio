@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { DJWidget } from "@/components/DJWidget";
+
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -85,12 +88,19 @@ export function SiteNav() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <ConnectButton className="hidden shrink-0 md:inline-flex" />
+        {/* Desktop CTA cluster */}
+        <div className="hidden shrink-0 items-center gap-2 md:flex">
+          <ThemeToggle />
+          <DJWidget />
+          <ConnectButton />
+        </div>
 
         {/* Mobile: CTA + toggle */}
         <div className="flex shrink-0 items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <DJWidget />
           <ConnectButton className="h-11 px-3 text-xs" />
+
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
