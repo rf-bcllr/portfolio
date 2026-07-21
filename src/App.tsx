@@ -32,6 +32,7 @@ const App = () => {
         <Sonner />
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/work" element={<Work />} />
