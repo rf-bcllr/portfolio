@@ -170,21 +170,32 @@ export default function Index() {
           </motion.div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-14">
-          <div className="grid gap-4 md:grid-cols-3">
-            <Card className="p-6 md:rotate-[-0.7deg]">
+        <section className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
+            <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">
+              At a glance<span className="text-primary">.</span>
+            </h2>
+            <span
+              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              02 · Signals
+            </span>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            <Card className="p-6">
               <Briefcase className="mb-5 size-7" />
-              <h2 className="font-display text-2xl font-semibold">10+ years</h2>
+              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">10+ years</h3>
               <p className="mt-2 text-muted-foreground">Across edtech, fintech, retail, health and AI product workflows.</p>
             </Card>
-            <Card className="p-6 md:translate-y-6 md:rotate-[0.5deg]">
+            <Card className="p-6">
               <Sparkles className="mb-5 size-7" />
-              <h2 className="font-display text-2xl font-semibold">Systems thinker</h2>
+              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Systems thinker</h3>
               <p className="mt-2 text-muted-foreground">From research synthesis to component libraries and product storytelling.</p>
             </Card>
-            <Card className="p-6 md:rotate-[-0.4deg]">
+            <Card className="p-6">
               <Zap className="mb-5 size-7" />
-              <h2 className="font-display text-2xl font-semibold">Fast iterations</h2>
+              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Fast iterations</h3>
               <p className="mt-2 text-muted-foreground">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
             </Card>
           </div>
