@@ -20,120 +20,152 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="mx-auto flex min-h-[calc(100vh-88px)] max-w-6xl flex-wrap items-center justify-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20">
-          {/* Profile Card */}
+        <section className="mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
+          {/* Left column — hero */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-[280px] shrink-0"
+            transition={{ duration: 0.55 }}
+            className="order-2 max-w-[640px] lg:order-1"
           >
-            <Card className="overflow-hidden p-0 shadow-card">
-              <div className="flex items-center gap-2 bg-primary px-4 py-1.5">
-                <span className="inline-block size-2 rounded-sm bg-white/60" />
-                <span className="text-[10.5px] font-bold uppercase tracking-[0.09em] text-primary-foreground">
-                  Profile
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-5 px-6 pb-6 pt-7">
-                <div className="size-[120px] overflow-hidden rounded-full border-[3px] border-card shadow-[0_0_0_2px_hsl(var(--border))]">
-                  <img
-                    src={heroPortrait}
-                    alt="Rafael Bacellar"
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority="high"
-                    className="size-full object-cover"
-                  />
-                </div>
-
-                <div className="text-center">
-                  <div className="font-display text-[24px] font-bold leading-tight text-foreground">
-                    Rafael Bacellar
-                  </div>
-                  <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
-                    Senior Product Designer
-                  </div>
-                  <div className="mx-auto mt-2.5 h-[2.5px] w-7 rounded-sm bg-primary" />
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-1.5">
-                  {profileSkills.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-full border border-border px-2.5 py-[3px] text-[11px] font-medium text-muted-foreground"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-1 flex items-center gap-3.5 text-[13px] font-medium">
-                  <a
-                    href="https://linkedin.com/in/rfbcllr"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-primary"
-                  >
-                    LinkedIn
-                  </a>
-                  <span className="text-border">·</span>
-                  <a href="mailto:rf.bcllr@gmail.com" className="text-muted-foreground">
-                    Email
-                  </a>
-                </div>
-              </div>
-            </Card>
-          </motion.div>
-
-          {/* Right column */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="max-w-[500px]"
-          >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[hsl(var(--tag-green-border))] bg-[hsl(var(--tag-green-bg))] px-3 py-1.5 text-xs font-semibold text-[hsl(var(--tag-green))]">
-              <span className="relative inline-flex size-2">
+            {/* Editorial availability badge — inverted, dense, uppercase */}
+            <div className="mb-10 inline-flex items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
+              <span className="relative inline-flex size-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-[hsl(var(--tag-green))]" />
+                <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
               </span>
-              Available for new projects
+              <span
+                className="text-[10px] font-bold uppercase tracking-[0.22em]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Available for new projects
+              </span>
             </div>
 
-
-
-            <h1 className="font-display text-7xl font-semibold leading-[1] tracking-[-0.04em] text-foreground md:text-8xl">
-              Hello,
+            {/* Massive editorial headline — comma in signature blue */}
+            <h1 className="font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
+              Hello<span className="text-primary">,</span>
             </h1>
 
-            <p className="mt-6 max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground sm:hidden">
+            {/* Paragraph anchored by a blue rule — the Especular move */}
+            <p className="mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground sm:hidden">
               I'm your next end-to-end product designer
             </p>
-            <p className="mt-6 hidden max-w-[430px] text-[17px] leading-[1.75] text-muted-foreground sm:block">
+            <p className="mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground sm:block">
               I'm a Senior Product Designer with{" "}
-              <strong className="font-semibold text-foreground">10+ years of experience</strong>{" "}
+              <strong className="font-bold">10+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-2.5">
+            {/* CTAs — flat, hairline, with a hard offset shadow on the secondary */}
+            <div className="mt-10 flex flex-wrap gap-5">
               <Button asChild variant="contrast" size="lg">
                 <Link to="/work" data-cursor-action="navigate-internal">
                   View Work <ArrowRight className="size-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-2 border-foreground bg-background text-foreground shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_hsl(var(--foreground))]"
+              >
                 <Link to="/resume" data-cursor-action="navigate-internal">
                   Resume
                 </Link>
               </Button>
             </div>
 
-            <div className="mt-11 inline-flex items-center gap-2.5 rounded-[10px] border border-border bg-primary/[0.04] px-5 py-3 shadow-card [border-left-width:3px] [border-left-color:hsl(var(--primary))]">
-              <span className="text-base">📍</span>
-              <span className="text-sm leading-snug text-muted-foreground">
-                Based in <strong className="font-semibold text-foreground">Brazil</strong> · Open to remote worldwide
-              </span>
+            {/* Bottom editorial rule — location as metadata */}
+            <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t-2 border-foreground pt-6">
+              <div>
+                <p
+                  className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Location
+                </p>
+                <p className="mt-1 font-display text-lg font-bold text-foreground">
+                  Based in Brazil <span className="text-muted-foreground">· Open to remote worldwide</span>
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right column — profile card with editorial frame */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative order-1 w-full max-w-[320px] justify-self-center lg:order-2 lg:justify-self-end"
+          >
+            {/* Rotated dashed frame — hand-marked editorial layout register */}
+            <div
+              className="pointer-events-none absolute -inset-4 -rotate-1 border-2 border-dashed border-foreground/50"
+              aria-hidden="true"
+            />
+
+            {/* Solid card with hard offset shadow */}
+            <div className="relative border-2 border-foreground bg-card p-6 text-card-foreground shadow-[12px_12px_0_0_hsl(var(--foreground))]">
+              <div className="mx-auto mb-6 aspect-square w-full overflow-hidden border-2 border-foreground">
+                <img
+                  src={heroPortrait}
+                  alt="Rafael Bacellar"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                  className="size-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
+                />
+              </div>
+
+              <h2 className="font-display text-[28px] font-bold leading-none tracking-[-0.03em] text-foreground">
+                Rafael Bacellar
+              </h2>
+              <p
+                className="mt-2 text-[10px] font-bold uppercase tracking-[0.22em] text-primary"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Senior Product Designer
+              </p>
+
+              <div className="mt-5 grid grid-cols-2 gap-1.5">
+                {profileSkills.map((s) => (
+                  <span
+                    key={s}
+                    className="flex items-center justify-center border border-foreground px-2 py-1.5 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-foreground"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6 flex justify-between border-t-2 border-foreground pt-4">
+                <a
+                  href="https://linkedin.com/in/rfbcllr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="mailto:rf.bcllr@gmail.com"
+                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Email
+                </a>
+              </div>
+            </div>
+
+            {/* Floating editorial ID tag */}
+            <div
+              className="absolute -right-3 -top-3 bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-background"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              REF-2026
             </div>
           </motion.div>
         </section>
