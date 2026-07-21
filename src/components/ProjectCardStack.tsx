@@ -52,7 +52,9 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
   }, [goNext, goPrev]);
 
   const frontRef = useRef<HTMLDivElement | null>(null);
+  const measurementRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [frontHeight, setFrontHeight] = useState<number | null>(null);
+  const [stackHeight, setStackHeight] = useState<number | null>(null);
 
   useEffect(() => {
     const el = frontRef.current;
@@ -64,6 +66,30 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
     return () => ro.disconnect();
   }, [activeIndex]);
 
+  useEffect(() => {
+    const nodes = measurementRefs.current.filter(Boolean) as HTMLDivElement[];
+    if (!nodes.length) return;
+
+    const update = () => {
+      const measuredHeight = Math.max(...nodes.map((node) => node.offsetHeight));
+      if (measuredHeight > 0) setStackHeight(measuredHeight);
+    };
+
+    update();
+
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", update);
+      return () => window.removeEventListener("resize", update);
+    }
+
+    const ro = new ResizeObserver(update);
+    nodes.forEach((node) => ro.observe(node));
+
+    return () => ro.disconnect();
+  }, [projects]);
+
+  const stackMinHeight = Math.max(stackHeight ?? 0, frontHeight ?? 0);
+
   return (
     <div
       className="relative flex flex-col gap-6"
@@ -73,8 +99,21 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
     >
       <div
         className="relative"
-        style={{ minHeight: frontHeight ? frontHeight + 8 : undefined }}
+        style={{ minHeight: stackMinHeight ? stackMinHeight + 8 : undefined }}
       >
+        <div className="pointer-events-none invisible absolute inset-x-0 top-0 -z-10" aria-hidden="true">
+          {projects.map((project, index) => (
+            <div
+              key={`measure-${project.slug}`}
+              ref={(node) => {
+                measurementRefs.current[index] = node;
+              }}
+            >
+              <WorkProjectCard project={project} index={index} />
+            </div>
+          ))}
+        </div>
+
         {/* Side chevrons — fixed to the viewport so their position never shifts when cards with different heights rotate. */}
         <button
           type="button"
