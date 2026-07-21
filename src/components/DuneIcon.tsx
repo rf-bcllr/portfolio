@@ -1,33 +1,41 @@
 import type { SVGProps } from "react";
 
+/**
+ * Stylized Shai-Hulud (Dune sandworm) — rising body curving out of dunes
+ * with a ringed circular maw. Uses currentColor so it inherits from the toggle.
+ */
 export function DuneIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 48 48"
       fill="none"
       stroke="currentColor"
-      strokeWidth={2}
+      strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
       {...props}
     >
-      {/* Trefoil / triquetra petals */}
-      <path d="M24 6c5 6 5 12 0 18-5-6-5-12 0-18z" />
-      <path d="M9.6 33c1.4-7.6 6.4-11 13.4-11-1 7.7-5 12-13.4 11z" />
-      <path d="M38.4 33c-1.4-7.6-6.4-11-13.4-11 1 7.7 5 12 13.4 11z" />
-      {/* Sun core */}
-      <circle cx="24" cy="26" r="4.5" />
-      {/* Sun rays */}
-      <g strokeWidth={1.6}>
-        <path d="M24 18v2.5" />
-        <path d="M24 31.5V34" />
-        <path d="M16 26h2.5" />
-        <path d="M29.5 26H32" />
-        <path d="M18.5 20.5l1.8 1.8" />
-        <path d="M27.7 29.7l1.8 1.8" />
-        <path d="M29.5 20.5l-1.8 1.8" />
-        <path d="M20.3 29.7l-1.8 1.8" />
+      {/* Dune horizon */}
+      <path d="M2 38c5 0 7-3 12-3s7 3 12 3 7-3 12-3 6 2 8 2" opacity="0.6" />
+      {/* Worm body rising and curving */}
+      <path d="M6 34c2-10 8-14 14-12 4 1.5 5 6 3 9" />
+      {/* Front of body / head arcing forward */}
+      <path d="M23 31c-1.5 3.5 0 7 4 8.5" opacity="0.9" />
+      {/* Circular maw */}
+      <circle cx="30" cy="20" r="8.5" />
+      {/* Inner ring */}
+      <circle cx="30" cy="20" r="4" />
+      {/* Maw teeth — radial spokes */}
+      <g strokeWidth={1.4}>
+        <path d="M30 11.5v3" />
+        <path d="M30 25.5v3" />
+        <path d="M21.5 20h3" />
+        <path d="M35.5 20h3" />
+        <path d="M24 14l2 2" />
+        <path d="M34 24l2 2" />
+        <path d="M36 14l-2 2" />
+        <path d="M26 24l-2 2" />
       </g>
     </svg>
   );
