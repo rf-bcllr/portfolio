@@ -163,7 +163,7 @@ export const projectsData: ProjectData[] = [
   {
     id: "digital-signature",
     slug: "digital-signature",
-    title: "Digital Signature Feature",
+    title: "School Transport Feature",
     subtitle: "Streamlined digital enrollment for ClassApp",
     year: 2022,
     company: "ClassApp",
