@@ -71,28 +71,28 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
       aria-roledescription="carousel"
       aria-label="Featured projects"
     >
-      {/* Side chevrons — anchored to the page edges, vertically centered on the card */}
-      <button
-        type="button"
-        onClick={goPrev}
-        aria-label="Previous project"
-        className="absolute -left-4 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[2px] hover:translate-y-[calc(-50%+2px)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground))] lg:inline-flex lg:size-12 xl:-left-16"
-      >
-        <ChevronLeft className="size-5" />
-      </button>
-      <button
-        type="button"
-        onClick={goNext}
-        aria-label="Next project"
-        className="absolute -right-4 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[2px] hover:translate-y-[calc(-50%+2px)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground))] lg:inline-flex lg:size-12 xl:-right-16"
-      >
-        <ChevronRight className="size-5" />
-      </button>
-
       <div
         className="relative"
         style={{ minHeight: frontHeight ? frontHeight + 8 : undefined }}
       >
+        {/* Side chevrons — anchored to the card area so they stay vertically centered on the card regardless of stack height */}
+        <button
+          type="button"
+          onClick={goPrev}
+          aria-label="Previous project"
+          className="absolute -left-4 top-1/2 z-30 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[2px] hover:translate-y-[calc(-50%+2px)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground))] lg:inline-flex lg:size-12 xl:-left-16"
+        >
+          <ChevronLeft className="size-5" />
+        </button>
+        <button
+          type="button"
+          onClick={goNext}
+          aria-label="Next project"
+          className="absolute -right-4 top-1/2 z-30 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[2px] hover:translate-y-[calc(-50%+2px)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground))] lg:inline-flex lg:size-12 xl:-right-16"
+        >
+          <ChevronRight className="size-5" />
+        </button>
+
         <AnimatePresence initial={false} custom={direction}>
           {visible.map(({ project, projectIndex, slot }) => {
             const target = slotStyles[slot];
