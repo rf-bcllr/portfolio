@@ -8,6 +8,7 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { DrawingCanvas } from "@/components/DrawingCanvas";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
 import Resume from "./pages/Resume";
