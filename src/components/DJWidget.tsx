@@ -156,7 +156,6 @@ export function DJWidget() {
             style={isPlaying ? { animationDuration: "3s" } : undefined}
             aria-hidden="true"
           />
-          <span className="hidden sm:inline">DJ</span>
         </button>
         <button
           type="button"
