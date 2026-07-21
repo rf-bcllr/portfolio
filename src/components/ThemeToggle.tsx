@@ -10,7 +10,7 @@ export function ThemeToggle() {
   const current = ORDER.includes(theme as Theme) ? (theme as Theme) : "light";
   const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length];
 
-  const Icon = current === "light" ? Sun : current === "dune" ? Sunset : Moon;
+  const Icon = current === "light" ? Sun : current === "dune" ? DuneIcon : Moon;
   const label = `Switch to ${next} theme (current: ${current})`;
 
   return (
