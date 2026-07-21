@@ -97,7 +97,7 @@ export default function Index() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative order-1 w-full max-w-[320px] justify-self-center lg:order-2 lg:justify-self-end"
+            className="relative order-1 w-full max-w-[260px] justify-self-center sm:max-w-[320px] lg:order-2 lg:justify-self-end"
           >
             {/* Rotated dashed frame — hand-marked editorial layout register */}
             <div
@@ -106,8 +106,8 @@ export default function Index() {
             />
 
             {/* Solid card with hard offset shadow */}
-            <div className="relative border-2 border-foreground bg-card p-6 text-card-foreground shadow-[12px_12px_0_0_hsl(var(--foreground))]">
-              <div className="mx-auto mb-6 aspect-square w-full overflow-hidden border-2 border-foreground">
+            <div className="relative border-2 border-foreground bg-card p-4 text-card-foreground shadow-[12px_12px_0_0_hsl(var(--foreground))] sm:p-6">
+              <div className="mx-auto mb-4 aspect-square w-full overflow-hidden border-2 border-foreground sm:mb-6">
                 <img
                   src={heroPortrait}
                   alt="Rafael Bacellar"
@@ -118,27 +118,28 @@ export default function Index() {
                 />
               </div>
 
-              <h2 className="font-display text-[28px] font-bold leading-none tracking-[-0.03em] text-foreground">
+              <h2 className="font-display text-[22px] font-bold leading-none tracking-[-0.03em] text-foreground sm:text-[28px]">
                 Rafael Bacellar
               </h2>
               <p
-                className="mt-2 text-[10px] font-bold uppercase tracking-[0.22em] text-primary"
+                className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-primary sm:mt-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Senior Product Designer
               </p>
 
-              <div className="mt-5 grid grid-cols-2 gap-1.5">
+              <div className="mt-3 grid grid-cols-2 gap-1.5 sm:mt-5">
                 {profileSkills.map((s) => (
                   <span
                     key={s}
-                    className="flex items-center justify-center border border-foreground px-2 py-1.5 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-foreground"
+                    className="flex items-center justify-center border border-foreground px-2 py-1 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-foreground sm:py-1.5"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {s}
                   </span>
                 ))}
               </div>
+
 
               <div className="mt-6 flex justify-between border-t-2 border-foreground pt-4">
                 <a

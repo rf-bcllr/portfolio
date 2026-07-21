@@ -65,7 +65,30 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
   }, [activeIndex]);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div
+      className="relative flex flex-col gap-6"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Featured projects"
+    >
+      {/* Side chevrons — anchored to the page edges, vertically centered on the card */}
+      <button
+        type="button"
+        onClick={goPrev}
+        aria-label="Previous project"
+        className="absolute -left-4 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[2px] hover:translate-y-[calc(-50%+2px)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground))] lg:inline-flex lg:size-12 xl:-left-16"
+      >
+        <ChevronLeft className="size-5" />
+      </button>
+      <button
+        type="button"
+        onClick={goNext}
+        aria-label="Next project"
+        className="absolute -right-4 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center border-2 border-foreground bg-background text-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[2px] hover:translate-y-[calc(-50%+2px)] hover:shadow-[2px_2px_0_0_hsl(var(--foreground))] lg:inline-flex lg:size-12 xl:-right-16"
+      >
+        <ChevronRight className="size-5" />
+      </button>
+
       <div
         className="relative"
         style={{ minHeight: frontHeight ? frontHeight + 8 : undefined }}
@@ -124,7 +147,8 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
         </AnimatePresence>
       </div>
 
-      <div className="flex items-center justify-between gap-4">
+      {/* Progress + instruction */}
+      <div className="flex flex-col items-center gap-3 pt-2">
         <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground">
           <span className="tabular-nums text-foreground">
             {String(activeIndex + 1).padStart(2, "0")}
@@ -136,6 +160,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
                 key={p.slug}
                 type="button"
                 aria-label={`Go to project ${i + 1}`}
+                aria-current={i === activeIndex ? "true" : undefined}
                 onClick={() => {
                   setDirection(i >= activeIndex ? 1 : -1);
                   setActiveIndex(i);
@@ -149,25 +174,12 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
             ))}
           </div>
         </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={goPrev}
-            aria-label="Previous project"
-            className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-card transition-transform duration-200 hover:scale-105"
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-          <button
-            type="button"
-            onClick={goNext}
-            aria-label="Next project"
-            className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-card transition-transform duration-200 hover:scale-105"
-          >
-            <ChevronRight className="size-5" />
-          </button>
-        </div>
+        <p
+          className="text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Use the arrows or your keyboard&apos;s ← → keys to browse projects
+        </p>
       </div>
     </div>
   );
