@@ -131,34 +131,34 @@ All colors MUST be HSL.
     --sidebar-ring: 220 100% 60%;
   }
 
-  /* Dune — warm, easy-on-eyes beige base */
+  /* Dune — warm, easy-on-eyes beige base (lighter) */
   .dune {
-    --background: 39 38% 90%;
-    --foreground: 28 30% 14%;
+    --background: 42 55% 95%;
+    --foreground: 28 28% 16%;
 
-    --card: 40 45% 96%;
-    --card-foreground: 28 30% 14%;
+    --card: 44 60% 98%;
+    --card-foreground: 28 28% 16%;
 
-    --popover: 40 45% 96%;
-    --popover-foreground: 28 30% 14%;
+    --popover: 44 60% 98%;
+    --popover-foreground: 28 28% 16%;
 
     --primary: 220 90% 45%;
-    --primary-foreground: 40 45% 97%;
+    --primary-foreground: 44 60% 99%;
 
-    --secondary: 38 34% 87%;
-    --secondary-foreground: 28 30% 18%;
+    --secondary: 42 45% 93%;
+    --secondary-foreground: 28 28% 20%;
 
-    --muted: 36 28% 84%;
-    --muted-foreground: 28 14% 38%;
+    --muted: 40 38% 91%;
+    --muted-foreground: 28 12% 40%;
 
     --accent: 220 90% 45%;
-    --accent-foreground: 40 45% 97%;
+    --accent-foreground: 44 60% 99%;
 
     --destructive: 0 62% 48%;
-    --destructive-foreground: 40 45% 97%;
+    --destructive-foreground: 44 60% 99%;
 
-    --border: 34 24% 76%;
-    --input: 34 24% 76%;
+    --border: 36 26% 84%;
+    --input: 36 26% 84%;
     --ring: 220 90% 45%;
 
     --shadow-card: 0 1px 3px hsl(28 30% 14% / 0.10), 0 1px 2px -1px hsl(28 30% 14% / 0.06);
