@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Bus, ChevronLeft, ChevronRight, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
 import type { FeaturedProject } from "@/data/featuredProjects";
+
+const projectIconMap: Record<string, LucideIcon> = {
+  "meu-arco": Target,
+  "students-transportation": Bus,
+  "health-food-delivery": Salad,
+  "ai-writing-assistant": PenLine,
+  "ai-question-generator": Sparkles,
+};
 
 interface WorkProjectCardProps {
   project: FeaturedProject;
