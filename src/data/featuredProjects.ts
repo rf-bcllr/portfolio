@@ -119,7 +119,9 @@ const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "students-transportation": ["Mobile", "Service Design", "Research"],
   "health-food-delivery": ["Product Design", "Mobile", "Health"],
   "ai-writing-assistant": ["AI", "Dashboard", "UX Writing"],
-  "ai-question-generator": ["AI", "Education", "In progress"],
+  "ai-image-generation": ["AI", "Education", "In progress"],
+  "lesson-plan-tool": ["AI", "Education", "In progress"],
+  "credit-transfer-analysis": ["AI", "EdTech", "In progress"],
 };
 
 const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "category" | "summary" | "durationDisplay" | "roleDisplay" | "outcome" | "outcomeValue" | "outcomeLabel" | "outcomeHighlights" | "accent"> & { mediaPresentation: FeaturedProjectMediaPresentation }> = {
