@@ -370,6 +370,6 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
     mediaItems,
     media: animatedProjectMedia[slug],
     poster: mediaItems[0]?.poster ?? mediaItems[0]?.src ?? animatedProjectMedia[slug]?.poster ?? project.heroImage,
-    status: slug === "ai-question-generator" ? "in-progress" : undefined,
+    status: undefined,
   };
 });
