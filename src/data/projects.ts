@@ -16,6 +16,9 @@ import aiCommsDashboardMp4 from "@/assets/ai-comms-dashboard.mp4";
 import aiCommsDashboardPoster from "@/assets/ai-comms-dashboard-poster.jpg";
 import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
 import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
+import aiImageGenerationGif from "@/assets/ai-image-generation.gif";
+import lessonPlanToolGif from "@/assets/lesson-plan-tool.gif";
+import creditTransferAnalysisGif from "@/assets/credit-transfer-analysis.gif";
 
 export interface ProjectData {
   id: string;
