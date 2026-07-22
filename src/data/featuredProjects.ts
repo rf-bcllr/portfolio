@@ -8,7 +8,9 @@ export const featuredProjectSlugs = [
   "students-transportation",
   "health-food-delivery",
   "ai-writing-assistant",
-  "ai-question-generator",
+  "ai-image-generation",
+  "lesson-plan-tool",
+  "credit-transfer-analysis",
 ] as const;
 
 export type FeaturedProjectSlug = (typeof featuredProjectSlugs)[number];
@@ -117,7 +119,9 @@ const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "students-transportation": ["Mobile", "Service Design", "Research"],
   "health-food-delivery": ["Product Design", "Mobile", "Health"],
   "ai-writing-assistant": ["AI", "Dashboard", "UX Writing"],
-  "ai-question-generator": ["AI", "Education", "In progress"],
+  "ai-image-generation": ["AI", "Education", "In progress"],
+  "lesson-plan-tool": ["AI", "Education", "In progress"],
+  "credit-transfer-analysis": ["AI", "EdTech", "In progress"],
 };
 
 const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "category" | "summary" | "durationDisplay" | "roleDisplay" | "outcome" | "outcomeValue" | "outcomeLabel" | "outcomeHighlights" | "accent"> & { mediaPresentation: FeaturedProjectMediaPresentation }> = {
@@ -173,18 +177,44 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     accent: "claudeOrange",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1200/732]", maxWidth: "max-w-[560px]", rotate: "-rotate-1" }),
   },
-  "ai-question-generator": {
-    emoji: "✨",
+  "ai-image-generation": {
+    emoji: "🖼️",
     category: "AI Tool · Education",
-    summary: "An AI workflow exploration for generating pedagogical questions directly inside the FTD reader, keeping authoring close to the learning context.",
+    summary: "An AI image generation flow for Brazilian public-school teachers, embedded in FTD com Você. The MVP focuses on grades and subjects that most rely on visual questions—like math word problems and chemistry formulas.",
     durationDisplay: "2026 · in progress",
-    roleDisplay: "Product designer · AI workflow exploration",
+    roleDisplay: "Senior product designer · AI workflow",
     outcome: "TBD",
     outcomeValue: "TBD",
-    outcomeLabel: "Concept valuation in progress",
-    outcomeHighlights: ["Reader-context generation", "Education AI workflow", "FTD learning environment"],
+    outcomeLabel: "Impact metrics coming soon",
+    outcomeHighlights: ["Teacher-facing AI", "Curriculum-scoped MVP", "Embedded in FTD com Você"],
+    accent: "blue",
+    mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1428/926]", maxWidth: "max-w-[560px]", rotate: "rotate-1" }),
+  },
+  "lesson-plan-tool": {
+    emoji: "📚",
+    category: "AI Tool · Education",
+    summary: "A guided flow for teachers to generate lesson plans by grade, topic and duration—adaptable to specific student profiles, including inclusive-education needs. It replaced a third-party tool the platform used to license.",
+    durationDisplay: "2026 · in progress",
+    roleDisplay: "Senior product designer · AI workflow",
+    outcome: "TBD",
+    outcomeValue: "TBD",
+    outcomeLabel: "Impact metrics coming soon",
+    outcomeHighlights: ["Student-profile aware", "Inclusive-education ready", "Replaced 3rd-party tool"],
     accent: "guavaRed",
-    mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1200/646]", maxWidth: "max-w-[540px]", rotate: "rotate-1" }),
+    mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1352/660]", maxWidth: "max-w-[580px]", rotate: "-rotate-1" }),
+  },
+  "credit-transfer-analysis": {
+    emoji: "🎓",
+    category: "AI Tool · Higher Ed",
+    summary: "An AI-powered credit-transfer analysis embedded across U.S. university sites for Edvisorly. Students upload transcripts and see how their credits map to the host university—guided end-to-end, with email capture at the finish line.",
+    durationDisplay: "2026 · in progress",
+    roleDisplay: "Senior product designer · AI workflow",
+    outcome: "TBD",
+    outcomeValue: "TBD",
+    outcomeLabel: "Impact metrics coming soon",
+    outcomeHighlights: ["Transcript upload", "No dead-ends", "Email capture at exit"],
+    accent: "blue",
+    mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[800/392]", maxWidth: "max-w-[600px]", rotate: "rotate-1" }),
   },
 };
 
@@ -193,7 +223,9 @@ const orientationBySlug: Record<FeaturedProjectSlug, FeaturedProjectMediaOrienta
   "students-transportation": ["vertical"],
   "health-food-delivery": ["horizontal", "horizontal"],
   "ai-writing-assistant": ["horizontal", "horizontal"],
-  "ai-question-generator": ["horizontal"],
+  "ai-image-generation": ["horizontal"],
+  "lesson-plan-tool": ["horizontal"],
+  "credit-transfer-analysis": ["horizontal"],
 };
 
 const presentationOverrides: Partial<Record<FeaturedProjectSlug, Array<Partial<Pick<RawFeaturedMediaItem, "aspect" | "maxWidth" | "rotate">>>>> = {
@@ -210,7 +242,9 @@ const presentationOverrides: Partial<Record<FeaturedProjectSlug, Array<Partial<P
     { aspect: "aspect-[1200/732]", maxWidth: "max-w-[560px]", rotate: "-rotate-1" },
     { aspect: "aspect-[1200/750]", maxWidth: "max-w-[560px]", rotate: "rotate-1" },
   ],
-  "ai-question-generator": [{ aspect: "aspect-[1200/646]", maxWidth: "max-w-[540px]", rotate: "rotate-1" }],
+  "ai-image-generation": [{ aspect: "aspect-[1428/926]", maxWidth: "max-w-[560px]", rotate: "rotate-1" }],
+  "lesson-plan-tool": [{ aspect: "aspect-[1352/660]", maxWidth: "max-w-[580px]", rotate: "-rotate-1" }],
+  "credit-transfer-analysis": [{ aspect: "aspect-[800/392]", maxWidth: "max-w-[600px]", rotate: "rotate-1" }],
 };
 
 const explicitMediaBySlug: Partial<Record<FeaturedProjectSlug, RawFeaturedMediaItem[]>> = {
@@ -225,14 +259,6 @@ const explicitMediaBySlug: Partial<Record<FeaturedProjectSlug, RawFeaturedMediaI
       title: "Communications dashboard usage view",
       sources: animatedProjectMedia["ai-comms-dashboard"].sources,
       poster: animatedProjectMedia["ai-comms-dashboard"].poster,
-      orientation: "horizontal",
-    },
-  ],
-  "ai-question-generator": [
-    {
-      title: "AI Question Generator inside the FTD reader",
-      sources: animatedProjectMedia["ai-question-generator"].sources,
-      poster: animatedProjectMedia["ai-question-generator"].poster,
       orientation: "horizontal",
     },
   ],
@@ -344,6 +370,6 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
     mediaItems,
     media: animatedProjectMedia[slug],
     poster: mediaItems[0]?.poster ?? mediaItems[0]?.src ?? animatedProjectMedia[slug]?.poster ?? project.heroImage,
-    status: slug === "ai-question-generator" ? "in-progress" : undefined,
+    status: undefined,
   };
 });
