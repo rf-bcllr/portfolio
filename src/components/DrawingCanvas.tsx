@@ -123,13 +123,7 @@ export const DrawingCanvas = () => {
 
     const isInteractive = (target: EventTarget | null) => isInteractiveElement(target);
 
-    const drawDot = (x: number, y: number) => {
-      ctx.fillStyle = color;
-      ctx.globalAlpha = 0.92;
-      ctx.beginPath();
-      ctx.arc(x, y, 2.2, 0, Math.PI * 2);
-      ctx.fill();
-    };
+    // (drawDot removed — a plain click no longer leaves a dot on the background.)
 
     const renderSmoothStroke = (pts: { x: number; y: number }[]) => {
       if (pts.length < 2) return;
