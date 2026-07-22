@@ -201,12 +201,9 @@ export const DrawingCanvas = () => {
       if (!hasStrokes) setHasStrokes(true);
     };
 
-    const onUp = (e: PointerEvent) => {
+    const onUp = () => {
       if (!drawingRef.current) return;
-      if (!movedRef.current) {
-        drawDot(e.clientX, e.clientY);
-        if (!hasStrokes) setHasStrokes(true);
-      }
+      // A plain click (no movement) should NOT drop a dot — only real strokes draw.
       drawingRef.current = false;
       movedRef.current = false;
       pointsRef.current = [];
