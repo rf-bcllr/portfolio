@@ -8,7 +8,9 @@ export const featuredProjectSlugs = [
   "students-transportation",
   "health-food-delivery",
   "ai-writing-assistant",
-  "ai-question-generator",
+  "ai-image-generation",
+  "lesson-plan-tool",
+  "credit-transfer-analysis",
 ] as const;
 
 export type FeaturedProjectSlug = (typeof featuredProjectSlugs)[number];
