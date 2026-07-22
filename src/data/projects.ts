@@ -313,5 +313,71 @@ export const projectsData: ProjectData[] = [
       { src: aiQuestionGeneratorMp4, title: "AI Question Generator inside the FTD reader" },
       { src: aiQuestionGeneratorPoster, title: "AI Question Generator – preview" }
     ]
+  },
+  {
+    id: "ai-image-generation",
+    slug: "ai-image-generation",
+    title: "Images for AI-Generated Questions",
+    subtitle: "Page under construction",
+    year: 2026,
+    company: "FTD Educação",
+    heroImage: aiImageGenerationGif,
+    coverType: "horizontal",
+    overview: {
+      role: "Senior Product Designer",
+      team: "TBD",
+      duration: "TBD",
+      tools: ["TBD"],
+      impact: ["Page under construction"]
+    },
+    challenge: "🚧 This case study is currently under construction. Check back soon for the full story!",
+    process: "🚧 Under construction...",
+    solution: "🚧 Under construction...",
+    impact: "TBD",
+    gallery: [{ src: aiImageGenerationGif, title: "Images for AI-Generated Questions" }]
+  },
+  {
+    id: "lesson-plan-tool",
+    slug: "lesson-plan-tool",
+    title: "Lesson Plan Generation Tool",
+    subtitle: "Page under construction",
+    year: 2026,
+    company: "FTD Educação",
+    heroImage: lessonPlanToolGif,
+    coverType: "horizontal",
+    overview: {
+      role: "Senior Product Designer",
+      team: "TBD",
+      duration: "TBD",
+      tools: ["TBD"],
+      impact: ["Page under construction"]
+    },
+    challenge: "🚧 This case study is currently under construction. Check back soon for the full story!",
+    process: "🚧 Under construction...",
+    solution: "🚧 Under construction...",
+    impact: "TBD",
+    gallery: [{ src: lessonPlanToolGif, title: "Lesson Plan Generation Tool" }]
+  },
+  {
+    id: "credit-transfer-analysis",
+    slug: "credit-transfer-analysis",
+    title: "Credit Transfer Analysis Tool",
+    subtitle: "Page under construction",
+    year: 2026,
+    company: "Edvisorly",
+    heroImage: creditTransferAnalysisGif,
+    coverType: "horizontal",
+    overview: {
+      role: "Senior Product Designer",
+      team: "TBD",
+      duration: "TBD",
+      tools: ["TBD"],
+      impact: ["Page under construction"]
+    },
+    challenge: "🚧 This case study is currently under construction. Check back soon for the full story!",
+    process: "🚧 Under construction...",
+    solution: "🚧 Under construction...",
+    impact: "TBD",
+    gallery: [{ src: creditTransferAnalysisGif, title: "Credit Transfer Analysis Tool" }]
   }
 ];
