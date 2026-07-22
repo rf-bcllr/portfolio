@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Bus, ChevronLeft, ChevronRight, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
+import { Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
 import type { FeaturedProject } from "@/data/featuredProjects";
@@ -9,6 +9,9 @@ const projectIconMap: Record<string, LucideIcon> = {
   "students-transportation": Bus,
   "health-food-delivery": Salad,
   "ai-writing-assistant": PenLine,
+  "ai-image-generation": ImageIcon,
+  "lesson-plan-tool": NotebookPen,
+  "credit-transfer-analysis": GraduationCap,
   "ai-question-generator": Sparkles,
 };
 
