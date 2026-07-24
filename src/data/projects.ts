@@ -17,7 +17,9 @@ import aiCommsDashboardPoster from "@/assets/ai-comms-dashboard-poster.jpg";
 import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
 import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
 import aiImageGenerationGif from "@/assets/ai-image-generation.gif";
-import lessonPlanToolGif from "@/assets/lesson-plan-tool.gif";
+import lessonPlanTool1Asset from "@/assets/lesson-plan-tool-1.gif.asset.json";
+import lessonPlanTool2Gif from "@/assets/lesson-plan-tool-2.gif";
+const lessonPlanTool1Gif = lessonPlanTool1Asset.url;
 import creditTransferAnalysis1Gif from "@/assets/credit-transfer-analysis-1.gif";
 import creditTransferAnalysis2Gif from "@/assets/credit-transfer-analysis-2.gif";
 
@@ -344,7 +346,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Page under construction",
     year: 2026,
     company: "FTD Educação",
-    heroImage: lessonPlanToolGif,
+    heroImage: lessonPlanTool1Gif,
     coverType: "horizontal",
     overview: {
       role: "Senior Product Designer",
@@ -357,7 +359,10 @@ export const projectsData: ProjectData[] = [
     process: "🚧 Under construction...",
     solution: "🚧 Under construction...",
     impact: "TBD",
-    gallery: [{ src: lessonPlanToolGif, title: "Lesson Plan Generation Tool" }]
+    gallery: [
+      { src: lessonPlanTool1Gif, title: "Lesson Plan Generation Tool — view 1" },
+      { src: lessonPlanTool2Gif, title: "Lesson Plan Generation Tool — view 2" }
+    ]
   },
   {
     id: "credit-transfer-analysis",
