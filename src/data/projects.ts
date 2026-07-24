@@ -366,7 +366,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Page under construction",
     year: 2026,
     company: "Edvisorly",
-    heroImage: creditTransferAnalysisGif,
+    heroImage: creditTransferAnalysis1Gif,
     coverType: "horizontal",
     overview: {
       role: "Senior Product Designer",
@@ -379,6 +379,9 @@ export const projectsData: ProjectData[] = [
     process: "🚧 Under construction...",
     solution: "🚧 Under construction...",
     impact: "TBD",
-    gallery: [{ src: creditTransferAnalysisGif, title: "Credit Transfer Analysis Tool" }]
+    gallery: [
+      { src: creditTransferAnalysis1Gif, title: "Credit Transfer Analysis Tool — view 1" },
+      { src: creditTransferAnalysis2Gif, title: "Credit Transfer Analysis Tool — view 2" }
+    ]
   }
 ];
