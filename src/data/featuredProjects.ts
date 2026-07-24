@@ -199,7 +199,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     outcome: "TBD",
     outcomeValue: "TBD",
     outcomeLabel: "Impact metrics coming soon",
-    outcomeHighlights: ["Student-profile aware", "Inclusive-education ready", "Replaced 3rd-party tool"],
+    outcomeHighlights: ["PROMPT ENGINEERING", "Inclusive-education ready", "Replaced 3rd-party tool"],
     accent: "guavaRed",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1352/660]", maxWidth: "max-w-[580px]", rotate: "-rotate-1" }),
   },
