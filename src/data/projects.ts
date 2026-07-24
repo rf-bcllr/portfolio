@@ -346,7 +346,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Page under construction",
     year: 2026,
     company: "FTD Educação",
-    heroImage: lessonPlanToolGif,
+    heroImage: lessonPlanTool1Gif,
     coverType: "horizontal",
     overview: {
       role: "Senior Product Designer",
@@ -359,7 +359,10 @@ export const projectsData: ProjectData[] = [
     process: "🚧 Under construction...",
     solution: "🚧 Under construction...",
     impact: "TBD",
-    gallery: [{ src: lessonPlanToolGif, title: "Lesson Plan Generation Tool" }]
+    gallery: [
+      { src: lessonPlanTool1Gif, title: "Lesson Plan Generation Tool — view 1" },
+      { src: lessonPlanTool2Gif, title: "Lesson Plan Generation Tool — view 2" }
+    ]
   },
   {
     id: "credit-transfer-analysis",
