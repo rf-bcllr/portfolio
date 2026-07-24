@@ -244,7 +244,10 @@ const presentationOverrides: Partial<Record<FeaturedProjectSlug, Array<Partial<P
   ],
   "ai-image-generation": [{ aspect: "aspect-[1428/926]", maxWidth: "max-w-[560px]", rotate: "rotate-1" }],
   "lesson-plan-tool": [{ aspect: "aspect-[1352/660]", maxWidth: "max-w-[580px]", rotate: "-rotate-1" }],
-  "credit-transfer-analysis": [{ aspect: "aspect-[800/392]", maxWidth: "max-w-[600px]", rotate: "rotate-1" }],
+  "credit-transfer-analysis": [
+    { aspect: "aspect-[932/441]", maxWidth: "max-w-[600px]", rotate: "rotate-1" },
+    { aspect: "aspect-[929/446]", maxWidth: "max-w-[600px]", rotate: "-rotate-1" },
+  ],
 };
 
 const explicitMediaBySlug: Partial<Record<FeaturedProjectSlug, RawFeaturedMediaItem[]>> = {
