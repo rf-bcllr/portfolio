@@ -195,15 +195,25 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
 
           <div className="flex flex-wrap gap-1.5">
-            {project.outcomeHighlights.map((item) => (
-              <span
-                key={item}
-                className="inline-flex items-center border border-foreground bg-transparent px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-foreground"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {item}
-              </span>
-            ))}
+            {project.outcomeHighlights.map((item) => {
+              const isModular = item === "MODULAR ARCHITECTURE FOR MULTIPLE UNIVERSITIES";
+              return (
+                <span
+                  key={item}
+                  className="inline-flex items-center border border-foreground bg-transparent px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-foreground"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {isModular ? (
+                    <>
+                      <span className="sm:hidden">Modular Architecture</span>
+                      <span className="hidden sm:inline">{item}</span>
+                    </>
+                  ) : (
+                    item
+                  )}
+                </span>
+              );
+            })}
           </div>
         </div>
 
