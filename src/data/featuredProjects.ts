@@ -212,7 +212,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     outcome: "TBD",
     outcomeValue: "TBD",
     outcomeLabel: "Impact metrics coming soon",
-    outcomeHighlights: ["Transcript upload", "No dead-ends", "Email capture at exit"],
+    outcomeHighlights: ["INBOUND CONVERSION", "No dead-ends", "MODULAR ARCHITECTURE FOR MULTIPLE UNIVERSITIES"],
     accent: "blue",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[800/392]", maxWidth: "max-w-[600px]", rotate: "rotate-1" }),
   },
