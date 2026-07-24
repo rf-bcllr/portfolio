@@ -224,7 +224,7 @@ const orientationBySlug: Record<FeaturedProjectSlug, FeaturedProjectMediaOrienta
   "health-food-delivery": ["horizontal", "horizontal"],
   "ai-writing-assistant": ["horizontal", "horizontal"],
   "ai-image-generation": ["horizontal"],
-  "lesson-plan-tool": ["horizontal"],
+  "lesson-plan-tool": ["horizontal", "horizontal"],
   "credit-transfer-analysis": ["horizontal", "horizontal"],
 };
 
