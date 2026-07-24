@@ -186,7 +186,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     outcome: "TBD",
     outcomeValue: "TBD",
     outcomeLabel: "Impact metrics coming soon",
-    outcomeHighlights: ["Teacher-facing AI", "Curriculum-scoped MVP", "Embedded in FTD com Você"],
+    outcomeHighlights: ["PROMPT ENGINEERING", "TOKEN MANAGEMENT", "AGENT DESIGN"],
     accent: "blue",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1428/926]", maxWidth: "max-w-[560px]", rotate: "rotate-1" }),
   },
