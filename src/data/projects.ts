@@ -18,7 +18,8 @@ import aiQuestionGeneratorMp4 from "@/assets/ai-question-generator.mp4";
 import aiQuestionGeneratorPoster from "@/assets/ai-question-generator-poster.jpg";
 import aiImageGenerationGif from "@/assets/ai-image-generation.gif";
 import lessonPlanToolGif from "@/assets/lesson-plan-tool.gif";
-import creditTransferAnalysisGif from "@/assets/credit-transfer-analysis.gif";
+import creditTransferAnalysis1Gif from "@/assets/credit-transfer-analysis-1.gif";
+import creditTransferAnalysis2Gif from "@/assets/credit-transfer-analysis-2.gif";
 
 export interface ProjectData {
   id: string;
@@ -365,7 +366,7 @@ export const projectsData: ProjectData[] = [
     subtitle: "Page under construction",
     year: 2026,
     company: "Edvisorly",
-    heroImage: creditTransferAnalysisGif,
+    heroImage: creditTransferAnalysis1Gif,
     coverType: "horizontal",
     overview: {
       role: "Senior Product Designer",
@@ -378,6 +379,9 @@ export const projectsData: ProjectData[] = [
     process: "🚧 Under construction...",
     solution: "🚧 Under construction...",
     impact: "TBD",
-    gallery: [{ src: creditTransferAnalysisGif, title: "Credit Transfer Analysis Tool" }]
+    gallery: [
+      { src: creditTransferAnalysis1Gif, title: "Credit Transfer Analysis Tool — view 1" },
+      { src: creditTransferAnalysis2Gif, title: "Credit Transfer Analysis Tool — view 2" }
+    ]
   }
 ];
