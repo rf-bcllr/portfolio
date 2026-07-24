@@ -225,7 +225,7 @@ const orientationBySlug: Record<FeaturedProjectSlug, FeaturedProjectMediaOrienta
   "ai-writing-assistant": ["horizontal", "horizontal"],
   "ai-image-generation": ["horizontal"],
   "lesson-plan-tool": ["horizontal"],
-  "credit-transfer-analysis": ["horizontal"],
+  "credit-transfer-analysis": ["horizontal", "horizontal"],
 };
 
 const presentationOverrides: Partial<Record<FeaturedProjectSlug, Array<Partial<Pick<RawFeaturedMediaItem, "aspect" | "maxWidth" | "rotate">>>>> = {
