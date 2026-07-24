@@ -185,7 +185,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     roleDisplay: "Senior product designer · AI workflow",
     outcome: "+ $8,5k",
     outcomeValue: "+ $8,5k",
-    outcomeLabel: "Concept valuation in progress",
+    outcomeLabel: "saved per month, by replacing 3rd-party tool",
     outcomeHighlights: ["PROMPT ENGINEERING", "TOKEN MANAGEMENT", "AGENT DESIGN"],
     accent: "blue",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1428/926]", maxWidth: "max-w-[560px]", rotate: "rotate-1" }),
