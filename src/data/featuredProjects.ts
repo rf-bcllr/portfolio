@@ -172,7 +172,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     roleDisplay: "Product designer",
     outcome: "+ $8,5k",
     outcomeValue: "+ $8,5k",
-    outcomeLabel: "Concept valuation in progress",
+    outcomeLabel: "saved per month, by replacing 3rd-party tool",
     outcomeHighlights: ["Tone and length controls", "Moderation-first workflow", "Impact tracking built in"],
     accent: "claudeOrange",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[1200/732]", maxWidth: "max-w-[560px]", rotate: "-rotate-1" }),
