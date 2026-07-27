@@ -52,7 +52,7 @@ export default function Certifications() {
               className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              02 · Loops
+              Loops
             </span>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
@@ -69,7 +69,7 @@ export default function Certifications() {
               className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              03 · Recognition
+              Recognition
             </span>
           </div>
           <div className="relative">
@@ -114,7 +114,7 @@ export default function Certifications() {
               className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              04 · Voices
+              Voices
             </span>
           </div>
           <div className="grid gap-6 md:grid-cols-2">

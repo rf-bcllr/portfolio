@@ -90,7 +90,7 @@ export default function Resume() {
               className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              02 · Trajectory
+              Trajectory
             </span>
           </div>
           <div className="space-y-6">
@@ -121,7 +121,7 @@ export default function Resume() {
               className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              03 · Craft
+              Craft
             </span>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
@@ -138,7 +138,7 @@ export default function Resume() {
               className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              04 · Stack
+              Stack
             </span>
           </div>
           <ToolsMarquee tools={tools} speed="slow" />

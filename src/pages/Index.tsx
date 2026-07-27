@@ -180,7 +180,7 @@ export default function Index() {
               className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              02 · Signals
+              Signals
             </span>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
