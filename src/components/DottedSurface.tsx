@@ -13,9 +13,14 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
     const container = containerRef.current;
     if (!container) return;
 
-    const SEPARATION = 60;
-    const AMOUNTX = 60;
-    const AMOUNTY = 24;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const reduceMotionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reduceMotion = reduceMotionMq.matches;
+
+    // Adaptive density — lighter on mobile
+    const SEPARATION = isMobile ? 70 : 60;
+    const AMOUNTX = isMobile ? 32 : 60;
+    const AMOUNTY = isMobile ? 14 : 22;
 
     const getSize = () => ({
       w: container.clientWidth || window.innerWidth,
@@ -29,20 +34,23 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
     camera.position.set(0, 260, 900);
     camera.lookAt(0, 0, 0);
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    const renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: false,
+      powerPreference: "low-power",
+    });
+    // Cap DPR to keep GPU work bounded on retina/mobile
+    const dprCap = isMobile ? 1 : 1.5;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, dprCap));
     renderer.setSize(w, h);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // Resolve foreground color from CSS variable for theme-aware dots
     const resolveColor = () => {
       const raw = getComputedStyle(document.documentElement)
         .getPropertyValue("--foreground")
         .trim();
-      // raw is like "222 47% 11%"
-      const c = new THREE.Color(`hsl(${raw.replace(/\s+/g, ", ")})`);
-      return c;
+      return new THREE.Color(`hsl(${raw.replace(/\s+/g, ", ")})`);
     };
     const dotColor = resolveColor();
 
@@ -74,9 +82,12 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 
     let count = 0;
     let animationId = 0;
+    let visible = true;
+    let lastFrame = 0;
+    // Cap animation to ~30fps on mobile, ~45fps on desktop to reduce CPU/GPU
+    const targetInterval = isMobile ? 1000 / 30 : 1000 / 45;
 
-    const animate = () => {
-      animationId = requestAnimationFrame(animate);
+    const updatePositions = () => {
       const posAttr = geometry.attributes.position;
       const arr = posAttr.array as Float32Array;
       let i = 0;
@@ -90,8 +101,21 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
         }
       }
       posAttr.needsUpdate = true;
+    };
+
+    const renderStatic = () => {
+      updatePositions();
       renderer.render(scene, camera);
-      count += 0.05;
+    };
+
+    const animate = (t: number) => {
+      animationId = requestAnimationFrame(animate);
+      if (!visible) return;
+      if (t - lastFrame < targetInterval) return;
+      lastFrame = t;
+      updatePositions();
+      renderer.render(scene, camera);
+      count += reduceMotion ? 0.01 : 0.05;
     };
 
     const handleResize = () => {
@@ -104,12 +128,41 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
     const ro = new ResizeObserver(handleResize);
     ro.observe(container);
 
-    animate();
+    // Pause offscreen to save cycles
+    const io = new IntersectionObserver(
+      (entries) => {
+        visible = entries[0]?.isIntersecting ?? true;
+      },
+      { threshold: 0 }
+    );
+    io.observe(container);
+
+    // Pause when tab is hidden
+    const onVisibility = () => {
+      if (document.hidden) visible = false;
+      else visible = true;
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    // Respect reduced-motion — render a single static frame instead of animating
+    const onReduceChange = () => {
+      reduceMotion = reduceMotionMq.matches;
+    };
+    reduceMotionMq.addEventListener?.("change", onReduceChange);
+
+    if (reduceMotion) {
+      renderStatic();
+    } else {
+      animationId = requestAnimationFrame(animate);
+    }
 
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", handleResize);
+      document.removeEventListener("visibilitychange", onVisibility);
+      reduceMotionMq.removeEventListener?.("change", onReduceChange);
       ro.disconnect();
+      io.disconnect();
       geometry.dispose();
       material.dispose();
       renderer.dispose();
