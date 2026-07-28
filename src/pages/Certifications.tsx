@@ -32,7 +32,7 @@ export default function Certifications() {
               className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Certifications · 01
+              Certifications
             </p>
             <h1 className="font-display text-6xl font-bold leading-[0.82] tracking-[-0.05em] md:text-[104px]">
               Proofs, praise<br />&amp; learning<br />loops<span className="text-primary">.</span>
