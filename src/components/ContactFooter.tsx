@@ -1,3 +1,5 @@
+import { DottedSurface } from "@/components/DottedSurface";
+
 interface ContactFooterProps {
   contactTitle?: string;
   contactDescription?: string;
@@ -6,8 +8,11 @@ interface ContactFooterProps {
 
 export const ContactFooter = ({}: ContactFooterProps) => {
   return (
-    <footer className="border-t py-10 text-center text-sm text-muted-foreground">
-      <p>© {new Date().getFullYear()} Rafael Bacellar · All rights reserved</p>
+    <footer className="relative isolate overflow-hidden border-t">
+      <DottedSurface className="-z-10 opacity-70" />
+      <div className="relative py-14 text-center text-sm text-muted-foreground">
+        <p>© {new Date().getFullYear()} Rafael Bacellar · All rights reserved</p>
+      </div>
     </footer>
   );
 };
