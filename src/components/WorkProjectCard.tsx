@@ -263,7 +263,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
             </div>
           )}
           {project.status && (
-            <Badge variant="secondary" className="absolute left-5 top-5 border border-border bg-card/90 backdrop-blur">
+            <Badge variant="secondary" className="absolute left-5 top-5 border-2 border-foreground bg-foreground text-background hover:bg-foreground">
               In progress
             </Badge>
           )}

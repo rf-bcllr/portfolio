@@ -64,7 +64,7 @@ export default function Resume() {
               className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Resume · 01
+              Resume
             </p>
             <h1 className="font-display text-6xl font-bold leading-[0.82] tracking-[-0.05em] md:text-[112px]">
               Rafael<br />Bacellar<span className="text-primary">.</span>
