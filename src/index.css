@@ -131,52 +131,6 @@ All colors MUST be HSL.
     --sidebar-ring: 220 100% 60%;
   }
 
-  /* Dune — very light warm off-white (#F7F5F2), black type */
-  .dune {
-    --background: 30 20% 96%;
-    --foreground: 0 0% 6%;
-
-    --card: 30 25% 99%;
-    --card-foreground: 0 0% 6%;
-
-    --popover: 30 25% 99%;
-    --popover-foreground: 0 0% 6%;
-
-    --primary: 220 90% 45%;
-    --primary-foreground: 30 25% 99%;
-
-    --secondary: 30 18% 94%;
-    --secondary-foreground: 0 0% 6%;
-
-    --muted: 30 14% 92%;
-    --muted-foreground: 0 0% 32%;
-
-    --accent: 220 90% 45%;
-    --accent-foreground: 30 25% 99%;
-
-    --destructive: 0 62% 48%;
-    --destructive-foreground: 30 25% 99%;
-
-    --border: 30 12% 84%;
-    --input: 30 12% 84%;
-    --ring: 220 90% 45%;
-
-    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.08), 0 1px 2px -1px hsl(0 0% 0% / 0.05);
-    --shadow-card-hover: 0 14px 34px -24px hsl(0 0% 0% / 0.22), 0 1px 0 hsl(0 0% 0% / 0.08);
-
-    --sidebar-background: 30 20% 96%;
-    --sidebar-foreground: 0 0% 6%;
-    --sidebar-primary: 220 90% 45%;
-    --sidebar-primary-foreground: 30 25% 99%;
-    --sidebar-accent: 30 16% 92%;
-    --sidebar-accent-foreground: 0 0% 6%;
-    --sidebar-border: 30 12% 82%;
-    --sidebar-ring: 220 90% 45%;
-  }
-
-  .dune .figjam-grid {
-    background-image: radial-gradient(hsl(0 0% 0% / 0.22) 1px, transparent 1px);
-  }
 
 }
 
