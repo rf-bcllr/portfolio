@@ -24,7 +24,9 @@ export function ThemeToggle() {
             aria-label={`Switch to ${option.label} theme`}
             aria-pressed={isActive}
             data-cursor-action="theme-toggle"
-            className="relative inline-flex size-8 items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className={`relative inline-flex size-8 items-center justify-center rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+              isActive ? "text-background" : "text-muted-foreground hover:text-foreground"
+            }`}
           >
             {isActive && (
               <motion.span
@@ -39,16 +41,16 @@ export function ThemeToggle() {
               animate={
                 isActive
                   ? { scale: 1, opacity: 1, rotate: 0, y: 0 }
-                  : { scale: 0.85, opacity: 0.5, rotate: option.value === "light" ? -15 : 15, y: 0 }
+                  : { scale: 0.85, opacity: 0.6, rotate: option.value === "light" ? -15 : 15, y: 0 }
               }
               transition={{ type: "spring", stiffness: 350, damping: 25 }}
             >
               <motion.div
                 initial={false}
-                animate={isActive ? { rotate: option.value === "light" ? 360 : -360 } : { rotate: 0 }}
-                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                animate={isActive ? { rotate: option.value === "light" ? 180 : -180 } : { rotate: 0 }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
-                <Icon className="size-4 text-current" />
+                <Icon className="size-4" />
               </motion.div>
             </motion.span>
           </button>
