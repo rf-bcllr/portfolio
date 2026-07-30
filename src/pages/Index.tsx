@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Briefcase, MapPin, Sparkles, Zap } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -85,7 +85,8 @@ export default function Index() {
                 >
                   Location
                 </p>
-                <p className="mt-1 font-display text-lg font-bold text-foreground">
+                <p className="mt-1 flex items-center gap-1.5 font-display text-lg font-bold text-foreground">
+                  <MapPin className="size-4 text-primary" />
                   Based in Brazil <span className="text-muted-foreground">· Open to remote worldwide</span>
                 </p>
               </div>

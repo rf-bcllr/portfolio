@@ -40,14 +40,18 @@ export function ThemeToggle() {
               initial={false}
               animate={
                 isActive
-                  ? { scale: 1, opacity: 1, rotate: 0, y: 0 }
-                  : { scale: 0.85, opacity: 0.6, rotate: option.value === "light" ? -15 : 15, y: 0 }
+                  ? { scale: 1, opacity: 1, y: 0 }
+                  : { scale: 0.85, opacity: 0.6, y: 0 }
               }
               transition={{ type: "spring", stiffness: 350, damping: 25 }}
             >
               <motion.div
                 initial={false}
-                animate={isActive ? { rotate: option.value === "light" ? 180 : -180 } : { rotate: 0 }}
+                animate={
+                  isActive
+                    ? { rotate: option.value === "light" ? 180 : 0, scale: 1 }
+                    : { rotate: 0, scale: 1 }
+                }
                 transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               >
                 <Icon className="size-4" />
