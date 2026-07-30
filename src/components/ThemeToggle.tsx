@@ -1,29 +1,59 @@
+import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
-import { DuneIcon } from "@/components/DuneIcon";
-import { useTheme, type Theme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/ThemeProvider";
 
-const ORDER: Theme[] = ["light", "dune", "dark"];
+const THEME_OPTIONS = [
+  { value: "light", icon: Sun, label: "Light" },
+  { value: "dark", icon: Moon, label: "Dark" },
+] as const;
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
-  const current = ORDER.includes(theme as Theme) ? (theme as Theme) : "light";
-  const next = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length];
-
-  const Icon = current === "light" ? Sun : current === "dune" ? DuneIcon : Moon;
-  const label = `Switch to ${next} theme (current: ${current})`;
+  const resolved =
+    theme === "system"
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
+      : theme;
 
   return (
-    <button
-      type="button"
-      onClick={() => setTheme(next)}
-      aria-label={label}
-      title={label}
-      data-cursor-action="theme-toggle"
-      data-theme={current}
-      className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-transparent text-foreground transition-colors hover:border-primary hover:text-primary"
-    >
-      <Icon className="size-4" />
-    </button>
+    <div className="inline-flex items-center rounded-full border border-border bg-muted/50 p-1">
+      {THEME_OPTIONS.map((option) => {
+        const isActive = resolved === option.value;
+        const Icon = option.icon;
+
+        return (
+          <button
+            key={option.value}
+            type="button"
+            onClick={() => setTheme(option.value)}
+            aria-label={`Switch to ${option.label} theme`}
+            aria-pressed={isActive}
+            data-cursor-action="theme-toggle"
+            className={`relative inline-flex size-8 items-center justify-center rounded-full transition-colors duration-200 ${
+              isActive
+                ? "bg-foreground text-background"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {isActive && (
+              <motion.span
+                layoutId="theme-active"
+                className="absolute inset-0 rounded-full bg-foreground"
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
+              />
+            )}
+            <motion.span
+              animate={isActive ? { scale: 1, rotate: 0 } : { scale: 0.9, rotate: -10 }}
+              transition={{ duration: 0.2 }}
+              className="relative z-10"
+            >
+              <Icon className="size-4" />
+            </motion.span>
+          </button>
+        );
+      })}
+    </div>
   );
 }
