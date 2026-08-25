@@ -312,6 +312,85 @@ All colors MUST be HSL.
     animation: headlineReveal var(--dur-slow) var(--ease-out) forwards;
   }
 
+  /* Section heading reveal — editorial wipe from left */
+  @keyframes sectionReveal {
+    from {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transform: translate3d(-12px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .animate-section-reveal {
+    animation: sectionReveal var(--dur-slow) var(--ease-out) forwards;
+  }
+
+  /* Text reveal — two lines rise with offset stagger */
+  @keyframes textReveal {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0px);
+    }
+  }
+
+  .animate-text-reveal {
+    animation: textReveal var(--dur-med) var(--ease-out) forwards;
+  }
+
+  /* Number pop-in — digit flip with blur and spring */
+  @keyframes numberPop {
+    0% {
+      opacity: 0;
+      transform: scale(0.75) translate3d(0, 14px, 0);
+      filter: blur(6px);
+    }
+    70% {
+      opacity: 1;
+      transform: scale(1.04) translate3d(0, -2px, 0);
+      filter: blur(0px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translate3d(0, 0, 0);
+      filter: blur(0px);
+    }
+  }
+
+  .animate-number-pop {
+    animation: numberPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  /* Badge spring pop-in */
+  @keyframes badgePop {
+    0% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    70% {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-badge-pop {
+    animation: badgePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
   /* Stagger delay utilities */
   .stagger-1 { animation-delay: calc(1 * var(--stagger-delay)); }
   .stagger-2 { animation-delay: calc(2 * var(--stagger-delay)); }
