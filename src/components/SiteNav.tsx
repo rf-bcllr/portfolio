@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
@@ -72,15 +73,27 @@ export function SiteNav() {
               to={item.to}
               data-cursor-action="navigate-internal"
               className={({ isActive }) =>
-                `inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
+                `relative inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
                   isActive
-                    ? "bg-foreground text-background"
-                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                    ? "text-background"
+                    : "text-muted-foreground hover:text-foreground"
                 }`
               }
               aria-current={location.pathname === item.to ? "page" : undefined}
             >
-              {item.label}
+              {({ isActive }) => (
+                <>
+                  {isActive && (
+                    <motion.div
+                      layoutId="active-nav-pill"
+                      className="absolute inset-0 rounded-full bg-foreground"
+                      transition={{ type: "spring", stiffness: 320, damping: 30 }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </>
+              )}
             </NavLink>
           ))}
         </div>

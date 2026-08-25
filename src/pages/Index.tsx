@@ -29,7 +29,7 @@ export default function Index() {
             className="order-2 max-w-[640px] lg:order-1"
           >
             {/* Editorial availability badge — inverted, dense, uppercase */}
-            <div className="mb-10 inline-flex items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
+            <div className="mb-10 inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
               <span className="relative inline-flex size-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
@@ -43,23 +43,23 @@ export default function Index() {
             </div>
 
             {/* Massive editorial headline — comma in signature blue */}
-            <h1 className="font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
+            <h1 className="animate-headline-reveal font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
               Hello<span className="text-primary">,</span>
             </h1>
 
             {/* Paragraph anchored by a blue rule — the Especular move */}
-            <p className="mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground sm:hidden">
+            <p className="animate-text-reveal stagger-2 mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground opacity-0 sm:hidden">
               I'm your next end-to-end product designer
             </p>
-            <p className="mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground sm:block">
+            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
               I'm a Senior Product Designer with{" "}
               <strong className="font-bold">10+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
 
             {/* CTAs — flat, hairline, with a hard offset shadow on the secondary */}
-            <div className="mt-10 flex flex-wrap gap-5">
-              <Button asChild variant="contrast" size="lg">
+            <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap gap-5 opacity-0">
+              <Button asChild variant="contrast" size="lg" className="btn-arrow-shift">
                 <Link to="/work" data-cursor-action="navigate-internal">
                   View Work <ArrowRight className="size-4" />
                 </Link>
@@ -114,7 +114,6 @@ export default function Index() {
                   alt="Rafael Bacellar"
                   loading="eager"
                   decoding="async"
-                  fetchPriority="high"
                   className="size-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
                 />
               </div>
@@ -174,32 +173,36 @@ export default function Index() {
 
         <section className="mx-auto max-w-6xl px-6 py-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">
+            <h2 className="animate-section-reveal font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl">
               At a glance<span className="text-primary">.</span>
             </h2>
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Signals
             </span>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            <Card className="p-6">
-              <Briefcase className="mb-5 size-7" />
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">10+ years</h3>
-              <p className="mt-2 text-muted-foreground">Across edtech, fintech, retail, health and AI product workflows.</p>
-            </Card>
-            <Card className="p-6">
-              <Sparkles className="mb-5 size-7" />
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Systems thinker</h3>
-              <p className="mt-2 text-muted-foreground">From research synthesis to component libraries and product storytelling.</p>
-            </Card>
-            <Card className="p-6">
-              <Zap className="mb-5 size-7" />
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Fast iterations</h3>
-              <p className="mt-2 text-muted-foreground">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
-            </Card>
+            {[
+              { icon: Briefcase, title: "10+ years", text: "Across edtech, fintech, retail, health and AI product workflows.", delay: 0 },
+              { icon: Sparkles, title: "Systems thinker", text: "From research synthesis to component libraries and product storytelling.", delay: 0.1 },
+              { icon: Zap, title: "Fast iterations", text: "Comfortable moving between FigJam, Figma, prototypes and shipped UI.", delay: 0.2 },
+            ].map(({ icon: Icon, title, text, delay }) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <Card className="p-6">
+                  <Icon className="mb-5 size-7" />
+                  <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">{title}</h3>
+                  <p className="mt-2 text-muted-foreground">{text}</p>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </section>
 

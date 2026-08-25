@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Calendar, Download, Globe, Lightbulb, Mail, MapPin, MessageCircle, Phone, Wrench } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { ContactFooter } from "@/components/ContactFooter";
@@ -61,15 +62,15 @@ export default function Resume() {
         <section className="mb-16 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div>
             <p
-              className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-1 mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Resume
             </p>
-            <h1 className="font-display text-6xl font-bold leading-[0.82] tracking-[-0.05em] md:text-[112px]">
+            <h1 className="animate-section-reveal font-display text-6xl font-bold leading-[0.82] tracking-[-0.05em] opacity-0 md:text-[112px]">
               Rafael<br />Bacellar<span className="text-primary">.</span>
             </h1>
-            <p className="mt-6 hidden text-xl font-medium text-foreground sm:block">End-to-End Product Designer</p>
+            <p className="animate-text-reveal stagger-3 mt-6 hidden text-xl font-medium text-foreground opacity-0 sm:block">End-to-End Product Designer</p>
           </div>
           <Card className="p-6">
             <div className="mb-5 grid gap-3 text-sm text-foreground">
@@ -85,57 +86,80 @@ export default function Resume() {
 
         <section className="mb-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">{t.workExperience}</h2>
+            <h2 className="animate-section-reveal font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl">{t.workExperience}</h2>
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Trajectory
             </span>
           </div>
           <div className="space-y-6">
-            {experiences.map((exp) => (
-              <Card key={exp.company} className="p-0">
-                <CardContent className="p-6">
-                  <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
-                    <div>
-                      <h3 className="font-display text-xl font-bold tracking-[-0.02em]">{exp.title}</h3>
-                      <p className="font-medium text-foreground">{exp.company}</p>
+            {experiences.map((exp, idx) => (
+              <motion.div
+                key={exp.company}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <Card className="p-0">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
+                      <div>
+                        <h3 className="font-display text-xl font-bold tracking-[-0.02em]">{exp.title}</h3>
+                        <p className="font-medium text-foreground">{exp.company}</p>
+                      </div>
+                      <span className="flex items-center gap-2 text-sm text-muted-foreground"><Calendar className="size-4" /> {exp.period}</span>
                     </div>
-                    <span className="flex items-center gap-2 text-sm text-muted-foreground"><Calendar className="size-4" /> {exp.period}</span>
-                  </div>
-                  <div className="my-4 flex flex-wrap gap-1.5">
-                    {exp.chips.map((chip) => <Badge key={chip} variant="outline">{chip}</Badge>)}
-                  </div>
-                  <p className="text-muted-foreground">{exp.description}</p>
-                </CardContent>
-              </Card>
+                    <div className="my-4 flex flex-wrap gap-1.5">
+                      {exp.chips.map((chip) => <Badge key={chip} variant="outline">{chip}</Badge>)}
+                    </div>
+                    <p className="text-muted-foreground">{exp.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </section>
 
         <section className="mb-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">Skills &amp; Languages</h2>
+            <h2 className="animate-section-reveal font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl">Skills &amp; Languages</h2>
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Craft
             </span>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            <Card className="p-6"><h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold tracking-[-0.02em]"><MessageCircle className="size-5" /> {t.softSkills}</h3><div className="flex flex-wrap gap-1.5">{softSkills.map((skill) => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></Card>
-            <Card className="p-6"><h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold tracking-[-0.02em]"><Lightbulb className="size-5" /> Hard Skills</h3><div className="flex flex-wrap gap-1.5">{skills.map((skill) => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div></Card>
-            <Card className="p-6"><h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold tracking-[-0.02em]"><Globe className="size-5" /> {t.languages}</h3><div className="space-y-3">{languages.map((lang) => <div key={lang.name}><p className="font-semibold">{lang.name}</p><p className="text-sm text-muted-foreground">{lang.level}</p></div>)}</div></Card>
+            {[
+              { icon: MessageCircle, title: t.softSkills, content: <div className="flex flex-wrap gap-1.5">{softSkills.map((skill) => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div>, delay: 0 },
+              { icon: Lightbulb, title: "Hard Skills", content: <div className="flex flex-wrap gap-1.5">{skills.map((skill) => <Badge key={skill} variant="secondary">{skill}</Badge>)}</div>, delay: 0.1 },
+              { icon: Globe, title: t.languages, content: <div className="space-y-3">{languages.map((lang) => <div key={lang.name}><p className="font-semibold">{lang.name}</p><p className="text-sm text-muted-foreground">{lang.level}</p></div>)}</div>, delay: 0.2 },
+            ].map(({ icon: Icon, title, content, delay }) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <Card className="p-6">
+                  <h3 className="mb-4 flex items-center gap-2 font-display text-xl font-bold tracking-[-0.02em]"><Icon className="size-5" /> {title}</h3>
+                  {content}
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </section>
 
         <section className="mb-14">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl"><Wrench className="size-7" /> My Tools</h2>
+            <h2 className="animate-section-reveal flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl"><Wrench className="size-7" /> My Tools</h2>
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Stack

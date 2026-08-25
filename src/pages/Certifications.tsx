@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Award, Quote } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { ContactFooter } from "@/components/ContactFooter";
@@ -29,27 +30,33 @@ export default function Certifications() {
         <section className="mb-16 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div>
             <p
-              className="mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-1 mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Certifications
             </p>
-            <h1 className="font-display text-6xl font-bold leading-[0.82] tracking-[-0.05em] md:text-[104px]">
+            <h1 className="animate-section-reveal font-display text-6xl font-bold leading-[0.82] tracking-[-0.05em] opacity-0 md:text-[104px]">
               Proofs, praise<br />&amp; learning<br />loops<span className="text-primary">.</span>
             </h1>
           </div>
-          <Card className="p-6">
-            <p className="text-lg font-medium leading-snug text-foreground">
-              Certificates, recommendations and recognition collected through the same practice: learning, shipping and collaborating with people.
-            </p>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <Card className="p-6">
+              <p className="text-lg font-medium leading-snug text-foreground">
+                Certificates, recommendations and recognition collected through the same practice: learning, shipping and collaborating with people.
+              </p>
+            </Card>
+          </motion.div>
         </section>
 
         <section className="mb-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">Certificates</h2>
+            <h2 className="animate-section-reveal font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl">Certificates</h2>
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Loops
@@ -57,43 +64,62 @@ export default function Certifications() {
           </div>
           <div className="grid gap-5 md:grid-cols-2">
             {certifications.map((cert, index) => (
-              <CertificationCard key={cert.title} title={cert.title} href={cert.href} index={index} />
+              <motion.div
+                key={cert.title}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: index * 0.06, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <CertificationCard title={cert.title} href={cert.href} index={index} />
+              </motion.div>
             ))}
           </div>
         </section>
 
         <section className="mb-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl"><Award className="size-7" /> Awards</h2>
+            <h2 className="animate-section-reveal flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl"><Award className="size-7" /> Awards</h2>
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Recognition
             </span>
           </div>
           <div className="relative">
-            <Card className="p-8 md:pr-56 lg:pr-64">
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Cada um na Sua — 2nd place, Feyh Bier label contest (2019)</h3>
-              <p className="mt-3 hidden text-muted-foreground leading-relaxed md:block">
-                Craft beer label designed for a Feyh Bier design contest celebrating a Catharina Sour brewed with mango and umbu — two tropical fruits from my home state. The illustration of a native couple harvesting the ingredients in the woods speaks to the brief's themes of diversity and identity. The submission finished in 2nd place.
-              </p>
-              <a
-                href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 border-b-2 border-foreground pb-0.5 text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                View on Behance →
-              </a>
-            </Card>
-            <a
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <Card className="p-8 md:pr-56 lg:pr-64">
+                <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Cada um na Sua — 2nd place, Feyh Bier label contest (2019)</h3>
+                <p className="mt-3 hidden text-muted-foreground leading-relaxed md:block">
+                  Craft beer label designed for a Feyh Bier design contest celebrating a Catharina Sour brewed with mango and umbu — two tropical fruits from my home state. The illustration of a native couple harvesting the ingredients in the woods speaks to the brief's themes of diversity and identity. The submission finished in 2nd place.
+                </p>
+                <a
+                  href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="story-link mt-4 inline-flex items-center gap-1.5 pb-0.5 text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:text-primary"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  View on Behance →
+                </a>
+              </Card>
+            </motion.div>
+            <motion.a
               href="https://www.behance.net/gallery/89968669/Cada-um-na-Sua"
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute -bottom-12 -right-3 block w-[120px] transition-transform duration-300 hover:-rotate-2 hover:scale-105 md:-top-12 md:-right-6 md:bottom-auto md:w-[220px] lg:w-[240px]"
-              style={{ transform: "rotate(-6deg)" }}
+              initial={{ opacity: 0, scale: 0.85, rotate: -10 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: -6 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: 0.15, ease: [0.34, 1.56, 0.64, 1] }}
+              whileHover={{ rotate: -2, scale: 1.05 }}
+              className="absolute -bottom-12 -right-3 block w-[120px] md:-top-12 md:-right-6 md:bottom-auto md:w-[220px] lg:w-[240px]"
               aria-label="Cada um na Sua on Behance"
             >
               <img
@@ -103,15 +129,15 @@ export default function Certifications() {
                 decoding="async"
                 className="w-full drop-shadow-[0_18px_28px_rgba(0,0,0,0.22)]"
               />
-            </a>
+            </motion.a>
           </div>
         </section>
 
         <section>
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl"><Quote className="size-7" /> {t.recommendationsTitle}</h2>
+            <h2 className="animate-section-reveal flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl"><Quote className="size-7" /> {t.recommendationsTitle}</h2>
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Voices
@@ -121,19 +147,27 @@ export default function Certifications() {
             {t.recommendationsItems?.map((rec, idx) => {
               const avatar = idx === 0 ? inisAvatar : esdrasAvatar;
               return (
-                <Card key={rec.author} className="p-7">
-                  <div className="mb-6 flex items-start gap-4">
-                    <a href={rec.linkedin} target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">
-                      <img src={avatar} alt={rec.author} loading="lazy" decoding="async" className="size-16 border-2 border-foreground object-cover" />
-                    </a>
-                    <div>
-                      <h3 className="font-display text-lg font-bold tracking-[-0.02em]">{rec.author}</h3>
-                      <p className="text-sm text-muted-foreground">{rec.role}</p>
-                      {rec.description && <p className="mt-0.5 text-xs text-muted-foreground">{rec.description}</p>}
+                <motion.div
+                  key={rec.author}
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  <Card className="p-7">
+                    <div className="mb-6 flex items-start gap-4">
+                      <a href={rec.linkedin} target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">
+                        <img src={avatar} alt={rec.author} loading="lazy" decoding="async" className="size-16 border-2 border-foreground object-cover" />
+                      </a>
+                      <div>
+                        <h3 className="font-display text-lg font-bold tracking-[-0.02em]">{rec.author}</h3>
+                        <p className="text-sm text-muted-foreground">{rec.role}</p>
+                        {rec.description && <p className="mt-0.5 text-xs text-muted-foreground">{rec.description}</p>}
+                      </div>
                     </div>
-                  </div>
-                  <p className="border-l-[6px] border-primary pl-5 text-base italic leading-relaxed text-foreground">"{rec.quote}"</p>
-                </Card>
+                    <p className="border-l-[6px] border-primary pl-5 text-base italic leading-relaxed text-foreground">"{rec.quote}"</p>
+                  </Card>
+                </motion.div>
               );
             })}
           </div>
