@@ -114,7 +114,6 @@ export default function Index() {
                   alt="Rafael Bacellar"
                   loading="eager"
                   decoding="async"
-                  fetchpriority="high"
                   className="size-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
                 />
               </div>
