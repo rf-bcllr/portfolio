@@ -58,8 +58,8 @@ export default function Index() {
             </p>
 
             {/* CTAs — flat, hairline, with a hard offset shadow on the secondary */}
-            <div className="mt-10 flex flex-wrap gap-5">
-              <Button asChild variant="contrast" size="lg">
+            <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap gap-5 opacity-0">
+              <Button asChild variant="contrast" size="lg" className="btn-arrow-shift">
                 <Link to="/work" data-cursor-action="navigate-internal">
                   View Work <ArrowRight className="size-4" />
                 </Link>
