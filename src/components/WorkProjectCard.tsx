@@ -184,9 +184,15 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
             >
               Outcome
             </p>
-            <p className="mt-2 font-display text-5xl font-bold leading-[0.9] tracking-[-0.04em] md:text-6xl">
+            <motion.p
+              className="mt-2 font-display text-5xl font-bold leading-[0.9] tracking-[-0.04em] md:text-6xl"
+              initial={{ opacity: 0, scale: 0.75, y: 14, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.55, ease: [0.34, 1.56, 0.64, 1] }}
+            >
               {project.outcomeValue}
-            </p>
+            </motion.p>
             <p className="mt-3 max-w-sm text-sm font-medium leading-snug opacity-80 md:text-[15px]">
               {project.outcomeLabel}
             </p>
