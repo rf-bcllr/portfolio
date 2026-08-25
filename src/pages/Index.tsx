@@ -174,32 +174,36 @@ export default function Index() {
 
         <section className="mx-auto max-w-6xl px-6 py-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">
+            <h2 className="animate-section-reveal font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl">
               At a glance<span className="text-primary">.</span>
             </h2>
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Signals
             </span>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            <Card className="p-6">
-              <Briefcase className="mb-5 size-7" />
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">10+ years</h3>
-              <p className="mt-2 text-muted-foreground">Across edtech, fintech, retail, health and AI product workflows.</p>
-            </Card>
-            <Card className="p-6">
-              <Sparkles className="mb-5 size-7" />
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Systems thinker</h3>
-              <p className="mt-2 text-muted-foreground">From research synthesis to component libraries and product storytelling.</p>
-            </Card>
-            <Card className="p-6">
-              <Zap className="mb-5 size-7" />
-              <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Fast iterations</h3>
-              <p className="mt-2 text-muted-foreground">Comfortable moving between FigJam, Figma, prototypes and shipped UI.</p>
-            </Card>
+            {[
+              { icon: Briefcase, title: "10+ years", text: "Across edtech, fintech, retail, health and AI product workflows.", delay: 0 },
+              { icon: Sparkles, title: "Systems thinker", text: "From research synthesis to component libraries and product storytelling.", delay: 0.1 },
+              { icon: Zap, title: "Fast iterations", text: "Comfortable moving between FigJam, Figma, prototypes and shipped UI.", delay: 0.2 },
+            ].map(({ icon: Icon, title, text, delay }) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <Card className="p-6">
+                  <Icon className="mb-5 size-7" />
+                  <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">{title}</h3>
+                  <p className="mt-2 text-muted-foreground">{text}</p>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </section>
 
