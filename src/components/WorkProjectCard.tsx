@@ -230,7 +230,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
           {(() => {
             const Icon = projectIconMap[project.slug];
             return Icon ? (
-              <div className="absolute right-5 top-6 hidden opacity-80 md:block text-foreground" aria-hidden>
+              <div className="absolute right-5 top-6 hidden opacity-80 md:block text-[hsl(var(--project-accent))]" aria-hidden>
                 <Icon className="size-9" strokeWidth={1.75} />
               </div>
             ) : null;
