@@ -95,7 +95,7 @@ export function MediaThumb({
           height={height}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
-          {...(priority ? { fetchPriority: "high" as const } : {})}
+          {...(priority ? { fetchpriority: "high" as const } : {})}
           onLoad={handleLoaded}
         />
       )}
