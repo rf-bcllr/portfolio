@@ -29,7 +29,7 @@ export default function Index() {
             className="order-2 max-w-[640px] lg:order-1"
           >
             {/* Editorial availability badge — inverted, dense, uppercase */}
-            <div className="mb-10 inline-flex items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
+            <div className="mb-10 inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
               <span className="relative inline-flex size-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
@@ -43,15 +43,15 @@ export default function Index() {
             </div>
 
             {/* Massive editorial headline — comma in signature blue */}
-            <h1 className="font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
+            <h1 className="animate-headline-reveal font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
               Hello<span className="text-primary">,</span>
             </h1>
 
             {/* Paragraph anchored by a blue rule — the Especular move */}
-            <p className="mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground sm:hidden">
+            <p className="animate-text-reveal stagger-2 mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground opacity-0 sm:hidden">
               I'm your next end-to-end product designer
             </p>
-            <p className="mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground sm:block">
+            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
               I'm a Senior Product Designer with{" "}
               <strong className="font-bold">10+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
