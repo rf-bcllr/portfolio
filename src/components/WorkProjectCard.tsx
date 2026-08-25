@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
