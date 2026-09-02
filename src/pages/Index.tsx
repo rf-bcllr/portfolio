@@ -92,9 +92,14 @@ export default function Index() {
                 >
                   Location
                 </p>
-                <p className="mt-1 flex items-center gap-1.5 font-display text-lg font-bold text-foreground">
-                  <MapPin className="size-4 text-primary" />
-                  Based in Brazil <span className="text-muted-foreground">· Open to remote worldwide</span>
+                <p className="mt-2 flex flex-col items-start gap-2 font-display text-lg font-bold text-foreground sm:mt-1 sm:flex-row sm:items-center sm:gap-1.5">
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="size-5 text-primary sm:size-4" />
+                    Based in Brazil
+                  </span>
+                  <span className="text-sm font-bold text-muted-foreground sm:text-base">
+                    Open to remote worldwide
+                  </span>
                 </p>
               </div>
             </div>
