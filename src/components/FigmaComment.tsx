@@ -106,7 +106,7 @@ export const FigmaComment = ({
               className="min-w-0 py-2 pr-4"
               style={{ width: width - 40 }}
             >
-              <div ref={contentRef}>
+              <div>
                 <p
                   className="text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground"
                   style={{ fontFamily: "var(--font-display)" }}
@@ -124,9 +124,14 @@ export const FigmaComment = ({
 
       {/* Hidden measurer so height is known before first open */}
       <div className="pointer-events-none invisible absolute -z-10" aria-hidden="true">
-        <div style={{ width: width - 40 }} className="pr-4">
-          <p className="text-[9px] uppercase tracking-[0.18em]">{author}</p>
-          <p className="mt-1 text-[13px] leading-snug">{comment}</p>
+        <div ref={contentRef} style={{ width: width - 40 }} className="pr-4">
+          <p
+            className="text-[9px] font-bold uppercase tracking-[0.18em]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            {author}
+          </p>
+          <p className="mt-1 text-[13px] font-medium leading-snug">{comment}</p>
         </div>
       </div>
     </div>
