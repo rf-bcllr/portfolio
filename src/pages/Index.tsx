@@ -155,11 +155,24 @@ export default function Index() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="relative order-1 w-full max-w-[260px] justify-self-center sm:max-w-[320px] lg:order-2 lg:justify-self-end"
           >
+            {/* Work Anywhere sticker — sits on the card's lower-right corner */}
+            <div className="absolute -bottom-14 -right-8 z-30 hidden w-[160px] lg:block">
+              <HeroSticker
+                src={remoteWorkerSticker.url}
+                alt="Sticker of a laptop reading Work Anywhere"
+                comment="I'm open to remote opportunities worldwide"
+                rotate={-6}
+                pinPosition="top-left"
+                className="h-[112px] w-[160px]"
+              />
+            </div>
+
             {/* Rotated dashed frame — hand-marked editorial layout register */}
             <div
               className="pointer-events-none absolute -inset-4 -rotate-1 border-2 border-dashed border-foreground/50"
               aria-hidden="true"
             />
+
 
             {/* Solid card with hard offset shadow */}
             <div className="relative border-2 border-foreground bg-card p-4 text-card-foreground shadow-[12px_12px_0_0_hsl(var(--foreground))] sm:p-6">
