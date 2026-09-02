@@ -53,13 +53,15 @@ export default function Index() {
               Hello<span className="text-primary">,</span>
             </h1>
 
-            {/* Post-it note replacing the old paragraph */}
-            <div className="animate-text-reveal stagger-2 mt-12 opacity-0">
-              <PostItNote>
-                Senior Product Designer with 10+ years of experience creating digital products that
-                connect people and solve real problems — from mobile apps to AI-powered tools.
-              </PostItNote>
-            </div>
+            {/* Paragraph anchored by a blue rule — the Especular move */}
+            <p className="animate-text-reveal stagger-2 mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground opacity-0 sm:hidden">
+              I'm your next end-to-end product designer
+            </p>
+            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
+              I'm a Senior Product Designer with{" "}
+              <strong className="font-bold">10+ years of experience</strong>{" "}
+              creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
+            </p>
 
             {/* CTAs — flat, hairline, with a hard offset shadow on the secondary */}
             <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap gap-5 opacity-0">
@@ -80,40 +82,7 @@ export default function Index() {
               </Button>
             </div>
 
-            {/* FigJam sticker board — hover to lift, click the pin to read the comment */}
-            <div className="mt-14 flex flex-wrap items-end gap-x-8 gap-y-10 sm:gap-x-12">
-              <HeroSticker
-                src={amayaSticker.url}
-                alt="Cartoon sticker of Amaya, a black dog"
-                comment="My main design companion, Amaya"
-                rotate={-5}
-                pinPosition="top-right"
-                className="h-24 w-24 sm:h-28 sm:w-28"
-              />
-              <HeroSticker
-                src={liaSticker.url}
-                alt="Sticker of Lia, a star-shaped AI mascot"
-                comment="Lia is a mascot I've designed for the AI in a digital platform called iônica"
-                rotate={5}
-                pinPosition="top-right"
-                commentWidth={260}
-                className="h-24 w-24 sm:h-28 sm:w-28"
-              />
-              <HeroSticker
-                src={remoteWorkerSticker.url}
-                alt="Sticker of a laptop reading Work Anywhere"
-                comment="I'm open to remote opportunities worldwide"
-                rotate={-3}
-                pinPosition="top-left"
-                className="h-24 w-32 sm:h-28 sm:w-36"
-              />
-              <HeroSticker
-                src={brazilSticker.url}
-                alt="Sticker reading Based in Brazil with a Brazilian flag"
-                rotate={4}
-                className="h-24 w-32 sm:h-28 sm:w-36"
-              />
-            </div>
+
 
 
             {/* Bottom editorial rule — location as metadata */}
