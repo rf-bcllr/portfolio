@@ -29,7 +29,7 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="relative mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
+        <section className="relative mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:pt-36 lg:grid-cols-[1fr_auto]">
           {/* Left column — hero */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -39,7 +39,7 @@ export default function Index() {
           >
             {/* FigJam sticker canvas — desktop only, pinned to the content's negative space */}
             <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block">
-              <div className="pointer-events-auto absolute -left-2 -top-28 w-[124px]">
+              <div className="pointer-events-auto absolute -left-2 -top-24 w-[124px]">
                 <HeroSticker
                   src={amayaSticker.url}
                   alt="Cartoon sticker of Amaya, a black dog"
@@ -49,7 +49,7 @@ export default function Index() {
                   className="h-[124px] w-[124px]"
                 />
               </div>
-              <div className="pointer-events-auto absolute -top-24 right-6 w-[128px]">
+              <div className="pointer-events-auto absolute -top-20 right-6 w-[128px]">
                 <HeroSticker
                   src={liaSticker.url}
                   alt="Sticker of Lia, a star-shaped AI mascot"
@@ -156,7 +156,7 @@ export default function Index() {
             className="relative order-1 w-full max-w-[260px] justify-self-center sm:max-w-[320px] lg:order-2 lg:justify-self-end"
           >
             {/* Work Anywhere sticker — sits on the card's lower-right corner */}
-            <div className="absolute -bottom-14 -right-8 z-30 hidden w-[160px] lg:block">
+            <div className="absolute -bottom-20 -right-14 z-30 hidden w-[160px] lg:block">
               <HeroSticker
                 src={remoteWorkerSticker.url}
                 alt="Sticker of a laptop reading Work Anywhere"
