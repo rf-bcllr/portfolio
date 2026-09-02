@@ -7,7 +7,15 @@ import { Card } from "@/components/ui/card";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { ContactFooter } from "@/components/ContactFooter";
 import { useTranslations } from "@/hooks/useTranslations";
+import { HeroSticker } from "@/components/HeroSticker";
+import { PostItNote } from "@/components/PostItNote";
 import heroPortrait from "@/assets/hero-portrait.png";
+import amayaSticker from "@/assets/amaya-sticker.png.asset.json";
+import brazilSticker from "@/assets/brazil-sticker.png.asset.json";
+import liaSticker from "@/assets/lia-sticker.png.asset.json";
+import remoteWorkerSticker from "@/assets/remote_worker_sticker.png.asset.json";
+
+
 
 
 
