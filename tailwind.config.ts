@@ -53,6 +53,11 @@ export default {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
 				},
+				postit: {
+					DEFAULT: 'hsl(var(--postit))',
+					fold: 'hsl(var(--postit-fold))',
+					foreground: 'hsl(var(--postit-foreground))'
+				},
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
