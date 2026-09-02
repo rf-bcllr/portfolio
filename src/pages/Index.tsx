@@ -31,8 +31,19 @@ export default function Index() {
       <main id="main-content">
         <section className="relative mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
           {/* FigJam sticker canvas — desktop only, laid out in the negative space */}
-          <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block" aria-hidden={false}>
+          <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block">
+            <div className="pointer-events-auto absolute left-[1%] top-[3%] w-[124px]">
+              <HeroSticker
+                src={amayaSticker.url}
+                alt="Cartoon sticker of Amaya, a black dog"
+                comment="My main design companion, Amaya"
+                rotate={-14}
+                pinPosition="top-right"
+                className="h-[124px] w-[124px]"
+              />
+            </div>
             <div className="pointer-events-auto absolute left-[calc(50%+2rem)] top-[4%] w-[132px]">
+
               <HeroSticker
                 src={liaSticker.url}
                 alt="Sticker of Lia, a star-shaped AI mascot"
