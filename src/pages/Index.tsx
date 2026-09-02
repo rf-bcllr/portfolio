@@ -29,7 +29,41 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
+        <section className="relative mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
+          {/* FigJam sticker canvas — desktop only, laid out in the negative space */}
+          <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block" aria-hidden={false}>
+            <div className="pointer-events-auto absolute left-[calc(50%+2rem)] top-[4%] w-[132px]">
+              <HeroSticker
+                src={liaSticker.url}
+                alt="Sticker of Lia, a star-shaped AI mascot"
+                comment="Lia is a mascot I've designed for the AI in a digital platform called iônica"
+                rotate={9}
+                pinPosition="bottom-left"
+                commentWidth={260}
+                className="h-[132px] w-[132px]"
+              />
+            </div>
+            <div className="pointer-events-auto absolute bottom-[10%] left-[calc(50%-3rem)] w-[150px]">
+              <HeroSticker
+                src={brazilSticker.url}
+                alt="Sticker reading Based in Brazil with a Brazilian flag"
+                rotate={-11}
+                className="h-[104px] w-[150px]"
+              />
+            </div>
+            <div className="pointer-events-auto absolute bottom-[6%] right-[1%] w-[160px]">
+              <HeroSticker
+                src={remoteWorkerSticker.url}
+                alt="Sticker of a laptop reading Work Anywhere"
+                comment="I'm open to remote opportunities worldwide"
+                rotate={-6}
+                pinPosition="top-left"
+                className="h-[112px] w-[160px]"
+              />
+            </div>
+          </div>
+
+
           {/* Left column — hero */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
