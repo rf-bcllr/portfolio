@@ -91,6 +91,10 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 220 25% 10%;
     --sidebar-border: 220 15% 91%;
     --sidebar-ring: 220 100% 50%;
+
+    --postit: 48 96% 76%;
+    --postit-fold: 45 86% 62%;
+    --postit-foreground: 40 30% 12%;
   }
 
   .dark {
