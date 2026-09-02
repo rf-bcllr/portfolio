@@ -101,15 +101,24 @@ export default function Index() {
               Hello<span className="text-primary">,</span>
             </h1>
 
-            {/* Paragraph anchored by a blue rule — the Especular move */}
+            {/* Mobile & tablet — paragraph anchored by a blue rule */}
             <p className="animate-text-reveal stagger-2 mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground opacity-0 sm:hidden">
               I'm your next end-to-end product designer
             </p>
-            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
+            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block lg:hidden">
               I'm a Senior Product Designer with{" "}
               <strong className="font-bold">10+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
+
+            {/* Desktop — bio as a canvas post-it note */}
+            <div className="animate-text-reveal stagger-2 mt-12 hidden opacity-0 lg:block">
+              <PostItNote rotate={-3} className="max-w-[400px]">
+                Senior Product Designer with 10+ years of experience creating digital products that
+                connect people and solve real problems — from mobile apps to AI-powered tools.
+              </PostItNote>
+            </div>
+
 
             {/* CTAs — flat, hairline, with a hard offset shadow on the secondary */}
             <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap gap-5 opacity-0">
