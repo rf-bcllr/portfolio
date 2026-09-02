@@ -88,7 +88,7 @@ export default function Index() {
                 comment="My main design companion, Amaya"
                 rotate={-5}
                 pinPosition="top-right"
-                className="w-24 sm:w-28"
+                className="h-24 w-24 sm:h-28 sm:w-28"
               />
               <HeroSticker
                 src={liaSticker.url}
@@ -97,7 +97,7 @@ export default function Index() {
                 rotate={5}
                 pinPosition="top-right"
                 commentWidth={260}
-                className="w-24 sm:w-28"
+                className="h-24 w-24 sm:h-28 sm:w-28"
               />
               <HeroSticker
                 src={remoteWorkerSticker.url}
@@ -105,13 +105,13 @@ export default function Index() {
                 comment="I'm open to remote opportunities worldwide"
                 rotate={-3}
                 pinPosition="top-left"
-                className="w-32 sm:w-36"
+                className="h-24 w-32 sm:h-28 sm:w-36"
               />
               <HeroSticker
                 src={brazilSticker.url}
                 alt="Sticker reading Based in Brazil with a Brazilian flag"
                 rotate={4}
-                className="w-32 sm:w-36"
+                className="h-24 w-32 sm:h-28 sm:w-36"
               />
             </div>
 

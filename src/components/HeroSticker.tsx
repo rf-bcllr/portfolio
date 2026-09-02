@@ -16,10 +16,10 @@ interface HeroStickerProps {
 }
 
 const pinClasses: Record<NonNullable<HeroStickerProps["pinPosition"]>, string> = {
-  "top-left": "-left-2 -top-3",
-  "top-right": "-right-2 -top-3",
-  "bottom-left": "-bottom-3 -left-2",
-  "bottom-right": "-bottom-3 -right-2",
+  "top-left": "-top-3 left-0",
+  "top-right": "-top-3 left-[calc(100%-1.5rem)]",
+  "bottom-left": "bottom-0 left-0",
+  "bottom-right": "bottom-0 left-[calc(100%-1.5rem)]",
 };
 
 export const HeroSticker = ({
