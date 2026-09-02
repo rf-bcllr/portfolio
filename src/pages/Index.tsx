@@ -7,13 +7,7 @@ import { Card } from "@/components/ui/card";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { ContactFooter } from "@/components/ContactFooter";
 import { useTranslations } from "@/hooks/useTranslations";
-import { HeroSticker } from "@/components/HeroSticker";
-import { PostItNote } from "@/components/PostItNote";
 import heroPortrait from "@/assets/hero-portrait.png";
-import amayaSticker from "@/assets/amaya-sticker.png.asset.json";
-import brazilSticker from "@/assets/brazil-sticker.png.asset.json";
-import liaSticker from "@/assets/lia-sticker.png.asset.json";
-import remoteWorkerSticker from "@/assets/remote_worker_sticker.png.asset.json";
 
 
 
@@ -29,48 +23,14 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="relative mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:pt-36 lg:grid-cols-[1fr_auto]">
+        <section className="mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
           {/* Left column — hero */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="relative order-2 max-w-[640px] lg:order-1"
+            className="order-2 max-w-[640px] lg:order-1"
           >
-            {/* FigJam sticker canvas — desktop only, pinned to the content's negative space */}
-            <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block">
-              <div className="pointer-events-auto absolute -left-4 -top-14 w-[124px]">
-                <HeroSticker
-                  src={amayaSticker.url}
-                  alt="Cartoon sticker of Amaya, a black dog"
-                  comment="My main design companion, Amaya"
-                  rotate={-14}
-                  pinPosition="top-right"
-                  className="h-[124px] w-[124px]"
-                />
-              </div>
-              <div className="pointer-events-auto absolute -top-12 right-8 w-[128px]">
-                <HeroSticker
-                  src={liaSticker.url}
-                  alt="Sticker of Lia, a star-shaped AI mascot"
-                  comment="Lia is a mascot I've designed for the AI in a digital platform called iônica"
-                  rotate={9}
-                  pinPosition="bottom-left"
-                  commentWidth={260}
-                  className="h-[128px] w-[128px]"
-                />
-              </div>
-              <div className="pointer-events-auto absolute -bottom-6 right-2 w-[150px]">
-                <HeroSticker
-                  src={brazilSticker.url}
-                  alt="Sticker reading Based in Brazil with a Brazilian flag"
-                  rotate={-11}
-                  className="h-[104px] w-[150px]"
-                />
-              </div>
-            </div>
-
-
             {/* Editorial availability badge — inverted, dense, uppercase */}
             <div className="mb-10 inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
               <span className="relative inline-flex size-2.5">
@@ -90,23 +50,15 @@ export default function Index() {
               Hello<span className="text-primary">,</span>
             </h1>
 
-            {/* Mobile & tablet — paragraph anchored by a blue rule */}
+            {/* Paragraph anchored by a blue rule — the Especular move */}
             <p className="animate-text-reveal stagger-2 mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground opacity-0 sm:hidden">
               I'm your next end-to-end product designer
             </p>
-            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block lg:hidden">
+            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
               I'm a Senior Product Designer with{" "}
               <strong className="font-bold">10+ years of experience</strong>{" "}
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
-
-            {/* Desktop — bio as a canvas post-it note */}
-            <div className="animate-text-reveal stagger-2 mt-12 hidden opacity-0 lg:block">
-              <PostItNote rotate={-3} className="max-w-[400px]">
-                Senior Product Designer with 10+ years of experience creating digital products that
-                connect people and solve real problems — from mobile apps to AI-powered tools.
-              </PostItNote>
-            </div>
 
 
             {/* CTAs — flat, hairline, with a hard offset shadow on the secondary */}
@@ -155,18 +107,6 @@ export default function Index() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="relative order-1 w-full max-w-[260px] justify-self-center sm:max-w-[320px] lg:order-2 lg:justify-self-end"
           >
-            {/* Work Anywhere sticker — sits on the card's lower-right corner */}
-            <div className="absolute -bottom-24 -right-16 z-30 hidden w-[160px] lg:block">
-              <HeroSticker
-                src={remoteWorkerSticker.url}
-                alt="Sticker of a laptop reading Work Anywhere"
-                comment="I'm open to remote opportunities worldwide"
-                rotate={-6}
-                pinPosition="top-left"
-                className="h-[112px] w-[160px]"
-              />
-            </div>
-
             {/* Rotated dashed frame — hand-marked editorial layout register */}
             <div
               className="pointer-events-none absolute -inset-4 -rotate-1 border-2 border-dashed border-foreground/50"
