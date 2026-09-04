@@ -24,10 +24,10 @@ type Sticker = {
   comment?: string;
   link?: { label: string; href: string };
   rotate: number;
-  side: "left" | "right";
   size: number;
-  /** desktop-only nudge so the board feels hand-placed */
-  offset?: string;
+  pin: "tl" | "tr" | "bl" | "br";
+  /** desktop absolute placement around the centered text block */
+  pos: string;
 };
 
 const stickers: Sticker[] = [
@@ -35,56 +35,58 @@ const stickers: Sticker[] = [
     src: amayaSticker,
     alt: "Amaya, Rafael's dog, drawn as a sticker",
     comment: "My main design companion, Amaya",
-    rotate: -6,
-    side: "right",
-    size: 132,
-    offset: "lg:-translate-x-2",
+    rotate: -7,
+    size: 168,
+    pin: "tl",
+    pos: "left-0 top-4",
   },
   {
     src: liaSticker,
     alt: "Lia, a star-shaped AI mascot",
     comment: "Lia is a mascot I've designed for the AI in a digital platform called iônica",
-    rotate: 5,
-    side: "left",
-    size: 128,
-    offset: "lg:translate-x-2 lg:translate-y-12",
+    rotate: 6,
+    size: 160,
+    pin: "tr",
+    pos: "right-0 top-0",
   },
   {
     src: ramenSticker,
     alt: "A bowl of ramen sticker",
     comment: "Ramen is my favorite food",
-    rotate: -4,
-    side: "right",
-    size: 124,
-    offset: "lg:translate-x-4 lg:translate-y-12",
+    rotate: -5,
+    size: 156,
+    pin: "bl",
+    pos: "left-0 top-[40%]",
   },
   {
     src: gitSticker,
     alt: "GitHub octocat coding on a laptop sticker",
     comment: "I also build things!",
     link: { label: "Check my GitHub", href: "https://github.com/genai-ftd" },
-    rotate: 6,
-    side: "left",
-    size: 128,
-    offset: "lg:-translate-x-4",
+    rotate: 7,
+    size: 160,
+    pin: "br",
+    pos: "right-0 top-[38%]",
+  },
+  {
+    src: brazilSticker,
+    alt: "Based in Brazil sticker",
+    rotate: -6,
+    size: 176,
+    pin: "bl",
+    pos: "left-4 bottom-32",
   },
   {
     src: remoteSticker,
     alt: "Sticker of a person working remotely on a laptop",
     comment: "I'm open to remote opportunities worldwide",
     rotate: -5,
-    side: "right",
-    size: 126,
-    offset: "lg:-translate-x-2",
-  },
-  {
-    src: brazilSticker,
-    alt: "Based in Brazil sticker",
-    rotate: -6,
-    side: "left",
-    size: 150,
+    size: 162,
+    pin: "br",
+    pos: "right-4 bottom-36",
   },
 ];
+
 
 export default function Index() {
   const t = useTranslations();
@@ -94,114 +96,82 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="mx-auto max-w-6xl px-6 pb-24 pt-14 md:pt-24">
+        <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-14 md:pt-20">
+          {/* Stickers around the text block (desktop only) */}
+          <div className="pointer-events-none absolute inset-0 hidden lg:block">
+            {stickers.map((s) => (
+              <div key={s.alt} className={`pointer-events-auto absolute ${s.pos}`}>
+                <StickerComment
+                  src={s.src}
+                  alt={s.alt}
+                  comment={s.comment}
+                  link={s.link}
+                  rotate={s.rotate}
+                  size={s.size}
+                  pin={s.pin}
+                />
+              </div>
+            ))}
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="grid grid-cols-1 gap-x-16 gap-y-16 lg:grid-cols-[minmax(0,1fr)_360px]"
+            className="relative mx-auto flex max-w-[620px] flex-col items-center text-center"
           >
-            {/* ── Main column ─────────────────────────────── */}
-            <div className="max-w-[640px]">
-              {/* Availability tag */}
-              <div className="inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
-                <span className="relative inline-flex size-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
-                  <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
-                </span>
-                <span
-                  className="text-[10px] font-bold uppercase tracking-[0.22em]"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Available for full-time &amp; freelance work
-                </span>
-              </div>
-
-              {/* Typographic opening */}
-              <h1 className="animate-headline-reveal mt-8 font-display font-bold leading-[0.88] tracking-[-0.05em] text-foreground text-[clamp(2.75rem,7.5vw,5rem)]">
-                I'm Rafael Bacellar<span className="text-primary">.</span>
-              </h1>
-
-              <p className="animate-text-reveal stagger-2 mt-5 text-balance text-[clamp(1.25rem,2.4vw,1.875rem)] font-medium leading-[1.3] text-muted-foreground opacity-0">
-                Your next product designer<span className="text-primary">.</span>
-              </p>
-
-              {/* Post-it */}
-              <div className="mt-10 flex justify-start" data-no-draw="true">
-                <PostItNote rotate={-1.5}>
-                  Senior Product Designer with over 6 years of experience building end-to-end
-                  digital products that connect people and solve real problems.
-                </PostItNote>
-              </div>
-
-              {/* CTAs */}
-              <div className="animate-text-reveal stagger-3 mt-12 flex flex-wrap gap-5 opacity-0">
-                <Button asChild variant="contrast" size="lg" className="btn-arrow-shift">
-                  <Link to="/work" data-cursor-action="navigate-internal">
-                    View Work <ArrowRight className="size-4" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-foreground bg-background text-foreground shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_hsl(var(--foreground))]"
-                >
-                  <Link to="/resume" data-cursor-action="navigate-internal">
-                    Resume
-                  </Link>
-                </Button>
-              </div>
-
-              {/* Stickers board (mobile / tablet) */}
-              <div className="mt-16 flex flex-wrap items-center justify-start gap-x-10 gap-y-12 lg:hidden">
-                {stickers.map((s) => (
-                  <StickerComment
-                    key={s.alt}
-                    src={s.src}
-                    alt={s.alt}
-                    comment={s.comment}
-                    link={s.link}
-                    rotate={s.rotate}
-                    side="right"
-                    size={Math.round(s.size * 0.82)}
-                  />
-                ))}
-              </div>
-
-              {/* Meta line */}
-              <div className="mt-16 border-t-2 border-foreground pt-5">
-                <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
-                  <p
-                    className="text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {specialties.join(" · ")}
-                  </p>
-                  <div className="flex gap-6">
-                    <a
-                      href="https://linkedin.com/in/rfbcllr"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      LinkedIn
-                    </a>
-                    <a
-                      href="mailto:rf.bcllr@gmail.com"
-                      className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      Email
-                    </a>
-                  </div>
-                </div>
-              </div>
+            {/* Availability tag */}
+            <div className="inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
+              <span className="relative inline-flex size-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
+                <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
+              </span>
+              <span
+                className="text-[10px] font-bold uppercase tracking-[0.22em]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Available for full-time &amp; freelance work
+              </span>
             </div>
 
-            {/* ── Board column (desktop only) ──────────────── */}
-            <div className="hidden lg:grid lg:grid-cols-2 lg:content-start lg:justify-items-center lg:gap-x-6 lg:gap-y-16 lg:pt-6">
+            {/* Typographic opening */}
+            <h1 className="animate-headline-reveal mt-8 font-display font-bold leading-[0.9] tracking-[-0.05em] text-foreground text-[clamp(2.5rem,6vw,4.5rem)]">
+              I'm Rafael Bacellar<span className="text-primary">.</span>
+            </h1>
+
+            <p className="animate-text-reveal stagger-2 mt-4 text-balance text-[clamp(1.125rem,2vw,1.625rem)] font-medium leading-[1.3] text-muted-foreground opacity-0">
+              Your next product designer<span className="text-primary">.</span>
+            </p>
+
+            {/* Post-it */}
+            <div className="mt-10 flex justify-center" data-no-draw="true">
+              <PostItNote rotate={-1.5}>
+                Senior Product Designer with over 6 years of experience building end-to-end
+                digital products that connect people and solve real problems.
+              </PostItNote>
+            </div>
+
+            {/* CTAs */}
+            <div className="animate-text-reveal stagger-3 mt-11 flex flex-wrap justify-center gap-5 opacity-0">
+              <Button asChild variant="contrast" size="lg" className="btn-arrow-shift">
+                <Link to="/work" data-cursor-action="navigate-internal">
+                  View Work <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-2 border-foreground bg-background text-foreground shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_hsl(var(--foreground))]"
+              >
+                <Link to="/resume" data-cursor-action="navigate-internal">
+                  Resume
+                </Link>
+              </Button>
+            </div>
+
+            {/* Stickers board (mobile / tablet) */}
+            <div className="mt-14 grid w-full grid-cols-2 place-items-center gap-x-6 gap-y-12 sm:grid-cols-3 lg:hidden">
               {stickers.map((s) => (
                 <StickerComment
                   key={s.alt}
@@ -210,13 +180,43 @@ export default function Index() {
                   comment={s.comment}
                   link={s.link}
                   rotate={s.rotate}
-                  side={s.side}
-                  size={s.size}
-                  className={s.offset}
+                  pin={s.pin}
+                  size={Math.round(s.size * 0.78)}
                 />
               ))}
             </div>
           </motion.div>
+
+          {/* Meta line */}
+          <div className="relative mx-auto mt-20 max-w-5xl border-t-2 border-foreground pt-5 lg:mt-40">
+            <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+              <p
+                className="text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {specialties.join(" · ")}
+              </p>
+              <div className="flex gap-6">
+                <a
+                  href="https://linkedin.com/in/rfbcllr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="mailto:rf.bcllr@gmail.com"
+                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Email
+                </a>
+              </div>
+            </div>
+          </div>
+
         </section>
 
 
