@@ -40,8 +40,8 @@ const stickers: Sticker[] = [
     size: 210,
     mobileSize: 132,
     pin: "tl",
-    desktopPos: "left-[1%] top-[2%]",
-    mobilePos: "-left-5 top-2",
+    desktopPos: "left-[2%] top-[1%]",
+    mobilePos: "left-0 top-2",
   },
   {
     src: liaSticker,
@@ -51,8 +51,8 @@ const stickers: Sticker[] = [
     size: 202,
     mobileSize: 126,
     pin: "tr",
-    desktopPos: "right-[2%] top-[7%]",
-    mobilePos: "-right-3 top-8",
+    desktopPos: "right-[2%] top-[4%]",
+    mobilePos: "right-0 top-10",
   },
   {
     src: ramenSticker,
@@ -62,8 +62,8 @@ const stickers: Sticker[] = [
     size: 190,
     mobileSize: 118,
     pin: "bl",
-    desktopPos: "left-[7%] top-[42%]",
-    mobilePos: "left-0 top-[45%]",
+    desktopPos: "left-[4%] top-[38%]",
+    mobilePos: "left-1 top-[43%]",
   },
   {
     src: gitSticker,
@@ -74,8 +74,8 @@ const stickers: Sticker[] = [
     size: 196,
     mobileSize: 122,
     pin: "br",
-    desktopPos: "right-[5%] top-[39%]",
-    mobilePos: "right-0 top-[50%]",
+    desktopPos: "right-[3%] top-[40%]",
+    mobilePos: "right-1 top-[47%]",
   },
   {
     src: brazilSticker,
@@ -84,8 +84,8 @@ const stickers: Sticker[] = [
     size: 212,
     mobileSize: 136,
     pin: "bl",
-    desktopPos: "left-[19%] bottom-[1%]",
-    mobilePos: "-left-3 bottom-0",
+    desktopPos: "left-[17%] bottom-[1%]",
+    mobilePos: "left-0 bottom-0",
   },
   {
     src: remoteSticker,
@@ -95,8 +95,8 @@ const stickers: Sticker[] = [
     size: 202,
     mobileSize: 128,
     pin: "br",
-    desktopPos: "right-[17%] bottom-[5%]",
-    mobilePos: "-right-2 bottom-7",
+    desktopPos: "right-[16%] bottom-[3%]",
+    mobilePos: "right-0 bottom-7",
   },
 ];
 
@@ -109,7 +109,7 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-8 md:pt-12">
+        <section className="relative mx-auto max-w-7xl overflow-x-clip px-6 pb-24 pt-8 md:pt-12">
           <div className="relative h-[760px] overflow-visible lg:h-[700px]" aria-label="Interactive introduction">
           {/* Organic sticker canvas — desktop */}
           <div className="pointer-events-none absolute inset-0 hidden lg:block">
@@ -126,7 +126,7 @@ export default function Index() {
                 />
               </div>
             ))}
-            <div className="pointer-events-auto absolute bottom-[2%] right-[39%] z-20" data-no-draw="true">
+            <div className="pointer-events-auto absolute bottom-[1%] right-[40%] z-20" data-no-draw="true">
               <PostItNote rotate={3.5} className="max-w-[250px] p-5">
                 Senior Product Designer with over 6 years of experience building end-to-end digital products that connect people and solve real problems.
               </PostItNote>
@@ -137,7 +137,7 @@ export default function Index() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="absolute left-1/2 top-[22%] z-20 flex w-[min(620px,90%)] -translate-x-1/2 flex-col items-center text-center lg:top-[24%]"
+            className="absolute inset-x-0 top-[22%] z-20 mx-auto flex w-[min(620px,90%)] flex-col items-center text-center lg:top-[26%]"
           >
             {/* Availability tag */}
             <div className="inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">

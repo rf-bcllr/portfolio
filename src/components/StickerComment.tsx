@@ -1,4 +1,4 @@
-import { type KeyboardEvent, useEffect, useRef, useState } from "react";
+import { type KeyboardEvent as ReactKeyboardEvent, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -67,7 +67,7 @@ export const StickerComment = ({
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
       if (!wrapperRef.current?.contains(e.target as Node)) setOpen(false);
     };
-    const onKeyDown = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKeyDown = (e: globalThis.KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("mousedown", onPointerDown);
     window.addEventListener("touchstart", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
@@ -79,7 +79,7 @@ export const StickerComment = ({
   }, [open]);
 
   const toggle = () => setOpen((value) => !value);
-  const onKeyActivate = (event: KeyboardEvent<HTMLDivElement>) => {
+  const onKeyActivate = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       toggle();
@@ -127,11 +127,7 @@ export const StickerComment = ({
       <div
         className="cursor-pointer"
         onClick={toggle}
-        onKeyDown={onKeyActivate}
-        role="button"
-        tabIndex={0}
-        aria-expanded={open}
-        aria-label={open ? `Hide comment about ${alt}` : `Show comment about ${alt}`}
+        aria-hidden="true"
         data-cursor-action="open-comment"
       >
         {sticker}
