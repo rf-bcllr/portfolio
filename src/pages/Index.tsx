@@ -26,8 +26,9 @@ type Sticker = {
   rotate: number;
   size: number;
   pin: "tl" | "tr" | "bl" | "br";
-  /** desktop absolute placement around the centered text block */
-  pos: string;
+  desktopPos: string;
+  mobilePos: string;
+  mobileSize: number;
 };
 
 const stickers: Sticker[] = [
@@ -36,27 +37,33 @@ const stickers: Sticker[] = [
     alt: "Amaya, Rafael's dog, drawn as a sticker",
     comment: "My main design companion, Amaya",
     rotate: -7,
-    size: 168,
+    size: 210,
+    mobileSize: 132,
     pin: "tl",
-    pos: "left-0 top-4",
+    desktopPos: "left-[1%] top-[2%]",
+    mobilePos: "-left-5 top-2",
   },
   {
     src: liaSticker,
     alt: "Lia, a star-shaped AI mascot",
     comment: "Lia is a mascot I've designed for the AI in a digital platform called iônica",
     rotate: 6,
-    size: 160,
+    size: 202,
+    mobileSize: 126,
     pin: "tr",
-    pos: "right-0 top-0",
+    desktopPos: "right-[2%] top-[7%]",
+    mobilePos: "-right-3 top-8",
   },
   {
     src: ramenSticker,
     alt: "A bowl of ramen sticker",
     comment: "Ramen is my favorite food",
     rotate: -5,
-    size: 156,
+    size: 190,
+    mobileSize: 118,
     pin: "bl",
-    pos: "left-0 top-[40%]",
+    desktopPos: "left-[7%] top-[42%]",
+    mobilePos: "left-0 top-[45%]",
   },
   {
     src: gitSticker,
@@ -64,26 +71,32 @@ const stickers: Sticker[] = [
     comment: "I also build things!",
     link: { label: "Check my GitHub", href: "https://github.com/genai-ftd" },
     rotate: 7,
-    size: 160,
+    size: 196,
+    mobileSize: 122,
     pin: "br",
-    pos: "right-0 top-[38%]",
+    desktopPos: "right-[5%] top-[39%]",
+    mobilePos: "right-0 top-[50%]",
   },
   {
     src: brazilSticker,
     alt: "Based in Brazil sticker",
     rotate: -6,
-    size: 176,
+    size: 212,
+    mobileSize: 136,
     pin: "bl",
-    pos: "left-4 bottom-32",
+    desktopPos: "left-[19%] bottom-[1%]",
+    mobilePos: "-left-3 bottom-0",
   },
   {
     src: remoteSticker,
     alt: "Sticker of a person working remotely on a laptop",
     comment: "I'm open to remote opportunities worldwide",
     rotate: -5,
-    size: 162,
+    size: 202,
+    mobileSize: 128,
     pin: "br",
-    pos: "right-4 bottom-36",
+    desktopPos: "right-[17%] bottom-[5%]",
+    mobilePos: "-right-2 bottom-7",
   },
 ];
 
@@ -96,11 +109,12 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-14 md:pt-20">
-          {/* Stickers around the text block (desktop only) */}
+        <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-8 md:pt-12">
+          <div className="relative h-[760px] overflow-visible lg:h-[700px]" aria-label="Interactive introduction">
+          {/* Organic sticker canvas — desktop */}
           <div className="pointer-events-none absolute inset-0 hidden lg:block">
             {stickers.map((s) => (
-              <div key={s.alt} className={`pointer-events-auto absolute ${s.pos}`}>
+              <div key={s.alt} className={`pointer-events-auto absolute z-10 transition-[z-index] hover:z-40 focus-within:z-40 ${s.desktopPos}`}>
                 <StickerComment
                   src={s.src}
                   alt={s.alt}
@@ -112,13 +126,18 @@ export default function Index() {
                 />
               </div>
             ))}
+            <div className="pointer-events-auto absolute bottom-[2%] right-[39%] z-20" data-no-draw="true">
+              <PostItNote rotate={3.5} className="max-w-[250px] p-5">
+                Senior Product Designer with over 6 years of experience building end-to-end digital products that connect people and solve real problems.
+              </PostItNote>
+            </div>
           </div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="relative mx-auto flex max-w-[620px] flex-col items-center text-center"
+            className="absolute left-1/2 top-[22%] z-20 flex w-[min(620px,90%)] -translate-x-1/2 flex-col items-center text-center lg:top-[24%]"
           >
             {/* Availability tag */}
             <div className="inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
@@ -143,16 +162,8 @@ export default function Index() {
               Your next product designer<span className="text-primary">.</span>
             </p>
 
-            {/* Post-it */}
-            <div className="mt-10 flex justify-center" data-no-draw="true">
-              <PostItNote rotate={-1.5}>
-                Senior Product Designer with over 6 years of experience building end-to-end
-                digital products that connect people and solve real problems.
-              </PostItNote>
-            </div>
-
             {/* CTAs */}
-            <div className="animate-text-reveal stagger-3 mt-11 flex flex-wrap justify-center gap-5 opacity-0">
+            <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap justify-center gap-5 opacity-0">
               <Button asChild variant="contrast" size="lg" className="btn-arrow-shift">
                 <Link to="/work" data-cursor-action="navigate-internal">
                   View Work <ArrowRight className="size-4" />
@@ -170,25 +181,25 @@ export default function Index() {
               </Button>
             </div>
 
-            {/* Stickers board (mobile / tablet) */}
-            <div className="mt-14 grid w-full grid-cols-2 place-items-center gap-x-6 gap-y-12 sm:grid-cols-3 lg:hidden">
-              {stickers.map((s) => (
-                <StickerComment
-                  key={s.alt}
-                  src={s.src}
-                  alt={s.alt}
-                  comment={s.comment}
-                  link={s.link}
-                  rotate={s.rotate}
-                  pin={s.pin}
-                  size={Math.round(s.size * 0.78)}
-                />
-              ))}
-            </div>
           </motion.div>
 
+          {/* Organic sticker canvas — mobile / tablet */}
+          <div className="pointer-events-none absolute inset-0 lg:hidden">
+            {stickers.map((s) => (
+              <div key={s.alt} className={`pointer-events-auto absolute z-10 transition-[z-index] hover:z-40 focus-within:z-40 ${s.mobilePos}`}>
+                <StickerComment src={s.src} alt={s.alt} comment={s.comment} link={s.link} rotate={s.rotate} pin={s.pin} size={s.mobileSize} />
+              </div>
+            ))}
+            <div className="pointer-events-auto absolute bottom-[18%] left-[22%] z-20 sm:left-[34%]" data-no-draw="true">
+              <PostItNote rotate={-3} className="max-w-[220px] p-4">
+                Senior Product Designer with over 6 years of experience building end-to-end digital products that connect people and solve real problems.
+              </PostItNote>
+            </div>
+          </div>
+          </div>
+
           {/* Meta line */}
-          <div className="relative mx-auto mt-20 max-w-5xl border-t-2 border-foreground pt-5 lg:mt-40">
+          <div className="relative mx-auto mt-8 max-w-5xl border-t-2 border-foreground pt-5 lg:mt-10">
             <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
               <p
                 className="text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground"

@@ -1,6 +1,7 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { type KeyboardEvent, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import avatarImg from "@/assets/rafael-bacellar-avatar.jpg";
 
 type PinCorner = "tl" | "tr" | "bl" | "br";
@@ -22,8 +23,14 @@ interface StickerCommentProps {
   className?: string;
 }
 
-const PIN_SIZE = 40;
-const OPEN_WIDTH = 236;
+const CLOSED_SIZE = 32;
+const AVATAR_CLOSED_LEFT = 4;
+const AVATAR_CLOSED_TOP = 4;
+const AVATAR_OPEN_LEFT = 12;
+const AVATAR_OPEN_TOP = 12;
+const CONTENT_DELAY = 0.15;
+const CONTAINER_CLOSE_DELAY = 0.08;
+const BLUR_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export const StickerComment = ({
   src,
@@ -37,32 +44,47 @@ export const StickerComment = ({
   className = "",
 }: StickerCommentProps) => {
   const [open, setOpen] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
+  const [contentHeight, setContentHeight] = useState(CLOSED_SIZE);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
-  useLayoutEffect(() => {
-    if (contentRef.current) setContentHeight(contentRef.current.scrollHeight);
+  useEffect(() => {
+    const measureHeight = () => {
+      const inner = contentRef.current?.firstElementChild as HTMLElement | null;
+      if (inner?.scrollHeight) setContentHeight(inner.scrollHeight);
+    };
+    const shortTimer = window.setTimeout(measureHeight, 100);
+    const longTimer = window.setTimeout(measureHeight, 500);
+    return () => {
+      window.clearTimeout(shortTimer);
+      window.clearTimeout(longTimer);
+    };
   }, [comment, link]);
 
   useEffect(() => {
     if (!open) return;
-    const onPointerDown = (e: PointerEvent) => {
+    const onPointerDown = (e: MouseEvent | TouchEvent) => {
       if (!wrapperRef.current?.contains(e.target as Node)) setOpen(false);
     };
     const onKeyDown = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    document.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("mousedown", onPointerDown);
+    window.addEventListener("touchstart", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
     return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("mousedown", onPointerDown);
+      window.removeEventListener("touchstart", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [open]);
 
-  const spring = reduceMotion
-    ? { duration: 0 }
-    : { type: "spring" as const, stiffness: 320, damping: 26, mass: 0.7 };
+  const toggle = () => setOpen((value) => !value);
+  const onKeyActivate = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggle();
+    }
+  };
 
   const sticker = (
     <motion.img
@@ -73,8 +95,8 @@ export const StickerComment = ({
       initial={false}
       animate={{ rotate: open ? 0 : rotate, scale: 1 }}
       whileHover={reduceMotion ? undefined : { scale: 1.07, rotate: 0, y: -6 }}
-      transition={spring}
-      className="pointer-events-none select-none object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)]"
+      transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 22 }}
+      className="pointer-events-none select-none object-contain drop-shadow-[0_12px_18px_hsl(var(--foreground)/0.16)]"
       style={{ width: size, height: size }}
     />
   );
@@ -89,12 +111,11 @@ export const StickerComment = ({
 
   const isTop = pin === "tl" || pin === "tr";
   const isLeft = pin === "tl" || pin === "bl";
-
-  // pin sits slightly outside the sticker corner
-  const cornerStyle: React.CSSProperties = {
-    [isTop ? "top" : "bottom"]: -10,
-    [isLeft ? "left" : "right"]: -10,
+  const pinStyle: React.CSSProperties = {
+    [isTop ? "top" : "bottom"]: 8,
+    [isLeft ? "left" : "right"]: 8,
   };
+  const openWidth = link ? 224 : 200;
 
   return (
     <div
@@ -103,81 +124,88 @@ export const StickerComment = ({
       data-no-draw="true"
       style={{ width: size, height: size }}
     >
-      <div className="cursor-pointer" onClick={() => setOpen((v) => !v)} aria-hidden="true">
+      <div
+        className="cursor-pointer"
+        onClick={toggle}
+        onKeyDown={onKeyActivate}
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        aria-label={open ? `Hide comment about ${alt}` : `Show comment about ${alt}`}
+        data-cursor-action="open-comment"
+      >
         {sticker}
       </div>
 
-      <motion.div
-        layout={false}
+      <div
         className="absolute z-30"
-        style={{ ...cornerStyle, transformOrigin: `${isTop ? "top" : "bottom"} ${isLeft ? "left" : "right"}` }}
+        style={pinStyle}
       >
-        <motion.button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
+        <motion.div
+          animate={
+            reduceMotion
+              ? {}
+              : { height: open ? contentHeight : CLOSED_SIZE, width: open ? openWidth : CLOSED_SIZE }
+          }
+          className="absolute bottom-0 left-0 cursor-pointer overflow-hidden rounded-2xl rounded-bl-none bg-background shadow-[0px_0px_0.5px_0px_rgba(0,0,0,0.18),0px_3px_8px_0px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]"
+          onClick={toggle}
+          onKeyDown={onKeyActivate}
+          role="button"
+          tabIndex={0}
           aria-expanded={open}
-          aria-label={open ? "Hide comment" : `${alt} — show comment`}
+          aria-label={open ? "Hide comment" : `Show comment about ${alt}`}
           data-cursor-action="open-comment"
-          initial={false}
-          animate={{
-            width: open ? OPEN_WIDTH : PIN_SIZE,
-            height: open ? Math.max(PIN_SIZE, contentHeight + 6) : PIN_SIZE,
-          }}
-          transition={spring}
-          className={`relative flex cursor-pointer items-start overflow-hidden bg-white text-left shadow-[0_8px_24px_rgba(0,0,0,0.22)] ring-1 ring-black/10 dark:bg-neutral-900 dark:ring-white/15 ${
-            isTop && isLeft
-              ? "rounded-[20px] rounded-tl-md"
-              : isTop
-                ? "rounded-[20px] rounded-tr-md"
-                : isLeft
-                  ? "rounded-[20px] rounded-bl-md"
-                  : "rounded-[20px] rounded-br-md"
-          }`}
+          style={reduceMotion ? { height: open ? contentHeight : CLOSED_SIZE, width: open ? openWidth : CLOSED_SIZE } : undefined}
+          transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 550, damping: 45, mass: 0.7, duration: 0.25, delay: open ? 0 : CONTAINER_CLOSE_DELAY }}
         >
-          <span className="absolute left-0 top-0 flex size-10 shrink-0 items-center justify-center">
-            <img
-              src={avatarImg}
-              alt={author}
-              className="size-7 rounded-full object-cover"
-              loading="lazy"
-            />
-          </span>
-
-          {!open && (
-            <span className="absolute -right-0.5 -top-0.5 size-3 rounded-full bg-primary ring-2 ring-white dark:ring-neutral-900" />
-          )}
-
           <motion.div
-                ref={contentRef}
-                initial={false}
-                animate={{ opacity: open ? 1 : 0 }}
-                transition={{ duration: reduceMotion ? 0 : 0.18, delay: open && !reduceMotion ? 0.08 : 0 }}
-                className="shrink-0 pl-10 pr-3 pt-2.5"
-                style={{ width: OPEN_WIDTH }}
+            animate={reduceMotion ? {} : { left: open ? AVATAR_OPEN_LEFT : AVATAR_CLOSED_LEFT, top: open ? AVATAR_OPEN_TOP : AVATAR_CLOSED_TOP }}
+            className="absolute z-10"
+            style={reduceMotion ? { left: open ? AVATAR_OPEN_LEFT : AVATAR_CLOSED_LEFT, top: open ? AVATAR_OPEN_TOP : AVATAR_CLOSED_TOP } : undefined}
+            transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 25, duration: 0.25 }}
+          >
+            <Avatar className="h-6 w-6">
+              <AvatarImage alt={author} src={avatarImg} />
+              <AvatarFallback>{author.charAt(0)}</AvatarFallback>
+            </Avatar>
+          </motion.div>
+
+          <div ref={contentRef} className="pointer-events-none absolute" style={{ left: 0, top: -9999, width: openWidth }}>
+            <div className="flex flex-col items-start gap-0.5 py-3 pl-11 pr-4">
+              <div className="flex items-start gap-0.5">
+                <p className="text-[11px] font-semibold leading-4 text-foreground">{author}</p>
+                <p className="text-[11px] font-medium leading-4 text-muted-foreground">Just now</p>
+              </div>
+              <p className="text-left text-[11px] font-medium leading-4 text-foreground">{comment}</p>
+              {link && <span className="h-5" />}
+            </div>
+          </div>
+
+          <AnimatePresence>
+            {open ? (
+              <motion.div
+                initial={reduceMotion ? { opacity: 0 } : { opacity: 0, filter: "blur(6px)" }}
+                animate={reduceMotion ? { opacity: 1 } : { opacity: 1, filter: "blur(0px)" }}
+                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, filter: "blur(3px)" }}
+                transition={reduceMotion ? { duration: 0 } : { opacity: { delay: CONTENT_DELAY, duration: 0.25, ease: BLUR_EASE }, filter: { delay: CONTENT_DELAY, duration: 0.25, ease: BLUR_EASE } }}
+                className="absolute inset-0 flex flex-col items-start gap-0.5 py-3 pl-11 pr-4"
+                style={{ width: openWidth }}
               >
-                <p className="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400">
-                  {author}
-                </p>
-                <p className="mt-1 text-[13px] font-medium leading-[1.45] text-neutral-900 dark:text-neutral-100">
-                  {comment}
-                </p>
+                <div className="flex items-start gap-0.5">
+                  <p className="text-[11px] font-semibold leading-4 text-foreground">{author}</p>
+                  <p className="text-[11px] font-medium leading-4 text-muted-foreground">Just now</p>
+                </div>
+                <p className="text-left text-[11px] font-medium leading-4 text-foreground">{comment}</p>
                 {link && (
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    data-cursor-action="navigate-external"
-                    className="mt-2 inline-flex items-center gap-1 text-[13px] font-semibold text-primary underline underline-offset-2"
-                  >
-                    {link.label}
-                    <ArrowUpRight className="size-3.5" />
+                  <a href={link.href} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()} className="pointer-events-auto mt-1 inline-flex items-center gap-1 text-[11px] font-semibold leading-4 text-primary underline underline-offset-2" data-cursor-action="navigate-external">
+                    {link.label}<ArrowUpRight className="size-3" />
                   </a>
                 )}
-                <span className="block h-3" />
               </motion.div>
-        </motion.button>
-      </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </motion.div>
+      </div>
     </div>
   );
 };
