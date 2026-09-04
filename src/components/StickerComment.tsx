@@ -112,7 +112,7 @@ export const StickerComment = ({
   // pin is always anchored to the top-right of the sticker, slightly overlapping it.
   // "left"-ish pins belong to stickers on the left side of the canvas, so the bubble grows to the right.
   const growRight = pin === "tl" || pin === "bl";
-  const pinStyle: React.CSSProperties = { top: -12, right: -12 };
+  const pinStyle: React.CSSProperties = { top: 6, right: 6 };
   const openWidth = link ? 224 : 200;
 
 
