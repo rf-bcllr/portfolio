@@ -185,19 +185,15 @@ export default function Index() {
 
           </motion.div>
 
-          {/* Organic sticker canvas — mobile / tablet */}
+          {/* Organic sticker canvas — mobile / tablet (decorative only) */}
           <div className="pointer-events-none absolute inset-0 lg:hidden">
             {stickers.map((s) => (
-              <div key={s.alt} className={`pointer-events-auto absolute z-10 transition-[z-index] hover:z-40 focus-within:z-40 ${s.mobilePos}`}>
-                <StickerComment src={s.src} alt={s.alt} comment={s.comment} link={s.link} rotate={s.rotate} pin={s.pin} size={s.mobileSize} />
+              <div key={s.alt} className={`absolute z-10 ${s.mobilePos}`}>
+                <StickerComment src={s.src} alt={s.alt} rotate={s.rotate} size={s.mobileSize} />
               </div>
             ))}
-            <div className="pointer-events-auto absolute bottom-[13%] left-[22%] z-20 sm:bottom-[11%] sm:left-[34%]" data-no-draw="true">
-              <PostItNote rotate={-3} className="max-w-[220px] p-4">
-                Senior Product Designer with over 6 years of experience building end-to-end digital products that connect people and solve real problems.
-              </PostItNote>
-            </div>
           </div>
+
           </div>
 
 
