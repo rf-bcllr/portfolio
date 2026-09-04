@@ -41,7 +41,7 @@ const stickers: Sticker[] = [
     mobileSize: 132,
     pin: "tl",
     desktopPos: "left-[2%] top-[1%]",
-    mobilePos: "left-0 top-2",
+    mobilePos: "left-0 top-0",
   },
   {
     src: liaSticker,
@@ -52,7 +52,7 @@ const stickers: Sticker[] = [
     mobileSize: 126,
     pin: "tr",
     desktopPos: "right-[2%] top-[4%]",
-    mobilePos: "right-0 top-10",
+    mobilePos: "right-0 top-3",
   },
   {
     src: ramenSticker,
@@ -63,7 +63,7 @@ const stickers: Sticker[] = [
     mobileSize: 118,
     pin: "bl",
     desktopPos: "left-[4%] top-[38%]",
-    mobilePos: "left-1 top-[53%]",
+    mobilePos: "left-0 top-[56%]",
   },
   {
     src: gitSticker,
@@ -75,7 +75,7 @@ const stickers: Sticker[] = [
     mobileSize: 122,
     pin: "br",
     desktopPos: "right-[3%] top-[40%]",
-    mobilePos: "right-1 top-[55%]",
+    mobilePos: "right-0 top-[58%]",
   },
   {
     src: brazilSticker,
@@ -85,7 +85,7 @@ const stickers: Sticker[] = [
     mobileSize: 136,
     pin: "bl",
     desktopPos: "left-[17%] bottom-[1%]",
-    mobilePos: "left-0 bottom-0",
+    mobilePos: "left-1 bottom-1",
   },
   {
     src: remoteSticker,
@@ -96,7 +96,7 @@ const stickers: Sticker[] = [
     mobileSize: 128,
     pin: "br",
     desktopPos: "right-[16%] bottom-[3%]",
-    mobilePos: "right-0 bottom-7",
+    mobilePos: "right-1 bottom-4",
   },
 ];
 
@@ -110,7 +110,7 @@ export default function Index() {
 
       <main id="main-content">
         <section className="relative mx-auto max-w-7xl overflow-x-clip px-6 pb-24 pt-8 md:pt-12">
-          <div className="relative h-[880px] overflow-visible sm:h-[820px] lg:h-[700px]" aria-label="Interactive introduction">
+          <div className="relative h-[740px] overflow-visible sm:h-[720px] lg:h-[700px]" aria-label="Interactive introduction">
           {/* Organic sticker canvas — desktop */}
           <div className="pointer-events-none absolute inset-0 hidden lg:block">
             {stickers.map((s) => (
@@ -140,27 +140,29 @@ export default function Index() {
             className="absolute inset-x-0 top-[22%] z-20 mx-auto flex w-[min(620px,90%)] flex-col items-center text-center lg:top-[26%]"
           >
             {/* Availability tag */}
-            <div className="inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
+            <div className="inline-flex animate-badge-pop items-center gap-2 border border-foreground bg-foreground px-3 py-1.5 text-background sm:gap-3 sm:px-4 sm:py-2">
               <span className="relative inline-flex size-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
               </span>
               <span
-                className="text-[10px] font-bold uppercase tracking-[0.22em]"
+                className="text-[9px] font-bold uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.22em]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Available for full-time &amp; freelance work
+                <span className="sm:hidden">Available for new projects</span>
+                <span className="hidden sm:inline">Available for full-time &amp; freelance work</span>
               </span>
             </div>
 
             {/* Typographic opening */}
-            <h1 className="animate-headline-reveal mt-8 font-display font-bold leading-[0.9] tracking-[-0.05em] text-foreground text-[clamp(2.5rem,6vw,4.5rem)]">
+            <h1 className="animate-headline-reveal mt-8 font-display font-bold leading-[0.9] tracking-[-0.05em] text-foreground text-[clamp(3.25rem,11vw,4.5rem)]">
               I'm Rafael Bacellar<span className="text-primary">.</span>
             </h1>
 
             <p className="animate-text-reveal stagger-2 mt-4 text-balance text-[clamp(1.125rem,2vw,1.625rem)] font-medium leading-[1.3] text-muted-foreground opacity-0">
               Your next product designer<span className="text-primary">.</span>
             </p>
+
 
             {/* CTAs */}
             <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap justify-center gap-5 opacity-0">
@@ -183,19 +185,15 @@ export default function Index() {
 
           </motion.div>
 
-          {/* Organic sticker canvas — mobile / tablet */}
+          {/* Organic sticker canvas — mobile / tablet (decorative only) */}
           <div className="pointer-events-none absolute inset-0 lg:hidden">
             {stickers.map((s) => (
-              <div key={s.alt} className={`pointer-events-auto absolute z-10 transition-[z-index] hover:z-40 focus-within:z-40 ${s.mobilePos}`}>
-                <StickerComment src={s.src} alt={s.alt} comment={s.comment} link={s.link} rotate={s.rotate} pin={s.pin} size={s.mobileSize} />
+              <div key={s.alt} className={`absolute z-10 ${s.mobilePos}`}>
+                <StickerComment src={s.src} alt={s.alt} rotate={s.rotate} size={s.mobileSize} />
               </div>
             ))}
-            <div className="pointer-events-auto absolute bottom-[13%] left-[22%] z-20 sm:bottom-[11%] sm:left-[34%]" data-no-draw="true">
-              <PostItNote rotate={-3} className="max-w-[220px] p-4">
-                Senior Product Designer with over 6 years of experience building end-to-end digital products that connect people and solve real problems.
-              </PostItNote>
-            </div>
           </div>
+
           </div>
 
 

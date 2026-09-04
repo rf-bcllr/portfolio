@@ -109,13 +109,14 @@ export const StickerComment = ({
     );
   }
 
-  const isTop = pin === "tl" || pin === "tr";
-  const isLeft = pin === "tl" || pin === "bl";
-  const pinStyle: React.CSSProperties = {
-    bottom: 8,
-    [isLeft ? "left" : "right"]: 8,
-  };
+  // pin is always anchored to the top-right of the sticker, slightly overlapping it.
+  // "left"-ish pins belong to stickers on the left side of the canvas, so the bubble grows to the right.
+  const growRight = pin === "tl" || pin === "bl";
+  // stickers near the top of the canvas open downwards so the bubble never hides behind the nav.
+  const growDown = pin === "tl" || pin === "tr";
+  const pinStyle: React.CSSProperties = { top: 6, right: 6 };
   const openWidth = link ? 224 : 200;
+
 
   return (
     <div
@@ -143,7 +144,7 @@ export const StickerComment = ({
               ? {}
               : { height: open ? contentHeight : CLOSED_SIZE, width: open ? openWidth : CLOSED_SIZE }
           }
-          className="absolute bottom-0 left-0 cursor-pointer overflow-hidden rounded-2xl rounded-bl-none bg-background shadow-[0px_0px_0.5px_0px_rgba(0,0,0,0.18),0px_3px_8px_0px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]"
+          className={`absolute cursor-pointer overflow-hidden rounded-2xl bg-background shadow-[0px_0px_0.5px_0px_rgba(0,0,0,0.18),0px_3px_8px_0px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)] ${growDown ? "top-0" : "bottom-0"} ${growRight ? "left-0" : "right-0"} ${growDown ? (growRight ? "rounded-tl-none" : "rounded-tr-none") : growRight ? "rounded-bl-none" : "rounded-br-none"}`}
           onClick={(event) => {
             event.stopPropagation();
             toggle();
