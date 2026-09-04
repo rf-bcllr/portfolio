@@ -38,7 +38,7 @@ const stickers: Sticker[] = [
     rotate: -6,
     side: "right",
     size: 132,
-    offset: "lg:translate-x-6",
+    offset: "lg:-translate-x-2",
   },
   {
     src: liaSticker,
@@ -47,7 +47,7 @@ const stickers: Sticker[] = [
     rotate: 5,
     side: "left",
     size: 128,
-    offset: "lg:-translate-x-10",
+    offset: "lg:translate-x-2 lg:translate-y-12",
   },
   {
     src: ramenSticker,
@@ -56,7 +56,7 @@ const stickers: Sticker[] = [
     rotate: -4,
     side: "right",
     size: 124,
-    offset: "lg:translate-x-10",
+    offset: "lg:translate-x-4 lg:translate-y-12",
   },
   {
     src: gitSticker,
@@ -75,7 +75,7 @@ const stickers: Sticker[] = [
     rotate: -5,
     side: "right",
     size: 126,
-    offset: "lg:translate-x-8",
+    offset: "lg:-translate-x-2",
   },
   {
     src: brazilSticker,
