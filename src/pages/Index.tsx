@@ -16,7 +16,7 @@ import brazilSticker from "@/assets/brazil-sticker-2.webp";
 import ramenSticker from "@/assets/ramen-sticker.webp";
 import gitSticker from "@/assets/git-sticker.webp";
 
-const specialties = ["UX/UI Design", "AI Tools", "Design Systems", "Research"];
+
 
 type Sticker = {
   src: string;
