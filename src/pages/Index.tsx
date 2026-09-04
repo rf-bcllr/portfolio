@@ -16,7 +16,7 @@ import brazilSticker from "@/assets/brazil-sticker-2.webp";
 import ramenSticker from "@/assets/ramen-sticker.webp";
 import gitSticker from "@/assets/git-sticker.webp";
 
-const specialties = ["UX/UI Design", "AI Tools", "Design Systems", "Research"];
+
 
 type Sticker = {
   src: string;
@@ -198,35 +198,6 @@ export default function Index() {
           </div>
           </div>
 
-          {/* Meta line */}
-          <div className="relative mx-auto mt-8 max-w-5xl border-t-2 border-foreground pt-5 lg:mt-10">
-            <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
-              <p
-                className="text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {specialties.join(" · ")}
-              </p>
-              <div className="flex gap-6">
-                <a
-                  href="https://linkedin.com/in/rfbcllr"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="mailto:rf.bcllr@gmail.com"
-                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Email
-                </a>
-              </div>
-            </div>
-          </div>
 
         </section>
 
