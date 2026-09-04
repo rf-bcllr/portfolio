@@ -41,7 +41,7 @@ const stickers: Sticker[] = [
     mobileSize: 132,
     pin: "tl",
     desktopPos: "left-[2%] top-[1%]",
-    mobilePos: "left-0 top-2",
+    mobilePos: "left-0 top-0",
   },
   {
     src: liaSticker,
@@ -52,7 +52,7 @@ const stickers: Sticker[] = [
     mobileSize: 126,
     pin: "tr",
     desktopPos: "right-[2%] top-[4%]",
-    mobilePos: "right-0 top-10",
+    mobilePos: "right-0 top-3",
   },
   {
     src: ramenSticker,
@@ -63,7 +63,7 @@ const stickers: Sticker[] = [
     mobileSize: 118,
     pin: "bl",
     desktopPos: "left-[4%] top-[38%]",
-    mobilePos: "left-1 top-[53%]",
+    mobilePos: "left-0 top-[56%]",
   },
   {
     src: gitSticker,
@@ -75,7 +75,7 @@ const stickers: Sticker[] = [
     mobileSize: 122,
     pin: "br",
     desktopPos: "right-[3%] top-[40%]",
-    mobilePos: "right-1 top-[55%]",
+    mobilePos: "right-0 top-[58%]",
   },
   {
     src: brazilSticker,
@@ -85,7 +85,7 @@ const stickers: Sticker[] = [
     mobileSize: 136,
     pin: "bl",
     desktopPos: "left-[17%] bottom-[1%]",
-    mobilePos: "left-0 bottom-0",
+    mobilePos: "left-1 bottom-1",
   },
   {
     src: remoteSticker,
@@ -96,7 +96,7 @@ const stickers: Sticker[] = [
     mobileSize: 128,
     pin: "br",
     desktopPos: "right-[16%] bottom-[3%]",
-    mobilePos: "right-0 bottom-7",
+    mobilePos: "right-1 bottom-4",
   },
 ];
 
@@ -110,7 +110,7 @@ export default function Index() {
 
       <main id="main-content">
         <section className="relative mx-auto max-w-7xl overflow-x-clip px-6 pb-24 pt-8 md:pt-12">
-          <div className="relative h-[700px] overflow-visible sm:h-[720px] lg:h-[700px]" aria-label="Interactive introduction">
+          <div className="relative h-[800px] overflow-visible sm:h-[760px] lg:h-[700px]" aria-label="Interactive introduction">
           {/* Organic sticker canvas — desktop */}
           <div className="pointer-events-none absolute inset-0 hidden lg:block">
             {stickers.map((s) => (
