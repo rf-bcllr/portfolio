@@ -10,11 +10,11 @@ import { StickerComment } from "@/components/StickerComment";
 import { PostItNote } from "@/components/PostItNote";
 import { useTranslations } from "@/hooks/useTranslations";
 import amayaSticker from "@/assets/amaya-sticker.webp";
-import liaSticker from "@/assets/lia-sticker-2.png.asset.json";
+import liaSticker from "@/assets/lia-sticker-2.webp";
 import remoteSticker from "@/assets/remote_worker_sticker.webp";
-import brazilSticker from "@/assets/brazil-sticker-2.png.asset.json";
-import ramenSticker from "@/assets/ramen-sticker.png.asset.json";
-import gitSticker from "@/assets/git-sticker.png.asset.json";
+import brazilSticker from "@/assets/brazil-sticker-2.webp";
+import ramenSticker from "@/assets/ramen-sticker.webp";
+import gitSticker from "@/assets/git-sticker.webp";
 
 const specialties = ["UX/UI Design", "AI Tools", "Design Systems", "Research"];
 
