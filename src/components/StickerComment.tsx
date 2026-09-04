@@ -112,7 +112,7 @@ export const StickerComment = ({
   const isTop = pin === "tl" || pin === "tr";
   const isLeft = pin === "tl" || pin === "bl";
   const pinStyle: React.CSSProperties = {
-    [isTop ? "top" : "bottom"]: 8,
+    bottom: 8,
     [isLeft ? "left" : "right"]: 8,
   };
   const openWidth = link ? 224 : 200;
@@ -144,7 +144,10 @@ export const StickerComment = ({
               : { height: open ? contentHeight : CLOSED_SIZE, width: open ? openWidth : CLOSED_SIZE }
           }
           className="absolute bottom-0 left-0 cursor-pointer overflow-hidden rounded-2xl rounded-bl-none bg-background shadow-[0px_0px_0.5px_0px_rgba(0,0,0,0.18),0px_3px_8px_0px_rgba(0,0,0,0.1),0px_1px_3px_0px_rgba(0,0,0,0.1)]"
-          onClick={toggle}
+          onClick={(event) => {
+            event.stopPropagation();
+            toggle();
+          }}
           onKeyDown={onKeyActivate}
           role="button"
           tabIndex={0}

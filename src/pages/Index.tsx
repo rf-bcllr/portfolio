@@ -63,7 +63,7 @@ const stickers: Sticker[] = [
     mobileSize: 118,
     pin: "bl",
     desktopPos: "left-[4%] top-[38%]",
-    mobilePos: "left-1 top-[43%]",
+    mobilePos: "left-1 top-[53%]",
   },
   {
     src: gitSticker,
@@ -75,7 +75,7 @@ const stickers: Sticker[] = [
     mobileSize: 122,
     pin: "br",
     desktopPos: "right-[3%] top-[40%]",
-    mobilePos: "right-1 top-[47%]",
+    mobilePos: "right-1 top-[55%]",
   },
   {
     src: brazilSticker,
@@ -110,7 +110,7 @@ export default function Index() {
 
       <main id="main-content">
         <section className="relative mx-auto max-w-7xl overflow-x-clip px-6 pb-24 pt-8 md:pt-12">
-          <div className="relative h-[760px] overflow-visible lg:h-[700px]" aria-label="Interactive introduction">
+          <div className="relative h-[880px] overflow-visible sm:h-[820px] lg:h-[700px]" aria-label="Interactive introduction">
           {/* Organic sticker canvas — desktop */}
           <div className="pointer-events-none absolute inset-0 hidden lg:block">
             {stickers.map((s) => (
@@ -190,7 +190,7 @@ export default function Index() {
                 <StickerComment src={s.src} alt={s.alt} comment={s.comment} link={s.link} rotate={s.rotate} pin={s.pin} size={s.mobileSize} />
               </div>
             ))}
-            <div className="pointer-events-auto absolute bottom-[18%] left-[22%] z-20 sm:left-[34%]" data-no-draw="true">
+            <div className="pointer-events-auto absolute bottom-[13%] left-[22%] z-20 sm:bottom-[11%] sm:left-[34%]" data-no-draw="true">
               <PostItNote rotate={-3} className="max-w-[220px] p-4">
                 Senior Product Designer with over 6 years of experience building end-to-end digital products that connect people and solve real problems.
               </PostItNote>
