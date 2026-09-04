@@ -41,7 +41,7 @@ const stickers: Sticker[] = [
     offset: "lg:translate-x-6",
   },
   {
-    src: liaSticker.url,
+    src: liaSticker,
     alt: "Lia, a star-shaped AI mascot",
     comment: "Lia is a mascot I've designed for the AI in a digital platform called iônica",
     rotate: 5,
@@ -50,7 +50,7 @@ const stickers: Sticker[] = [
     offset: "lg:-translate-x-10",
   },
   {
-    src: ramenSticker.url,
+    src: ramenSticker,
     alt: "A bowl of ramen sticker",
     comment: "Ramen is my favorite food",
     rotate: -4,
@@ -59,7 +59,7 @@ const stickers: Sticker[] = [
     offset: "lg:translate-x-10",
   },
   {
-    src: gitSticker.url,
+    src: gitSticker,
     alt: "GitHub octocat coding on a laptop sticker",
     comment: "I also build things!",
     link: { label: "Check my GitHub", href: "https://github.com/genai-ftd" },
@@ -78,7 +78,7 @@ const stickers: Sticker[] = [
     offset: "lg:translate-x-8",
   },
   {
-    src: brazilSticker.url,
+    src: brazilSticker,
     alt: "Based in Brazil sticker",
     rotate: -6,
     side: "left",
@@ -99,7 +99,7 @@ export default function Index() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="grid grid-cols-1 gap-x-16 gap-y-16 lg:grid-cols-[minmax(0,1fr)_320px]"
+            className="grid grid-cols-1 gap-x-16 gap-y-16 lg:grid-cols-[minmax(0,1fr)_360px]"
           >
             {/* ── Main column ─────────────────────────────── */}
             <div className="max-w-[640px]">
@@ -201,7 +201,7 @@ export default function Index() {
             </div>
 
             {/* ── Board column (desktop only) ──────────────── */}
-            <div className="hidden lg:flex lg:flex-col lg:items-center lg:gap-20 lg:pt-4">
+            <div className="hidden lg:grid lg:grid-cols-2 lg:content-start lg:justify-items-center lg:gap-x-6 lg:gap-y-16 lg:pt-6">
               {stickers.map((s) => (
                 <StickerComment
                   key={s.alt}
