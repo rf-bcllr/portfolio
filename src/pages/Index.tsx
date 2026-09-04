@@ -140,27 +140,29 @@ export default function Index() {
             className="absolute inset-x-0 top-[22%] z-20 mx-auto flex w-[min(620px,90%)] flex-col items-center text-center lg:top-[26%]"
           >
             {/* Availability tag */}
-            <div className="inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
+            <div className="inline-flex animate-badge-pop items-center gap-2 border border-foreground bg-foreground px-3 py-1.5 text-background sm:gap-3 sm:px-4 sm:py-2">
               <span className="relative inline-flex size-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
               </span>
               <span
-                className="text-[10px] font-bold uppercase tracking-[0.22em]"
+                className="text-[9px] font-bold uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.22em]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Available for full-time &amp; freelance work
+                <span className="sm:hidden">Available for new projects</span>
+                <span className="hidden sm:inline">Available for full-time &amp; freelance work</span>
               </span>
             </div>
 
             {/* Typographic opening */}
-            <h1 className="animate-headline-reveal mt-8 font-display font-bold leading-[0.9] tracking-[-0.05em] text-foreground text-[clamp(2.5rem,6vw,4.5rem)]">
+            <h1 className="animate-headline-reveal mt-8 font-display font-bold leading-[0.9] tracking-[-0.05em] text-foreground text-[clamp(3.25rem,11vw,4.5rem)]">
               I'm Rafael Bacellar<span className="text-primary">.</span>
             </h1>
 
             <p className="animate-text-reveal stagger-2 mt-4 text-balance text-[clamp(1.125rem,2vw,1.625rem)] font-medium leading-[1.3] text-muted-foreground opacity-0">
               Your next product designer<span className="text-primary">.</span>
             </p>
+
 
             {/* CTAs */}
             <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap justify-center gap-5 opacity-0">
