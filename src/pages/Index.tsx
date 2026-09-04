@@ -1,41 +1,88 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, MapPin, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Briefcase, Sparkles, Zap } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { ContactFooter } from "@/components/ContactFooter";
-import { FigmaComment } from "@/components/FigmaComment";
-import { HeroSticker } from "@/components/HeroSticker";
+import { StickerComment } from "@/components/StickerComment";
 import { PostItNote } from "@/components/PostItNote";
 import { useTranslations } from "@/hooks/useTranslations";
-import heroPortrait from "@/assets/hero-portrait.png";
 import amayaSticker from "@/assets/amaya-sticker.webp";
-import liaSticker from "@/assets/lia-sticker.webp";
+import liaSticker from "@/assets/lia-sticker-2.png.asset.json";
 import remoteSticker from "@/assets/remote_worker_sticker.webp";
-import brazilSticker from "@/assets/brazil-sticker.webp";
+import brazilSticker from "@/assets/brazil-sticker-2.png.asset.json";
+import ramenSticker from "@/assets/ramen-sticker.png.asset.json";
+import gitSticker from "@/assets/git-sticker.png.asset.json";
 
 const specialties = ["UX/UI Design", "AI Tools", "Design Systems", "Research"];
 
-const stickers = [
+type Sticker = {
+  src: string;
+  alt: string;
+  comment?: string;
+  link?: { label: string; href: string };
+  rotate: number;
+  side: "left" | "right";
+  size: number;
+  /** desktop-only nudge so the board feels hand-placed */
+  offset?: string;
+};
+
+const stickers: Sticker[] = [
   {
     src: amayaSticker,
     alt: "Amaya, Rafael's dog, drawn as a sticker",
     comment: "My main design companion, Amaya",
-    rotate: -5,
+    rotate: -6,
+    side: "right",
+    size: 132,
+    offset: "lg:translate-x-6",
   },
   {
-    src: liaSticker,
-    alt: "Lia, a star-headed mascot",
+    src: liaSticker.url,
+    alt: "Lia, a star-shaped AI mascot",
     comment: "Lia is a mascot I've designed for the AI in a digital platform called iônica",
-    rotate: 4,
+    rotate: 5,
+    side: "left",
+    size: 128,
+    offset: "lg:-translate-x-10",
+  },
+  {
+    src: ramenSticker.url,
+    alt: "A bowl of ramen sticker",
+    comment: "Ramen is my favorite food",
+    rotate: -4,
+    side: "right",
+    size: 124,
+    offset: "lg:translate-x-10",
+  },
+  {
+    src: gitSticker.url,
+    alt: "GitHub octocat coding on a laptop sticker",
+    comment: "I also build things!",
+    link: { label: "Check my GitHub", href: "https://github.com/genai-ftd" },
+    rotate: 6,
+    side: "left",
+    size: 128,
+    offset: "lg:-translate-x-4",
   },
   {
     src: remoteSticker,
-    alt: "Sticker of a person working on a laptop anywhere",
+    alt: "Sticker of a person working remotely on a laptop",
     comment: "I'm open to remote opportunities worldwide",
-    rotate: -3,
+    rotate: -5,
+    side: "right",
+    size: 126,
+    offset: "lg:translate-x-8",
+  },
+  {
+    src: brazilSticker.url,
+    alt: "Based in Brazil sticker",
+    rotate: -6,
+    side: "left",
+    size: 150,
   },
 ];
 
@@ -47,41 +94,17 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="mx-auto max-w-5xl px-6 pb-20 pt-14 md:pt-24">
+        <section className="mx-auto max-w-6xl px-6 pb-24 pt-14 md:pt-24">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="grid grid-cols-1 gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1fr)_260px]"
+            className="grid grid-cols-1 gap-x-16 gap-y-16 lg:grid-cols-[minmax(0,1fr)_320px]"
           >
             {/* ── Main column ─────────────────────────────── */}
             <div className="max-w-[640px]">
-              {/* Identity line */}
-              <div className="flex items-center gap-3">
-                <img
-                  src={heroPortrait}
-                  alt="Rafael Bacellar"
-                  loading="eager"
-                  decoding="async"
-                  width={60}
-                  height={60}
-                  className="size-14 shrink-0 rounded-full border-2 border-foreground object-cover grayscale transition-all duration-500 hover:grayscale-0 sm:size-[60px]"
-                />
-                <div>
-                  <p className="font-display text-lg font-bold leading-none tracking-[-0.02em]">
-                    Rafael Bacellar
-                  </p>
-                  <p
-                    className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    Senior Product Designer
-                  </p>
-                </div>
-              </div>
-
               {/* Availability tag */}
-              <div className="mt-8 inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
+              <div className="inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
                 <span className="relative inline-flex size-2.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                   <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
@@ -95,26 +118,24 @@ export default function Index() {
               </div>
 
               {/* Typographic opening */}
-              <h1 className="animate-headline-reveal mt-6 font-display font-bold leading-[0.85] tracking-[-0.05em] text-foreground text-[clamp(3.5rem,13vw,7.5rem)]">
-                Hello<span className="text-primary">,</span>
+              <h1 className="animate-headline-reveal mt-8 font-display font-bold leading-[0.88] tracking-[-0.05em] text-foreground text-[clamp(2.75rem,7.5vw,5rem)]">
+                I'm Rafael Bacellar<span className="text-primary">.</span>
               </h1>
 
-              <p className="animate-text-reveal stagger-2 mt-6 max-w-[560px] text-balance text-[clamp(1.25rem,2.4vw,1.75rem)] font-medium leading-[1.35] text-foreground opacity-0">
-                I'm Rafael — a product designer building digital products that connect people
-                and solve real problems<span className="text-primary">.</span>
+              <p className="animate-text-reveal stagger-2 mt-5 text-balance text-[clamp(1.25rem,2.4vw,1.875rem)] font-medium leading-[1.3] text-muted-foreground opacity-0">
+                Your next product designer<span className="text-primary">.</span>
               </p>
 
-              {/* Post-it (mobile / tablet flow) */}
-              <div className="mt-10 flex justify-start lg:hidden" data-no-draw="true">
+              {/* Post-it */}
+              <div className="mt-10 flex justify-start" data-no-draw="true">
                 <PostItNote rotate={-1.5}>
-                  Senior Product Designer with 10+ years of experience creating digital products
-                  that connect people and solve real problems — from mobile apps to AI-powered
-                  tools.
+                  Senior Product Designer with over 6 years of experience building end-to-end
+                  digital products that connect people and solve real problems.
                 </PostItNote>
               </div>
 
               {/* CTAs */}
-              <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap gap-5 opacity-0">
+              <div className="animate-text-reveal stagger-3 mt-12 flex flex-wrap gap-5 opacity-0">
                 <Button asChild variant="contrast" size="lg" className="btn-arrow-shift">
                   <Link to="/work" data-cursor-action="navigate-internal">
                     View Work <ArrowRight className="size-4" />
@@ -132,34 +153,30 @@ export default function Index() {
                 </Button>
               </div>
 
-              {/* Stickers row (mobile / tablet) */}
-              <div className="mt-12 flex flex-wrap items-end gap-x-10 gap-y-8 lg:hidden">
+              {/* Stickers board (mobile / tablet) */}
+              <div className="mt-16 flex flex-wrap items-center justify-start gap-x-10 gap-y-12 lg:hidden">
                 {stickers.map((s) => (
-                  <HeroSticker key={s.alt} src={s.src} alt={s.alt} size={76} rotate={s.rotate}>
-                    <FigmaComment comment={s.comment} width={220} />
-                  </HeroSticker>
+                  <StickerComment
+                    key={s.alt}
+                    src={s.src}
+                    alt={s.alt}
+                    comment={s.comment}
+                    link={s.link}
+                    rotate={s.rotate}
+                    side="right"
+                    size={Math.round(s.size * 0.82)}
+                  />
                 ))}
               </div>
 
               {/* Meta line */}
-              <div className="mt-14 border-t-2 border-foreground pt-5">
+              <div className="mt-16 border-t-2 border-foreground pt-5">
                 <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
-                  <p className="flex items-center gap-2 font-display text-base font-bold text-foreground">
-                    <MapPin className="size-4 text-primary" />
-                    Based in Brazil
-                    <span className="font-medium text-muted-foreground">
-                      · Open to remote worldwide
-                    </span>
-                    <img
-                      src={brazilSticker}
-                      alt=""
-                      aria-hidden="true"
-                      width={34}
-                      height={34}
-                      loading="lazy"
-                      className="size-[34px] object-contain"
-                      style={{ transform: "rotate(-6deg)" }}
-                    />
+                  <p
+                    className="text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {specialties.join(" · ")}
                   </p>
                   <div className="flex gap-6">
                     <a
@@ -180,45 +197,28 @@ export default function Index() {
                     </a>
                   </div>
                 </div>
-                <p
-                  className="mt-4 text-[10px] font-bold uppercase tracking-[0.24em] text-muted-foreground"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {specialties.join(" · ")}
-                </p>
               </div>
             </div>
 
             {/* ── Board column (desktop only) ──────────────── */}
-            <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-16 lg:pt-6">
-              <div data-no-draw="true">
-                <PostItNote rotate={-2}>
-                  Senior Product Designer with 10+ years of experience creating digital products
-                  that connect people and solve real problems — from mobile apps to AI-powered
-                  tools.
-                </PostItNote>
-              </div>
-
-              {stickers.map((s, i) => (
-                <HeroSticker
+            <div className="hidden lg:flex lg:flex-col lg:items-center lg:gap-20 lg:pt-4">
+              {stickers.map((s) => (
+                <StickerComment
                   key={s.alt}
                   src={s.src}
                   alt={s.alt}
-                  size={92}
+                  comment={s.comment}
+                  link={s.link}
                   rotate={s.rotate}
-                  pinPosition={i % 2 === 0 ? "bottom-right" : "bottom-left"}
-                  className={i === 1 ? "self-end" : undefined}
-                >
-                  <FigmaComment
-                    comment={s.comment}
-                    width={230}
-                    align={i % 2 === 0 ? "left" : "right"}
-                  />
-                </HeroSticker>
+                  side={s.side}
+                  size={s.size}
+                  className={s.offset}
+                />
               ))}
             </div>
           </motion.div>
         </section>
+
 
 
         <section className="mx-auto max-w-6xl px-6 py-16">
