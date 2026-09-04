@@ -11,28 +11,28 @@ import { HeroSticker } from "@/components/HeroSticker";
 import { PostItNote } from "@/components/PostItNote";
 import { useTranslations } from "@/hooks/useTranslations";
 import heroPortrait from "@/assets/hero-portrait.png";
-import amayaSticker from "@/assets/amaya-sticker.png.asset.json";
-import liaSticker from "@/assets/lia-sticker.png.asset.json";
-import remoteSticker from "@/assets/remote_worker_sticker.png.asset.json";
-import brazilSticker from "@/assets/brazil-sticker.png.asset.json";
+import amayaSticker from "@/assets/amaya-sticker.webp";
+import liaSticker from "@/assets/lia-sticker.webp";
+import remoteSticker from "@/assets/remote_worker_sticker.webp";
+import brazilSticker from "@/assets/brazil-sticker.webp";
 
 const specialties = ["UX/UI Design", "AI Tools", "Design Systems", "Research"];
 
 const stickers = [
   {
-    src: amayaSticker.url,
+    src: amayaSticker,
     alt: "Amaya, Rafael's dog, drawn as a sticker",
     comment: "My main design companion, Amaya",
     rotate: -5,
   },
   {
-    src: liaSticker.url,
+    src: liaSticker,
     alt: "Lia, a star-headed mascot",
     comment: "Lia is a mascot I've designed for the AI in a digital platform called iônica",
     rotate: 4,
   },
   {
-    src: remoteSticker.url,
+    src: remoteSticker,
     alt: "Sticker of a person working on a laptop anywhere",
     comment: "I'm open to remote opportunities worldwide",
     rotate: -3,
@@ -151,7 +151,7 @@ export default function Index() {
                       · Open to remote worldwide
                     </span>
                     <img
-                      src={brazilSticker.url}
+                      src={brazilSticker}
                       alt=""
                       aria-hidden="true"
                       width={34}
