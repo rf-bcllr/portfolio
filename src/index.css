@@ -73,6 +73,13 @@ All colors MUST be HSL.
     --tag-guava-red: 350 68% 54%;
     --tag-guava-red-bg: 350 86% 97%;
     --tag-guava-red-border: 350 78% 86%;
+
+    /* Post-it paper */
+    --postit: 52 96% 84%;
+    --postit-foreground: 40 40% 12%;
+    --postit-fold: 48 70% 72%;
+    
+
     
     /* Motion System Tokens */
     --dur-fast: 220ms;
