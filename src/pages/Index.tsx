@@ -110,7 +110,7 @@ export default function Index() {
 
       <main id="main-content">
         <section className="relative mx-auto max-w-7xl overflow-x-clip px-6 pb-24 pt-8 md:pt-12">
-          <div className="relative h-[880px] overflow-visible sm:h-[820px] lg:h-[700px]" aria-label="Interactive introduction">
+          <div className="relative h-[700px] overflow-visible sm:h-[720px] lg:h-[700px]" aria-label="Interactive introduction">
           {/* Organic sticker canvas — desktop */}
           <div className="pointer-events-none absolute inset-0 hidden lg:block">
             {stickers.map((s) => (
