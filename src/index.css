@@ -138,6 +138,11 @@ All colors MUST be HSL.
     --sidebar-border: 220 10% 20%;
     --sidebar-ring: 220 100% 60%;
 
+    --postit: 48 60% 62%;
+    --postit-foreground: 40 40% 10%;
+    --postit-fold: 44 45% 50%;
+
+
   }
 
 
