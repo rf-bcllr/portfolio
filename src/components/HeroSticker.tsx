@@ -24,7 +24,7 @@ export const HeroSticker = ({
   className = "",
 }: HeroStickerProps) => {
   return (
-    <div className={`relative ${className}`} data-drawing-ignore="true">
+    <div className={`relative ${className}`} data-no-draw="true">
       <img
         src={src}
         alt={alt}
