@@ -128,7 +128,7 @@ export default function Index() {
             ))}
             <div className="pointer-events-auto absolute bottom-[1%] right-[40%] z-20" data-no-draw="true">
               <PostItNote rotate={3.5} className="max-w-[250px] p-5">
-                Senior Product Designer with over 6 years of experience building end-to-end digital products that connect people and solve real problems.
+                Senior Product Designer with over 6 years of experience building end-to-end digital products.
               </PostItNote>
             </div>
           </div>
