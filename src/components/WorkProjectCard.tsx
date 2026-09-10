@@ -1,27 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
+import { Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
-import { projectsData } from "@/data/projects";
-import { structuredProjects } from "@/data/projectsStructured";
 import type { FeaturedProject } from "@/data/featuredProjects";
 
-const isPlaceholderText = (text?: string) =>
-  !text || text.includes("🚧") || text.toLowerCase().includes("under construction");
-
-// Only link to a detail page that actually has content.
-const hasCaseStudy = (slug: string) => {
-  if (structuredProjects[slug]) return true;
-  const project = projectsData.find((item) => item.slug === slug);
-  if (!project) return false;
-  return !(
-    isPlaceholderText(project.challenge) &&
-    isPlaceholderText(project.process) &&
-    isPlaceholderText(project.solution)
-  );
-};
 
 
 const projectIconMap: Record<string, LucideIcon> = {
