@@ -44,12 +44,21 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.isContentEditable ||
+          ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName))
+      ) {
+        return;
+      }
       if (e.key === "ArrowRight") goNext();
       if (e.key === "ArrowLeft") goPrev();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [goNext, goPrev]);
+
 
   const frontRef = useRef<HTMLDivElement | null>(null);
   const measurementRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -153,7 +162,14 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
             return (
               <motion.div
                 key={project.slug}
-                ref={isFront ? frontRef : undefined}
+                ref={(node) => {
+                  if (isFront) frontRef.current = node;
+                  // Keep hidden cards out of the tab order entirely.
+                  if (node) {
+                    if (isFront) node.removeAttribute("inert");
+                    else node.setAttribute("inert", "");
+                  }
+                }}
                 custom={direction}
                 initial={initial}
                 animate={{
@@ -186,6 +202,11 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
         </AnimatePresence>
       </div>
 
+      {/* Announce slide changes to screen readers */}
+      <p className="sr-only" role="status" aria-live="polite">
+        {`Project ${activeIndex + 1} of ${total}: ${projects[activeIndex]?.title ?? ""}`}
+      </p>
+
       {/* Keyboard instruction */}
       <p
         className="pt-2 text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground text-center"
@@ -193,6 +214,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
       >
         Use the arrows or your keyboard&apos;s ← → keys to browse projects
       </p>
+
     </div>
   );
 }

@@ -41,6 +41,15 @@ const INTERACTIVE_SELECTOR = [
   ".shadow-card",
 ].join(", ");
 
+// Text-bearing elements must stay selectable/copyable — never start a stroke on them.
+const TEXT_SELECTOR = "p, h1, h2, h3, h4, h5, h6, li, blockquote, figcaption, td, th, dd, dt, strong, em, code, pre";
+
+const isTextElement = (target: EventTarget | null): boolean => {
+  if (!(target instanceof Element)) return false;
+  const el = target.closest(TEXT_SELECTOR);
+  return !!el && (el.textContent ?? "").trim().length > 0;
+};
+
 const isInteractiveElement = (target: EventTarget | null): boolean => {
   if (!(target instanceof Element)) return false;
   if (target.closest(INTERACTIVE_SELECTOR)) return true;
@@ -55,6 +64,7 @@ const isInteractiveElement = (target: EventTarget | null): boolean => {
   }
   return false;
 };
+
 
 export const DrawingCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -155,7 +165,9 @@ export const DrawingCanvas = () => {
     const onDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
       if (isInteractive(e.target)) return;
+      if (isTextElement(e.target)) return;
       e.preventDefault();
+
       drawingRef.current = true;
       movedRef.current = false;
       pointsRef.current = [{ x: e.clientX, y: e.clientY }];

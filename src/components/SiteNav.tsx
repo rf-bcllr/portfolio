@@ -41,12 +41,13 @@ function ConnectButton({
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const activeItem = navItems.find((item) => item.to === location.pathname) ?? navItems[0];
 
   return (
     <header className="sticky top-4 z-50 px-4">
       <nav
-        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border-2 border-foreground px-3 shadow-[4px_4px_0_0_hsl(var(--foreground))] backdrop-blur-2xl backdrop-saturate-150"
+        aria-label="Primary"
+        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 rounded-full border-2 border-foreground px-3 shadow-[4px_4px_0_0_hsl(var(--foreground))] backdrop-blur-2xl backdrop-saturate-150 sm:gap-4"
+
         style={{
           background:
             "linear-gradient(135deg, hsl(var(--card) / 0.55), hsl(var(--card) / 0.25))",
@@ -66,7 +67,7 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 md:flex" role="navigation" aria-label="Primary">
+        <div className="hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 md:flex">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -105,9 +106,10 @@ export function SiteNav() {
         </div>
 
         {/* Mobile: CTA + toggle */}
-        <div className="flex shrink-0 items-center gap-2 md:hidden">
+        <div className="flex shrink-0 items-center gap-1.5 md:hidden">
           <ThemeToggle />
-          <ConnectButton className="h-11 px-3 text-xs" />
+          <ConnectButton className="h-11 px-2.5 text-[11px]" />
+
 
           <button
             type="button"
@@ -126,10 +128,9 @@ export function SiteNav() {
         {open && (
           <div
             id="mobile-nav-panel"
-            role="navigation"
-            aria-label="Mobile"
             className="absolute inset-x-0 top-full z-50 mt-2 rounded-[24px] border border-border bg-card/95 p-2 shadow-card backdrop-blur-xl md:hidden"
           >
+
             <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <NavLink
@@ -152,8 +153,7 @@ export function SiteNav() {
           </div>
         )}
       </nav>
-      {/* Hide unused active label reference to satisfy linters if any */}
-      <span className="sr-only">{activeItem.label}</span>
     </header>
   );
 }
+
