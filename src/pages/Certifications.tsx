@@ -79,7 +79,7 @@ export default function Certifications() {
           </div>
         </section>
 
-        <section className="mb-16">
+        <section className="mb-28 md:mb-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
             <h2 className="animate-section-reveal flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl"><Award className="size-7" /> Awards</h2>
             <span
