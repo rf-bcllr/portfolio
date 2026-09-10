@@ -79,7 +79,7 @@ export default function Certifications() {
           </div>
         </section>
 
-        <section className="mb-16">
+        <section className="mb-28 md:mb-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
             <h2 className="animate-section-reveal flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl"><Award className="size-7" /> Awards</h2>
             <span
@@ -121,7 +121,7 @@ export default function Certifications() {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: 0.15, ease: [0.34, 1.56, 0.64, 1] }}
               whileHover={{ rotate: -2, scale: 1.05 }}
-              className="absolute bottom-6 -right-2 block w-[110px] md:-top-12 md:-right-6 md:bottom-auto md:w-[220px] lg:w-[240px]"
+              className="absolute -bottom-16 -right-2 block w-[110px] md:-top-12 md:-right-6 md:bottom-auto md:w-[220px] lg:w-[240px]"
               aria-label="Cada um na Sua on Behance"
             >
               <img
