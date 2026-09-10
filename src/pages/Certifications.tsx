@@ -8,7 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "@/hooks/useTranslations";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
-import cadaUmNaSua from "@/assets/cada-um-na-sua.png";
+import cadaUmNaSuaAsset from "@/assets/feyh-bier-sticker-2.png.asset.json";
+
+const cadaUmNaSua = cadaUmNaSuaAsset.url;
 
 const certifications = [
   { title: "Foundations of UX Design by Google", href: "https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98" },
