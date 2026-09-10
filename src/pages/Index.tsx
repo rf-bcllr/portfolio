@@ -1,105 +1,16 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Briefcase, MapPin, Sparkles, Zap } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { ContactFooter } from "@/components/ContactFooter";
-import { StickerComment } from "@/components/StickerComment";
-import { PostItNote } from "@/components/PostItNote";
 import { useTranslations } from "@/hooks/useTranslations";
-import amayaSticker from "@/assets/amaya-sticker.webp";
-import liaSticker from "@/assets/lia-sticker-2.webp";
-import remoteSticker from "@/assets/remote_worker_sticker.webp";
-import brazilSticker from "@/assets/brazil-sticker-2.webp";
-import ramenSticker from "@/assets/ramen-sticker.webp";
-import gitSticker from "@/assets/git-sticker.webp";
+import heroPortrait from "@/assets/hero-portrait.png";
 
 
-
-type Sticker = {
-  src: string;
-  alt: string;
-  comment?: string;
-  link?: { label: string; href: string };
-  rotate: number;
-  size: number;
-  pin: "tl" | "tr" | "bl" | "br";
-  desktopPos: string;
-  mobilePos: string;
-  mobileSize: number;
-};
-
-const stickers: Sticker[] = [
-  {
-    src: amayaSticker,
-    alt: "Amaya, Rafael's dog, drawn as a sticker",
-    comment: "My main design companion, Amaya",
-    rotate: -7,
-    size: 210,
-    mobileSize: 132,
-    pin: "tl",
-    desktopPos: "left-[2%] top-[1%]",
-    mobilePos: "left-0 top-0",
-  },
-  {
-    src: liaSticker,
-    alt: "Lia, a star-shaped AI mascot",
-    comment: "Lia is a mascot I've designed for the AI in a digital platform called iônica",
-    rotate: 6,
-    size: 202,
-    mobileSize: 126,
-    pin: "tr",
-    desktopPos: "right-[2%] top-[4%]",
-    mobilePos: "right-0 top-3",
-  },
-  {
-    src: ramenSticker,
-    alt: "A bowl of ramen sticker",
-    comment: "Ramen is my favorite food",
-    rotate: -5,
-    size: 190,
-    mobileSize: 118,
-    pin: "bl",
-    desktopPos: "left-[4%] top-[38%]",
-    mobilePos: "left-0 top-[56%]",
-  },
-  {
-    src: gitSticker,
-    alt: "GitHub octocat coding on a laptop sticker",
-    comment: "I also build things!",
-    link: { label: "Check my GitHub", href: "https://github.com/genai-ftd" },
-    rotate: 7,
-    size: 196,
-    mobileSize: 122,
-    pin: "br",
-    desktopPos: "right-[3%] top-[40%]",
-    mobilePos: "right-0 top-[58%]",
-  },
-  {
-    src: brazilSticker,
-    alt: "Based in Brazil sticker",
-    rotate: -6,
-    size: 212,
-    mobileSize: 136,
-    pin: "bl",
-    desktopPos: "left-[17%] bottom-[1%]",
-    mobilePos: "left-1 bottom-1",
-  },
-  {
-    src: remoteSticker,
-    alt: "Sticker of a person working remotely on a laptop",
-    comment: "I'm open to remote opportunities worldwide",
-    rotate: -5,
-    size: 202,
-    mobileSize: 128,
-    pin: "br",
-    desktopPos: "right-[16%] bottom-[3%]",
-    mobilePos: "right-1 bottom-4",
-  },
-];
-
+const profileSkills = ["UX/UI Design", "AI Tools", "Design Systems", "Research"];
 
 export default function Index() {
   const t = useTranslations();
@@ -109,63 +20,45 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="relative mx-auto max-w-7xl overflow-x-clip px-6 pb-24 pt-8 md:pt-12">
-          <div className="relative h-[740px] overflow-visible sm:h-[720px] lg:h-[700px]" aria-label="Interactive introduction">
-          {/* Organic sticker canvas — desktop */}
-          <div className="pointer-events-none absolute inset-0 hidden lg:block">
-            {stickers.map((s) => (
-              <div key={s.alt} className={`pointer-events-auto absolute z-10 transition-[z-index] hover:z-40 focus-within:z-40 ${s.desktopPos}`}>
-                <StickerComment
-                  src={s.src}
-                  alt={s.alt}
-                  comment={s.comment}
-                  link={s.link}
-                  rotate={s.rotate}
-                  size={s.size}
-                  pin={s.pin}
-                />
-              </div>
-            ))}
-            <div className="pointer-events-auto absolute bottom-[1%] right-[40%] z-20" data-no-draw="true">
-              <PostItNote rotate={3.5} className="max-w-[250px] p-5">
-                Senior Product Designer with over 6 years of experience building end-to-end digital products.
-              </PostItNote>
-            </div>
-          </div>
-
+        <section className="mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
+          {/* Left column — hero */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="absolute inset-x-0 top-[22%] z-20 mx-auto flex w-[min(620px,90%)] flex-col items-center text-center lg:top-[26%]"
+            className="order-2 max-w-[640px] lg:order-1"
           >
-            {/* Availability tag */}
-            <div className="inline-flex animate-badge-pop items-center gap-2 border border-foreground bg-foreground px-3 py-1.5 text-background sm:gap-3 sm:px-4 sm:py-2">
+            {/* Editorial availability badge — inverted, dense, uppercase */}
+            <div className="mb-10 inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
               <span className="relative inline-flex size-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
               </span>
               <span
-                className="text-[9px] font-bold uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.22em]"
+                className="text-[10px] font-bold uppercase tracking-[0.22em]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                <span className="sm:hidden">Available for new projects</span>
-                <span className="hidden sm:inline">Available for full-time &amp; freelance work</span>
+                Available for new projects
               </span>
             </div>
 
-            {/* Typographic opening */}
-            <h1 className="animate-headline-reveal mt-8 font-display font-bold leading-[0.9] tracking-[-0.05em] text-foreground text-[clamp(3.25rem,11vw,4.5rem)]">
-              I'm Rafael Bacellar<span className="text-primary">.</span>
+            {/* Massive editorial headline — comma in signature blue */}
+            <h1 className="animate-headline-reveal font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
+              Hello<span className="text-primary">,</span>
             </h1>
 
-            <p className="animate-text-reveal stagger-2 mt-4 text-balance text-[clamp(1.125rem,2vw,1.625rem)] font-medium leading-[1.3] text-muted-foreground opacity-0">
-              Your next product designer<span className="text-primary">.</span>
+            {/* Paragraph anchored by a blue rule — the Especular move */}
+            <p className="animate-text-reveal stagger-2 mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground opacity-0 sm:hidden">
+              I'm your next end-to-end product designer
+            </p>
+            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
+              I'm a Senior Product Designer with{" "}
+              <strong className="font-bold">10+ years of experience</strong>{" "}
+              creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
 
-
-            {/* CTAs */}
-            <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap justify-center gap-5 opacity-0">
+            {/* CTAs — flat, hairline, with a hard offset shadow on the secondary */}
+            <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap gap-5 opacity-0">
               <Button asChild variant="contrast" size="lg" className="btn-arrow-shift">
                 <Link to="/work" data-cursor-action="navigate-internal">
                   View Work <ArrowRight className="size-4" />
@@ -183,23 +76,100 @@ export default function Index() {
               </Button>
             </div>
 
+            {/* Bottom editorial rule — location as metadata */}
+            <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t-2 border-foreground pt-6 w-full md:w-full">
+              <div>
+                <p
+                  className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Location
+                </p>
+                <p className="mt-1 flex items-center gap-1.5 font-display text-lg font-bold text-foreground">
+                  <MapPin className="size-4 text-primary" />
+                  Based in Brazil <span className="text-muted-foreground">· Open to remote worldwide</span>
+                </p>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Organic sticker canvas — mobile / tablet (decorative only) */}
-          <div className="pointer-events-none absolute inset-0 lg:hidden">
-            {stickers.map((s) => (
-              <div key={s.alt} className={`absolute z-10 ${s.mobilePos}`}>
-                <StickerComment src={s.src} alt={s.alt} rotate={s.rotate} size={s.mobileSize} />
+          {/* Right column — profile card with editorial frame */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative order-1 w-full max-w-[260px] justify-self-center sm:max-w-[320px] lg:order-2 lg:justify-self-end"
+          >
+            {/* Rotated dashed frame — hand-marked editorial layout register */}
+            <div
+              className="pointer-events-none absolute -inset-4 -rotate-1 border-2 border-dashed border-foreground/50"
+              aria-hidden="true"
+            />
+
+            {/* Solid card with hard offset shadow */}
+            <div className="relative border-2 border-foreground bg-card p-4 text-card-foreground shadow-[12px_12px_0_0_hsl(var(--foreground))] sm:p-6">
+              <div className="mx-auto mb-4 aspect-square w-full overflow-hidden border-2 border-foreground sm:mb-6">
+                <img
+                  src={heroPortrait}
+                  alt="Rafael Bacellar"
+                  loading="eager"
+                  decoding="async"
+                  className="size-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
+                />
               </div>
-            ))}
-          </div>
 
-          </div>
+              <h2 className="font-display text-[22px] font-bold leading-none tracking-[-0.03em] text-foreground sm:text-[28px]">
+                Rafael Bacellar
+              </h2>
+              <p
+                className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-primary sm:mt-2"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Senior Product Designer
+              </p>
+
+              <div className="mt-3 grid grid-cols-2 gap-1.5 sm:mt-5">
+                {profileSkills.map((s) => (
+                  <span
+                    key={s}
+                    className="flex items-center justify-center border border-foreground px-2 py-1 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-foreground sm:py-1.5"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
 
 
+              <div className="mt-6 flex justify-between border-t-2 border-foreground pt-4">
+                <a
+                  href="https://linkedin.com/in/rfbcllr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="mailto:rf.bcllr@gmail.com"
+                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Email
+                </a>
+              </div>
+            </div>
+
+            {/* Floating editorial ID tag */}
+            <div
+              className="absolute -right-3 -top-3 bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-background"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              REF-2026
+            </div>
+          </motion.div>
         </section>
-
-
 
         <section className="mx-auto max-w-6xl px-6 py-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">

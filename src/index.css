@@ -73,13 +73,6 @@ All colors MUST be HSL.
     --tag-guava-red: 350 68% 54%;
     --tag-guava-red-bg: 350 86% 97%;
     --tag-guava-red-border: 350 78% 86%;
-
-    /* Post-it paper */
-    --postit: 52 96% 84%;
-    --postit-foreground: 40 40% 12%;
-    --postit-fold: 48 70% 72%;
-    
-
     
     /* Motion System Tokens */
     --dur-fast: 220ms;
@@ -98,7 +91,6 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 220 25% 10%;
     --sidebar-border: 220 15% 91%;
     --sidebar-ring: 220 100% 50%;
-
   }
 
   .dark {
@@ -137,12 +129,6 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 220 10% 95%;
     --sidebar-border: 220 10% 20%;
     --sidebar-ring: 220 100% 60%;
-
-    --postit: 48 60% 62%;
-    --postit-foreground: 40 40% 10%;
-    --postit-fold: 44 45% 50%;
-
-
   }
 
 
