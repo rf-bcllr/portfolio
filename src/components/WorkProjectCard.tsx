@@ -1,27 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
+import { Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
-import { projectsData } from "@/data/projects";
-import { structuredProjects } from "@/data/projectsStructured";
 import type { FeaturedProject } from "@/data/featuredProjects";
 
-const isPlaceholderText = (text?: string) =>
-  !text || text.includes("🚧") || text.toLowerCase().includes("under construction");
-
-// Only link to a detail page that actually has content.
-const hasCaseStudy = (slug: string) => {
-  if (structuredProjects[slug]) return true;
-  const project = projectsData.find((item) => item.slug === slug);
-  if (!project) return false;
-  return !(
-    isPlaceholderText(project.challenge) &&
-    isPlaceholderText(project.process) &&
-    isPlaceholderText(project.solution)
-  );
-};
 
 
 const projectIconMap: Record<string, LucideIcon> = {
@@ -180,20 +163,9 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
               ))}
             </div>
             <h3 className="font-display text-3xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">
-              {hasCaseStudy(project.slug) ? (
-                <Link
-                  to={`/project/${project.slug}`}
-                  data-cursor-link
-                  className="inline-flex items-start gap-2 transition-colors hover:text-[hsl(var(--project-accent))]"
-                >
-                  <span>{project.title}</span>
-                  <ArrowUpRight className="mt-1 size-5 shrink-0 md:mt-2 md:size-7" aria-hidden />
-                  <span className="sr-only">— open case study</span>
-                </Link>
-              ) : (
-                project.title
-              )}
+              {project.title}
             </h3>
+
 
             <p
               className="mt-3 text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground"
