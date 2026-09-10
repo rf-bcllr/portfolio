@@ -1,9 +1,28 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
+import { projectsData } from "@/data/projects";
+import { structuredProjects } from "@/data/projectsStructured";
 import type { FeaturedProject } from "@/data/featuredProjects";
+
+const isPlaceholderText = (text?: string) =>
+  !text || text.includes("🚧") || text.toLowerCase().includes("under construction");
+
+// Only link to a detail page that actually has content.
+const hasCaseStudy = (slug: string) => {
+  if (structuredProjects[slug]) return true;
+  const project = projectsData.find((item) => item.slug === slug);
+  if (!project) return false;
+  return !(
+    isPlaceholderText(project.challenge) &&
+    isPlaceholderText(project.process) &&
+    isPlaceholderText(project.solution)
+  );
+};
+
 
 const projectIconMap: Record<string, LucideIcon> = {
   "meu-arco": Target,
@@ -160,7 +179,22 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
                 </span>
               ))}
             </div>
-            <h3 className="font-display text-3xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">{project.title}</h3>
+            <h3 className="font-display text-3xl font-bold leading-[0.9] tracking-[-0.035em] md:text-5xl">
+              {hasCaseStudy(project.slug) ? (
+                <Link
+                  to={`/project/${project.slug}`}
+                  data-cursor-link
+                  className="inline-flex items-start gap-2 transition-colors hover:text-[hsl(var(--project-accent))]"
+                >
+                  <span>{project.title}</span>
+                  <ArrowUpRight className="mt-1 size-5 shrink-0 md:mt-2 md:size-7" aria-hidden />
+                  <span className="sr-only">— open case study</span>
+                </Link>
+              ) : (
+                project.title
+              )}
+            </h3>
+
             <p
               className="mt-3 text-[10px] font-bold uppercase tracking-[0.22em] text-muted-foreground"
               style={{ fontFamily: "var(--font-display)" }}
@@ -259,7 +293,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
               <button type="button" onMouseEnter={() => prefetchMedia(mediaItems[previousMediaIndex])} onFocus={() => prefetchMedia(mediaItems[previousMediaIndex])} onClick={showPrevious} className="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/90 text-foreground shadow-card backdrop-blur transition-transform duration-200 hover:scale-105" aria-label="Previous project media">
                 <ChevronLeft className="size-4" />
               </button>
-              <div className="flex items-center gap-1.5 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur" aria-label={`${activeMediaIndex + 1} of ${mediaItems.length}`}>
+              <div role="group" className="flex items-center gap-1.5 rounded-full border border-border bg-card/90 px-3 py-2 shadow-card backdrop-blur" aria-label={`Media ${activeMediaIndex + 1} of ${mediaItems.length}`}>
                 {mediaItems.map((item, itemIndex) => (
                   <span key={`${item.title}-${itemIndex}`} className={`size-1.5 rounded-full ${itemIndex === activeMediaIndex ? "bg-[hsl(var(--project-accent))]" : "bg-muted-foreground/30"}`} />
                 ))}

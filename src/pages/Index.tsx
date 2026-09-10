@@ -20,7 +20,7 @@ export default function Index() {
       <SiteNav />
 
       <main id="main-content">
-        <section className="mx-auto grid min-h-[calc(100vh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
+        <section className="mx-auto grid min-h-[calc(100dvh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
           {/* Left column — hero */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}

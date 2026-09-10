@@ -85,10 +85,10 @@ export default function Resume() {
         </section>
 
         <section className="mb-16">
-          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="animate-section-reveal font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl">{t.workExperience}</h2>
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b-2 border-foreground pb-4">
+            <h2 className="animate-section-reveal font-display text-3xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 min-w-0 break-words sm:text-4xl md:text-5xl">{t.workExperience}</h2>
             <span
-              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
+              className="animate-text-reveal stagger-2 hidden shrink-0 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0 sm:inline"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Trajectory
@@ -124,10 +124,10 @@ export default function Resume() {
         </section>
 
         <section className="mb-16">
-          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="animate-section-reveal font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl">Skills &amp; Languages</h2>
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b-2 border-foreground pb-4">
+            <h2 className="animate-section-reveal font-display text-3xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 min-w-0 break-words sm:text-4xl md:text-5xl">Skills &amp; Languages</h2>
             <span
-              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
+              className="animate-text-reveal stagger-2 hidden shrink-0 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0 sm:inline"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Craft
@@ -156,10 +156,10 @@ export default function Resume() {
         </section>
 
         <section className="mb-14">
-          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
-            <h2 className="animate-section-reveal flex items-center gap-3 font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl"><Wrench className="size-7" /> My Tools</h2>
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b-2 border-foreground pb-4">
+            <h2 className="animate-section-reveal flex items-center gap-3 font-display text-3xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 min-w-0 break-words sm:text-4xl md:text-5xl"><Wrench className="size-7" /> My Tools</h2>
             <span
-              className="animate-text-reveal stagger-2 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
+              className="animate-text-reveal stagger-2 hidden shrink-0 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0 sm:inline"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Stack

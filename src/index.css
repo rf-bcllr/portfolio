@@ -650,9 +650,11 @@ All colors MUST be HSL.
      ============================================ */
   
   /* Make all Lucide icons thinner and more elegant */
-  svg[class*="lucide"] {
-    stroke-width: 1.5 !important;
+  /* Default thinner strokes, but allow per-icon strokeWidth overrides */
+  svg[class*="lucide"]:not([stroke-width]) {
+    stroke-width: 1.5;
   }
+
 
   /* Consistent focus-visible ring for all interactive elements */
   a:focus-visible,
