@@ -121,7 +121,7 @@ export default function Certifications() {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: 0.15, ease: [0.34, 1.56, 0.64, 1] }}
               whileHover={{ rotate: -2, scale: 1.05 }}
-              className="absolute bottom-6 -right-2 block w-[110px] md:-top-12 md:-right-6 md:bottom-auto md:w-[220px] lg:w-[240px]"
+              className="absolute -bottom-[72px] -right-2 block w-[110px] md:-top-12 md:-right-6 md:bottom-auto md:w-[220px] lg:w-[240px]"
               aria-label="Cada um na Sua on Behance"
             >
               <img
