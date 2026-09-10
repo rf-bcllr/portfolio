@@ -96,7 +96,7 @@ export default function Certifications() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <Card className="p-8 md:pr-56 lg:pr-64">
+              <Card className="p-8 pb-32 md:p-8 md:pr-56 md:pb-8 lg:pr-64">
                 <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">Cada um na Sua — 2nd place, Feyh Bier label contest (2019)</h3>
                 <p className="mt-3 hidden text-muted-foreground leading-relaxed md:block">
                   Craft beer label designed for a Feyh Bier design contest celebrating a Catharina Sour brewed with mango and umbu — two tropical fruits from my home state. The illustration of a native couple harvesting the ingredients in the woods speaks to the brief's themes of diversity and identity. The submission finished in 2nd place.
@@ -121,7 +121,7 @@ export default function Certifications() {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: 0.15, ease: [0.34, 1.56, 0.64, 1] }}
               whileHover={{ rotate: -2, scale: 1.05 }}
-              className="absolute -bottom-12 -right-3 block w-[120px] md:-top-12 md:-right-6 md:bottom-auto md:w-[220px] lg:w-[240px]"
+              className="absolute bottom-6 -right-2 block w-[110px] md:-top-12 md:-right-6 md:bottom-auto md:w-[220px] lg:w-[240px]"
               aria-label="Cada um na Sua on Behance"
             >
               <img
