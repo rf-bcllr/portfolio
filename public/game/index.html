@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rafael Bacellar — Quest for the Next Product</title>
+<meta name="description" content="O portfólio do Rafael Bacellar como um RPG pixel art: ande pela carreira, abra os casos, enfrente a pandemia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- As mesmas fontes do rfbcllr.site: o popup de projeto é o card do /work.
+     O artifact não carrega isto (só aceita Google Fonts) e cai no fallback. -->
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="na-capa">
+
+<div id="stage"><canvas id="game" width="480" height="270" role="img" aria-label="The game world: walk right through Rafael's career, year by year"></canvas></div>
+
+<!-- ================= HUD ================= -->
+<div id="hud">
+  <div class="hud-top">
+    <div class="hud-left">
+      <div class="chip pixel" id="chip-zone">
+        <span class="pl" id="chip-year">2015</span>
+        <span class="yr" id="chip-name">Aracaju</span>
+        <span class="pl" id="chip-role"></span>
+        <span class="lvl" id="chip-level" hidden></span>
+        <span class="done" id="chip-done" hidden>✦ RUN COMPLETE</span>
+      </div>
+      <!-- placar de coletáveis, como nos plataformas clássicos. As células são
+           montadas uma vez pelo game.js; depois só os números mudam. -->
+      <div class="loot" id="loot" role="group" aria-label="Collectibles"></div>
+    </div>
+    <!-- os avisos descem logo abaixo dos botões, na mesma coluna: com posição
+         fixa eles caíam em cima da segunda linha quando os botões quebravam -->
+    <div class="hud-right">
+    <div class="hud-btns">
+      <button class="btn" id="btn-journal">[C] CHARACTER SHEET</button>
+      <span class="powerups" id="powerups" role="group" aria-label="Power-ups">
+        <span class="pu-cap pixel">POWER UPS</span>
+        <button class="btn item" id="pu-beer" title="Power-up — locked"></button>
+        <button class="btn item" id="pu-amaya" title="Power-up — locked"></button>
+      </span>
+      <a class="btn" href="https://rfbcllr.site/resume" target="_blank" rel="noopener">GO TO RECRUITER MODE ↗</a>
+      <span class="restart-wrap" id="restart-wrap">
+        <button class="btn restart" id="btn-restart-hud" title="Start over">↺ NEW GAME</button>
+        <span class="confirm" id="restart-confirm" hidden role="group" aria-label="Start over and erase your progress?">
+          <span class="q">ERASE PROGRESS?</span>
+          <button class="btn yes" id="btn-yes">START OVER <kbd>Y</kbd></button>
+          <button class="btn no" id="btn-no">KEEP PLAYING <kbd>N</kbd></button>
+        </span>
+      </span>
+      <button class="btn snd" id="btn-sound" aria-label="Sound" aria-pressed="true">
+        <span class="snd-ico" aria-hidden="true">
+          <svg class="snd-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+          <svg class="snd-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5"/><path d="M21 9.5l-5 5"/></svg>
+        </span>
+      </button>
+    </div>
+    <div id="toasts"></div>
+    </div>
+  </div>
+
+  <!-- Uma região viva só, para o leitor de tela. Quatro contadores anunciando
+       sozinhos virariam quatro avisos competindo, e "3" sem contexto não diz
+       nada; aqui sai uma frase inteira, uma vez, quando algo é coletado. -->
+  <p class="sr-only" id="hud-status" role="status" aria-atomic="true"></p>
+  <!-- falas, avisos e erro: regiões estáveis, vazias desde o início, porque
+       região criada já com texto é anunciada de forma irregular -->
+  <p class="sr-only" id="dlg-status" role="status" aria-atomic="true"></p>
+  <p class="sr-only" id="toast-status" role="status" aria-atomic="true"></p>
+  <p class="sr-only" id="alert-status" role="alert" aria-atomic="true"></p>
+
+  <!-- cartão de capítulo: aparece ao entrar numa zona nova. Decorativo — a
+       placa da zona no canto já diz o mesmo para o leitor de tela. -->
+  <div id="chapter" aria-hidden="true"><span class="ch-year"></span><span class="ch-name"></span><span class="ch-role"></span></div>
+
+  <div id="prompt" class="pixel">E</div>
+
+  <div id="timeline">
+    <div id="tl-track"><div id="tl-fill"></div></div>
+  </div>
+
+  <div id="touch">
+    <div class="pad">
+      <div class="tbtn" data-k="left" role="button" aria-label="Move left">◀</div>
+      <div class="tbtn" data-k="right" role="button" aria-label="Move right">▶</div>
+    </div>
+    <div class="pad">
+      <div class="tbtn" data-k="jump" role="button" aria-label="Jump, or swim up">^</div>
+      <div class="tbtn a" data-k="action" role="button" aria-label="Interact">A</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DIALOGUE ================= -->
+<div id="dialogue">
+  <div class="dbox">
+    <canvas class="dport" id="dport" width="28" height="28"></canvas>
+    <div style="flex:1">
+      <div class="dname pixel" id="dname">—</div>
+      <div class="dsub" id="dsub" hidden></div>
+      <div class="dtext" id="dtext"></div>
+      <div class="dnext pixel" id="dnext"><kbd>E</kbd>Next</div>
+      <div class="dchoices" id="dchoices" hidden role="group" aria-label="Answer"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= GIRE O CELULAR ================= -->
+<div id="rotate" hidden>
+  <div class="rot-card">
+    <div class="rot-ico" aria-hidden="true">▯</div>
+    <h2 class="pixel">Rotate your phone</h2>
+    <p>The game is built for landscape. In a hurry? Recruiter Mode is one tap away.</p>
+    <div class="rot-btns">
+      <a class="btn accent" href="https://rfbcllr.site/resume" target="_blank" rel="noopener">GO TO RECRUITER MODE ↗</a>
+      <button class="btn" id="rot-play">Play anyway</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= BATALHA ================= -->
+<div id="battle" hidden></div>
+
+<!-- ================= OVERLAY ================= -->
+<div class="overlay" id="overlay"><div class="panel" id="panel" role="dialog" aria-modal="true"></div></div>
+<!-- o clarão branco entre a carta virada e o case aberto -->
+<div id="flash" aria-hidden="true"></div>
+
+<!-- ================= TITLE ================= -->
+<div id="title">
+  <div class="tcard">
+    <div class="eyebrow pixel">A playable portfolio</div>
+    <h1>RAFAEL <span>BACELLAR</span><br>QUEST FOR THE<br>NEXT PRODUCT</h1>
+    <div class="sub" id="title-sub"></div>
+    <div class="tbtns">
+      <button class="btn accent start" id="btn-start">▶ PRESS START</button>
+      <a class="btn start-alt" href="https://rfbcllr.site/resume" target="_blank" rel="noopener">GO TO RECRUITER MODE ↗</a>
+    </div>
+    <div class="keys pixel" id="title-keys"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
