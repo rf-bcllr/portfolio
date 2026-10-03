@@ -12,6 +12,7 @@ const navItems = [
   { label: "Work", to: "/work" },
   { label: "Resume", to: "/resume" },
   { label: "Certifications", to: "/certifications" },
+  { label: "Play my portfolio", to: "/play" },
 ];
 
 const CONNECT_URL = "https://linkedin.com/in/rfbcllr";
