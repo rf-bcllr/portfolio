@@ -476,12 +476,12 @@ const ENTITIES = [
     label: 'Chest',
     sub:   'Feyh Bier contest · 2019',
     lines: [
-      'Inside the chest there is a bottle. The label reads "Cada um na Sua".',
+      { en: 'Inside the chest there is a bottle. The label reads "Cada um na Sua".', who: 'me' },
       { en: 'That label is mine. Second place in the Feyh Bier contest, 2019.', who: 'me' },
       { en: "I'll take it with me. Sooner or later a beach shows up.", who: 'me' },
     ],
     opened: [
-      'Empty chest. The bottle is already with me.',
+      { en: 'Empty chest. The bottle is already with me.', who: 'me' },
       { en: 'I am carrying it until I find a beach worth it.', who: 'me' },
     ],
     openedUsed: [
@@ -930,7 +930,7 @@ const ENTITIES = [
     label: 'Chest',
     sub:   'Aracaju sand',
     lines: [
-      'A chicken sandwich. Inside a chest. On a beach.',
+      { en: 'A chicken sandwich. Inside a chest. On a beach.', who: 'me' },
       { en: 'Some dev must have left this here.', who: 'me' },
       { en: '...', who: 'amaya', bark: true },
       { en: '............', who: 'me' },

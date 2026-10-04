@@ -4339,7 +4339,7 @@ function showRound(e) {
      opção normal porque é clicável (a recusa é a piada); desabilitado de
      verdade só o Skill sem tomos, tracejado e com o motivo escrito. */
   bEl.innerHTML = comandoHTML(T(UI.pickTome), 'menu', [
-    { m: 'attack', ico: 'punch', t: T(UI.mAttack), c: T(UI.capPunch).replace('{n}', BATTLE.punch) },
+    { m: 'attack', ico: 'tool', t: T(UI.mAttack), c: T(UI.capPunch).replace('{n}', BATTLE.punch) },
     { m: 'skill', ico: 'tome', t: T(UI.mSkill), off: !naMao.length,
       c: naMao.length ? T(UI.capSkill).replace('{n}', naMao.length).replace('{d}', BATTLE.tome) : T(UI.capNoTomes) },
     { m: 'run', ico: 'run', t: T(UI.mRun), c: T(UI.capRun) },
@@ -4990,11 +4990,6 @@ const ARTE = {
         '<rect x="4.5" y="16.3" width="15" height="3.2" rx="1.6" fill="#ffe3a0" stroke="' + TINTA + '" stroke-width="1.5"/>' +
         '<path d="M15.1 17.6l-.8 3.6 1.9-1.1 1.9 1.1-.8-3.6" fill="#ff5d73" stroke="' + TINTA + '" stroke-width="1.2" stroke-linejoin="round"/>' +
         '<circle cx="16.2" cy="15.2" r="2.8" fill="#ff5d73" stroke="' + TINTA + '" stroke-width="1.4"/>',
-  // soco: punho com linhas de movimento
-  punch: '<path d="M2.5 9h2.3M2 12.5h2.8M2.5 16h2.3" stroke="' + TINTA + '" stroke-width="1.4" stroke-linecap="round"/>' +
-         '<path d="M7 9.6A2.1 2.1 0 0 1 9.1 7.5h7.2a2.6 2.6 0 0 1 2.6 2.6v4.6a5 5 0 0 1-5 5h-3.8A3.1 3.1 0 0 1 7 16.6z" fill="#e8b98a" stroke="' + TINTA + '" stroke-width="1.6" stroke-linejoin="round"/>' +
-         '<path d="M10.4 7.6v3.8M13.4 7.6v3.8M16.3 8v3.4" stroke="' + TINTA + '" stroke-width="1.3" stroke-linecap="round"/>' +
-         '<path d="M7 12.6h4.6a1.9 1.9 0 0 0 0-3.8" fill="#f2cfa6" stroke="' + TINTA + '" stroke-width="1.4" stroke-linejoin="round"/>',
   // fugir: seta saindo pela porta
   run:   '<rect x="13.5" y="3.5" width="7" height="17" rx="1.4" fill="#ffcf3a" stroke="' + TINTA + '" stroke-width="1.6"/>' +
          '<circle cx="15.6" cy="12.3" r=".9" fill="' + TINTA + '"/>' +
