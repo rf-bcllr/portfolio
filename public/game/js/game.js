@@ -85,12 +85,13 @@ function loadTick() {
   if (loadFim) return;
   const bar = document.getElementById('ld-bar');
   if (bar) {
-    const n = loadTotal ? Math.floor(10 * loadDone / loadTotal) : 0;
     const percent = Math.round(100 * loadDone / Math.max(1, loadTotal));
-    bar.querySelectorAll('i').forEach((seg, i) => seg.classList.toggle('on', i < n));
-    bar.setAttribute('aria-valuenow', String(percent));
+    const displayed = Math.max(Number(bar.getAttribute('aria-valuenow')) || 0, percent);
+    bar.setAttribute('aria-valuenow', String(displayed));
+    document.getElementById('ld-runway')?.style.setProperty('--load-progress', String(displayed / 100));
     const label = document.getElementById('ld-percent');
-    if (label) label.textContent = percent + '%';
+    if (label) label.textContent = displayed + '%';
+    try { if (window.parent !== window) window.parent.postMessage({ type: 'rfb:loading', percent: displayed }, window.location.origin); } catch (_) {}
   }
   if (loadTotal && loadDone >= loadTotal) setTimeout(loadEnd, 120);
 }
@@ -100,7 +101,8 @@ function loadEnd() {
   clearInterval(loadTipTimer);
   const el = document.getElementById('loading');
   if (el) {
-    el.querySelectorAll('#ld-bar i').forEach(seg => seg.classList.add('on'));
+    el.querySelector('#ld-bar')?.setAttribute('aria-valuenow', '100');
+    el.querySelector('#ld-runway')?.style.setProperty('--load-progress', '1');
     const label = document.getElementById('ld-percent');
     if (label) label.textContent = '100%';
     if (reduceMotionLd()) el.remove();
