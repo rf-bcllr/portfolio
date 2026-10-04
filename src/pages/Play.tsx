@@ -20,12 +20,12 @@ export default function Play() {
 
   useEffect(() => {
     const prevTitle = document.title;
-    document.title = "Rafael Bacellar — Quest for the Next Product";
+    document.title = "Quest for the Next Product";
     const meta = document.querySelector('meta[name="description"]');
     const prevDesc = meta?.getAttribute("content") ?? null;
     meta?.setAttribute(
       "content",
-      "Rafael Bacellar's portfolio as a playable RPG: 10+ years of product design, one street at a time."
+      "A playable pixel-art portfolio: explore a product design career, discover projects, and face its challenges."
     );
     return () => {
       document.title = prevTitle;
