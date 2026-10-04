@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { ContactFooter } from "@/components/ContactFooter";
 import { GameCharacter } from "@/components/GameCharacter";
+import { PreferToPlayCard } from "@/components/PreferToPlayCard";
 import { useTranslations } from "@/hooks/useTranslations";
 import heroPortrait from "@/assets/hero-portrait.png";
 
@@ -208,6 +209,8 @@ export default function Index() {
         </section>
 
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />
+
+        <PreferToPlayCard />
       </main>
 
       <ContactFooter
