@@ -544,6 +544,8 @@ All colors MUST be HSL.
     line-height: 1.2;
     white-space: nowrap;
     letter-spacing: 0.02em;
+    max-width: 260px;
+    white-space: normal;
   }
 
   .custom-cursor-active {
@@ -766,7 +768,11 @@ All colors MUST be HSL.
 @keyframes game-char-idle {
   to { background-position-x: var(--game-char-end); }
 }
-.nav-play-pulse { animation: nav-play-pulse 4s ease-out infinite; }
+.nav-play-pulse {
+  background: var(--session-cursor, hsl(var(--primary)));
+  color: var(--session-cursor-foreground, hsl(var(--primary-foreground)));
+  animation: nav-play-pulse 4s ease-out infinite;
+}
 @keyframes nav-play-pulse {
   0%, 70% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.45); }
   85% { box-shadow: 0 0 0 7px hsl(var(--primary) / 0); }

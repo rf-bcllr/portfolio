@@ -1,12 +1,20 @@
+import type { ReactNode } from "react";
+
 interface ContactFooterProps {
   contactTitle?: string;
   contactDescription?: string;
   backToTop?: string;
+  character?: ReactNode;
 }
 
-export const ContactFooter = ({}: ContactFooterProps) => {
+export const ContactFooter = ({ character }: ContactFooterProps) => {
   return (
-    <footer className="border-t py-10 text-center text-sm text-muted-foreground">
+    <footer className="relative mt-28 border-t py-10 text-center text-sm text-muted-foreground">
+      {character && (
+        <div className="absolute bottom-full left-6 md:left-[max(1.5rem,calc((100%-72rem)/2+1.5rem))]">
+          {character}
+        </div>
+      )}
       <p>© {new Date().getFullYear()} Rafael Bacellar · All rights reserved</p>
     </footer>
   );

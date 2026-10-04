@@ -36,13 +36,9 @@
          fixa eles caíam em cima da segunda linha quando os botões quebravam -->
     <div class="hud-right">
     <div class="hud-btns">
-      <button class="btn" id="btn-journal">[C] CHARACTER SHEET</button>
-      <span class="powerups" id="powerups" role="group" aria-label="Power-ups">
-        <span class="pu-cap pixel">POWER UPS</span>
-        <button class="btn item" id="pu-beer" title="Power-up — locked"></button>
-        <button class="btn item" id="pu-amaya" title="Power-up — locked"></button>
-      </span>
-      <button class="btn" data-recruiter>GO TO RECRUITER MODE</button>
+      <div class="hud-actions" role="group" aria-label="Game actions">
+      <button class="btn" id="btn-journal"><kbd>C</kbd> CHARACTER SHEET</button>
+      <button class="btn" data-recruiter>GO TO RECRUITER MODE <kbd>ESC</kbd></button>
       <span class="restart-wrap" id="restart-wrap">
         <button class="btn restart" id="btn-restart-hud" title="Start over">↺ NEW GAME</button>
         <span class="confirm" id="restart-confirm" hidden role="group" aria-label="Start over and erase your progress?">
@@ -50,6 +46,12 @@
           <button class="btn yes" id="btn-yes">START OVER <kbd>Y</kbd></button>
           <button class="btn no" id="btn-no">KEEP PLAYING <kbd>N</kbd></button>
         </span>
+      </span>
+      </div>
+      <span class="powerups" id="powerups" role="group" aria-label="Power-ups">
+        <span class="pu-cap pixel">POWER UPS</span>
+        <button class="btn item" id="pu-beer" title="Power-up — locked"></button>
+        <button class="btn item" id="pu-amaya" title="Power-up — locked"></button>
       </span>
       <button class="btn snd" id="btn-sound" aria-label="Sound" aria-pressed="true">
         <span class="snd-ico" aria-hidden="true">

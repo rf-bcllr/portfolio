@@ -3,6 +3,7 @@ import { getSessionCursorColor } from "@/lib/cursorColor";
 
 export const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [label, setLabel] = useState("Visitor");
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>();
   const targetRef = useRef({ x: -100, y: -100 });
@@ -26,6 +27,13 @@ export const CustomCursor = () => {
 
     setIsVisible(true);
     document.body.classList.add("custom-cursor-active");
+    document.documentElement.style.setProperty("--session-cursor", color);
+    document.documentElement.style.setProperty("--session-cursor-foreground", tagFg);
+
+    const handleCharacterQuote = (event: Event) => {
+      const quote = (event as CustomEvent<string | null>).detail;
+      setLabel(quote || "Visitor");
+    };
 
     const handlePointerMove = (e: PointerEvent) => {
       targetRef.current.x = e.clientX;
@@ -64,17 +72,21 @@ export const CustomCursor = () => {
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("game-character-quote", handleCharacterQuote);
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("game-character-quote", handleCharacterQuote);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
       document.body.classList.remove("custom-cursor-active");
+      document.documentElement.style.removeProperty("--session-cursor");
+      document.documentElement.style.removeProperty("--session-cursor-foreground");
     };
-  }, []);
+  }, [color, tagFg]);
 
   if (!isVisible) return null;
 
@@ -100,7 +112,7 @@ export const CustomCursor = () => {
         className="figjam-cursor-label"
         style={{ backgroundColor: color, color: tagFg }}
       >
-        Visitor
+        {label}
       </span>
     </div>
   );

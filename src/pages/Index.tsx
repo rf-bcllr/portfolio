@@ -77,8 +77,6 @@ export default function Index() {
               </Button>
             </div>
 
-            <GameCharacter />
-
             {/* Bottom editorial rule — location as metadata */}
             <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t-2 border-foreground pt-6 w-full md:w-full">
               <div>
@@ -212,7 +210,12 @@ export default function Index() {
         <CompanyLogos title={t.companiesTitle} subtitle={t.companiesSubtitle} />
       </main>
 
-      <ContactFooter contactTitle={t.contactTitle} contactDescription={t.contactDescription} backToTop={t.backToTop} />
+      <ContactFooter
+        contactTitle={t.contactTitle}
+        contactDescription={t.contactDescription}
+        backToTop={t.backToTop}
+        character={<GameCharacter />}
+      />
     </div>
   );
 }
