@@ -75,15 +75,26 @@ const ASSET_MANIFEST = {
    jogo tenta desenhá-lo, uma vez só, e o fracasso fica registrado. */
 const IMG = {};
 const imgState = {};
+/* Sprites pedidos e ainda sem resposta. Quando a fila zera, roda o que estava
+   esperando (habilitar o START, repintar a cena de onboarding). */
+let imgsPendentes = 0;
+const aoTerminarImgs = [];
 function img(key) {
   if (IMG[key]) return IMG[key];
   if (imgState[key]) return null;          // já pedido: carregando ou inexistente
   imgState[key] = 1;
+  imgsPendentes++;
   const im = new Image();
-  im.onload = () => { IMG[key] = im; };
-  im.onerror = () => { imgState[key] = 2; };
+  im.onload = () => { IMG[key] = im; imgChegou(); };
+  im.onerror = () => { imgState[key] = 2; imgChegou(); };
   im.src = 'assets/' + key + '.png';
   return null;
+}
+function imgChegou() {
+  imgsPendentes--;
+  if (imgsPendentes > 0) return;
+  const fns = aoTerminarImgs.splice(0);
+  fns.forEach(fn => { try { fn(); } catch (_) {} });
 }
 
 /* O sheet do personagem começa a carregar assim que o script roda, e não na
@@ -99,6 +110,33 @@ img('player/sheet-mask');
 function sheetLoading() {
   return !IMG['player/sheet'] && imgState['player/sheet'] !== 2;
 }
+
+/* Mudança 3 — pré-carga de TODOS os sprites antes de habilitar o START.
+   Sem isso o jogo abre desenhando o fallback vetorial e "pisca" para pixel
+   art conforme os arquivos chegam. Itens que o jogo pede só na hora (fora do
+   manifesto) entram na lista explícita. O timeout é a rede de segurança: se
+   algo travar, o jogo libera do mesmo jeito. */
+let prontoPraJogar = false;
+function habilitaStart() {
+  if (prontoPraJogar) return;
+  prontoPraJogar = true;
+  const b = document.getElementById('btn-start');
+  if (!b) return;
+  b.disabled = false;
+  b.textContent = '▶ ' + T(UI.start);
+}
+const SPRITES_PRELOAD = Object.keys(ASSET_MANIFEST).concat([
+  'player/sheet', 'player/sheet-mask', 'npc/esdras', 'npc/inis',
+  'npc/lia', 'npc/lia-blink', 'npc/ion', 'npc/ion-splat', 'npc/death',
+  'boss/death', 'kit/chest-closed', 'kit/chest-open',
+  'kit/door-closed', 'kit/door-open', 'kit/mirror', 'kit/sign', 'kit/sign-beach',
+  'props/mimic', 'props/mimic-battle', 'props/mimic-broken',
+  'kit/landmark',
+]);
+ZONES.forEach(z => { if (SPRITES_PRELOAD.indexOf('kit/landmark-' + z.id) < 0) SPRITES_PRELOAD.push('kit/landmark-' + z.id); });
+SPRITES_PRELOAD.forEach(k => img(k));
+if (imgsPendentes > 0) aoTerminarImgs.push(habilitaStart); else habilitaStart();
+setTimeout(habilitaStart, 6000);
 
 /* ---------------------------------------------------------
    2. CANVAS
@@ -117,7 +155,7 @@ const INK = '#191c24', CARD = '#ffffff', LINE = 2;
 
 /* O portfólio é o "modo recrutador": quem não quer jogar lê lá. O jogo não
    mantém uma segunda cópia do currículo. */
-const PORTFOLIO_URL = 'https://rfbcllr.site/resume';
+const PORTFOLIO_URL = '/resume';
 
 const isTouch = window.matchMedia('(pointer:coarse)').matches || window.innerWidth < 820;
 
@@ -2279,7 +2317,12 @@ function tintGray(key, hex, escuroHex) {
    hora que a tampa abre — a tampa aberta é mais alta, o baú não. */
 function kitChao(key, cx, larg, alt, tintHex) {
   const im = tintHex ? tintGray(key, tintHex) : img(key);
-  if (!im || !im.width || !im.height) return false;
+  /* arquivo ainda chegando: não desenha nada e o chamador NÃO cai no fallback
+     vetorial — o desenho de reserva fica só para arquivo que FALHOU */
+  if (!im || !im.width || !im.height) {
+    if (imgState[key] === 1) return true;
+    return false;
+  }
   const prop = im.width / im.height;
   if (larg == null) larg = alt * prop; else alt = larg / prop;
   ctx.drawImage(im, cx - larg / 2, PISO - alt, larg, alt);
@@ -2357,7 +2400,10 @@ function drawDoorFrentes() {
 
 function kit(key, x, y, w, h, tintHex, encaixar) {
   const im = tintHex ? tintGray(key, tintHex) : img(key);
-  if (!im) return false;
+  if (!im) {
+    if (imgState[key] === 1) return true;   // chegando: nada, sem fallback
+    return false;
+  }
   if (encaixar && im.width && im.height) {
     const k = h / im.height;
     const lw = im.width * k;
@@ -2776,10 +2822,15 @@ function brilhoDoBau(x, bob) {
 
 /* Desenha uma arte inteira pela altura, centrada em cx e apoiada em yBase.
    Devolve false enquanto a imagem não carregou, para o chamador cair no
-   desenho de reserva. */
+   desenho de reserva — exceto enquanto o arquivo AINDA ESTÁ CHEGANDO
+   (imgState 1): aí não desenha nada e também não cai no reserva, para não
+   piscar entre estilos. */
 function desenhaPeca(key, cx, yBase, alt, alpha, espelha) {
   const im = img(key);
-  if (!im) return false;
+  if (!im) {
+    if (imgState[key] === 1) return true;   // chegando: nada, sem fallback
+    return false;
+  }
   const lw = im.width * alt / im.height;
   ctx.save();
   if (alpha != null) ctx.globalAlpha = alpha;
@@ -2869,11 +2920,16 @@ function drawEntity(e) {
     const dh = 58, dy = GROUND_Y - dh, open = doorOpen(e);
     const z = zoneAt(e.x);
     const arte = doorArt(e);
-    if (img(arte)) {
+    const im = img(arte);
+    /* arquivo ainda chegando: não desenha nada — porta sem versão vetorial de
+       passagem, e desenhar no estilo errado pisca. O fallback abaixo fica
+       para arquivo que FALHOU (imgState 2). */
+    if (imgState[arte] === 1) return;
+    if (im) {
       // aberta: o vão e a peça inteira aqui; depois do personagem volta só o
       // montante da frente, que é o que dá a passagem POR DENTRO da porta
       if (arte === 'kit/door-open') doorFundo(e);
-      kitChao(arte, centroPorta(e, img(arte)) - cam, null, DOOR_H, z.accent);
+      kitChao(arte, centroPorta(e, im) - cam, null, DOOR_H, z.accent);
       return;
     }
     card(x - 3, dy - 5, 30, dh + 5, shade(z.accent, -14), { r: 4, shadow: 0 });
@@ -3552,6 +3608,22 @@ function closeAll() {
 }
 overlay.addEventListener('click', e => { if (e.target === overlay) closeAll(); });
 document.addEventListener('click', e => { if (e.target.dataset && e.target.dataset.close !== undefined) closeAll(); });
+/* "Go to Recruiter Mode" pergunta antes de sair: o progresso fica salvo, mas
+   ninguém sai da partida por um clique desatento. O jogo roda dentro de um
+   iframe em /play, então a navegação vai pelo window.top, na mesma aba. */
+document.addEventListener('click', e => {
+  const gatilho = e.target.closest ? e.target.closest('[data-recruiter]') : null;
+  if (!gatilho) return;
+  openPanel(`
+    <h2>Leave the game?</h2>
+    <p>Recruiter Mode is the classic résumé. Your progress here is saved, so you can come back and keep playing.</p>
+    <div class="actions">
+      <button class="btn accent" data-recruiter-go>${T(UI.fullResume)}</button>
+      <button class="btn" data-close>Keep playing</button>
+    </div>`, 'estreito');
+  const ir = panel.querySelector('[data-recruiter-go]');
+  if (ir) ir.onclick = () => { window.top.location.href = '/resume'; };
+});
 
 
 /* ---------------------------------------------------------
@@ -3766,13 +3838,13 @@ function openSheet(focus) {
   const soft = Object.keys(SKILLS).filter(k => SKILLS[k].k === 'soft');
   /* Três estados, não dois: não coletado, na mão, e já gasto numa batalha —
      gastar vale para o jogo inteiro, então precisa aparecer aqui. */
-  const chip = (k) => {
-    const tem = state.skills.has(k);
-    const gasto = tem && state.spentTomes.indexOf(k) >= 0;
-    return `<div class="li ${tem ? (gasto ? 'used' : '') : 'off'}">${
-      tem ? (gasto ? '◇' : '◆') : '◇'} ${T(SKILLS[k])}${
-      gasto ? ` <i>${T(UI.spent)}</i>` : ''}</div>`;
-  };
+const chip = (k) => {
+  const tem = state.skills.has(k);
+  const gasto = tem && state.spentTomes.indexOf(k) >= 0;
+  return `<div class="li ${tem ? (gasto ? 'used' : '') : 'off'}">${
+    tem ? (gasto ? '◇' : '◆') : '◇'} <span class="li-n">${T(SKILLS[k])}</span>${
+    gasto ? ` <i>${T(UI.spent)}</i>` : ''}</div>`;
+};
 
   const toolKeys = Object.keys(TOOLS);
   const tools = toolKeys.map(k => state.tools.has(k)
@@ -3793,9 +3865,18 @@ function openSheet(focus) {
     : `<span class="pu-slot vazio" role="img" aria-label="Power-up: ${T(UI.puLocked)}">${hudIcon('lock', 14)}</span>`;
 
   const certEnts = ENTITIES.filter(e => e.type === 'cert');
-  const certs = certEnts.map(e => state.certs.has(e.id)
-    ? `<div class="li">📜 <a class="link" href="${e.url}" target="_blank" rel="noopener">${T(e.cert)}</a></div>`
-    : `<div class="li off">· ???</div>`).join('');
+  /* Certificados conquistados: card clicável com o selo à esquerda, nome em
+     negrito e emissor embaixo em texto pequeno (o nome chega como
+     "Título · Emissor"). Os que faltam continuam "???". */
+  const certs = certEnts.map(e => {
+    if (!state.certs.has(e.id)) return `<div class="li off">· ???</div>`;
+    const partes = T(e.cert).split(' · ');
+    const nome = partes[0], emissor = partes.slice(1).join(' · ');
+    return `<a class="cert-card" href="${e.url}" target="_blank" rel="noopener">
+      <span class="cert-ico" aria-hidden="true">${arte('cert', 22)}</span>
+      <span class="cert-info"><b>${esc(nome)}</b>${emissor ? `<span class="cert-de">${esc(emissor)}</span>` : ''}</span>
+      <span class="cert-go" aria-hidden="true">↗</span></a>`;
+  }).join('');
   const caseEnts = ENTITIES.filter(e => e.type === 'case');
   /* O álbum: carta que falta aparece de verso, com a zona onde ela está —
      é uma pista, não um mapa. A que já está na mão abre o caso. */
@@ -3861,7 +3942,7 @@ function openSheet(focus) {
     <div class="album">${cases}</div>
 
     <div class="actions">
-      <a class="btn" href="${PORTFOLIO_URL}" target="_blank" rel="noopener">${T(UI.fullResume)}</a>
+      <button class="btn" data-recruiter>${T(UI.fullResume)}</button>
       <button class="btn" id="btn-restart">↺ ${T(UI.newGame)}</button>
     </div>
     ${linhaRecomeco()}`);
@@ -3945,7 +4026,7 @@ function openContact() {
         </ul>
         <div class="actions">
           <a class="btn accent" href="${CONTACT.linkedin}" target="_blank" rel="noopener">${T(UI.connect)}</a>
-          <a class="btn" href="${PORTFOLIO_URL}" target="_blank" rel="noopener">${T(UI.fullResume)}</a>
+          <button class="btn" data-recruiter>${T(UI.fullResume)}</button>
         </div>
       </div>
 
@@ -4665,9 +4746,16 @@ function pintaOnboarding() {
   const alvo = document.getElementById('ob-art');
   if (alvo) {
     // a mesma cena de 190x104, mostrada no dobro do tamanho (desenhada em 4x)
-    const c = miniCena(190, 104, ONBOARD_ART[o.art] || (() => {}), 4);
-    c.style.width = '100%'; c.style.maxWidth = '380px'; c.style.height = 'auto';
-    alvo.appendChild(c);
+    const pintaArt = () => {
+      alvo.innerHTML = '';
+      const c = miniCena(190, 104, ONBOARD_ART[o.art] || (() => {}), 4);
+      c.style.width = '100%'; c.style.maxWidth = '380px'; c.style.height = 'auto';
+      alvo.appendChild(c);
+    };
+    pintaArt();
+    /* se algum sprite da cena ainda estava chegando, repinta quando a fila de
+       imagens zerar — senão a cena ficava só com o desenho vetorial */
+    if (imgsPendentes > 0) aoTerminarImgs.push(() => { if (alvo.isConnected) pintaArt(); });
   }
   const cb = document.getElementById('ob-never');
   if (cb) cb.onchange = () => { obNunca = cb.checked; };
@@ -5260,7 +5348,7 @@ function stepInner() {
         state.certs.add(e.id); save();
         faisca(e.x + 7, e.y + 8, 14, zoneAt(e.x).accent);
         textoSobe(e.x + 7, e.y - 4, '+1', zoneAt(e.x).accent);
-        toast(T(UI.gotCert), T(e.cert), false, 'cert');
+        toast(T(UI.gotCert), `<a class="link" href="${e.url}" target="_blank" rel="noopener">${T(e.cert)} ↗</a>`, true, 'cert');
         if (e.special) setTimeout(() => say('???', [e.special], 'npc/narrator'), 700);
       }
     }
@@ -5375,7 +5463,11 @@ setInterval(checkOrientation, 700);
 function applyLang() {
   // [C] é atalho de teclado: no toque não quer dizer nada e só ocupa a barra
   document.getElementById('btn-journal').textContent = (isTouch ? '' : '[C] ') + T(UI.sheet).toUpperCase();
-  document.getElementById('btn-start').textContent = '▶ ' + T(UI.start);
+  const bStart = document.getElementById('btn-start');
+  if (bStart) {
+    bStart.textContent = prontoPraJogar ? '▶ ' + T(UI.start) : 'Loading…';
+    bStart.disabled = !prontoPraJogar;
+  }
   /* As teclas como tampinhas, igual ao prompt e ao diálogo: o jogo ensina a
      mesma forma da tecla que vai pedir depois. */
   document.getElementById('title-keys').innerHTML = isTouch

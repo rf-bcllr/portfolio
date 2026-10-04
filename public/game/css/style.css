@@ -343,9 +343,23 @@ body{
 .entry:first-of-type{border-top:0}
 .entry .role{font-family:var(--font-pixel);font-weight:700;font-size:18px;margin-bottom:4px}
 .entry .meta{font-size:11px;color:var(--dim);letter-spacing:.08em;margin-bottom:8px}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
-.li{border:2px solid var(--ink);padding:9px;font-size:var(--fs-caption);line-height:1.5;background:var(--paper)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;grid-auto-rows:1fr}
+.li{display:flex;align-items:center;gap:8px;min-height:44px;border:2px solid var(--ink);padding:9px;font-size:var(--fs-caption);line-height:1.5;background:var(--paper)}
 .li.off{opacity:.32;background:transparent;border-style:dashed}
+.li .li-n{flex:1;min-width:0}
+.li i{flex:none;white-space:nowrap}
+/* certificados na ficha: card clicável, selo à esquerda, seta à direita */
+.cert-card{display:flex;align-items:center;gap:10px;border:2px solid var(--ink);background:var(--paper);
+  padding:8px 10px;font-size:var(--fs-caption);line-height:1.35;color:inherit;text-decoration:none;
+  min-height:44px;cursor:pointer;transition:transform .06s ease, box-shadow .06s ease}
+.cert-card:hover,.cert-card:focus-visible{transform:translate(1px,1px)}
+.cert-ico{flex:none;display:grid;place-items:center;width:32px;height:32px;background:var(--muted);
+  border:1.5px solid var(--ink);border-radius:8px}
+.cert-ico svg{display:block}
+.cert-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.cert-info b{font-weight:700}
+.cert-de{font-size:11px;color:var(--dim)}
+.cert-go{flex:none;font-weight:700}
 
 /* title screen */
 /* Tela de título de jogo: a cidade de 2015 aparece atrás (o mundo já é
@@ -1039,7 +1053,7 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   -webkit-backdrop-filter:blur(8px) saturate(1.2);backdrop-filter:blur(8px) saturate(1.2);
   clip-path:polygon(0 10px,100% 0,100% 100%,0 100%)}
 #battle .bcmd::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;
-  background:linear-gradient(100deg,#ffcf3a 0 30%,transparent 30%);clip-path:polygon(0 10px,100% 0,100% 3px,0 13px)}
+  background:linear-gradient(100deg,#0055ff 0 30%,transparent 30%);clip-path:polygon(0 10px,100% 0,100% 3px,0 13px)}
 .bcmd-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
 #battle .bcmd .bq{all:unset;font-family:var(--font-pixel);font-weight:800;font-size:16px;font-style:italic;
   letter-spacing:.02em;text-transform:uppercase}
@@ -1055,8 +1069,8 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   transition:background-color .12s ease-out,color .12s ease-out,transform .12s ease-out}
 #battle .opt.tome > *{transform:skewX(12deg)}   /* conteúdo de pé dentro da carta inclinada */
 #battle .opt.tome:hover:not(:disabled),#battle .opt.tome:focus-visible{
-  background:#ffcf3a;color:#191c24;border-color:#191c24;transform:skewX(-12deg) translateX(3px);outline:none}
-#battle .opt.tome:hover:not(:disabled) .ot-c,#battle .opt.tome:focus-visible .ot-c{color:#191c24}
+  background:#0055ff;color:#ffffff;border-color:#ffffff;transform:skewX(-12deg) translateX(3px);outline:none}
+#battle .opt.tome:hover:not(:disabled) .ot-c,#battle .opt.tome:focus-visible .ot-c{color:#ffffff}
 #battle .opt.tome:active:not(:disabled){transform:skewX(-12deg) translateX(5px)}
 .ot-k{position:static;order:-1;display:grid;place-items:center;min-width:20px;height:20px;padding:0 5px;
   font-family:var(--font-pixel);font-size:11px;font-weight:800;background:#fff;color:#191c24;border:0;box-shadow:none;
