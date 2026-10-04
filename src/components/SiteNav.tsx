@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -33,7 +33,7 @@ export function PlayLink({
       aria-label="Play my portfolio"
       className={`${variant === "blue" ? "nav-play-blue" : "nav-play-pulse"} inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 text-sm font-semibold leading-none transition-opacity duration-150 hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${className}`}
     >
-      <span aria-hidden="true" className="text-[10px]">▶</span> {label}
+      <Play aria-hidden="true" className="size-3 shrink-0 fill-current" strokeWidth={0} /> {label}
     </Link>
   );
 }
