@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Download, Globe, Lightbulb, Mail, MapPin, MessageCircle, Phone, Wrench } from "lucide-react";
-import { SiteNav } from "@/components/SiteNav";
+import { Calendar, Download, Globe, Lightbulb, Mail, MapPin, MessageCircle, Phone, Wrench } from "lucide-react";
+import { SiteNav, PlayLink } from "@/components/SiteNav";
 import { ContactFooter } from "@/components/ContactFooter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -178,11 +177,8 @@ export default function Resume() {
                 My career as a 2D RPG: walk through each job, open the cases as collectible cards, and fight 2020.
               </p>
             </div>
-            <Button asChild variant="contrast" size="lg" className="btn-arrow-shift shrink-0">
-              <Link to="/play" data-cursor-action="navigate-internal">
-                Press start <ArrowRight className="size-4" />
-              </Link>
-            </Button>
+            <PlayLink label="Press start" variant="blue" className="h-11 shrink-0 px-6 text-base" />
+
           </Card>
         </section>
 

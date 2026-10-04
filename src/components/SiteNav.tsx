@@ -14,16 +14,26 @@ const navItems = [
   { label: "Certifications", to: "/certifications" },
 ];
 
-function PlayLink({ className = "", onClick }: { className?: string; onClick?: () => void }) {
+export function PlayLink({
+  className = "",
+  onClick,
+  label = "Play",
+  variant = "cursor",
+}: {
+  className?: string;
+  onClick?: () => void;
+  label?: string;
+  variant?: "cursor" | "blue";
+}) {
   return (
     <Link
       to="/play"
       onClick={onClick}
       data-cursor-action="navigate-internal"
       aria-label="Play my portfolio"
-      className={`nav-play-pulse inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 text-sm font-semibold leading-none transition-opacity duration-150 hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${className}`}
+      className={`${variant === "blue" ? "nav-play-blue" : "nav-play-pulse"} inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 text-sm font-semibold leading-none transition-opacity duration-150 hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${className}`}
     >
-      <span aria-hidden="true" className="text-[10px]">▶</span> Play
+      <span aria-hidden="true" className="text-[10px]">▶</span> {label}
     </Link>
   );
 }

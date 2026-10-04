@@ -773,6 +773,12 @@ All colors MUST be HSL.
   color: var(--session-cursor-foreground, hsl(var(--primary-foreground)));
   animation: nav-play-pulse 4s ease-out infinite;
 }
+/* Fixed royal-blue variant: never follows the session cursor color */
+.nav-play-blue {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  animation: nav-play-pulse 4s ease-out infinite;
+}
 @keyframes nav-play-pulse {
   0%, 70% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.45); }
   85% { box-shadow: 0 0 0 7px hsl(var(--primary) / 0); }
