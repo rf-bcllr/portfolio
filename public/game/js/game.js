@@ -521,6 +521,23 @@ Object.keys(AUDIO_MANIFEST).forEach(k => {
   a.addEventListener('canplaythrough', () => { SFX_FILE[k] = a; }, { once: true });
   a.addEventListener('error', () => {}, { once: true });
 });
+const LATIDO = new Audio('assets/audio/bark.wav');
+LATIDO.preload = 'auto';
+function latir(vezes = 1) {
+  if (!state.sound) return;
+  for (let i = 0; i < vezes; i++) setTimeout(() => {
+    try {
+      const a = LATIDO.cloneNode();
+      a.volume = .7;
+      a.playbackRate = .95 + Math.random() * .1;
+      a.play().catch(() => {});
+    } catch (e) {}
+  }, i * 210);
+}
+loadTotal++;
+fetch('assets/audio/bark.wav')
+  .catch(() => {})
+  .finally(() => { loadDone++; loadTick(); });
 
 let AC = null;
 function blip(freq = 440, dur = 0.05, type = 'square', vol = 0.03) {
@@ -3399,6 +3416,7 @@ const RETRATO = {
   'boss/death':         [.30, .12, .30],
   'props/mimic-battle': [.02, .02, .96],
   'npc/lia':            [.02, .0, .96],
+  'npc/amaya-face':     [0, 0, 1],
 };
 
 /* A pergunta de cada versão.
@@ -3479,13 +3497,14 @@ function say(name, lines, sprite, after, sub) {
 }
 function setSpeaker(line) {
   const mine = line && line.who === 'me';
-  dname.textContent = mine ? CONTACT.name : dSpeaker.name;
-  const sub = mine ? (state.title || T(UI.me)) : dSpeaker.sub;
+  const amaya = line && line.who === 'amaya';
+  dname.textContent = mine ? CONTACT.name : amaya ? T(AMAYA.label || 'Amaya') : dSpeaker.name;
+  const sub = mine ? (state.title || T(UI.me)) : amaya ? '' : dSpeaker.sub;
   dsub.textContent = sub || '';
   dsub.hidden = !sub;
   /* Placa não tem rosto. O retrato só aparece quando quem fala é gente: eu,
      outra versão minha, Inis ou Esdras. Narrador é texto de objeto. */
-  const quem = mine ? 'me' : dSpeaker.sprite;
+  const quem = mine ? 'me' : amaya ? 'npc/amaya-face' : dSpeaker.sprite;
   // ...e os personagens de arte única que têm rosto recortado (Morte, mimic, Lia)
   const gente = quem === 'me' || NPC_SHEETS[quem] || SPRITE_LOOK[quem] || RETRATO[quem];
   dport.hidden = !gente;
@@ -3505,6 +3524,8 @@ function nextLine() {
     return;
   }
   const line = dQueue.shift();
+  if (line && line.bark) latir(2);
+  if (line && line.barkAfter) setTimeout(() => latir(1), 700);
   setSpeaker(line);
   dFull = T(line); dI = 0; dtext.textContent = ''; dTyping = true;
   /* A máquina de escrever troca o texto letra a letra; o leitor de tela recebe
@@ -4426,8 +4447,10 @@ function outOfTomes(e) {
        em que aparece na tela. */
     state.amaya = true;
     battle.amayaIn = true;
+    latir(2);
     save();
     say(T(AMAYA.label), AMAYA.finish, 'me', () => {
+      latir(1);
       playerAttack(() => { battle.hp = 0; bossWin(e); });
     }, T(AMAYA.sub));
     return;

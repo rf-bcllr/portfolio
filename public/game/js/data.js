@@ -932,12 +932,15 @@ const ENTITIES = [
     lines: [
       'A chicken sandwich. Inside a chest. On a beach.',
       { en: 'Some dev must have left this here.', who: 'me' },
+      { en: '...', who: 'amaya', bark: true },
+      { en: '............', who: 'me' },
+      { en: 'Amaya ate it.', who: 'me', barkAfter: true },
     ],
     opened: [
-      { en: 'The sandwich is still here. I still do not want to know for how long.', who: 'me' },
+      { en: 'Empty chest. Amaya says she knows nothing about it.', who: 'me' },
     ],
     openedUsed: [
-      { en: 'The sandwich is still here. I still do not want to know for how long.', who: 'me' },
+      { en: 'Empty chest. Amaya says she knows nothing about it.', who: 'me' },
     ],
   },
 
