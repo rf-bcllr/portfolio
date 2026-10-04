@@ -5514,7 +5514,7 @@ setInterval(checkOrientation, 700);
 --------------------------------------------------------- */
 function applyLang() {
   // [C] é atalho de teclado: no toque não quer dizer nada e só ocupa a barra
-  document.getElementById('btn-journal').textContent = (isTouch ? '' : '[C] ') + T(UI.sheet).toUpperCase();
+  document.getElementById('btn-journal').innerHTML = (isTouch ? '' : '<kbd>C</kbd> ') + T(UI.sheet).toUpperCase();
   const bStart = document.getElementById('btn-start');
   if (bStart) {
     bStart.textContent = prontoPraJogar ? '▶ ' + T(UI.start) : 'Loading…';
