@@ -3870,8 +3870,8 @@ const chip = (k) => {
   const tem = state.skills.has(k);
   const gasto = tem && state.spentTomes.indexOf(k) >= 0;
   return `<div class="li ${tem ? (gasto ? 'used' : '') : 'off'}">${
-    tem ? (gasto ? '◇' : '◆') : '◇'} <span class="li-n">${T(SKILLS[k])}</span>${
-    gasto ? ` <i>${T(UI.spent)}</i>` : ''}</div>`;
+    '<span class="li-n">' + (tem ? (gasto ? '◇' : '◆') : '◇')} ${T(SKILLS[k])}</span>${
+    gasto ? `<i>${T(UI.spent)}</i>` : ''}</div>`;
 };
 
   const toolKeys = Object.keys(TOOLS);
