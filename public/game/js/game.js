@@ -1023,13 +1023,31 @@ addEventListener('keyup', e => { if (KMAP[e.key]) keys[KMAP[e.key]] = false; });
 
 document.querySelectorAll('.tbtn').forEach(b => {
   const k = b.dataset.k;
-  const on = e => { e.preventDefault(); if (k === 'action') actionEdge = true; else keys[k] = true; };
-  const off = e => { e.preventDefault(); if (k !== 'action') keys[k] = false; };
-  b.addEventListener('touchstart', on, { passive: false });
-  b.addEventListener('touchend', off, { passive: false });
-  b.addEventListener('mousedown', on);
-  b.addEventListener('mouseup', off);
-  b.addEventListener('mouseleave', off);
+  const on = e => {
+    e.preventDefault();
+    /* Pointer capture keeps movement held if the finger drifts off the button.
+       Synthetic accessibility tests may not create an active native pointer. */
+    if (b.setPointerCapture && e.pointerId !== undefined) {
+      try { b.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    b.classList.add('pressed');
+    if (k === 'action') actionEdge = true;
+    else keys[k] = true;
+  };
+  const off = e => {
+    e.preventDefault();
+    b.classList.remove('pressed');
+    if (k !== 'action') keys[k] = false;
+  };
+  b.addEventListener('pointerdown', on);
+  b.addEventListener('pointerup', off);
+  b.addEventListener('pointercancel', off);
+  b.addEventListener('lostpointercapture', off);
+});
+/* Changing apps or locking the phone must never leave a direction held. */
+addEventListener('blur', () => {
+  keys.left = keys.right = keys.jump = false;
+  document.querySelectorAll('.tbtn.pressed').forEach(b => b.classList.remove('pressed'));
 });
 cv.addEventListener('click', () => { actionEdge = true; });
 
@@ -5515,6 +5533,7 @@ setInterval(checkOrientation, 700);
 function applyLang() {
   // [C] é atalho de teclado: no toque não quer dizer nada e só ocupa a barra
   document.getElementById('btn-journal').innerHTML = (isTouch ? '' : '<kbd>C</kbd> ') + T(UI.sheet).toUpperCase();
+  document.querySelectorAll('[data-recruiter] kbd').forEach(k => { k.hidden = isTouch; });
   const bStart = document.getElementById('btn-start');
   if (bStart) {
     bStart.textContent = prontoPraJogar ? '▶ ' + T(UI.start) : 'Loading…';

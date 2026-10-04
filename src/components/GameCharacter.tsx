@@ -2,13 +2,18 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const QUOTES = [
-  "Walking right is walking through time.",
-  "Right is the only direction (in this game only).",
-  "I didn't win anything. I got through.",
-  "I took over Meu Arco at 2.9 in the app store. I left it at 4.8.",
-  "Edtech and AI look like the perfect marriage. I said yes.",
-  "Scope creep comes back on every project. Now I name it as soon as it shows up.",
-  "\u201cI'm not a 'little flu'.\u201d \u2014 Literally Death",
+  "How are you doing?",
+  "Let's talk?",
+  "Let's make products!",
+  "Let's connect on LinkedIn :)",
+  "Need a designer?",
+  "Coffee chat? ☕",
+  "Let's build something!",
+  "Say hi! 👋",
+  "Open to new adventures!",
+  "Ready to collaborate?",
+  "What's on your mind?",
+  "Let's create magic! ✨",
 ];
 
 /* Idle sprite from the game (4 frames of 105×180 at y=2), drawn at 120px tall. */
@@ -46,7 +51,7 @@ export function GameCharacter() {
         style={{
           width: 105 * SCALE,
           height: 180 * SCALE,
-          backgroundImage: "url(/game/assets/player/sheet.png)",
+          backgroundImage: "url(/game/assets/player/home-sheet-blue.png)",
           backgroundSize: `${880 * SCALE}px ${475 * SCALE}px`,
           backgroundPositionY: `${-2 * SCALE}px`,
           ["--game-char-end" as string]: `${-420 * SCALE}px`,
