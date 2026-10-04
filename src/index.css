@@ -799,3 +799,25 @@ All colors MUST be HSL.
 }
 @keyframes game-ld-idle { to { background-position: -210px -1px; } }
 @media (prefers-reduced-motion: reduce) { .game-ld-bar i, .game-ld-hero { animation: none; } }
+
+.ask-fab {
+  transition-property: width, bottom, transform, box-shadow;
+  transition-duration: 240ms, 240ms, 150ms, 150ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+.ask-fab > svg { transition: transform 240ms cubic-bezier(0.2, 0, 0, 1); }
+.ask-fab[data-collapsed="true"] > svg { transform: rotate(-12deg) scale(1.05); }
+.ask-fab-label {
+  transform-origin: left center;
+  transition-property: opacity, transform, filter;
+  transition-duration: 160ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+.ask-fab[data-collapsed="true"] .ask-fab-label { filter:blur(4px);transform:translateX(8px) scale(.95); }
+.game-ld-stage { background-image:radial-gradient(hsl(var(--foreground) / .14) 1px,transparent 1px);background-size:12px 12px; }
+.game-ld-stage::after { content:"";position:absolute;inset-inline:18%;bottom:8px;height:3px;background:hsl(var(--foreground));box-shadow:0 5px 0 hsl(var(--foreground) / .13); }
+@media (prefers-reduced-motion: reduce) {
+  .ask-fab,.ask-fab > svg,.ask-fab-label{transition:none}
+  .ask-fab[data-collapsed="true"] > svg{transform:none}
+  .ask-fab[data-collapsed="true"] .ask-fab-label{filter:none;transform:none}
+}

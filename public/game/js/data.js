@@ -531,7 +531,7 @@ const ENTITIES = [
   /* ============ BOSS: PANDEMIA — 2020 ============ */
   { id: 'boss-covid', type: 'boss', x: 3280, zone: 'pandemic', sprite: 'boss/pandemic',
     label: 'The Pandemic',
-    foeName: 'Literally Death',
+    foeName: 'The Gravedigger',
     taunt:   "I'm not a 'little flu'.",
     /* Acima dos 100 que dez tomos dariam, de propósito: nenhum caminho mata
        este sozinho. A última pancada é sempre dela. */
@@ -891,7 +891,7 @@ const ENTITIES = [
   { id: 'door-uneb', type: 'door', x: 1615, zone: 'uneb', needs: 3 },
   { id: 'door-sebrae', type: 'door', x: 2310, zone: 'sebrae', needs: 4 },
   { id: 'door-lebiscuit', type: 'door', x: 2965, zone: 'lebiscuit', needs: 5 },
-  /* A saída da pandemia. `needs: 6` é o nível que a Literally Death concede,
+  /* A saída da pandemia. `needs: 6` é o nível que The Gravedigger concede,
      então ela destranca no instante em que ela cai — não antes. */
   { id: 'door-pandemic', type: 'door', x: 3500, zone: 'pandemic', needs: 6 },
   { id: 'door-classapp', type: 'door', x: 4250, zone: 'classapp', needs: 7 },

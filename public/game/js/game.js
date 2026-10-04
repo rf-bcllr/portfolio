@@ -5550,7 +5550,10 @@ function stepInner() {
   if (n) {
     promptEl.style.display = 'flex';
     // tecla como tampinha; só remonta quando o texto muda, não a cada quadro
-    const rot = (isTouch ? 'A' : 'E') + '|' + (n.type === 'boss' ? T(UI.replay) : T(n.label));
+    const bossPrompt = n.type === 'boss'
+      ? (state.bossDone ? T(UI.replay) : foeName(n))
+      : T(n.label);
+    const rot = (isTouch ? 'A' : 'E') + '|' + bossPrompt;
     if (promptEl.dataset.rot !== rot) {
       promptEl.dataset.rot = rot;
       const [tecla, txt] = rot.split('|');
