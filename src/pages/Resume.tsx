@@ -178,11 +178,8 @@ export default function Resume() {
                 My career as a 2D RPG: walk through each job, open the cases as collectible cards, and fight 2020.
               </p>
             </div>
-            <Button asChild variant="contrast" size="lg" className="btn-arrow-shift shrink-0">
-              <Link to="/play" data-cursor-action="navigate-internal">
-                Press start <ArrowRight className="size-4" />
-              </Link>
-            </Button>
+            <PlayLink label="Press start" variant="blue" className="h-11 shrink-0 px-6 text-base" />
+
           </Card>
         </section>
 
