@@ -56,8 +56,13 @@ export function GameCharacter() {
           <span
             id="game-char-quote"
             role="status"
-            className="pointer-events-none absolute z-20 w-max max-w-[260px] rounded-[18px] rounded-tl-none bg-primary px-3.5 py-2 text-left text-sm font-medium leading-snug text-primary-foreground shadow-[3px_3px_0_0_hsl(var(--foreground))]"
-            style={{ left: 58, top: 8 }}
+            className="pointer-events-none absolute z-20 w-max max-w-[260px] rounded-[18px] rounded-tl-none px-3.5 py-2 text-left text-sm font-medium leading-snug shadow-[3px_3px_0_0_hsl(var(--foreground))]"
+            style={{
+              left: 58,
+              top: 8,
+              backgroundColor: "var(--session-cursor, hsl(var(--primary)))",
+              color: "var(--session-cursor-foreground, hsl(var(--primary-foreground)))",
+            }}
           >
             {QUOTES[quote]}
           </span>
