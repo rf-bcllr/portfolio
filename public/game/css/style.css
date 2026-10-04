@@ -471,6 +471,7 @@ kbd{
   border:1.5px solid var(--ink);border-radius:5px;padding:2px 5px 3px;
   box-shadow:0 2px 0 var(--ink);
 }
+kbd[hidden]{display:none}
 
 /* confirmação dentro do popup final */
 .confirm-row{
