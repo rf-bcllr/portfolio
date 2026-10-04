@@ -78,15 +78,51 @@ const imgState = {};
 /* Sprites pedidos e ainda sem resposta. Quando a fila zera, roda o que estava
    esperando (habilitar o START, repintar a cena de onboarding). */
 let imgsPendentes = 0;
+/* Tela de carregamento: total e prontos de tudo o que é pedido no boot
+   (sprites, logos das ferramentas e as fontes). Erro conta como pronto. */
+let loadTotal = 0, loadDone = 0, loadFim = false;
+function loadTick() {
+  if (loadFim) return;
+  const bar = document.getElementById('ld-bar');
+  if (bar) {
+    const n = loadTotal ? Math.floor(10 * loadDone / loadTotal) : 0;
+    bar.querySelectorAll('i').forEach((seg, i) => seg.classList.toggle('on', i < n));
+    bar.setAttribute('aria-valuenow', String(Math.round(100 * loadDone / Math.max(1, loadTotal))));
+  }
+  if (loadTotal && loadDone >= loadTotal) setTimeout(loadEnd, 120);
+}
+function loadEnd() {
+  if (loadFim) return;
+  loadFim = true;
+  clearInterval(loadTipTimer);
+  const el = document.getElementById('loading');
+  if (el) {
+    el.querySelectorAll('#ld-bar i').forEach(seg => seg.classList.add('on'));
+    if (reduceMotionLd()) el.remove();
+    else { el.classList.add('out'); setTimeout(() => el.remove(), 260); }
+  }
+  habilitaStart();
+  try { if (window.parent !== window) window.parent.postMessage({ type: 'rfb:loaded' }, window.location.origin); } catch (_) {}
+}
+function reduceMotionLd() { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_) { return false; } }
+const LOAD_TIPS = ['Tip: E talks to people and opens chests.', 'Tip: C opens your Character Sheet.',
+  'Tip: 1, 2, 3 answer questions and pick battle commands.'];
+let loadTipI = 0;
+const loadTipTimer = setInterval(() => {
+  const t = document.getElementById('ld-tip'); if (!t) return;
+  loadTipI = (loadTipI + 1) % LOAD_TIPS.length; t.textContent = LOAD_TIPS[loadTipI];
+}, 2400);
+setTimeout(loadEnd, 8000);
 const aoTerminarImgs = [];
 function img(key) {
   if (IMG[key]) return IMG[key];
   if (imgState[key]) return null;          // já pedido: carregando ou inexistente
   imgState[key] = 1;
   imgsPendentes++;
+  loadTotal++;
   const im = new Image();
-  im.onload = () => { IMG[key] = im; imgState[key] = 3; imgChegou(); };
-  im.onerror = () => { imgState[key] = 2; imgChegou(); };
+  im.onload = () => { IMG[key] = im; imgState[key] = 3; loadDone++; loadTick(); imgChegou(); };
+  im.onerror = () => { imgState[key] = 2; loadDone++; loadTick(); imgChegou(); };
   im.src = 'assets/' + key + '.png';
   return null;
 }
@@ -320,7 +356,10 @@ try {
    provisória sozinha. */
 let fontsReady = false;
 try {
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fontsReady = true; });
+  if (document.fonts && document.fonts.ready) {
+    loadTotal++;
+    document.fonts.ready.then(() => { fontsReady = true; loadDone++; loadTick(); }, () => { loadDone++; loadTick(); });
+  }
   else fontsReady = true;
 } catch (e) { fontsReady = true; }
 
@@ -983,11 +1022,18 @@ document.addEventListener('click', ev => {
   const b = ev.target.closest && ev.target.closest('#hud button, #hud a');
   if (b) b.blur();
 });
+const DLG_FF = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'd', 'D', 'a', 'A', 'w', 'W'];
 addEventListener('keydown', e => {
   /* Pergunta aberta no diálogo: 1, 2, 3 respondem. */
   if (quizOpen && !dchoices.hidden && /^[1-9]$/.test(e.key)) {
     const b = dchoices.querySelectorAll('button')[+e.key - 1];
     if (b && !b.disabled) { e.preventDefault(); b.click(); return; }
+  }
+  /* Diálogo aberto (sem pergunta): as teclas de andar avançam como o E. */
+  if (dlg.classList.contains('open') && !quizOpen && DLG_FF.indexOf(e.key) >= 0) {
+    e.preventDefault();
+    if (!e.repeat) nextLine();
+    return;
   }
   /* Na luta, 1–9 escolhe a opção pelo número e Esc volta dos tomos. */
   if (battle.active && !bEl.hidden && !dlg.classList.contains('open')) {
@@ -1011,7 +1057,11 @@ addEventListener('keydown', e => {
     if (e.key === 'y' || e.key === 'Y') { e.preventDefault(); confirmRestart(); return; }
     if (e.key === 'n' || e.key === 'N' || e.key === 'Escape') { e.preventDefault(); cancelRestart(); return; }
   }
-  if (e.key === 'Escape') closeAll();
+  if (e.key === 'Escape') {
+    if (overlay.classList.contains('open')) { e.preventDefault(); closeAll(); }
+    else if (state.started && !battle.active && !dlg.classList.contains('open')) { e.preventDefault(); abreRecruiter(); }
+    return;
+  }
   if (e.key === 'c' || e.key === 'C' || e.key === 'j' || e.key === 'J') openSheet();
   if (e.key === 'i' || e.key === 'I') openSheet('inventory');
   if ((e.key === 'f' || e.key === 'F') && state.started && !battle.active
@@ -3577,6 +3627,17 @@ const ICON_FALLBACK = {
 function icon(type) {
   if (type === 'profile') type = 'logo:linkedin';
   if (type && type.indexOf('logo:') === 0) return `<span class="ico ico-arte">${logo(type.slice(5), 18)}</span>`;
+  if (type && type.indexOf('foe:') === 0) {
+    const key = type === 'foe:mimic' ? 'props/mimic-battle' : 'npc/death';
+    const r = RETRATO[key], im = IMG[key];
+    if (r && im) {
+      const k = 24 / (r[2] * im.naturalWidth);
+      const st = 'position:absolute;max-width:none;display:block;width:' + (im.naturalWidth * k).toFixed(2) + 'px !important;height:' +
+        (im.naturalHeight * k).toFixed(2) + 'px !important;left:' + (-r[0] * im.naturalWidth * k).toFixed(2) + 'px;top:' + (-r[1] * im.naturalHeight * k).toFixed(2) + 'px';
+      return `<span class="ico ico-arte ico-rosto${key === 'npc/death' ? ' flip' : ''}"><img src="assets/${key}.png" alt="" style="${st}"></span>`;
+    }
+    type = type === 'foe:mimic' ? 'item' : 'boss';
+  }
   if (ARTE_DO_TIPO[type]) return `<span class="ico ico-arte">${arte(ARTE_DO_TIPO[type], 18)}</span>`;
   return `<span class="ico" data-icon="${type}"><img src="assets/icons/${type}.png" alt=""
     onload="this.parentNode.classList.add('img')" onerror="this.remove()"><i>${ICON_FALLBACK[type] || '◆'}</i></span>`;
@@ -3619,11 +3680,23 @@ function openPanel(html, mode) {
   panel.classList.toggle('estreito', mode === 'estreito');
   nomeiaPainel();
   overlay.classList.add('open');
+  ajustaWork();
   // a primeira ação do painel, não o ✕: senão um Enter de quem avança pelo teclado fechava tudo
   const f = panel.querySelector('button:not(.panel-x):not([disabled]), a[href]') || panel.querySelector('.panel-x');
   // sem rolar: o foco no botão preso embaixo empurrava o painel para o meio
   if (f) setTimeout(() => { try { f.focus({ preventScroll: true }); } catch (e) {} }, 30);
 }
+/* O card do projeto é o próprio diálogo, no tamanho natural; se a tela é
+   menor, encolhe inteiro (scale), sem refluir. */
+function ajustaWork() {
+  panel.style.transform = '';
+  if (!panel.classList.contains('work') || !overlay.classList.contains('open')) return;
+  const w = panel.offsetWidth, h = panel.offsetHeight;
+  if (!w || !h) return;
+  const s = Math.min(1, (innerWidth - 32) / w, (innerHeight - 32) / h);
+  if (s < 1) panel.style.transform = 'scale(' + s.toFixed(4) + ')';
+}
+window.addEventListener('resize', ajustaWork);
 let aoFecharPainel = null;
 function closeAll() {
   if (confirmMode === 'panel') cancelRestart();
@@ -3648,6 +3721,9 @@ document.addEventListener('click', e => { if (e.target.dataset && e.target.datas
 document.addEventListener('click', e => {
   const gatilho = e.target.closest ? e.target.closest('[data-recruiter]') : null;
   if (!gatilho) return;
+  abreRecruiter();
+});
+function abreRecruiter() {
   openPanel(`
     <h2>Leave the game?</h2>
     <p>Recruiter Mode is the classic résumé. Your progress here is saved, so you can come back and keep playing.</p>
@@ -3657,7 +3733,7 @@ document.addEventListener('click', e => {
     </div>`, 'estreito');
   const ir = panel.querySelector('[data-recruiter-go]');
   if (ir) ir.onclick = () => { window.top.location.href = '/resume'; };
-});
+}
 
 
 /* ---------------------------------------------------------
@@ -3777,10 +3853,10 @@ function workCardHTML(e, doAlbum) {
         </div>
         <div class="wc-media">
           <div class="wc-device ${retrato ? 'tall' : 'wide'}"><div class="wc-screen">${midiaHTML(c.media, true)}</div></div>
-          <button class="wc-close" data-close aria-label="${T(UI.close)}">×</button>
           ${ehVideo(c.media) ? botaoVideo(!reduceMotion) : ''}
         </div>
       </article>
+      <button class="wc-close" data-close aria-label="${T(UI.close)}">×</button>
     </div>`;
 }
 
@@ -4396,7 +4472,7 @@ function bossWin(e) {
     playTune('victory');
     voltaMusicaDaZona(2600);
     say(foeName(e), e.win, 'me',
-      () => toast(T(UI.defeated), foeName(e), false, e.type === 'mimic' ? 'item' : 'boss'),
+      () => toast(T(UI.defeated), foeName(e), false, e.type === 'mimic' ? 'foe:mimic' : 'foe:death'),
       state.title);
   } };
   blip(880, .3, 'triangle', .05);
@@ -4851,6 +4927,11 @@ const HUD_SVG = {
    avisos, na ficha e nos slots de power-up — o mesmo desenho em todo lugar. */
 const TINTA = '#191c24';
 const ARTE = {
+  award: '<path d="M7 4.5h10v4.2a5 5 0 0 1-10 0z" fill="#ffcf3a" stroke="#191c24" stroke-width="1.6" stroke-linejoin="round"/>' +
+         '<path d="M7 6H4.8a2.3 2.3 0 0 0 2.4 3.6M17 6h2.2a2.3 2.3 0 0 1-2.4 3.6" fill="none" stroke="#191c24" stroke-width="1.5" stroke-linecap="round"/>' +
+         '<path d="M10.6 13.4h2.8v3.1h-2.8z" fill="#e0a92a" stroke="#191c24" stroke-width="1.4" stroke-linejoin="round"/>' +
+         '<rect x="7.5" y="16.5" width="9" height="3.6" rx="1" fill="#8b5cf6" stroke="#191c24" stroke-width="1.6"/>' +
+         '<path d="M9.4 6.2v3" stroke="#fff3c4" stroke-width="1.4" stroke-linecap="round"/>',
   // tomo de habilidade: livro roxo com o emblema dourado
   tome: '<path d="M5.5 4.5h11a1.5 1.5 0 0 1 1.5 1.5v12H7a1.5 1.5 0 0 0-1.5 1.5z" fill="#8b5cf6" stroke="' + TINTA + '" stroke-width="1.6" stroke-linejoin="round"/>' +
         '<path d="M5.5 19.5A1.5 1.5 0 0 1 7 18h11v2.5H7a1.5 1.5 0 0 1-1.5-1z" fill="#ffffff" stroke="' + TINTA + '" stroke-width="1.5" stroke-linejoin="round"/>' +
@@ -4949,7 +5030,9 @@ function logoArq(k) {
   if (!LOGO_ARQ[k] || logoFalhou[k]) return null;
   if (!logoImgs[k]) {
     const im = new Image();
-    im.onerror = () => { logoFalhou[k] = true; };
+    loadTotal++;
+    im.onload = () => { loadDone++; loadTick(); };
+    im.onerror = () => { logoFalhou[k] = true; loadDone++; loadTick(); };
     im.src = 'assets/tools/' + k + '.' + LOGO_ARQ[k];
     logoImgs[k] = im;
   }
@@ -4975,7 +5058,7 @@ function svgImg(chave, interno) {
 /* tipo de aviso / título → qual desenho usar */
 /* "profile" (recomendação e link de perfil do Inis e do Esdras) usa a marca do
    LinkedIn, não o envelope: o envelope é o coletável de mensagem. */
-const ARTE_DO_TIPO = { skill: 'tome', cert: 'cert', case: 'card', item: 'beer', tool: 'tool', inmail: 'msg' };
+const ARTE_DO_TIPO = { award: 'award', skill: 'tome', cert: 'cert', case: 'card', item: 'beer', tool: 'tool', inmail: 'msg' };
 function hudSvg(k, tam) {
   const n = tam || 14;
   return '<svg class="hs" viewBox="0 0 16 16" width="' + n + '" height="' + n + '"' +
@@ -5001,6 +5084,18 @@ function hudIcon(k, tam) {
 /* Placar de coletáveis, como nos plataformas clássicos: o total fica sempre à
    vista, não escondido atrás de um botão. */
 const lootEl = document.getElementById('loot');
+/* Na tela larga o placar sobe para o centro da linha do topo; se ali ele
+   encostar na placa da zona ou nos botões, volta para baixo da placa. */
+function posicionaLoot() {
+  document.body.classList.remove('loot-baixo');
+  if (innerWidth < 1100 || lootEl.hidden) return;
+  const l = lootEl.getBoundingClientRect();
+  const z = document.getElementById('chip-zone').getBoundingClientRect();
+  const b = document.querySelector('.hud-btns').getBoundingClientRect();
+  if (l.left < z.right + 12 || l.right > b.left - 12) document.body.classList.add('loot-baixo');
+}
+window.addEventListener('resize', posicionaLoot);
+setInterval(posicionaLoot, 1000);
 const hudStatus = document.getElementById('hud-status');
 const linkedinEnts = ENTITIES.filter(e => e.type === 'linkedin');
 const LOOT = [
