@@ -1156,8 +1156,8 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
 #loading.out{opacity:0;pointer-events:none}
 .ld-card{display:flex;flex-direction:column;align-items:stretch;gap:18px;width:min(420px,100%);
   padding:26px 28px 22px;background:var(--panel);border:3px solid var(--ink);border-radius:12px;box-shadow:8px 8px 0 var(--ink)}
-.ld-heading{text-align:center}.ld-kicker{display:block;margin-bottom:7px;font-size:9px;font-weight:800;color:var(--accent);letter-spacing:.16em}
-.ld-eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--ink);text-align:center}
+.ld-heading{text-align:center}.ld-kicker{display:block;margin-bottom:7px;font-size:9px;font-weight:800;color:var(--accent);letter-spacing:0}
+.ld-eyebrow{font-size:11px;font-weight:800;letter-spacing:0;color:var(--ink);text-align:center}
 .ld-stage{position:relative;display:grid;place-items:end center;height:112px;overflow:hidden;border-block:2px solid var(--ink);background:var(--paper)}
 .ld-stage::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(25,28,36,.14) 1px,transparent 1px);background-size:12px 12px}
 .ld-stage::after{content:"";position:absolute;left:18%;right:18%;bottom:8px;height:3px;background:var(--ink);box-shadow:0 5px 0 rgba(25,28,36,.13)}

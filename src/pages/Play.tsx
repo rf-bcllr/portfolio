@@ -36,7 +36,7 @@ function GameLoading({ visible }: { visible: boolean }) {
       className={`fixed inset-0 z-[45] grid place-items-center bg-background p-4 transition-opacity duration-250 motion-reduce:transition-none ${visible ? "opacity-100" : "pointer-events-none opacity-0"}`}
     >
       <div className="flex w-full max-w-[420px] flex-col gap-[18px] rounded-xl border-[3px] border-foreground bg-card px-7 pb-[22px] pt-[26px] shadow-[8px_8px_0_0_hsl(var(--foreground))]">
-        <div className="text-center"><p className="mb-[7px] font-display text-[9px] font-bold tracking-[0.16em] text-primary">LOADING ADVENTURE</p><p className="font-display text-[11px] font-bold tracking-[0.16em] text-foreground">QUEST FOR THE NEXT PRODUCT</p></div>
+        <div className="text-center"><p className="mb-[7px] font-display text-[9px] font-bold text-primary">LOADING ADVENTURE</p><p className="font-display text-[11px] font-bold text-foreground">QUEST FOR THE NEXT PRODUCT</p></div>
         <div className="game-ld-stage relative grid h-28 place-items-end overflow-hidden border-y-2 border-foreground bg-background" aria-hidden="true"><div className="game-ld-hero relative z-10 mb-2.5" /></div>
         <div className="grid gap-[7px]">
           <div className="flex justify-between gap-3 font-display text-[9px] font-bold text-muted-foreground"><span>PREPARING THE MAP</span><span>•••</span></div>
