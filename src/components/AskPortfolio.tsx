@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { MessageCircleQuestion, RotateCcw, X } from "lucide-react";
+import { RotateCcw, Sparkles, X } from "lucide-react";
 import {
   Conversation,
   ConversationContent,
@@ -38,19 +38,14 @@ function loadMessages(): UIMessage[] {
   }
 }
 
-/** Pixel avatar cropped from the blue game sprite — the assistant's identity. */
 function AgentAvatar({ className }: { className?: string }) {
   return (
     <span
       aria-hidden="true"
-      className={cn("block shrink-0 overflow-hidden rounded-full border-2 border-foreground bg-primary/15", className)}
-      style={{
-        backgroundImage: "url(/game/assets/player/home-sheet-blue.png)",
-        backgroundSize: "396px 214px",
-        backgroundPosition: "-4px 2px",
-        imageRendering: "pixelated",
-      }}
-    />
+      className={cn("grid shrink-0 place-items-center rounded-full border-2 border-foreground bg-primary text-primary-foreground", className)}
+    >
+      <Sparkles className="h-1/2 w-1/2" strokeWidth={2} />
+    </span>
   );
 }
 
@@ -255,10 +250,10 @@ export function AskPortfolio() {
       type="button"
       onClick={() => setOpen(true)}
       aria-label="Ask about my work"
-      className="fixed bottom-6 right-6 z-[60] inline-flex h-12 items-center gap-2 rounded-full border-2 border-foreground bg-primary pl-2 pr-5 font-display text-sm font-semibold text-primary-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-transform hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="fixed bottom-6 right-6 z-[60] inline-flex h-12 items-center gap-2 rounded-full border-2 border-foreground bg-primary pl-2 pr-5 font-display text-sm font-semibold text-primary-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-transform hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:bottom-16"
     >
       <span className="grid h-8 w-8 place-items-center rounded-full bg-primary-foreground text-primary">
-        <MessageCircleQuestion className="h-4 w-4" aria-hidden="true" />
+        <Sparkles className="h-4 w-4" aria-hidden="true" />
       </span>
       Ask about my work
     </button>
