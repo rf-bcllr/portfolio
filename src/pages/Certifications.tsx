@@ -3,6 +3,7 @@ import { Award, Quote } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { ContactFooter } from "@/components/ContactFooter";
 import { CertificationCard } from "@/components/CertificationCard";
+import { PreferToPlayCard } from "@/components/PreferToPlayCard";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "@/hooks/useTranslations";
@@ -175,6 +176,7 @@ export default function Certifications() {
           </div>
         </section>
 
+        <PreferToPlayCard />
       </main>
       <ContactFooter />
     </div>
