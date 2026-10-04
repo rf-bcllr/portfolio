@@ -287,7 +287,7 @@ export function AskPortfolio() {
       aria-label="Ask about my work"
       data-collapsed={collapsed}
       className={cn(
-        "fixed right-6 z-[60] inline-flex h-12 items-center overflow-hidden rounded-full border-2 border-foreground bg-primary font-display text-sm font-semibold text-primary-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-[width,bottom,transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none",
+        "ask-fab fixed right-6 z-[60] inline-flex h-12 items-center overflow-hidden rounded-full border-2 border-foreground bg-primary font-display text-sm font-semibold text-primary-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
         collapsed ? "w-12 justify-center" : "w-[212px] gap-2.5 pl-4 pr-5",
         clearDrawingVisible ? "bottom-16" : "bottom-6",
       )}
@@ -296,7 +296,7 @@ export function AskPortfolio() {
       <span
         aria-hidden={collapsed}
         className={cn(
-          "whitespace-nowrap transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none",
+          "ask-fab-label whitespace-nowrap",
           collapsed ? "pointer-events-none absolute translate-x-2 opacity-0" : "opacity-100",
         )}
       >

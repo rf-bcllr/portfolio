@@ -35,15 +35,16 @@ function GameLoading({ visible }: { visible: boolean }) {
       aria-hidden={!visible}
       className={`fixed inset-0 z-[45] grid place-items-center bg-background p-4 transition-opacity duration-250 motion-reduce:transition-none ${visible ? "opacity-100" : "pointer-events-none opacity-0"}`}
     >
-      <div className="flex w-full max-w-[420px] flex-col items-center gap-[18px] rounded-[22px] border-[3px] border-foreground bg-card px-8 pb-6 pt-[30px] shadow-[10px_10px_0_0_hsl(var(--foreground))]">
-        <p className="text-center font-display text-[11px] font-bold tracking-[0.24em] text-foreground">QUEST FOR THE NEXT PRODUCT</p>
-        <div className="game-ld-bar grid w-full grid-cols-10 gap-1" role="progressbar" aria-label="Loading">
-          {Array.from({ length: 10 }, (_, i) => (
-            <i key={i} style={{ animationDelay: `${i * 90}ms` }} className="h-3.5 rounded border-2 border-foreground bg-muted" />
-          ))}
+      <div className="flex w-full max-w-[420px] flex-col gap-[18px] rounded-xl border-[3px] border-foreground bg-card px-7 pb-[22px] pt-[26px] shadow-[8px_8px_0_0_hsl(var(--foreground))]">
+        <div className="text-center"><p className="mb-[7px] font-display text-[9px] font-bold text-primary">LOADING ADVENTURE</p><p className="font-display text-[11px] font-bold text-foreground">QUEST FOR THE NEXT PRODUCT</p></div>
+        <div className="game-ld-stage relative grid h-28 place-items-end overflow-hidden border-y-2 border-foreground bg-background" aria-hidden="true"><div className="game-ld-hero relative z-10 mb-2.5" /></div>
+        <div className="grid gap-[7px]">
+          <div className="flex justify-between gap-3 font-display text-[9px] font-bold text-muted-foreground"><span>PREPARING THE MAP</span><span>•••</span></div>
+          <div className="game-ld-bar grid w-full grid-cols-10 gap-1" role="progressbar" aria-label="Loading game assets">
+            {Array.from({ length: 10 }, (_, i) => (<i key={i} style={{ animationDelay: `${i * 90}ms` }} className="h-3.5 rounded-[3px] border-2 border-foreground bg-muted" />))}
+          </div>
         </div>
-        <div className="game-ld-hero" aria-hidden="true" />
-        <p className="min-h-[1.5em] text-center text-xs text-muted-foreground">{LOAD_TIPS[tip]}</p>
+        <p className="min-h-[3.2em] border-l-4 border-primary bg-background px-3 py-2.5 text-left text-xs leading-5 text-muted-foreground">{LOAD_TIPS[tip]}</p>
       </div>
     </div>
   );
@@ -75,7 +76,7 @@ function FitCard({ children }: { children: React.ReactNode }) {
       {children}
       <DialogClose
         aria-label="Close"
-        className="absolute -right-3.5 -top-3.5 z-10 grid size-10 place-items-center rounded-full border border-border bg-background text-foreground shadow-md transition-transform hover:scale-105 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="absolute -right-3.5 -top-3.5 z-10 grid size-10 aspect-square place-items-center rounded-full border-2 border-foreground bg-background p-0 text-foreground shadow-[2px_2px_0_0_hsl(var(--foreground))] transition-[transform,box-shadow] duration-150 ease-out hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0_0_hsl(var(--foreground))] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
       >
         <X className="size-5" aria-hidden="true" />
       </DialogClose>

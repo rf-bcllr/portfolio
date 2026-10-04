@@ -86,8 +86,11 @@ function loadTick() {
   const bar = document.getElementById('ld-bar');
   if (bar) {
     const n = loadTotal ? Math.floor(10 * loadDone / loadTotal) : 0;
+    const percent = Math.round(100 * loadDone / Math.max(1, loadTotal));
     bar.querySelectorAll('i').forEach((seg, i) => seg.classList.toggle('on', i < n));
-    bar.setAttribute('aria-valuenow', String(Math.round(100 * loadDone / Math.max(1, loadTotal))));
+    bar.setAttribute('aria-valuenow', String(percent));
+    const label = document.getElementById('ld-percent');
+    if (label) label.textContent = percent + '%';
   }
   if (loadTotal && loadDone >= loadTotal) setTimeout(loadEnd, 120);
 }
@@ -98,6 +101,8 @@ function loadEnd() {
   const el = document.getElementById('loading');
   if (el) {
     el.querySelectorAll('#ld-bar i').forEach(seg => seg.classList.add('on'));
+    const label = document.getElementById('ld-percent');
+    if (label) label.textContent = '100%';
     if (reduceMotionLd()) el.remove();
     else { el.classList.add('out'); setTimeout(() => el.remove(), 260); }
   }
@@ -5550,7 +5555,10 @@ function stepInner() {
   if (n) {
     promptEl.style.display = 'flex';
     // tecla como tampinha; só remonta quando o texto muda, não a cada quadro
-    const rot = (isTouch ? 'A' : 'E') + '|' + (n.type === 'boss' ? T(UI.replay) : T(n.label));
+    const bossPrompt = n.type === 'boss'
+      ? (state.bossDone ? T(UI.replay) : foeName(n))
+      : T(n.label);
+    const rot = (isTouch ? 'A' : 'E') + '|' + bossPrompt;
     if (promptEl.dataset.rot !== rot) {
       promptEl.dataset.rot = rot;
       const [tecla, txt] = rot.split('|');
