@@ -14,6 +14,20 @@ const navItems = [
   { label: "Certifications", to: "/certifications" },
 ];
 
+function PlayLink({ className = "", onClick }: { className?: string; onClick?: () => void }) {
+  return (
+    <Link
+      to="/play"
+      onClick={onClick}
+      data-cursor-action="navigate-internal"
+      aria-label="Play my portfolio"
+      className={`nav-play-pulse inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 text-sm font-semibold leading-none transition-opacity duration-150 hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${className}`}
+    >
+      <span aria-hidden="true" className="text-[10px]">▶</span> Play
+    </Link>
+  );
+}
+
 const CONNECT_URL = "https://linkedin.com/in/rfbcllr";
 
 function ConnectButton({
@@ -97,33 +111,18 @@ export function SiteNav() {
               )}
             </NavLink>
           ))}
+          <PlayLink className="h-9" />
         </div>
 
         {/* Desktop CTA cluster */}
         <div className="hidden shrink-0 items-center gap-2 md:flex">
           <ThemeToggle />
-          <Link
-            to="/play"
-            data-cursor-action="navigate-internal"
-            aria-label="Play my portfolio"
-            className="nav-play-pulse inline-flex h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-4 text-sm font-semibold leading-none text-primary-foreground transition-colors duration-150 hover:bg-primary/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 "
-          >
-            <span aria-hidden="true" className="text-[10px]">▶</span> Play
-          </Link>
           <ConnectButton />
         </div>
 
         {/* Mobile: CTA + toggle */}
         <div className="flex shrink-0 items-center gap-1.5 md:hidden">
           <ThemeToggle />
-          <Link
-            to="/play"
-            data-cursor-action="navigate-internal"
-            aria-label="Play my portfolio"
-            className="nav-play-pulse inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-4 text-sm font-semibold leading-none text-primary-foreground transition-colors duration-150 hover:bg-primary/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-11 px-3 text-[11px]"
-          >
-            <span aria-hidden="true" className="text-[10px]">▶</span> Play
-          </Link>
           <ConnectButton className="h-11 px-2.5 text-[11px]" />
 
 
@@ -165,6 +164,7 @@ export function SiteNav() {
                   {item.label}
                 </NavLink>
               ))}
+              <PlayLink className="min-h-11 justify-start" onClick={() => setOpen(false)} />
             </div>
           </div>
         )}

@@ -67,7 +67,7 @@ export default function Play() {
       />
       <Dialog open={!!project} onOpenChange={(o) => { if (!o) close(); }}>
         <DialogContent
-          className="max-h-[92dvh] w-[96vw] max-w-5xl overflow-y-auto p-4 sm:p-6"
+          className="max-h-[92dvh] w-[96vw] max-w-5xl overflow-y-auto p-4 [&>button]:grid [&>button]:size-10 [&>button]:place-items-center [&>button]:rounded-full [&>button]:border-2 [&>button]:border-foreground [&>button]:bg-background [&>button]:text-foreground [&>button]:opacity-100 [&>button]:shadow-[2px_2px_0_0_hsl(var(--foreground))] [&>button]:transition-transform [&>button:hover]:translate-x-px [&>button:hover]:translate-y-px [&>button:hover]:shadow-[1px_1px_0_0_hsl(var(--foreground))] sm:p-6"
           onCloseAutoFocus={(e) => { e.preventDefault(); ref.current?.focus(); }}
         >
           <DialogTitle className="sr-only">{project?.title ?? "Project"}</DialogTitle>

@@ -2985,7 +2985,13 @@ function drawEntity(e) {
     if (arq) {
       const placa = svgImg('placa-logo', PLACA('#ffffff'));
       if (placa) ctx.drawImage(placa, x - 2, ty - 2, 20, 20);
-      if (arq.complete && arq.naturalWidth) ctx.drawImage(arq, x + 2.2, ty + 2.2, 11.6, 11.6);
+      if (arq.complete && arq.naturalWidth) {
+        const box = 11.6;
+        const scale = Math.min(box / arq.naturalWidth, box / arq.naturalHeight);
+        const w = arq.naturalWidth * scale;
+        const h = arq.naturalHeight * scale;
+        ctx.drawImage(arq, x + 2.2 + (box - w) / 2, ty + 2.2 + (box - h) / 2, w, h);
+      }
     } else {
     const im = svgImg('logo-' + e.tool, LOGO[e.tool] || ARTE.tool);
     if (im) ctx.drawImage(im, x - 2, ty - 2, 20, 20);
@@ -5508,7 +5514,7 @@ setInterval(checkOrientation, 700);
 --------------------------------------------------------- */
 function applyLang() {
   // [C] é atalho de teclado: no toque não quer dizer nada e só ocupa a barra
-  document.getElementById('btn-journal').textContent = (isTouch ? '' : '[C] ') + T(UI.sheet).toUpperCase();
+  document.getElementById('btn-journal').innerHTML = (isTouch ? '' : '<kbd>C</kbd> ') + T(UI.sheet).toUpperCase();
   const bStart = document.getElementById('btn-start');
   if (bStart) {
     bStart.textContent = prontoPraJogar ? '▶ ' + T(UI.start) : 'Loading…';
