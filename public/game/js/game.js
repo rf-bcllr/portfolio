@@ -85,7 +85,7 @@ function img(key) {
   imgState[key] = 1;
   imgsPendentes++;
   const im = new Image();
-  im.onload = () => { IMG[key] = im; imgChegou(); };
+  im.onload = () => { IMG[key] = im; imgState[key] = 3; imgChegou(); };
   im.onerror = () => { imgState[key] = 2; imgChegou(); };
   im.src = 'assets/' + key + '.png';
   return null;
@@ -131,6 +131,7 @@ const SPRITES_PRELOAD = Object.keys(ASSET_MANIFEST).concat([
   'boss/death', 'kit/chest-closed', 'kit/chest-open',
   'kit/door-closed', 'kit/door-open', 'kit/mirror', 'kit/sign', 'kit/sign-beach',
   'props/mimic', 'props/mimic-battle', 'props/mimic-broken',
+  'npc/amaya', 'npc/amaya-face',
   'kit/landmark',
 ]);
 ZONES.forEach(z => { if (SPRITES_PRELOAD.indexOf('kit/landmark-' + z.id) < 0) SPRITES_PRELOAD.push('kit/landmark-' + z.id); });
@@ -2351,8 +2352,9 @@ function doorArt(e) {
    em zona.x1. As posições eram à mão e variavam de 26 px antes do fim a 14
    depois. A fake door fica onde foi posta: ela não fecha zona nenhuma. */
 function centroPorta(e, im) {
-  if (e.fake || !im) return e.x + 12;
+  if (e.fake || !im || !im.width || !im.height) return e.x + 12;
   const z = ZONES.find(z => z.id === e.zone) || zoneAt(e.x);
+  if (!z) return e.x + 12;
   return z.x1 - DOOR_H * im.width / im.height / 2;
 }
 ENTITIES.forEach(e => {
@@ -2509,6 +2511,7 @@ function drawAmaya(x, yFeet, face) {
     ctx.restore();
     return;
   }
+  if (imgState['npc/amaya'] !== 2) return;   // chegando: nada, sem fallback
   const w = 19, h = 14;
   const dx = x - (face < 0 ? w : 0), dy = yFeet - h;
   ctx.save();
@@ -2978,9 +2981,16 @@ function drawEntity(e) {
       ctx.beginPath(); ctx.ellipse(x + 8, GROUND_Y - 1, 7 - bob * .6, 1.6, 0, 0, 6.284); ctx.fill();
     }
     brilhoDeColetavel(x + 8, ty + 8, 12);
+    const arq = logoArq(e.tool);
+    if (arq) {
+      const placa = svgImg('placa-logo', PLACA('#ffffff'));
+      if (placa) ctx.drawImage(placa, x - 2, ty - 2, 20, 20);
+      if (arq.complete && arq.naturalWidth) ctx.drawImage(arq, x + 2.2, ty + 2.2, 11.6, 11.6);
+    } else {
     const im = svgImg('logo-' + e.tool, LOGO[e.tool] || ARTE.tool);
     if (im) ctx.drawImage(im, x - 2, ty - 2, 20, 20);
     else { card(x, ty, 16, 16, CARD, { r: 4, shadow: 0 }); }
+    }
 
   } else if (e.type === 'mimic') {
     const beaten = state.seen.has(e.id);
@@ -3794,7 +3804,7 @@ function clarao(e) {
   if (!panel.classList.contains('reveal')) return;   // já trocou ou fechou
   limpaRevel();
   const fl = document.getElementById('flash');
-  const abre = () => { openPanel(workCardHTML(e, false), 'work'); aoFecharPainel = null; };
+  const abre = () => { aoFecharPainel = null; if (abreCaseNoSite(e)) return; openPanel(workCardHTML(e, false), 'work'); };
   if (reduceMotion || !fl) { abre(); return; }
   if (state.sound) [N.G5, N.C6, N.E5 * 2].forEach((f, i) => note(f, i * .05, .5, 'sine', .022));
   fl.classList.remove('out'); fl.classList.add('on');
@@ -3818,9 +3828,27 @@ function openCase(e, doAlbum) {
     revelarCarta(e);
     return;
   }
+  if (abreCaseNoSite(e)) { blip(660, .06, 'triangle', .035); return; }
   openPanel(workCardHTML(e, doAlbum), 'work');
   blip(660, .06, 'triangle', .035);
 }
+/* Dentro do site (iframe do /play) o case abre no modal do próprio portfólio.
+   Se a página não conhece o case, ela devolve 'rfb:case-fallback' e o card
+   do jogo abre. Fora do iframe, sempre o card do jogo. */
+function abreCaseNoSite(e) {
+  if (window.top === window) return false;
+  closeAll();
+  window.parent.postMessage({ type: 'rfb:open-case', id: e.id }, window.location.origin);
+  return true;
+}
+window.addEventListener('message', ev => {
+  if (ev.origin !== window.location.origin || !ev.data) return;
+  if (ev.data.type === 'rfb:case-closed') { closeAll(); try { cv.focus(); } catch (_) {} }
+  if (ev.data.type === 'rfb:case-fallback') {
+    const e = ENTITIES.find(x => x.id === ev.data.id);
+    if (e) openPanel(workCardHTML(e, false), 'work');
+  }
+});
 
 /* Cliques dentro do painel, por delegação: o conteúdo é trocado a cada tela e
    ouvinte preso em botão morreria junto. */
@@ -3842,8 +3870,8 @@ const chip = (k) => {
   const tem = state.skills.has(k);
   const gasto = tem && state.spentTomes.indexOf(k) >= 0;
   return `<div class="li ${tem ? (gasto ? 'used' : '') : 'off'}">${
-    tem ? (gasto ? '◇' : '◆') : '◇'} <span class="li-n">${T(SKILLS[k])}</span>${
-    gasto ? ` <i>${T(UI.spent)}</i>` : ''}</div>`;
+    '<span class="li-n">' + (tem ? (gasto ? '◇' : '◆') : '◇')} ${T(SKILLS[k])}</span>${
+    gasto ? `<i>${T(UI.spent)}</i>` : ''}</div>`;
 };
 
   const toolKeys = Object.keys(TOOLS);
@@ -4888,7 +4916,25 @@ const LOGO = {
     '<defs><linearGradient id="lov" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset=".5" stop-color="#ff4f8b"/><stop offset="1" stop-color="#7a5cff"/></linearGradient></defs>' +
     '<path d="M12 18.2s-5.6-3.3-5.6-7.2a3.1 3.1 0 0 1 5.6-1.8 3.1 3.1 0 0 1 5.6 1.8c0 3.9-5.6 7.2-5.6 7.2z" fill="url(#lov)" stroke="' + TINTA + '" stroke-width="1.3" stroke-linejoin="round"/>',
 };
+/* Logos do Stack do portfólio, em assets/tools/. Sem arquivo, fica o desenho. */
+const LOGO_ARQ = { adobe: 'png', figma: 'png', excalidraw: 'png', notion: 'png', maze: 'png',
+  mixpanel: 'png', github: 'png', chatgpt: 'png', claude: 'svg', claudecode: 'png', lovable: 'png' };
+const logoFalhou = {};
+const logoImgs = {};
+function logoArq(k) {
+  if (!LOGO_ARQ[k] || logoFalhou[k]) return null;
+  if (!logoImgs[k]) {
+    const im = new Image();
+    im.onerror = () => { logoFalhou[k] = true; };
+    im.src = 'assets/tools/' + k + '.' + LOGO_ARQ[k];
+    logoImgs[k] = im;
+  }
+  return logoImgs[k];
+}
+Object.keys(LOGO_ARQ).forEach(logoArq);
 function logo(k, n) {
+  if (logoArq(k)) return '<svg class="arte logo" viewBox="0 0 24 24" width="' + n + '" height="' + n + '" aria-hidden="true" focusable="false">' +
+    PLACA('#ffffff') + '<image href="assets/tools/' + k + '.' + LOGO_ARQ[k] + '" x="5" y="5" width="14" height="14" preserveAspectRatio="xMidYMid meet"/></svg>';
   return '<svg class="arte logo" viewBox="0 0 24 24" width="' + n + '" height="' + n + '" aria-hidden="true" focusable="false">' + (LOGO[k] || ARTE.tool) + '</svg>';
 }
 /* O mesmo desenho no canvas: o SVG vira uma imagem, montada uma vez só. */

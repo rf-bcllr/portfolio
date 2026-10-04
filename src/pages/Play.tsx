@@ -1,8 +1,22 @@
-import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import { WorkProjectCard } from "@/components/WorkProjectCard";
+import { featuredProjects, type FeaturedProject } from "@/data/featuredProjects";
+
+/* Game case ids (public/game/js/data.js) → portfolio project slugs */
+const CASE_TO_SLUG: Record<string, string> = {
+  "case-transport": "students-transportation",
+  "case-saude": "health-food-delivery",
+  "case-meuarco": "meu-arco",
+  "case-aiwriting": "ai-writing-assistant",
+  "case-credit": "credit-transfer-analysis",
+  "case-images": "ai-image-generation",
+  "case-lesson": "lesson-plan-tool",
+};
 
 export default function Play() {
   const ref = useRef<HTMLIFrameElement>(null);
+  const [project, setProject] = useState<FeaturedProject | null>(null);
 
   useEffect(() => {
     const prevTitle = document.title;
@@ -19,6 +33,28 @@ export default function Play() {
     };
   }, []);
 
+  const post = useCallback((msg: Record<string, unknown>) => {
+    ref.current?.contentWindow?.postMessage(msg, window.location.origin);
+  }, []);
+
+  useEffect(() => {
+    const onMessage = (ev: MessageEvent) => {
+      if (ev.origin !== window.location.origin || ev.source !== ref.current?.contentWindow) return;
+      if (ev.data?.type !== "rfb:open-case") return;
+      const slug = CASE_TO_SLUG[ev.data.id];
+      const found = featuredProjects.find((p) => p.slug === slug);
+      if (found) setProject(found);
+      else post({ type: "rfb:case-fallback", id: ev.data.id });
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [post]);
+
+  const close = () => {
+    setProject(null);
+    post({ type: "rfb:case-closed" });
+  };
+
   return (
     <>
       <iframe
@@ -27,14 +63,18 @@ export default function Play() {
         title="Quest for the Next Product — a playable portfolio"
         allow="autoplay; fullscreen"
         onLoad={() => ref.current?.focus()}
-        className="fixed inset-0 z-[60] h-dvh w-screen border-0 bg-background"
+        className="fixed inset-0 z-[40] h-dvh w-screen border-0 bg-background"
       />
-      <Link
-        to="/"
-        className="fixed left-4 top-4 z-[70] hidden rounded-full border border-foreground bg-background/80 px-3 py-1.5 text-xs font-semibold text-foreground backdrop-blur min-[901px]:inline-flex hover:bg-primary hover:text-primary-foreground"
-      >
-        ← Back to portfolio
-      </Link>
+      <Dialog open={!!project} onOpenChange={(o) => { if (!o) close(); }}>
+        <DialogContent
+          className="max-h-[92dvh] w-[96vw] max-w-5xl overflow-y-auto p-4 sm:p-6"
+          onCloseAutoFocus={(e) => { e.preventDefault(); ref.current?.focus(); }}
+        >
+          <DialogTitle className="sr-only">{project?.title ?? "Project"}</DialogTitle>
+          <DialogDescription className="sr-only">{project?.subtitle}</DialogDescription>
+          {project && <WorkProjectCard project={project} />}
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

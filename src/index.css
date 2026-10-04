@@ -756,3 +756,23 @@ All colors MUST be HSL.
     }
   }
 }
+/* Game character idle loop (home hero) */
+.game-char {
+  image-rendering: auto;
+  background-repeat: no-repeat;
+  background-position-x: 0;
+  animation: game-char-idle 920ms steps(4) infinite;
+}
+@keyframes game-char-idle {
+  to { background-position-x: var(--game-char-end); }
+}
+.nav-play-pulse { animation: nav-play-pulse 4s ease-out infinite; }
+@keyframes nav-play-pulse {
+  0%, 70% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.45); }
+  85% { box-shadow: 0 0 0 7px hsl(var(--primary) / 0); }
+  100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-char { animation: none; background-position-x: 0; }
+  .nav-play-pulse { animation: none; }
+}
