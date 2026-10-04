@@ -22,13 +22,18 @@ export const CustomCursor = () => {
   }, [color]);
 
   useEffect(() => {
+    document.documentElement.style.setProperty("--session-cursor", color);
+    document.documentElement.style.setProperty("--session-cursor-foreground", tagFg);
     const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-    if (!hasFinePointer) return;
+    if (!hasFinePointer) {
+      return () => {
+        document.documentElement.style.removeProperty("--session-cursor");
+        document.documentElement.style.removeProperty("--session-cursor-foreground");
+      };
+    }
 
     setIsVisible(true);
     document.body.classList.add("custom-cursor-active");
-    document.documentElement.style.setProperty("--session-cursor", color);
-    document.documentElement.style.setProperty("--session-cursor-foreground", tagFg);
 
     const handleCharacterQuote = (event: Event) => {
       const quote = (event as CustomEvent<string | null>).detail;

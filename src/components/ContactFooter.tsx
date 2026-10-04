@@ -9,7 +9,7 @@ interface ContactFooterProps {
 
 export const ContactFooter = ({ character }: ContactFooterProps) => {
   return (
-    <footer className="relative mt-28 border-t py-10 text-center text-sm text-muted-foreground">
+    <footer className={`relative border-t py-10 text-center text-sm text-muted-foreground ${character ? "mt-28" : ""}`}>
       {character && (
         <div className="absolute bottom-full left-6 md:left-[max(1.5rem,calc((100%-72rem)/2+1.5rem))]">
           {character}
