@@ -70,7 +70,7 @@ export function SiteNav() {
     <header className="sticky top-4 z-50 px-4">
       <nav
         aria-label="Primary"
-        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 rounded-full border-2 border-foreground px-3 shadow-[4px_4px_0_0_hsl(var(--foreground))] backdrop-blur-2xl backdrop-saturate-150 sm:gap-4"
+        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 rounded-full border-2 border-foreground px-3 shadow-[4px_4px_0_0_hsl(var(--foreground))] backdrop-blur-2xl backdrop-saturate-150 sm:gap-4 lg:gap-6"
 
         style={{
           background:
@@ -91,7 +91,7 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 md:flex">
+        <div className="hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -125,13 +125,13 @@ export function SiteNav() {
         </div>
 
         {/* Desktop CTA cluster */}
-        <div className="hidden shrink-0 items-center gap-2 md:flex">
+        <div className="hidden shrink-0 items-center gap-2 lg:flex">
           <ThemeToggle />
           <ConnectButton />
         </div>
 
         {/* Mobile: CTA + toggle */}
-        <div className="flex shrink-0 items-center gap-1.5 md:hidden">
+        <div className="flex shrink-0 items-center gap-1.5 lg:hidden">
           <ThemeToggle />
           <ConnectButton className="h-11 px-2.5 text-[11px]" />
 
@@ -153,7 +153,7 @@ export function SiteNav() {
         {open && (
           <div
             id="mobile-nav-panel"
-            className="absolute inset-x-0 top-full z-50 mt-2 rounded-[24px] border border-border bg-card/95 p-2 shadow-card backdrop-blur-xl md:hidden"
+            className="absolute inset-x-0 top-full z-50 mt-2 rounded-[24px] border border-border bg-card/95 p-2 shadow-card backdrop-blur-xl lg:hidden"
           >
 
             <div className="flex flex-col gap-1">
