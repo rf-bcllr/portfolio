@@ -22,7 +22,7 @@ const LOAD_TIPS = [
 ];
 
 /* Same look as the game's own loading screen, shown while the iframe boots. */
-function GameLoading({ visible }: { visible: boolean }) {
+function GameLoading({ visible, progress }: { visible: boolean; progress: number }) {
   const [tip, setTip] = useState(0);
   useEffect(() => {
     const t = window.setInterval(() => setTip((i) => (i + 1) % LOAD_TIPS.length), 2400);
@@ -37,12 +37,10 @@ function GameLoading({ visible }: { visible: boolean }) {
     >
       <div className="flex w-full max-w-[420px] flex-col gap-[18px] rounded-xl border-[3px] border-foreground bg-card px-7 pb-[22px] pt-[26px] shadow-[8px_8px_0_0_hsl(var(--foreground))]">
         <div className="text-center"><p className="mb-[7px] font-display text-[9px] font-bold text-primary">LOADING ADVENTURE</p><p className="font-display text-[11px] font-bold text-foreground">QUEST FOR THE NEXT PRODUCT</p></div>
-        <div className="game-ld-stage relative grid h-28 place-items-end overflow-hidden border-y-2 border-foreground bg-background" aria-hidden="true"><div className="game-ld-hero relative z-10 mb-2.5" /></div>
-        <div className="grid gap-[7px]">
-          <div className="flex justify-between gap-3 font-display text-[9px] font-bold text-muted-foreground"><span>PREPARING THE MAP</span><span>•••</span></div>
-          <div className="game-ld-bar grid w-full grid-cols-10 gap-1" role="progressbar" aria-label="Loading game assets">
-            {Array.from({ length: 10 }, (_, i) => (<i key={i} style={{ animationDelay: `${i * 90}ms` }} className="h-3.5 rounded-[3px] border-2 border-foreground bg-muted" />))}
-          </div>
+        <div className="flex justify-between gap-3 font-display text-[11px] font-bold tabular-nums text-muted-foreground"><span>PREPARING THE MAP</span><span>{progress}%</span></div>
+        <div className="game-ld-runway" style={{ "--load-progress": progress / 100 } as React.CSSProperties}>
+          <div className="game-ld-hero" aria-hidden="true" />
+          <div className="game-ld-bar" role="progressbar" aria-label="Loading game assets" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}><div className="game-ld-fill" /></div>
         </div>
         <p className="min-h-[3.2em] border-l-4 border-primary bg-background px-3 py-2.5 text-left text-xs leading-5 text-muted-foreground">{LOAD_TIPS[tip]}</p>
       </div>
@@ -88,6 +86,7 @@ export default function Play() {
   const ref = useRef<HTMLIFrameElement>(null);
   const [project, setProject] = useState<FeaturedProject | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
 
   useEffect(() => {
     const t = window.setTimeout(() => setLoading(false), 10000);
@@ -116,6 +115,10 @@ export default function Play() {
   useEffect(() => {
     const onMessage = (ev: MessageEvent) => {
       if (ev.origin !== window.location.origin || ev.source !== ref.current?.contentWindow) return;
+      if (ev.data?.type === "rfb:loading" && typeof ev.data.percent === "number") {
+        setLoadProgress((current) => Math.max(current, Math.min(100, ev.data.percent)));
+        return;
+      }
       if (ev.data?.type === "rfb:loaded") { setLoading(false); return; }
       if (ev.data?.type !== "rfb:open-case") return;
       const slug = CASE_TO_SLUG[ev.data.id];
@@ -142,7 +145,7 @@ export default function Play() {
         onLoad={() => ref.current?.focus()}
         className="fixed inset-0 z-[40] h-dvh w-screen border-0 bg-background"
       />
-      <GameLoading visible={loading} />
+      <GameLoading visible={loading} progress={loadProgress} />
       <Dialog open={!!project} onOpenChange={(o) => { if (!o) close(); }}>
         <DialogContent
           className="w-auto max-w-none place-items-center gap-0 overflow-visible border-0 bg-transparent p-0 shadow-none sm:rounded-none [&>button:last-child]:hidden"
