@@ -83,7 +83,8 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
     },
   });
   const busy = status === "submitted" || status === "streaming";
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const focusInput = () => panelRef.current?.querySelector("textarea")?.focus();
 
   useEffect(() => {
     if (status !== "ready" && status !== "error") return;
@@ -95,7 +96,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
   }, [messages, status]);
 
   useEffect(() => {
-    if (!busy) textareaRef.current?.focus();
+    if (!busy) focusInput();
   }, [busy]);
 
   const ask = (text: string) => {
@@ -110,11 +111,12 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
     setMessages([]);
     setError(null);
     window.localStorage.removeItem(STORAGE_KEY);
-    textareaRef.current?.focus();
+    focusInput();
   };
 
   return (
     <div
+      ref={panelRef}
       role="dialog"
       aria-label="Ask about Rafael's work"
       className="fixed inset-x-3 bottom-3 z-[60] flex h-[min(620px,calc(100dvh-1.5rem))] flex-col border-2 border-foreground bg-background shadow-[6px_6px_0_0_hsl(var(--foreground))] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[400px]"
@@ -149,11 +151,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
         <ConversationContent className="gap-5 p-4">
           {messages.length === 0 ? (
             <ConversationEmptyState
-              className="gap-4"
-              icon={<AgentAvatar className="h-16 w-16" />}
-              title="Curious about a project?"
-              description="Ask anything about Rafael's projects, process or results."
-            >
+              className="gap-4 p-2">
               <div className="flex flex-col items-center gap-3">
                 <AgentAvatar className="h-16 w-16" />
                 <div className="space-y-1">
@@ -216,7 +214,6 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
       <div className="border-t-2 border-foreground p-3">
         <PromptInput onSubmit={({ text }) => ask(text)}>
           <PromptInputTextarea
-            ref={textareaRef}
             autoFocus
             placeholder="Ask about a project…"
             maxLength={2000}
