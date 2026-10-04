@@ -1162,9 +1162,9 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
 .ld-runway{position:relative;height:116px;overflow:hidden;margin-top:-12px}
 .ld-bar{position:absolute;inset:auto 0 0;height:16px;overflow:hidden;border:2px solid var(--ink);background:var(--muted)}
 .ld-fill{height:100%;width:calc(100% * var(--load-progress));background:var(--accent);transition:width .24s ease-out}
-.ld-hero{position:absolute;z-index:1;bottom:13px;left:calc((100% - 55px) * var(--load-progress));width:55px;height:90px;background:url(../assets/player/sheet.png) 0 -95px / 440px auto no-repeat;
+.ld-hero{position:absolute;z-index:1;bottom:13px;left:calc((100% - 68.75px) * var(--load-progress));width:68.75px;height:90px;background:url(../assets/player/sheet.png) 0 -95px / 440px auto no-repeat;
   image-rendering:auto;animation:ldWalk .72s steps(6) infinite;transition:left .24s ease-out}
-@keyframes ldWalk{to{background-position:-330px -95px}}
+@keyframes ldWalk{to{background-position:-412.5px -95px}}
 .ld-tip{min-height:3.2em;margin:0;padding:10px 12px;border-left:4px solid var(--accent);background:var(--paper);color:var(--dim);font-size:12px;line-height:1.5;text-align:left}
 @media (max-height:520px){.ld-card{gap:10px;padding:16px 20px}.ld-runway{height:106px}.ld-tip{min-height:auto;padding-block:7px}}
 @media (prefers-reduced-motion:reduce){ #loading,.ld-fill,.ld-hero{transition:none} .ld-hero{animation:none} }
