@@ -300,7 +300,7 @@ export function AskPortfolio() {
           collapsed ? "pointer-events-none absolute translate-x-2 opacity-0" : "opacity-100",
         )}
       >
-        Ask about my work  �  
+        Ask about my work
       </span>
     </button>
   );
