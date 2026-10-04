@@ -177,7 +177,7 @@ export default function Resume() {
                 My career as a 2D RPG: walk through each job, open the cases as collectible cards, and fight 2020.
               </p>
             </div>
-            <PlayLink label="Press start" variant="blue" className="h-11 shrink-0 px-6 text-base" />
+            <PlayLink label="Play" variant="blue" className="h-11 shrink-0 px-6 text-base" />
 
           </Card>
         </section>
