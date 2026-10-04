@@ -1116,8 +1116,8 @@ const CONTACT = {
    Cada `art` casa com um desenho em ONBOARD_ART, no game.js.
 --------------------------------------------------------- */
 const ONBOARD = [
-  { art: 'walk', title: 'Right is the only direction',
-    text: 'Hold → or D. Every block of street is another year, another job, another version of me.' },
+  { art: 'walk', title: 'Right is the only direction (in this game only)',
+    text: 'Hold → or D. Every block of street is another year, another job, another version of me. Outside the game, I lean a little more to the left.' },
   { art: 'talk', title: 'E is the whole vocabulary',
     text: 'E talks to people, reads signs and opens chests. The other versions of me ask one question each. Answer it and you earn that level.' },
   { art: 'doors', title: 'A door opens at its own level',
