@@ -344,7 +344,7 @@ body{
 .entry .role{font-family:var(--font-pixel);font-weight:700;font-size:18px;margin-bottom:4px}
 .entry .meta{font-size:11px;color:var(--dim);letter-spacing:.08em;margin-bottom:8px}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;grid-auto-rows:1fr}
-.li{display:flex;align-items:center;gap:8px;min-height:44px;border:2px solid var(--ink);padding:9px;font-size:var(--fs-caption);line-height:1.5;background:var(--paper)}
+.li{display:flex;align-items:center;gap:4px 8px;flex-wrap:wrap;min-height:44px;border:2px solid var(--ink);padding:9px;font-size:var(--fs-caption);line-height:1.5;background:var(--paper)}
 .li.off{opacity:.32;background:transparent;border-style:dashed}
 .li .li-n{flex:1;min-width:0}
 .li i{flex:none;white-space:nowrap}
