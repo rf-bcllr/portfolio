@@ -1034,10 +1034,14 @@ const BOTTLE_USE = {
   sub:    'Cada um na Sua · Feyh Bier',
   empty:  [{ en: 'Nothing in the slot yet. There is a chest somewhere with my name on it.', who: 'me' }],
   drunk:  [{ en: 'I already drank it. Still walking faster, though.', who: 'me' }],
-  wrong:  [{ en: 'Not yet. I\u2019m saving this one for a free week between jobs.', who: 'me' }],
+  wrong:  [{ en: 'Not yet. I\u2019m saving this one for a free week between jobs. Or a beach.', who: 'me' }],
   lines:  [
     { en: "I've kept this bottle since 2019 waiting for a week with nothing booked.", who: 'me' },
     { en: 'Label designed by me. Second place never tasted this good.', who: 'me' },
+  ],
+  beach: [
+    { en: 'Told you a beach would show up.', who: 'me' },
+    { en: 'Umbu and mango, the sea ten minutes away. This is what remote work was for.', who: 'me' },
   ],
 };
 

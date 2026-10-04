@@ -1147,7 +1147,8 @@ function poolFloor(x) {
 function inWater(x) { const z = zoneAt(x); return !!(z.water && x >= z.water[0] && x < z.water[1]); }
 /* A cerveja saiu da praia: agora é das folgas entre empregos, que é quando ela
    faz sentido na história. */
-function inFreeTime(x) { const z = zoneAt(x); return !!z && /^free/.test(z.id); }
+const MENSAGENS = ENTITIES.filter(e => e.type === 'linkedin' || e.id === 'npc-inis' || e.id === 'npc-esdras');
+function inFreeTime(x) { const z = zoneAt(x); return !!z && (/^free/.test(z.id) || !!z.beach); }
 
 /* ---------------------------------------------------------
    7. PLAYER
@@ -4045,7 +4046,7 @@ const chip = (k) => {
   const contas = [
     [state.skills.size, Object.keys(SKILLS).length], [state.cases.size, caseEnts.length],
     [state.tools.size, toolKeys.length], [state.certs.size, certEnts.length],
-    [ENTITIES.filter(e => e.type === 'linkedin' && state.seen.has(e.id)).length, ENTITIES.filter(e => e.type === 'linkedin').length],
+    [MENSAGENS.filter(e => state.seen.has(e.id)).length, MENSAGENS.length],
   ];
   const tem = contas.reduce((a, c) => a + c[0], 0), max = contas.reduce((a, c) => a + c[1], 0);
   const exp = max ? Math.round(tem / max * 100) : 0;
@@ -4074,8 +4075,8 @@ const chip = (k) => {
          ['card', T(UI.cCards),  state.cases.size,  ENTITIES.filter(e => e.type === 'case').length],
          ['tool', T(UI.cStack),  state.tools.size,  toolKeys.length],
          ['cert', T(UI.cCerts),  state.certs.size,  certEnts.length],
-         ['msg',  T(UI.cInbox),  state.seen ? ENTITIES.filter(e => e.type === 'linkedin' && state.seen.has(e.id)).length : 0,
-                                 ENTITIES.filter(e => e.type === 'linkedin').length],
+         ['msg',  T(UI.cInbox),  state.seen ? MENSAGENS.filter(e => state.seen.has(e.id)).length : 0,
+                                 MENSAGENS.length],
         ].map(c => `<div class="cbox${c[2] >= c[3] ? ' full' : ''}">
             <span class="cbox-top">${hudIcon(c[0], 15)}<b>${c[2]}<span>/${c[3]}</span></b></span>
             <span class="sbar" aria-hidden="true"><span style="width:${c[3] ? Math.round(c[2] / c[3] * 100) : 0}%"></span></span>
@@ -4141,8 +4142,8 @@ function openContact() {
     ['card', T(UI.cCards), state.cases.size, ENTITIES.filter(e => e.type === 'case').length],
     ['tool', T(UI.cStack), state.tools.size, Object.keys(TOOLS).length],
     ['cert', T(UI.cCerts), state.certs.size, ENTITIES.filter(e => e.type === 'cert').length],
-    ['msg',  T(UI.cInbox), ENTITIES.filter(e => e.type === 'linkedin' && state.seen.has(e.id)).length,
-                           ENTITIES.filter(e => e.type === 'linkedin').length],
+    ['msg',  T(UI.cInbox), MENSAGENS.filter(e => state.seen.has(e.id)).length,
+                           MENSAGENS.length],
   ];
   const tem = linhas.reduce((a, l) => a + l[2], 0), max = linhas.reduce((a, l) => a + l[3], 0);
   const pct = max ? Math.round(tem / max * 100) : 0;
@@ -4737,7 +4738,7 @@ function useBottle() {
   if (!state.items.has('bottle')) { say(T(B.label), SPEED > SPEED_BASE ? B.drunk : B.empty, 'me', null, T(B.sub)); return; }
   if (!inFreeTime(player.x)) { say(T(B.label), B.wrong, 'me', null, T(B.sub)); return; }
   state.items.delete('bottle'); save();
-  say(T(B.label), B.lines, 'me', () => {
+  say(T(B.label), (zoneAt(player.x) && zoneAt(player.x).beach) ? B.beach : B.lines, 'me', () => {
     SPEED = SPEED_BOOST;
     state.bebeu = true; save();
     toast(T(UI.usedItem), T(ITEMS.bottle.effect), false, 'item');
@@ -5122,7 +5123,7 @@ function posicionaLoot() {
 window.addEventListener('resize', posicionaLoot);
 setInterval(posicionaLoot, 1000);
 const hudStatus = document.getElementById('hud-status');
-const linkedinEnts = ENTITIES.filter(e => e.type === 'linkedin');
+const linkedinEnts = MENSAGENS;
 const LOOT = [
   { k: 'tome', rot: () => T(UI.cTomes), tem: () => state.skills.size,
     total: Object.keys(SKILLS).length },
