@@ -38,7 +38,7 @@ export function PlayLink({
   );
 }
 
-const CONNECT_URL = "https://linkedin.com/in/rfbcllr";
+const CONNECT_URL = "https://www.linkedin.com/in/rfbcllr/";
 
 function ConnectButton({
   className = "",
