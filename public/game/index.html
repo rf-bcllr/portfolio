@@ -11,7 +11,7 @@
 <!-- As mesmas fontes do rfbcllr.site: o popup de projeto é o card do /work.
      O artifact não carrega isto (só aceita Google Fonts) e cai no fallback. -->
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
-<link rel="stylesheet" href="css/style.css?v=20261007">
+<link rel="stylesheet" href="css/style.css?v=20261008">
 </head>
 <body class="na-capa">
 
@@ -131,6 +131,16 @@
 <!-- o clarão branco entre a carta virada e o case aberto -->
 <div id="flash" aria-hidden="true"></div>
 
+<!-- ================= LOADING ================= -->
+<div id="loading" role="status" aria-live="polite">
+  <div class="ld-card">
+    <div class="ld-eyebrow pixel">QUEST FOR THE NEXT PRODUCT</div>
+    <div class="ld-bar" id="ld-bar" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="ld-hero" aria-hidden="true"></div>
+    <p class="ld-tip" id="ld-tip">Tip: E talks to people and opens chests.</p>
+  </div>
+</div>
+
 <!-- ================= TITLE ================= -->
 <div id="title">
   <div class="tcard">
@@ -139,13 +149,13 @@
     <div class="sub" id="title-sub"></div>
     <div class="tbtns">
       <button class="btn accent start" id="btn-start" disabled>▶ PRESS START</button>
-      <button class="btn start-alt" data-recruiter>GO TO RECRUITER MODE</button>
+      <button class="btn start-alt" data-recruiter>BACK TO RECRUITER MODE</button>
     </div>
     <div class="keys pixel" id="title-keys"></div>
   </div>
 </div>
 
 <script src="js/data.js?v=20261005"></script>
-<script src="js/game.js?v=20261007"></script>
+<script src="js/game.js?v=20261008"></script>
 </body>
 </html>
