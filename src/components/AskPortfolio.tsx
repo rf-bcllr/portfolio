@@ -42,7 +42,7 @@ function AgentAvatar({ className }: { className?: string }) {
   return (
     <span
       aria-hidden="true"
-      className={cn("grid shrink-0 place-items-center", className)}
+      className={cn("grid shrink-0 place-items-center rounded-full bg-primary", className)}
     >
       <Sparkles className="h-3/5 w-3/5 fill-primary-foreground text-primary-foreground" strokeWidth={2} />
     </span>
