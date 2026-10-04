@@ -63,11 +63,11 @@ export default function Play() {
         title="Quest for the Next Product — a playable portfolio"
         allow="autoplay; fullscreen"
         onLoad={() => ref.current?.focus()}
-        className="fixed inset-0 z-[60] h-dvh w-screen border-0 bg-background"
+        className="fixed inset-0 z-[40] h-dvh w-screen border-0 bg-background"
       />
       <Dialog open={!!project} onOpenChange={(o) => { if (!o) close(); }}>
         <DialogContent
-          className="z-[80] max-h-[92dvh] w-[96vw] max-w-5xl overflow-y-auto p-4 sm:p-6"
+          className="max-h-[92dvh] w-[96vw] max-w-5xl overflow-y-auto p-4 sm:p-6"
           onCloseAutoFocus={(e) => { e.preventDefault(); ref.current?.focus(); }}
         >
           <DialogTitle className="sr-only">{project?.title ?? "Project"}</DialogTitle>
