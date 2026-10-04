@@ -9,6 +9,7 @@ import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { DrawingCanvas } from "@/components/DrawingCanvas";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { AskPortfolio } from "@/components/AskPortfolio";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
 import Resume from "./pages/Resume";
@@ -34,6 +35,7 @@ const App = () => {
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <ScrollToTop />
+          <AskPortfolio />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/work" element={<Work />} />
