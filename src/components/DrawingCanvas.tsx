@@ -87,6 +87,15 @@ export const DrawingCanvas = () => {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("drawing-clear-visibility", { detail: isDesktop && hasStrokes }),
+    );
+    return () => {
+      window.dispatchEvent(new CustomEvent("drawing-clear-visibility", { detail: false }));
+    };
+  }, [hasStrokes, isDesktop]);
+
   // Resize canvas to viewport with DPR; preserve drawing on resize
   useEffect(() => {
     if (!isDesktop) return;

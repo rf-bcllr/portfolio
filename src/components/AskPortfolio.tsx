@@ -42,9 +42,9 @@ function AgentAvatar({ className }: { className?: string }) {
   return (
     <span
       aria-hidden="true"
-      className={cn("grid shrink-0 place-items-center rounded-full border-2 border-foreground bg-primary text-primary-foreground", className)}
+      className={cn("grid shrink-0 place-items-center", className)}
     >
-      <Sparkles className="h-1/2 w-1/2" strokeWidth={2} />
+      <Sparkles className="h-3/5 w-3/5 fill-primary-foreground text-primary-foreground" strokeWidth={2} />
     </span>
   );
 }
@@ -226,6 +226,8 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
 export function AskPortfolio() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+  const [clearDrawingVisible, setClearDrawingVisible] = useState(false);
   const launcherRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -234,6 +236,39 @@ export function AskPortfolio() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
+
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const scrollBottom = window.scrollY + window.innerHeight;
+      const pageBottom = document.documentElement.scrollHeight;
+      const atTop = window.scrollY <= 24;
+      const atBottom = pageBottom - scrollBottom <= 24;
+      setCollapsed(!atTop && !atBottom);
+    };
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    const onClearDrawingVisibility = (event: Event) => {
+      if (!(event instanceof CustomEvent)) return;
+      setClearDrawingVisible(event.detail === true);
+    };
+    window.addEventListener("drawing-clear-visibility", onClearDrawingVisibility);
+    return () => window.removeEventListener("drawing-clear-visibility", onClearDrawingVisibility);
+  }, []);
 
   if (pathname.startsWith("/play")) return null;
 
@@ -250,12 +285,23 @@ export function AskPortfolio() {
       type="button"
       onClick={() => setOpen(true)}
       aria-label="Ask about my work"
-      className="fixed bottom-6 right-6 z-[60] inline-flex h-12 items-center gap-2 rounded-full border-2 border-foreground bg-primary pl-2 pr-5 font-display text-sm font-semibold text-primary-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-transform hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:bottom-16"
+      data-collapsed={collapsed}
+      className={cn(
+        "fixed right-6 z-[60] inline-flex h-12 items-center overflow-hidden rounded-full border-2 border-foreground bg-primary font-display text-sm font-semibold text-primary-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] transition-[width,bottom,transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none",
+        collapsed ? "w-12 justify-center" : "w-[190px] gap-2 px-4",
+        clearDrawingVisible ? "bottom-16" : "bottom-6",
+      )}
     >
-      <span className="grid h-8 w-8 place-items-center rounded-full bg-primary-foreground text-primary">
-        <Sparkles className="h-4 w-4" aria-hidden="true" />
+      <Sparkles className="h-5 w-5 shrink-0 fill-current" strokeWidth={2} aria-hidden="true" />
+      <span
+        aria-hidden={collapsed}
+        className={cn(
+          "whitespace-nowrap transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none",
+          collapsed ? "pointer-events-none absolute translate-x-2 opacity-0" : "opacity-100",
+        )}
+      >
+        Ask about my work
       </span>
-      Ask about my work
     </button>
   );
 }
