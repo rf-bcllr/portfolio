@@ -1025,7 +1025,11 @@ document.querySelectorAll('.tbtn').forEach(b => {
   const k = b.dataset.k;
   const on = e => {
     e.preventDefault();
-    if (b.setPointerCapture && e.pointerId !== undefined) b.setPointerCapture(e.pointerId);
+    /* Pointer capture keeps movement held if the finger drifts off the button.
+       Synthetic accessibility tests may not create an active native pointer. */
+    if (b.setPointerCapture && e.pointerId !== undefined) {
+      try { b.setPointerCapture(e.pointerId); } catch (err) {}
+    }
     b.classList.add('pressed');
     if (k === 'action') actionEdge = true;
     else keys[k] = true;
