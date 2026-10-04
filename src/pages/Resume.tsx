@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, Download, Globe, Lightbulb, Mail, MapPin, MessageCircle, Phone, Wrench } from "lucide-react";
+import { ArrowRight, Calendar, Download, Globe, Lightbulb, Mail, MapPin, MessageCircle, Phone, Wrench } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { ContactFooter } from "@/components/ContactFooter";
 import { Button } from "@/components/ui/button";
@@ -168,7 +168,23 @@ export default function Resume() {
           <ToolsMarquee tools={tools} speed="slow" />
         </section>
 
-
+        <section className="mx-auto max-w-6xl px-6 py-8">
+          <Card className="flex flex-col items-start justify-between gap-6 p-8 md:flex-row md:items-center">
+            <div className="max-w-xl">
+              <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
+                Prefer to play<span className="text-primary">?</span>
+              </h2>
+              <p className="mt-3 border-l-[6px] border-primary pl-4 text-muted-foreground">
+                My career as a 2D RPG: walk through each job, open the cases as collectible cards, and fight 2020.
+              </p>
+            </div>
+            <Button asChild variant="contrast" size="lg" className="btn-arrow-shift shrink-0">
+              <Link to="/play" data-cursor-action="navigate-internal">
+                Press start <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+          </Card>
+        </section>
 
       </main>
       <ContactFooter />
