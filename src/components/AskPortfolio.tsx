@@ -125,7 +125,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
         <AgentAvatar className="h-10 w-10" />
         <div className="min-w-0 flex-1">
           <p className="font-display text-sm font-semibold uppercase tracking-wide">Ask about my work</p>
-          <p className="text-xs text-muted-foreground">Answers from this portfolio · Lovable AI</p>
+          <p className="text-xs text-muted-foreground">AI answers from this portfolio</p>
         </div>
         {messages.length > 0 && (
           <button
