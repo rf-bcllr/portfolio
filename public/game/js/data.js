@@ -38,7 +38,7 @@ const UI = {
   mBack:        'Back',
   punchHit:     'I push back with what is left. It barely notices.',
   runDenied:    'Giving up is not an option.',
-  spent:        'spent',
+  spent:        'Already used',
   lost:         'NOT THIS TIME',
   tomesMissing: '{n} tomes still out there. This one was never going to fall without them.',
   tomesMissing1:'One tome is still out there. This one was never going to fall without it.',
@@ -56,7 +56,7 @@ const UI = {
   playVideo:    'Play video',
   pauseVideo:   'Pause video',
   obStep:       'Step',
-  fullResume:   'Go to Recruiter Mode ↗',
+  fullResume:   'Go to Recruiter Mode',
   connect:      'Connect on LinkedIn ↗',
   start:        'PRESS START',
   hMove:        'move',
@@ -944,7 +944,7 @@ const ENTITIES = [
   { id: 'mimic', type: 'mimic', x: 2700, zone: 'lebiscuit', sprite: 'props/mimic',
     /* o label continua 'Chest': é o disfarce. O nome dela só aparece na luta. */
     label: 'Chest',
-    foeName: 'Marquise, the Mimic',
+    foeName: 'The Imposter',
     sub:   'Le biscuit · 2019',
     /* quatro tomos redondos: luta curta, e sobram seis para 2020 */
     maxHp: 40,
