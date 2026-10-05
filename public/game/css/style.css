@@ -1223,3 +1223,7 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   #hud .loot-cell{justify-content:flex-start}
   #hud .loot-cell i{display:none}
 }
+@media (max-height:440px) and (max-width:920px), (max-height:440px) and (pointer:coarse){
+  #hud .loot-cell{padding-block:2px}
+  #hud #chip-done{display:none !important}   /* a coluna não pode descer até as setas */
+}
