@@ -1203,7 +1203,11 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   .hud-top{flex-direction:column;align-items:stretch;gap:8px}
   .hud-right{order:-1;max-width:none;align-items:stretch}
   .hud-btns{flex-wrap:wrap;justify-content:flex-end;align-items:center}
-  .hud-actions{flex:1 1 100%}
+  .hud-btns{width:100%}
+  #hud .hud-actions{display:flex;flex:1 1 100%;width:100%}
+  #hud .hud-actions .btn{flex:1 1 0}
+  #hud .restart-wrap{display:none}
+  .pu-cap{display:none}
   .hud-actions{flex:1;min-width:0}
   .hud-actions .btn{flex:1;min-width:0;justify-content:center;text-align:center}
   .loot{flex-wrap:wrap}
