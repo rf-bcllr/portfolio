@@ -1214,3 +1214,4 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   .loot-cell i{display:none}
 }
 @media (max-width:920px), (pointer:coarse){ #hud .btn.snd{width:44px;min-width:44px} }
+@media (max-width:920px), (pointer:coarse){ #hud .restart-wrap{display:none} #hud .hud-actions .btn{white-space:nowrap} }
