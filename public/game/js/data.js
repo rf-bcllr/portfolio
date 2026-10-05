@@ -872,6 +872,7 @@ const ENTITIES = [
      parados ao lado do case do plano de aula: a Lia pisca, o Íon flutua e quica. */
   { id: 'lia', type: 'mascot', x: 7255, zone: 'ftd', sprite: 'npc/lia',
     label: 'Lia & \u00cdon',
+    rewardCase: 'case-ionic-identity',
     speaker: 'Lia',
     sub:   'Mascot \u00b7 I\u00f4nica, FTD Educa\u00e7\u00e3o',
     /* quem fala é a própria Lia */
@@ -880,6 +881,19 @@ const ENTITIES = [
       'This is \u00cdon, my alien sidekick. He floats, he bounces, and sometimes he lands flat on the floor.',
       'Rafael designed the two of us to be the face of the AI on I\u00f4nica, the FTD Educa\u00e7\u00e3o learning platform.',
     ],
+  },
+  { id: 'case-ionic-identity', type: 'case', x: 7255, zone: 'ftd', dialogueOnly: true,
+    label: 'Iônica · Lia & Íon',
+    card: { rarity: 'legendary',
+            flavor: 'A library spaceship, a bookworm explorer, and an alien companion.' },
+    case: {
+      media: { src: '/__l5e/assets-v1/dff3fb1c-f0be-4718-af9d-ebe4930b8bcf/lia-characters.png', orient: 'landscape', alt: 'Lia character designs for Iônica' },
+      title: 'Iônica · Lia & Íon',
+      kind: 'AI IDENTITY · EDUCATION',
+      tags: ['IDENTITY', 'CHARACTER DESIGN', 'AI', 'EDUCATION'],
+      desc: 'AI identity and mascots for students and teachers on Iônica. Lia is a bookworm and space explorer seeking books and knowledge with her alien companion Íon aboard the Iônica library spaceship.',
+      metrics: [{ v: 'TBD', l: 'Outcome' }],
+    },
   },
   { id: 'cert-aisys', type: 'cert', x: 7330, y: 146, zone: 'ftd',
     cert: 'UX Design for AI Systems',

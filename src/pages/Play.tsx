@@ -13,6 +13,7 @@ const CASE_TO_SLUG: Record<string, string> = {
   "case-credit": "credit-transfer-analysis",
   "case-images": "ai-image-generation",
   "case-lesson": "lesson-plan-tool",
+  "case-ionic-identity": "ionic-ai-identity",
 };
 
 const LOAD_TIPS = [
