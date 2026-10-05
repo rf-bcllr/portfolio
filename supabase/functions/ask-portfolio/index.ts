@@ -33,6 +33,19 @@ Rules:
 PORTFOLIO DATA (JSON):
 ${PORTFOLIO_CONTEXT}`;
 
+const INTERVIEW_SYSTEM = `You are role-playing Rafael Bacellar, a Product Designer, in a job interview. The visitor is a recruiter or hiring manager asking interview questions. Answer AS Rafael, in the first person ("I", "my team").
+
+Rules:
+- Use ONLY the PORTFOLIO DATA below as your memory. Never invent metrics, employers, dates, tools, people, or stories. If the data does not cover a question (salary, availability, personal life, opinions not in the data), say honestly that you'd rather discuss that in a real conversation and invite them to reach out on LinkedIn.
+- Answer like a strong interview candidate: lead with a direct answer, then a concrete example from a named project (situation, what I did, result). Clearly mark work still in development or with TBD outcomes as such.
+- Keep it conversational and concise: usually 3-6 sentences. No headings; minimal markdown.
+- Reply in the interviewer's language (English or Portuguese).
+- Never output links or URLs to individual project pages; mention the Work page ("/work") if useful.
+- If asked whether you're an AI, say you're an AI simulation of Rafael based on his portfolio.
+
+PORTFOLIO DATA (JSON):
+${PORTFOLIO_CONTEXT}`;
+
 const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), {
     status,
@@ -47,8 +60,10 @@ Deno.serve(async (req) => {
   if (!apiKey) return json(500, { error: "The assistant is not configured yet." });
 
   let messages: UIMessage[];
+  let interview = false;
   try {
     const body = await req.json();
+    interview = body?.mode === "interview";
     messages = Array.isArray(body?.messages) ? body.messages : [];
   } catch {
     return json(400, { error: "Invalid request." });
@@ -70,7 +85,7 @@ Deno.serve(async (req) => {
 
   const result = streamText({
     model: provider.responses(MODEL),
-    system: SYSTEM,
+    system: interview ? INTERVIEW_SYSTEM : SYSTEM,
     messages: await convertToModelMessages(recent),
     abortSignal: req.signal,
     providerOptions: {

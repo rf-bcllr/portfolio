@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { RotateCcw, Sparkles, X } from "lucide-react";
+import { BriefcaseBusiness, RotateCcw, Sparkles, X } from "lucide-react";
 import {
   Conversation,
   ConversationContent,
@@ -16,11 +16,42 @@ import {
   PromptInputSubmit,
   PromptInputTextarea,
 } from "@/components/ai-elements/prompt-input";
-import { Shimmer } from "@/components/ai-elements/shimmer";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "rfbcllr-ask-portfolio-v1";
 const CHAT_ID = "ask-portfolio";
+const MODE_KEY = "rfbcllr-ask-portfolio-mode-v1";
+type Mode = "ask" | "interview";
+const INTERVIEW_STARTERS = [
+  "Tell me about yourself.",
+  "Walk me through a project you're proud of.",
+  "How do you handle disagreement with stakeholders?",
+];
+
+function loadMode(): Mode {
+  if (typeof window === "undefined") return "ask";
+  return window.localStorage.getItem(MODE_KEY) === "interview" ? "interview" : "ask";
+}
+
+/** Editorial "typing" indicator: three square blocks stepping up in royal blue. */
+function ThinkingIndicator({ interview }: { interview: boolean }) {
+  return (
+    <div role="status" className="flex items-center gap-3">
+      <span aria-hidden="true" className="flex items-end gap-1">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className="ask-thinking-dot block h-2.5 w-2.5 border-2 border-foreground bg-primary"
+            style={{ animationDelay: `${i * 140}ms` }}
+          />
+        ))}
+      </span>
+      <span className="font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        {interview ? "Rafael is thinking…" : "Looking through the portfolio…"}
+      </span>
+    </div>
+  );
+}
 const SUGGESTIONS = [
   "Which project had the biggest impact?",
   "How does Rafael run research?",
@@ -52,6 +83,19 @@ function AgentAvatar({ className }: { className?: string }) {
 function ChatPanel({ onClose }: { onClose: () => void }) {
   const initial = useMemo(loadMessages, []);
   const [error, setError] = useState<string | null>(null);
+  const [mode, setModeState] = useState<Mode>(loadMode);
+  const modeRef = useRef<Mode>(mode);
+  const setMode = (m: Mode) => {
+    modeRef.current = m;
+    setModeState(m);
+    try {
+      if (m === "interview") window.localStorage.setItem(MODE_KEY, m);
+      else window.localStorage.removeItem(MODE_KEY);
+    } catch {
+      /* blocked */
+    }
+  };
+  const interview = mode === "interview";
   const transport = useMemo(
     () =>
       new DefaultChatTransport({
@@ -60,6 +104,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
           apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
+        body: () => ({ mode: modeRef.current }),
       }),
     [],
   );
@@ -105,6 +150,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
     stop();
     setMessages([]);
     setError(null);
+    setMode("ask");
     window.localStorage.removeItem(STORAGE_KEY);
     focusInput();
   };
@@ -113,16 +159,21 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
     <div
       ref={panelRef}
       role="dialog"
-      aria-label="Ask about Rafael's work"
-      className="fixed inset-x-3 bottom-3 z-[60] flex h-[min(620px,calc(100dvh-1.5rem))] flex-col border-2 border-foreground bg-background shadow-[6px_6px_0_0_hsl(var(--foreground))] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[400px]"
+      aria-modal="true"
+      aria-label={interview ? "Job interview with Rafael's AI" : "Ask about Rafael's work"}
+      className="fixed inset-0 z-[60] flex h-dvh flex-col bg-background pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] sm:inset-auto sm:right-6 sm:bottom-6 sm:h-[min(620px,calc(100dvh-3rem))] sm:w-[400px] sm:border-2 sm:border-foreground sm:p-0 sm:shadow-[6px_6px_0_0_hsl(var(--foreground))]"
     >
       <header className="flex items-center gap-3 border-b-2 border-foreground px-4 py-3">
         <AgentAvatar className="h-10 w-10" />
         <div className="min-w-0 flex-1">
-          <p className="font-display text-sm font-semibold uppercase tracking-wide">Ask about my work</p>
-          <p className="text-xs text-muted-foreground">AI answers from this portfolio</p>
+          <p className="font-display text-sm font-semibold uppercase tracking-wide">
+            {interview ? "Job Interview Mode" : "Ask about my work"}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            {interview ? "You interview, AI answers as Rafael" : "AI answers from this portfolio"}
+          </p>
         </div>
-        {messages.length > 0 && (
+        {(messages.length > 0 || interview) && (
           <button
             type="button"
             onClick={reset}
@@ -150,11 +201,30 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
               <div className="flex flex-col items-center gap-3">
                 <AgentAvatar className="h-16 w-16" />
                 <div className="space-y-1">
-                  <p className="font-display text-base font-semibold">Curious about a project?</p>
-                  <p className="text-sm text-muted-foreground">Ask anything about Rafael's projects, process or results.</p>
+                  <p className="font-display text-base font-semibold">
+                    {interview ? "Interview Rafael" : "Curious about a project?"}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {interview
+                      ? "Ask what you'd ask in a real interview. The AI answers in first person, using only Rafael's real projects and experience."
+                      : "Ask anything about Rafael's projects, process or results."}
+                  </p>
                 </div>
                 <div className="flex w-full flex-col gap-2 pt-2">
-                  {SUGGESTIONS.map((s) => (
+                  {!interview && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMode("interview");
+                        focusInput();
+                      }}
+                      className="flex min-h-11 items-center gap-2 rounded-full bg-primary px-4 py-2 text-left text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    >
+                      <BriefcaseBusiness className="h-4 w-4 shrink-0" aria-hidden="true" />
+                      Start Job Interview Mode
+                    </button>
+                  )}
+                  {(interview ? INTERVIEW_STARTERS : SUGGESTIONS).map((s) => (
                     <button
                       key={s}
                       type="button"
@@ -193,7 +263,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
           {status === "submitted" && (
             <Message from="assistant">
               <MessageContent className="bg-transparent px-0">
-                <Shimmer>Looking through the portfolio…</Shimmer>
+                <ThinkingIndicator interview={interview} />
               </MessageContent>
             </Message>
           )}
@@ -210,7 +280,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
         <PromptInput onSubmit={({ text }) => ask(text)}>
           <PromptInputTextarea
             autoFocus
-            placeholder="Ask about a project…"
+            placeholder={interview ? "Ask an interview question…" : "Ask about a project…"}
             maxLength={2000}
             className="min-h-12 text-base sm:text-sm"
           />
