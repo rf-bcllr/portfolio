@@ -897,7 +897,7 @@ All colors MUST be HSL.
   .pfolder-sheet, .pfolder-front { transition: none; }
 }
 
-/* Ask-portfolio thinking indicator: square blocks stepping up */
-@keyframes ask-thinking { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
-.ask-thinking-dot { animation: ask-thinking 0.9s ease-in-out infinite; }
+/* Ask-portfolio: quiet, staggered typing dots. */
+@keyframes ask-thinking { 0%, 65%, 100% { transform: translateY(0); opacity: .4; } 32% { transform: translateY(-3px); opacity: 1; } }
+.ask-thinking-dot { animation: ask-thinking 1.5s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .ask-thinking-dot { animation: none; } }
