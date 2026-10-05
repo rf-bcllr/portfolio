@@ -288,7 +288,7 @@ export function AskPortfolio() {
       data-collapsed={collapsed}
       className={cn(
         "ask-fab fixed right-6 z-[60] inline-flex h-12 items-center overflow-hidden rounded-full border-2 border-foreground bg-primary font-display text-sm font-semibold text-primary-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
-        collapsed ? "w-12 justify-center" : "w-[220px] gap-3 pl-4 pr-4",
+        collapsed ? "w-12 justify-center" : "w-[220px] gap-3 pl-4 pr-2.5",
         clearDrawingVisible ? "bottom-16" : "bottom-6",
       )}
     >
