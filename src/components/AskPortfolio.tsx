@@ -295,7 +295,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
                       const userText = lastQuestion?.parts.filter((p) => p.type === "text").map((p) => p.text).join("") ?? "";
                       return (questions.length ? questions : fallbackQuestions(userText, interview)).map((question) => (
                         <Suggestion key={question} suggestion={question} onClick={ask} variant="ghost"
-                          className="h-auto min-h-11 max-w-full justify-start whitespace-normal border border-border px-4 py-2 text-left text-sm leading-relaxed hover:border-primary hover:text-primary" />
+                          className="h-auto min-h-11 max-w-full justify-start whitespace-normal border border-border px-4 py-2 text-left text-sm leading-relaxed hover:border-foreground hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground" />
                       ));
                     })()}
                   </div>
