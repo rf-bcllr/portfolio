@@ -10,6 +10,7 @@ import {
   ConversationScrollButton,
 } from "@/components/ai-elements/conversation";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
+import { Suggestion } from "@/components/ai-elements/suggestion";
 import {
   PromptInput,
   PromptInputFooter,
@@ -33,20 +34,20 @@ function loadMode(): Mode {
   return window.localStorage.getItem(MODE_KEY) === "interview" ? "interview" : "ask";
 }
 
-/** Editorial "typing" indicator: three square blocks stepping up in royal blue. */
+/** Quiet, staggered typing dots; reduced motion is handled in CSS. */
 function ThinkingIndicator({ interview }: { interview: boolean }) {
   return (
     <div role="status" className="flex items-center gap-3">
-      <span aria-hidden="true" className="flex items-end gap-1">
+      <span aria-hidden="true" className="flex h-5 shrink-0 items-center gap-1.5">
         {[0, 1, 2].map((i) => (
           <span
             key={i}
-            className="ask-thinking-dot block h-2.5 w-2.5 border-2 border-foreground bg-primary"
-            style={{ animationDelay: `${i * 140}ms` }}
+            className="ask-thinking-dot block h-1.5 w-1.5 rounded-full bg-primary"
+            style={{ animationDelay: `${i * 180}ms` }}
           />
         ))}
       </span>
-      <span className="font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+      <span className="text-sm text-muted-foreground">
         {interview ? "Rafael is thinking…" : "Looking through the portfolio…"}
       </span>
     </div>
@@ -57,6 +58,34 @@ const SUGGESTIONS = [
   "How does Rafael run research?",
   "What AI products has he designed?",
 ];
+
+const FOLLOW_UP_MARKER = "<<<SUGGESTIONS>>>";
+
+function readAnswer(text: string) {
+  const marker = text.indexOf(FOLLOW_UP_MARKER);
+  // Hide incomplete metadata during streaming, too.
+  const answer = (marker < 0 ? text : text.slice(0, marker)).replace(/<+(?:S(?:U(?:G(?:G(?:E(?:S(?:T(?:I(?:O(?:N(?:S)?)?)?)?)?)?)?)?)?)?)?>*$/, "").trimEnd();
+  let questions: string[] = [];
+  if (marker >= 0) {
+    try {
+      const parsed: unknown = JSON.parse(text.slice(marker + FOLLOW_UP_MARKER.length).trim());
+      if (Array.isArray(parsed)) {
+        questions = [...new Set(parsed.filter((q): q is string => typeof q === "string" && q.trim().length > 0 && q.length <= 160))].slice(0, 3);
+      }
+    } catch { /* Metadata may still be streaming; use fallback once ready. */ }
+  }
+  return { answer, questions };
+}
+
+function fallbackQuestions(text: string, interview: boolean) {
+  const portuguese = /\b(como|qual|quais|projeto|você|voce|experiência|equipe|pesquisa)\b/i.test(text);
+  if (interview) return portuguese
+    ? ["Qual foi sua contribuição nesse projeto?", "Como você lidou com os desafios?", "O que você aprendeu com essa experiência?"]
+    : ["What was your contribution to that project?", "How did you handle the challenges?", "What did you learn from that experience?"];
+  return portuguese
+    ? ["Qual foi o papel de Rafael nesse trabalho?", "Que resultados estão documentados?", "Como isso se compara a outro projeto?"]
+    : ["What was Rafael's role in that work?", "What results are documented?", "How does this compare with another project?"];
+}
 
 function loadMessages(): UIMessage[] {
   if (typeof window === "undefined") return [];
@@ -238,7 +267,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
               </div>
             </ConversationEmptyState>
           ) : (
-            messages.map((m) => (
+            messages.map((m, messageIndex) => (
               <Message key={m.id} from={m.role}>
                 <MessageContent
                   className={cn(
@@ -252,11 +281,25 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
                       m.role === "user" ? (
                         <p key={i} className="whitespace-pre-wrap">{p.text}</p>
                       ) : (
-                        <MessageResponse key={i}>{p.text}</MessageResponse>
+                        <MessageResponse key={i}>{readAnswer(p.text).answer}</MessageResponse>
                       )
                     ) : null,
                   )}
                 </MessageContent>
+                {m.role === "assistant" && messageIndex === messages.length - 1 && status === "ready" && !error && (
+                  <div role="group" aria-label="Suggested follow-up questions" className="flex w-full min-w-0 flex-col items-start gap-2 pt-2">
+                    {(() => {
+                      const text = m.parts.filter((p) => p.type === "text").map((p) => p.text).join("");
+                      const { questions } = readAnswer(text);
+                      const lastQuestion = [...messages].reverse().find((message) => message.role === "user");
+                      const userText = lastQuestion?.parts.filter((p) => p.type === "text").map((p) => p.text).join("") ?? "";
+                      return (questions.length ? questions : fallbackQuestions(userText, interview)).map((question) => (
+                        <Suggestion key={question} suggestion={question} onClick={ask} variant="ghost"
+                          className="h-auto min-h-11 max-w-full justify-start whitespace-normal border border-border px-4 py-2 text-left text-sm leading-relaxed hover:border-primary hover:text-primary" />
+                      ));
+                    })()}
+                  </div>
+                )}
               </Message>
             ))
           )}
