@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Gamepad2, Menu, Play, X } from "lucide-react";
+import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -19,15 +19,13 @@ export function PlayLink({
   onClick,
   label = "Play",
   variant = "cursor",
-  gameIcon = false,
 }: {
   className?: string;
   onClick?: () => void;
   label?: string;
   variant?: "cursor" | "blue";
-  gameIcon?: boolean;
 }) {
-  const Icon = gameIcon ? Gamepad2 : Play;
+  const Icon = Play;
   return (
     <Link
       to="/play"
