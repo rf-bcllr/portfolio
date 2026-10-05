@@ -125,7 +125,7 @@ const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "ai-image-generation": ["AI", "Education", "In progress"],
   "lesson-plan-tool": ["AI", "Education", "In progress"],
   "credit-transfer-analysis": ["AI", "EdTech", "In progress"],
-  "ionic-ai-identity": ["AI Identity", "Character Design", "EdTech"],
+  "ionic-ai-identity": ["AI", "EdTech"],
   "quest-for-the-next-product": ["Game Design", "Storytelling", "Web"],
 };
 
@@ -135,7 +135,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     summary: "An AI identity for Iônica, brought to life through Lia and Íon. Lia is a bookworm and space explorer searching for books and knowledge alongside her alien companion aboard the Iônica library spaceship—characters created to interact with students and teachers.",
     durationDisplay: "TBD", roleDisplay: "Identity & character design",
     outcome: "TBD", outcomeValue: "TBD", outcomeLabel: "Impact to be determined",
-    outcomeHighlights: ["Lia & Íon", "Character-led AI identity"], accent: "guavaRed",
+    outcomeHighlights: ["20+ alternatives explored before definitive design", "Partnered with Content Designers for Naming"], accent: "guavaRed",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[16/9]" }),
   },
   "quest-for-the-next-product": {
@@ -273,6 +273,13 @@ const presentationOverrides: Partial<Record<FeaturedProjectSlug, Array<Partial<P
   "credit-transfer-analysis": [
     { aspect: "aspect-[932/441]", maxWidth: "max-w-[600px]", rotate: "rotate-1" },
     { aspect: "aspect-[929/446]", maxWidth: "max-w-[600px]", rotate: "-rotate-1" },
+  ],
+  "ionic-ai-identity": [
+    { rotate: "-rotate-1" },
+    { rotate: "rotate-1" },
+    { rotate: "-rotate-1" },
+    { rotate: "rotate-1" },
+    { rotate: "-rotate-1" },
   ],
 };
 
