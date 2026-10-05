@@ -5139,15 +5139,24 @@ function hudIcon(k, tam) {
 /* Placar de coletáveis, como nos plataformas clássicos: o total fica sempre à
    vista, não escondido atrás de um botão. */
 const lootEl = document.getElementById('loot');
-/* Na tela larga o placar sobe para o centro da linha do topo; se ali ele
-   encostar na placa da zona ou nos botões, volta para baixo da placa. */
+/* Center in the actual free span, not the viewport; keep the existing
+   below-zone fallback and mobile layout whenever the whole row cannot fit. */
 function posicionaLoot() {
   document.body.classList.remove('loot-baixo');
-  if (innerWidth < 1100 || lootEl.hidden) return;
-  const l = lootEl.getBoundingClientRect();
+  if (innerWidth < 1100 || matchMedia('(pointer:coarse)').matches || lootEl.hidden) {
+    document.body.classList.add('loot-baixo');
+    return;
+  }
   const z = document.getElementById('chip-zone').getBoundingClientRect();
   const b = document.querySelector('.hud-btns').getBoundingClientRect();
-  if (l.left < z.right + 12 || l.right > b.left - 12) document.body.classList.add('loot-baixo');
+  const left = z.right + 16;
+  const right = b.left - 16;
+  const width = lootEl.getBoundingClientRect().width;
+  if (right - left < width) {
+    document.body.classList.add('loot-baixo');
+  } else {
+    lootEl.style.setProperty('--loot-left', ((left + right) / 2) + 'px');
+  }
 }
 window.addEventListener('resize', posicionaLoot);
 setInterval(posicionaLoot, 1000);
