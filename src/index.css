@@ -813,3 +813,64 @@ All colors MUST be HSL.
   .ask-fab,.ask-fab-label{transition:none}
   .ask-fab[data-collapsed="true"] .ask-fab-label{transform:none}
 }
+
+/* Project folder CTA (Home) — token-themed port of the reference folder */
+.pfolder {
+  --pf-back: hsl(var(--border));
+  --pf-front: hsl(var(--card));
+  --pf-edge: hsl(var(--foreground) / 0.08);
+  --pf-sheet-shadow: 0 1px 2px hsl(var(--foreground) / 0.08), 0 8px 24px hsl(var(--foreground) / 0.12);
+  --pf-ease: cubic-bezier(.34, 1.56, .64, 1);
+  outline: none;
+}
+.pfolder-art { position: relative; aspect-ratio: 4 / 3; perspective: 900px; }
+.pfolder-back {
+  position: absolute; inset: 8% 0 0 0;
+  background: var(--pf-back);
+  border-radius: 4px 14px 14px 14px;
+}
+.pfolder-back::before {
+  content: ""; position: absolute; left: 0; top: -9%;
+  width: 38%; height: 12%;
+  background: var(--pf-back);
+  border-radius: 10px 10px 0 0;
+}
+.pfolder-sheet {
+  position: absolute; left: 12%; right: 12%; top: 14%; height: 70%;
+  border-radius: 8px; overflow: hidden;
+  box-shadow: var(--pf-sheet-shadow);
+  transform-origin: 50% 100%;
+  transition: transform .45s var(--pf-ease);
+}
+.pfolder-sheet img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pfolder-sheet-1 { transform: translate(-6%, 6%) rotate(-4deg); }
+.pfolder-sheet-2 { transform: translate(0, 2%) rotate(0deg); }
+.pfolder-sheet-3 { transform: translate(6%, 8%) rotate(4deg); }
+.pfolder-front {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 50%;
+  background: var(--pf-front);
+  border: 2px solid hsl(var(--foreground));
+  border-radius: 14px;
+  transform-origin: 50% 100%;
+  transition: transform .45s var(--pf-ease);
+}
+.pfolder:hover .pfolder-sheet-1,
+.pfolder:focus-visible .pfolder-sheet-1 { transform: translate(-24%, -22%) rotate(-10deg); }
+.pfolder:hover .pfolder-sheet-2,
+.pfolder:focus-visible .pfolder-sheet-2 { transform: translate(0, -32%) rotate(0deg); }
+.pfolder:hover .pfolder-sheet-3,
+.pfolder:focus-visible .pfolder-sheet-3 { transform: translate(24%, -22%) rotate(10deg); }
+.pfolder:hover .pfolder-front,
+.pfolder:focus-visible .pfolder-front { transform: rotateX(-22deg); }
+.pfolder:focus-visible .pfolder-art { outline: 2px solid hsl(var(--primary)); outline-offset: 6px; border-radius: 14px; }
+.pfolder-label { margin-top: 14px; }
+.pfolder-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: hsl(var(--foreground)); }
+.pfolder-meta { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: hsl(var(--muted-foreground)); margin-top: 2px; }
+@media (hover: none) {
+  .pfolder-sheet-1 { transform: translate(-14%, -6%) rotate(-7deg); }
+  .pfolder-sheet-2 { transform: translate(0, -12%); }
+  .pfolder-sheet-3 { transform: translate(14%, -6%) rotate(7deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pfolder-sheet, .pfolder-front { transition: none; }
+}
