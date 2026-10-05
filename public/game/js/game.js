@@ -3796,7 +3796,9 @@ function esc(t) {
 /* Cor do projeto e o tom claro dela, como o --project-accent do rfbcllr.site:
    o painel da mídia e a caixa de OUTCOME são o acento a 6% sobre branco. */
 function acentos(e) {
-  const a = zoneAt(e.x).accent, rgb = hex2rgb(a);
+  /* O acento vem do projeto (o mesmo --project-accent do /work), não da zona:
+     Meu Arco é roxo, Cheguei é azul, Lesson Plans é vermelho — igual na página. */
+  const a = e.accent || zoneAt(e.x).accent, rgb = hex2rgb(a);
   const mix = t => 'rgb(' + rgb.map(c => Math.round(255 - (255 - c) * t)).join(',') + ')';
   return { a: a, soft: mix(.06), border: mix(.28) };
 }
