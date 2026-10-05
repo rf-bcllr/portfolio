@@ -27,8 +27,10 @@ import ionCharacters from "@/assets/ionic/ion-characters.png.asset.json";
 import liaMoodboard from "@/assets/ionic/lia-moodboard.png.asset.json";
 import ionMoodboard from "@/assets/ionic/ion-moodboard.png.asset.json";
 import ionicProcess from "@/assets/ionic/process.png.asset.json";
-import questMap from "@/assets/quest/quest-map.png.asset.json";
-import questTitle from "@/assets/quest/quest-title.png.asset.json";
+import questUfrb from "@/assets/quest/quest-ufrb.png.asset.json";
+import questUneb from "@/assets/quest/quest-uneb.png.asset.json";
+import questAracaju from "@/assets/quest/quest-aracaju.png.asset.json";
+import questImposter from "@/assets/quest/quest-imposter.png.asset.json";
 
 export interface ProjectData {
   id: string;
