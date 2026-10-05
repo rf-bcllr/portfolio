@@ -2992,7 +2992,7 @@ function drawEntity(e) {
     /* Project Card. Na rua ela aparece sempre de verso, girando devagar — a
        frente é a revelação, e revelação mostrada antes da hora perde a graça.
        Depois de pega ela some: mora no álbum. */
-    if (state.cases.has(e.id)) return;
+    if (e.dialogueOnly || state.cases.has(e.id)) return;
     drawCartaMundo(e, x, bob, now);
 
   } else if (e.type === 'chest') {
@@ -4668,6 +4668,7 @@ function doorOpen(e) { return e.fake || state.level >= e.needs; }
 function nearest() {
   let best = null, bd = 30;
   for (const e of ENTITIES) {
+    if (e.dialogueOnly) continue;
     if (e.type === 'cert' || e.type === 'tool') continue;
     if (e.type === 'door' && !e.fake && doorOpen(e)) continue;
     // carta já está no álbum: não existe mais na rua
@@ -4731,7 +4732,10 @@ function interact(e) {
     say(T(e.label), e.lines, 'me', null, state.title);
   } else if (e.type === 'mascot') {
     state.seen.add(e.id); save();
-    say(T(e.speaker || e.label), e.lines, 'npc/lia', null, T(e.sub));
+    say(T(e.speaker || e.label), e.lines, 'npc/lia', () => {
+      const reward = ENTITIES.find(item => item.id === e.rewardCase);
+      if (reward && !state.cases.has(reward.id)) openCase(reward);
+    }, T(e.sub));
   } else if (e.type === 'boss') {
     if (state.bossDone) { startBoss(); return; }   // revisitar 2020
     say(foeName(e), [{ en: T(e.taunt || "I'm not a 'little flu'.") }], 'npc/death', () => startBoss(), '2020');
