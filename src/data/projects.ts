@@ -62,7 +62,7 @@ export interface ProjectData {
 export const projectsData: ProjectData[] = [
   {
     id: "ionic-ai-identity", slug: "ionic-ai-identity",
-    title: "Iônica · Lia & Íon",
+    title: "AI mascots for iônica (Education Platform)",
     subtitle: "AI identity and mascots for students and teachers",
     year: 2026, company: "Iônica", heroImage: liaCharacters.url, coverType: "horizontal",
     overview: { role: "Identity & character design", team: "AI squad and content team", duration: "TBD", tools: [], impact: ["TBD"] },

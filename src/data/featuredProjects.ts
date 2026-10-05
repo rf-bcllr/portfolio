@@ -135,7 +135,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     summary: "An AI identity for Iônica, brought to life through Lia and Íon. Lia is a bookworm and space explorer searching for books and knowledge alongside her alien companion aboard the Iônica library spaceship—characters created to interact with students and teachers.",
     durationDisplay: "TBD", roleDisplay: "Identity & character design",
     outcome: "TBD", outcomeValue: "TBD", outcomeLabel: "Impact to be determined",
-    outcomeHighlights: ["Lia & Íon", "Character-led AI identity"], accent: "blue",
+    outcomeHighlights: ["Lia & Íon", "Character-led AI identity"], accent: "guavaRed",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[16/9]" }),
   },
   "quest-for-the-next-product": {
@@ -143,7 +143,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     summary: "A personal experiment in making a portfolio something you can experience. My career becomes a 2D, sidescrolling RPG: each job is a chapter, projects are collectible cards, and design tools become part of the adventure.",
     durationDisplay: "TBD", roleDisplay: "Design & development",
     outcome: "", outcomeValue: "", outcomeLabel: "",
-    outcomeHighlights: ["Career storytelling", "Collectible project cards"], accent: "blue",
+    outcomeHighlights: ["Career storytelling", "100% responsive"], accent: "blue",
     mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[16/9]" }),
   },
   "meu-arco": {
