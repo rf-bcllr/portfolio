@@ -179,7 +179,6 @@ export default function Certifications() {
         <PreferToPlayCard
           title="Inis and Esdras are part of my 'Quest for the Next Product'"
           buttonLabel="Playable portfolio"
-          gameIcon
         />
       </main>
       <ContactFooter />

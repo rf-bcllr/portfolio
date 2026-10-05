@@ -4,11 +4,9 @@ import { PlayLink } from "@/components/SiteNav";
 export function PreferToPlayCard({
   title,
   buttonLabel = "Quest for the Next Product",
-  gameIcon = false,
 }: {
   title?: string;
   buttonLabel?: string;
-  gameIcon?: boolean;
 }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-8">
