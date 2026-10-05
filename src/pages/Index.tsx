@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, MapPin, Sparkles, Zap } from "lucide-react";
+import { Briefcase, MapPin, Sparkles, Zap } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -8,6 +8,7 @@ import { CompanyLogos } from "@/components/CompanyLogos";
 import { ContactFooter } from "@/components/ContactFooter";
 import { GameCharacter } from "@/components/GameCharacter";
 import { PreferToPlayCard } from "@/components/PreferToPlayCard";
+import { ProjectFolder } from "@/components/ProjectFolder";
 import { useTranslations } from "@/hooks/useTranslations";
 import heroPortrait from "@/assets/hero-portrait.png";
 
