@@ -1215,3 +1215,11 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
 }
 @media (max-width:920px), (pointer:coarse){ #hud .btn.snd{width:44px;min-width:44px} }
 @media (max-width:920px), (pointer:coarse){ #hud .restart-wrap{display:none} #hud .hud-actions .btn{white-space:nowrap} }
+/* Celular deitado: o placar vira uma coluna estreita no canto esquerdo vazio,
+   em vez de uma faixa que quebra em 4+1 por cima do cenário. */
+@media (max-height:440px) and (max-width:920px), (max-height:440px) and (pointer:coarse){
+  #hud .loot{flex-direction:column;flex-wrap:nowrap;align-items:stretch}
+  #hud .loot-cell + .loot-cell{border-left:0;border-top:2px solid var(--ink)}
+  #hud .loot-cell{justify-content:flex-start}
+  #hud .loot-cell i{display:none}
+}
