@@ -521,23 +521,31 @@ Object.keys(AUDIO_MANIFEST).forEach(k => {
   a.addEventListener('canplaythrough', () => { SFX_FILE[k] = a; }, { once: true });
   a.addEventListener('error', () => {}, { once: true });
 });
-const LATIDO = new Audio('assets/audio/bark.wav');
-LATIDO.preload = 'auto';
+const LATIDOS = ['assets/audio/bark.wav', 'assets/audio/bark-2.wav'].map(src => {
+  const audio = new Audio(src);
+  audio.preload = 'auto';
+  return audio;
+});
+let proximoLatido = 0;
 function latir(vezes = 1) {
   if (!state.sound) return;
   for (let i = 0; i < vezes; i++) setTimeout(() => {
+    if (!state.sound) return;
     try {
-      const a = LATIDO.cloneNode();
+      const a = LATIDOS[proximoLatido].cloneNode();
+      proximoLatido = (proximoLatido + 1) % LATIDOS.length;
       a.volume = .7;
       a.playbackRate = .95 + Math.random() * .1;
       a.play().catch(() => {});
     } catch (e) {}
   }, i * 210);
 }
-loadTotal++;
-fetch('assets/audio/bark.wav')
-  .catch(() => {})
-  .finally(() => { loadDone++; loadTick(); });
+LATIDOS.forEach(audio => {
+  loadTotal++;
+  const terminou = () => { loadDone++; loadTick(); };
+  audio.addEventListener('loadeddata', terminou, { once: true });
+  audio.addEventListener('error', terminou, { once: true });
+});
 
 let AC = null;
 function blip(freq = 440, dur = 0.05, type = 'square', vol = 0.03) {
@@ -5177,7 +5185,7 @@ amayaEl.innerHTML = hudIcon('lock');
 beerEl.addEventListener('click', useBottle);
 amayaEl.addEventListener('click', showAmaya);
 function showAmaya() {
-  say(T(AMAYA.label), state.amaya ? AMAYA.lines : AMAYA.locked, 'me', null, T(AMAYA.sub));
+  say(T(AMAYA.label), state.amaya ? AMAYA.lines : AMAYA.locked, 'me', state.amaya ? () => latir(1) : null, T(AMAYA.sub));
 }
 const tlTrack = document.getElementById('tl-track');
 ZONES.forEach(z => {

@@ -23,6 +23,13 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const total = projects.length;
+  const stackRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    stackRef.current?.querySelectorAll<HTMLElement>("[data-project-slide]").forEach((slide) => {
+      slide.inert = slide.getAttribute("aria-hidden") !== "false";
+    });
+  }, [activeIndex]);
 
   const visible = useMemo(() => {
     const count = Math.min(VISIBLE, total);
@@ -101,6 +108,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
 
   return (
     <div
+      ref={stackRef}
       className="relative flex flex-col gap-6"
       role="region"
       aria-roledescription="carousel"
@@ -193,6 +201,7 @@ export function ProjectCardStack({ projects }: ProjectCardStackProps) {
                   isFront ? "" : "pointer-events-none"
                 }`}
                 aria-hidden={!isFront}
+                data-project-slide
                 onClick={isFront ? undefined : goNext}
               >
                 <WorkProjectCard project={project} index={projectIndex} />

@@ -11,6 +11,8 @@ export const featuredProjectSlugs = [
   "ai-image-generation",
   "lesson-plan-tool",
   "credit-transfer-analysis",
+  "ionic-ai-identity",
+  "quest-for-the-next-product",
 ] as const;
 
 export type FeaturedProjectSlug = (typeof featuredProjectSlugs)[number];
@@ -57,6 +59,7 @@ export type FeaturedProject = {
   media?: AnimatedMedia;
   poster: string;
   status?: "in-progress";
+  playInsteadOfOutcome?: boolean;
 };
 
 type RawFeaturedMediaItem = Omit<FeaturedProjectMediaItem, "presentation"> & {
@@ -122,9 +125,27 @@ const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "ai-image-generation": ["AI", "Education", "In progress"],
   "lesson-plan-tool": ["AI", "Education", "In progress"],
   "credit-transfer-analysis": ["AI", "EdTech", "In progress"],
+  "ionic-ai-identity": ["AI Identity", "Character Design", "EdTech"],
+  "quest-for-the-next-product": ["Game Design", "Storytelling", "Web"],
 };
 
 const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "category" | "summary" | "durationDisplay" | "roleDisplay" | "outcome" | "outcomeValue" | "outcomeLabel" | "outcomeHighlights" | "accent"> & { mediaPresentation: FeaturedProjectMediaPresentation }> = {
+  "ionic-ai-identity": {
+    emoji: "✨", category: "AI Identity · Education",
+    summary: "An AI identity for Iônica, brought to life through Lia and Íon. Lia is a bookworm and space explorer searching for books and knowledge alongside her alien companion aboard the Iônica library spaceship—characters created to interact with students and teachers.",
+    durationDisplay: "TBD", roleDisplay: "Identity & character design",
+    outcome: "TBD", outcomeValue: "TBD", outcomeLabel: "Impact to be determined",
+    outcomeHighlights: ["Lia & Íon", "Character-led AI identity"], accent: "blue",
+    mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[16/9]" }),
+  },
+  "quest-for-the-next-product": {
+    emoji: "🎮", category: "Playable Portfolio · 2D RPG",
+    summary: "A personal experiment in making a portfolio something you can experience. My career becomes a 2D, sidescrolling RPG: each job is a chapter, projects are collectible cards, and design tools become part of the adventure.",
+    durationDisplay: "TBD", roleDisplay: "Design & development",
+    outcome: "", outcomeValue: "", outcomeLabel: "",
+    outcomeHighlights: ["Career storytelling", "Collectible project cards"], accent: "blue",
+    mediaPresentation: resolveMediaPresentation({ orientation: "horizontal", aspect: "aspect-[16/9]" }),
+  },
   "meu-arco": {
     emoji: "🎯",
     category: "Web & Mobile App · EdTech",
@@ -226,6 +247,8 @@ const orientationBySlug: Record<FeaturedProjectSlug, FeaturedProjectMediaOrienta
   "ai-image-generation": ["horizontal"],
   "lesson-plan-tool": ["horizontal", "horizontal"],
   "credit-transfer-analysis": ["horizontal", "horizontal"],
+  "ionic-ai-identity": ["horizontal", "horizontal", "horizontal", "horizontal", "horizontal"],
+  "quest-for-the-next-product": ["horizontal", "horizontal"],
 };
 
 const presentationOverrides: Partial<Record<FeaturedProjectSlug, Array<Partial<Pick<RawFeaturedMediaItem, "aspect" | "maxWidth" | "rotate">>>>> = {
@@ -377,5 +400,6 @@ export const featuredProjects: FeaturedProject[] = featuredProjectSlugs.map((slu
     media: animatedProjectMedia[slug],
     poster: mediaItems[0]?.poster ?? mediaItems[0]?.src ?? animatedProjectMedia[slug]?.poster ?? project.heroImage,
     status: undefined,
+    playInsteadOfOutcome: slug === "quest-for-the-next-product",
   };
 });
