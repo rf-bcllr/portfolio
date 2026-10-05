@@ -27,8 +27,10 @@ import ionCharacters from "@/assets/ionic/ion-characters.png.asset.json";
 import liaMoodboard from "@/assets/ionic/lia-moodboard.png.asset.json";
 import ionMoodboard from "@/assets/ionic/ion-moodboard.png.asset.json";
 import ionicProcess from "@/assets/ionic/process.png.asset.json";
-import questMap from "@/assets/quest/quest-map.png.asset.json";
-import questTitle from "@/assets/quest/quest-title.png.asset.json";
+import questUfrb from "@/assets/quest/quest-ufrb.png.asset.json";
+import questUneb from "@/assets/quest/quest-uneb.png.asset.json";
+import questAracaju from "@/assets/quest/quest-aracaju.png.asset.json";
+import questImposter from "@/assets/quest/quest-imposter.png.asset.json";
 
 export interface ProjectData {
   id: string;
@@ -81,15 +83,17 @@ export const projectsData: ProjectData[] = [
   {
     id: "quest-for-the-next-product", slug: "quest-for-the-next-product",
     title: "Quest for the Next Product", subtitle: "A career turned into a playable portfolio",
-    year: 2026, company: "Personal project", heroImage: questMap.url, coverType: "horizontal",
+    year: 2026, company: "Personal project", heroImage: questUfrb.url, coverType: "horizontal",
     overview: { role: "Design & development", team: "Personal project", duration: "TBD", platform: "Web", tools: [], impact: [] },
     challenge: "Explore a playful alternative to a traditional portfolio: let visitors experience a design career rather than only read about it.",
     process: "Translate the career timeline into a 2D sidescrolling RPG, with jobs as places, projects as collectible cards and skills as discoveries.",
     solution: "Visitors walk through each career chapter, meet characters, collect project cards and design tools, and face 2020 in battle. The game connects back to the portfolio through Recruiter Mode.",
     impact: "A playable way to explore the portfolio; no impact metrics claimed.",
     gallery: [
-      { src: questMap.url, title: "Quest for the Next Product — the career map" },
-      { src: questTitle.url, title: "Quest for the Next Product — title screen" },
+      { src: questUfrb.url, title: "Quest for the Next Product — 2015, leaving university" },
+      { src: questUneb.url, title: "Quest for the Next Product — 2016, design school" },
+      { src: questAracaju.url, title: "Quest for the Next Product — 2021, the beach in Aracaju" },
+      { src: questImposter.url, title: "Quest for the Next Product — battle against The Imposter" },
     ],
   },
   {
