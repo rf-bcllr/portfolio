@@ -117,7 +117,7 @@ export default function Index() {
                 Senior Product Designer
               </p>
 
-              <div className="mt-3 grid grid-cols-2 gap-1.5 sm:mt-5">
+              <div className="mt-3 hidden grid-cols-2 gap-1.5 sm:mt-5 sm:grid">
                 {profileSkills.map((s) => (
                   <span
                     key={s}
