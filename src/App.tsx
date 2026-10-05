@@ -29,12 +29,12 @@ const App = () => {
       <TooltipProvider>
         <AnimatedBackground />
         <DrawingCanvas />
-        <CustomCursor />
         <Toaster />
         <Sonner />
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <ScrollToTop />
+          <CustomCursor />
           <AskPortfolio />
           <Routes>
             <Route path="/" element={<Index />} />
