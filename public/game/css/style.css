@@ -1202,9 +1202,11 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
 @media (orientation:portrait) and (max-width:600px){
   .hud-top{flex-direction:column;align-items:stretch;gap:8px}
   .hud-right{order:-1;max-width:none;align-items:stretch}
-  .hud-btns{justify-content:space-between;align-items:center}
+  .hud-btns{flex-wrap:wrap;justify-content:flex-end;align-items:center}
+  .hud-actions{flex:1 1 100%}
   .hud-actions{flex:1;min-width:0}
   .hud-actions .btn{flex:1;min-width:0;justify-content:center;text-align:center}
   .loot{flex-wrap:wrap}
   .loot-cell i{display:none}
 }
+@media (max-width:920px), (pointer:coarse){ #hud .btn.snd{width:44px;min-width:44px} }
