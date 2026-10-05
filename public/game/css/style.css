@@ -905,6 +905,8 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
 .dchoices button:disabled{opacity:.36;text-decoration:line-through;cursor:not-allowed}
 /* tomo já gasto: continua conquistado, mas não está mais na mão */
 .li.used{opacity:.5}
+.li .sk-g{font-weight:inherit;font-style:normal}
+.li.hard .sk-g{color:var(--accent)}
 .li.used i{font-style:normal;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--dim);border:0;padding:0;line-height:1.3}
 .bopts.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
