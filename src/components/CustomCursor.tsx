@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useMemo } from "react";
+import { useLocation } from "react-router-dom";
 import { getSessionCursorColor } from "@/lib/cursorColor";
 
 export const CustomCursor = () => {
@@ -9,6 +10,14 @@ export const CustomCursor = () => {
   const targetRef = useRef({ x: -100, y: -100 });
   const currentRef = useRef({ x: -100, y: -100 });
   const hasSeenPointerRef = useRef(false);
+
+  const onPlay = useLocation().pathname.startsWith("/play");
+
+  useEffect(() => {
+    if (!onPlay || !isVisible) return;
+    document.body.classList.remove("custom-cursor-active");
+    return () => document.body.classList.add("custom-cursor-active");
+  }, [onPlay, isVisible]);
 
   const color = useMemo(() => getSessionCursorColor(), []);
 
@@ -93,7 +102,7 @@ export const CustomCursor = () => {
     };
   }, [color, tagFg]);
 
-  if (!isVisible) return null;
+  if (!isVisible || onPlay) return null;
 
   return (
     <div ref={containerRef} className="figjam-cursor" aria-hidden="true">
