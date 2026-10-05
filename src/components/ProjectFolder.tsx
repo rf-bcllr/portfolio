@@ -2,7 +2,16 @@ import { Link } from "react-router-dom";
 import { featuredProjects } from "@/data/featuredProjects";
 
 export function ProjectFolder({ className = "" }: { className?: string }) {
-  const thumbs = featuredProjects.slice(0, 3).map((p) => ({ src: p.poster, alt: p.title }));
+  const thumbs = [
+    { slug: "meu-arco", index: 1 },
+    { slug: "health-food-delivery", index: 0 },
+    { slug: "ionic-ai-identity", index: 0 },
+  ].flatMap(({ slug, index }) => {
+    const project = featuredProjects.find((p) => p.slug === slug);
+    if (!project) return [];
+    const media = project.mediaItems[index];
+    return [{ src: media?.poster ?? media?.src ?? project.poster }];
+  });
   const years = featuredProjects.map((p) => p.year);
   const meta = `${featuredProjects.length} projects · ${Math.min(...years)}–${Math.max(...years)}`;
 
@@ -10,8 +19,8 @@ export function ProjectFolder({ className = "" }: { className?: string }) {
     <Link
       to="/work"
       data-cursor-action="navigate-internal"
-      aria-label={`View work — ${meta}`}
-      className={`pfolder block w-[176px] shrink-0 sm:w-[200px] ${className}`}
+      aria-label={`Selected Cases — ${meta}`}
+      className={`pfolder ${className}`}
     >
       <div className="pfolder-art">
         <div className="pfolder-back" aria-hidden="true" />
@@ -24,7 +33,7 @@ export function ProjectFolder({ className = "" }: { className?: string }) {
       </div>
       <div className="pfolder-label">
         <div className="pfolder-title" style={{ fontFamily: "var(--font-display)" }}>
-          Selected Work
+          Selected Cases
         </div>
         <div className="pfolder-meta" style={{ fontFamily: "var(--font-display)" }}>
           {meta}

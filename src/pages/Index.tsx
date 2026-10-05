@@ -60,19 +60,9 @@ export default function Index() {
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
 
-            {/* CTAs — project folder with live thumbnails + flat hairline resume button */}
-            <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap items-end gap-5 opacity-0">
+            {/* Selected cases — folder and label share one interactive area */}
+            <div className="animate-text-reveal stagger-3 mt-10 opacity-0">
               <ProjectFolder />
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-2 border-foreground bg-background text-foreground shadow-[6px_6px_0_0_hsl(var(--foreground))] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_hsl(var(--foreground))]"
-              >
-                <Link to="/resume" data-cursor-action="navigate-internal">
-                  Resume
-                </Link>
-              </Button>
             </div>
 
             {/* Bottom editorial rule — location as metadata */}
@@ -150,13 +140,13 @@ export default function Index() {
                 >
                   LinkedIn
                 </a>
-                <a
-                  href="mailto:rf.bcllr@gmail.com"
-                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                  style={{ fontFamily: "var(--font-display)" }}
+                <Button
+                  asChild
+                  variant="link"
+                  className="h-auto rounded-none border-b-2 border-foreground p-0 font-display text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary hover:no-underline"
                 >
-                  Email
-                </a>
+                  <Link to="/resume" data-cursor-action="navigate-internal">Resume</Link>
+                </Button>
               </div>
             </div>
 

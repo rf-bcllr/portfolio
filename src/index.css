@@ -48,6 +48,11 @@ All colors MUST be HSL.
     --shadow-glow: 0 0 40px hsl(var(--primary) / 0.2);
     --shadow-card: 0 1px 3px hsl(222 18% 12% / 0.08), 0 1px 2px -1px hsl(222 18% 12% / 0.06);
     --shadow-card-hover: 0 14px 34px -24px hsl(222 18% 12% / 0.24), 0 1px 0 hsl(222 18% 12% / 0.08);
+    --folder-back: 24 6% 83%;
+    --folder-front: 20 6% 90%;
+    --folder-edge: 0 0% 0% / 0.06;
+    --folder-sheet-shadow: 0 1px 2px hsl(0 0% 0% / 0.06), 0 8px 24px hsl(0 0% 0% / 0.08);
+    --folder-front-shadow: 0 -6px 16px hsl(0 0% 0% / 0.06);
 
     --tag-blue: 207 100% 45%;
     --tag-blue-bg: 207 100% 96%;
@@ -94,6 +99,10 @@ All colors MUST be HSL.
   }
 
   .dark {
+    --folder-back: 0 0% 18%;
+    --folder-front: 0 0% 23%;
+    --folder-edge: 0 0% 100% / 0.06;
+    --folder-sheet-shadow: 0 1px 2px hsl(0 0% 0% / 0.4), 0 8px 24px hsl(0 0% 0% / 0.4);
     --background: 220 15% 8%;
     --foreground: 210 40% 98%;
 
@@ -816,29 +825,33 @@ All colors MUST be HSL.
 
 /* Project folder CTA (Home) — token-themed port of the reference folder */
 .pfolder {
-  --pf-back: hsl(var(--border));
-  --pf-front: hsl(var(--card));
-  --pf-edge: hsl(var(--foreground) / 0.08);
-  --pf-sheet-shadow: 0 1px 2px hsl(var(--foreground) / 0.08), 0 8px 24px hsl(var(--foreground) / 0.12);
   --pf-ease: cubic-bezier(.34, 1.56, .64, 1);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 460px;
+  min-height: 150px;
+  color: inherit;
+  text-decoration: none;
   outline: none;
 }
-.pfolder-art { position: relative; aspect-ratio: 4 / 3; perspective: 900px; }
+.pfolder-art { position: relative; width: 200px; flex-shrink: 0; aspect-ratio: 4 / 3; perspective: 900px; }
 .pfolder-back {
   position: absolute; inset: 8% 0 0 0;
-  background: var(--pf-back);
+  background: hsl(var(--folder-back));
   border-radius: 4px 14px 14px 14px;
 }
 .pfolder-back::before {
   content: ""; position: absolute; left: 0; top: -9%;
   width: 38%; height: 12%;
-  background: var(--pf-back);
+  background: hsl(var(--folder-back));
   border-radius: 10px 10px 0 0;
 }
 .pfolder-sheet {
   position: absolute; left: 12%; right: 12%; top: 14%; height: 70%;
   border-radius: 8px; overflow: hidden;
-  box-shadow: var(--pf-sheet-shadow);
+  box-shadow: var(--folder-sheet-shadow);
   transform-origin: 50% 100%;
   transition: transform .45s var(--pf-ease);
 }
@@ -848,9 +861,10 @@ All colors MUST be HSL.
 .pfolder-sheet-3 { transform: translate(6%, 8%) rotate(4deg); }
 .pfolder-front {
   position: absolute; left: 0; right: 0; bottom: 0; height: 50%;
-  background: var(--pf-front);
-  border: 2px solid hsl(var(--foreground));
+  background: hsl(var(--folder-front));
+  border-top: 1px solid hsl(var(--folder-edge));
   border-radius: 14px;
+  box-shadow: var(--folder-front-shadow);
   transform-origin: 50% 100%;
   transition: transform .45s var(--pf-ease);
 }
@@ -863,9 +877,18 @@ All colors MUST be HSL.
 .pfolder:hover .pfolder-front,
 .pfolder:focus-visible .pfolder-front { transform: rotateX(-22deg); }
 .pfolder:focus-visible .pfolder-art { outline: 2px solid hsl(var(--primary)); outline-offset: 6px; border-radius: 14px; }
-.pfolder-label { margin-top: 14px; }
-.pfolder-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: hsl(var(--foreground)); }
-.pfolder-meta { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: hsl(var(--muted-foreground)); margin-top: 2px; }
+.pfolder-label { min-width: 0; }
+.pfolder-title { font-size: 18px; font-weight: 700; letter-spacing: 0; color: hsl(var(--foreground)); }
+.pfolder-meta { font-size: 11px; font-weight: 600; letter-spacing: 0; color: hsl(var(--muted-foreground)); margin-top: 4px; }
+@media (max-width: 639px) {
+  .pfolder { gap: 20px; min-height: 114px; }
+  .pfolder-art { width: 144px; }
+  .pfolder-title { font-size: 16px; }
+}
+@media (max-width: 359px) {
+  .pfolder { gap: 16px; }
+  .pfolder-art { width: 120px; }
+}
 @media (hover: none) {
   .pfolder-sheet-1 { transform: translate(-14%, -6%) rotate(-7deg); }
   .pfolder-sheet-2 { transform: translate(0, -12%); }
