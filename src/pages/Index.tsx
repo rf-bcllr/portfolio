@@ -32,7 +32,7 @@ export default function Index() {
             className="order-2 max-w-[640px] lg:order-1"
           >
             {/* Editorial availability badge — inverted, dense, uppercase */}
-            <div className="mb-10 inline-flex animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background">
+            <div className="mb-10 hidden animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background sm:inline-flex">
               <span className="relative inline-flex size-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
@@ -152,10 +152,15 @@ export default function Index() {
 
             {/* Floating editorial ID tag */}
             <div
-              className="absolute -right-3 -top-3 bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-background"
+              className="absolute -right-3 -top-3 flex animate-badge-pop items-center gap-2 bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-background sm:tracking-[0.2em]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              REF-2026
+              <span className="relative inline-flex size-2 sm:hidden">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-[hsl(var(--tag-green))]" />
+              </span>
+              <span className="sm:hidden">Available for new projects</span>
+              <span className="hidden sm:inline">REF-2026</span>
             </div>
           </motion.div>
         </section>
