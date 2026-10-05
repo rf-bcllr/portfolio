@@ -890,7 +890,7 @@ const ENTITIES = [
       media: { src: '/__l5e/assets-v1/dff3fb1c-f0be-4718-af9d-ebe4930b8bcf/lia-characters.png', orient: 'landscape', alt: 'Lia character designs for Iônica' },
       title: 'AI mascots for iônica (Education Platform)',
       kind: 'AI IDENTITY · EDUCATION',
-      tags: ['AI', 'EDTECH'],
+      tags: ['AI', 'EDTECH', 'CHARACTER DESIGN', 'NAMING'],
       desc: 'AI identity and mascots for students and teachers on Iônica. Lia is a bookworm and space explorer seeking books and knowledge with her alien companion Íon aboard the Iônica library spaceship.',
       metrics: [{ v: 'TBD', l: 'Outcome' }, { v: '20+', l: 'alternatives explored before definitive design' }, { v: '✓', l: 'Partnered with Content Designers for Naming' }],
     },

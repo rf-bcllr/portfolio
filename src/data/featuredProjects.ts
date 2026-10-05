@@ -125,7 +125,7 @@ const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "ai-image-generation": ["AI", "Education", "In progress"],
   "lesson-plan-tool": ["AI", "Education", "In progress"],
   "credit-transfer-analysis": ["AI", "EdTech", "In progress"],
-  "ionic-ai-identity": ["AI", "EdTech"],
+  "ionic-ai-identity": ["AI", "EdTech", "Character Design", "Naming"],
   "quest-for-the-next-product": ["Game Design", "Storytelling", "Web"],
 };
 
