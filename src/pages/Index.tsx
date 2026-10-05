@@ -165,7 +165,7 @@ export default function Index() {
           </motion.div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-16">
+        <section className="mx-auto max-w-6xl px-6 pb-16 pt-8 sm:py-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
             <h2 className="animate-section-reveal font-display text-4xl font-bold leading-[0.9] tracking-[-0.035em] opacity-0 md:text-5xl">
               At a glance<span className="text-primary">.</span>
