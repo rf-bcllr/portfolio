@@ -22,6 +22,13 @@ import lessonPlanTool2Gif from "@/assets/lesson-plan-tool-2.gif";
 const lessonPlanTool1Gif = lessonPlanTool1Asset.url;
 import creditTransferAnalysis1Gif from "@/assets/credit-transfer-analysis-1.gif";
 import creditTransferAnalysis2Gif from "@/assets/credit-transfer-analysis-2.gif";
+import liaCharacters from "@/assets/ionic/lia-characters.png.asset.json";
+import ionCharacters from "@/assets/ionic/ion-characters.png.asset.json";
+import liaMoodboard from "@/assets/ionic/lia-moodboard.png.asset.json";
+import ionMoodboard from "@/assets/ionic/ion-moodboard.png.asset.json";
+import ionicProcess from "@/assets/ionic/process.png.asset.json";
+import questMap from "@/assets/quest/quest-map.png.asset.json";
+import questTitle from "@/assets/quest/quest-title.png.asset.json";
 
 export interface ProjectData {
   id: string;
@@ -53,6 +60,38 @@ export interface ProjectData {
 }
 
 export const projectsData: ProjectData[] = [
+  {
+    id: "ionic-ai-identity", slug: "ionic-ai-identity",
+    title: "Iônica · Lia & Íon",
+    subtitle: "AI identity and mascots for students and teachers",
+    year: 2026, company: "Iônica", heroImage: liaCharacters.url, coverType: "horizontal",
+    overview: { role: "Identity & character design", team: "AI squad and content team", duration: "TBD", tools: [], impact: ["TBD"] },
+    challenge: "Create an identity and characters for AI interactions with students and teachers on the Iônica platform.",
+    process: "The team explored naming, identity and visual territories, shortlisted names, built semantic moodboards and refined character views, poses and line art.",
+    solution: "Lia is a bookworm and space explorer who travels in search of books and knowledge with her alien companion Íon aboard the Iônica library spaceship. Together, they bring a character-led identity to the platform's AI interactions.",
+    impact: "TBD",
+    gallery: [
+      { src: liaCharacters.url, title: "Lia — character views, line art and poses" },
+      { src: ionCharacters.url, title: "Íon — character views and expressive poses" },
+      { src: liaMoodboard.url, title: "Lia — personality and visual moodboard" },
+      { src: ionMoodboard.url, title: "Íon — personality and visual moodboard" },
+      { src: ionicProcess.url, title: "Iônica — naming and mascot design process" },
+    ],
+  },
+  {
+    id: "quest-for-the-next-product", slug: "quest-for-the-next-product",
+    title: "Quest for the Next Product", subtitle: "A career turned into a playable portfolio",
+    year: 2026, company: "Personal project", heroImage: questMap.url, coverType: "horizontal",
+    overview: { role: "Design & development", team: "Personal project", duration: "TBD", platform: "Web", tools: [], impact: [] },
+    challenge: "Explore a playful alternative to a traditional portfolio: let visitors experience a design career rather than only read about it.",
+    process: "Translate the career timeline into a 2D sidescrolling RPG, with jobs as places, projects as collectible cards and skills as discoveries.",
+    solution: "Visitors walk through each career chapter, meet characters, collect project cards and design tools, and face 2020 in battle. The game connects back to the portfolio through Recruiter Mode.",
+    impact: "A playable way to explore the portfolio; no impact metrics claimed.",
+    gallery: [
+      { src: questMap.url, title: "Quest for the Next Product — the career map" },
+      { src: questTitle.url, title: "Quest for the Next Product — title screen" },
+    ],
+  },
   {
     id: "meu-arco",
     slug: "meu-arco",

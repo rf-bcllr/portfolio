@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
+import { PlayLink } from "@/components/SiteNav";
 import type { FeaturedProject } from "@/data/featuredProjects";
 
 
@@ -16,6 +17,7 @@ const projectIconMap: Record<string, LucideIcon> = {
   "lesson-plan-tool": NotebookPen,
   "credit-transfer-analysis": GraduationCap,
   "ai-question-generator": Sparkles,
+  "ionic-ai-identity": Sparkles,
 };
 
 interface WorkProjectCardProps {
@@ -115,7 +117,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
   const isPhoneFrame = activePresentation.frame === "phone";
   const hasMultipleMedia = mediaItems.length > 1;
   const mediaAreaHeight = isPhoneFrame ? "min-h-[560px]" : activeMedia.orientation === "square" || activePresentation.aspect === "aspect-[1972/1616]" ? "min-h-[520px]" : "min-h-[430px]";
-  const mediaFitClass = isPhoneFrame ? "object-contain" : "object-cover";
+  const mediaFitClass = isPhoneFrame || project.slug === "ionic-ai-identity" || project.playInsteadOfOutcome ? "object-contain" : "object-cover";
   const activeMediaKey = activeMedia.sources?.map((source) => source.src).join("|") ?? activeMedia.src ?? activeMedia.poster ?? activeMedia.title;
   const nextMediaIndex = hasMultipleMedia ? (activeMediaIndex + 1) % mediaItems.length : activeMediaIndex;
   const previousMediaIndex = hasMultipleMedia ? (activeMediaIndex - 1 + mediaItems.length) % mediaItems.length : activeMediaIndex;
@@ -176,7 +178,14 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
             <p className="mt-5 max-w-3xl border-l-[6px] border-[hsl(var(--project-accent))] pl-5 text-base leading-relaxed text-foreground md:text-[17px]">{project.summary}</p>
           </div>
 
-          <div
+           {project.playInsteadOfOutcome ? (
+             <div className="flex flex-col items-start gap-5 border-l-[6px] border-primary pl-5">
+               <p className="text-base leading-relaxed text-foreground">
+                 Walk through the career map, discover skills and projects, and fight 2020. An interactive take on telling my story as a designer.
+               </p>
+               <PlayLink variant="blue" className="h-11 px-6" />
+             </div>
+           ) : <div
             ref={outcomeRef}
             className="relative overflow-hidden p-6 md:p-7"
             style={{
@@ -202,7 +211,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
             <p className="mt-3 max-w-sm text-sm font-medium leading-snug opacity-80 md:text-[15px]">
               {project.outcomeLabel}
             </p>
-          </div>
+           </div>}
 
 
 
