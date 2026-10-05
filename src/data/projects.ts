@@ -83,7 +83,7 @@ export const projectsData: ProjectData[] = [
   {
     id: "quest-for-the-next-product", slug: "quest-for-the-next-product",
     title: "Quest for the Next Product", subtitle: "A career turned into a playable portfolio",
-    year: 2026, company: "Personal project", heroImage: questMap.url, coverType: "horizontal",
+    year: 2026, company: "Personal project", heroImage: questUfrb.url, coverType: "horizontal",
     overview: { role: "Design & development", team: "Personal project", duration: "TBD", platform: "Web", tools: [], impact: [] },
     challenge: "Explore a playful alternative to a traditional portfolio: let visitors experience a design career rather than only read about it.",
     process: "Translate the career timeline into a 2D sidescrolling RPG, with jobs as places, projects as collectible cards and skills as discoveries.",
