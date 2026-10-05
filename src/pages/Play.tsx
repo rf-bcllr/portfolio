@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 import { WorkProjectCard } from "@/components/WorkProjectCard";
@@ -84,6 +85,7 @@ function FitCard({ children }: { children: React.ReactNode }) {
 }
 
 export default function Play() {
+  const navigate = useNavigate();
   const ref = useRef<HTMLIFrameElement>(null);
   const [project, setProject] = useState<FeaturedProject | null>(null);
   const [loading, setLoading] = useState(true);
@@ -116,6 +118,10 @@ export default function Play() {
   useEffect(() => {
     const onMessage = (ev: MessageEvent) => {
       if (ev.origin !== window.location.origin || ev.source !== ref.current?.contentWindow) return;
+      if (ev.data?.type === "rfb:recruiter-mode") {
+        navigate("/resume");
+        return;
+      }
       if (ev.data?.type === "rfb:loading" && typeof ev.data.percent === "number") {
         setLoadProgress((current) => Math.max(current, Math.min(100, ev.data.percent)));
         return;
@@ -129,7 +135,7 @@ export default function Play() {
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
-  }, [post]);
+  }, [post, navigate]);
 
   const close = () => {
     setProject(null);

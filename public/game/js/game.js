@@ -3754,7 +3754,7 @@ overlay.addEventListener('click', e => { if (e.target === overlay) closeAll(); }
 document.addEventListener('click', e => { if (e.target.dataset && e.target.dataset.close !== undefined) closeAll(); });
 /* "Go to Recruiter Mode" pergunta antes de sair: o progresso fica salvo, mas
    ninguém sai da partida por um clique desatento. O jogo roda dentro de um
-   iframe em /play, então a navegação vai pelo window.top, na mesma aba. */
+   iframe em /play, então pede à página pai para navegar na mesma aba. */
 document.addEventListener('click', e => {
   const gatilho = e.target.closest ? e.target.closest('[data-recruiter]') : null;
   if (!gatilho) return;
@@ -3769,7 +3769,14 @@ function abreRecruiter() {
       <button class="btn" data-close>Keep playing</button>
     </div>`, 'estreito');
   const ir = panel.querySelector('[data-recruiter-go]');
-  if (ir) ir.onclick = () => { window.top.location.href = '/resume'; };
+  if (ir) ir.onclick = () => {
+    save();
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: 'rfb:recruiter-mode' }, window.location.origin);
+    } else {
+      window.location.href = '/resume';
+    }
+  };
 }
 
 
