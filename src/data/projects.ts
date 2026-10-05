@@ -90,8 +90,10 @@ export const projectsData: ProjectData[] = [
     solution: "Visitors walk through each career chapter, meet characters, collect project cards and design tools, and face 2020 in battle. The game connects back to the portfolio through Recruiter Mode.",
     impact: "A playable way to explore the portfolio; no impact metrics claimed.",
     gallery: [
-      { src: questMap.url, title: "Quest for the Next Product — the career map" },
-      { src: questTitle.url, title: "Quest for the Next Product — title screen" },
+      { src: questUfrb.url, title: "Quest for the Next Product — 2015, leaving university" },
+      { src: questUneb.url, title: "Quest for the Next Product — 2016, design school" },
+      { src: questAracaju.url, title: "Quest for the Next Product — 2021, the beach in Aracaju" },
+      { src: questImposter.url, title: "Quest for the Next Product — battle against The Imposter" },
     ],
   },
   {
