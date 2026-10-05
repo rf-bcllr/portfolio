@@ -3,9 +3,9 @@ import { featuredProjects } from "@/data/featuredProjects";
 
 export function ProjectFolder({ className = "" }: { className?: string }) {
   const thumbs = [
-    { slug: "meu-arco", index: 1 },
-    { slug: "health-food-delivery", index: 0 },
     { slug: "ionic-ai-identity", index: 0 },
+    { slug: "health-food-delivery", index: 0 },
+    { slug: "meu-arco", index: 1 },
   ].flatMap(({ slug, index }) => {
     const project = featuredProjects.find((p) => p.slug === slug);
     if (!project) return [];
