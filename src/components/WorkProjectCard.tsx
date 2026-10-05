@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Bus, ChevronLeft, ChevronRight, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
+import { Atom, Bus, ChevronLeft, ChevronRight, Gamepad2, GraduationCap, ImageIcon, NotebookPen, PenLine, Salad, Sparkles, Target, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediaThumb } from "@/components/MediaThumb";
 import { PlayLink } from "@/components/SiteNav";
@@ -17,7 +17,8 @@ const projectIconMap: Record<string, LucideIcon> = {
   "lesson-plan-tool": NotebookPen,
   "credit-transfer-analysis": GraduationCap,
   "ai-question-generator": Sparkles,
-  "ionic-ai-identity": Sparkles,
+  "ionic-ai-identity": Atom,
+  "quest-for-the-next-product": Gamepad2,
 };
 
 interface WorkProjectCardProps {
@@ -117,7 +118,6 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
   const isPhoneFrame = activePresentation.frame === "phone";
   const hasMultipleMedia = mediaItems.length > 1;
   const mediaAreaHeight = isPhoneFrame ? "min-h-[560px]" : activeMedia.orientation === "square" || activePresentation.aspect === "aspect-[1972/1616]" ? "min-h-[520px]" : "min-h-[430px]";
-  const mediaFitClass = isPhoneFrame || project.slug === "ionic-ai-identity" || project.playInsteadOfOutcome ? "object-contain" : "object-cover";
   const activeMediaKey = activeMedia.sources?.map((source) => source.src).join("|") ?? activeMedia.src ?? activeMedia.poster ?? activeMedia.title;
   const nextMediaIndex = hasMultipleMedia ? (activeMediaIndex + 1) % mediaItems.length : activeMediaIndex;
   const previousMediaIndex = hasMultipleMedia ? (activeMediaIndex - 1 + mediaItems.length) % mediaItems.length : activeMediaIndex;
@@ -175,17 +175,14 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
             >
               {project.category}
             </p>
-            <p className="mt-5 max-w-3xl border-l-[6px] border-[hsl(var(--project-accent))] pl-5 text-base leading-relaxed text-foreground md:text-[17px]">{project.summary}</p>
+            <div className="mt-5 max-w-3xl space-y-5 border-l-[6px] border-[hsl(var(--project-accent))] pl-5 text-base leading-relaxed text-foreground md:text-[17px]">
+              <p>{project.summary}</p>
+              {project.playInsteadOfOutcome && <p>Walk through the career map, discover skills and projects, and fight 2020. An interactive take on telling my story as a designer.</p>}
+            </div>
+            {project.playInsteadOfOutcome && <PlayLink variant="blue" className="mt-6 h-11 px-6" />}
           </div>
 
-           {project.playInsteadOfOutcome ? (
-             <div className="flex flex-col items-start gap-5 border-l-[6px] border-primary pl-5">
-               <p className="text-base leading-relaxed text-foreground">
-                 Walk through the career map, discover skills and projects, and fight 2020. An interactive take on telling my story as a designer.
-               </p>
-               <PlayLink variant="blue" className="h-11 px-6" />
-             </div>
-           ) : <div
+           {!project.playInsteadOfOutcome && <div
             ref={outcomeRef}
             className="relative overflow-hidden p-6 md:p-7"
             style={{
@@ -241,7 +238,7 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
 
 
 
-        <div className={`relative order-1 flex items-center justify-center overflow-hidden border-b border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] p-7 md:p-10 lg:order-2 lg:border-b-0 lg:border-l ${mediaAreaHeight}`}>
+        <div className={`relative order-1 flex items-center justify-center overflow-hidden border-b border-[hsl(var(--project-accent-border))] bg-[hsl(var(--project-accent-bg))] px-7 py-20 md:px-10 lg:order-2 lg:border-b-0 lg:border-l ${mediaAreaHeight}`}>
           {(() => {
             const Icon = projectIconMap[project.slug];
             return Icon ? (
@@ -255,14 +252,14 @@ export function WorkProjectCard({ project, index = 0, compact = false }: WorkPro
           >
             <div className={`relative overflow-hidden border border-[hsl(var(--project-accent-border))] bg-card shadow-card-hover ${isPhoneFrame ? "rounded-[34px] p-3 before:absolute before:left-1/2 before:top-3 before:z-10 before:h-1.5 before:w-16 before:-translate-x-1/2 before:rounded-full before:bg-foreground/25" : "rounded-[24px] p-2.5 pt-9 before:absolute before:left-5 before:top-4 before:size-2 before:rounded-full before:bg-muted-foreground/35 after:absolute after:left-9 after:top-4 after:size-2 after:rounded-full after:bg-muted-foreground/25"}`}>
               {!isPhoneFrame && <span className="absolute left-[52px] top-4 size-2 rounded-full bg-muted-foreground/20" aria-hidden />}
-              <div className={`w-full overflow-hidden bg-secondary ${activePresentation.aspect} ${isPhoneFrame ? "rounded-[24px]" : "rounded-[16px]"}`}>
+              <div className={`w-full overflow-hidden bg-secondary ${isPhoneFrame ? "rounded-[24px]" : "rounded-[16px]"}`}>
               <MediaThumb
                 key={activeMediaKey}
                 sources={activeMedia.sources}
                 poster={activeMedia.poster}
                 src={activeMedia.sources ? undefined : activeMedia.src ?? activeMedia.poster}
                 alt={activeMedia.title}
-                className={`size-full ${mediaFitClass} transition-transform duration-500 group-hover:scale-[1.025]`}
+                className="block h-auto w-full object-contain"
                 priority={index === 0}
                 showSkeleton
               />
