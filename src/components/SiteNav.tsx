@@ -19,15 +19,13 @@ export function PlayLink({
   onClick,
   label = "Play",
   variant = "cursor",
-  gameIcon = false,
 }: {
   className?: string;
   onClick?: () => void;
   label?: string;
   variant?: "cursor" | "blue";
-  gameIcon?: boolean;
 }) {
-  const Icon = gameIcon ? Gamepad2 : Play;
+  const Icon = Play;
   return (
     <Link
       to="/play"

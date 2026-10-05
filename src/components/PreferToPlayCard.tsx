@@ -23,7 +23,7 @@ export function PreferToPlayCard({
             My career as a 2D, sidescroller RPG: walk through each job, open the cases as collectible cards, and fight the pandemics.
           </p>
         </div>
-        <PlayLink label={buttonLabel} gameIcon={gameIcon} variant="blue" className="h-11 shrink-0 px-6 text-base" />
+        <PlayLink label={buttonLabel} variant="blue" className="h-11 shrink-0 px-6 text-base" />
       </Card>
     </section>
   );
