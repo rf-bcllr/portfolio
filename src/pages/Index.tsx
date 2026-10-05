@@ -59,13 +59,9 @@ export default function Index() {
               creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
             </p>
 
-            {/* CTAs — flat, hairline, with a hard offset shadow on the secondary */}
-            <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap gap-5 opacity-0">
-              <Button asChild variant="contrast" size="lg" className="btn-arrow-shift">
-                <Link to="/work" data-cursor-action="navigate-internal">
-                  View Work <ArrowRight className="size-4" />
-                </Link>
-              </Button>
+            {/* CTAs — project folder with live thumbnails + flat hairline resume button */}
+            <div className="animate-text-reveal stagger-3 mt-10 flex flex-wrap items-end gap-5 opacity-0">
+              <ProjectFolder />
               <Button
                 asChild
                 variant="outline"
