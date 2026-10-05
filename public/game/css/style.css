@@ -1181,3 +1181,30 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   body:not(.loot-baixo) .loot{position:absolute;left:50%;transform:translateX(-50%);
     top:max(10px,env(safe-area-inset-top))}
 }
+
+/* ---------- HUD mobile (revisão better-interface) ---------- */
+/* hidden precisa vencer o display:block das plaquinhas da zona */
+.chip [hidden]{display:none !important}
+.rot-ico svg{display:block;margin:0 auto}
+/* Celular deitado: o placar volta a ser uma fileira só e compacta (as regras
+   compactas antigas perdiam para o bloco de inventário declarado depois). */
+@media (max-height:440px) and (max-width:920px), (max-height:440px) and (pointer:coarse){
+  .loot{flex-wrap:nowrap}
+  .loot-cell{padding:3px 7px 3px 4px;gap:4px}
+  .loot-cell .hico{width:20px !important;height:20px !important;border-radius:6px}
+  .loot-cell .hico svg{width:12px;height:12px}
+  .loot-cell b{font-size:13px}
+  .loot-cell i{display:none}
+  .hud-left{max-width:none}
+}
+/* Celular em pé ("Play anyway"): os botões descem para uma fileira inteira
+   acima do contexto, em vez de sair pela borda esquerda. */
+@media (orientation:portrait) and (max-width:600px){
+  .hud-top{flex-direction:column;align-items:stretch;gap:8px}
+  .hud-right{order:-1;max-width:none;align-items:stretch}
+  .hud-btns{justify-content:space-between;align-items:center}
+  .hud-actions{flex:1;min-width:0}
+  .hud-actions .btn{flex:1;min-width:0;justify-content:center;text-align:center}
+  .loot{flex-wrap:wrap}
+  .loot-cell i{display:none}
+}
