@@ -3648,7 +3648,8 @@ function grant(list) {
   (list || []).forEach(k => {
     if (state.skills.has(k)) return;
     state.skills.add(k);
-    toast(T(UI.gotSkill), T(SKILLS[k]), false, 'skill');
+    /* Hard skills carregam o tomo azul no aviso, igual à ficha e à batalha. */
+    toast(T(UI.gotSkill), T(SKILLS[k]), false, SKILLS[k].k === 'hard' ? 'tomeHard' : 'skill');
   });
   save();
 }
@@ -4013,9 +4014,11 @@ function openSheet(focus) {
 const chip = (k) => {
   const tem = state.skills.has(k);
   const gasto = tem && state.spentTomes.indexOf(k) >= 0;
-  return `<div class="li ${tem ? (gasto ? 'used' : '') : 'off'}">${
-    '<span class="li-n">' + (tem ? (gasto ? '◇' : '◆') : '◇')} ${T(SKILLS[k])}</span>${
-    gasto ? `<i>${T(UI.spent)}</i>` : ''}</div>`;
+  const hard = SKILLS[k].k === 'hard';
+  const glifo = tem ? (gasto ? '◇' : '◆') : '◇';
+  const gastoTag = gasto ? `<i>${T(UI.spent)}</i>` : '';
+  return `<div class="li${hard ? ' hard' : ''} ${tem ? (gasto ? 'used' : '') : 'off'}">` +
+    `<span class="li-n"><b class="sk-g">${glifo}</b> ${T(SKILLS[k])}</span>${gastoTag}</div>`;
 };
 
   const toolKeys = Object.keys(TOOLS);
@@ -4101,7 +4104,7 @@ const chip = (k) => {
     <h3 id="sec-inv">${icon('tool')}${T(UI.inventory)} · ${T(UI.tools)} ${state.tools.size}/${toolKeys.length}</h3>
     <div class="tools">${tools}</div>
 
-    <h3>${icon('skill')}${T(UI.hardSkills)} · ${hard.filter(k => state.skills.has(k)).length}/${hard.length}</h3>
+    <h3>${icon('tomeHard')}${T(UI.hardSkills)} · ${hard.filter(k => state.skills.has(k)).length}/${hard.length}</h3>
     <div class="grid2">${hard.map(chip).join('')}</div>
 
     <h3>${icon('skill')}${T(UI.softSkills)} · ${soft.filter(k => state.skills.has(k)).length}/${soft.length}</h3>
@@ -4403,7 +4406,7 @@ function comandoHTML(pergunta, tipo, opcoes) {
 function showTomes(e) {
   const naMao = battleTomes();
   bEl.innerHTML = comandoHTML(T(UI.pickSkill), 'tomes', [
-    ...naMao.map(k => ({ k, ico: 'tome', t: T(SKILLS[k]), c: T(UI.capTome).replace('{d}', BATTLE.tome) })),
+    ...naMao.map(k => ({ k, ico: SKILLS[k].k === 'hard' ? 'tomeHard' : 'tome', t: T(SKILLS[k]), c: T(UI.capTome).replace('{d}', BATTLE.tome) })),
     { k: '', ico: 'back', t: T(UI.mBack), c: T(UI.capBack), back: true },
   ]);
   bEl.hidden = false;
@@ -4987,6 +4990,11 @@ const ARTE = {
         '<path d="M5.5 19.5A1.5 1.5 0 0 1 7 18h11v2.5H7a1.5 1.5 0 0 1-1.5-1z" fill="#ffffff" stroke="' + TINTA + '" stroke-width="1.5" stroke-linejoin="round"/>' +
         '<path d="M12 7.6l2.3 2.7-2.3 2.7-2.3-2.7z" fill="#ffcf3a" stroke="' + TINTA + '" stroke-width="1.2" stroke-linejoin="round"/>' +
         '<path d="M8 6.8v8.5" stroke="#b9a2ff" stroke-width="1.4" stroke-linecap="round"/>',
+  // tomo de habilidade hard: o mesmo livro, no accent do tema — azul por padrão — para separar hard de soft
+  tomeHard: '<path d="M5.5 4.5h11a1.5 1.5 0 0 1 1.5 1.5v12H7a1.5 1.5 0 0 0-1.5 1.5z" fill="var(--accent)" stroke="' + TINTA + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+        '<path d="M5.5 19.5A1.5 1.5 0 0 1 7 18h11v2.5H7a1.5 1.5 0 0 1-1.5-1z" fill="#ffffff" stroke="' + TINTA + '" stroke-width="1.5" stroke-linejoin="round"/>' +
+        '<path d="M12 7.6l2.3 2.7-2.3 2.7-2.3-2.7z" fill="#ffcf3a" stroke="' + TINTA + '" stroke-width="1.2" stroke-linejoin="round"/>' +
+        '<path d="M8 6.8v8.5" stroke="rgba(255,255,255,.55)" stroke-width="1.4" stroke-linecap="round"/>',
   // carta: a de trás clara e inclinada, a da frente com o verso escuro e o emblema
   card: '<rect x="8.5" y="3.2" width="10.5" height="14.5" rx="2" transform="rotate(13 13.75 10.45)" fill="#ffffff" stroke="' + TINTA + '" stroke-width="1.5"/>' +
         '<rect x="4.5" y="6" width="10.5" height="14.5" rx="2" fill="' + TINTA + '" stroke="' + TINTA + '" stroke-width="1.5"/>' +
@@ -5103,7 +5111,7 @@ function svgImg(chave, interno) {
 /* tipo de aviso / título → qual desenho usar */
 /* "profile" (recomendação e link de perfil do Inis e do Esdras) usa a marca do
    LinkedIn, não o envelope: o envelope é o coletável de mensagem. */
-const ARTE_DO_TIPO = { award: 'award', skill: 'tome', cert: 'cert', case: 'card', item: 'beer', tool: 'tool', inmail: 'msg' };
+const ARTE_DO_TIPO = { award: 'award', skill: 'tome', tomeHard: 'tomeHard', cert: 'cert', case: 'card', item: 'beer', tool: 'tool', inmail: 'msg' };
 function hudSvg(k, tam) {
   const n = tam || 14;
   return '<svg class="hs" viewBox="0 0 16 16" width="' + n + '" height="' + n + '"' +
