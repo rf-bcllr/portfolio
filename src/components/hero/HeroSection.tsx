@@ -1,6 +1,10 @@
 import { HeroStickers } from "./HeroStickers";
 import { ResizableTitle } from "./ResizableTitle";
 import "./hero.css";
+import { useId } from "react";
+import { useCharacterQuotes } from "@/hooks/useCharacterQuotes";
+import { CharacterQuoteBubble } from "@/components/CharacterQuoteBubble";
+import { Button } from "@/components/ui/button";
 
 type HeroSectionProps = {
   portraitSrc: string;
@@ -22,6 +26,8 @@ export function HeroSection({
   linkedinHref = "https://linkedin.com/in/rfbcllr",
   resumeHref = "/resume",
 }: HeroSectionProps) {
+  const { quote, nextQuote, clearQuote } = useCharacterQuotes();
+  const quoteId = useId();
   return (
     <section className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pb-44 pt-14 text-center md:pt-20">
       <ResizableTitle className="hero-reveal" />
@@ -35,12 +41,25 @@ export function HeroSection({
           <div className="relative text-left">
             <div className="pointer-events-none absolute -inset-4 -rotate-1 border-2 border-dashed border-foreground/50" />
             <div className="relative border-2 border-foreground bg-card p-4 text-card-foreground shadow-[12px_12px_0_0_hsl(var(--foreground))] sm:p-6">
-              <div className="mx-auto mb-4 aspect-square w-full overflow-hidden border-2 border-foreground sm:mb-6">
+              <div className="relative mx-auto mb-4 aspect-square w-full sm:mb-6">
+                <CharacterQuoteBubble quote={quote} id={quoteId} />
+                <Button
+                  variant="ghost"
+                  aria-label="Say hi to Rafael"
+                  aria-describedby={quote ? quoteId : undefined}
+                  onPointerEnter={nextQuote}
+                  onPointerLeave={clearQuote}
+                  onFocus={nextQuote}
+                  onBlur={clearQuote}
+                  onClick={nextQuote}
+                  className="block size-full overflow-hidden rounded-none border-2 border-foreground p-0"
+                >
                 <img
                   src={portraitSrc}
                   alt="Rafael Bacellar"
                   className="size-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
                 />
+                </Button>
               </div>
               <h2 className="font-display text-[22px] font-bold leading-none tracking-[-0.03em] text-foreground sm:text-[28px]">
                 Rafael Bacellar

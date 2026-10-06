@@ -13,17 +13,21 @@ const QUOTES = [
   "Ready to collaborate?",
   "What's on your mind?",
   "Let's create magic! ✨",
+  "Press / to chat and E to react!",
 ];
 
 export function useCharacterQuotes() {
   const [index, setIndex] = useState(-1);
+  const [visible, setVisible] = useState(false);
   const nextQuote = () => {
-    const next = (index + 1) % QUOTES.length;
-    setIndex(next);
-    window.dispatchEvent(new CustomEvent("game-character-quote", { detail: QUOTES[next] }));
+    setIndex((previous) => {
+      const offset = 1 + Math.floor(Math.random() * (QUOTES.length - 1));
+      return (previous + offset) % QUOTES.length;
+    });
+    setVisible(true);
   };
   const clearQuote = () => {
-    window.dispatchEvent(new CustomEvent("game-character-quote", { detail: null }));
+    setVisible(false);
   };
-  return { quote: index >= 0 ? QUOTES[index] : undefined, nextQuote, clearQuote };
+  return { quote: visible && index >= 0 ? QUOTES[index] : undefined, nextQuote, clearQuote };
 }

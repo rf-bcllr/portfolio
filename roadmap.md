@@ -1,4 +1,5 @@
 # Tasks
+- [ ] Add independent blue portrait/footer quote bubbles with a random shortcut hint; remove footer-character game navigation and verify interactions.
 - [x] Apply the supplied arrival-notice cursor files verbatim and verify native cursor/no chat or reactions on /play.
 - [ ] Correct the supplied arrival notice remaining beyond five seconds and finish chat/reaction verification; blocked by the explicit instruction to keep the supplied files unchanged.
 - [x] Move Home availability onto the portrait at all sizes, share cursor quotes with the footer sprite, and color the headline apostrophe blue; verify rendering and interactions.
