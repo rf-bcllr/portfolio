@@ -48,14 +48,14 @@ export function HeroSection({
               <h2 className="font-display text-[22px] font-bold leading-none tracking-[-0.03em] text-foreground sm:text-[28px]">
                 Rafael Bacellar
               </h2>
-              <p className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-primary sm:mt-2">
+              <p className="font-display mt-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-primary sm:mt-2">
                 Senior Product Designer
               </p>
               <div className="mt-3 hidden grid-cols-2 gap-1.5 sm:mt-5 sm:grid">
                 {SKILLS.map((skill) => (
                   <span
                     key={skill}
-                    className="flex items-center justify-center border border-foreground px-2 py-1 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-foreground sm:py-1.5"
+                    className="font-display flex items-center justify-center border border-foreground px-2 py-1 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-foreground sm:py-1.5"
                   >
                     {skill}
                   </span>
