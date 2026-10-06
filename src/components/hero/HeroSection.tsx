@@ -42,7 +42,7 @@ export function HeroSection({
             <div className="pointer-events-none absolute -inset-4 -rotate-1 border-2 border-dashed border-foreground/50" />
             <div className="relative border-2 border-foreground bg-card p-4 text-card-foreground shadow-[12px_12px_0_0_hsl(var(--foreground))] sm:p-6">
               <div className="relative mx-auto mb-4 aspect-square w-full sm:mb-6">
-                <CharacterQuoteBubble quote={quote} id={quoteId} />
+                <CharacterQuoteBubble quote={quote} id={quoteId} placement="portrait" />
                 <Button
                   variant="ghost"
                   aria-label="Say hi to Rafael"
