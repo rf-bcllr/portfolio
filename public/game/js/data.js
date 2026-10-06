@@ -340,8 +340,8 @@ const ENTITIES = [
     label: 'Sign',
     sub:   'Cruz das Almas, Bahia',
     lines: [
-      'UFRB CAMPUS · Cruz das Almas, Bahia.',
-      'JOURNALISM · this way. DESIGN · not offered here.',
+      'UFRB CAMPUS · Cachoeira, Bahia.',
+      'DESIGN is not offered here.',
     ]
   },
   { id: 'npc-2015', type: 'npc', x: 340, zone: 'ufrb', sprite: 'npc/v2015',
@@ -374,14 +374,14 @@ const ENTITIES = [
     sub:   'Brand Designer · Sanar',
     lines: [
       'First badge. Medical education, materials for students who study twelve hours a day.',
-      'Here the brand had to look the same on posters, slides and handouts.',
-      'I left knowing how to build a kit someone else can use without asking me anything.',
+      'Here the brand had to look the same on books, social media post and everything else.',
+      'Visual design and consistency were the main skills developed here.',
     ],
     grants: ['brand'],
     quiz: {
       q: "Three teams need materials from you in the same week. How do you handle it?",
       options: [
-        { t: "I build a kit so each team can make its own pieces.", ok: true,
+        { t: "I build templates so each team can make its own pieces.", ok: true,
           fb: "At Sanar I made templates the teams could edit on their own. The requests stopped piling up on my desk, and the brand looked the same everywhere." },
         { t: "I do the most urgent one and the others wait.",
           fb: "I tried that. The next week there were five requests waiting." },
@@ -452,8 +452,8 @@ const ENTITIES = [
     label: 'Rafael, 2017',
     sub:   'Graphic Designer · Sebrae',
     lines: [
-      'Public agency, a queue of requests, and on the other side always a small business owner.',
-      'Needed yesterday, no production budget, has to work in print and in the feed.',
+      'Public agency, a queue of requests, and at the end of the line is always a small business owner.',
+      'All the projects were urgent, and the deadlines were really tight.',
       'The deadlines taught me to iterate fast, before I had read about any method for it.',
     ],
     grants: ['research', 'fast'],
@@ -496,7 +496,7 @@ const ENTITIES = [
     sub:   'Message · 2019',
     lines: [
       '"Hi Rafael, saw your profile. We have a design opening here in retail."',
-      { en: 'I only saw it months later. Replied anyway. Still got the job.', who: 'me' },
+      { en: 'I only saw it months later. Replied anyway and still got the job.', who: 'me' },
     ],
   },
 
@@ -505,7 +505,7 @@ const ENTITIES = [
     label: 'Rafael, 2019',
     sub:   'Design Analyst · Le biscuit',
     lines: [
-      'Retail. On the other side of the screen, people in a real hurry with a card in hand.',
+      'Retail. More than one hundred stores across the country and an e-commerce to fill the gaps between them.',
       'I started opening the funnel report before opening the layout file.',
       'One extra second at checkout shows up in the spreadsheet at month end.',
     ],
@@ -577,7 +577,7 @@ const ENTITIES = [
     ],
     win: [
       { en: "I didn't win anything. I got through.", who: 'me' },
-      { en: 'I left 2020 with the whole process in the cloud and research done over calls. And I never wrote a one-year roadmap again.', who: 'me' },
+      { en: 'I left 2020 with the whole process in the cloud and research done over calls.', who: 'me' },
     ],
     grants: ['adapt', 'systems'],
     /* Preta, de luto. É a única camisa do jogo que não é uma cor de marca. */
@@ -589,7 +589,7 @@ const ENTITIES = [
     label: 'LinkedIn',
     sub:   'Message · 2021',
     lines: [
-      '"Rafael, have you worked in edtech? The role is remote."',
+      '"Rafael, have you worked with technology? This role is remote."',
       { en: 'I applied for the Graphic Design role with my eye on Product. Got hired as a Product Designer from day one.', who: 'me' },
     ],
   },
@@ -610,7 +610,7 @@ const ENTITIES = [
         { t: "When different users pull the same screen in different directions and a wrong guess is expensive.", ok: true,
           fb: "At ClassApp, schools, families and students shared the same screens. I had to argue for research time, and it paid off every time." },
         { t: "Always. Research comes before any design.",
-          fb: "At Sebrae, shipping early was the right call. It depends on how much a wrong guess costs." },
+          fb: "At Sebrae, delivering early was the right call. It depends on how much a wrong guess costs." },
         { t: "Never. Shipping and measuring is faster.",
           fb: "That worked for one-off jobs. With one product and three kinds of user, guessing cost more than asking." },
       ],
@@ -657,7 +657,7 @@ const ENTITIES = [
         { t: "More pieces for the portfolio.",
           fb: "Projects made just to fill a portfolio usually look like it. I'd rather have fewer, real ones." },
         { t: "A way to find paying clients.",
-          fb: "That's sales, and that's fine, but my weekends are for experiments." },
+          fb: "That's sales, and that's fine." },
       ],
     },
     becomes: { level: 8, title: 'Freelancer',
@@ -666,7 +666,7 @@ const ENTITIES = [
   { id: 'case-saude', type: 'case', x: 4560, zone: 'free1', sprite: 'props/terminal', accent: '#18958d',
     label: 'Saúde e Ponto',
     card:  { rarity: 'rare',
-             flavor: 'Born on a weekend. Shows you the nutrition before you commit to the fries.' },
+             flavor: 'Born on a weekend, this shop app rewards you for eating healthy and exercising.' },
     case: {
       media: { src: 'assets/cases/saude-e-ponto.png', orient: 'landscape', alt: 'Home screen and order flow' },
       title: 'Saúde e Ponto',
@@ -703,14 +703,14 @@ const ENTITIES = [
     lines: [
       'Fintech inside an education group. The money moving here is families paying for school.',
       'A layout mistake becomes a wrong invoice. That changes how carefully you treat every screen state.',
-      'I took over Meu Arco at 2.9 in the app store. I left it at 4.8.',
+      'I took over Meu isaac at 2.9 in the app stores and left it at 4.8.',
     ],
     grants: ['ds', 'code'],
     quiz: {
-      q: "In a fintech product, a layout mistake can turn into a wrong invoice. How does that change your work?",
+      q: "In a fintech product, even a small mistake can cost money. How does that change your work?",
       options: [
         { t: "I design every state of every screen: empty, loading, error and the edge cases.", ok: true,
-          fb: "At isaac, families pay for school through the product. The invoice breaks in the states nobody designed, so I design them all before handoff." },
+          fb: "At isaac, families pay for school through the product. The mistake lies in the states nobody designed, so I design them all before handoff." },
         { t: "I add a confirmation step everywhere.",
           fb: "Confirming a wrong number doesn't fix it. It only adds a click." },
         { t: "QA will catch it.",
@@ -764,7 +764,7 @@ const ENTITIES = [
     label: 'Rafael, 2026',
     sub:   'Global Product Designer',
     lines: [
-      'First client outside Brazil. American university, product in English, four-hour time difference.',
+      'First client outside Brazil. First product in English.',
       'It is also the first time the delivery depends on a model behaving on the other side.',
       'I started designing the path that lets someone check the result on their own.',
     ],
@@ -808,8 +808,8 @@ const ENTITIES = [
     lines: [
       '"Rafael, we have an AI challenge in education. Want to talk?"',
       { en: 'Edtech and AI look like the perfect marriage. I said yes.', who: 'me' },
-      { en: 'Third time, too. Le biscuit, ClassApp and FTD all started with a message like this.', who: 'me' },
-      { en: 'If you walked all the way here, you already know how to reach me.', who: 'me' },
+      { en: 'It was the third time a LinkedIn message led me to my next professional challenge.', who: 'me' },
+      { en: '(If you walked all the way here, you already know you wont find me on Gupy.)', who: 'me' },
     ],
     link: { url: 'https://linkedin.com/in/rfbcllr', label: 'Open LinkedIn ↗' },
   },
@@ -856,7 +856,7 @@ const ENTITIES = [
   { id: 'case-lesson', type: 'case', x: 7190, zone: 'ftd', sprite: 'props/altar', accent: '#d93a55',
     label: 'Lesson Plans',
     card:  { rarity: 'epic',
-             flavor: 'Forty-five minutes of class, planned before the coffee cools.' },
+             flavor: 'Several classes planned before the coffee cools.' },
     case: {
       media: { src: 'assets/cases/plano-de-aula.gif', orient: 'landscape', alt: 'Guided lesson plan flow' },
       title: 'Lesson Plan Generation Tool',
@@ -972,7 +972,7 @@ const ENTITIES = [
     intro: [
       { en: 'Another chest. After the first one was so generous, why not?', who: 'me' },
       'The chest has teeth.',
-      { en: 'Of course it does. It is a job with no agreed scope.', who: 'me' },
+      { en: 'Of course it does.', who: 'me' },
     ],
     rounds: [
       {
@@ -1006,7 +1006,7 @@ const ENTITIES = [
     ],
     win: [
       { en: 'The chest went back to being a chest. Empty, by the way.', who: 'me' },
-      { en: 'Scope creep comes back on every project. Now I name it as soon as it shows up.', who: 'me' },
+      { en: 'Imposter syndrome comes back on every project. Now I name it as soon as it shows up.', who: 'me' },
     ],
     grants: ['comm'],
   },
@@ -1063,9 +1063,9 @@ const BOTTLE_USE = {
 const AMAYA = {
   label:  'Amaya',
   sub:    'Good dog',
-  locked: [{ en: 'Second slot, still empty. Something gets me through 2020.', who: 'me' }],
+  locked: [{ en: 'Second slot, still empty.', who: 'me' }],
   lines:  [
-    { en: 'Amaya. She sat through every hour of 2020 with me.', who: 'me' },
+    { en: 'Amaya. She sat through every hour of 2021 with me.', who: 'me' },
     { en: 'No standup ever ran long with her asking to go out.', who: 'me' },
   ],
   join:   'Amaya joins the fight',
@@ -1109,7 +1109,7 @@ const END_RANKS = [
    continua lá para quem quiser ler. */
 const INTRO = {
   name: 'Rafael',
-  sub:  'Cruz das Almas, Bahia · 2015',
+  sub:  'Cachoeira, Bahia · 2015',
   lines: [
     "Final year of a Journalism degree. I've been doing design for about four years, but that isn't written down anywhere yet.",
     'Eleven years that way. Here we go.',
@@ -1137,7 +1137,7 @@ const CONTACT = {
    Cada `art` casa com um desenho em ONBOARD_ART, no game.js.
 --------------------------------------------------------- */
 const ONBOARD = [
-  { art: 'walk', title: 'Right is the only direction (in this game only)',
+  { art: 'walk', title: 'Right is the only direction (on this game only) (in this game only)',
     text: 'Hold → or D. Every block of street is another year, another job, another version of me. Outside the game, I lean a little more to the left.' },
   { art: 'talk', title: 'E is the whole vocabulary',
     text: 'E talks to people, reads signs and opens chests. The other versions of me ask one question each. Answer it and you earn that level.' },
