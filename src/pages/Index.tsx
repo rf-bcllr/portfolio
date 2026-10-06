@@ -1,141 +1,41 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Briefcase, Sparkles, Zap } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CompanyLogos } from "@/components/CompanyLogos";
 import { ContactFooter } from "@/components/ContactFooter";
 import { GameCharacter } from "@/components/GameCharacter";
 import { PreferToPlayCard } from "@/components/PreferToPlayCard";
-import { ProjectFolder } from "@/components/ProjectFolder";
+import { HeroSection } from "@/components/hero/HeroSection";
+import { featuredProjects } from "@/data/featuredProjects";
+import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { useTranslations } from "@/hooks/useTranslations";
-import { useCharacterQuotes } from "@/hooks/useCharacterQuotes";
 import heroPortrait from "@/assets/hero-portrait.png";
 
 
-const profileSkills = ["UX/UI Design", "AI Tools", "Design Systems", "Research"];
+const folderImages = [
+  { slug: "ionic-ai-identity", index: 0 },
+  { slug: "health-food-delivery", index: 0 },
+  { slug: "meu-arco", index: 1 },
+].map(({ slug, index }) => {
+  const project = featuredProjects.find((p) => p.slug === slug);
+  const media = project?.mediaItems[index];
+  return media?.poster ?? media?.src ?? project?.poster ?? "";
+}) as [string, string, string];
 
 export default function Index() {
   const t = useTranslations();
-  const { nextQuote, clearQuote } = useCharacterQuotes();
 
   return (
     <div className="min-h-dvh text-foreground">
       <SiteNav />
 
       <main id="main-content">
-        <section className="mx-auto grid min-h-[calc(100dvh-88px)] max-w-6xl grid-cols-1 items-center gap-x-16 gap-y-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1fr_auto]">
-          {/* Left column — hero */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-            className="max-w-[640px]"
-          >
-            {/* Massive editorial headline — comma in signature blue */}
-            <h1 className="animate-headline-reveal font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
-              I&nbsp;<span className="text-primary">'</span>&nbsp;m Rafa
-            </h1>
-
-            {/* Paragraph anchored by a blue rule — the Especular move */}
-            <p className="animate-text-reveal stagger-2 mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground opacity-0 sm:hidden">
-              Your next end-to-end Product Designer
-            </p>
-            <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
-              Your next end-to-end Product Designer.&nbsp;
-            </p>
-
-            {/* Selected cases — folder and label share one interactive area */}
-            <div className="animate-text-reveal stagger-3 mt-10 opacity-0">
-              <ProjectFolder />
-            </div>
-
-          </motion.div>
-
-          {/* Right column — profile card with editorial frame */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative w-full max-w-[260px] justify-self-center sm:max-w-[320px] lg:justify-self-end"
-          >
-            {/* Rotated dashed frame — hand-marked editorial layout register */}
-            <div
-              className="pointer-events-none absolute -inset-4 -rotate-1 border-2 border-dashed border-foreground/50"
-              aria-hidden="true"
-            />
-
-            {/* Solid card with hard offset shadow */}
-            <div className="relative border-2 border-foreground bg-card p-4 text-card-foreground shadow-[12px_12px_0_0_hsl(var(--foreground))] sm:p-6">
-              <div className="mx-auto mb-4 aspect-square w-full overflow-hidden border-2 border-foreground sm:mb-6">
-                <img
-                  src={heroPortrait}
-                  alt="Rafael Bacellar"
-                  loading="eager"
-                  decoding="async"
-                  onPointerEnter={nextQuote}
-                  onPointerLeave={clearQuote}
-                  className="size-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
-                />
-              </div>
-
-              <h2 className="font-display text-[22px] font-bold leading-none tracking-[-0.03em] text-foreground sm:text-[28px]">
-                Rafael Bacellar
-              </h2>
-              <p
-                className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-primary sm:mt-2"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Senior Product Designer
-              </p>
-
-              <div className="mt-3 hidden grid-cols-2 gap-1.5 sm:mt-5 sm:grid">
-                {profileSkills.map((s) => (
-                  <span
-                    key={s}
-                    className="flex items-center justify-center border border-foreground px-2 py-1 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-foreground sm:py-1.5"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-
-
-              <div className="mt-6 flex justify-between border-t-2 border-foreground pt-4">
-                <a
-                  href="https://linkedin.com/in/rfbcllr"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  LinkedIn
-                </a>
-                <Button
-                  asChild
-                  variant="link"
-                  className="h-auto rounded-none border-b-2 border-foreground p-0 font-display text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary hover:no-underline"
-                >
-                  <Link to="/resume" data-cursor-action="navigate-internal">Resume</Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Floating editorial ID tag */}
-            <div
-              className="absolute -right-3 -top-3 flex animate-badge-pop items-center gap-2 bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-background sm:tracking-[0.2em]"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              <span className="relative inline-flex size-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-[hsl(var(--tag-green))]" />
-              </span>
-              <span>Available for new projects</span>
-            </div>
-          </motion.div>
-        </section>
+        <HeroSection
+          portraitSrc={heroPortrait}
+          avatarSrc={avatar}
+          folderImages={folderImages}
+        />
 
         <section className="mx-auto max-w-6xl px-6 pb-16 pt-8 sm:py-16">
           <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
