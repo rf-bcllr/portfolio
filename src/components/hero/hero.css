@@ -1,0 +1,43 @@
+/* Hero: floating composition, resizable title and entrance motion.
+   Relies on the existing tokens (--primary, --foreground, --tag-green…) and .pfolder styles in index.css. */
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.hero-float { animation: hero-float 6s ease-in-out infinite; }
+.hero-float--alt { animation-duration: 5.2s; animation-delay: -2.4s; }
+
+@keyframes hero-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-reveal { animation: hero-reveal var(--dur-slow, .65s) var(--ease-out, cubic-bezier(.16, 1, .3, 1)) both; }
+
+/* Phrase swap inside the transform box */
+@keyframes hero-swap {
+  from { opacity: 0; filter: blur(6px); transform: translateY(0.08em); }
+  to { opacity: 1; filter: none; transform: none; }
+}
+.hero-title-swap { display: inline-block; animation: hero-swap .3s var(--ease-out, cubic-bezier(.16, 1, .3, 1)) both; }
+
+@keyframes hero-wave {
+  0%, 100% { transform: rotate(0); }
+  20%, 60% { transform: rotate(14deg); }
+  40% { transform: rotate(-8deg); }
+  80% { transform: rotate(-4deg); }
+}
+.hero-wave { display: inline-block; transform-origin: 70% 70%; animation: hero-wave 1.4s ease-in-out .5s both; }
+
+.hero-tbox:focus-visible { outline: 2px solid hsl(var(--primary) / .35); outline-offset: 10px; }
+
+/* Stacked variant of the existing folder, used floating in front of the card */
+.pfolder--compact { flex-direction: column; align-items: center; gap: 10px; width: auto; max-width: none; min-height: 0; }
+.pfolder--compact .pfolder-art { width: 176px; filter: drop-shadow(0 18px 22px hsl(222 18% 12% / .18)); }
+@media (max-width: 639px) {
+  .pfolder--compact .pfolder-art { width: 128px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-float, .hero-reveal, .hero-title-swap, .hero-wave { animation: none; }
+}
