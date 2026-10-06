@@ -4,6 +4,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { cn } from "@/lib/utils";
 
 
 
@@ -56,7 +57,7 @@ function ConnectButton({
       onClick={onClick}
       data-cursor-link
       aria-label="Let's connect on LinkedIn (opens in a new tab)"
-      className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-semibold leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
+      className={cn("inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-semibold leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground", className)}
     >
       Let&apos;s connect
     </a>
@@ -71,7 +72,7 @@ export function SiteNav() {
     <header className="sticky top-4 z-50 px-4">
       <nav
         aria-label="Primary"
-        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 rounded-full border-2 border-foreground px-3 shadow-[4px_4px_0_0_hsl(var(--foreground))] backdrop-blur-2xl backdrop-saturate-150 sm:gap-4 lg:gap-6"
+        className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 rounded-full border-2 border-foreground px-2 shadow-[4px_4px_0_0_hsl(var(--foreground))] backdrop-blur-2xl backdrop-saturate-150 sm:gap-4 sm:px-3 lg:gap-6"
 
         style={{
           background:
@@ -132,9 +133,9 @@ export function SiteNav() {
         </div>
 
         {/* Mobile: CTA + toggle */}
-        <div className="flex shrink-0 items-center gap-1.5 lg:hidden">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-1.5 lg:hidden">
           <ThemeToggle />
-          <ConnectButton className="h-11 px-2.5 text-[11px]" />
+          <ConnectButton className="h-11 px-2 text-[10px] sm:px-2.5 sm:text-[11px]" />
 
 
           <button
