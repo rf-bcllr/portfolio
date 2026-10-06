@@ -1,5 +1,5 @@
 # Tasks
-- [ ] Keep the game teaser on Home only; add the supplied game logo to the teaser and both loading/start screens, and verify rendering and game launch.
+- [x] Keep the game teaser on Home only; add the supplied game logo to the teaser and both loading/start screens, and verify rendering and game launch.
 - [x] Add independent blue portrait/footer quote bubbles with a random shortcut hint; remove footer-character game navigation and verify interactions.
 - [x] Apply the supplied arrival-notice cursor files verbatim and verify native cursor/no chat or reactions on /play.
 - [ ] Correct the supplied arrival notice remaining beyond five seconds and finish chat/reaction verification; blocked by the explicit instruction to keep the supplied files unchanged.
