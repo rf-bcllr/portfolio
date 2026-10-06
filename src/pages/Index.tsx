@@ -47,7 +47,7 @@ export default function Index() {
 
             {/* Massive editorial headline — comma in signature blue */}
             <h1 className="animate-headline-reveal font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
-              Hello<span className="text-primary">,</span>
+              I&nbsp;'&nbsp;m Rafa
             </h1>
 
             {/* Paragraph anchored by a blue rule — the Especular move */}
@@ -55,9 +55,7 @@ export default function Index() {
               I'm your next end-to-end product designer
             </p>
             <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
-              I'm a Senior Product Designer with{" "}
-              <strong className="font-bold">10+ years of experience</strong>{" "}
-              creating digital products that connect people and solve real problems — from mobile apps to AI-powered tools.
+              Your next end-to-end Product Designer.&nbsp;
             </p>
 
             {/* Selected cases — folder and label share one interactive area */}
