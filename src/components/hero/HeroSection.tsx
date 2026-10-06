@@ -70,14 +70,14 @@ export function HeroSection({
                     key={link.label}
                     href={link.href}
                     {...(link.external ? { target: "_blank", rel: "noreferrer" } : {})}
-                    className="border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+                    className="font-display border-b-2 border-foreground text-[10px] font-bold uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
                   >
                     {link.label}
                   </a>
                 ))}
               </div>
             </div>
-            <div className="absolute -right-3 -top-3 flex items-center gap-2 bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-background sm:tracking-[0.2em]">
+            <div className="font-display absolute -right-3 -top-3 flex items-center gap-2 bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-background sm:tracking-[0.2em]">
               <span className="relative inline-flex size-2">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-[hsl(var(--tag-green))]" />
@@ -99,10 +99,10 @@ export function HeroSection({
               <div className="pfolder-front" />
             </div>
             <div className="flex flex-col items-center gap-1 bg-foreground px-3 py-2 text-center">
-              <span className="text-[11px] font-bold uppercase leading-none tracking-[0.14em] text-background">
+              <span className="font-display text-[11px] font-bold uppercase leading-none tracking-[0.14em] text-background">
                 Selected cases
               </span>
-              <span className="text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-background/60">
+              <span className="font-display text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-background/60">
                 9 projects · 2023–2026
               </span>
             </div>
