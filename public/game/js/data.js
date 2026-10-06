@@ -472,7 +472,7 @@ const ENTITIES = [
                look: { shirt: '#1e5bd6' } },
   },
 
-  { id: 'chest-feyh', type: 'chest', x: 1540, zone: 'uneb', sprite: 'props/chest',
+  { id: 'chest-feyh', type: 'chest', x: 1540, plat: true, zone: 'uneb', sprite: 'props/chest',
     label: 'Chest',
     sub:   'Feyh Bier contest · 2019',
     lines: [
@@ -529,7 +529,7 @@ const ENTITIES = [
     url: 'https://www.coursera.org/account/accomplishments/certificate/AHMR4UGP2G98' },
 
   /* ============ BOSS: PANDEMIA — 2020 ============ */
-  { id: 'boss-covid', type: 'boss', x: 3280, zone: 'pandemic', sprite: 'boss/pandemic',
+  { id: 'boss-covid', type: 'boss', x: 3280, plat: true, zone: 'pandemic', sprite: 'boss/pandemic',
     label: 'The Pandemic',
     foeName: 'The Gravedigger',
     taunt:   "I'm not a 'little flu'.",
@@ -637,7 +637,7 @@ const ENTITIES = [
     },
     grants: ['a11y'],
   },
-  { id: 'cert-masterclass', type: 'cert', x: 4200, y: 150, zone: 'classapp',
+  { id: 'cert-masterclass', type: 'cert', x: 4200, plat: true, y: 150, zone: 'classapp',
     cert: 'UX/UI na Prática (Masterclass)',
     url: 'https://www.sympla.com.br/download-certificado?t=wEW3bUAO3xBIV29pYRsKL4vdl1mx8jSIU2FaPKEkrrI' },
 
@@ -663,7 +663,7 @@ const ENTITIES = [
     becomes: { level: 8, title: 'Freelancer',
                look: { shirt: '#2f9e5e' } },
   },
-  { id: 'case-saude', type: 'case', x: 4560, zone: 'free1', sprite: 'props/terminal', accent: '#18958d',
+  { id: 'case-saude', type: 'case', x: 4560, plat: true, zone: 'free1', sprite: 'props/terminal', accent: '#18958d',
     label: 'Saúde e Ponto',
     card:  { rarity: 'rare',
              flavor: 'Born on a weekend, this shop app rewards you for eating healthy and exercising.' },
@@ -738,7 +738,7 @@ const ENTITIES = [
       ],
     },
   },
-  { id: 'case-aiwriting', type: 'case', x: 5790, zone: 'arco', sprite: 'props/altar', accent: '#df6616',
+  { id: 'case-aiwriting', type: 'case', x: 5790, plat: true, zone: 'arco', sprite: 'props/altar', accent: '#df6616',
     label: 'AI Writing',
     card:  { rarity: 'rare',   // era 'wireframe'; virou carta normal
              flavor: 'Catches the angry draft before the whole school does.' },
@@ -838,7 +838,7 @@ const ENTITIES = [
     becomes: { level: 11, title: 'Senior Product Designer',
                look: { shirt: '#7c3aed', beard: 1, glasses: 1 } },
   },
-  { id: 'case-images', type: 'case', x: 6990, zone: 'ftd', sprite: 'props/altar', accent: '#007ee6',
+  { id: 'case-images', type: 'case', x: 6990, plat: true, zone: 'ftd', sprite: 'props/altar', accent: '#007ee6',
     label: 'AI Images',
     card:  { rarity: 'rare',   // era 'wireframe'; virou carta normal
              flavor: 'Because a geometry question without a figure is just a riddle.' },
@@ -914,17 +914,17 @@ const ENTITIES = [
   { id: 'door-free2', type: 'door', x: 6615, zone: 'free2', needs: 10 },
   { id: 'door-ftd', type: 'door', x: 7375, zone: 'ftd', needs: 11 },
 
-  { id: 'tool-adobe', type: 'tool', x: 915, zone: 'sanar', tool: 'adobe' },
+  { id: 'tool-adobe', type: 'tool', x: 915, plat: true, zone: 'sanar', tool: 'adobe' },
   { id: 'tool-figma', type: 'tool', x: 5000, y: 196, zone: 'aracaju', tool: 'figma' },
   { id: 'tool-excalidraw', type: 'tool', x: 3790, zone: 'classapp', tool: 'excalidraw' },
-  { id: 'tool-notion', type: 'tool', x: 4050, zone: 'classapp', tool: 'notion' },
-  { id: 'tool-maze', type: 'tool', x: 4650, zone: 'free1', tool: 'maze' },
+  { id: 'tool-notion', type: 'tool', x: 4050, plat: true, zone: 'classapp', tool: 'notion' },
+  { id: 'tool-maze', type: 'tool', x: 4650, plat: true, zone: 'free1', tool: 'maze' },
   { id: 'tool-mixpanel', type: 'tool', x: 5520, zone: 'arco', tool: 'mixpanel' },
-  { id: 'tool-github', type: 'tool', x: 5900, zone: 'arco', tool: 'github' },
+  { id: 'tool-github', type: 'tool', x: 5900, plat: true, zone: 'arco', tool: 'github' },
   { id: 'tool-chatgpt', type: 'tool', x: 6300, zone: 'free2', tool: 'chatgpt' },
-  { id: 'tool-lovable', type: 'tool', x: 6470, zone: 'free2', tool: 'lovable' },
+  { id: 'tool-lovable', type: 'tool', x: 6470, plat: true, zone: 'free2', tool: 'lovable' },
   { id: 'tool-claude', type: 'tool', x: 6890, zone: 'ftd', tool: 'claude' },
-  { id: 'tool-claudecode', type: 'tool', x: 7090, zone: 'ftd', tool: 'claudecode' },
+  { id: 'tool-claudecode', type: 'tool', x: 7090, plat: true, zone: 'ftd', tool: 'claudecode' },
 
   { id: 'fakedoor', type: 'door', x: 4125, zone: 'classapp', fake: true,
     label: 'Door',
@@ -1023,6 +1023,27 @@ const ENTITIES = [
     becomes: { level: 12, title: 'The next version',
                look: { shirt: '#2f6bff', beard: 1, glasses: 1 } },
   },
+];
+
+/* ---------- Plataformas ----------
+   Caixas de seleção de editor (as do Figma, com as alcinhas nos cantos)
+   empilhadas como os blocos do Mario. Só se sobe nelas: dá para atravessar
+   pulando por baixo e pousar por cima. x é a borda esquerda, w a largura
+   (múltiplo de 16), h a altura do TOPO acima do chão. O pulo segurando sobe
+   42,7: h 32 se alcança do chão, h 64 só de uma de 32 vizinha. Uma entidade
+   com `plat: true` fica em cima da plataforma que está debaixo dela. */
+const PLATFORMS = [
+  { x: 900,  w: 48, h: 32 },                              // Sanar: Adobe
+  { x: 1472, w: 32, h: 32 }, { x: 1520, w: 64, h: 64 },   // UNEB: escada até o baú da cerveja
+  { x: 3200, w: 32, h: 32 }, { x: 3264, w: 64, h: 64 },   // Pandemia: o pedestal do Gravedigger
+  { x: 4032, w: 48, h: 32 },                              // ClassApp: Notion
+  { x: 4176, w: 48, h: 32 },                              // ClassApp: certificado
+  { x: 4528, w: 64, h: 32 }, { x: 4624, w: 48, h: 64 },   // Freelancer: Saúde e Ponto, depois Maze
+  { x: 5768, w: 48, h: 32 },                              // Arco: AI Writing
+  { x: 5880, w: 48, h: 32 },                              // Arco: GitHub
+  { x: 6448, w: 48, h: 32 },                              // Freelancer Global: Lovable
+  { x: 6968, w: 48, h: 32 },                              // FTD: AI Images
+  { x: 7040, w: 32, h: 32 }, { x: 7072, w: 48, h: 64 },   // FTD: escada até o Claude Code
 ];
 
 /* ---------- Currículo (resumo de rfbcllr.site/resume e /certifications) ---------- */

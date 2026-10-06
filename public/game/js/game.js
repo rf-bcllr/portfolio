@@ -1179,6 +1179,29 @@ const SPEED_BASE = 2.1, SPEED_BOOST = 3.1;
 const WALK_PER_UNIT = 8 / (2 * 30);
 let SPEED = state.bebeu ? SPEED_BOOST : SPEED_BASE;   // cerveja bebida em outra sessão continua valendo
 const GRAV = 0.42, JUMP = -6.2;
+
+/* PLATAFORMAS (dados em PLATFORMS, no data.js). De mão única: só seguram
+   quem vem caindo de cima. e.lift é quanto uma entidade com `plat: true`
+   sobe para ficar em cima da plataforma debaixo dela. */
+const BLOCO = 16;
+const SELECAO = '#0d99ff';          // o azul da caixa de seleção do Figma
+for (const e of ENTITIES) {
+  e.lift = 0;
+  if (!e.plat) continue;
+  const cx = e.x + 8;
+  const p = PLATFORMS.find(p => cx >= p.x && cx <= p.x + p.w);
+  if (p) e.lift = p.h;
+}
+const alturaDe = e => e.lift || 0;
+function pisoEmbaixo(yAntes, yDepois) {
+  let piso = GROUND_Y;
+  const esq = player.x + 3, dir = player.x + 11;
+  for (const p of PLATFORMS) {
+    const topo = GROUND_Y - p.h;
+    if (dir > p.x && esq < p.x + p.w && yAntes <= topo + .5 && yDepois >= topo && topo < piso) piso = topo;
+  }
+  return piso;
+}
 let cam = 0;
 
 /* ---------------------------------------------------------
@@ -2954,6 +2977,13 @@ function brilhoDeColetavel(cx, cy, r) {
 }
 
 function drawEntity(e) {
+  const l = alturaDe(e);
+  if (!l) return drawEntityBase(e);
+  ctx.save(); ctx.translate(0, -l);
+  try { drawEntityBase(e); } finally { ctx.restore(); }
+}
+
+function drawEntityBase(e) {
   const x = e.x - cam;
   if (x < -90 || x > W + 90) return;
   const now = Date.now();
@@ -4688,6 +4718,8 @@ function nearest() {
     /* mimic derrotado é só cenário: fica de boca aberta na rua, mas não
        oferece mais o E. Sem isto dava para lutar com ele de novo. */
     if (e.type === 'mimic' && state.seen.has(e.id)) continue;
+    // em cima de plataforma, só quem está lá em cima alcança (e vice-versa)
+    if (Math.abs(player.y - (GROUND_Y - alturaDe(e))) > 14) continue;
     const d = Math.abs(e.x + 8 - (player.x + 7));
     if (d < bd) { bd = d; best = e; }
   }
@@ -5340,6 +5372,42 @@ function updateHUD() {
 --------------------------------------------------------- */
 let bossTriggered = false, doorMsg = 0;
 const BOSS_GATE = (ENTITIES.find(e => e.type === 'boss') || { x: 0 }).x - 14;
+/* Cada bloco é uma caixa de seleção: contorno azul de 1px, alcinhas brancas
+   nos cantos, e embaixo da plataforma o selo de medida, como no Figma. */
+function drawPlatforms() {
+  const z = zoneAt(player.x);
+  for (const p of PLATFORMS) {
+    const x0 = Math.round(p.x - cam), top = GROUND_Y - p.h;
+    if (x0 > W + 20 || x0 + p.w < -20) continue;
+    ctx.fillStyle = 'rgba(25,28,36,.10)';                    // sombra no chão
+    ctx.beginPath(); ctx.ellipse(x0 + p.w / 2, GROUND_Y, p.w / 2 - 2, 2.2, 0, 0, 6.284); ctx.fill();
+    ctx.fillStyle = z.dark ? 'rgba(13,153,255,.22)' : 'rgba(255,255,255,.78)';
+    ctx.fillRect(x0, top, p.w, BLOCO);
+    ctx.fillStyle = 'rgba(13,153,255,.10)';
+    ctx.fillRect(x0, top, p.w, BLOCO);
+    ctx.strokeStyle = SELECAO; ctx.lineWidth = 1;
+    ctx.strokeRect(x0 + .5, top + .5, p.w - 1, BLOCO - 1);
+    for (let bx = x0 + BLOCO; bx < x0 + p.w; bx += BLOCO) {
+      ctx.beginPath(); ctx.moveTo(bx + .5, top); ctx.lineTo(bx + .5, top + BLOCO); ctx.stroke();
+    }
+    for (let bx = x0; bx <= x0 + p.w; bx += BLOCO) {         // alcinhas nos cantos
+      for (const by of [top, top + BLOCO]) {
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 1.5, by - 1.5, 4, 4);
+        ctx.strokeRect(bx - 1, by - 1, 3, 3);
+      }
+    }
+    const txt = p.w + ' × ' + BLOCO;                          // selo de medida
+    ctx.font = '700 6px "Plus Jakarta Sans", system-ui, sans-serif';
+    const tw = Math.ceil(ctx.measureText(txt).width) + 6;
+    const lx = Math.round(x0 + p.w / 2 - tw / 2), ly = top + BLOCO + 4;
+    ctx.fillStyle = SELECAO;
+    if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(lx, ly, tw, 9, 2); ctx.fill(); } else ctx.fillRect(lx, ly, tw, 9);
+    ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(txt, lx + tw / 2, ly + 4.8);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  }
+}
+
 function drawWorld() {
   const b = currentBlend();
   drawSky(b);
@@ -5350,6 +5418,7 @@ function drawWorld() {
   drawGround(b);
   drawSea(false);
   drawNear();
+  drawPlatforms();
   for (const e of ENTITIES) drawEntity(e);
   drawPlayer();
   drawDoorFrentes();
@@ -5508,10 +5577,14 @@ function stepInner() {
       if (player.vy > 0) g *= GRAV_QUEDA;               // caindo: mais pesado
       else if (!keys.jump) g *= GRAV_CORTE;             // subindo sem segurar: corta
       player.vy += g;
+      const yAntes = player.y;
       player.y += player.vy;
-      if (player.y >= GROUND_Y) {
+      // plataformas só seguram quem vem descendo; subindo, atravessa
+      const piso = player.vy >= 0 ? pisoEmbaixo(yAntes, player.y) : GROUND_Y;
+      if (player.y < piso) player.onGround = false;   // saiu da borda: cai
+      else {
         const impacto = player.vy;
-        player.y = GROUND_Y; player.vy = 0;
+        player.y = piso; player.vy = 0;
         if (!player.onGround && impacto > 2) {
           // pouso: achata na proporção do tombo, e a poeira abre para os lados
           squash = -Math.min(.75, impacto / 9); squashV = 0;
@@ -5557,7 +5630,7 @@ function stepInner() {
     // ferramentas: pega passando por cima
     for (const e of ENTITIES) {
       if (e.type !== 'tool' || state.tools.has(e.tool)) continue;
-      const ty = e.y != null ? e.y + 8 : GROUND_Y - 8;
+      const ty = (e.y != null ? e.y + 8 : GROUND_Y - 8) - alturaDe(e);
       const near = Math.abs((e.x + 8) - (player.x + 7)) < 18
                 && Math.abs(ty - (player.y - 12)) < (e.y != null ? 24 : 30);
       if (near) {
@@ -5572,11 +5645,11 @@ function stepInner() {
     for (const e of ENTITIES) {
       if (e.type !== 'cert' || state.certs.has(e.id)) continue;
       const dx = Math.abs((e.x + 7) - (player.x + 7));
-      const dy = Math.abs((e.y + 8) - (player.y - 16));
+      const dy = Math.abs((e.y - alturaDe(e) + 8) - (player.y - 16));
       if (dx < 16 && dy < 22) {
         state.certs.add(e.id); save();
-        faisca(e.x + 7, e.y + 8, 14, zoneAt(e.x).accent);
-        textoSobe(e.x + 7, e.y - 4, '+1', zoneAt(e.x).accent);
+        faisca(e.x + 7, e.y - alturaDe(e) + 8, 14, zoneAt(e.x).accent);
+        textoSobe(e.x + 7, e.y - alturaDe(e) - 4, '+1', zoneAt(e.x).accent);
         toast(T(UI.gotCert), `<a class="link" href="${e.url}" target="_blank" rel="noopener">${T(e.cert)} ↗</a>`, true, 'cert');
         if (e.special) setTimeout(() => say('???', [e.special], 'npc/narrator'), 700);
       }
