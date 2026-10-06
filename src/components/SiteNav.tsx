@@ -4,6 +4,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { cn } from "@/lib/utils";
 
 
 
@@ -56,7 +57,7 @@ function ConnectButton({
       onClick={onClick}
       data-cursor-link
       aria-label="Let's connect on LinkedIn (opens in a new tab)"
-      className={`inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-semibold leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground ${className}`}
+      className={cn("inline-flex h-9 items-center justify-center whitespace-nowrap rounded-full border border-border bg-transparent px-4 text-sm font-semibold leading-none text-foreground transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-primary-foreground", className)}
     >
       Let&apos;s connect
     </a>
