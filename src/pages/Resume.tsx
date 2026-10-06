@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Calendar, Download, Globe, Lightbulb, Mail, MapPin, MessageCircle, Phone, Wrench } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { ContactFooter } from "@/components/ContactFooter";
-import { PreferToPlayCard } from "@/components/PreferToPlayCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -167,8 +166,6 @@ export default function Resume() {
           </div>
           <ToolsMarquee tools={tools} speed="slow" />
         </section>
-
-        <PreferToPlayCard />
 
       </main>
       <ContactFooter />
