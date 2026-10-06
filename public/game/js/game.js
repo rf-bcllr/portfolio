@@ -5782,7 +5782,7 @@ function applyLang() {
     : '<kbd>←</kbd><kbd>→</kbd> ' + T(UI.hMove) + '<span class="sep">·</span><kbd>Space</kbd> ' + T(UI.hJump) +
       '<span class="sep">·</span><kbd>E</kbd> ' + T(UI.hTalk);
   document.getElementById('title-sub').innerHTML =
-    '10+ years of a career turned into a map.<br>Walk right. Walking right is walking through time.';
+    '11 years of career turned into a platform game.<br>Walk right. Walking right is walking through time.';
   // a dica de avançar fala do aparelho em que se está jogando
   dnext.innerHTML = isTouch ? esc(T(UI.nextTouch)) : '<kbd>E</kbd>' + esc(T(UI.nextKeys));
   lastZone = null;
