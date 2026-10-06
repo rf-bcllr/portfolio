@@ -5377,7 +5377,8 @@ const BOSS_GATE = (ENTITIES.find(e => e.type === 'boss') || { x: 0 }).x - 14;
 function drawPlatforms() {
   const z = zoneAt(player.x);
   for (const p of PLATFORMS) {
-    const x0 = Math.round(p.x - cam), top = GROUND_Y - p.h;
+    // sem arredondar: acompanha a câmera suave igual aos itens e ao chão (senão treme 1px)
+    const x0 = p.x - cam, top = GROUND_Y - p.h;
     if (x0 > W + 20 || x0 + p.w < -20) continue;
     ctx.fillStyle = 'rgba(25,28,36,.10)';                    // sombra no chão
     ctx.beginPath(); ctx.ellipse(x0 + p.w / 2, GROUND_Y, p.w / 2 - 2, 2.2, 0, 0, 6.284); ctx.fill();
@@ -5399,7 +5400,7 @@ function drawPlatforms() {
     const txt = p.w + ' × ' + BLOCO;                          // selo de medida
     ctx.font = '700 6px "Plus Jakarta Sans", system-ui, sans-serif';
     const tw = Math.ceil(ctx.measureText(txt).width) + 6;
-    const lx = Math.round(x0 + p.w / 2 - tw / 2), ly = top + BLOCO + 4;
+    const lx = x0 + p.w / 2 - tw / 2, ly = top + BLOCO + 4;
     ctx.fillStyle = SELECAO;
     if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(lx, ly, tw, 9, 2); ctx.fill(); } else ctx.fillRect(lx, ly, tw, 9);
     ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
