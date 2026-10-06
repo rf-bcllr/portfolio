@@ -10,7 +10,7 @@ export function PreferToPlayCard({
   buttonLabel?: string;
 }) {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-8">
+    <section className="mx-auto max-w-6xl px-6 pb-8 pt-24">
       <Card className="flex flex-col items-start justify-between gap-8 p-6 sm:p-8 lg:flex-row lg:items-center">
         <div className="max-w-xl lg:flex-1">
           <h2 className="font-display text-3xl font-bold tracking-normal md:text-4xl">
@@ -25,7 +25,14 @@ export function PreferToPlayCard({
           </p>
         </div>
         <div className="flex w-full min-w-0 flex-col items-center gap-6 lg:w-80 lg:shrink-0">
-          <img src={questLogo.url} alt="End-to-End Quest for the Next Product" width={1774} height={887} loading="lazy" className="h-auto w-full max-w-80 object-contain" />
+          <img
+            src={questLogo.url}
+            alt="End-to-End Quest for the Next Product"
+            width={1774}
+            height={887}
+            loading="lazy"
+            className="-mt-12 h-auto w-[115%] max-w-none object-contain sm:-mt-14 lg:-mt-20 lg:w-[130%] lg:translate-x-8"
+          />
           <PlayLink label={buttonLabel} variant="blue" className="h-auto min-h-11 max-w-full px-4 py-3 text-center text-sm whitespace-normal sm:px-6 sm:text-base" />
         </div>
       </Card>
