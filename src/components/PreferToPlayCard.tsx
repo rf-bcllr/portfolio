@@ -31,7 +31,7 @@ export function PreferToPlayCard({
             width={1774}
             height={887}
             loading="lazy"
-            className="-mt-12 h-auto w-[115%] max-w-none object-contain sm:-mt-14 lg:-mt-20 lg:w-[130%] lg:translate-x-8"
+            className="-mt-14 h-auto w-[120%] max-w-none object-contain sm:-mt-16 lg:-mt-24 lg:w-[135%] lg:translate-x-0"
           />
           <PlayLink label={buttonLabel} variant="blue" className="h-auto min-h-11 max-w-full px-4 py-3 text-center text-sm whitespace-normal sm:px-6 sm:text-base" />
         </div>

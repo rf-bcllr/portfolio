@@ -1157,12 +1157,12 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   background-color:var(--paper);background-image:radial-gradient(rgba(25,28,36,.16) 1px,transparent 1px);background-size:18px 18px;
   transition:opacity .2s ease-out}
 #loading.out{opacity:0;pointer-events:none}
-.ld-card{display:flex;flex-direction:column;align-items:stretch;gap:18px;width:min(420px,100%);
+.ld-card{display:flex;flex-direction:column;align-items:stretch;gap:18px;width:min(480px,100%);
   padding:16px 20px;background:var(--panel);border:3px solid var(--ink);border-radius:0;box-shadow:8px 8px 0 var(--ink)}
 .quest-logo{display:block;width:100%;max-width:100%;height:auto;object-fit:contain;margin-inline:auto}
 .tcard h1.title-logo{margin-bottom:16px;line-height:0}
-.title-logo .quest-logo{max-height:30dvh}
-.loading-logo{max-height:22dvh;margin-bottom:12px}
+.title-logo .quest-logo{max-height:36dvh}
+.loading-logo{max-height:27dvh;margin-bottom:12px}
 .ld-heading{text-align:center}.ld-kicker{display:block;font-size:12px;font-weight:800;color:var(--accent);letter-spacing:0}
 .ld-eyebrow{font-size:11px;font-weight:800;letter-spacing:0;color:var(--ink);text-align:center}
 .ld-progress-label{display:flex;justify-content:space-between;gap:12px;font-family:var(--font-pixel);font-size:11px;font-weight:800;color:var(--dim);font-variant-numeric:tabular-nums}

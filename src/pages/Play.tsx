@@ -38,8 +38,8 @@ function GameLoading({ visible, progress }: { visible: boolean; progress: number
       aria-hidden={!visible}
       className={`fixed inset-0 z-[45] grid place-items-center overflow-y-auto bg-background p-4 transition-opacity duration-250 motion-reduce:transition-none ${visible ? "opacity-100" : "pointer-events-none opacity-0"}`}
     >
-      <div className="flex w-full max-w-[420px] flex-col gap-4 rounded-none border-[3px] border-foreground bg-card px-5 py-4 shadow-[8px_8px_0_0_hsl(var(--foreground))]">
-        <div className="text-center"><img src={questLogo.url} alt="End-to-End Quest for the Next Product" width={1774} height={887} className="mx-auto mb-3 h-auto max-h-[22dvh] w-full object-contain" /><p className="font-display text-xs font-bold text-primary">LOADING ADVENTURE</p></div>
+      <div className="flex w-full max-w-[480px] flex-col gap-4 rounded-none border-[3px] border-foreground bg-card px-5 py-4 shadow-[8px_8px_0_0_hsl(var(--foreground))]">
+        <div className="text-center"><img src={questLogo.url} alt="End-to-End Quest for the Next Product" width={1774} height={887} className="mx-auto mb-3 h-auto max-h-[27dvh] w-full object-contain" /><p className="font-display text-xs font-bold text-primary">LOADING ADVENTURE</p></div>
         <div className="flex justify-between gap-3 font-display text-[11px] font-bold tabular-nums text-muted-foreground"><span>PREPARING THE MAP</span><span>{progress}%</span></div>
         <div className="game-ld-runway" style={{ "--load-progress": progress / 100 } as React.CSSProperties}>
           <div className="game-ld-hero" aria-hidden="true" />
