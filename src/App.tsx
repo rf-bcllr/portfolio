@@ -4,9 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { CustomCursor } from "@/components/CustomCursor";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
-import { DrawingCanvas } from "@/components/DrawingCanvas";
+import { LiveCursorsRoom } from "@/components/multiplayer/LiveCursorsRoom";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AskPortfolio } from "@/components/AskPortfolio";
@@ -28,13 +27,11 @@ const App = () => {
     <ThemeProvider defaultTheme="light" storageKey="rfbcllr-theme-v2">
       <TooltipProvider>
         <AnimatedBackground />
-        <DrawingCanvas />
         <Toaster />
         <Sonner />
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <ScrollToTop />
-          <CustomCursor />
           <AskPortfolio />
           <Routes>
             <Route path="/" element={<Index />} />
@@ -48,6 +45,7 @@ const App = () => {
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <LiveCursorsRoom />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
