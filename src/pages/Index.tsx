@@ -51,7 +51,7 @@ export default function Index() {
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { icon: Briefcase, title: "10+ years", text: "Across edtech, fintech, retail, health and AI product workflows.", delay: 0 },
+              { icon: Briefcase, title: "10+ years of experience", text: "Across edtech, fintech, retail, health and AI product workflows.", delay: 0 },
               { icon: Sparkles, title: "Systems thinker", text: "From research synthesis to component libraries and product storytelling.", delay: 0.1 },
               { icon: Zap, title: "Fast iterations", text: "Comfortable moving between FigJam, Figma, prototypes and shipped UI.", delay: 0.2 },
             ].map(({ icon: Icon, title, text, delay }) => (
