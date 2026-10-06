@@ -13,6 +13,7 @@ const HEARTBEAT = 10_000; // ms. Lets others know we're still here while idle.
 const PEER_TIMEOUT = 30_000; // ms without news before a visitor is dropped
 const MESSAGE_TTL = 6_000; // ms a finished chat message stays on screen
 const REACTION_TTL = 1_600; // ms, matches the CSS animation
+const ARRIVAL_TTL = 5_000; // ms the "X is here" notice stays (matches the CSS animation)
 const MAX_CHAT = 80;
 const SMOOTHING = 0.22; // 0–1, how fast rendered cursors catch up with the latest position
 
@@ -78,6 +79,17 @@ function Bubble({ color, name, children }: { color: string; name?: string; child
   );
 }
 
+function NameTag({ color, name }: { color: string; name: string }) {
+  return (
+    <div
+      className="ml-4 mt-0.5 w-max rounded-full px-2.5 py-1 text-[12px] font-bold leading-none text-white shadow-sm"
+      style={{ backgroundColor: color }}
+    >
+      {name}
+    </div>
+  );
+}
+
 export function LiveCursors({ transport }: { transport: Transport }) {
   const [me] = useState(loadVisitor);
   const [peerIds, setPeerIds] = useState<string[]>([]);
@@ -87,10 +99,11 @@ export function LiveCursors({ transport }: { transport: Transport }) {
   const [draft, setDraft] = useState("");
   const [lastSent, setLastSent] = useState("");
   const [pickerAt, setPickerAt] = useState<Point | null>(null);
+  const [arrival, setArrival] = useState<{ key: number; name: string; color: string } | null>(null);
 
   const peers = useRef(new Map<string, PeerState>());
   const cursorEls = useRef(new Map<string, HTMLDivElement>());
-  const selfBubbleEl = useRef<HTMLDivElement>(null);
+  const selfEl = useRef<HTMLDivElement>(null);
   const mouse = useRef<Point | null>(null); // own pointer, client coords
   const lastMove = useRef<Point | null>(null); // own pointer, shared coords
   const lastSendAt = useRef(0);
@@ -98,6 +111,8 @@ export function LiveCursors({ transport }: { transport: Transport }) {
   const chatTimer = useRef(0);
   const messageTimers = useRef(new Map<string, number>());
   const reactionKey = useRef(0);
+  const announced = useRef(new Set<string>());
+  const arrivalTimer = useRef(0);
 
   const send = useCallback((event: CursorEvent) => transport.send(event), [transport]);
 
@@ -126,6 +141,12 @@ export function LiveCursors({ transport }: { transport: Transport }) {
       peer = { visitor, target: { x: 0, y: 0 }, rendered: { x: 0, y: 0 }, visible: false, lastSeen: Date.now() };
       peers.current.set(visitor.id, peer);
       setPeerIds((ids) => [...ids, visitor.id]);
+      if (!announced.current.has(visitor.id)) {
+        announced.current.add(visitor.id);
+        window.clearTimeout(arrivalTimer.current);
+        setArrival({ key: Date.now(), name: visitor.name, color: visitor.color });
+        arrivalTimer.current = window.setTimeout(() => setArrival(null), ARRIVAL_TTL);
+      }
     }
     peer.visitor = visitor;
     peer.lastSeen = Date.now();
@@ -197,8 +218,15 @@ export function LiveCursors({ transport }: { transport: Transport }) {
       window.clearInterval(prune);
       window.removeEventListener("pagehide", onPageHide);
       messageTimers.current.forEach((t) => window.clearTimeout(t));
+      window.clearTimeout(arrivalTimer.current);
     };
   }, [transport, me, send, upsertPeer, removePeer, showMessage, addReaction]);
+
+  // Our own cursor is drawn by us (colored arrow + name), so hide the system one while mounted
+  useEffect(() => {
+    document.documentElement.classList.add("live-cursors-self");
+    return () => document.documentElement.classList.remove("live-cursors-self");
+  }, []);
 
   // Own pointer → broadcast (throttled)
   useEffect(() => {
@@ -236,7 +264,7 @@ export function LiveCursors({ transport }: { transport: Transport }) {
     };
   }, [me, send]);
 
-  // Render loop: ease remote cursors toward their latest position and pin our own chat bubble to the pointer.
+  // Render loop: ease remote cursors toward their latest position; our own cursor follows the pointer exactly.
   useEffect(() => {
     let frame = 0;
     const tick = () => {
@@ -249,8 +277,13 @@ export function LiveCursors({ transport }: { transport: Transport }) {
         el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         el.style.opacity = peer.visible ? "1" : "0";
       });
-      if (selfBubbleEl.current && mouse.current) {
-        selfBubbleEl.current.style.transform = `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0)`;
+      if (selfEl.current) {
+        if (mouse.current) {
+          selfEl.current.style.transform = `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0)`;
+          selfEl.current.style.opacity = "1";
+        } else {
+          selfEl.current.style.opacity = "0";
+        }
       }
       frame = requestAnimationFrame(tick);
     };
@@ -358,36 +391,11 @@ export function LiveCursors({ transport }: { transport: Transport }) {
                 {message}
               </Bubble>
             ) : (
-              <div
-                className="ml-4 mt-0.5 w-max rounded-full px-2.5 py-1 text-[12px] font-bold leading-none text-white shadow-sm"
-                style={{ backgroundColor: peer.visitor.color }}
-              >
-                {peer.visitor.name}
-              </div>
+              <NameTag color={peer.visitor.color} name={peer.visitor.name} />
             )}
           </div>
         );
       })}
-
-      {/* Own chat bubble, follows the real pointer */}
-      {mode === "chat" ? (
-        <div ref={selfBubbleEl} className="pointer-events-auto absolute left-0 top-0 pl-1 pt-1">
-          <Bubble color={me.color}>
-            {lastSent ? <div className="mb-1 text-white/80">{lastSent}</div> : null}
-            <input
-              autoFocus
-              value={draft}
-              maxLength={MAX_CHAT}
-              onChange={(e) => onDraftChange(e.target.value)}
-              onKeyDown={onDraftKeyDown}
-              onBlur={closeChat}
-              placeholder={lastSent ? "" : "Say something…"}
-              aria-label="Chat message, visible to everyone on this page"
-              className="w-56 bg-transparent text-white outline-none placeholder:text-white/70"
-            />
-          </Bubble>
-        </div>
-      ) : null}
 
       {/* Reaction picker */}
       {mode === "react" && pickerAt ? (
@@ -421,27 +429,53 @@ export function LiveCursors({ transport }: { transport: Transport }) {
         </span>
       ))}
 
-      {/* Presence + shortcuts hint */}
-      <div className="pointer-events-auto fixed bottom-5 left-5 flex items-center gap-3 rounded-full border-2 border-foreground bg-card py-1.5 pl-2 pr-3.5 font-sans text-[12px] font-bold text-foreground shadow-[0_3px_0_0_hsl(var(--foreground))]">
-        <span className="flex -space-x-1.5">
-          {[me, ...visiblePeers.map((p) => p.visitor)].slice(0, 5).map((v) => (
-            <span
-              key={v.id}
-              title={v.id === me.id ? `${v.name} (you)` : v.name}
-              className="size-5 rounded-full border-2 border-card"
-              style={{ backgroundColor: v.color }}
-            />
-          ))}
-        </span>
-        <span>
-          {visiblePeers.length === 0 ? "Just you here" : `${visiblePeers.length + 1} people here`}
-        </span>
-        <span className="h-4 w-px bg-border" />
-        <span className="flex items-center gap-1.5 text-muted-foreground">
-          <kbd className="live-kbd">/</kbd> chat
-          <kbd className="live-kbd ml-1">E</kbd> react
-        </span>
+      {/* Own cursor: colored arrow + name tag, or the chat input while chatting. Rendered last so it sits on top. */}
+      <div
+        ref={selfEl}
+        aria-hidden={mode !== "chat"}
+        className="absolute -left-0.5 -top-0.5 z-10 opacity-0 will-change-transform"
+      >
+        <CursorArrow color={me.color} />
+        {mode === "chat" ? (
+          <div className="pointer-events-auto">
+            <Bubble color={me.color}>
+              {lastSent ? <div className="mb-1 text-white/80">{lastSent}</div> : null}
+              <input
+                autoFocus
+                value={draft}
+                maxLength={MAX_CHAT}
+                onChange={(e) => onDraftChange(e.target.value)}
+                onKeyDown={onDraftKeyDown}
+                onBlur={closeChat}
+                placeholder={lastSent ? "" : "Say something…"}
+                aria-label="Chat message, visible to everyone on this page"
+                className="w-56 bg-transparent text-white outline-none placeholder:text-white/70"
+              />
+            </Bubble>
+          </div>
+        ) : (
+          <NameTag color={me.color} name={me.name} />
+        )}
       </div>
+
+      {/* Arrival notice: shown once per visitor, then fades out on its own */}
+      {arrival ? (
+        <div
+          key={arrival.key}
+          role="status"
+          className="live-arrival fixed bottom-5 left-5 flex items-center gap-2 rounded-full py-1.5 pl-3 pr-2 font-sans text-[12px] font-bold text-white shadow-md"
+          style={{ backgroundColor: arrival.color }}
+        >
+          <span>{arrival.name} is here</span>
+          <span className="text-white/60">·</span>
+          <span className="flex items-center gap-1">
+            <kbd className="live-kbd">/</kbd> chat
+          </span>
+          <span className="flex items-center gap-1">
+            <kbd className="live-kbd">E</kbd> react
+          </span>
+        </div>
+      ) : null}
     </div>
   );
 }

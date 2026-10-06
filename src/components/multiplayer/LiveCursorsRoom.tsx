@@ -30,6 +30,7 @@ function createSupabaseTransport(room: string): Transport {
 /** Mount once inside the router. One room per page; only connects on devices with a mouse. */
 export function LiveCursorsRoom() {
   const { pathname } = useLocation();
+  const isPlay = pathname.replace(/\/+$/, "") === "/play";
   const [hasMouse, setHasMouse] = useState(false);
   const [transport, setTransport] = useState<Transport | null>(null);
 
@@ -42,14 +43,14 @@ export function LiveCursorsRoom() {
   }, []);
 
   useEffect(() => {
-    if (!hasMouse) return;
+    if (!hasMouse || isPlay) return;
     const next = createSupabaseTransport(pathname);
     setTransport(next);
     return () => {
       next.close();
       setTransport(null);
     };
-  }, [hasMouse, pathname]);
+  }, [hasMouse, pathname, isPlay]);
 
-  return transport ? <LiveCursors key={pathname} transport={transport} /> : null;
+  return !isPlay && transport ? <LiveCursors key={pathname} transport={transport} /> : null;
 }

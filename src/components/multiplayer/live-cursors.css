@@ -7,21 +7,37 @@
 }
 .live-reaction { animation: live-reaction 1.6s cubic-bezier(.16, 1, .3, 1) forwards; }
 
+/* "Anonymous Toucan is here" notice: slides in, holds, fades out (5s total) */
+@keyframes live-arrival {
+  0% { opacity: 0; transform: translateY(10px); }
+  6%, 88% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(4px); }
+}
+.live-arrival { animation: live-arrival 5s cubic-bezier(.16, 1, .3, 1) forwards; }
+
+/* Keyboard hints inside the colored notice */
 .live-kbd {
   display: inline-grid;
   place-items: center;
   min-width: 18px;
   height: 18px;
   padding: 0 4px;
-  border: 1px solid hsl(var(--border));
+  border: 1px solid rgb(255 255 255 / .35);
   border-bottom-width: 2px;
   border-radius: 5px;
-  background: hsl(var(--muted));
-  color: hsl(var(--foreground));
+  background: rgb(255 255 255 / .18);
+  color: #fff;
   font-size: 11px;
   line-height: 1;
 }
 
+/* Our own cursor is drawn by LiveCursors, so hide the system arrow… */
+.live-cursors-self,
+.live-cursors-self * { cursor: none !important; }
+/* …but keep the text caret where people type */
+.live-cursors-self :is(input, textarea, select, [contenteditable="true"]) { cursor: text !important; }
+
 @media (prefers-reduced-motion: reduce) {
   .live-reaction { animation-duration: .6s; }
+  .live-arrival { animation-name: none; }
 }
