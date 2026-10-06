@@ -1,5 +1,6 @@
 # Tasks
-- [ ] Apply the supplied arrival-notice cursor files verbatim and verify native cursor/no chat or reactions on /play.
+- [x] Apply the supplied arrival-notice cursor files verbatim and verify native cursor/no chat or reactions on /play.
+- [ ] Correct the supplied arrival notice remaining beyond five seconds and finish chat/reaction verification; blocked by the explicit instruction to keep the supplied files unchanged.
 - [x] Move Home availability onto the portrait at all sizes, share cursor quotes with the footer sprite, and color the headline apostrophe blue; verify rendering and interactions.
 - [x] Place desktop collectibles between location and actions when they fit, preserving narrow-screen placement.
 - [x] Fix follow-up question hover contrast and verify light/dark states.
