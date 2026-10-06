@@ -4,7 +4,7 @@ import questLogo from "@/assets/quest-logo.png.asset.json";
 
 export function PreferToPlayCard({
   title,
-  buttonLabel = "Quest for the Next Product",
+  buttonLabel = "Play this portfolio",
 }: {
   title?: string;
   buttonLabel?: string;
