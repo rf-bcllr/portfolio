@@ -52,7 +52,7 @@ export default function Index() {
 
             {/* Paragraph anchored by a blue rule — the Especular move */}
             <p className="animate-text-reveal stagger-2 mt-12 max-w-[520px] border-l-[6px] border-primary pl-6 text-[17px] font-medium leading-[1.55] text-foreground opacity-0 sm:hidden">
-              I'm your next end-to-end product designer
+              Your next end-to-end product designer
             </p>
             <p className="animate-text-reveal stagger-2 mt-12 hidden max-w-[520px] border-l-[6px] border-primary pl-6 text-[19px] font-medium leading-[1.5] text-foreground opacity-0 sm:block">
               Your next end-to-end Product Designer.&nbsp;
