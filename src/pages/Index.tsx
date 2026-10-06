@@ -10,6 +10,7 @@ import { GameCharacter } from "@/components/GameCharacter";
 import { PreferToPlayCard } from "@/components/PreferToPlayCard";
 import { ProjectFolder } from "@/components/ProjectFolder";
 import { useTranslations } from "@/hooks/useTranslations";
+import { useCharacterQuotes } from "@/hooks/useCharacterQuotes";
 import heroPortrait from "@/assets/hero-portrait.png";
 
 
@@ -17,6 +18,7 @@ const profileSkills = ["UX/UI Design", "AI Tools", "Design Systems", "Research"]
 
 export default function Index() {
   const t = useTranslations();
+  const { nextQuote, clearQuote } = useCharacterQuotes();
 
   return (
     <div className="min-h-dvh text-foreground">
@@ -31,23 +33,9 @@ export default function Index() {
             transition={{ duration: 0.55 }}
             className="order-2 max-w-[640px] lg:order-1"
           >
-            {/* Editorial availability badge — inverted, dense, uppercase */}
-            <div className="mb-10 hidden animate-badge-pop items-center gap-3 border border-foreground bg-foreground px-4 py-2 text-background sm:inline-flex">
-              <span className="relative inline-flex size-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
-                <span className="relative inline-flex size-2.5 rounded-full bg-[hsl(var(--tag-green))]" />
-              </span>
-              <span
-                className="text-[10px] font-bold uppercase tracking-[0.22em]"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Available for new projects
-              </span>
-            </div>
-
             {/* Massive editorial headline — comma in signature blue */}
             <h1 className="animate-headline-reveal font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
-              I&nbsp;'&nbsp;m Rafa
+              I&nbsp;<span className="text-primary">'</span>&nbsp;m Rafa
             </h1>
 
             {/* Paragraph anchored by a blue rule — the Especular move */}
@@ -101,6 +89,8 @@ export default function Index() {
                   alt="Rafael Bacellar"
                   loading="eager"
                   decoding="async"
+                  onPointerEnter={nextQuote}
+                  onPointerLeave={clearQuote}
                   className="size-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
                 />
               </div>
@@ -153,12 +143,11 @@ export default function Index() {
               className="absolute -right-3 -top-3 flex animate-badge-pop items-center gap-2 bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-background sm:tracking-[0.2em]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              <span className="relative inline-flex size-2 sm:hidden">
+              <span className="relative inline-flex size-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--tag-green))] opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-[hsl(var(--tag-green))]" />
               </span>
-              <span className="sm:hidden">Available for new projects</span>
-              <span className="hidden sm:inline">REF-2026</span>
+              <span>Available for new projects</span>
             </div>
           </motion.div>
         </section>
