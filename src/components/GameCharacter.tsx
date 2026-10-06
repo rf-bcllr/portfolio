@@ -1,20 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-const QUOTES = [
-  "How are you doing?",
-  "Let's talk?",
-  "Let's make products!",
-  "Let's connect on LinkedIn :)",
-  "Need a designer?",
-  "Coffee chat? ☕",
-  "Let's build something!",
-  "Say hi! 👋",
-  "Open to new adventures!",
-  "Ready to collaborate?",
-  "What's on your mind?",
-  "Let's create magic! ✨",
-];
+import { useCharacterQuotes } from "@/hooks/useCharacterQuotes";
 
 /* Idle sprite from the game (4 frames of 105×180 at y=2), drawn at 120px tall. */
 const SCALE = 120 / 180;
@@ -22,18 +8,9 @@ const SCALE = 120 / 180;
 export function GameCharacter() {
   const navigate = useNavigate();
   const ref = useRef<HTMLButtonElement>(null);
-  const [quote, setQuote] = useState(-1);
+  const { quote, nextQuote, clearQuote } = useCharacterQuotes();
   const [focused, setFocused] = useState(false);
-
-  const nextQuote = () => {
-    setQuote((current) => {
-      const next = (current + 1) % QUOTES.length;
-      window.dispatchEvent(new CustomEvent("game-character-quote", { detail: QUOTES[next] }));
-      return next;
-    });
-  };
-
-  const show = quote >= 0 && focused;
+  const show = Boolean(quote) && focused;
 
   return (
     <div className="relative inline-flex flex-col items-start">
@@ -43,9 +20,9 @@ export function GameCharacter() {
         aria-label="Rafael's game character, say hi"
         aria-describedby={show ? "game-char-quote" : undefined}
         onPointerEnter={nextQuote}
-        onPointerLeave={() => window.dispatchEvent(new CustomEvent("game-character-quote", { detail: null }))}
+        onPointerLeave={clearQuote}
         onFocus={() => { setFocused(true); nextQuote(); }}
-        onBlur={() => setFocused(false)}
+        onBlur={() => { setFocused(false); clearQuote(); }}
         onClick={() => navigate("/play")}
         className="game-char relative block cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         style={{
@@ -69,7 +46,7 @@ export function GameCharacter() {
               color: "var(--session-cursor-foreground, hsl(var(--primary-foreground)))",
             }}
           >
-            {QUOTES[quote]}
+            {quote}
           </span>
         )}
       </button>
