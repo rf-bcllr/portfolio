@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Briefcase, MapPin, Sparkles, Zap } from "lucide-react";
+import { Briefcase, Sparkles, Zap } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -31,7 +31,7 @@ export default function Index() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="order-2 max-w-[640px] lg:order-1"
+            className="max-w-[640px]"
           >
             {/* Massive editorial headline — comma in signature blue */}
             <h1 className="animate-headline-reveal font-display text-[26vw] font-bold leading-[0.78] tracking-[-0.055em] text-foreground sm:text-[18vw] lg:text-[200px]">
@@ -51,21 +51,6 @@ export default function Index() {
               <ProjectFolder />
             </div>
 
-            {/* Bottom editorial rule — location as metadata */}
-            <div className="mt-0 hidden flex-wrap items-end justify-between gap-6 border-t-2 border-foreground pt-6 w-full sm:mt-16 sm:flex md:w-full">
-              <div>
-                <p
-                  className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Location
-                </p>
-                <p className="mt-1 flex items-center gap-1.5 font-display text-lg font-bold text-foreground">
-                  <MapPin className="size-4 text-primary" />
-                  Based in Brazil <span className="text-muted-foreground">· Open to remote worldwide</span>
-                </p>
-              </div>
-            </div>
           </motion.div>
 
           {/* Right column — profile card with editorial frame */}
@@ -73,7 +58,7 @@ export default function Index() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative order-1 w-full max-w-[260px] justify-self-center sm:max-w-[320px] lg:order-2 lg:justify-self-end"
+            className="relative w-full max-w-[260px] justify-self-center sm:max-w-[320px] lg:justify-self-end"
           >
             {/* Rotated dashed frame — hand-marked editorial layout register */}
             <div
