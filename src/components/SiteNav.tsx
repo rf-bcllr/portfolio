@@ -110,6 +110,7 @@ export function SiteNav() {
       >
         <Link
           to="/"
+          onClick={navTransition("/")}
           data-cursor-action="home"
           className="flex shrink-0 items-center gap-2.5 rounded-full pr-2 text-lg font-semibold leading-none"
         >
@@ -192,7 +193,7 @@ export function SiteNav() {
                 <NavLink
                   key={item.to}
                   to={item.to}
-                  onClick={() => setOpen(false)}
+                  onClick={navTransition(item.to, () => setOpen(false))}
                   aria-current={location.pathname === item.to ? "page" : undefined}
                   className={({ isActive }) =>
                     `inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
@@ -205,7 +206,7 @@ export function SiteNav() {
                   {item.label}
                 </NavLink>
               ))}
-              <PlayLink className="min-h-11 justify-start" onClick={() => setOpen(false)} />
+              <PlayLink className="min-h-11 justify-start" onClick={navTransition("/play", () => setOpen(false))} />
             </div>
           </div>
         )}
