@@ -11,4 +11,4 @@
 - Keep Work project facts in projectsData and presentation metadata in featuredProjects; a playable project may replace its outcome block with a Play CTA without changing other cards.
 - Resolve Home folder thumbnails from featuredProjects media items by slug and slide index, so the folder reuses the same media as Work without duplicating asset references.
 - Share portrait and footer-character phrases through one local-state quote hook and an anchored bubble component, so both work independently of live cursors.
-- Reuse the game-logo asset pointer in React and its exact served URL in static game HTML, so loading, title and teaser display one asset without duplicate binaries.
+- Reuse the game-logo asset pointer in React and its exact served URL in static game HTML, so game loading and title display one asset without duplicate binaries.
