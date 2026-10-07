@@ -455,6 +455,7 @@ export function LiveCursors({ transport }: { transport: Transport }) {
         className="absolute -left-0.5 -top-0.5 z-10 opacity-0 will-change-transform"
       >
         {resizing ? <ResizeArrow color={me.color} /> : <CursorArrow color={me.color} />}
+        {mode === "chat" ? (
           <div className="pointer-events-auto">
             <Bubble color={me.color}>
               {lastSent ? <div className="mb-1 text-white/80">{lastSent}</div> : null}
