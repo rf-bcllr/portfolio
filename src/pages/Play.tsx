@@ -52,29 +52,19 @@ function GameLoading({ visible, progress }: { visible: boolean; progress: number
   );
 }
 
-/* The project card is the dialog itself: natural size, scaled down uniformly
-   when the viewport is smaller. */
+/* The project card is the dialog itself: natural size, width capped to the
+   viewport; when taller than the screen it scrolls instead of shrinking, so
+   the text stays readable on phones. */
 function FitCard({ children }: { children: React.ReactNode }) {
   const inner = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(() => Math.min(1104, window.innerWidth - 32));
-  const [scale, setScale] = useState(1);
   useEffect(() => {
-    const el = inner.current;
-    if (!el) return;
-    const fit = () => {
-      const w = Math.min(1104, window.innerWidth - 32);
-      setWidth(w);
-      const h = el.offsetHeight;
-      setScale(Math.min(1, (window.innerHeight - 32) / Math.max(1, h)));
-    };
-    fit();
-    const ro = new ResizeObserver(fit);
-    ro.observe(el);
+    const fit = () => setWidth(Math.min(1104, window.innerWidth - 32));
     window.addEventListener("resize", fit);
-    return () => { ro.disconnect(); window.removeEventListener("resize", fit); };
+    return () => window.removeEventListener("resize", fit);
   }, []);
   return (
-    <div ref={inner} className="relative" style={{ width, transform: scale < 1 ? `scale(${scale})` : undefined, transformOrigin: "center" }}>
+    <div ref={inner} className="relative max-h-[calc(100dvh-32px)] overflow-y-auto overscroll-contain" style={{ width }}>
       {children}
       <DialogClose
         aria-label="Close"
