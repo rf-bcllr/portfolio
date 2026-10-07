@@ -29,7 +29,7 @@ export default function Certifications() {
     <div className="min-h-dvh text-foreground">
       <SiteNav />
       <main id="main-content" className="mx-auto max-w-6xl px-6 pb-20 pt-16 md:pt-24">
-        <section className="mb-16 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+        <section className="mb-16 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>
             <p
               className="animate-text-reveal stagger-1 mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground opacity-0"
