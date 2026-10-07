@@ -4852,7 +4852,7 @@ function armRestart(mode) {
       </div>`, 'estreito');
     /* Foco seguro: confirmar apaga tudo, então quem só aperta Enter cai em
        "Keep playing", não em "Start over". */
-    const nao = panel.querySelector('[data-close]');
+    const nao = panel.querySelector('.actions [data-close]');
     if (nao) setTimeout(() => { try { nao.focus({ preventScroll: true }); } catch (e) {} }, 60);
     const sim = document.getElementById('btn-yes-hud');
     if (sim) sim.onclick = confirmRestart;
