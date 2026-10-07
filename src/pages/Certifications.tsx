@@ -126,7 +126,7 @@ export default function Certifications() {
             >
               <img
                 src={cadaUmNaSua}
-                alt="Cada um na Sua — craft beer label sticker"
+                alt="Cadaum na Sua — tropical bottle sticker"
                 loading="lazy"
                 decoding="async"
                 className="w-full drop-shadow-[0_18px_28px_rgba(0,0,0,0.22)]"
