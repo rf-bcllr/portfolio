@@ -157,7 +157,7 @@ const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "cat
     outcomeLabel: "App rating, up from 2.9",
     outcomeHighlights: ["SUS score 90", "100% rollout ahead of schedule", "35% fewer support tickets"],
     accent: "purple",
-    mediaPresentation: resolveMediaPresentation({ orientation: "vertical", aspect: "aspect-[5/12]", maxWidth: "max-w-[245px]", rotate: "-rotate-2" }),
+    mediaPresentation: resolveMediaPresentation({ orientation: "vertical", aspect: "aspect-[5/12]", maxWidth: "max-w-[218px]", rotate: "-rotate-2" }),
   },
   "students-transportation": {
     emoji: "🚌",
@@ -252,8 +252,8 @@ const orientationBySlug: Record<FeaturedProjectSlug, FeaturedProjectMediaOrienta
 };
 
 const presentationOverrides: Partial<Record<FeaturedProjectSlug, Array<Partial<Pick<RawFeaturedMediaItem, "aspect" | "maxWidth" | "rotate">>>>> = {
-  "meu-arco": [
-    { aspect: "aspect-[5/12]", maxWidth: "max-w-[245px]", rotate: "-rotate-2" },
+"meu-arco": [
+    { aspect: "aspect-[5/12]", maxWidth: "max-w-[218px]", rotate: "-rotate-2" },
     { aspect: "aspect-[1972/1616]", maxWidth: "max-w-[520px]", rotate: "rotate-1" },
   ],
   "students-transportation": [{ maxWidth: "max-w-[260px]", rotate: "rotate-2" }],
