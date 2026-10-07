@@ -5,7 +5,7 @@ function renderQuote(quote: string) {
       return (
         <kbd
           key={i}
-          className="mx-[1px] inline-flex min-w-[18px] items-center justify-center rounded-[4px] border-2 border-foreground bg-primary-foreground px-[5px] pb-[2px] pt-0 font-sans text-[11px] font-bold leading-[14px] text-foreground shadow-[1.5px_1.5px_0_0_hsl(var(--foreground))]"
+          className="mx-[1px] inline-flex min-w-[18px] items-center justify-center rounded-[4px] border-2 border-foreground bg-background px-[5px] pb-[2px] pt-0 font-sans text-[11px] font-bold leading-[14px] text-foreground shadow-[1.5px_1.5px_0_0_hsl(var(--foreground))]"
         >
           {part.slice(1, -1)}
         </kbd>
