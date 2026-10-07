@@ -1210,9 +1210,12 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   .hud-right{order:-1;max-width:none;align-items:stretch}
   .hud-btns{flex-wrap:wrap;justify-content:flex-end;align-items:center}
   .hud-btns{width:100%}
-  #hud .hud-actions{display:flex;flex:1 1 100%;width:100%}
+  #hud .hud-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:1 1 100%;width:100%}
   #hud .hud-actions .btn{flex:1 1 0}
-  #hud .restart-wrap{flex:1 1 auto}
+  #hud .hud-actions:not(:has(.restart-wrap:not([hidden]))){grid-template-columns:repeat(2,minmax(0,1fr))}
+  #hud .hud-actions .btn{flex-direction:column;gap:3px;min-height:60px;padding:6px 4px}
+  #hud .restart-wrap{width:100%}
+  #hud .restart-wrap > .btn{width:100%}
   .pu-cap{display:none}
   .hud-actions{flex:1;min-width:0}
   .hud-actions .btn{flex:1;min-width:0;justify-content:center;text-align:center}
