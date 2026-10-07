@@ -1,4 +1,5 @@
 # Tasks
+- [ ] Keep New Game and tags unclipped on very small game screens; show a shortened portfolio footer at widths up to 400px and verify.
 - [x] Restore completed-game New Game across HUD sizes, compact Already used tags, move the games certificate to a reachable high Sebrae platform, and reduce footer text on very small screens; verify in the browser.
 - [x] Remove the Home teaser logo, restore the exact pre-change favicon from historical configuration, and verify alternating mascot screenshot frame rotation.
 - [x] Reposition portrait/footer speech bubbles at their upper-right corners and verify visibility at wide and narrow widths.
