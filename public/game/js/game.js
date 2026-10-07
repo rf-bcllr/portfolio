@@ -3755,14 +3755,21 @@ function openPanel(html, mode) {
   if (f) setTimeout(() => { try { f.focus({ preventScroll: true }); } catch (e) {} }, 30);
 }
 /* O card do projeto é o próprio diálogo, no tamanho natural; se a tela é
-   menor, encolhe inteiro (scale), sem refluir. */
+   estreita, encolhe pela largura (scale); se fica alto demais, rola — nunca
+   encolhe pela altura, senão o texto fica ilegível no celular. */
 function ajustaWork() {
   panel.style.transform = '';
+  panel.style.maxHeight = '';
+  panel.style.overflowY = '';
   if (!panel.classList.contains('work') || !overlay.classList.contains('open')) return;
   const w = panel.offsetWidth, h = panel.offsetHeight;
   if (!w || !h) return;
-  const s = Math.min(1, (innerWidth - 32) / w, (innerHeight - 32) / h);
+  const s = Math.min(1, (innerWidth - 32) / w);
   if (s < 1) panel.style.transform = 'scale(' + s.toFixed(4) + ')';
+  if (h * s > innerHeight - 32) {
+    panel.style.maxHeight = Math.floor((innerHeight - 32) / s) + 'px';
+    panel.style.overflowY = 'auto';
+  }
 }
 window.addEventListener('resize', ajustaWork);
 let aoFecharPainel = null;
