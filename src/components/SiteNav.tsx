@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, Play, X } from "lucide-react";
@@ -7,6 +7,9 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 
+
+// Survives page remounts so the pill can slide from the previous item.
+let lastPill: { x: number; w: number } | null = null;
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -69,6 +72,21 @@ export function SiteNav() {
   const location = useLocation();
 
 
+  const navRef = useRef<HTMLDivElement>(null);
+  const [pill, setPill] = useState<{ x: number; w: number } | null>(lastPill);
+  useLayoutEffect(() => {
+    const measure = () => {
+      const el = navRef.current?.querySelector<HTMLElement>('[aria-current="page"]');
+      if (!el) { setPill(null); return; }
+      const next = { x: el.offsetLeft, w: el.offsetWidth };
+      lastPill = next;
+      setPill(next);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [location.pathname]);
+
   const navTransition = (_to: string, after?: () => void) => () => after?.();
 
   return (
@@ -97,7 +115,16 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="relative hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
+        <div ref={navRef} className="relative hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
+          {pill && (
+            <motion.span
+              aria-hidden="true"
+              className="pointer-events-none absolute left-0 top-1/2 h-9 -translate-y-1/2 rounded-full bg-foreground"
+              initial={lastPill ? { x: lastPill.x, width: lastPill.w } : false}
+              animate={{ x: pill.x, width: pill.w }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            />
+          )}
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -115,14 +142,6 @@ export function SiteNav() {
             >
               {({ isActive }) => (
                 <>
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-active-pill"
-                      aria-hidden="true"
-                      className="absolute inset-0 rounded-full bg-foreground"
-                      transition={{ type: "spring", stiffness: 260, damping: 28 }}
-                    />
-                  )}
                   <span className="relative z-10">{item.label}</span>
                 </>
               )}

@@ -15,7 +15,7 @@ export const ContactFooter = ({ character }: ContactFooterProps) => {
           {character}
         </div>
       )}
-      <p>© {new Date().getFullYear()}&nbsp;Made with :coffee: by Rafael Bacellar · All rights reserved</p>
+      <p>© {new Date().getFullYear()}&nbsp;Made with ☕ by Rafael Bacellar · All rights reserved</p>
     </footer>
   );
 };
