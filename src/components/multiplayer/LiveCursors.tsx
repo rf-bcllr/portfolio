@@ -67,15 +67,11 @@ function CursorArrow({ color }: { color: string }) {
   );
 }
 
-/* Double-headed resize arrow, same visual language as CursorArrow: shown in
-   place of the arrow when hovering something that resizes (hero title box). */
-function ResizeArrow({ color }: { color: string }) {
+/* One centered silhouette, identical for every visitor and readable in both themes. */
+function ResizeArrow() {
   return (
-    <svg width="32" height="32" viewBox="0 0 20 20" className="drop-shadow-sm" aria-hidden="true" style={{ transform: "translate(-16px,-16px)" }}>
-      <path d="M4 10h12" stroke="white" strokeWidth="4" strokeLinecap="round" />
-      <path d="M4 10h12" stroke={color} strokeWidth="2" strokeLinecap="round" />
-      <path d="M3 10 8.4 6.5v7Z" fill={color} stroke="white" strokeWidth="1.4" strokeLinejoin="round" />
-      <path d="M17 10 11.6 6.5v7Z" fill={color} stroke="white" strokeWidth="1.4" strokeLinejoin="round" />
+    <svg width="32" height="32" viewBox="0 0 24 24" className="live-resize-arrow" aria-hidden="true">
+      <path d="M2 12 8 6v4h8V6l6 6-6 6v-4H8v4Z" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -454,7 +450,7 @@ export function LiveCursors({ transport }: { transport: Transport }) {
         aria-hidden={mode !== "chat"}
         className="absolute -left-0.5 -top-0.5 z-10 opacity-0 will-change-transform"
       >
-        {resizing ? <ResizeArrow color={me.color} /> : <CursorArrow color={me.color} />}
+        {resizing ? <ResizeArrow /> : <CursorArrow color={me.color} />}
         {mode === "chat" ? (
           <div className="pointer-events-auto">
             <Bubble color={me.color}>
@@ -472,9 +468,9 @@ export function LiveCursors({ transport }: { transport: Transport }) {
               />
             </Bubble>
           </div>
-        ) : (
+        ) : !resizing ? (
           <NameTag color={me.color} name={me.name} />
-        )}
+        ) : null}
       </div>
 
       {/* Arrival notice: shown once per visitor, then fades out on its own */}

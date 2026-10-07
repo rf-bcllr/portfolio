@@ -76,7 +76,7 @@ const ASSET_MANIFEST = {
 const IMG = {};
 const imgState = {};
 const ASSET_URL_OVERRIDES = {
-  'boss/gravedigger-battle': '/__l5e/assets-v1/8f9e4f92-fee2-4549-835d-dd2f42f041fa/gravedigger-battle.png',
+  'boss/gravedigger-battle': '/__l5e/assets-v1/8bd0f47e-e030-46ae-aed9-376443217142/gravedigger-medical-battle.png',
 };
 /* Sprites pedidos e ainda sem resposta. Quando a fila zera, roda o que estava
    esperando (habilitar o START, repintar a cena de onboarding). */

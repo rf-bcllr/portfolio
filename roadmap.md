@@ -1,4 +1,5 @@
 # Tasks
+- [ ] Replace Gravedigger battle art with the medical reaper, remove Action gradient shine, and refine the Hero resize cursor to black without its name tag; verify.
 - [x] Restore the mobile game controls to the portfolio's neobrutalist language while retaining a restrained glass layer; verify touch states and small landscapes.
 - [x] Replace only the Gravedigger's large battle sprite with the supplied artwork and verify asset loading and game syntax.
 - [ ] Refine the in-game timeline, apply the selected glass treatment to mobile movement/action controls, and round both loading containers without affecting gameplay or adjacent HUD elements; verify all target states.
