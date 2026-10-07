@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -67,6 +67,35 @@ function ConnectButton({
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // When the page is scrolled, glide back to the top before swapping pages,
+  // so the transition looks the same as navigating from the top.
+  const navTransition =
+    (to: string, after?: () => void) =>
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      after?.();
+      if (
+        e.defaultPrevented ||
+        e.button !== 0 ||
+        e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ||
+        window.scrollY <= 0 ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        return;
+      }
+      e.preventDefault();
+      const start = performance.now();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      const tick = () => {
+        if (window.scrollY <= 0 || performance.now() - start > 600) {
+          navigate(to);
+        } else {
+          requestAnimationFrame(tick);
+        }
+      };
+      requestAnimationFrame(tick);
+    };
 
   return (
     <header className="sticky top-4 z-50 px-4">
