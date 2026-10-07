@@ -754,7 +754,7 @@ const ENTITIES = [
     },
     grants: ['ai'],
   },
-  { id: 'cert-gameux', type: 'cert', x: 2192, plat: true, y: 144, zone: 'sebrae',
+  { id: 'cert-gameux', type: 'cert', x: 2192, plat: true, y: 184, zone: 'sebrae',
     cert: 'Game UX Design Foundations',
     url: 'https://www.interaction-design.org/members/rafael-bacellar-ramos-reis/certificate/masterclass/mcc_5847201105b245858759024389ba2499',
     special: 'Yes, this certificate is real. It is the reason this portfolio is a game.' },
