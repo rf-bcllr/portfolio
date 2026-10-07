@@ -1035,7 +1035,7 @@ const ENTITIES = [
 const PLATFORMS = [
   { x: 900,  w: 48, h: 32 },                              // Sanar: Adobe
   { x: 1472, w: 32, h: 32 }, { x: 1520, w: 64, h: 64 },   // UNEB: escada até o baú da cerveja
-  { x: 3200, w: 32, h: 32 }, { x: 3264, w: 64, h: 64 },   // Pandemia: o pedestal do Gravedigger
+  { x: 3168, w: 32, h: 32 }, { x: 3200, w: 32, h: 64 }, { x: 3232, w: 96, h: 96 },   // Pandemia: o pedestal do Gravedigger
   { x: 4032, w: 48, h: 32 },                              // ClassApp: Notion
   { x: 4176, w: 48, h: 32 },                              // ClassApp: certificado
   { x: 4528, w: 64, h: 32 }, { x: 4624, w: 48, h: 64 },   // Freelancer: Saúde e Ponto, depois Maze
