@@ -80,17 +80,17 @@
 
   <div id="prompt" class="pixel">E</div>
 
-  <div id="timeline">
+  <div id="timeline" role="progressbar" aria-label="Career timeline progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
     <div id="tl-track"><div id="tl-fill"></div></div>
   </div>
 
   <div id="touch" aria-label="Touch controls">
     <div class="pad move-pad" role="group" aria-label="Movement">
-      <button class="tbtn" type="button" data-k="left" aria-label="Move left"><span aria-hidden="true">◀</span></button>
-      <button class="tbtn" type="button" data-k="right" aria-label="Move right"><span aria-hidden="true">▶</span></button>
+      <button class="tbtn" type="button" data-k="left" aria-label="Move left"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button>
+      <button class="tbtn" type="button" data-k="right" aria-label="Move right"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
     </div>
     <div class="pad action-pad" role="group" aria-label="Actions">
-      <button class="tbtn jump" type="button" data-k="jump" aria-label="Jump or swim up"><span aria-hidden="true">↑</span><small>JUMP</small></button>
+      <button class="tbtn jump" type="button" data-k="jump" aria-label="Jump or swim up"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 10 7-7 7 7M12 3v18"/></svg><small>JUMP</small></button>
       <button class="tbtn a" type="button" data-k="action" aria-label="Interact"><span aria-hidden="true">A</span><small>ACTION</small></button>
     </div>
   </div>
