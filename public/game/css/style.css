@@ -1274,3 +1274,39 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   .li.used .li-n{min-width:0;overflow-wrap:anywhere}
   .li.used i{max-width:100%;white-space:normal}
 }
+
+/* ---------- controles mobile: vidro neobrutalista ---------- */
+/* O vidro é só a camada de superfície; borda, raio curto e sombra rígida
+   mantêm os controles dentro da linguagem visual do jogo. */
+@media (max-width:920px), (pointer:coarse){
+  #touch .tbtn{
+    border:3px solid var(--ink);
+    border-radius:10px;
+    background:var(--glass-control);
+    box-shadow:5px 5px 0 var(--ink),inset 0 1px 0 var(--glass-highlight);
+    -webkit-backdrop-filter:blur(10px) saturate(1.15);
+    backdrop-filter:blur(10px) saturate(1.15);
+    transition:transform 100ms ease-out,box-shadow 100ms ease-out,background-color 100ms ease-out;
+  }
+  #touch .tbtn::before{
+    inset:3px 5px auto;
+    height:28%;
+    border-radius:4px;
+    opacity:.7;
+  }
+  #touch .tbtn.a{
+    background:color-mix(in srgb,var(--accent) 88%,transparent);
+    border-color:var(--ink);
+    box-shadow:5px 5px 0 var(--ink),inset 0 1px 0 color-mix(in srgb,var(--on-accent) 42%,transparent);
+  }
+  #touch .tbtn:active,#touch .tbtn.pressed{
+    scale:1;
+    transform:translate(4px,4px);
+    box-shadow:1px 1px 0 var(--ink),inset 0 1px 0 var(--glass-highlight);
+  }
+  #touch .tbtn.a:active,#touch .tbtn.a.pressed{
+    background:var(--accent);
+    box-shadow:1px 1px 0 var(--ink),inset 0 1px 0 color-mix(in srgb,var(--on-accent) 32%,transparent);
+  }
+  #touch .tbtn:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+}
