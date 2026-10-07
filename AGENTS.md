@@ -13,3 +13,4 @@
 - Resolve Home folder thumbnails from featuredProjects media items by slug and slide index, so the folder reuses the same media as Work without duplicating asset references.
 - Share portrait and footer-character phrases through one local-state quote hook and an anchored bubble component, so both work independently of live cursors.
 - Reuse the game-logo asset pointer in React and its exact served URL in static game HTML, so game loading and title display one asset without duplicate binaries.
+- Nav and theme-toggle active pills are measured or CSS-positioned locally, never shared framer `layoutId`s, because duplicated/remounted instances made them fly or vanish.

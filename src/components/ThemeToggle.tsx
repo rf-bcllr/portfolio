@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -7,13 +6,24 @@ const THEME_OPTIONS = [
   { value: "dark", icon: Moon, label: "Dark" },
 ] as const;
 
+/**
+ * Self-contained toggle: the active pill is a local CSS-transitioned element
+ * (no shared framer `layoutId`), so multiple instances (desktop + mobile) and
+ * page remounts at different scroll offsets can never make it fly or vanish.
+ */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const activeIndex = theme === "dark" ? 1 : 0;
 
   return (
-    <div className="inline-flex items-center rounded-full border border-border bg-muted/50 p-1">
-      {THEME_OPTIONS.map((option) => {
-        const isActive = theme === option.value;
+    <div className="relative inline-flex items-center rounded-full border border-border bg-muted/50 p-1">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1 top-1 size-8 rounded-full bg-foreground transition-transform duration-300 ease-[cubic-bezier(0.2,0,0,1)] motion-reduce:transition-none"
+        style={{ transform: `translateX(${activeIndex * 100}%)` }}
+      />
+      {THEME_OPTIONS.map((option, i) => {
+        const isActive = i === activeIndex;
         const Icon = option.icon;
 
         return (
@@ -24,39 +34,11 @@ export function ThemeToggle() {
             aria-label={`Switch to ${option.label} theme`}
             aria-pressed={isActive}
             data-cursor-action="theme-toggle"
-            className={`relative inline-flex size-8 items-center justify-center rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+            className={`relative z-10 inline-flex size-8 items-center justify-center rounded-full transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
               isActive ? "text-background" : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            {isActive && (
-              <motion.span
-                layoutId="theme-active"
-                className="absolute inset-0 rounded-full bg-foreground"
-                transition={{ type: "spring", stiffness: 400, damping: 28 }}
-              />
-            )}
-            <motion.span
-              className="relative z-10"
-              initial={false}
-              animate={
-                isActive
-                  ? { scale: 1, opacity: 1, y: 0 }
-                  : { scale: 0.85, opacity: 0.6, y: 0 }
-              }
-              transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            >
-              <motion.div
-                initial={false}
-                animate={
-                  isActive
-                    ? { rotate: option.value === "light" ? 180 : 0, scale: 1 }
-                    : { rotate: 0, scale: 1 }
-                }
-                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-              >
-                <Icon className="size-4" />
-              </motion.div>
-            </motion.span>
+            <Icon aria-hidden="true" className="size-4" />
           </button>
         );
       })}
