@@ -1,6 +1,7 @@
 # Project Architecture Rules
 
 - Gate live-cursor transport and rendering off on /play, so the game keeps native pointers and receives no portfolio chat/reaction shortcuts.
+- Live-cursor shape swaps (resize etc.) are detected via `data-cursor` attributes read in LiveCursors' pointermove, because live cursors hide the system cursor and must borrow its shapes themselves.
 
 - Chat follow-up questions travel as a trailing suggestions JSON marker in the existing text stream; hide metadata during rendering and fall back safely to keep the current transport compatible.
 - Keep the chosen inline typing dots within AI Elements Message/MessageContent; the installed Shimmer uses incompatible theme variables and offers no dot variant, so this loading-only exception preserves accessible status and reduced motion.
