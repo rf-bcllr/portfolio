@@ -1,5 +1,6 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -70,22 +71,6 @@ export function SiteNav() {
 
   const navTransition = (_to: string, after?: () => void) => () => after?.();
 
-  // Single indicator measured inside the nav row, so page scroll never
-  // moves it vertically — it only slides horizontally between items.
-  const rowRef = useRef<HTMLDivElement>(null);
-  const [pill, setPill] = useState<{ left: number; width: number } | null>(null);
-  useLayoutEffect(() => {
-    const measure = () => {
-      const row = rowRef.current;
-      const el = row?.querySelector<HTMLElement>('[aria-current="page"]');
-      if (!row || !el) return setPill(null);
-      setPill({ left: el.offsetLeft, width: el.offsetWidth });
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [location.pathname]);
-
   return (
     <header className="sticky top-4 z-50 px-4">
       <nav
@@ -112,14 +97,7 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop nav */}
-        <div ref={rowRef} className="relative hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
-          {pill && (
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute top-1/2 h-9 -translate-y-1/2 rounded-full bg-foreground transition-[left,width] duration-300 ease-out motion-reduce:transition-none"
-              style={{ left: pill.left, width: pill.width }}
-            />
-          )}
+        <div className="relative hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -137,6 +115,14 @@ export function SiteNav() {
             >
               {({ isActive }) => (
                 <>
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active-pill"
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-full bg-foreground"
+                      transition={{ type: "spring", stiffness: 260, damping: 28 }}
+                    />
+                  )}
                   <span className="relative z-10">{item.label}</span>
                 </>
               )}
