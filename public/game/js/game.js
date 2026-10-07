@@ -75,6 +75,9 @@ const ASSET_MANIFEST = {
    jogo tenta desenhá-lo, uma vez só, e o fracasso fica registrado. */
 const IMG = {};
 const imgState = {};
+const ASSET_URL_OVERRIDES = {
+  'boss/gravedigger-battle': '/__l5e/assets-v1/8f9e4f92-fee2-4549-835d-dd2f42f041fa/gravedigger-battle.png',
+};
 /* Sprites pedidos e ainda sem resposta. Quando a fila zera, roda o que estava
    esperando (habilitar o START, repintar a cena de onboarding). */
 let imgsPendentes = 0;
@@ -130,7 +133,7 @@ function img(key) {
   const im = new Image();
   im.onload = () => { IMG[key] = im; imgState[key] = 3; loadDone++; loadTick(); imgChegou(); };
   im.onerror = () => { imgState[key] = 2; loadDone++; loadTick(); imgChegou(); };
-  im.src = 'assets/' + key + '.png';
+  im.src = ASSET_URL_OVERRIDES[key] || ('assets/' + key + '.png');
   return null;
 }
 function imgChegou() {
@@ -4595,7 +4598,7 @@ function drawBattle() {
     if (isMimic()) {
       // as artes de batalha olham para a direita; espelhadas, encaram quem joga
       if (!desenhaPeca('props/mimic-battle', bx + sh + 30, GROUND_Y - 6 + Math.sin(n / 300) * 2, 96, null, true)) drawMimicBig(bx + sh, by + 10);
-    } else if (!desenhaPeca('boss/death', bx + sh + 30, by + 140, 150, null, true)) drawBoss(bx + sh, by);
+    } else if (!desenhaPeca('boss/gravedigger-battle', bx + sh + 30, by + 150, 170, null, true)) drawBoss(bx + sh, by);
     ctx.restore();
   }
   if (battle.dead && a && a.kind === 'die') {

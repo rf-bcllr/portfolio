@@ -1,4 +1,6 @@
 # Tasks
+- [x] Restore the mobile game controls to the portfolio's neobrutalist language while retaining a restrained glass layer; verify touch states and small landscapes.
+- [x] Replace only the Gravedigger's large battle sprite with the supplied artwork and verify asset loading and game syntax.
 - [ ] Refine the in-game timeline, apply the selected glass treatment to mobile movement/action controls, and round both loading containers without affecting gameplay or adjacent HUD elements; verify all target states.
 - [x] Keep New Game and tags unclipped on very small game screens; show a shortened portfolio footer at widths up to 400px and verify.
 - [x] Restore completed-game New Game across HUD sizes, compact Already used tags, move the games certificate to a reachable high Sebrae platform, and reduce footer text on very small screens; verify in the browser.
