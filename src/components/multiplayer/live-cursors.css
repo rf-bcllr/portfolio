@@ -1,4 +1,10 @@
 /* Live cursors: flying reactions and keyboard hints. Uses the site's existing tokens. */
+.live-cursors {
+  --resize-cursor-ink: #000;
+  --resize-cursor-outline: #fff;
+}
+.live-resize-arrow { transform: translate(-16px, -16px); overflow: visible; }
+.live-resize-arrow path { fill: var(--resize-cursor-ink); stroke: var(--resize-cursor-outline); }
 
 @keyframes live-reaction {
   0% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }

@@ -1297,8 +1297,9 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   #touch .tbtn.a{
     background:color-mix(in srgb,var(--accent) 88%,transparent);
     border-color:var(--ink);
-    box-shadow:5px 5px 0 var(--ink),inset 0 1px 0 color-mix(in srgb,var(--on-accent) 42%,transparent);
+    box-shadow:5px 5px 0 var(--ink);
   }
+  #touch .tbtn.a::before{content:none}
   #touch .tbtn:active,#touch .tbtn.pressed{
     scale:1;
     transform:translate(4px,4px);
@@ -1306,7 +1307,7 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   }
   #touch .tbtn.a:active,#touch .tbtn.a.pressed{
     background:var(--accent);
-    box-shadow:1px 1px 0 var(--ink),inset 0 1px 0 color-mix(in srgb,var(--on-accent) 32%,transparent);
+    box-shadow:1px 1px 0 var(--ink);
   }
   #touch .tbtn:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
 }
