@@ -5789,7 +5789,7 @@ function applyLang() {
     : '<kbd>←</kbd><kbd>→</kbd> ' + T(UI.hMove) + '<span class="sep">·</span><kbd>Space</kbd> ' + T(UI.hJump) +
       '<span class="sep">·</span><kbd>E</kbd> ' + T(UI.hTalk);
   document.getElementById('title-sub').innerHTML =
-    '11 years of career turned into a platform game.<br>Walk right. Walking right is walking through time.';
+    '11 years of career turned into a platform game.';
   // a dica de avançar fala do aparelho em que se está jogando
   dnext.innerHTML = isTouch ? esc(T(UI.nextTouch)) : '<kbd>E</kbd>' + esc(T(UI.nextKeys));
   lastZone = null;
@@ -5836,29 +5836,3 @@ document.getElementById('btn-start').onclick = () => {
 applyLang();
 requestAnimationFrame(step);
 
-/* ===== Logo da capa redimensionável (caixa de transformação estilo Figma) =====
-   As alças dos cantos mostram o cursor de resize e arrastar escala o logo. */
-(() => {
-  const tbox = document.getElementById('logo-tbox');
-  const img = document.getElementById('logo-img');
-  if (!tbox || !img) return;
-  let scale = 1, drag = null;
-  const clamp = (v) => Math.min(1.6, Math.max(0.35, v));
-  tbox.querySelectorAll('.th').forEach((h) => {
-    h.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      h.setPointerCapture(e.pointerId);
-      drag = { x: e.clientX, y: e.clientY, s: scale };
-    });
-    h.addEventListener('pointermove', (e) => {
-      if (!drag) return;
-      const d = Math.hypot(e.clientX - drag.x, e.clientY - drag.y);
-      const sign = ((e.clientX - drag.x) + (e.clientY - drag.y)) >= 0 ? 1 : -1;
-      scale = clamp(drag.s * (1 + (sign * d) / 260));
-      img.style.transform = `scale(${scale})`;
-    });
-    const end = () => { drag = null; };
-    h.addEventListener('pointerup', end);
-    h.addEventListener('pointercancel', end);
-  });
-})();
