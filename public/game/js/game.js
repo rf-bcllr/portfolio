@@ -3777,7 +3777,17 @@ function ajustaWork() {
 window.addEventListener('resize', ajustaWork);
 let aoFecharPainel = null;
 function closeAll() {
-  if (confirmMode === 'panel') cancelRestart();
+  /* Fechar qualquer painel desarma a pergunta de recomeçar — inclusive o
+     próprio diálogo de recomeçar, fechado por Esc, ✕ ou clique no fundo. */
+  if (confirmMode) {
+    confirmMode = null;
+    if (confirmTimer) { clearTimeout(confirmTimer); confirmTimer = null; }
+    restartEl.hidden = false;
+    const row = document.getElementById('restart-confirm-panel');
+    const btn = document.getElementById('btn-restart');
+    if (row) row.hidden = true;
+    if (btn) btn.hidden = false;
+  }
   const estavaAberto = overlay.classList.contains('open');
   overlay.classList.remove('open');
   if (estavaAberto) {
