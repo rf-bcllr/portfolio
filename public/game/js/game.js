@@ -5063,12 +5063,17 @@ const ARTE = {
   run:   '<rect x="13.5" y="3.5" width="7" height="17" rx="1.4" fill="#ffcf3a" stroke="' + TINTA + '" stroke-width="1.6"/>' +
          '<circle cx="15.6" cy="12.3" r=".9" fill="' + TINTA + '"/>' +
          '<path d="M3 12h8.5M8.2 8.2l3.8 3.8-3.8 3.8" fill="none" stroke="' + TINTA + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
-  // a cerveja do power-up: caneca âmbar com espuma
-  beer: '<path d="M5 8.5h10.5v10.3a2.2 2.2 0 0 1-2.2 2.2H7.2A2.2 2.2 0 0 1 5 18.8z" fill="#f2b33d" stroke="' + TINTA + '" stroke-width="1.7" stroke-linejoin="round"/>' +
-        '<path d="M15.5 10.5h1.8a2.4 2.4 0 0 1 0 4.8h-1.8" fill="none" stroke="' + TINTA + '" stroke-width="1.7" stroke-linecap="round"/>' +
-        '<path d="M4.3 8.7c-.6-2.4 1.3-4.2 3.3-3.4.8-1.6 3.4-1.9 4.6-.4 1.6-.9 3.9.2 3.9 2.3.1 1-.5 1.6-1.3 1.6H5.6c-.6 0-1.1-.1-1.3-.1z" fill="#ffffff" stroke="' + TINTA + '" stroke-width="1.6" stroke-linejoin="round"/>' +
-        '<path d="M8 11.5v6.5" stroke="#ffe39a" stroke-width="1.6" stroke-linecap="round"/>' +
-        '<circle cx="11.6" cy="14" r=".9" fill="#ffe39a"/><circle cx="12.6" cy="17.4" r=".7" fill="#ffe39a"/>',
+  /* a cerveja do power-up: a garrafa long neck da Cada um na Sua, inclinada
+     como na ilustração do rótulo — vidro âmbar, tampinha verde-limão, rótulo
+     amarelo com o selo verde e a faixa verde no gargalo */
+  beer: '<g transform="rotate(-40 12 12)">' +
+        '<path d="M10 3.8h4v3.4c0 1.8 2.8 2.4 2.8 4.8v8.4a2 2 0 0 1-2 2H9.2a2 2 0 0 1-2-2v-8.4c0-2.4 2.8-3 2.8-4.8z" fill="#b5481c" stroke="' + TINTA + '" stroke-width="1.8" stroke-linejoin="round"/>' +
+        '<path d="M7.6 12.8h8.8v6.4H7.6z" fill="#f6d32b" stroke="' + TINTA + '" stroke-width="1.4" stroke-linejoin="round"/>' +
+        '<path d="M12.00 13.30L12.71 14.29L13.91 14.09L13.71 15.29L14.70 16.00L13.71 16.71L13.91 17.91L12.71 17.71L12.00 18.70L11.29 17.71L10.09 17.91L10.29 16.71L9.30 16.00L10.29 15.29L10.09 14.09L11.29 14.29z" fill="#7cb82f"/>' +
+        '<path d="M10 5.3h4v1.7h-4z" fill="#8cc63f"/>' +
+        '<path d="M9.2 20.6v.3M10.6 10c-.6.5-1.2 1-1.4 1.8" stroke="#f08a4b" stroke-width="1.2" stroke-linecap="round" fill="none"/>' +
+        '<rect x="9.6" y="1.4" width="4.8" height="2.6" rx=".8" fill="#c6e03a" stroke="' + TINTA + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+        '</g>',
 };
 function arte(k, n) {
   return '<svg class="arte" viewBox="0 0 24 24" width="' + n + '" height="' + n + '" aria-hidden="true" focusable="false">' + ARTE[k] + '</svg>';
