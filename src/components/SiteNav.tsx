@@ -22,7 +22,7 @@ export function PlayLink({
   variant = "cursor",
 }: {
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   label?: string;
   variant?: "cursor" | "blue";
 }) {
