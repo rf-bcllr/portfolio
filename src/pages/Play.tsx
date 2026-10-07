@@ -40,6 +40,7 @@ function GameLoading({ visible, progress }: { visible: boolean; progress: number
     >
       <div className="flex w-full max-w-[480px] flex-col gap-4 rounded-none border-[3px] border-foreground bg-card px-5 py-4 shadow-[8px_8px_0_0_hsl(var(--foreground))]">
         <div className="flex justify-center"><img src={questLogo.url} alt="End-to-End Quest for the Next Product" width={1774} height={887} className="pointer-events-none mx-auto mb-3 h-auto max-h-[min(30dvh,220px)] w-auto max-w-full object-contain" /></div>
+        <p className="text-center font-display text-xs font-bold text-primary">LOADING ADVENTURE</p>
         <div className="flex justify-between gap-3 font-display text-[11px] font-bold tabular-nums text-muted-foreground"><span>PREPARING THE MAP</span><span>{progress}%</span></div>
         <div className="game-ld-runway" style={{ "--load-progress": progress / 100 } as React.CSSProperties}>
           <div className="game-ld-hero" aria-hidden="true" />
