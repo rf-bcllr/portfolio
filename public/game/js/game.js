@@ -3777,7 +3777,17 @@ function ajustaWork() {
 window.addEventListener('resize', ajustaWork);
 let aoFecharPainel = null;
 function closeAll() {
-  if (confirmMode === 'panel') cancelRestart();
+  /* Fechar qualquer painel desarma a pergunta de recomeçar — inclusive o
+     próprio diálogo de recomeçar, fechado por Esc, ✕ ou clique no fundo. */
+  if (confirmMode) {
+    confirmMode = null;
+    if (confirmTimer) { clearTimeout(confirmTimer); confirmTimer = null; }
+    restartEl.hidden = false;
+    const row = document.getElementById('restart-confirm-panel');
+    const btn = document.getElementById('btn-restart');
+    if (row) row.hidden = true;
+    if (btn) btn.hidden = false;
+  }
   const estavaAberto = overlay.classList.contains('open');
   overlay.classList.remove('open');
   if (estavaAberto) {
@@ -4823,7 +4833,6 @@ const doneEl = document.getElementById('chip-done');
    Recomeçar: pergunta explícita, com Y/N no teclado e nos botões.
 --------------------------------------------------------- */
 const restartWrapEl = document.getElementById('restart-wrap');
-const confirmEl = document.getElementById('restart-confirm');
 let confirmMode = null;        // 'hud' | 'panel' | null
 let confirmTimer = null;
 
@@ -4831,9 +4840,22 @@ function armRestart(mode) {
   confirmMode = mode;
   if (confirmTimer) clearTimeout(confirmTimer);
   if (mode === 'hud') {
-    restartEl.hidden = true;
-    confirmEl.hidden = false;
-    try { document.getElementById('btn-no').focus(); } catch (e) {}
+    /* Mesmo padrão do popup do Recruiter Mode: um diálogo de verdade no
+       overlay, em vez do dropdown pendurado na barra que quebrava o HUD
+       em telas estreitas. */
+    openPanel(`
+      <h2>${T(UI.confirmT)}</h2>
+      <p>${T(UI.confirmBody)}</p>
+      <div class="actions">
+        <button class="btn yes" id="btn-yes-hud">${T(UI.yes)} <kbd>Y</kbd></button>
+        <button class="btn" data-close>${T(UI.no)} <kbd>N</kbd></button>
+      </div>`, 'estreito');
+    /* Foco seguro: confirmar apaga tudo, então quem só aperta Enter cai em
+       "Keep playing", não em "Start over". */
+    const nao = panel.querySelector('.actions [data-close]');
+    if (nao) setTimeout(() => { try { nao.focus({ preventScroll: true }); } catch (e) {} }, 60);
+    const sim = document.getElementById('btn-yes-hud');
+    if (sim) sim.onclick = confirmRestart;
   } else {
     const row = document.getElementById('restart-confirm-panel');
     const btn = document.getElementById('btn-restart');
@@ -4842,18 +4864,19 @@ function armRestart(mode) {
     try { document.getElementById('btn-no-panel').focus(); } catch (e) {}
   }
   blip(300, .06, 'square', .03);
-  confirmTimer = setTimeout(cancelRestart, 8000);   // some sozinho se ninguém responder
+  if (mode !== 'hud') confirmTimer = setTimeout(cancelRestart, 8000);   // some sozinho se ninguém responder
 }
 
 function cancelRestart() {
   if (confirmTimer) { clearTimeout(confirmTimer); confirmTimer = null; }
+  const eraHud = confirmMode === 'hud';
   confirmMode = null;
-  confirmEl.hidden = true;
   restartEl.hidden = false;
   const row = document.getElementById('restart-confirm-panel');
   const btn = document.getElementById('btn-restart');
   if (row) row.hidden = true;
   if (btn) btn.hidden = false;
+  if (eraHud && overlay.classList.contains('open')) closeAll();
 }
 
 function confirmRestart() {
@@ -4865,8 +4888,6 @@ function confirmRestart() {
 }
 
 restartEl.addEventListener('click', () => armRestart('hud'));
-document.getElementById('btn-yes').addEventListener('click', confirmRestart);
-document.getElementById('btn-no').addEventListener('click', cancelRestart);
 
 /* O tema não é escolha de quem joga: é a zona que anoitece. O botão de
    claro/escuro saiu — ele só aparecia na zona da pandemia e oferecia desfazer
