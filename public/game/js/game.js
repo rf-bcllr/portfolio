@@ -5835,3 +5835,30 @@ document.getElementById('btn-start').onclick = () => {
 
 applyLang();
 requestAnimationFrame(step);
+
+/* ===== Logo da capa redimensionável (caixa de transformação estilo Figma) =====
+   As alças dos cantos mostram o cursor de resize e arrastar escala o logo. */
+(() => {
+  const tbox = document.getElementById('logo-tbox');
+  const img = document.getElementById('logo-img');
+  if (!tbox || !img) return;
+  let scale = 1, drag = null;
+  const clamp = (v) => Math.min(1.6, Math.max(0.35, v));
+  tbox.querySelectorAll('.th').forEach((h) => {
+    h.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      h.setPointerCapture(e.pointerId);
+      drag = { x: e.clientX, y: e.clientY, s: scale };
+    });
+    h.addEventListener('pointermove', (e) => {
+      if (!drag) return;
+      const d = Math.hypot(e.clientX - drag.x, e.clientY - drag.y);
+      const sign = ((e.clientX - drag.x) + (e.clientY - drag.y)) >= 0 ? 1 : -1;
+      scale = clamp(drag.s * (1 + (sign * d) / 260));
+      img.style.transform = `scale(${scale})`;
+    });
+    const end = () => { drag = null; };
+    h.addEventListener('pointerup', end);
+    h.addEventListener('pointercancel', end);
+  });
+})();
