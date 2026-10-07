@@ -274,13 +274,6 @@ const presentationOverrides: Partial<Record<FeaturedProjectSlug, Array<Partial<P
     { aspect: "aspect-[932/441]", maxWidth: "max-w-[600px]", rotate: "rotate-1" },
     { aspect: "aspect-[929/446]", maxWidth: "max-w-[600px]", rotate: "-rotate-1" },
   ],
-  "ionic-ai-identity": [
-    { rotate: "-rotate-1" },
-    { rotate: "rotate-1" },
-    { rotate: "-rotate-1" },
-    { rotate: "rotate-1" },
-    { rotate: "-rotate-1" },
-  ],
 };
 
 const explicitMediaBySlug: Partial<Record<FeaturedProjectSlug, RawFeaturedMediaItem[]>> = {
@@ -360,7 +353,9 @@ const buildMediaItems = (slug: FeaturedProjectSlug, project: NonNullable<ReturnT
       orientation: item.orientation,
       aspect: item.aspect ?? override?.aspect,
       maxWidth: item.maxWidth ?? override?.maxWidth,
-      rotate: item.rotate ?? override?.rotate,
+      rotate: slug === "ionic-ai-identity"
+        ? (itemIndex % 2 === 0 ? "-rotate-1" : "rotate-1")
+        : item.rotate ?? override?.rotate,
     });
 
     return {
