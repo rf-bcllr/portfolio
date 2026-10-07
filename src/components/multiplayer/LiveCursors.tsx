@@ -71,7 +71,7 @@ function CursorArrow({ color }: { color: string }) {
    place of the arrow when hovering something that resizes (hero title box). */
 function ResizeArrow({ color }: { color: string }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" className="drop-shadow-sm" aria-hidden="true" style={{ transform: "translate(-10px,-10px)" }}>
+    <svg width="32" height="32" viewBox="0 0 20 20" className="drop-shadow-sm" aria-hidden="true" style={{ transform: "translate(-16px,-16px)" }}>
       <path d="M4 10h12" stroke="white" strokeWidth="4" strokeLinecap="round" />
       <path d="M4 10h12" stroke={color} strokeWidth="2" strokeLinecap="round" />
       <path d="M3 10 8.4 6.5v7Z" fill={color} stroke="white" strokeWidth="1.4" strokeLinejoin="round" />
