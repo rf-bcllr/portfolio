@@ -67,6 +67,19 @@ function CursorArrow({ color }: { color: string }) {
   );
 }
 
+/* Double-headed resize arrow, same visual language as CursorArrow: shown in
+   place of the arrow when hovering something that resizes (hero title box). */
+function ResizeArrow({ color }: { color: string }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" className="drop-shadow-sm" aria-hidden="true" style={{ transform: "translate(-10px,-10px)" }}>
+      <path d="M4 10h12" stroke="white" strokeWidth="4" strokeLinecap="round" />
+      <path d="M4 10h12" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <path d="M3 10 8.4 6.5v7Z" fill={color} stroke="white" strokeWidth="1.4" strokeLinejoin="round" />
+      <path d="M17 10 11.6 6.5v7Z" fill={color} stroke="white" strokeWidth="1.4" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function Bubble({ color, name, children }: { color: string; name?: string; children: ReactNode }) {
   return (
     <div
