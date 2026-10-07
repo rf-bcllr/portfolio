@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLayoutEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -67,35 +66,25 @@ function ConnectButton({
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
-  // When the page is scrolled, glide back to the top before swapping pages,
-  // so the transition looks the same as navigating from the top.
-  const navTransition =
-    (to: string, after?: () => void) =>
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      after?.();
-      if (
-        e.defaultPrevented ||
-        e.button !== 0 ||
-        e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ||
-        window.scrollY <= 0 ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
-        return;
-      }
-      e.preventDefault();
-      const start = performance.now();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      const tick = () => {
-        if (window.scrollY <= 0 || performance.now() - start > 600) {
-          navigate(to);
-        } else {
-          requestAnimationFrame(tick);
-        }
-      };
-      requestAnimationFrame(tick);
+
+  const navTransition = (_to: string, after?: () => void) => () => after?.();
+
+  // Single indicator measured inside the nav row, so page scroll never
+  // moves it vertically — it only slides horizontally between items.
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [pill, setPill] = useState<{ left: number; width: number } | null>(null);
+  useLayoutEffect(() => {
+    const measure = () => {
+      const row = rowRef.current;
+      const el = row?.querySelector<HTMLElement>('[aria-current="page"]');
+      if (!row || !el) return setPill(null);
+      setPill({ left: el.offsetLeft, width: el.offsetWidth });
     };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [location.pathname]);
 
   return (
     <header className="sticky top-4 z-50 px-4">
@@ -123,7 +112,14 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
+        <div ref={rowRef} className="relative hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
+          {pill && (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 h-9 -translate-y-1/2 rounded-full bg-foreground transition-[left,width] duration-300 ease-out motion-reduce:transition-none"
+              style={{ left: pill.left, width: pill.width }}
+            />
+          )}
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -141,14 +137,6 @@ export function SiteNav() {
             >
               {({ isActive }) => (
                 <>
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-nav-pill"
-                      className="absolute inset-0 rounded-full bg-foreground"
-                      transition={{ type: "spring", stiffness: 320, damping: 30 }}
-                      aria-hidden="true"
-                    />
-                  )}
                   <span className="relative z-10">{item.label}</span>
                 </>
               )}
