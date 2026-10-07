@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -22,7 +22,7 @@ export function PlayLink({
   variant = "cursor",
 }: {
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   label?: string;
   variant?: "cursor" | "blue";
 }) {
@@ -67,6 +67,35 @@ function ConnectButton({
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // When the page is scrolled, glide back to the top before swapping pages,
+  // so the transition looks the same as navigating from the top.
+  const navTransition =
+    (to: string, after?: () => void) =>
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      after?.();
+      if (
+        e.defaultPrevented ||
+        e.button !== 0 ||
+        e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ||
+        window.scrollY <= 0 ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        return;
+      }
+      e.preventDefault();
+      const start = performance.now();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      const tick = () => {
+        if (window.scrollY <= 0 || performance.now() - start > 600) {
+          navigate(to);
+        } else {
+          requestAnimationFrame(tick);
+        }
+      };
+      requestAnimationFrame(tick);
+    };
 
   return (
     <header className="sticky top-4 z-50 px-4">
@@ -81,6 +110,7 @@ export function SiteNav() {
       >
         <Link
           to="/"
+          onClick={navTransition("/")}
           data-cursor-action="home"
           className="flex shrink-0 items-center gap-2.5 rounded-full pr-2 text-lg font-semibold leading-none"
         >
@@ -98,6 +128,7 @@ export function SiteNav() {
             <NavLink
               key={item.to}
               to={item.to}
+              onClick={navTransition(item.to)}
               data-cursor-action="navigate-internal"
               className={({ isActive }) =>
                 `relative inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
@@ -123,7 +154,7 @@ export function SiteNav() {
               )}
             </NavLink>
           ))}
-          <PlayLink className="h-9" />
+          <PlayLink className="h-9" onClick={navTransition("/play")} />
         </div>
 
         {/* Desktop CTA cluster */}
@@ -163,7 +194,7 @@ export function SiteNav() {
                 <NavLink
                   key={item.to}
                   to={item.to}
-                  onClick={() => setOpen(false)}
+                  onClick={navTransition(item.to, () => setOpen(false))}
                   aria-current={location.pathname === item.to ? "page" : undefined}
                   className={({ isActive }) =>
                     `inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold leading-none transition-colors ${
@@ -176,7 +207,7 @@ export function SiteNav() {
                   {item.label}
                 </NavLink>
               ))}
-              <PlayLink className="min-h-11 justify-start" onClick={() => setOpen(false)} />
+              <PlayLink className="min-h-11 justify-start" onClick={navTransition("/play", () => setOpen(false))} />
             </div>
           </div>
         )}
