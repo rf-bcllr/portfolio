@@ -4997,6 +4997,7 @@ const chipYear = document.getElementById('chip-year');
 const chipName = document.getElementById('chip-name');
 const chipRole = document.getElementById('chip-role');
 const tlFill = document.getElementById('tl-fill');
+const timelineEl = document.getElementById('timeline');
 const lvlEl = document.getElementById('chip-level');
 /* Os dois espaços de power-up. Ficam sempre à vista, com cadeado enquanto não
    foram conquistados — é assim que dá para saber que existem. */
@@ -5320,6 +5321,7 @@ function updateHUD() {
   // escreve no DOM só quando muda: isto roda a cada quadro
   const larg = (player.x / WORLD_W * 100).toFixed(1) + '%';
   if (tlFill.style.width !== larg) tlFill.style.width = larg;
+  timelineEl?.setAttribute('aria-valuenow', String(Math.round(100 * state.x / WORLD_W)));
   const nivel = state.level ? T(UI.lv) + state.level + ' · ' + state.title : '';
   if (lvlEl.textContent !== nivel) lvlEl.textContent = nivel;
   lvlEl.hidden = !state.level;

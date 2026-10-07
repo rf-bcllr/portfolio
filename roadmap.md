@@ -1,4 +1,5 @@
 # Tasks
+- [ ] Refine the in-game timeline, apply the selected glass treatment to mobile movement/action controls, and round both loading containers without affecting gameplay or adjacent HUD elements; verify all target states.
 - [x] Keep New Game and tags unclipped on very small game screens; show a shortened portfolio footer at widths up to 400px and verify.
 - [x] Restore completed-game New Game across HUD sizes, compact Already used tags, move the games certificate to a reachable high Sebrae platform, and reduce footer text on very small screens; verify in the browser.
 - [x] Remove the Home teaser logo, restore the exact pre-change favicon from historical configuration, and verify alternating mascot screenshot frame rotation.

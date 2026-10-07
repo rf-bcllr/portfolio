@@ -12,6 +12,10 @@
   --invert-bg:#191c24;
   --invert-fg:#ffffff;
   --shadow:6px 6px 0 var(--ink);
+  --glass-control:color-mix(in srgb,var(--panel) 68%,transparent);
+  --glass-edge:color-mix(in srgb,var(--panel) 86%,var(--ink) 14%);
+  --glass-highlight:color-mix(in srgb,var(--panel) 72%,transparent);
+  --glass-shadow:color-mix(in srgb,var(--ink) 22%,transparent);
   /* Papéis do acento, medidos (WCAG 4.5:1). O acento puro passava no papel,
      mas não sobre o fundo invertido dos avisos (3.04) nem com texto branco
      por cima nos temas escuros (3.16). Mesma matiz, só a luminosidade muda. */
@@ -195,16 +199,17 @@ body{
 
 /* progress / timeline */
 #timeline{
-  position:absolute;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:10px;height:16px;
+  position:absolute;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:10px;height:18px;
   display:flex;align-items:center;gap:0;
 }
 #tl-track{
-  position:relative;flex:1;height:8px;background:var(--paper);
-  border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  position:relative;flex:1;height:7px;background:color-mix(in srgb,var(--paper) 82%,transparent);
+  border:1px solid color-mix(in srgb,var(--ink) 32%,transparent);border-radius:999px;
+  box-shadow:0 1px 3px color-mix(in srgb,var(--ink) 14%,transparent);overflow:visible;
 }
-#tl-fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);width:0%}
-.tl-node{position:absolute;top:-5px;width:6px;height:14px;background:var(--ink);transform:translateX(-3px)}
-.tl-node.boss{background:#b85bd6;width:8px;transform:translateX(-4px)}
+#tl-fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:999px;width:0%;box-shadow:0 0 8px color-mix(in srgb,var(--accent) 38%,transparent)}
+.tl-node{position:absolute;top:-4px;width:3px;height:13px;background:var(--ink);border-radius:999px;transform:translateX(-1.5px)}
+.tl-node.boss{top:-6px;width:7px;height:17px;background:var(--accent);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--ink);transform:translateX(-3.5px)}
 
 /* interact prompt */
 #prompt{
@@ -260,16 +265,24 @@ body{
 #touch .pad{pointer-events:auto}
 .pad{display:flex;gap:12px}
 .tbtn{
-  appearance:none;width:60px;height:60px;display:grid;place-items:center;
-  background:var(--paper);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
-  border-radius:14px;color:var(--ink);font-family:var(--font-pixel);font-size:20px;user-select:none;
+  appearance:none;position:relative;width:60px;height:60px;display:grid;place-items:center;
+  background:var(--glass-control);border:1px solid var(--glass-edge);
+  box-shadow:inset 0 1px 0 var(--glass-highlight),0 5px 14px var(--glass-shadow);
+  -webkit-backdrop-filter:blur(12px) saturate(1.2);backdrop-filter:blur(12px) saturate(1.2);
+  border-radius:999px;color:var(--ink);font-family:var(--font-pixel);font-size:20px;user-select:none;
   -webkit-user-select:none;-webkit-touch-callout:none;touch-action:none;
+  transition:scale 150ms ease-out,background-color 120ms ease-out,box-shadow 120ms ease-out;
 }
+.tbtn::before{content:"";position:absolute;inset:3px 8px auto;height:35%;border-radius:999px;background:linear-gradient(to bottom,var(--glass-highlight),transparent);pointer-events:none}
+.tbtn svg{position:relative;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.move-pad .tbtn[data-k="left"] svg{transform:translateX(-1px)}
+.move-pad .tbtn[data-k="right"] svg{transform:translateX(1px)}
 .tbtn small{font:700 8px/1 var(--font-pixel);letter-spacing:.08em}
 .tbtn.jump,.tbtn.a{grid-template-rows:1fr auto;padding:7px 5px 6px}
-.tbtn:active,.tbtn.pressed{transform:translate(4px,4px);box-shadow:0 0 0}
+.tbtn:active,.tbtn.pressed{scale:.96;background:color-mix(in srgb,var(--panel) 82%,transparent);box-shadow:inset 0 1px 0 var(--glass-highlight),0 2px 7px var(--glass-shadow)}
 .tbtn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.tbtn.a{background:var(--accent);color:var(--on-accent)}
+.tbtn.a{background:color-mix(in srgb,var(--accent) 84%,transparent);border-color:color-mix(in srgb,var(--on-accent) 42%,transparent);color:var(--on-accent);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--on-accent) 42%,transparent),0 5px 16px color-mix(in srgb,var(--accent) 30%,transparent)}
+.tbtn.a:active,.tbtn.a.pressed{background:var(--accent);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--on-accent) 32%,transparent),0 2px 8px color-mix(in srgb,var(--accent) 24%,transparent)}
 /* a barra do tempo desce para a faixa livre abaixo dos botões de toque */
 @media (max-width:820px), (pointer:coarse){ #touch{display:flex} #timeline{bottom:max(8px,env(safe-area-inset-bottom))} #prompt{bottom:200px} }
 
@@ -1160,7 +1173,7 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
   transition:opacity .2s ease-out}
 #loading.out{opacity:0;pointer-events:none}
 .ld-card{display:flex;flex-direction:column;align-items:stretch;gap:18px;width:min(480px,100%);
-  padding:16px 20px;background:var(--panel);border:3px solid var(--ink);border-radius:0;box-shadow:8px 8px 0 var(--ink)}
+  padding:16px 20px;background:var(--panel);border:3px solid var(--ink);border-radius:24px;box-shadow:8px 8px 0 var(--ink)}
 .quest-logo{display:block;width:100%;max-width:100%;height:auto;object-fit:contain;margin-inline:auto}
 .tcard h1.title-logo{margin-bottom:16px;line-height:0}
 .title-logo .quest-logo{max-height:36dvh}
@@ -1174,7 +1187,7 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
 .ld-hero{position:absolute;z-index:1;bottom:13px;left:calc((100% - 68.75px) * var(--load-progress));width:68.75px;height:92px;background:url(../assets/player/sheet.png) 0 -94px / 440px auto no-repeat;
   image-rendering:auto;animation:ldWalk .72s steps(6) infinite;transition:left .24s ease-out}
 @keyframes ldWalk{to{background-position:-412.5px -94px}}
-.ld-tip{min-height:3.2em;margin:0;padding:10px 12px;border-left:4px solid var(--accent);background:var(--paper);color:var(--dim);font-size:12px;line-height:1.5;text-align:left}
+.ld-tip{min-height:3.2em;margin:0;padding:10px 12px;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;background:var(--paper);color:var(--ink);font-size:12px;line-height:1.5;text-align:left}
 @media (max-height:520px){.ld-card{gap:10px;padding:16px 20px}.ld-runway{height:106px}.ld-tip{min-height:auto;padding-block:7px}}
 @media (prefers-reduced-motion:reduce){ #loading,.ld-fill,.ld-hero{transition:none} .ld-hero{animation:none} }
 
