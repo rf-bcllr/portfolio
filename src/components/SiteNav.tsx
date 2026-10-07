@@ -119,7 +119,7 @@ export function SiteNav() {
           {pill && (
             <motion.span
               aria-hidden="true"
-              className="pointer-events-none absolute left-0 top-1/2 h-9 -translate-y-1/2 rounded-full bg-foreground"
+              className="pointer-events-none absolute inset-y-0 left-0 my-auto h-9 rounded-full bg-foreground"
               initial={lastPill ? { x: lastPill.x, width: lastPill.w } : false}
               animate={{ x: pill.x, width: pill.w }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
