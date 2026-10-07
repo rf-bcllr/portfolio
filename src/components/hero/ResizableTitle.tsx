@@ -121,6 +121,11 @@ export function ResizableTitle({ variants = DEFAULT_VARIANTS, mobileVariants, cl
   };
   const moveDrag = (e: ReactPointerEvent<HTMLElement>) => {
     if (!drag.current) return;
+    // Never resize on a plain hover: if no button is pressed, the drag is over.
+    if (e.buttons === 0) {
+      drag.current = null;
+      return;
+    }
     // The box is centered, so it grows on both sides: double the pointer delta.
     const delta = (e.clientX - drag.current.x) * drag.current.dir * 2;
     setUserWidth(clamp(drag.current.w + delta, minW, maxW));
