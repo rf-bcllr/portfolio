@@ -67,6 +67,19 @@ function CursorArrow({ color }: { color: string }) {
   );
 }
 
+/* Double-headed resize arrow, same visual language as CursorArrow: shown in
+   place of the arrow when hovering something that resizes (hero title box). */
+function ResizeArrow({ color }: { color: string }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" className="drop-shadow-sm" aria-hidden="true" style={{ transform: "translate(-10px,-10px)" }}>
+      <path d="M4 10h12" stroke="white" strokeWidth="4" strokeLinecap="round" />
+      <path d="M4 10h12" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <path d="M3 10 8.4 6.5v7Z" fill={color} stroke="white" strokeWidth="1.4" strokeLinejoin="round" />
+      <path d="M17 10 11.6 6.5v7Z" fill={color} stroke="white" strokeWidth="1.4" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function Bubble({ color, name, children }: { color: string; name?: string; children: ReactNode }) {
   return (
     <div
@@ -99,6 +112,7 @@ export function LiveCursors({ transport }: { transport: Transport }) {
   const [draft, setDraft] = useState("");
   const [lastSent, setLastSent] = useState("");
   const [pickerAt, setPickerAt] = useState<Point | null>(null);
+  const [resizing, setResizing] = useState(false); // hovering something with a resize handle
   const [arrival, setArrival] = useState<{ key: number; name: string; color: string } | null>(null);
 
   const peers = useRef(new Map<string, PeerState>());
@@ -242,6 +256,11 @@ export function LiveCursors({ transport }: { transport: Transport }) {
       if (e.pointerType !== "mouse") return;
       mouse.current = { x: e.clientX, y: e.clientY };
       broadcastPosition();
+      // The colored cursor replaces the system one, so it also borrows its
+      // shapes: over an element marked data-cursor, swap the arrow for it.
+      const under = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+      const hit = under?.closest?.('[data-cursor="ew-resize"]') != null;
+      setResizing((prev) => (prev === hit ? prev : hit));
     };
     const onScroll = () => broadcastPosition();
     const onLeaveWindow = (e: PointerEvent) => {
@@ -435,7 +454,7 @@ export function LiveCursors({ transport }: { transport: Transport }) {
         aria-hidden={mode !== "chat"}
         className="absolute -left-0.5 -top-0.5 z-10 opacity-0 will-change-transform"
       >
-        <CursorArrow color={me.color} />
+        {resizing ? <ResizeArrow color={me.color} /> : <CursorArrow color={me.color} />}
         {mode === "chat" ? (
           <div className="pointer-events-auto">
             <Bubble color={me.color}>
