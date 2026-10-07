@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -73,18 +73,34 @@ export function SiteNav() {
 
 
   const navRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const [pill, setPill] = useState<{ x: number; w: number } | null>(lastPill);
   useLayoutEffect(() => {
+    const container = navRef.current;
+    if (!container) return;
     const measure = () => {
-      const el = navRef.current?.querySelector<HTMLElement>('[aria-current="page"]');
-      if (!el) { setPill(null); return; }
+      const el = container.querySelector<HTMLElement>('[aria-current="page"]');
+      // Hidden (mobile) layout measures 0 — keep the last good position.
+      if (!el || container.offsetWidth === 0) {
+        if (!el) setPill(null);
+        return;
+      }
       const next = { x: el.offsetLeft, w: el.offsetWidth };
+      if (lastPill && lastPill.x === next.x && lastPill.w === next.w) {
+        setPill(next);
+        return;
+      }
       lastPill = next;
       setPill(next);
     };
     measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    // Re-measure when web fonts finish loading or the nav reflows,
+    // so the pill never sits on a stale (pre-font) position.
+    const ro = new ResizeObserver(measure);
+    ro.observe(container);
+    container.querySelectorAll("a").forEach((a) => ro.observe(a));
+    document.fonts?.ready.then(measure).catch(() => {});
+    return () => ro.disconnect();
   }, [location.pathname]);
 
   const navTransition = (_to: string, after?: () => void) => () => after?.();
@@ -122,7 +138,7 @@ export function SiteNav() {
               className="pointer-events-none absolute inset-y-0 left-0 my-auto h-9 rounded-full bg-foreground"
               initial={lastPill ? { x: lastPill.x, width: lastPill.w } : false}
               animate={{ x: pill.x, width: pill.w }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 30 }}
             />
           )}
           {navItems.map((item) => (
