@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "@/hooks/useTranslations";
 import inisAvatar from "@/assets/inis-avatar.png";
 import esdrasAvatar from "@/assets/esdras-avatar.png";
-import cadaUmNaSuaAsset from "@/assets/feyh-bier-sticker-2.png.asset.json";
+import cadaUmNaSuaAsset from "@/assets/cadaum-na-sua-bottle.png.asset.json";
 
 const cadaUmNaSua = cadaUmNaSuaAsset.url;
 
