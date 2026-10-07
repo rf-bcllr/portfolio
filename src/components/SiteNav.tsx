@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLayoutEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -67,7 +66,7 @@ function ConnectButton({
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
+
 
   const navTransition = (_to: string, after?: () => void) => () => after?.();
 
