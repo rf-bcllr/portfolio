@@ -120,7 +120,7 @@ export function SiteNav() {
                       layoutId="nav-active-pill"
                       aria-hidden="true"
                       className="absolute inset-0 rounded-full bg-foreground"
-                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      transition={{ type: "spring", stiffness: 260, damping: 28 }}
                     />
                   )}
                   <span className="relative z-10">{item.label}</span>
