@@ -126,7 +126,7 @@ const chipMap: Record<FeaturedProjectSlug, string[]> = {
   "lesson-plan-tool": ["AI", "Education", "In progress"],
   "credit-transfer-analysis": ["AI", "EdTech", "In progress"],
   "ionic-ai-identity": ["AI", "EdTech", "Character Design", "Naming"],
-  "quest-for-the-next-product": ["Game Design", "Storytelling", "Web"],
+  "quest-for-the-next-product": ["End-to-End", "Game Design", "Storytelling", "Web"],
 };
 
 const cardMeta: Record<FeaturedProjectSlug, Pick<FeaturedProject, "emoji" | "category" | "summary" | "durationDisplay" | "roleDisplay" | "outcome" | "outcomeValue" | "outcomeLabel" | "outcomeHighlights" | "accent"> & { mediaPresentation: FeaturedProjectMediaPresentation }> = {
@@ -353,7 +353,7 @@ const buildMediaItems = (slug: FeaturedProjectSlug, project: NonNullable<ReturnT
       orientation: item.orientation,
       aspect: item.aspect ?? override?.aspect,
       maxWidth: item.maxWidth ?? override?.maxWidth,
-      rotate: slug === "ionic-ai-identity"
+      rotate: slug === "ionic-ai-identity" || slug === "quest-for-the-next-product"
         ? (itemIndex % 2 === 0 ? "-rotate-1" : "rotate-1")
         : item.rotate ?? override?.rotate,
     });
