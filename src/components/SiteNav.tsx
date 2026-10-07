@@ -97,14 +97,7 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop nav */}
-        <div ref={rowRef} className="relative hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
-          {pill && (
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute top-1/2 h-9 -translate-y-1/2 rounded-full bg-foreground transition-[left,width] duration-300 ease-out motion-reduce:transition-none"
-              style={{ left: pill.left, width: pill.width }}
-            />
-          )}
+        <div className="relative hidden min-w-0 flex-1 items-center justify-center gap-2 px-2 lg:flex">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
