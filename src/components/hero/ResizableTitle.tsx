@@ -191,8 +191,8 @@ export function ResizableTitle({ variants = DEFAULT_VARIANTS, mobileVariants, cl
         <span aria-hidden="true" className="pointer-events-none absolute inset-0 border border-primary" />
 
         {/* Edge hit areas */}
-        <span aria-hidden="true" className="absolute inset-y-0 -left-2 w-4 cursor-[ew-resize] touch-none" {...handleProps(-1)} />
-        <span aria-hidden="true" className="absolute inset-y-0 -right-2 w-4 cursor-[ew-resize] touch-none" {...handleProps(1)} />
+        <span aria-hidden="true" data-cursor="ew-resize" className="absolute inset-y-0 -left-2 w-4 cursor-[ew-resize] touch-none" {...handleProps(-1)} />
+        <span aria-hidden="true" data-cursor="ew-resize" className="absolute inset-y-0 -right-2 w-4 cursor-[ew-resize] touch-none" {...handleProps(1)} />
 
         {/* Corner handles: 10px visual square, 28px hit area */}
         {(
@@ -206,6 +206,7 @@ export function ResizableTitle({ variants = DEFAULT_VARIANTS, mobileVariants, cl
           <span
             key={pos}
             aria-hidden="true"
+            data-cursor="ew-resize"
             className={`absolute ${pos} z-10 grid size-7 cursor-[ew-resize] touch-none place-items-center`}
             {...handleProps(dir)}
           >
