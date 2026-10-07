@@ -1162,6 +1162,16 @@ button:focus-visible, a:focus-visible, .opt:focus-visible{
 .quest-logo{display:block;width:100%;max-width:100%;height:auto;object-fit:contain;margin-inline:auto}
 .tcard h1.title-logo{margin-bottom:16px;line-height:0}
 .title-logo .quest-logo{max-height:36dvh}
+/* caixa de transformação estilo Figma no logo da capa: as alças dos cantos
+   mostram o cursor de redimensionar e de fato redimensionam o logo */
+.tbox{position:relative;display:inline-block;max-width:100%;outline:2px solid var(--accent);outline-offset:4px}
+.tbox .quest-logo{transform-origin:center}
+.th{position:absolute;width:12px;height:12px;background:#fff;border:2px solid var(--accent);border-radius:2px;z-index:2;touch-action:none}
+.th-nw{top:-8px;left:-8px;cursor:nwse-resize}
+.th-se{bottom:-8px;right:-8px;cursor:nwse-resize}
+.th-ne{top:-8px;right:-8px;cursor:nesw-resize}
+.th-sw{bottom:-8px;left:-8px;cursor:nesw-resize}
+@media (pointer:coarse){.th{width:18px;height:18px}.th-nw{top:-11px;left:-11px}.th-se{bottom:-11px;right:-11px}.th-ne{top:-11px;right:-11px}.th-sw{bottom:-11px;left:-11px}}
 .loading-logo{max-height:27dvh;margin-bottom:12px}
 .ld-heading{text-align:center}.ld-kicker{display:block;font-size:12px;font-weight:800;color:var(--accent);letter-spacing:0}
 .ld-eyebrow{font-size:11px;font-weight:800;letter-spacing:0;color:var(--ink);text-align:center}
