@@ -1,5 +1,6 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Menu, Play, X } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -69,22 +70,6 @@ export function SiteNav() {
 
 
   const navTransition = (_to: string, after?: () => void) => () => after?.();
-
-  // Single indicator measured inside the nav row, so page scroll never
-  // moves it vertically — it only slides horizontally between items.
-  const rowRef = useRef<HTMLDivElement>(null);
-  const [pill, setPill] = useState<{ left: number; width: number } | null>(null);
-  useLayoutEffect(() => {
-    const measure = () => {
-      const row = rowRef.current;
-      const el = row?.querySelector<HTMLElement>('[aria-current="page"]');
-      if (!row || !el) return setPill(null);
-      setPill({ left: el.offsetLeft, width: el.offsetWidth });
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [location.pathname]);
 
   return (
     <header className="sticky top-4 z-50 px-4">
