@@ -4859,13 +4859,14 @@ function armRestart(mode) {
 
 function cancelRestart() {
   if (confirmTimer) { clearTimeout(confirmTimer); confirmTimer = null; }
+  const eraHud = confirmMode === 'hud';
   confirmMode = null;
-  confirmEl.hidden = true;
   restartEl.hidden = false;
   const row = document.getElementById('restart-confirm-panel');
   const btn = document.getElementById('btn-restart');
   if (row) row.hidden = true;
   if (btn) btn.hidden = false;
+  if (eraHud && overlay.classList.contains('open')) closeAll();
 }
 
 function confirmRestart() {
@@ -4877,8 +4878,6 @@ function confirmRestart() {
 }
 
 restartEl.addEventListener('click', () => armRestart('hud'));
-document.getElementById('btn-yes').addEventListener('click', confirmRestart);
-document.getElementById('btn-no').addEventListener('click', cancelRestart);
 
 /* O tema não é escolha de quem joga: é a zona que anoitece. O botão de
    claro/escuro saiu — ele só aparecia na zona da pandemia e oferecia desfazer
