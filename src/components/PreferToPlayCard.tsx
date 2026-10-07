@@ -9,7 +9,7 @@ export function PreferToPlayCard({
   buttonLabel?: string;
 }) {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-8 pt-20 md:pb-12 md:pt-16">
+    <section className="mx-auto max-w-6xl px-6 pt-8 pb-[104px] md:pt-0">
       <Card className="flex flex-col items-start justify-between gap-4 p-4 sm:p-5 lg:flex-row lg:items-center">
         <div className="max-w-xl lg:flex-1">
           <h2 className="font-display text-2xl font-bold tracking-normal md:text-3xl">
