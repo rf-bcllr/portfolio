@@ -87,6 +87,8 @@ const UI = {
   yes:          'Start over',
   no:           'Keep playing',
   confirmQ:     'Start over from 2015? Every card, tome and tool you found gets cleared.',
+  confirmT:     'Start over?',
+  confirmBody:  'Every card, tome and tool you found gets cleared, and the run goes back to 2015. There is no undo.',
   lv:           'Lv.',
   nextKeys:     'Next',
   nextTouch:    'Tap',
