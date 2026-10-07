@@ -338,7 +338,7 @@ const ENTITIES = [
   /* ============ UFRB · JORNALISMO — 2015 ============ */
   { id: 'sign-start', type: 'sign', x: 120, zone: 'ufrb', sprite: 'props/sign',
     label: 'Sign',
-    sub:   'Cruz das Almas, Bahia',
+    sub:   'Cachoeira, Bahia',
     lines: [
       'UFRB CAMPUS · Cachoeira, Bahia.',
       'DESIGN is not offered here.',
