@@ -754,7 +754,7 @@ const ENTITIES = [
     },
     grants: ['ai'],
   },
-  { id: 'cert-gameux', type: 'cert', x: 6080, y: 144, zone: 'arco',
+  { id: 'cert-gameux', type: 'cert', x: 2192, plat: true, y: 144, zone: 'sebrae',
     cert: 'Game UX Design Foundations',
     url: 'https://www.interaction-design.org/members/rafael-bacellar-ramos-reis/certificate/masterclass/mcc_5847201105b245858759024389ba2499',
     special: 'Yes, this certificate is real. It is the reason this portfolio is a game.' },
@@ -1035,6 +1035,7 @@ const ENTITIES = [
 const PLATFORMS = [
   { x: 900,  w: 48, h: 32 },                              // Sanar: Adobe
   { x: 1472, w: 32, h: 32 }, { x: 1520, w: 64, h: 64 },   // UNEB: escada até o baú da cerveja
+  { x: 2128, w: 32, h: 32 }, { x: 2160, w: 32, h: 64 }, { x: 2192, w: 48, h: 96 }, // Sebrae: escada até Game UX
   { x: 3168, w: 32, h: 32 }, { x: 3200, w: 32, h: 64 }, { x: 3232, w: 96, h: 96 },   // Pandemia: o pedestal do Gravedigger
   { x: 4032, w: 48, h: 32 },                              // ClassApp: Notion
   { x: 4176, w: 48, h: 32 },                              // ClassApp: certificado

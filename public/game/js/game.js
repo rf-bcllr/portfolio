@@ -5320,6 +5320,7 @@ function updateHUD() {
   lvlEl.hidden = !state.level;
   const done = state.level >= FINAL_LEVEL;
   doneEl.hidden = !done;
+  restartWrapEl.hidden = !done;
   restartEl.classList.toggle('show', done);
   /* A cerveja é o único power-up do jogo, não um item de inventário: o espaço
      dela fica sempre à vista, apagado enquanto não foi achada. Sumir e voltar
