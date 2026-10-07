@@ -112,6 +112,7 @@ export function LiveCursors({ transport }: { transport: Transport }) {
   const [draft, setDraft] = useState("");
   const [lastSent, setLastSent] = useState("");
   const [pickerAt, setPickerAt] = useState<Point | null>(null);
+  const [resizing, setResizing] = useState(false); // hovering something with a resize handle
   const [arrival, setArrival] = useState<{ key: number; name: string; color: string } | null>(null);
 
   const peers = useRef(new Map<string, PeerState>());
@@ -255,6 +256,11 @@ export function LiveCursors({ transport }: { transport: Transport }) {
       if (e.pointerType !== "mouse") return;
       mouse.current = { x: e.clientX, y: e.clientY };
       broadcastPosition();
+      // The colored cursor replaces the system one, so it also borrows its
+      // shapes: over an element marked data-cursor, swap the arrow for it.
+      const under = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
+      const hit = under?.closest?.('[data-cursor="ew-resize"]') != null;
+      setResizing((prev) => (prev === hit ? prev : hit));
     };
     const onScroll = () => broadcastPosition();
     const onLeaveWindow = (e: PointerEvent) => {
@@ -448,8 +454,7 @@ export function LiveCursors({ transport }: { transport: Transport }) {
         aria-hidden={mode !== "chat"}
         className="absolute -left-0.5 -top-0.5 z-10 opacity-0 will-change-transform"
       >
-        <CursorArrow color={me.color} />
-        {mode === "chat" ? (
+        {resizing ? <ResizeArrow color={me.color} /> : <CursorArrow color={me.color} />}
           <div className="pointer-events-auto">
             <Bubble color={me.color}>
               {lastSent ? <div className="mb-1 text-white/80">{lastSent}</div> : null}
