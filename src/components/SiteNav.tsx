@@ -154,7 +154,7 @@ export function SiteNav() {
               )}
             </NavLink>
           ))}
-          <PlayLink className="h-9" />
+          <PlayLink className="h-9" onClick={navTransition("/play")} />
         </div>
 
         {/* Desktop CTA cluster */}
