@@ -15,3 +15,4 @@
 - Reuse the game-logo asset pointer in React and its exact served URL in static game HTML, so game loading and title display one asset without duplicate binaries.
 - Nav and theme-toggle active pills are measured or CSS-positioned locally, never shared framer `layoutId`s, because duplicated/remounted instances made them fly or vanish.
 - Gate the HUD restart wrapper by completion state, not viewport; let actions wrap and anchor confirmation below so restart remains reachable without overflowing narrow screens.
+- Stageshow bento pilots live in src/components/stage and are previewed only on the unlinked /lab/stageshow page until approved for /work, so the live cards stay untouched.
