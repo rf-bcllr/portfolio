@@ -1,71 +1,54 @@
 import "./stage.css";
-import { ImageIcon, Sparkles } from "lucide-react";
+import { ImageIcon, Info, X, MousePointer2, FileText } from "lucide-react";
 
-/**
- * Stageshow-style pilot: faux product UI highlighting the AI image generation flow.
- * Only facts from projects data: teachers, FTD com Você, math word problems,
- * chemistry formulas, prompt engineering, token management, agent design.
- */
-const Bar = ({ w, className = "" }: { w: string; className?: string }) => (
-  <span className={`block h-2 rounded-full bg-foreground/15 ${className}`} style={{ width: w }} />
-);
-
-const Tile = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div className={`relative overflow-hidden rounded-none border-2 border-foreground bg-card shadow-[4px_4px_0_0_hsl(var(--foreground))] ${className}`}>
-    {children}
-  </div>
-);
-
-const Label = ({ children }: { children: React.ReactNode }) => (
-  <p className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">{children}</p>
+/** Recreates the FTD com Você screens from the AI image generation GIF, as a bento of highlights. */
+const ImgBtn = ({ className = "" }: { className?: string }) => (
+  <span className={`ftd-btn ${className}`}><ImageIcon className="h-2.5 w-2.5" /> Gerar imagem com IA</span>
 );
 
 export function AiImageGenerationBento() {
   return (
-    <div className="stage-bento grid w-full max-w-[560px] grid-cols-2 gap-3 sm:grid-cols-3 sm:grid-rows-2" aria-label="AI image generation highlights" role="img">
-      {/* Hero tile: question editor with image being generated */}
-      <Tile className="col-span-2 p-4 sm:row-span-2">
-        <div className="mb-3 flex items-center justify-between">
-          <Label>FTD com Você · New question</Label>
-          <span className="h-2 w-2 rounded-full bg-primary" />
+    <div className="ftd grid w-full max-w-[560px] grid-cols-2 gap-3 sm:grid-cols-3" role="img" aria-label="Recriação da tela FTD com Você: questões com botão Gerar imagem com IA">
+      {/* Hero: question list where the teacher generates an image */}
+      <div className="ftd-tile col-span-2 p-3 sm:row-span-2">
+        <div className="mb-3 flex items-start gap-2 rounded-md border border-[var(--ftd-blue)]/30 bg-[var(--ftd-info)] p-2 text-[9px] leading-tight">
+          <Info className="mt-px h-3 w-3 shrink-0 text-[var(--ftd-blue)]" />
+          <span className="flex-1">As questões não podem ser editadas aqui. <span className="text-[var(--ftd-blue)] underline">Exportar em .DOCX</span></span>
+          <X className="h-3 w-3 text-[var(--ftd-muted)]" />
         </div>
-        <p className="font-display text-sm font-semibold leading-snug">Math word problem</p>
-        <div className="mt-2 space-y-1.5">
-          <Bar w="92%" />
-          <Bar w="76%" />
+        <p className="text-[10px] leading-snug">3. Um terreno retangular possui 120 m de perímetro. Sabendo que o comprimento é o triplo da largura, determine as dimensões.</p>
+        <div className="ftd-field mt-2 px-2 py-1.5 text-[8px] text-[var(--ftd-muted)]">[Espaço para resposta]</div>
+        <div className="relative mt-2 inline-block">
+          <ImgBtn className="ftd-press" />
+          <MousePointer2 className="ftd-cursor pointer-events-none absolute -bottom-3 left-16 h-3.5 w-3.5 fill-white text-[var(--ftd-ink)]" />
         </div>
-        <div className="relative mt-4 aspect-[16/9] w-full border-2 border-dashed border-foreground/30 bg-muted">
-          <div className="stage-img absolute inset-0 flex items-center justify-center bg-primary/10">
-            <ImageIcon className="h-10 w-10 text-primary" strokeWidth={1.5} />
+        <div className="ftd-img mt-3 flex aspect-[16/7] items-center justify-center rounded-md border border-[var(--ftd-line)] bg-white">
+          <svg viewBox="0 0 120 50" className="h-[70%]" aria-hidden>
+            <rect x="20" y="10" width="80" height="30" fill="#e8f1e3" stroke="#5a8f4e" strokeWidth="1.5" />
+            <text x="60" y="8" fontSize="6" textAnchor="middle" fill="#2b2b2b">3x</text>
+            <text x="106" y="28" fontSize="6" fill="#2b2b2b">x</text>
+          </svg>
+        </div>
+      </div>
+
+      {/* Second question */}
+      <div className="ftd-tile p-3">
+        <p className="text-[9px] leading-snug">1. Cite três exemplos de grandezas que estudamos em Matemática.</p>
+        <div className="ftd-field mt-2 h-4" />
+        <ImgBtn className="mt-2" />
+      </div>
+
+      {/* Teacher sidebar card */}
+      <div className="ftd-tile p-3">
+        <p className="mb-2 flex items-center gap-1 text-[9px] text-[var(--ftd-muted)]"><FileText className="h-3 w-3" /> Meus Materiais</p>
+        <div className="flex items-center gap-2 rounded-md bg-white p-2">
+          <span className="h-5 w-5 shrink-0 rounded-full bg-[var(--ftd-avatar)]" />
+          <div className="min-w-0">
+            <p className="text-[9px] font-semibold">Professor(a)</p>
+            <span className="ftd-bar mt-1 w-10" />
           </div>
-          <div className="stage-scan absolute inset-x-0 h-1/3 bg-gradient-to-b from-transparent via-primary/25 to-transparent" />
         </div>
-        <div className="mt-3 flex items-center gap-2 rounded-full border-2 border-foreground bg-background px-3 py-1.5">
-          <Sparkles className="h-3.5 w-3.5 shrink-0 text-primary" />
-          <span className="stage-type truncate font-display text-[11px] font-medium">Generate image for this question</span>
-        </div>
-      </Tile>
-
-      <Tile className="p-3">
-        <Label>Prompt engineering</Label>
-        <div className="mt-3 space-y-1.5">
-          <Bar w="100%" />
-          <Bar w="64%" className="bg-primary/40" />
-          <Bar w="82%" />
-        </div>
-      </Tile>
-
-      <Tile className="p-3">
-        <Label>Token management</Label>
-        <div className="mt-3 h-2.5 w-full border-2 border-foreground bg-background">
-          <div className="stage-meter h-full bg-primary" />
-        </div>
-        <div className="mt-3 flex flex-wrap gap-1">
-          {["Math", "Chemistry"].map((s) => (
-            <span key={s} className="border border-foreground px-1.5 py-0.5 font-display text-[9px] font-semibold uppercase">{s}</span>
-          ))}
-        </div>
-      </Tile>
+      </div>
     </div>
   );
 }
