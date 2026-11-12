@@ -16,6 +16,7 @@ import Certifications from "./pages/Certifications";
 import NotFound from "./pages/NotFound";
 import ProjectDetail from "./pages/ProjectDetail";
 import Play from "./pages/Play";
+import StageLab from "./pages/StageLab";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/resume" element={<Resume />} />
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/play" element={<Play />} />
+            <Route path="/lab/stageshow" element={<StageLab />} />
             <Route path="/project/:slug" element={<ProjectDetail />} />
             <Route path="/projetos/:slug" element={<ProjectDetail />} />
             <Route path="/experience" element={<Navigate to="/resume" replace />} />

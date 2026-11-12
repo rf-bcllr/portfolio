@@ -1,0 +1,11 @@
+@keyframes stage-scan { 0% { top: -33%; } 100% { top: 100%; } }
+@keyframes stage-img { 0%, 45% { opacity: 0; } 60%, 100% { opacity: 1; } }
+@keyframes stage-meter { 0% { width: 18%; } 60%, 100% { width: 62%; } }
+.stage-bento .stage-scan { animation: stage-scan 2.4s linear infinite; }
+.stage-bento .stage-img { animation: stage-img 4.8s ease-out infinite; }
+.stage-bento .stage-meter { animation: stage-meter 4.8s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .stage-bento .stage-scan { display: none; }
+  .stage-bento .stage-img, .stage-bento .stage-meter { animation: none; }
+  .stage-bento .stage-meter { width: 62%; }
+}
