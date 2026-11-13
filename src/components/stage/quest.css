@@ -1,0 +1,29 @@
+.quest-bento { width: 100%; max-width: 560px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; color: #292432; font-family: "Courier New", monospace; container-type: inline-size; }
+.quest-bento * { box-sizing: border-box; }
+.quest-bento .quest-tile { min-width: 0; overflow: hidden; border: 2px solid #302b36; border-radius: 12px; background: #f3f6f8; }
+.quest-bento h3 { margin: 0; font-size: 18px; line-height: 1.2; font-weight: 700; letter-spacing: -.04em; }
+.quest-hero { grid-column: 1 / -1; }
+.quest-hero header { padding: 20px 20px 16px; border-bottom: 2px solid #302b36; background: #fff8df; }
+.quest-hero header > span { font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+.quest-hero header h3 { margin-top: 4px; font-size: clamp(26px, 7cqi, 40px); letter-spacing: -.065em; }
+.quest-journey { position: relative; overflow: hidden; aspect-ratio: 1.8; background: #edf2f6; }
+.quest-bento .quest-campus { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center 55%; }
+.quest-campus-next { animation: quest-next-level 8s ease-in-out infinite both; }
+.quest-route { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-top: 2px solid #302b36; background: #fff8df; font-size: 11px; font-weight: 700; }
+.quest-route > span:not(.quest-route-track) { white-space: nowrap; }
+.quest-route-track { flex: 1; height: 5px; overflow: hidden; background: #d9d2b9; }
+.quest-route-track i { display: block; height: 100%; background: #c95876; transform-origin: left; animation: quest-progress 8s ease-in-out infinite both; }
+.quest-coast h3, .quest-boss h3 { padding: 15px; border-bottom: 2px solid #302b36; }
+.quest-bento .quest-coast { background: #e1f5fa; }
+.quest-bento .quest-boss { color: #fff4cf; background: #30283e; }
+.quest-scene { position: relative; overflow: hidden; aspect-ratio: 1.05; }
+.quest-bento .quest-scene img { display: block; width: 100%; height: 100%; object-fit: cover; max-width: none; }
+.quest-coast .quest-scene img { object-position: 74% center; }
+.quest-boss .quest-scene img { object-position: 70% center; }
+@keyframes quest-next-level { 0%, 32% { opacity: 0; } 52%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes quest-progress { 0%, 20% { transform: scaleX(0); } 55%, 90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+@container (max-width: 370px) { .quest-coast, .quest-boss { grid-column: 1 / -1; } .quest-scene { aspect-ratio: 1.65; } }
+@media (prefers-reduced-motion: reduce) {
+  .quest-bento .quest-campus-next { animation: none; opacity: 1; }
+  .quest-bento .quest-route-track i { animation: none; }
+}

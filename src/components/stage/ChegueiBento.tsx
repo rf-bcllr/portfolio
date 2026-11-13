@@ -1,62 +1,231 @@
-import "./stage.css";
-import { Send, MapPin, Check, Car, Mail, MessageSquare, Heart, LayoutGrid, MousePointer2, Footprints, ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  CarFront, Check, CheckCheck, ChevronDown, Footprints,
+  MapPin, MessageSquare, Navigation, Plus, Search,
+  SlidersHorizontal, X,
+} from "lucide-react";
+import "./cheguei.css";
 
-/** Recreates the ClassApp "Cheguei" screens from the project video as a bento. */
-const Avatar = ({ t, c }: { t: string; c: string }) => (
-  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold text-white" style={{ background: c }}>{t}</span>
-);
+const beats = [
+  ["idle", 2000], ["transport", 2300], ["vehicle", 1300], ["confirmTransport", 650],
+  ["ready", 1400], ["tapArrival", 500], ["gate", 2300], ["submit", 650],
+  ["requested", 2600], ["queue", 2200], ["opening", 600], ["details", 2600],
+  ["filters", 700], ["queueAgain", 1500], ["acceptTap", 500], ["accepting", 650],
+  ["accepted", 2400], ["guardianLoading", 700], ["onWay", 3600], ["staffReturn", 1600],
+  ["reset", 600],
+] as const;
+
+type Phase = typeof beats[number][0];
+
+function usePickupSequence(): Phase {
+  const [index, setIndex] = useState(0);
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  useEffect(() => {
+    if (reduced) return;
+    const timer = window.setTimeout(() => setIndex(v => (v + 1) % beats.length), beats[index][1]);
+    return () => window.clearTimeout(timer);
+  }, [index, reduced]);
+  return reduced ? "onWay" : beats[index][0];
+}
+
+function Avatar({ amaya = false }: { amaya?: boolean }) {
+  return <span className={`cq-avatar ${amaya ? "cq-avatar-green" : ""}`}>{amaya ? "A" : "A("}</span>;
+}
+function Tap() { return <span className="cq-tap" aria-hidden="true" />; }
+function Progress({ delivered = false, requested = false }: { delivered?: boolean; requested?: boolean }) {
+  return (
+    <div className={`cq-progress ${delivered ? "is-delivered" : ""} ${requested ? "is-requested" : ""}`}>
+      <span /><span /><span /><span />
+    </div>
+  );
+}
+
+const vehicles = [
+  ["BCLLR270", "Tesla - Branco"],
+  ["HJE213", "Renault Corsa - Prata"],
+  ["ABACOONN", "Branco"],
+  ["BCLLR123", "Fiat Palio - Vermelho"],
+  ["BCLLR993", "Renault Kwid - Preto"],
+];
 
 export function ChegueiBento() {
+  const phase = usePickupSequence();
+  const is = (...p: Phase[]) => p.includes(phase);
+  const transportOpen = is("transport", "vehicle", "confirmTransport");
+  const selectedVehicle = !is("idle", "transport", "reset");
+  const gateOpen = is("gate", "submit");
+  const accepted = is("accepted", "guardianLoading", "onWay", "staffReturn");
+  const requested = is("requested", "queue", "opening", "details", "filters", "queueAgain", "acceptTap", "accepting");
+  const staffActive = is("queue", "opening", "details", "filters", "queueAgain", "acceptTap", "accepting", "accepted", "staffReturn");
+  const accepting = phase === "accepting";
+
   return (
-    <div className="ca grid w-full max-w-[560px] grid-cols-2 gap-3 sm:grid-cols-3" role="img" aria-label="Recriação das telas do Cheguei no ClassApp">
-      <div className="app-tile col-span-2 bg-[#f7f8fa] p-3 sm:row-span-2">
-        <div className="mb-2 flex items-center justify-between text-[10px]">
-          <span className="flex items-center gap-1 text-[var(--ca-blue)]"><Footprints className="h-3 w-3" /> A pé</span>
-          <ChevronDown className="h-3 w-3 text-neutral-400" />
+    <div
+      className={`cheguei-bento ${phase === "reset" ? "cq-reset" : ""}`}
+      role="img"
+      aria-label="Cheguei ClassApp: responsável muda de transporte, escolhe a portaria e solicita a retirada. A equipe abre e aceita o chamado. O responsável acompanha o status A caminho. Amaya tem uma retirada já entregue."
+    >
+      <section className="cq-tile cq-hero">
+        <header className="cq-header"><Avatar /><strong>Aluno (Demo)</strong></header>
+        <div className="cq-transport-bar">
+          {selectedVehicle ? <CarFront /> : <Footprints />}
+          <span>{selectedVehicle ? "[BCLLR993] Renault Kwid - Preto" : "A pé"}</span>
+          <ChevronDown />
         </div>
-        <p className="mb-2 text-[8px] font-semibold uppercase tracking-wide text-neutral-500">Colégio MMW</p>
-        <div className="rounded-xl border border-[var(--ca-line)] bg-white p-3">
-          <div className="flex items-center gap-2">
-            <Avatar t="A(" c="var(--ca-red)" />
-            <div><p className="text-[11px] font-semibold">Aluno (Demo)</p><p className="flex items-center gap-0.5 text-[8px] text-neutral-500"><MapPin className="h-2 w-2" /> Múltiplas portarias</p></div>
-          </div>
-          <div className="relative mt-3 h-8">
-            <button tabIndex={-1} className="ca-a ca-press absolute inset-0 flex items-center justify-center gap-1 rounded-full bg-[var(--ca-blue)] text-[10px] font-medium text-white"><Send className="h-3 w-3" /> Cheguei</button>
-            <div className="ca-b absolute inset-0 flex flex-col justify-center gap-1">
-              <p className="flex items-center justify-center gap-1 text-[9px] font-medium text-[var(--ca-green)]"><Check className="h-2.5 w-2.5" /> Entregue</p>
-              <div className="h-1 w-full rounded-full bg-neutral-200"><div className="ca-progress h-full rounded-full bg-[var(--ca-green)]" /></div>
+        <div className="cq-school">COLÉGIO MMW <ChevronDown />{(requested || accepted) && <b>1</b>}</div>
+        <div className="cq-student">
+          <div className="cq-person">
+            <Avatar />
+            <div>
+              <strong>Aluno (Demo)</strong>
+              <small><MapPin /> {requested || accepted ? "Portaria Teste" : "Múltiplas portarias"}</small>
             </div>
-            <MousePointer2 className="ca-cursor pointer-events-none absolute -bottom-2 left-1/2 h-3.5 w-3.5 fill-white text-neutral-800" />
           </div>
+          {requested || accepted ? (
+            <div className="cq-status" key={accepted ? "way" : "requested"}>
+              <strong>{accepted ? <Check /> : <Navigation />}{accepted ? "A caminho" : "Solicitado"}</strong>
+              <Progress requested={!accepted} />
+              <small>{accepted ? "Estudante será entregue em instantes..." : "Aguardando confirmação da escola..."}</small>
+              <span className={accepted ? "cq-link" : "cq-cancel"}>{accepted ? "Confirmar entrega" : "Cancelar chamado"}</span>
+            </div>
+          ) : (
+            <div className={`cq-button ${phase === "tapArrival" ? "is-pressed" : ""}`}>
+              <Navigation /> Cheguei{phase === "tapArrival" && <Tap />}
+            </div>
+          )}
         </div>
-        <div className="mt-2 rounded-xl border border-[var(--ca-line)] bg-white p-3">
-          <div className="flex items-center gap-2">
-            <Avatar t="A" c="var(--ca-green)" />
-            <div><p className="text-[11px] font-semibold">Amaya</p><p className="flex items-center gap-0.5 text-[8px] text-neutral-500"><MapPin className="h-2 w-2" /> Portaria Av. Um</p></div>
-          </div>
-          <p className="mt-2 flex items-center justify-center gap-1 text-[9px] text-[var(--ca-green)]"><Check className="h-2.5 w-2.5" /> Entregue</p>
-          <div className="mt-1 h-1 rounded-full bg-[var(--ca-green)]" />
-          <p className="mt-1 text-center text-[7px] text-neutral-400">Entregue às 13:49</p>
-        </div>
-      </div>
+        <div className="cq-collapsed">ESCOLA CLASSAPP <ChevronDown /></div>
+        <div className="cq-collapsed">CLASSAPP - TEMA NOVO <ChevronDown /></div>
+        <div className="cq-collapsed">COLÉGIO WILLIAN FERREIRA <ChevronDown /></div>
 
-      <div className="app-tile p-3">
-        <div className="flex gap-2">
-          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-400 text-[9px] font-semibold text-white">C</span>
-          <div className="min-w-0">
-            <p className="text-[9px] font-semibold leading-tight">Cheguei: agilidade e segurança para buscar o seu filho!</p>
-            <p className="mt-1 flex items-center gap-0.5 text-[8px] text-neutral-500"><Mail className="h-2 w-2" /> Cheguei · 13:44</p>
+        {phase === "guardianLoading" && <div className="cq-loading"><span className="cq-spinner" /></div>}
+        {(transportOpen || gateOpen) && <div className="cq-scrim" />}
+
+        {transportOpen && (
+          <div className="cq-sheet cq-transport-sheet">
+            <div className="cq-handle" />
+            <p>Qual transporte você está utilizando?</p>
+            {vehicles.map(([plate, name], index) => {
+              const checked = index === 4 && phase !== "transport";
+              return (
+                <div className={`cq-option ${checked ? "is-selected" : ""}`} key={plate}>
+                  <span className="cq-radio">{checked && <Check />}</span>
+                  <CarFront />
+                  <div>[{plate}]<small>{name}</small></div>
+                  {checked && phase === "vehicle" && <Tap />}
+                </div>
+              );
+            })}
+            <div className={`cq-option ${phase === "transport" ? "is-selected" : ""}`}>
+              <span className="cq-radio">{phase === "transport" && <Check />}</span>
+              <Footprints /><span><em>Principal</em> A pé</span>
+            </div>
+            <div className="cq-outline"><Plus /> Adicionar veículo</div>
+            <div className={`cq-button ${phase === "confirmTransport" ? "is-pressed" : ""}`}>
+              Confirmar{phase === "confirmTransport" && <Tap />}
+            </div>
+          </div>
+        )}
+
+        {gateOpen && (
+          <div className="cq-sheet cq-gate-sheet">
+            <div className="cq-handle" />
+            <p>Em qual portaria você está?</p>
+            <div className="cq-option is-selected">
+              <span className="cq-radio"><Check /></span>
+              <div>Portaria Teste<small>Rua Napoleão Dórea, 200</small></div>
+            </div>
+            <div className="cq-group">Grupo teste Luana <span>+16</span></div>
+            <div className="cq-option">
+              <span className="cq-radio" />
+              <div>Portaria Av. Um<small>Rua Açaí, 35, Dom Cabral</small></div>
+            </div>
+            <div className="cq-group cq-group-plain">Teste isaac <span>+1</span></div>
+            <div className={`cq-button ${phase === "submit" ? "is-pressed" : ""}`}>
+              <Navigation /> Cheguei{phase === "submit" && <Tap />}
+            </div>
+          </div>
+        )}
+      </section>
+
+      <section className={`cq-tile cq-staff ${staffActive ? "is-active" : ""}`}>
+        <header className="cq-header"><Avatar /><strong>Staff (Demo)</strong></header>
+        <div className="cq-tabs"><span>Chegaram</span><span>Entregues</span></div>
+        <div className="cq-search"><Search /> Buscar aluno... <SlidersHorizontal /></div>
+        <div className="cq-arrival-row">
+          <div className="cq-arrival-avatar">
+            <Avatar />
+            <span className="cq-timer">{accepted ? "01:09" : "00:34"}</span>
+          </div>
+          <div className="cq-arrival-info">
+            <strong>Aluno (Demo)</strong>
+            <span>1B <em>+3</em></span>
+            <small><Navigation /> Rafael Bacellar · <MapPin /> Portaria Teste</small>
+            <small><CarFront /> [BCLLR993] Renault Kwid - Preto</small>
+          </div>
+          <div className="cq-staff-actions">
+            <div className={`cq-button ${accepted ? "cq-green-button" : ""} ${phase === "acceptTap" ? "is-pressed" : ""}`}>
+              {accepting ? <span className="cq-spinner" /> : <><Check />{accepted ? "Concluir" : "Aceitar"}</>}
+              {phase === "acceptTap" && <Tap />}
+            </div>
+            <span className="cq-message"><MessageSquare /></span>
           </div>
         </div>
-      </div>
 
-      <div className="app-tile flex items-end p-3">
-        <div className="flex w-full justify-between text-neutral-400">
-          {[Mail, MessageSquare, Heart].map((I, i) => <I key={i} className="h-3.5 w-3.5" />)}
-          <span className="flex flex-col items-center text-[var(--ca-blue)]"><Car className="h-3.5 w-3.5" /><span className="text-[7px] font-semibold">Cheguei</span></span>
-          <LayoutGrid className="h-3.5 w-3.5" />
+        {phase === "opening" && <div className="cq-loading"><span className="cq-spinner" /></div>}
+
+        {phase === "details" && (
+          <>
+            <div className="cq-scrim" />
+            <div className="cq-sheet cq-detail-sheet">
+              <div className="cq-handle" />
+              <div className="cq-person"><Avatar /><strong>Aluno (Demo)</strong><span className="cq-timer">00:45</span></div>
+              <small><Navigation /> Rafael Bacellar</small>
+              <small><MapPin /> Portaria Teste</small>
+              <small className="cq-address">Rua Napoleão Dórea, 200</small>
+              <small><CarFront /> [BCLLR993] Renault Kwid - Preto</small>
+              <strong className="cq-group-title">Grupos do Aluno</strong>
+              <div className="cq-tags"><span>1B</span><span>Produto</span><span>Tech</span><span>Teste isaac</span></div>
+              <div className="cq-button"><Check /> Aceitar chamado</div>
+              <div className="cq-outline"><MessageSquare /> Contatar responsável</div>
+            </div>
+          </>
+        )}
+
+        {phase === "filters" && (
+          <div className="cq-filter-screen">
+            <strong><X /> Filtros de Pesquisa</strong>
+            <span className="cq-spinner" />
+            <div><span>Limpar filtros</span><span className="cq-button">Aplicar</span></div>
+          </div>
+        )}
+
+        {phase === "accepted" && <div className="cq-toast">1 chamado(s) aceito(s) <span>Desfazer</span></div>}
+      </section>
+
+      <section className="cq-tile cq-transport-tile">
+        <Footprints className="cq-feature-icon" />
+        <div className="cq-mode"><span>A pé</span><ChevronDown /></div>
+        <div className={`cq-vehicle-chip ${selectedVehicle ? "is-selected" : ""}`}>
+          <CarFront /><span>Renault Kwid<small>Preto · BCLLR993</small></span>
+          {selectedVehicle && <Check />}
         </div>
-      </div>
+      </section>
+
+      <section className="cq-tile cq-delivered-tile">
+        <div className="cq-person"><Avatar amaya /><strong>Amaya</strong></div>
+        <small><MapPin /> Portaria Av. Um</small>
+        <div className="cq-delivered"><CheckCheck /> Entregue</div>
+        <Progress delivered />
+        <small className="cq-delivery-time">Entregue às 13:49</small>
+      </section>
     </div>
   );
 }
