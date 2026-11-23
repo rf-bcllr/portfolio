@@ -1,50 +1,79 @@
-import "./stage.css";
-import { Bell, ChevronRight, ChevronDown, GraduationCap, FileText, Home, MessageCircle, Calendar, CircleDollarSign, MoreHorizontal, MousePointer2 } from "lucide-react";
+import { Bell, CalendarDays, ChevronDown, ChevronRight, CircleDollarSign, FileCheck2, GraduationCap, Home, Mail, MessageCircle, MoreHorizontal, BookOpen, BarChart3, Plus } from "lucide-react";
+import { useBeats } from "./useBeats";
+import "./meu-arco.css";
 
-/** Recreates the Meu Arco app screens (demo content from the project video) as a bento. */
+const beats = [
+  ["home", 1700], ["a1", 1000], ["a2", 1000], ["a3", 1000], ["a4", 1300], ["back", 1100],
+  ["pay", 1600], ["scroll", 2400], ["events", 2600], ["req", 2400], ["top", 1200],
+] as const;
+type Phase = typeof beats[number][0];
+
+const alerts = [
+  { icon: GraduationCap, text: <>Rematrícula 2025<br />está disponível</>, active: true },
+  { icon: BookOpen, text: <>O novo material didático<br />está disponível</> },
+  { icon: FileCheck2, text: <>Revise seus contratos</> },
+  { icon: BarChart3, text: <><b>1 enquete</b> sem resposta</> },
+];
+const events = [
+  ["Hoje", "Reunião de Pais e Mestres", "y"],
+  ["31/10", "Dia das Bruxas", "g"],
+  ["29/10", "Festa de Halloween", "y"],
+  ["04/11", "Vencimento da Fatura", "g"],
+];
+
 export function MeuArcoBento() {
+  const phase = useBeats(beats, "home" as Phase);
+  const is = (...p: Phase[]) => p.includes(phase);
+  const alertIndex = ({ a1: 1, a2: 2, a3: 3, a4: 4 } as Record<string, number>)[phase] ?? 0;
+  const scrolled = is("scroll", "events", "req");
+  const scrollY = is("events", "req") ? -250 : is("scroll") ? -150 : 0;
+  const reqSwiped = is("req");
+
   return (
-    <div className="arco grid w-full max-w-[560px] grid-cols-2 gap-3 sm:grid-cols-3" role="img" aria-label="Recriação das telas do app Meu Arco">
-      <div className="app-tile col-span-2 bg-[#f6f6f8] sm:row-span-2">
-        <div className="flex items-center justify-between bg-white px-3 py-2.5">
-          <span className="flex items-center gap-1.5 text-[11px] font-semibold"><span className="h-5 w-5 rounded-full border-[3px] border-[#3fae49]" /> Colégio COC <ChevronDown className="h-3 w-3" /></span>
-          <span className="flex items-center gap-2"><Bell className="h-3.5 w-3.5" /><span className="h-5 w-5 rounded-full bg-[#7a4a35]" /></span>
+    <div className="arco-bento" role="img" aria-label="Meu Arco: na tela inicial do Colégio COC, avisos deslizam de Rematrícula 2025 até 1 enquete sem resposta; a fatura de R$ 1.600,00 tem o botão Pagar; ao rolar aparecem as solicitações, Mensagens com 6 não lidas e o Calendário com os próximos eventos.">
+      <div className="ar-tile ar-hero" aria-hidden="true">
+        <div className="ar-top">
+          <span className="ar-logo" /> <b>Colégio COC</b> <ChevronDown />
+          <span className="ar-bell"><Bell /><i /></span><span className="ar-me" />
         </div>
-        <div className="bg-white px-3 pb-3">
-          <p className="text-[13px] font-semibold">Boa tarde, Maria!</p>
-          <div className="relative mt-2 overflow-hidden">
-            <div className="arco-slide flex w-[190%] gap-2">
-              {[{ I: GraduationCap, t: "Rematrícula 2025 está disponível", hi: true }, { I: FileText, t: "Revise seus contratos" }].map(({ I, t, hi }) => (
-                <div key={t} className={`flex flex-1 items-center gap-2 rounded-xl p-2.5 ${hi ? "bg-[var(--arco-soft)]" : "bg-neutral-100"}`}>
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/70"><I className="h-3 w-3" /></span>
-                  <span className="flex-1 text-[10px] leading-tight">{t}</span><ChevronRight className="h-3 w-3" />
-                </div>
-              ))}
+        <div className="ar-scroll" style={{ transform: `translateY(${scrollY}px)` }}>
+          <section className="ar-card">
+            <h4>Boa tarde, Maria!</h4>
+            <div className="ar-rail">
+              <div className="ar-track" style={{ transform: `translateX(calc(${alertIndex} * -62%))` }}>
+                {alerts.map(({ icon: Icon, text, active }, i) => (
+                  <div key={i} className={`ar-alert ${active ? "is-blue" : ""}`}><span><Icon /></span><p>{text}</p><ChevronRight /></div>
+                ))}
+                <div className="ar-alert is-more"><Plus /><p>Ver mais</p></div>
+              </div>
             </div>
-            <MousePointer2 className="ca-cursor pointer-events-none absolute bottom-1 left-[40%] h-3.5 w-3.5 fill-white text-neutral-800" />
-          </div>
+          </section>
+          <section className="ar-card">
+            <div className="ar-row"><strong className="ar-money">R$ 1.600,00</strong><span>Ver fatura <ChevronRight /></span></div>
+            <p className="ar-sub">Sua próxima fatura vence dia 05 de novembro</p>
+            <span className={`ar-pay ${is("pay") ? "is-press" : ""}`}>Pagar</span>
+          </section>
+          <section className="ar-gray">
+            <p className="ar-label">Acompanhe suas solicitações</p>
+            <div className="ar-reqs" style={{ transform: reqSwiped ? "translateX(-78%)" : "none" }}>
+              <div className="ar-req"><b>Matrícula 2025</b><span><i className="y" />Em andamento</span><span><i className="av" />Guilherme</span><ChevronRight /></div>
+              <div className="ar-req"><b>Material didático</b><span>Em preparação</span><span><i className="av" />Guilherme</span><ChevronRight /></div>
+            </div>
+          </section>
+          <section className="ar-card">
+            <div className="ar-row"><h4>Mensagens</h4><span><i className="ar-dot" />6 não lidas <ChevronRight /></span></div>
+            <div className="ar-icons"><MessageCircle /><Mail /></div>
+          </section>
+          <section className="ar-card">
+            <div className="ar-row"><h4>Calendário</h4><ChevronRight /></div>
+            <p className="ar-sub">Próximos eventos</p>
+            {events.map(([d, t, c], i) => (
+              <div key={d} className={`ar-event ${is("events") && i === 0 ? "is-hl" : ""}`}><i className={c} /><b>{d}</b>{t}</div>
+            ))}
+          </section>
         </div>
-        <div className="mt-2 bg-white p-3">
-          <div className="flex items-baseline justify-between"><p className="text-[15px] font-semibold">R$ 1.600,00</p><span className="flex items-center text-[9px]">Ver fatura <ChevronRight className="h-3 w-3" /></span></div>
-          <p className="text-[9px] text-neutral-600">Sua próxima fatura vence dia 05 de novembro</p>
-          <div className="mt-2 rounded-full bg-[var(--arco-blue)] py-1.5 text-center text-[10px] font-medium text-white">Pagar</div>
-        </div>
-      </div>
-
-      <div className="app-tile p-3">
-        <p className="text-[8px] text-neutral-500">Acompanhe suas solicitações</p>
-        <div className="mt-2 rounded-xl border border-[var(--arco-line)] p-2">
-          <p className="flex items-center justify-between text-[11px] font-semibold">Matrícula 2025 <ChevronRight className="h-3 w-3" /></p>
-          <span className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-neutral-100 px-1.5 py-0.5 text-[8px]"><span className="h-1.5 w-1.5 rounded-full bg-amber-400" /> Em andamento</span>
-        </div>
-      </div>
-
-      <div className="app-tile flex flex-col justify-between p-3">
-        <p className="flex items-center justify-between text-[11px] font-semibold">Mensagens <span className="flex items-center gap-1 text-[8px] font-normal"><span className="h-1.5 w-1.5 rounded-full bg-red-500" /> 6 não lidas</span></p>
-        <div className="mt-3 flex items-center justify-between text-neutral-700">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--arco-soft)]"><Home className="h-3 w-3 fill-[var(--arco-blue)] text-[var(--arco-blue)]" /></span>
-          {[MessageCircle, Calendar, CircleDollarSign, MoreHorizontal].map((I, i) => <I key={i} className="h-3.5 w-3.5" />)}
-        </div>
+        <nav className="ar-tabs"><span className="on"><Home /></span><span><MessageCircle /><i /></span><span><CalendarDays /></span><span><CircleDollarSign /></span><span><MoreHorizontal /></span></nav>
+        <span className={`ar-cursor ar-cursor-${scrolled ? (reqSwiped ? "req" : "scroll") : is("pay") ? "pay" : alertIndex ? "swipe" : "rest"}`} />
       </div>
     </div>
   );
