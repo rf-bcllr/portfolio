@@ -6,7 +6,7 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { experience, Media, outcomeOf, person, projectHref, projects, shortTitle, useReducedMotion, type Project } from "./shared";
+import { experience, Media, outcomeOf, person, projectHref, projects, shortTitle, useReducedMotion, type Project } from "@/components/canvas/shared";
 import figma from "@/assets/tools/figma.png";
 import figjam from "@/assets/tools/figjam.png";
 import claude from "@/assets/tools/claude.svg";

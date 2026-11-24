@@ -4,7 +4,8 @@
  * frames, and a Design panel that reads the real size and position of what is selected. Each case is a
  * section; inside it, frames hold stageshow pieces rebuilt from the real screens, annotated with
  * numbered markers and note cards in Rafa's own documentation style. The portfolio's identity stays in
- * the content (Clash Display, Satoshi, the primary blue). Mockup only.
+ * the content (Clash Display, Satoshi, the primary blue). This is the home page; a hash
+ * (/#meu-arco) opens on that section, which is where the old case-study URLs redirect.
  */
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent as RPointerEvent } from "react";
 import { ArrowDown, ArrowUpRight, ChevronDown, Hand, Hash, LayoutGrid, MessageSquareText, Minus, MousePointer2, Play, Plus, Frame as FrameIcon } from "lucide-react";
@@ -32,7 +33,7 @@ function CoverFrame() {
     <div className="fg-about fg-cover">
       <div>
         <p className="fg-avail"><i /> Open to new projects</p>
-        <p className="fg-name font-display">Rafael <span>Bacellar</span></p>
+        <h1 className="fg-name font-display">Rafael <span>Bacellar</span></h1>
         <p className="fg-lede">Senior product designer. I design school and AI products, from research to the shipped screen.</p>
         <div className="fg-cover-row">
           <a href={person.linkedin} target="_blank" rel="noreferrer" className="fg-cta">Let's connect <ArrowUpRight className="size-4" /></a>
@@ -186,7 +187,7 @@ function SectionItem({ s, ...rest }: ItemProps & { s: Sec }) {
 
 /* ---------- Workspace ---------- */
 
-export function DirectionCanvas() {
+export function PortfolioCanvas() {
   const [sel, setSel] = useState("about-cover");
   const [tool, setTool] = useState<Tool>("move");
   const [notesOn, setNotesOn] = useState(true);
@@ -215,6 +216,17 @@ export function DirectionCanvas() {
       behavior: smooth ? "smooth" : "auto",
     });
   }, []);
+
+  // Deep links: /#<section id> opens on that case
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id || !ALL.some((s) => s.id === id || s.pieces.some((p) => p.id === id))) return;
+    const t = window.setTimeout(() => {
+      focus(id, false);
+      if (window.innerWidth < 1024) refs.current[id]?.scrollIntoView({ block: "start" });
+    }, 300);
+    return () => window.clearTimeout(t);
+  }, [focus]);
 
   useEffect(() => {
     const t = window.setTimeout(() => focus(sel, false), 120);

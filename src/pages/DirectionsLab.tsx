@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { DirectionJornal } from "@/components/lab/directions/DirectionJornal";
 import { DirectionOverworld } from "@/components/lab/directions/DirectionOverworld";
-import { DirectionCanvas } from "@/components/lab/directions/DirectionCanvas";
-import { useLabFonts } from "@/components/lab/directions/shared";
+import { PortfolioCanvas as DirectionCanvas } from "@/components/canvas/PortfolioCanvas";
+import { useLabFonts } from "@/components/canvas/shared";
 
 /**
  * Hidden comparison page for three redesign directions (not linked anywhere).

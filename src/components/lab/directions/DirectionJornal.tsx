@@ -6,7 +6,7 @@
  */
 import { ArrowUpRight } from "lucide-react";
 import { translations } from "@/hooks/useTranslations";
-import { experience, Media, person, portrait, projectHref, projects, type Project } from "./shared";
+import { experience, Media, person, portrait, projectHref, projects, type Project } from "@/components/canvas/shared";
 
 const C = {
   paper: "#EFEADF",

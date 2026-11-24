@@ -9,10 +9,10 @@
 - Coordinate independent floating controls through window events, including the footer character/custom cursor and drawing-clear/AI launcher pairs, so their layout remains decoupled.
 - Game-to-portfolio navigation uses origin/source-validated messages handled by the Play page router, not window.top, because the preview can itself be embedded.
 - The "Ask about my work" assistant answers from a generated snapshot of the project data (`bun ./scripts/build-portfolio-context.ts`), so re-run it and redeploy the function whenever project content changes — the edge function cannot import app source.
-- Keep Work project facts in projectsData and presentation metadata in featuredProjects; a playable project may replace its outcome block with a Play CTA without changing other cards.
-- Resolve Home folder thumbnails from featuredProjects media items by slug and slide index, so the folder reuses the same media as Work without duplicating asset references.
+- The home page is the portfolio canvas (`src/components/canvas`): each case is a section with a Case notes frame and stageshow pieces; there are no case-study pages, and `/work` and `/project/:slug` redirect to `/#<slug>`.
+- Keep project facts in projectsData and featuredProjects; the canvas sections in `canvasFrames.tsx` curate from them, so update both when a case changes.
 - Share portrait and footer-character phrases through one local-state quote hook and an anchored bubble component, so both work independently of live cursors.
 - Reuse the game-logo asset pointer in React and its exact served URL in static game HTML, so game loading and title display one asset without duplicate binaries.
 - Nav and theme-toggle active pills are measured or CSS-positioned locally, never shared framer `layoutId`s, because duplicated/remounted instances made them fly or vanish.
 - Gate the HUD restart wrapper by completion state, not viewport; let actions wrap and anchor confirmation below so restart remains reachable without overflowing narrow screens.
-- Stageshow bento pilots live in src/components/stage and are previewed only on the unlinked /lab/stageshow page until approved for /work, so the live cards stay untouched.
+- Stageshow pieces live in src/components/stage/pieces and are shown on the home canvas; try new ones on the unlinked /lab/pieces page first, and film each with `--gate` (notes in REHEARSAL.md).

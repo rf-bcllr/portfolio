@@ -1,11 +1,11 @@
-/* Direction C, Canvas: design-tool chrome (light), sections and frames, Rafa's doc-style annotations. */
+/* The portfolio canvas (home): design-tool chrome (light), sections and frames, Rafa's doc-style annotations. */
 .fg { --ui:#ffffff; --ui-line:#e6e6e6; --ui-ink:#1e1e1e; --ui-2:#757575; --ui-hover:#f5f5f5; --ui-sel:#e5f4ff; --blue:#0d99ff; --canvas:#f2f2f2;
-  --mark:#e1251b; --note:#1e1e1e;
+  --mark:#e1251b; --note:#1e1e1e; --fg-top:0px;
   position:relative; color:var(--ui-ink); background:var(--canvas); font:12px/1.4 var(--font-sans); }
 .fg *, .fg *::before, .fg *::after { box-sizing:border-box; }
 
 /* Toolbar */
-.fg-bar { position:sticky; top:44px; z-index:30; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; height:48px; padding:0 8px; background:var(--ui); border-bottom:1px solid var(--ui-line); }
+.fg-bar { position:sticky; top:var(--fg-top); z-index:30; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; height:48px; padding:0 8px; background:var(--ui); border-bottom:1px solid var(--ui-line); }
 .fg-bar-l, .fg-bar-r { display:flex; align-items:center; gap:4px; }
 .fg-bar-r { justify-content:flex-end; gap:8px; }
 .fg-menu { display:grid; place-items:center; width:36px; height:36px; border-radius:6px; background:var(--ui-ink); color:#fff; }
@@ -27,7 +27,7 @@
 .fg-zoom span { width:40px; text-align:center; font-variant-numeric:tabular-nums; }
 
 /* Workspace */
-.fg-work { display:grid; grid-template-columns:248px minmax(0,1fr) 272px; height:calc(100dvh - 44px - 48px); }
+.fg-work { display:grid; grid-template-columns:248px minmax(0,1fr) 272px; height:calc(100dvh - var(--fg-top) - 48px); }
 .fg-panel { overflow-y:auto; background:var(--ui); }
 .fg-layers { border-right:1px solid var(--ui-line); padding:8px 0; }
 .fg-design { border-left:1px solid var(--ui-line); padding:12px 14px; }
@@ -132,7 +132,7 @@
   .fg-panel { display:none; }
   .fg-canvas { overflow:visible; }
   .fg-world { width:auto; zoom:1 !important; padding:56px 12px 72px; gap:72px; align-items:stretch; }
-  .fg-section { padding:28px 14px 24px; }
+  .fg-section { padding:28px 14px 24px; scroll-margin-top:88px; }
   .fg-banner { flex-direction:column; align-items:flex-start; gap:16px; margin:-12px 0 28px; padding:18px; }
   .fg-banner-t { font-size:28px; } .fg-banner-r { text-align:left; flex-wrap:wrap; gap:16px; } .fg-result b { font-size:40px; }
   .fg-row { flex-direction:column; gap:40px; }
@@ -170,3 +170,7 @@
   .fg-case { width: auto; padding: 18px; }
   .fg-pin-inis { left: 8px; } .fg-pin-esdras { right: 8px; }
 }
+
+/* The lab page keeps its 44px direction switcher above the toolbar; headings take each piece's own face */
+.lab-directions .fg { --fg-top:44px; }
+:where(.fg) :is(h1,h2,h3,h4,h5,h6) { font-family:inherit; }

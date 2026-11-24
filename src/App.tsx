@@ -2,25 +2,29 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { LiveCursorsRoom } from "@/components/multiplayer/LiveCursorsRoom";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AskPortfolio } from "@/components/AskPortfolio";
-import Index from "./pages/Index";
-import Work from "./pages/Work";
+import Home from "./pages/Home";
 import Resume from "./pages/Resume";
 import Certifications from "./pages/Certifications";
 import NotFound from "./pages/NotFound";
-import ProjectDetail from "./pages/ProjectDetail";
 import Play from "./pages/Play";
 import StageLab from "./pages/StageLab";
 import DirectionsLab from "./pages/DirectionsLab";
 import PiecesLab from "./pages/PiecesLab";
 
 const queryClient = new QueryClient();
+
+// Case-study pages are gone; their content lives in each section of the home canvas.
+const CaseRedirect = () => {
+  const { slug } = useParams();
+  return <Navigate to={slug ? `/#${slug}` : "/"} replace />;
+};
 
 const App = () => {
   useSmoothScroll();
@@ -37,16 +41,16 @@ const App = () => {
           <ScrollToTop />
           <AskPortfolio />
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/work" element={<Work />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/work" element={<Navigate to="/" replace />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/play" element={<Play />} />
             <Route path="/lab/stageshow" element={<StageLab />} />
             <Route path="/lab/directions" element={<DirectionsLab />} />
             <Route path="/lab/pieces" element={<PiecesLab />} />
-            <Route path="/project/:slug" element={<ProjectDetail />} />
-            <Route path="/projetos/:slug" element={<ProjectDetail />} />
+            <Route path="/project/:slug" element={<CaseRedirect />} />
+            <Route path="/projetos/:slug" element={<CaseRedirect />} />
             <Route path="/experience" element={<Navigate to="/resume" replace />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

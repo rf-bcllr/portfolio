@@ -13,7 +13,6 @@ let lastPill: { x: number; w: number } | null = null;
 
 const navItems = [
   { label: "Home", to: "/" },
-  { label: "Work", to: "/work" },
   { label: "Resume", to: "/resume" },
   { label: "Certifications", to: "/certifications" },
 ];

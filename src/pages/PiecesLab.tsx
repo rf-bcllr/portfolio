@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { SECTIONS } from "@/components/lab/directions/canvasFrames";
-import { useLabFonts } from "@/components/lab/directions/shared";
+import { SECTIONS } from "@/components/canvas/canvasFrames";
+import { useLabFonts } from "@/components/canvas/shared";
 
 /** Hidden rehearsal page: every stageshow piece alone, for filming (not linked anywhere). */
 export default function PiecesLab() {

@@ -1,5 +1,5 @@
 /**
- * Shared real content for the /lab/directions mockups (unlinked, preview only).
+ * Shared real content for the portfolio canvas (home) and the /lab/directions mockups.
  * Everything here comes from the live data (featuredProjects / projectsData) or
  * mirrors copy already on Home, Resume and CompanyLogos, so the mockups never
  * invent facts. Nothing in the live site imports this file.
