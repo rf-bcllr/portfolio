@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import ProjectDetail from "./pages/ProjectDetail";
 import Play from "./pages/Play";
 import StageLab from "./pages/StageLab";
+import DirectionsLab from "./pages/DirectionsLab";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => {
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/play" element={<Play />} />
             <Route path="/lab/stageshow" element={<StageLab />} />
+            <Route path="/lab/directions" element={<DirectionsLab />} />
             <Route path="/project/:slug" element={<ProjectDetail />} />
             <Route path="/projetos/:slug" element={<ProjectDetail />} />
             <Route path="/experience" element={<Navigate to="/resume" replace />} />
