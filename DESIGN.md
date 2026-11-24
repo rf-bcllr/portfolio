@@ -2,7 +2,9 @@
 
 Status: **direction not chosen yet.** Sections 1–3 are research. Section 4 holds the rules every page follows, whichever direction wins. Section 5 is the token sheet for each of the three candidate directions. Once one is picked, delete the other two sheets, and section 5 becomes the system.
 
-Mockups: `/lab/directions` (unlinked; `?d=a`, `?d=b`, `?d=c`). Screenshots: `docs/design-research/`.
+Mockups: `/lab/directions` (unlinked; `?d=a` Cordel, `?d=b` O Bacellar, `?d=c` Overworld). Screenshots: `docs/design-research/`.
+
+Round 1 (statement list, work feed, design-tool canvas) was rejected as generic: each was a tidy copy of a minimalist reference and could have been anyone's site. That failure is now rule zero below.
 
 ---
 
@@ -40,7 +42,7 @@ Also looked at: emilkowal.ski and paco.me (same single-column text pattern as Be
 | [header.design](https://header.design) · `r02` | Left-aligned hero headline, a 3D ticket and pretzel objects on the right, filter tabs, a card row. | Heavy extended black caps, the second line in an orange-to-red fade. | Cream `#F5F1EA`, black, orange. | Headline block about 40% width. Faint 40px grid behind. | Take: warm cream, one tactile object. Avoid: the gradient-text line. |
 | [recent.design](https://recent.design) · `r03` | A 140px left rail (nav, sponsor, sign-up), a 3-column masonry of mixed black and white cards, a right "Design jobs" column. | Small 13–14px sans everywhere. The content is the type. | White, ink, black cards, author avatars. | 8px card radius, 16px gaps, dense. | **Basis of direction B.** The rail holds the person, the feed holds the work. |
 | [landdding.com](https://landdding.com) · `r04` | Search-first header, an intro panel with a stats strip, a 4-column grid of site screenshots with author + upvote. | 32px sans headline, grey second half. | Light grey `#F4F4F2`, white cards, ink. | 24px panel padding. | Take: the author row under each shot. Avoid: the stats strip (a stat-card row). |
-| [fontinlogo.com](https://fontinlogo.com) · `r05` | Left hero, a pair of pill CTAs, avatar proof, then a poster carousel. | 56px grotesk. The headline's last phrase is set in grey, not in another face. | White, ink, grey. | Headline at 8% from the left, 64px between sections. | Take: two-tone headline (ink then grey), which is what direction A's subline does. |
+| [fontinlogo.com](https://fontinlogo.com) · `r05` | Left hero, a pair of pill CTAs, avatar proof, then a poster carousel. | 56px grotesk. The headline's last phrase is set in grey, not in another face. | White, ink, grey. | Headline at 8% from the left, 64px between sections. | Take: two-tone headline (ink then grey) for decks and sublines. |
 | [backgrounds.supply](https://backgrounds.supply) · `r06` | A centered hero over a magenta aurora with a glossy app icon. | Sans headline with **one italic serif word**. | Magenta/purple gradient, white. | Centered stack. | Avoid all of it: it is three of the banned patterns at once. |
 | [uxpilot.ai/motion](https://uxpilot.ai/motion) · `r07` | Centered caps headline, a prompt box, suggestion chips, a logo row. | Huge condensed caps; the last line in **violet**. | Pale grey-green, ink, violet. | Tight stacked headline. | Take: suggestion chips under an input (relevant to "Ask about my work"). Avoid: violet line. |
 | [horizonx.so](https://horizonx.so) · `r08` | Centered 40px headline, **one product object** as the hero picture, a black pill CTA beside a plain text link. | Bold grotesk, tight. | White, ink. The object carries the colour. | Lots of air. The object is about 25% of the width. | Take: one real object instead of a collage; primary + quiet secondary action. |
@@ -68,10 +70,14 @@ Not reviewed: full accessibility pass, reduced-motion behaviour of the live hero
 
 ## 4. Rules every page follows
 
-These hold for A, B or C.
+These hold for whichever direction wins.
+
+### Rule zero: it has to be Rafa's
+- Cover the name and the page should still say who made it: a Brazilian product designer from the Northeast who designs for schools and AI, writes, and made his career into a game. Brazil, education, print and play are the raw material. A neutral grid with a nice sans is not a concept.
+- A reference gives the *move* (a sentence hero, a site you travel through, a printed object), never the look. If a mockup could ship with another designer's name swapped in, start it over.
 
 ### Content
-- The first screen answers **who, what, proof** in one sentence and one line of facts: "Rafa designs school and AI products in Brazil. Lately: Meu Arco went from 2.9 to 4.8 stars…". No greeting-only headline.
+- The first screen answers **who, what, proof**: the role and the best result are readable within the first screen in every concept (the cordel cover line, the front-page headline, the stage card). No greeting-only headline.
 - Every project shows **one measured result** when one exists (4.8★, 12k+, 92%, $8.5k/month). Without one, write "In progress" in muted ink. Never write "TBD".
 - One decimal style (point), one currency style (`$8.5k`), sentence case everywhere. Caps only in mono metadata.
 - Project facts live in `projectsData`, presentation in `featuredProjects` (AGENTS.md). Display names that differ from data titles (Cheguei, Saúde e Ponto) go in one map, not inline.
@@ -81,21 +87,21 @@ These hold for A, B or C.
 - One container: `max-width: 1240px`, side padding 24px (mobile) and 40px (≥768). Left and right content edges are equal on every section.
 - Grid: 12 columns, 24px gutter. A list row uses fixed columns for number, year and result, so the result column lines up down the page.
 - One idea per section. A section is 1–2 screens tall at 1440×900, and its heading is the first thing in it.
-- The work is visible from the first screen: the index starts within one scroll (A), the feed is the page (B), or the frames sit on the canvas (C).
+- The work is reachable from the first screen: the strings start one scroll down (Cordel), the lead story is the work (O Bacellar), the stages are on the map (Overworld).
 - No carousels for primary content. Filters are fine.
 
 ### Type
 - **Never Inter.** Never a serif headline with one italic word. Never gradient text.
-- Two families at most: one grotesk (display and body) and one mono (metadata). Weights 400/500/600, plus 700–800 only for display in C.
+- Two working families (one for reading, one for labels), plus at most one display face that belongs to the concept: a wood-type slab, a newspaper blackletter masthead, a pixel face. The display face never sets body copy.
 - Scale (px): 12 mono meta · 14 UI · 16/17 body · 20–30 lead · 32–56 h2 · 44–104 h1 (`clamp`). Line-height 1.45 for body, 0.95–1.05 for display.
 - Tracking: display −0.035 to −0.045em, body 0, mono caps +0.06 to +0.08em. Nothing under 12px. No bold caps below 13px.
 - `text-wrap: balance` on headings, `pretty` on paragraphs, `tabular-nums` on years and results.
 
 ### Colour
-- One ground, one ink, one muted ink, one hairline, **one** accent. The project media is the only other colour.
+- One ground, one ink, one muted ink, one hairline, **one** UI accent. The project media and the concept's own illustration (paper colours, a map palette) are the only other colours, and they never carry UI state.
 - **No purple or violet** in the page's own design, and no purple gradients. Third-party logos keep their colours.
 - The accent marks interaction (links, selection, the one primary button) and availability, never decoration.
-- Text contrast ≥ 4.5:1 on its ground. Muted ink must pass on the paper ground (A’s `#5F5C55` on `#F1EFE9` is 5.8:1; C’s muted was darkened to `#5E5D58` to pass on its canvas).
+- Text contrast ≥ 4.5:1 on its ground. Muted ink must pass on the paper ground (checked: Cordel `#5A4E3C` on `#E6D7B8`, O Bacellar `#55524A` on `#EFEADF`, Overworld `#4E5B5D` on `#FFF7E6`).
 
 ### Spacing
 - 4px base. Steps: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128.
@@ -107,24 +113,26 @@ These hold for A, B or C.
 - Video: `muted loop playsInline`, poster first. It rests on the poster under `prefers-reduced-motion`.
 - Lovable-hosted assets (`/__l5e/...`) only resolve on the deployed site. Components fall back to the next media item, then to a titled tile, never a broken image.
 - No captions under images. The title and result sit in the row or card, not under the picture.
-- Phone screens are shown as phones (9:18.2) and web screens as 16:10. No rotation in the final system.
+- Phone screens are shown as phones (9:18.2) and web screens as 16:10. Rotation only where the concept is a physical object (cordel booklets, a printed cover), at most ±3°, and straightened on hover or focus.
+- Print treatments (one-ink multiply, halftone) always give the true-colour screen back on hover and focus, so the work itself is never hidden.
 
 ### Motion
 - The hero enters once (opacity and 8–12px rise, 500ms, `cubic-bezier(0.25,0.46,0.45,0.94)`).
-- Hover: linked cards lift 2px, media zooms to 1.02 inside its frame, row titles shift 6px, underlines draw left to right (300–500ms). Press: scale 0.98.
-- Nothing fades in on scroll, no parallax, no scroll-jacking. One designed "moment" per page at most (A: the pointer preview; C: frame selection).
+- Hover: the object answers like the object would: a booklet swings straight on its peg, newsprint turns to colour, a stage flag grows. Press: 1–2px down. Durations 300–500ms.
+- Nothing fades in on scroll, no parallax, no scroll-jacking. One designed moment per page (cordel: the string; jornal: halftone to colour; overworld: the sprite's walk and swim).
 - Everything rests under `prefers-reduced-motion`, and nothing stays hidden.
 
 ### Components
 - Buttons: one primary (solid ink, or accent in C), one secondary (text link with an arrow). No glow, no gradient, no offset shadow.
 - Chips: pill, 36px tall, a hairline border, a count in mono. Pressed = ink fill (`aria-pressed`).
-- Results are set inline in the row or panel (value + label). **Never four stat cards in a row.**
+- Results are set where the concept puts them: a headline, a booklet footer, a "loot" line. **Never four stat cards in a row.**
 - The global floating "Ask about my work" button must not cover content. Give the last section bottom padding, or dock the button into the nav (decision pending).
 
 ### Accessibility
 - Every control has a name. Focus is visible (2px outline, 4px offset). Tap targets are ≥ 44px outside running text.
-- Keyboard parity: anything revealed on hover (A's preview) is also revealed on focus. C's canvas moves with ← →.
-- Check 375px: no sideways scroll (the A index needed `minmax(0,1fr)` for that).
+- Keyboard parity: anything revealed on hover (colour under the print, a swing) is also revealed on focus. The overworld travels with ← → and every stage is a real button.
+- Check 375px: no sideways page scroll. A wide illustration (the map) scrolls inside its own frame and follows the focus.
+- Copy written in Portuguese for flavour (cordel titles, newspaper chrome) carries `lang="pt-BR"` where it is running text, with the English meaning beside it.
 
 ### Bans (from the brief, enforced in review)
 No Inter · no purple gradients · no glowing buttons · no serif headline with one italic word · no four stat cards in a row · nothing that looks like a template. If a page could belong to anyone, redo it.
@@ -133,47 +141,49 @@ No Inter · no purple gradients · no glowing buttons · no serif headline with 
 
 ## 5. Direction sheets (pick one)
 
-### A · Statement & index (ref: ryo.lu + lynnandtonic.com) · `m-a.jpg`
-A sentence hero with the two best cases linked inline. A grayscale portrait in a circle with an availability tag. The work as a numbered table of contents (No. · Project · Company · Year · Result), with a preview that follows the pointer (and focus). Then experience, logos and a typographic close.
+### 1 · Cordel (ref: lynnandtonic.com) · `m-a.jpg`
+The portfolio as *literatura de cordel*, the Northeast's folk pamphlets sold hanging on a string at the market. The hero is the author's own cover ("O designer que veio da Bahia") with the portrait printed in one ink on yellow paper. The nine cases hang on two strings as booklets on coloured paper: a cordel title in Portuguese, the real screen printed in one ink (true colour on hover), the English line, the result. The bio is two *sextilhas* (rhymed six-line stanzas) with an English gloss, then the career list.
 
 | Token | Value |
 |---|---|
-| Ground | `#F1EFE9` paper |
-| Ink / muted | `#151514` / `#5F5C55` |
-| Hairline | `rgba(21,21,20,.14)` |
-| Accent | `#1D4ED8` cobalt (links, availability) |
-| Display + body | Schibsted Grotesk 400/500/600 |
-| Meta | IBM Plex Mono 400/500, caps, +0.08em |
-| Radius | 0 on rows; full circle on the portrait; 8px on the preview |
+| Wall | `#E6D7B8` kraft, 9% fractal-noise grain |
+| Ink / muted | `#1B1712` / `#5A4E3C` |
+| Paper colours | `#F2C230` `#E9839A` `#7DB86B` `#79A9D1` `#EE9A45` `#F4E9D0` `#C9D96B` |
+| String / peg | `#6B5130` / `#B98B55` |
+| Display | Alfa Slab One (wood type), caps |
+| Body / labels | Courier Prime 400/700 |
+| Print | `grayscale(1) contrast(1.7) brightness(1.12)` + `mix-blend-mode: multiply` |
+| Radius | 0 everywhere |
 
-Strongest for recruiters scanning results; the quietest of the three.
+Most personal and most Brazilian; the hardest to keep legible at scale (screens printed small).
 
-### B · Work feed (ref: recent.design) · `m-b.jpg`
-A left rail holds the person (avatar, one-line bio, nav, availability, LinkedIn). The main column is a masonry feed of real media with filter chips (AI, Mobile, Design systems, Research, Games) and a result pill on every card. A right column carries experience, a colleague's quote and the game entry.
-
-| Token | Value |
-|---|---|
-| Ground / rail / card | `#FFFFFF` / `#F6F6F4` / `#F6F6F4` |
-| Ink / muted | `#0B0B0A` / `#6A6A66` |
-| Hairline | `#E7E6E2` |
-| Accent | none; `#16A34A` only for the availability dot |
-| Body | Geist 400/500/600 |
-| Meta | Geist Mono 400/500 |
-| Radius | 16px card, 12px media, pill chips |
-
-Most "designer-native" (it reads like the sites designers browse); the media must be strong, because it is the whole page.
-
-### C · Canvas (ref: rauno.me) · `m-c.jpg`
-The site as a design file. Layers on the left (Hello + nine frames), artboards on a dotted canvas in the middle, an inspector on the right (company, year, role, time, result, highlights, "Open the case study"). The Hello frame has a comment pin carrying a real recommendation. Zoom and ← → work. Below 1024px it becomes a vertical stack of frames, each with its result.
+### 2 · O Bacellar (ref: vanschneider.com) · `m-b.jpg`
+A broadsheet front page. Blackletter masthead with two ears (availability, a weather joke), a dateline, section nav (Educação, IA, Carreira, Passatempos). The lead story is Meu Arco with a 68px headline, deck, byline, a halftone photo of the real app and a drop-cap column. A right column carries Cheguei and the lesson-plan saving plus a pull quote; an "AI desk" fold covers the in-progress work; the back page has a *Classificados* ad that is the hire-me call, the career as a dotted table, and the game as *Passatempos*.
 
 | Token | Value |
 |---|---|
-| Canvas / dots | `#E8E6E0` / `rgba(20,20,18,.13)` 1px on a 22px grid |
-| Panels | `#FFFFFF`, hairline `#E4E2DC` |
-| Ink / muted | `#141412` / `#5E5D58` |
-| Accent | `#1F6FEB` selection blue (selection, primary button) |
-| Display | Bricolage Grotesque 500/700/800 |
-| UI / meta | JetBrains Mono 400/500 |
-| Radius | 0 on frames, 8px on controls, comment pin 14px with one 3px corner |
+| Newsprint / ink / muted | `#EFEADF` / `#1A1916` / `#55524A` |
+| Accent | `#B3261E` (kickers, classifieds) |
+| Rules | 1px column rules, 3px double rules between folds |
+| Masthead | UnifrakturMaguntia |
+| Headlines + body | Newsreader 400/500/700/800 (roman only, never one italic word) |
+| Labels | Archivo Narrow 500–700, caps, +0.08–0.14em |
+| Halftone | grayscale + contrast + 3.5px dot screen, multiply; colour on hover |
 
-Most memorable and closest to the existing Figma-comment and resize-handle motifs. It is the most work to make fully accessible and mobile-native.
+Best for recruiters, because every result is a headline; the densest to maintain as projects change.
+
+### 3 · Overworld (ref: rauno.me + Rafa's Quest game) · `m-c.jpg`
+The career as an island map: Bahia (start), School island (ClassApp, isaac), AI coast (FTD, Edvisorly, Iônica) and a Side quest islet for the game. Ten stages joined by a dotted trail. Rafa's own sprite from `/play` runs between stages and swims the water crossings. The stage card shows the company, year, real screen, "Loot" (the result) and "Enter stage". The tools are an inventory of real app icons. Arrow keys travel; on phones the map scrolls inside its frame and follows him.
+
+| Token | Value |
+|---|---|
+| Sea / deep / shallow | `#1D6A75` / `#165660` / `#3F9C9F` |
+| Sand / grass / trees | `#ECD49C` / `#6FAE57` / `#57934A` |
+| Outline + UI ink | `#1C2A2D` (matches the sprite's outline) |
+| Panel / accent | `#FFF7E6` / `#FFD447` (current stage, primary button) |
+| Display / labels | Pixelify Sans 500/700 |
+| Body | Figtree 400–700 |
+| Sprite | `/game/assets/player/home-sheet-blue.png`: idle 105×180 ×4, run 146.67×185 ×6, swim 220×105 ×4 |
+| Radius | 12px panels, 6px controls, round stage flags |
+
+Most memorable and ties Home to `/play`; it needs care so the case content stays one click away and doesn't feel like a toy.

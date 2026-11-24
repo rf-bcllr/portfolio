@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { DirectionStatement } from "@/components/lab/directions/DirectionStatement";
-import { DirectionFeed } from "@/components/lab/directions/DirectionFeed";
-import { DirectionCanvas } from "@/components/lab/directions/DirectionCanvas";
+import { DirectionCordel } from "@/components/lab/directions/DirectionCordel";
+import { DirectionJornal } from "@/components/lab/directions/DirectionJornal";
+import { DirectionOverworld } from "@/components/lab/directions/DirectionOverworld";
 import { useLabFonts } from "@/components/lab/directions/shared";
 
 /**
@@ -10,9 +10,9 @@ import { useLabFonts } from "@/components/lab/directions/shared";
  * See DESIGN.md for the research behind them.
  */
 const DIRECTIONS = [
-  { id: "a", name: "A · Statement & index", ref: "ryo.lu, lynnandtonic.com", Component: DirectionStatement },
-  { id: "b", name: "B · Work feed", ref: "recent.design", Component: DirectionFeed },
-  { id: "c", name: "C · Canvas", ref: "rauno.me", Component: DirectionCanvas },
+  { id: "a", name: "1 · Cordel", ref: "lynnandtonic.com", Component: DirectionCordel },
+  { id: "b", name: "2 · O Bacellar", ref: "vanschneider.com", Component: DirectionJornal },
+  { id: "c", name: "3 · Overworld", ref: "rauno.me + your Quest sprites", Component: DirectionOverworld },
 ] as const;
 
 type Id = (typeof DIRECTIONS)[number]["id"];

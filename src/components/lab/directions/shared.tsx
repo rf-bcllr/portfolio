@@ -143,7 +143,7 @@ export function useLabFonts() {
     link.id = id;
     link.rel = "stylesheet";
     link.href =
-      "https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap";
+      "https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Courier+Prime:wght@400;700&family=UnifrakturMaguntia&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700;6..72,800&family=Archivo+Narrow:wght@500;600;700&family=Pixelify+Sans:wght@500;700&family=Figtree:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap";
     document.head.appendChild(link);
   }, []);
 }
