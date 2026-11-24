@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DirectionJornal } from "@/components/lab/directions/DirectionJornal";
 import { DirectionOverworld } from "@/components/lab/directions/DirectionOverworld";
-import { DirectionStampCanvas } from "@/components/lab/directions/DirectionStampCanvas";
+import { DirectionCanvas } from "@/components/lab/directions/DirectionCanvas";
 import { useLabFonts } from "@/components/lab/directions/shared";
 
 /**
@@ -11,7 +11,7 @@ import { useLabFonts } from "@/components/lab/directions/shared";
  * See DESIGN.md for the research behind them.
  */
 const DIRECTIONS = [
-  { id: "s", name: "C · Canvas (stamps)", ref: "rauno.me + your stamp posters", Component: DirectionStampCanvas },
+  { id: "s", name: "C · Canvas", ref: "rauno.me, in the site's own look", Component: DirectionCanvas },
   { id: "b", name: "1 · O Bacellar", ref: "vanschneider.com", Component: DirectionJornal },
   { id: "c", name: "2 · Overworld", ref: "rauno.me + your Quest sprites", Component: DirectionOverworld },
 ] as const;
@@ -42,7 +42,7 @@ export default function DirectionsLab() {
   return (
     <div className="lab-directions relative z-10 min-h-dvh bg-white">
       {/* The live site sets Clash Display on h1/h2; each mockup brings its own faces. */}
-      <style>{`.lab-directions :is(h1,h2,h3,h4,h5,h6){font-family:inherit}`}</style>
+      <style>{`:where(.lab-directions) :is(h1,h2,h3,h4,h5,h6){font-family:inherit}`}</style>
       <div
         className="sticky top-0 z-40 flex h-11 items-center gap-3 overflow-x-auto bg-[#141412] px-3 text-[12px] text-white"
         style={{ fontFamily: '"Geist Mono", ui-monospace, monospace' }}

@@ -2,9 +2,9 @@
 
 Status: **direction not chosen yet.** Sections 1–3 are research. Section 4 holds the rules every page follows, whichever direction wins. Section 5 is the token sheet for each of the three candidate directions. Once one is picked, delete the other two sheets, and section 5 becomes the system.
 
-Mockups: `/lab/directions` (unlinked; `?d=s` Canvas · Stamps, `?d=b` O Bacellar, `?d=c` Overworld). Screenshots: `docs/design-research/`.
+Mockups: `/lab/directions` (unlinked; `?d=s` Canvas, `?d=b` O Bacellar, `?d=c` Overworld). Screenshots: `docs/design-research/`.
 
-Round 1 (statement list, work feed, design-tool canvas) was rejected as generic: each was a tidy copy of a minimalist reference and could have been anyone's site. That failure is now rule zero below. Round 2's Cordel direction was dropped: dressing a Brazilian designer in regional folk costume (cordel, "o designer que veio da Bahia") reads as stereotype, not identity.
+Round 1 (statement list, work feed, design-tool canvas) was rejected as generic: each was a tidy copy of a minimalist reference and could have been anyone's site. That failure is now rule zero below. Round 2's Cordel direction was dropped: dressing a Brazilian designer in regional folk costume (cordel, "o designer que veio da Bahia") reads as stereotype, not identity. A black-and-white poster-stamp restyle of the canvas was also dropped in favour of the site's own look.
 
 ---
 
@@ -78,7 +78,7 @@ These hold for whichever direction wins.
 - A reference gives the *move* (a sentence hero, a site you travel through, a printed object), never the look. If a mockup could ship with another designer's name swapped in, start it over.
 
 ### Content
-- The first screen answers **who, what, proof**: the role and the best result are readable within the first screen in every concept (the cover stamp, the front-page headline, the stage card). No greeting-only headline.
+- The first screen answers **who, what, proof**: the role and the best result are readable within the first screen in every concept (the cover frame, the front-page headline, the stage card). No greeting-only headline.
 - Every project shows **one measured result** when one exists (4.8★, 12k+, 92%, $8.5k/month). Without one, write "In progress" in muted ink. Never write "TBD".
 - One decimal style (point), one currency style (`$8.5k`), sentence case everywhere. Caps only in mono metadata.
 - Project facts live in `projectsData`, presentation in `featuredProjects` (AGENTS.md). Display names that differ from data titles (Cheguei, Saúde e Ponto) go in one map, not inline.
@@ -88,7 +88,7 @@ These hold for whichever direction wins.
 - One container: `max-width: 1240px`, side padding 24px (mobile) and 40px (≥768). Left and right content edges are equal on every section.
 - Grid: 12 columns, 24px gutter. A list row uses fixed columns for number, year and result, so the result column lines up down the page.
 - One idea per section. A section is 1–2 screens tall at 1440×900, and its heading is the first thing in it.
-- The work is reachable from the first screen: the stamps are the canvas (Canvas · Stamps), the lead story is the work (O Bacellar), the stages are on the map (Overworld).
+- The work is reachable from the first screen: the frames are the canvas (Canvas), the lead story is the work (O Bacellar), the stages are on the map (Overworld).
 - No carousels for primary content. Filters are fine.
 
 ### Type
@@ -102,7 +102,7 @@ These hold for whichever direction wins.
 - One ground, one ink, one muted ink, one hairline, **one** UI accent. The project media and the concept's own illustration (paper colours, a map palette) are the only other colours, and they never carry UI state.
 - **No purple or violet** in the page's own design, and no purple gradients. Third-party logos keep their colours.
 - The accent marks interaction (links, selection, the one primary button) and availability, never decoration.
-- Text contrast ≥ 4.5:1 on its ground. Muted ink must pass on the paper ground (checked: Canvas grey `#5F5E59` on `#EBE9E3`, O Bacellar `#55524A` on `#EFEADF`, Overworld `#4E5B5D` on `#FFF7E6`).
+- Text contrast ≥ 4.5:1 on its ground. Muted ink must pass on the paper ground (checked: Canvas uses the site's `--muted-foreground` on `--card`, O Bacellar `#55524A` on `#EFEADF`, Overworld `#4E5B5D` on `#FFF7E6`).
 
 ### Spacing
 - 4px base. Steps: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128.
@@ -133,7 +133,7 @@ These hold for whichever direction wins.
 - Every control has a name. Focus is visible (2px outline, 4px offset). Tap targets are ≥ 44px outside running text.
 - Keyboard parity: anything revealed on hover (colour under the print, a swing) is also revealed on focus. The overworld travels with ← → and every stage is a real button.
 - Check 375px: no sideways page scroll. A wide illustration (the map) scrolls inside its own frame and follows the focus.
-- Copy written in Portuguese for flavour (stamp second lines, newspaper chrome) carries `lang="pt-BR"` where it is running text, with the English meaning beside it.
+- Copy written in Portuguese for flavour (the Portuguese line on each frame, newspaper chrome) carries `lang="pt-BR"` where it is running text, with the English meaning beside it.
 
 ### Bans (from the brief, enforced in review)
 No Inter · no purple gradients · no glowing buttons · no serif headline with one italic word · no four stat cards in a row · nothing that looks like a template. If a page could belong to anyone, redo it.
@@ -142,21 +142,21 @@ No Inter · no purple gradients · no glowing buttons · no serif headline with 
 
 ## 5. Direction sheets (pick one)
 
-### C · Canvas · Stamps (ref: rauno.me + the stamp-poster references) · `m-s.jpg`
-Round 1's design-tool canvas, rebuilt in a black-and-white "minimal future" print language. The interface (toolbar, layers, canvas, inspector) is strictly black, off-white and grey; every case is a perforated stamp: index number and title in condensed caps, mono spec lists, a crosshair, a barcode, a Portuguese second line in the product's own language, the result set large. Inside each stamp sits a **live stageshow rebuild** of the real product (Meu Arco, Cheguei, Saúde e Ponto, AI Writing Assistant, AI images, lesson plans, credit transfer, Lia & Íon, Quest) in full colour, with numbered pins that follow the element each note describes while the fragment animates. Drag to pan, ← → between frames, zoom 40–100%; below 1024px the stamps stack and the fragments scale.
+### C · Canvas (ref: rauno.me, in the site's own look) · `m-canvas.jpg`
+The portfolio as a design file, dressed in the current site's identity rather than a borrowed one. A floating pill toolbar (the site nav: avatar, `rfbcllr.`, zoom, blue Play, Let's connect), a floating Frames list and an Inspector as site cards (2px ink border, 4px offset shadow), and the FigJam dot grid as the canvas. Each case is a white frame (22px radius, 2px ink border, 6px offset shadow) with the title in Clash Display, the result set large, a Portuguese line, numbered notes, and the **live stageshow rebuild** of the real product beside them. The notes' pins use the Figma-comment shape in the primary blue and follow the element they describe while the rebuild animates. Selection reuses the hero title's box and square handles with a size badge. Drag to pan, ← → between frames, zoom 40–100%; below 1024px the frames stack and the rebuilds scale. Built on theme tokens, so dark mode follows.
 
 | Token | Value |
 |---|---|
-| Void / panel | `#0A0A0A` / `#111110`, dot grid `rgba(236,234,228,.12)` on 24px |
-| Paper / ink / grey | `#EBE9E3` / `#0D0D0C` / `#5F5E59` (5.4:1 on paper) |
-| Rules | 1px ink inside stamps; `rgba(236,234,228,.14)` in the chrome |
-| Display | Archivo at `wdth 62`, weight 900, caps, leading .86 |
-| Labels | JetBrains Mono 400–700, caps, +0.04em |
-| Stamp edge | radial-gradient mask, 7px perforations; 22% fractal grain, multiply |
-| Colour | none in the interface; only inside the project fragments |
-| Fragments | `src/components/stage/*Bento.tsx`, 560px design width, scaled to fit |
+| Ground / cards | `--background` with `.figjam-grid` / `--card` |
+| Ink / muted | `--foreground` / `--muted-foreground` |
+| Accent | `--primary` (selection, pins, Play, the surname) |
+| Borders + depth | 2px `--foreground`; offset shadow 4px (chrome) and 6px (frames), no blur shadows except the comment bubble |
+| Display / body | Clash Display 600–700, −0.035 to −0.045em / Satoshi 400–700 |
+| Radius | 22px frames and panels, full pills for buttons and chips, 13px comment pins with one 3px corner |
+| Fragments | `src/components/stage/*Bento.tsx` at a 560px design width; pins anchored by selector (`canvasFrames.tsx`) |
 
-Most "product designer": the cases are shown working, annotated like a design review. Cost: nine live fragments to keep true to the shipped products, and the Lovable-hosted art (Iônica, Quest) only loads on the deployed site.
+**Kept from the current site:** Clash Display + Satoshi, the primary blue on the surname, 2px ink borders with the offset shadow, pill nav and buttons, the dot grid, the selection box from the resizable title, Figma-comment pins, the grayscale-to-colour portrait.
+**Removed as AI slop:** the sticker cloud, emoji as icons, the pinging availability dot (now a still green dot), the pulsing Play button, the dashed tilted outline, 9–10px bold caps with 0.2–0.3em tracking, the three generic icon cards ("Systems thinker", "Fast iterations"), floating/bobbing hero elements, gradient and glow tokens. Still to decide for the build: the global "Ask about my work" button's sparkle icon and shadow, which sits over every page.
 
 ### 1 · O Bacellar (ref: vanschneider.com) · `m-b.jpg`
 A broadsheet front page. Blackletter masthead with two ears (availability, a weather joke), a dateline, section nav (Educação, IA, Carreira, Passatempos). The lead story is Meu Arco with a 68px headline, deck, byline, a halftone photo of the real app and a drop-cap column. A right column carries Cheguei and the lesson-plan saving plus a pull quote; an "AI desk" fold covers the in-progress work; the back page has a *Classificados* ad that is the hire-me call, the career as a dotted table, and the game as *Passatempos*.
