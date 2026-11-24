@@ -334,7 +334,7 @@ export const generateResumePDF = (language: "pt" | "en") => {
       ],
     },
     {
-      company: "Sebrae Bahia",
+      company: "Sebrae",
       location: "Brasil",
       role: "Design & Marketing Analyst | Government Agency",
       period: "2017 – 2019",

@@ -1,0 +1,43 @@
+/* FTD com Você, perfis de aprendizagem: the product's purple and Poppins (from the recording). */
+.lps {
+  & .ss-stage { --l-accent: #8a17d9; --l-soft: #f4e9fd; --l-ink: #1f1d26; --l-muted: #5f5b6b; --l-line: #e8e6ee; --l-green: #22a845;
+    overflow: hidden; border-radius: 12px; background: #8f8c96; color: var(--l-ink); font: 12px/1.45 "Poppins", ui-sans-serif, system-ui, sans-serif; }
+  & svg { flex: none; }
+  & .lps-modal { position: absolute; left: 24px; top: 24px; width: 420px; padding: 20px; border-radius: 14px; background: #fff; box-shadow: var(--ss-shadow-hero); }
+  & .lps-m-h { display: flex; justify-content: space-between; align-items: center; }
+  & .lps-m-h b { font-size: 16px; font-weight: 500; }
+  & .lps-sub { margin: 4px 0 8px; color: var(--l-muted); font-size: 11px; }
+  & .lps-label { margin: 10px 0 4px; font-size: 11px; font-weight: 500; }
+  & .lps-field { padding: 8px 10px; border: 1px solid #cfcbd8; border-radius: 7px; font-size: 12px; }
+  & .lps-name { display: inline-block; }
+  & .lps-traits { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px; border-radius: 8px; background: #f5f4f8; }
+  & .lps-traits span { display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 6px 8px; border: 1px solid var(--l-line); border-radius: 6px; background: #fff; font-size: 10.5px; line-height: 1.3; transition: border-color .2s; }
+  & .lps-traits i { display: grid; place-items: center; width: 16px; height: 16px; flex: none; border: 1.5px solid #b9b5c4; border-radius: 4px; color: #fff; transition: background .15s, border-color .15s; }
+  & .lps-traits span[data-on] { border-color: #bfe6c9; }
+  & .lps-traits span[data-on] i { background: var(--l-green); border-color: var(--l-green); }
+  & .lps-m-f { display: flex; justify-content: flex-end; margin-top: 14px; }
+  & .lps-btn { display: inline-flex; align-items: center; height: 34px; padding: 0 16px; border-radius: 7px; background: var(--l-accent); color: #fff; font-weight: 500; transition: transform .1s; will-change: transform; }
+  & .lps-btn[data-pressed] { transform: scale(.97); }
+
+  /* The lesson-plan form, the second surface the profile serves */
+  & .lps-form { position: absolute; left: 468px; top: 24px; width: 288px; height: 520px; padding: 18px; border-radius: 14px; background: #fff; box-shadow: var(--ss-shadow-hero); }
+  & .lps-f-h { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
+  & .lps-field.is-static { background: #f6f5f9; }
+  & .lps-select { display: flex; align-items: center; min-height: 38px; padding: 4px 6px; border: 1px solid #cfcbd8; border-radius: 7px; }
+  & .lps-ph { padding-left: 4px; color: #9a96a6; font-size: 11.5px; }
+  & .lps-chip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 4px 0 10px; border-radius: 999px; background: var(--l-soft); color: var(--l-accent); font-size: 11px; font-weight: 500; opacity: 0; }
+  & .lps-chip[data-on] { opacity: 1; }
+  & .lps-chip:not([data-on]) { position: absolute; }
+  & .lps-chip-x { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; }
+  & .lps-chip-x[data-hover] { background: #e9d6fb; }
+  & .lps-plan { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--l-line); }
+  & .lps-plan-h { display: flex; justify-content: space-between; gap: 8px; margin: 0 0 10px; font-size: 12px; }
+  & .lps-plan-h span { display: inline-flex; align-items: center; gap: 4px; color: var(--l-muted); font-size: 11px; white-space: nowrap; }
+  & .lps-sec { margin-bottom: 8px; padding: 8px 10px; border: 1px solid var(--l-line); border-radius: 8px; font-size: 11.5px; transition: border-color .3s; }
+  & .lps-sec, & .lps-sec-r { display: flex; justify-content: space-between; gap: 8px; }
+  & .lps-sec.is-adapt { display: block; }
+  & .lps-sec span, & .lps-sec-r span { color: var(--l-muted); font-size: 10.5px; white-space: nowrap; }
+  & .lps-sec[data-on] { border-color: #d9c2f2; }
+  & .lps-tag { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 999px; background: var(--l-soft); color: var(--l-accent); font-size: 10px; font-weight: 500; }
+  & .lps-fly-in { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; height: 100%; border-radius: 999px; background: var(--l-soft); color: var(--l-accent); font-size: 11px; font-weight: 500; box-shadow: var(--ss-shadow-lift); }
+}

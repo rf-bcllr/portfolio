@@ -1,0 +1,39 @@
+/* Saúde e Ponto: teal, mint and the coin yellow from the case screens. */
+.sps {
+  & .ss-stage { --s-teal: #2f9c8f; --s-deep: #25867b; --s-mint: #cfe8e4; --s-yellow: #ffd23f; --s-ink: #1f2a2a; --s-muted: #6c7a79; --s-line: #e6eeec;
+    overflow: hidden; border-radius: 12px; background: #dcefeb; color: var(--s-ink); font: 13px/1.4 "Poppins", ui-sans-serif, system-ui, sans-serif; }
+  & svg { flex: none; }
+  & .sps-phone { position: absolute; left: 40px; top: 40px; }
+  & .sps-screen { position: absolute; inset: 0; padding-top: 58px; background: #fff; }
+  & .sps-layer { position: absolute; inset: 58px 0 0; padding: 0 20px; opacity: 0; transition: opacity .35s ease; }
+  & .sps-layer[data-on] { opacity: 1; }
+  & .sps-top { display: flex; justify-content: space-between; align-items: center; height: 44px; }
+  & .sps-pill { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--s-yellow); font-weight: 600; font-size: 14px; }
+  & .sps-coin { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1.5px solid currentColor; border-radius: 50%; font-size: 8px; font-weight: 700; }
+  & .sps-pack { display: grid; place-items: center; height: 150px; margin: 6px 0 14px; border-radius: 16px; background: linear-gradient(160deg, #7ac36a, #3f9a4b); color: #fff; }
+  & .sps-name { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.25; }
+  & .sps-price { margin: 4px 0 10px; color: var(--s-muted); font-size: 13px; }
+  & .sps-price b { display: block; color: var(--s-teal); font-size: 19px; }
+  & .sps-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  & .sps-tags span { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--s-mint); color: var(--s-deep); font-size: 12.5px; font-weight: 600; }
+  & .sps-tags .is-pt { background: var(--s-yellow); color: var(--s-ink); }
+  & .sps-btn { display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; margin-top: 18px; border-radius: 999px; background: var(--s-teal); color: #fff; font-size: 16px; font-weight: 600; transition: transform .1s; will-change: transform; }
+  & .sps-btn[data-pressed] { transform: scale(.97); }
+  & .sps-btn.is-o { margin-top: 12px; background: #fff; border: 1.5px solid var(--s-teal); color: var(--s-teal); }
+  & .sps-in { display: inline-flex; align-items: center; gap: 6px; }
+  & .sps-win { text-align: center; padding-top: 24px; }
+  & .sps-blob { position: relative; width: 170px; height: 150px; margin: 0 auto 12px; border-radius: 48% 52% 45% 55%; background: var(--s-mint); }
+  & .sps-blob .sps-coin { position: absolute; width: 36px; height: 36px; font-size: 13px; background: #fff; }
+  & .sps-blob .sps-coin:first-child { left: 22px; top: 76px; } & .sps-blob .sps-coin:last-child { right: 26px; top: 28px; }
+  & .sps-ok { display: inline-flex; align-items: center; gap: 4px; margin: 0; color: var(--s-muted); font-size: 12px; }
+  & .sps-h { margin: 6px 0; color: var(--s-teal); font-size: 18px; font-weight: 700; }
+  & .sps-t { margin: 0; color: #3d4a49; font-size: 13px; }
+
+  & .sps-ledger { position: absolute; left: 320px; top: 150px; width: 300px; padding: 16px 18px; border-radius: 14px; background: #fff; box-shadow: var(--ss-shadow-satellite); }
+  & .sps-l-h { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 8px; font-weight: 600; }
+  & .sps-l-h b { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  & .sps-row { display: flex; justify-content: space-between; gap: 12px; margin: 0; padding: 10px 0; border-top: 1px solid var(--s-line); font-size: 13px; }
+  & .sps-row b { color: var(--s-teal); font-variant-numeric: tabular-nums; }
+  & .sps-row.is-next { color: var(--s-muted); } & .sps-row.is-next b { color: var(--s-muted); }
+  & .sps-empty { margin: 0; padding: 10px 0 2px; border-top: 1px solid var(--s-line); color: var(--s-muted); font-size: 12.5px; }
+}

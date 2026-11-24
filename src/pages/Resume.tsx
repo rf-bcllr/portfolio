@@ -25,7 +25,7 @@ const experiences = [
   { title: "Product Designer", company: "isaac", period: "2024 - 2026", description: "End-to-end digital product design, design system and scalable interfaces.", chips: ["Fintech", "B2B", "B2C", "SaaS"] },
   { title: "Product Designer", company: "ClassApp", period: "2021 - 2024", description: "Product design leadership, user research and development collaboration.", chips: ["Edtech", "B2B", "B2C"] },
   { title: "Design Analyst", company: "Le biscuit", period: "2019 - 2021", description: "Digital interface analysis and design, user experience improvement.", chips: ["Retail", "E-commerce"] },
-  { title: "Design & Marketing Analyst", company: "Sebrae Bahia", period: "2017 - 2019", description: "Graphic design, digital marketing and visual communication for entrepreneurs.", chips: ["Govt. Agency", "B2B"] },
+  { title: "Design & Marketing Analyst", company: "Sebrae", period: "2017 - 2019", description: "Graphic design, digital marketing and visual communication for entrepreneurs.", chips: ["Govt. Agency", "B2B"] },
   { title: "Brand Designer", company: "Sanar", period: "2015 - 2016", description: "Visual identity development and brand materials for medical education.", chips: ["Healthtech", "B2C"] },
 ];
 

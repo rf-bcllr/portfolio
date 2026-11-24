@@ -82,7 +82,7 @@ These hold for whichever direction wins.
 - Every project shows **one measured result** when one exists (4.8★, 12k+, 92%, $8.5k/month). Without one, write "In progress" in muted ink. Never write "TBD".
 - One decimal style (point), one currency style (`$8.5k`), sentence case everywhere. Caps only in mono metadata.
 - Project facts live in `projectsData`, presentation in `featuredProjects` (AGENTS.md). Display names that differ from data titles (Cheguei, Saúde e Ponto) go in one map, not inline.
-- Contact is LinkedIn until an email is published. Buttons are a verb plus an object ("Talk to Rafa", "Open the case study", "Start the game").
+- Contact is LinkedIn until an email is published. Buttons are a verb plus an object ("Talk to Rafa", "Next project", "Start the game").
 
 ### Layout
 - One container: `max-width: 1240px`, side padding 24px (mobile) and 40px (≥768). Left and right content edges are equal on every section.
@@ -143,17 +143,17 @@ No Inter · no purple gradients · no glowing buttons · no serif headline with 
 ## 5. Direction sheets (pick one)
 
 ### C · Canvas (ref: rauno.me, as a design file) · `m-canvas.jpg`
-The portfolio as a design file. **Chrome reads as a design tool:** a white toolbar with working Move (V), Hand (H) and Annotations (C) tools, the file name, Play, a blue Connect and zoom; a Layers panel listing sections and their frames; a Design panel that reads the selection's real X, Y, W and H, its annotations and the case facts. **Canvas:** light grey, no dot grid. **Each case is a section** (white, 1px grey stroke, name tag above it) that opens with a black banner (title, facts, result, Open the case study), the way Rafa's FTD documentation files do. **Inside, frames hold stageshow pieces**: one strong point of the real product each, rebuilt faithfully from the actual screens (recordings, Behance shots, the Figma files), never a whole interface. Selecting a frame draws the selection box, square handles and a size badge. **Annotations use Rafa's own documentation style:** red numbered markers that follow the element they describe while the piece animates, and dark note cards under the frame.
+The portfolio as a design file. **Chrome reads as a design tool:** a white toolbar with working Move (V), Hand (H) and Annotations (C) tools, the file name, Play, a blue Connect and zoom; a Layers panel listing sections and their frames; a Design panel that reads the selection's real X, Y, W and H, its annotations and the case facts. **Canvas:** light grey, no dot grid. **The About section** holds the cover photo, with Ínis' and Esdras' testimonials pinned to it as Figma comments, and the experience frame. **Each case is a section** (white, 1px grey stroke, name tag above it) that opens with a black banner (title, facts, result, **Next project**, which moves the canvas to the next section; the last one says Back to the start). There are no case-study pages any more: a **Case notes** frame at the head of each section carries what they held (challenge, what Rafa did, results, role and team). **Inside, frames hold stageshow pieces**, each a small *system*, not a screenshot: one strong point of the real product and the second surface it feeds (the parent's tap and the school's queue, the app and Google Agenda, a theme and its tokens, an order and the points ledger), rebuilt faithfully from the actual screens. Selecting a frame draws the selection box, square handles and a size badge. **Annotations use Rafa's own documentation style:** red numbered markers that follow the element they describe while the piece animates, and dark note cards under the frame.
 
-| Case | Pieces (source) |
+| Case | Piece: the system it shows (source) |
 |---|---|
-| Meu Arco | Alerts rail · Invoice · Requests + tab bar (product recording) |
-| Cheguei | Student card · Gate sheet · School arrivals (product recording) |
-| Images for questions, with AI | Visual-support hint · Describe the image · Four options (Figma "Geração de imagens com IA - 08/2026") |
-| Calendar + Google Agenda (replaces Edvisorly) | Legend + sync status · Two weeks of the month · Connect flow (Figma "Calendário", page 08) |
-| AI Writing Assistant | Recipients · Improve with AI · Feedback toast (product recording) |
-| Lesson plans + learning profiles | Profiles list · Create profile (product recording) |
-| Saúde e Ponto | Product detail · Points earned · Home nearby (Behance screens) |
+| Meu Arco | One app, many schools: switching school repaints the theme, a token card rolls brand.primary, surface and mark (product recording) |
+| Cheguei | One tap, two people: the parent's Cheguei lands in the school's queue, Aceitar → A caminho → Entregue (ClassApp recording) |
+| Images for questions, with AI | Prompt from a suggestion, 77/300, Gerar imagem · options modal with the daily-limit toast and "Limites de hoje" counting down (Figma `t8K2248zC7Sgdy2KBKlwqy`, page 04) |
+| Calendar + Google Agenda (replaces Edvisorly) | Connecting sends events across; holidays and themed dates stay behind by rule (Figma "Calendário", page 08; `PROGRESS.md`) |
+| AI Writing Assistant | Select, Melhorar texto com IA, the rewrite streams in, the feedback toast feeds a dashboard split (product recording) |
+| Lesson plans + learning profiles | A profile built once flies into the lesson-plan form and tags the adapted steps (product recording) |
+| Saúde e Ponto | A healthy item says what it earns; the order pays 13 points and a ledger books it and the next +10 (Behance screens) |
 | Lia & Íon, Quest | The art itself, cropped |
 
 | Token | Value |

@@ -1,131 +1,177 @@
 /**
- * Content of the canvas direction: one Figma-style section per case, each holding a few
- * stageshow pieces (src/components/stage/pieces) rebuilt faithfully from the real screens,
- * with notes in Rafa's own documentation style (numbered markers + note cards).
+ * Content of the canvas direction. One Figma-style section per case: the case notes that used to
+ * live on the project pages (challenge, what I did, results), and a stageshow stage built to show
+ * the design thinking behind the product, annotated in Rafa's documentation style.
  */
-import { useEffect, useLayoutEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
-import { ArcoAlerts, ArcoInvoice, ArcoRequests, CqGate, CqStaff, CqStudent, IonDuo, IonMood, IonProcess, QuestBoss, QuestRoute } from "@/components/stage/pieces/ProductPieces";
-import { AiImgOptions, AiImgPrompt, AiImgSuggestion } from "@/components/stage/pieces/AiImagePieces";
-import { CalConnect, CalLegend, CalWeek } from "@/components/stage/pieces/CalendarPieces";
-import { WrFeedback, WrImprove, WrRecipients } from "@/components/stage/pieces/WritingPieces";
-import { LpCreate, LpProfiles } from "@/components/stage/pieces/LessonPieces";
-import { SpHome, SpPoints, SpProduct } from "@/components/stage/pieces/SaudePieces";
+import { useEffect, useRef, useState, type ComponentType } from "react";
+import { IonDuo, IonMood, IonProcess, QuestBoss, QuestRoute } from "@/components/stage/pieces/ProductPieces";
+import { AiImgOptions, AiImgPrompt } from "@/components/stage/pieces/AiImagePieces";
+import { ArcoSystem } from "@/components/stage/pieces/ArcoSystem";
+import { CalendarSystem } from "@/components/stage/pieces/CalendarSystem";
+import { ChegueiSystem } from "@/components/stage/pieces/ChegueiSystem";
+import { LessonSystem } from "@/components/stage/pieces/LessonSystem";
+import { SaudeSystem } from "@/components/stage/pieces/SaudeSystem";
+import { WritingSystem } from "@/components/stage/pieces/WritingSystem";
 import { outcomeOf, projects } from "./shared";
 
 export type Note = { t: string; d: string; a?: string };
-export type Piece = { id: string; name: string; C: ComponentType; notes: Note[] };
+export type Piece = { id: string; name: string; C: ComponentType; notes: Note[]; w?: number };
+export type Case = { challenge: string; did: string[]; results: string[]; meta: [string, string][] };
 export type Sec = {
   id: string; title: string; facts: string; result: { value: string; label: string; measured: boolean };
-  href?: string; cta?: string; pieces: Piece[];
+  case?: Case; pieces: Piece[];
 };
 
-const a = (name: string) => `[data-anchor="${name}"]`;
 const fromProject = (slug: string) => {
   const p = projects.find((x) => x.slug === slug)!;
-  return { facts: `${p.company} · ${p.year} · ${p.category}`, result: outcomeOf(p), href: p.playInsteadOfOutcome ? "/play" : `/project/${p.slug}`, cta: p.playInsteadOfOutcome ? "Play the game" : "Open the case study" };
+  return { facts: `${p.company} · ${p.year} · ${p.category}`, result: outcomeOf(p) };
 };
 
 export const SECTIONS: Sec[] = [
   {
     id: "meu-arco", title: "Meu Arco", ...fromProject("meu-arco"),
+    case: {
+      challenge: "Arco had bought several school brands, each with its own platform. A teacher opened three tabs every morning, and 45% of support tickets were some version of “I can’t find where to…”. The brief: one experience, without erasing each school’s identity.",
+      did: ["Contextual research in 25+ schools, 150+ hours of observation", "8 design-thinking workshops to align competing brand teams", "A unified design system: 40+ components, 200+ variants, semantic theming", "120+ screens and 50+ prototypes, built daily with 5 engineers"],
+      results: ["App rating 2.9 → 4.8★", "SUS score 90", "35% fewer support tickets", "100% rollout ahead of schedule"],
+      meta: [["Role", "Product designer, research to handoff"], ["Team", "PM, 5 engineers"], ["Time", "16 weeks"]],
+    },
     pieces: [
-      { id: "arco-alerts", name: "Home · Alerts rail", C: ArcoAlerts, notes: [{ t: "One rail for every alert", d: "Re-enrolment, materials, contracts and polls share one sideways rail. The last card, Ver mais, is an exit rather than more content.", a: a("rail") }] },
-      { id: "arco-invoice", name: "Home · Invoice", C: ArcoInvoice, notes: [{ t: "One action per card", d: "The invoice only asks to pay; the details wait behind Ver fatura.", a: a("pay") }] },
-      { id: "arco-requests", name: "Home · Requests + tab bar", C: ArcoRequests, notes: [{ t: "Requests stay one row tall", d: "Ongoing requests scroll sideways, so the next decision stays in view.", a: a("reqs") }, { t: "Three apps, one bar", d: "Home, messages, calendar and finance used to live in separate products.", a: a("tabs") }] },
+      { id: "arco-theme", w: 640, name: "System · One home, every school", C: ArcoSystem, notes: [
+        { t: "Semantic tokens, not skins", d: "Components read brand tokens (primary, soft surface, mark). Switching school repaints the same home: unity without uniformity.", a: ".ars-tokens" },
+        { t: "Three platforms, one home", d: "Re-enrolment, invoices and requests lived in separate products; the home puts the next decision of each on one screen.", a: ".ars-alert" },
+        { t: "One action per card", d: "The invoice asks for one thing: Pagar. Details wait behind Ver fatura.", a: ".ars-pay" },
+      ] },
     ],
   },
   {
     id: "students-transportation", title: "Cheguei", ...fromProject("students-transportation"),
+    case: {
+      challenge: "At pickup time, parents waited at the gate not knowing if the school knew they were there, and called the office to find out. School staff juggled the calls, the gate and the children at once.",
+      did: ["20+ hours riding with school transport, interviews with 20 parents and 10 drivers", "One system for three people: parent app, driver flow, school dashboard", "A notification strategy that balances reassurance and privacy", "Usability tests with drivers, parents and administrators"],
+      results: ["12k+ students onboarded in 6 months", "97% parent satisfaction", "85% fewer transport calls", "94% driver ease-of-use"],
+      meta: [["Role", "Product designer"], ["Team", "PM, 3 engineers, safety consultant"], ["Time", "14 weeks"]],
+    },
     pieces: [
-      { id: "cq-student", name: "Parent · Student card", C: CqStudent, notes: [{ t: "Built for split attention", d: "A parent at the wheel gets one big button. Transport is set once, above it.", a: a("cta") }] },
-      { id: "cq-gate", name: "Parent · Gate sheet", C: CqGate, notes: [{ t: "Where, before who", d: "Schools with several gates ask where the parent is, so staff walk the child to the right one.", a: a("gate") }] },
-      { id: "cq-staff", name: "School · Arrivals", C: CqStaff, notes: [{ t: "Waiting time in sight", d: "Each arrival carries a running timer, so staff see who has waited longest.", a: a("timer") }, { t: "Accept, then complete", d: "One tap accepts; the same button becomes Concluir.", a: a("accept") }] },
+      { id: "cq-system", w: 700, name: "Service · One tap, two people", C: ChegueiSystem, notes: [
+        { t: "Designed for two people at once", d: "The parent’s tap and the school’s queue are one event. Both ends were designed together, so each screen shows what the other just did.", a: '[data-target="cheguei"]' },
+        { t: "Waiting time in sight", d: "Each arrival carries a running timer, so staff see who has waited longest.", a: ".cqs-timer" },
+        { t: "The button becomes the status", d: "After the tap, the action turns into progress and one next step: Confirmar entrega.", a: ".cqs-status" },
+      ] },
     ],
   },
   {
     id: "ai-image-generation", title: "Images for questions, with AI", ...fromProject("ai-image-generation"),
+    case: {
+      challenge: "Public-school teachers using FTD com Você needed images for questions (math word problems, chemistry formulas) and rarely had them. Generation had to fit inside the activity, respect a daily budget and keep the teacher in charge.",
+      did: ["Where AI enters: a visual-support flag on the questions that need it", "Suggestions read from the question, so prompts start filled, never blank", "Four options, feedback and regenerate, under one daily limit shown everywhere", "Error, refusal and limit states, with event tracking for each step"],
+      results: ["Concept validation in progress", "Prompt engineering, token management and agent design"],
+      meta: [["Role", "Senior product designer, AI workflow"], ["Company", "FTD Educação"], ["Time", "2026"]],
+    },
     pieces: [
-      { id: "ai-hint", name: "Activity · Visual-support hint", C: AiImgSuggestion, notes: [{ t: "Suggested, never forced", d: "The AI flags questions that would gain from a visual; the teacher decides whether to generate.", a: a("hint") }] },
-      { id: "ai-prompt", name: "Modal · Describe the image", C: AiImgPrompt, notes: [{ t: "Context comes along", d: "Subject, grade and the inclusive tag travel with the question, so the idea can be one line.", a: a("rec") }, { t: "Limits at the field", d: "A 300-character count and the accuracy warning sit with the input.", a: a("field") }] },
-      { id: "ai-options", name: "Modal · Four options", C: AiImgOptions, notes: [{ t: "Four takes, one choice", d: "For diagrams, variety beats a single guess.", a: a("grid") }, { t: "Feedback on the spot", d: "Thumbs on the result feed quality tracking; Gerar novamente stays secondary.", a: a("fb") }] },
+      { id: "ai-prompt", w: 560, name: "Modal · The AI proposes, the teacher decides", C: AiImgPrompt, notes: [
+        { t: "Suggestions from the question itself", d: "The AI reads the question and offers three ideas. Picking one fills the description, which stays editable.", a: ".ai-sugs" },
+        { t: "Context travels with the question", d: "Subject, grade and the visual-support flag come along as tags.", a: ".is-rec" },
+      ] },
+      { id: "ai-options", w: 760, name: "Result · Four options, one daily budget", C: AiImgOptions, notes: [
+        { t: "Four takes, one choice", d: "For classroom images, variation beats a single guess; the pick is a radio, the preview expands.", a: '[data-target="opt-1"]' },
+        { t: "One budget, said in two places", d: "The toast and the sidebar’s Limites de hoje count the same generation, so the limit never surprises anyone.", a: ".is-img" },
+      ] },
     ],
   },
   {
     id: "calendar", title: "Calendar, connected to Google Agenda",
-    facts: "FTD Educação · 2026 · Web App · EdTech · Integration",
+    facts: "FTD Educação · 2026 · Web app · EdTech · Integration",
     result: { value: "In progress", label: "", measured: false },
+    case: {
+      challenge: "Teachers plan the year around holidays (which change by state), themed dates and the materials they generate, and keep all of it in different places. The calendar had to bring these together and reach the agenda they already use.",
+      did: ["9 documented flows: browse, region, reminders, create from a day, settings, home widget", "One calendar-item component in 36 variants (format × action × ground × state)", "Google Agenda connection with a one-way sync rule", "A tracking plan of 11 events, reviewed with data and engineering"],
+      results: ["In design review with content design", "Ready-for-dev flows for desktop, tablet and phone"],
+      meta: [["Role", "Senior product designer"], ["Company", "FTD Educação"], ["Time", "2026"]],
+    },
     pieces: [
-      { id: "cal-legend", name: "Calendar · Legend + sync status", C: CalLegend, notes: [{ t: "Sync status always in view", d: "A tag beside the legend says whether Google Agenda is connected, and opens Settings.", a: a("status") }] },
-      { id: "cal-week", name: "Calendar · Month, two weeks", C: CalWeek, notes: [{ t: "A teacher's year on one grid", d: "Holidays by state, themed dates, reminders and generated materials share the days; overflow becomes Ver +1.", a: ".cl-more" }] },
-      { id: "cal-connect", name: "Settings · Connect", C: CalConnect, notes: [{ t: "Say what syncs before asking", d: "The dialog explains the sync is one-way and holidays aren't sent, before Google's consent screen.", a: a("dialog") }, { t: "Confirmed twice", d: "The switch turns on with the account named, and a toast confirms it.", a: a("toast") }] },
+      { id: "cal-sync", w: 720, name: "System · One calendar, two places", C: CalendarSystem, notes: [
+        { t: "A sync rule, made visible", d: "Connecting sends the teacher’s own materials and reminders. Holidays and themed dates stay: they already live in every school calendar.", a: '[data-target="status"]' },
+        { t: "One way, on purpose", d: "Changes made in Google Agenda never come back, so FTD stays the source of truth for generated materials.", a: ".cls-gcal" },
+        { t: "One item, many surfaces", d: "The same item component renders the month chip, the week card and the mobile list.", a: '[data-target="i4"]' },
+      ] },
     ],
   },
   {
     id: "ai-writing-assistant", title: "AI Writing Assistant", ...fromProject("ai-writing-assistant"),
+    case: {
+      challenge: "School messages reach thousands of families. After inappropriate-content incidents in 2025, schools needed moderation, and staff wanted help writing clear, friendly messages without losing control of what was sent.",
+      did: ["A moderation-first workflow before writing assistance", "Improve-with-AI on the writer’s own selection, rewritten in place", "Feedback on every rewrite, with a next step in each answer", "A usage dashboard so schools see whether the assistant helps"],
+      results: ["Impact metrics coming soon", "Tone and length controls, impact tracking built in"],
+      meta: [["Role", "Product designer"], ["Team", "PM, 3 engineers, AI/ML specialist"], ["Time", "10 weeks"]],
+    },
     pieces: [
-      { id: "wr-rec", name: "Message · Recipients", C: WrRecipients, notes: [{ t: "Audience first", d: "Classes become chips with a live count of who will receive it.", a: a("chip") }] },
-      { id: "wr-improve", name: "Message · Improve with AI", C: WrImprove, notes: [{ t: "AI where the text is", d: "Select a passage and Melhorar texto com IA appears beside it; the rewrite lands in the same field.", a: a("menu") }, { t: "Waiting, shaped like text", d: "The draft turns into a skeleton while the AI works, then fades back rewritten.", a: a("body") }] },
-      { id: "wr-feedback", name: "Message · Feedback toast", C: WrFeedback, notes: [{ t: "Rate the rewrite", d: "Amei, Quero ajustar or Tente novamente: feedback that also offers the next step.", a: a("toast") }] },
+      { id: "wr-loop", w: 740, name: "Loop · Ask, rewrite, rate, measure", C: WritingSystem, notes: [
+        { t: "AI on request, on the writer’s words", d: "Nothing is rewritten until the writer selects text and asks; the rewrite lands in the same field.", a: '[data-target="improve"]' },
+        { t: "Feedback with a next step", d: "Amei, Quero ajustar or Tente novamente: each answer is also the next action.", a: ".wrs-opts" },
+        { t: "The rating feeds the school’s view", d: "Every answer lands in the usage dashboard, so the team sees whether the AI helps before scaling it.", a: ".wrs-dash" },
+      ] },
     ],
   },
   {
     id: "lesson-plan-tool", title: "Lesson plans + learning profiles", ...fromProject("lesson-plan-tool"),
+    case: {
+      challenge: "FTD com Você licensed a third-party lesson-plan tool, and its plans ignored inclusive-education needs. Teachers needed plans by grade, topic and duration that adapt to the students in front of them.",
+      did: ["A guided flow by grade, topic and duration", "Learning profiles built from observable needs, reusable across tools", "A profile selector shared by activities and lesson plans", "Prompt engineering for adapted steps the teacher can check"],
+      results: ["$8.5k saved per month by replacing the third-party tool", "Inclusive-education ready"],
+      meta: [["Role", "Senior product designer, AI workflow"], ["Company", "FTD Educação"], ["Time", "2026"]],
+    },
     pieces: [
-      { id: "lp-profiles", name: "Profiles · List", C: LpProfiles, notes: [{ t: "Profiles, not diagnoses", d: "A profile names a group with shared needs; generated plans and activities adapt to it.", a: a("row") }] },
-      { id: "lp-create", name: "Profiles · Create", C: LpCreate, notes: [{ t: "Observable needs", d: "Teachers tick needs from a checklist instead of typing a diagnosis.", a: a("traits") }] },
+      { id: "lp-profile", w: 780, name: "System · A profile, made once, used everywhere", C: LessonSystem, notes: [
+        { t: "Needs, not diagnoses", d: "Teachers describe a group by observable needs from a checklist, never by a medical label.", a: ".lps-traits" },
+        { t: "One object, many forms", d: "The profile becomes a chip in the selector used by activities and lesson plans: created once, reused.", a: '[data-target="chip"]' },
+        { t: "Adaptations you can see", d: "The plan marks each step the profile changed, so the teacher can check the AI’s choices.", a: ".lps-tag" },
+      ] },
     ],
   },
   {
     id: "health-food-delivery", title: "Saúde e Ponto", ...fromProject("health-food-delivery"),
+    case: {
+      challenge: "Busy professionals open delivery apps wanting something healthy, face hundreds of options and “fitness” labels they can’t trust, and end up ordering pizza again.",
+      did: ["18 interviews and a competitive analysis of 8 apps", "Personas and journeys for 4 dietary profiles", "Nutrition shown before checkout, and points for healthy choices", "3 rounds of usability tests with 27 participants"],
+      results: ["92% task completion", "8.7/10 satisfaction", "35% faster checkout", "2,500+ Behance views"],
+      meta: [["Role", "Solo design and research"], ["Type", "Personal project"], ["Time", "8 weeks"]],
+    },
     pieces: [
-      { id: "sp-product", name: "Product · Detail", C: SpProduct, notes: [{ t: "Health facts beside the price", d: "Whole grain, zero cholesterol and the point it earns show before checkout.", a: a("tags") }] },
-      { id: "sp-points", name: "Checkout · Points earned", C: SpPoints, notes: [{ t: "Rewarded for healthy picks", d: "Points land at checkout, with a bonus for collecting in store.", a: a("win") }] },
-      { id: "sp-home", name: "Home · Nearby", C: SpHome, notes: [{ t: "Balance on every screen", d: "The points pill stays in the header, next to the greeting.", a: a("balance") }] },
+      { id: "sp-points", w: 660, name: "System · Points for healthy choices", C: SaudeSystem, notes: [
+        { t: "The reward is on the shelf", d: "A healthy item says what it earns (+1 ponto) next to its nutrition facts, before checkout.", a: ".sps-tags" },
+        { t: "One account, two moments", d: "Points land when the order is paid, and collecting in store is the next reward, kept in one ledger.", a: ".sps-ledger" },
+      ] },
     ],
   },
   {
     id: "ionic-ai-identity", title: "Lia & Íon", ...fromProject("ionic-ai-identity"),
+    case: {
+      challenge: "Give Iônica’s AI a face students and teachers would want to talk to, without the usual robot.",
+      did: ["Two characters with two jobs: Lia discovers, Íon explains", "Personality moodboards for each", "20+ alternatives explored before the final pair", "Naming with the content designers"],
+      results: ["Identity in rollout; impact to be measured"],
+      meta: [["Role", "Identity and character design"], ["Team", "AI squad and content team"], ["Time", "2026"]],
+    },
     pieces: [
-      { id: "ion-duo", name: "Characters", C: IonDuo, notes: [{ t: "Two characters, two roles", d: "Lia hunts for books and knowledge; Íon is her alien companion aboard the Iônica library spaceship." }] },
-      { id: "ion-mood", name: "Moodboard · Lia", C: IonMood, notes: [{ t: "Personality first", d: "Each character started from its own moodboard." }] },
-      { id: "ion-process", name: "Process", C: IonProcess, notes: [{ t: "20+ alternatives", d: "Explored before the final pair, and named with the content designers." }] },
+      { id: "ion-duo", name: "Characters", C: IonDuo, notes: [] },
+      { id: "ion-mood", name: "Moodboard · Lia", C: IonMood, notes: [] },
+      { id: "ion-process", name: "Process", C: IonProcess, notes: [] },
     ],
   },
   {
     id: "quest-for-the-next-product", title: "Quest for the Next Product", ...fromProject("quest-for-the-next-product"),
+    case: {
+      challenge: "Let visitors experience a design career rather than only read about it.",
+      did: ["My career as a 2D side-scrolling RPG: each job is a chapter", "Projects as collectible cards, design tools as part of the adventure", "Design and development, responsive end to end"],
+      results: ["Playable on desktop and phone"],
+      meta: [["Role", "Design and development"], ["Type", "Personal project"], ["Time", "2026"]],
+    },
     pieces: [
-      { id: "q-route", name: "Levels · 2015 → 2016", C: QuestRoute, notes: [{ t: "Each job a chapter", d: "The career becomes a 2D side-scroller; real places become levels." }] },
-      { id: "q-boss", name: "Boss · The Imposter", C: QuestBoss, notes: [{ t: "The final boss", d: "A battle against The Imposter." }] },
+      { id: "q-route", name: "Levels · 2015 → 2016", C: QuestRoute, notes: [] },
+      { id: "q-boss", name: "Boss · The Imposter", C: QuestBoss, notes: [] },
     ],
   },
 ];
-
-/** Renders a piece at its natural width and scales it down only when the column is narrower. */
-export function Fit({ children }: { children: ReactNode }) {
-  const outer = useRef<HTMLDivElement>(null);
-  const inner = useRef<HTMLDivElement>(null);
-  const [box, setBox] = useState({ s: 1, h: 0, w: 0 });
-  useLayoutEffect(() => {
-    const o = outer.current, i = inner.current;
-    if (!o || !i) return;
-    const ro = new ResizeObserver(() => {
-      const avail = o.parentElement?.clientWidth ?? o.clientWidth;
-      const w = i.offsetWidth;
-      const s = Math.min(1, avail / w);
-      setBox({ s, h: i.offsetHeight * s, w: w * s });
-    });
-    ro.observe(i);
-    if (o.parentElement) ro.observe(o.parentElement);
-    return () => ro.disconnect();
-  }, []);
-  return (
-    <div ref={outer} style={{ width: box.w || undefined, height: box.h || undefined, overflow: "clip", overflowClipMargin: 16 }}>
-      <div ref={inner} className="relative w-max" style={{ transform: `scale(${box.s})`, transformOrigin: "top left" }}>
-        {children}
-      </div>
-    </div>
-  );
-}
 
 /**
  * Numbered markers that follow the element each note describes while the piece animates;
@@ -175,7 +221,7 @@ export function Markers({ anchors, start = 1 }: { anchors: (string | undefined)[
     return () => { on = false; cancelAnimationFrame(raf); io.disconnect(); };
   }, [anchors]);
   return (
-    <div ref={layer} className="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div ref={layer} className="pointer-events-none absolute inset-0 z-10" aria-hidden="true">
       {pos.map((p, n) => (p ? <span key={n} className="fg-marker" style={{ left: p.x, top: p.y }}>{start + n}</span> : null))}
     </div>
   );

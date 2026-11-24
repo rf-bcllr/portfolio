@@ -35,7 +35,7 @@ export const experience = [
   { role: "Product Designer", company: "isaac", period: "2024 – 2026", from: 2024 },
   { role: "Product Designer", company: "ClassApp", period: "2021 – 2024", from: 2021 },
   { role: "Design Analyst", company: "Le biscuit", period: "2019 – 2021", from: 2019 },
-  { role: "Design & Marketing Analyst", company: "Sebrae Bahia", period: "2017 – 2019", from: 2017 },
+  { role: "Design & Marketing Analyst", company: "Sebrae", period: "2017 – 2019", from: 2017 },
   { role: "Brand Designer", company: "Sanar", period: "2015 – 2016", from: 2015 },
 ];
 

@@ -7,12 +7,14 @@
  * the content (Clash Display, Satoshi, the primary blue). Mockup only.
  */
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent as RPointerEvent } from "react";
-import { ArrowUpRight, ChevronDown, Hand, Hash, LayoutGrid, MessageSquareText, Minus, MousePointer2, Play, Plus, Frame as FrameIcon } from "lucide-react";
+import { ArrowDown, ArrowUpRight, ChevronDown, Hand, Hash, LayoutGrid, MessageSquareText, Minus, MousePointer2, Play, Plus, Frame as FrameIcon } from "lucide-react";
 import avatar from "@/assets/rafael-bacellar-avatar.jpg";
 import inisAvatar from "@/assets/inis-avatar.png";
 import { translations } from "@/hooks/useTranslations";
 import { experience, person, portrait } from "./shared";
-import { Fit, Markers, SECTIONS, type Piece, type Sec } from "./canvasFrames";
+import { Markers, SECTIONS, type Case, type Piece, type Sec } from "./canvasFrames";
+import { FigmaComment } from "@/components/hero/FigmaComment";
+import esdrasAvatar from "@/assets/esdras-avatar.png";
 import "./figma-canvas.css";
 
 const quote = translations.en.recommendationsItems[0];
@@ -20,7 +22,12 @@ type Tool = "move" | "hand";
 
 /* ---------- About section frames (the portfolio's own identity) ---------- */
 
+const esdras = translations.en.recommendationsItems[1];
+
+/** The portrait carries the recommendations as design-tool comments, pinned where a reviewer would leave them. */
 function CoverFrame() {
+  const [open, setOpen] = useState<"inis" | "esdras" | null>("inis");
+  const toggle = (k: "inis" | "esdras") => setOpen((o) => (o === k ? null : k));
   return (
     <div className="fg-about fg-cover">
       <div>
@@ -32,10 +39,49 @@ function CoverFrame() {
           <a href="/resume" className="fg-cta is-ghost">Resume</a>
         </div>
       </div>
-      <img src={portrait} alt="Rafael Bacellar" className="fg-portrait" />
+      <div className="fg-portrait-wrap">
+        <img src={portrait} alt="Rafael Bacellar" className="fg-portrait" />
+        <FigmaComment
+          avatarSrc={inisAvatar}
+          authorName={quote.author}
+          message={"\u201cBy far the most creative designer I\u2019ve ever worked with. He has the eye for details and spots flaws no one else does.\u201d"}
+          timestamp={quote.role}
+          open={open === "inis"}
+          onToggle={() => toggle("inis")}
+          width={236}
+          side="right"
+          className="fg-pin fg-pin-inis"
+        />
+        <FigmaComment
+          avatarSrc={esdrasAvatar}
+          authorName={esdras.author}
+          message={"\u201cMy reference of a dedicated and curious designer, always bringing something new to the table.\u201d"}
+          timestamp={esdras.role}
+          open={open === "esdras"}
+          onToggle={() => toggle("esdras")}
+          width={236}
+          side="left"
+          className="fg-pin fg-pin-esdras"
+        />
+      </div>
     </div>
   );
 }
+
+function CaseCard({ c }: { c: Case }) {
+  return (
+    <div className="fg-about fg-case">
+      <dl className="fg-case-meta">{c.meta.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+      <p className="fg-case-k">Challenge</p>
+      <p className="fg-case-p">{c.challenge}</p>
+      <p className="fg-case-k">What I did</p>
+      <ul className="fg-case-l">{c.did.map((d) => <li key={d}>{d}</li>)}</ul>
+      <p className="fg-case-k">Results</p>
+      <ul className="fg-case-l is-res">{c.results.map((d) => <li key={d}>{d}</li>)}</ul>
+    </div>
+  );
+}
+
 function ExperienceFrame() {
   return (
     <div className="fg-about fg-exp">
@@ -44,33 +90,26 @@ function ExperienceFrame() {
     </div>
   );
 }
-function CommentFrame() {
-  return (
-    <div className="fg-about fg-comment">
-      <div className="fg-bubble">
-        <p className="fg-bubble-h"><img src={inisAvatar} alt="" /> <b>{quote.author}</b></p>
-        <p className="fg-bubble-r">{quote.role}</p>
-        <p>“Rafael is by far the most creative designer I've ever worked with. He really has the eye for details and ends up spotting flaws no one else does.”</p>
-      </div>
-    </div>
-  );
-}
-
 const ABOUT: Sec = {
   id: "about", title: "Rafael Bacellar", facts: "Senior Product Designer · FTD Educação · 10+ years", result: { value: "", label: "", measured: false },
   pieces: [
     { id: "about-cover", name: "Cover", C: CoverFrame, notes: [] },
     { id: "about-exp", name: "Experience", C: ExperienceFrame, notes: [] },
-    { id: "about-comment", name: "Comment · Inis Leahy", C: CommentFrame, notes: [] },
   ],
 };
-const ALL: Sec[] = [ABOUT, ...SECTIONS];
+// Each case opens with its notes frame, built once so the component identity is stable
+const ALL: Sec[] = [ABOUT, ...SECTIONS.map((sec) => {
+  if (!sec.case) return sec;
+  const c = sec.case;
+  const CaseFrame = () => <CaseCard c={c} />;
+  return { ...sec, pieces: [{ id: `${sec.id}-case`, name: "Case notes", C: CaseFrame, notes: [], w: 380 }, ...sec.pieces] };
+})];
 const pieceList = ALL.flatMap((s) => s.pieces.map((p) => ({ sec: s, p })));
 const secOf = (id: string) => ALL.find((s) => s.id === id || s.pieces.some((p) => p.id === id))!;
 
 /* ---------- Frame + section ---------- */
 
-type ItemProps = { sel: string; notesOn: boolean; onSelect: (id: string) => void; setRef: (id: string, el: HTMLElement | null) => void };
+type ItemProps = { sel: string; notesOn: boolean; onSelect: (id: string) => void; setRef: (id: string, el: HTMLElement | null) => void; onNext?: () => void; nextLabel?: string };
 
 function FrameItem({ p, start, sel, notesOn, onSelect, setRef }: ItemProps & { p: Piece; start: number }) {
   const anchors = useMemo(() => p.notes.map((n) => n.a), [p.notes]);
@@ -92,10 +131,10 @@ function FrameItem({ p, start, sel, notesOn, onSelect, setRef }: ItemProps & { p
         className={`fg-frame ${on ? "is-sel" : ""}`}
         onClick={(e) => { if ((e.target as HTMLElement).closest("a")) return; e.stopPropagation(); onSelect(p.id); }}
       >
-        <Fit>
+        <div className="fg-fit" style={{ width: p.w ?? "max-content" }}>
           <p.C />
           {notesOn && p.notes.length > 0 && <Markers anchors={anchors} start={start} />}
-        </Fit>
+        </div>
         <span className="fg-sel" aria-hidden="true"><i /><i /><i /><i /><b>{on ? size : ""}</b></span>
       </div>
       {notesOn && p.notes.length > 0 && (
@@ -130,7 +169,7 @@ function SectionItem({ s, ...rest }: ItemProps & { s: Sec }) {
                 {s.result.measured && <span>{s.result.label}</span>}
               </p>
             )}
-            {s.href && <a href={s.href} className="fg-open" onClick={(e) => e.stopPropagation()}>{s.cta} <ArrowUpRight className="size-3.5" /></a>}
+            {rest.onNext && <button type="button" className="fg-open" onClick={(e) => { e.stopPropagation(); rest.onNext?.(); }}>{rest.nextLabel} <ArrowDown className="size-3.5" /></button>}
           </div>
         </header>
       )}
@@ -138,7 +177,7 @@ function SectionItem({ s, ...rest }: ItemProps & { s: Sec }) {
         {s.pieces.map((p) => {
           const start = n;
           n += p.notes.length;
-          return <FrameItem key={p.id} p={p} start={start} {...rest} />;
+          return <FrameItem key={p.id} p={p} start={start} sel={rest.sel} notesOn={rest.notesOn} onSelect={rest.onSelect} setRef={rest.setRef} />;
         })}
       </div>
     </section>
@@ -281,7 +320,10 @@ export function DirectionCanvas() {
           aria-label="Canvas. V selects, H pans, C toggles annotations; arrow keys move between frames."
         >
           <div className="fg-world" style={{ zoom }}>
-            {ALL.map((s) => <SectionItem key={s.id} s={s} sel={sel} notesOn={notesOn} onSelect={select} setRef={setRef} />)}
+            {ALL.map((s, i) => {
+              const next = ALL[i + 1];
+              return <SectionItem key={s.id} s={s} sel={sel} notesOn={notesOn} onSelect={select} setRef={setRef} onNext={() => focus(next ? next.id : ALL[0].id)} nextLabel={next ? `Next project: ${next.title}` : "Back to the start"} />;
+            })}
           </div>
         </div>
 
@@ -308,7 +350,7 @@ export function DirectionCanvas() {
               {current.result.value && (
                 <p className={`fg-case-r ${current.result.measured ? "" : "is-muted"}`}><b className="font-display">{current.result.value}</b>{current.result.measured && <span>{current.result.label}</span>}</p>
               )}
-              {current.href && <a href={current.href} className="fg-share fg-share-block">{current.cta} <ArrowUpRight className="size-3.5" /></a>}
+              {(() => { const i = ALL.findIndex((x) => x.id === current.id); const next = ALL[i + 1]; return <button type="button" className="fg-share fg-share-block" onClick={() => focus(next ? next.id : ALL[0].id)}>{next ? "Next project" : "Back to the start"} <ArrowDown className="size-3.5" /></button>; })()}
             </>
           ) : (
             <>
@@ -318,7 +360,7 @@ export function DirectionCanvas() {
                 <li>Red numbers follow the part of the screen each note talks about.</li>
                 <li>V select · H pan · C annotations · ← → frames</li>
               </ul>
-              <button type="button" className="fg-share fg-share-block" onClick={() => focus("arco-alerts")}>Start with Meu Arco <ArrowUpRight className="size-3.5" /></button>
+              <button type="button" className="fg-share fg-share-block" onClick={() => focus("meu-arco")}>Start with Meu Arco <ArrowUpRight className="size-3.5" /></button>
             </>
           )}
         </aside>

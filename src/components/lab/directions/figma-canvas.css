@@ -144,3 +144,29 @@
   .fg-sel { display:none; }
 }
 @media (prefers-reduced-motion: reduce) { .fg-marker { transition:none; } }
+
+/* Stages sit at their design width; below it they scale (the Stage fits its box) */
+.fg-fit { position: relative; max-width: 100%; }
+.fg-fit .pc-art { max-width: 100%; }
+
+/* Case notes: what used to live on the project pages, in the portfolio's own type */
+.fg-case { width: 380px; padding: 24px; color: hsl(222 18% 12%); }
+.fg-case-meta { display: grid; gap: 8px; margin: 0 0 18px; padding-bottom: 16px; border-bottom: 2px solid hsl(222 18% 12%); }
+.fg-case-meta div { display: grid; grid-template-columns: 64px 1fr; gap: 12px; font-size: 13px; }
+.fg-case-meta dt { color: #6b7080; } .fg-case-meta dd { margin: 0; font-weight: 600; }
+.fg-case-k { margin: 16px 0 6px; font: 600 18px/1.2 var(--font-display); letter-spacing: -.02em; }
+.fg-case-p { margin: 0; font-size: 14px; line-height: 1.5; }
+.fg-case-l { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.45; }
+.fg-case-l li { position: relative; padding-left: 16px; }
+.fg-case-l li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: hsl(var(--primary)); }
+.fg-case-l.is-res li { font-weight: 600; }
+
+/* Cover: recommendations pinned on the portrait as design-tool comments */
+.fg-portrait-wrap { position: relative; }
+.fg-pin { z-index: 2; }
+.fg-pin-inis { left: -14px; top: 74%; }
+.fg-pin-esdras { right: -14px; top: 30%; }
+@media (max-width: 1023px) {
+  .fg-case { width: auto; padding: 18px; }
+  .fg-pin-inis { left: 8px; } .fg-pin-esdras { right: 8px; }
+}

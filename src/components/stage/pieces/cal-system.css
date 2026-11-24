@@ -1,0 +1,41 @@
+/* FTD com Você, Calendário + Google Agenda: Verdana body, Kit chip colours from the Figma file. */
+.cls {
+  & .ss-stage {
+    --c-blue: #0a32c8; --c-ink: #111317; --c-muted: #5a5f6b; --c-line: #e3e5ea; --c-holiday: #9bd462; --c-theme: #ffe24a; --c-note: #d9dadd; --c-act: #0a3cbf; --c-plan: #0c72d6; --c-green: #2f6b25;
+    overflow: hidden; border-radius: 12px; background: #eef0f4; color: var(--c-ink); font: 12px/1.35 Verdana, "Noto Sans", sans-serif;
+  }
+  & svg { flex: none; }
+  /* Corner bleed: inset top and left, off the bottom */
+  & .cls-app { position: absolute; left: 24px; top: 24px; width: 696px; height: 460px; padding: 18px 18px 0; border-radius: 12px; background: #fafbfc; box-shadow: var(--ss-shadow-hero); }
+  & .cls-head { display: flex; align-items: center; gap: 12px; }
+  & .cls-today { padding: 4px 10px; border: 1.5px solid var(--c-blue); border-radius: 6px; color: var(--c-blue); font: 600 12px/1.2 "Poppins", sans-serif; }
+  & .cls-month { font: 700 18px/1 "Poppins", sans-serif; letter-spacing: -.01em; }
+  & .cls-status { margin-left: auto; min-width: 200px; justify-content: center; display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 8px; border-radius: 4px; background: #eceef1; color: var(--c-muted); font-size: 11px; transition: background .3s, color .3s; }
+  & .cls-status[data-on] { background: #e9f6e2; color: var(--c-green); }
+  & .cls-status[data-hover] { box-shadow: inset 0 0 0 1px #c9cdd4; }
+  & .cls-dow { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); margin-top: 8px; padding: 8px 0; border: 1px solid var(--c-line); border-radius: 10px 10px 0 0; background: #fff; text-align: center; font-size: 10px; font-weight: 700; color: var(--c-muted); }
+  & .cls-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border: 1px solid var(--c-line); border-top: 0; background: #fff; }
+  & .cls-cell { min-width: 0; min-height: 92px; padding: 8px 6px; border-left: 1px solid var(--c-line); display: grid; align-content: start; gap: 6px; }
+  & .cls-cell:first-child { border-left: 0; }
+  & .cls-d { display: grid; place-items: center; width: 24px; height: 24px; font-weight: 700; }
+  & .cls-d.is-today { border-radius: 50%; background: var(--c-blue); color: #fff; }
+  & .cls-item { min-width: 0; overflow: hidden; display: flex; align-items: flex-start; gap: 4px; padding: 4px 5px; border-radius: 3px; font-size: 10px; line-height: 1.3; transition: box-shadow .3s; }
+  & .cls-item em { flex: 1; min-width: 0; font-style: normal; }
+  & .cls-holiday { background: var(--c-holiday); } & .cls-theme { background: var(--c-theme); } & .cls-note { background: var(--c-note); }
+  & .cls-act { background: var(--c-act); color: #fff; font-weight: 700; } & .cls-plan { background: var(--c-plan); color: #fff; font-weight: 700; }
+  & .cls-item[data-kept] { box-shadow: 0 0 0 1.5px var(--c-ink); }
+  & .cls-rule { margin: 6px 0 0; text-align: right; color: var(--c-muted); font-size: 11px; opacity: 0; transition: opacity .4s; }
+  & .cls-rule[data-on] { opacity: 1; }
+
+  /* The Google Agenda card straddles the app's right edge */
+  & .cls-gcal { position: absolute; left: 452px; top: 290px; width: 244px; padding: 14px; border-radius: 12px; background: #fff; box-shadow: var(--ss-shadow-satellite); opacity: .55; transition: opacity .4s; font-family: ui-sans-serif, system-ui, sans-serif; }
+  & .cls-gcal[data-on] { opacity: 1; }
+  & .cls-gcal-h { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 13px; font-weight: 600; }
+  & .cls-g-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: center; gap: 8px; padding: 2px 0; transition: opacity .2s; }
+  & .cls-g-row[data-ghost] { opacity: 0; }
+  & .cls-g-day { color: #5f6368; font-size: 11px; }
+  & .cls-g-ev { padding: 5px 8px; border-radius: 4px; background: #039be5; color: #fff; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  & .cls-g-note { background: #7986cb; }
+  & .cls-g-empty { margin: 4px 0 2px; color: #80868b; font-size: 11px; }
+  & .cls-link { --ss-accent: #0a32c8; }
+}
