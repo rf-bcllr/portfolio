@@ -120,7 +120,7 @@ These hold for whichever direction wins.
 ### Motion
 - The hero enters once (opacity and 8–12px rise, 500ms, `cubic-bezier(0.25,0.46,0.45,0.94)`).
 - Hover: the object answers like the object would: a booklet swings straight on its peg, newsprint turns to colour, a stage flag grows. Press: 1–2px down. Durations 300–500ms.
-- Nothing fades in on scroll, no parallax, no scroll-jacking. One designed moment per page (canvas: pins that follow the live fragments; jornal: halftone to colour; overworld: the sprite's walk and swim).
+- Nothing fades in on scroll, no parallax, no scroll-jacking. One designed moment per page (canvas: markers that follow the live pieces; jornal: halftone to colour; overworld: the sprite's walk and swim).
 - Everything rests under `prefers-reduced-motion`, and nothing stays hidden.
 
 ### Components
@@ -142,21 +142,32 @@ No Inter · no purple gradients · no glowing buttons · no serif headline with 
 
 ## 5. Direction sheets (pick one)
 
-### C · Canvas (ref: rauno.me, in the site's own look) · `m-canvas.jpg`
-The portfolio as a design file, dressed in the current site's identity rather than a borrowed one. A floating pill toolbar (the site nav: avatar, `rfbcllr.`, zoom, blue Play, Let's connect), a floating Frames list and an Inspector as site cards (2px ink border, 4px offset shadow), and the FigJam dot grid as the canvas. Each case is a white frame (22px radius, 2px ink border, 6px offset shadow) with the title in Clash Display, the result set large, a Portuguese line, numbered notes, and the **live stageshow rebuild** of the real product beside them. The notes' pins use the Figma-comment shape in the primary blue and follow the element they describe while the rebuild animates. Selection reuses the hero title's box and square handles with a size badge. Drag to pan, ← → between frames, zoom 40–100%; below 1024px the frames stack and the rebuilds scale. Built on theme tokens, so dark mode follows.
+### C · Canvas (ref: rauno.me, as a design file) · `m-canvas.jpg`
+The portfolio as a design file. **Chrome reads as a design tool:** a white toolbar with working Move (V), Hand (H) and Annotations (C) tools, the file name, Play, a blue Connect and zoom; a Layers panel listing sections and their frames; a Design panel that reads the selection's real X, Y, W and H, its annotations and the case facts. **Canvas:** light grey, no dot grid. **Each case is a section** (white, 1px grey stroke, name tag above it) that opens with a black banner (title, facts, result, Open the case study), the way Rafa's FTD documentation files do. **Inside, frames hold stageshow pieces**: one strong point of the real product each, rebuilt faithfully from the actual screens (recordings, Behance shots, the Figma files), never a whole interface. Selecting a frame draws the selection box, square handles and a size badge. **Annotations use Rafa's own documentation style:** red numbered markers that follow the element they describe while the piece animates, and dark note cards under the frame.
+
+| Case | Pieces (source) |
+|---|---|
+| Meu Arco | Alerts rail · Invoice · Requests + tab bar (product recording) |
+| Cheguei | Student card · Gate sheet · School arrivals (product recording) |
+| Images for questions, with AI | Visual-support hint · Describe the image · Four options (Figma "Geração de imagens com IA - 08/2026") |
+| Calendar + Google Agenda (replaces Edvisorly) | Legend + sync status · Two weeks of the month · Connect flow (Figma "Calendário", page 08) |
+| AI Writing Assistant | Recipients · Improve with AI · Feedback toast (product recording) |
+| Lesson plans + learning profiles | Profiles list · Create profile (product recording) |
+| Saúde e Ponto | Product detail · Points earned · Home nearby (Behance screens) |
+| Lia & Íon, Quest | The art itself, cropped |
 
 | Token | Value |
 |---|---|
-| Ground / cards | `--background` with `.figjam-grid` / `--card` |
-| Ink / muted | `--foreground` / `--muted-foreground` |
-| Accent | `--primary` (selection, pins, Play, the surname) |
-| Borders + depth | 2px `--foreground`; offset shadow 4px (chrome) and 6px (frames), no blur shadows except the comment bubble |
-| Display / body | Clash Display 600–700, −0.035 to −0.045em / Satoshi 400–700 |
-| Radius | 22px frames and panels, full pills for buttons and chips, 13px comment pins with one 3px corner |
-| Fragments | `src/components/stage/*Bento.tsx` at a 560px design width; pins anchored by selector (`canvasFrames.tsx`) |
+| Chrome | `#FFFFFF` panels, `#E6E6E6` lines, `#1E1E1E` ink, `#757575` secondary, `#F5F5F5` hover, `#E5F4FF` selected layer |
+| Selection / tools | `#0D99FF` |
+| Canvas | `#F2F2F2` |
+| Section | white, 1px `#D9D9D9`, name tag `#E6E6E6` (blue when selected) |
+| Banner | `#0B0B0C`, title Clash Display 40, facts `#B9B9BD`, CTA in the site's primary blue |
+| Annotations | marker `#E1251B` with a white ring; note card `#1E1E1E`, 300px |
+| Type | chrome in Satoshi 11–13px; About frames keep Clash Display + Satoshi; pieces use each product's own type (Poppins for FTD, Verdana for the Calendar body, system UI for isaac, Arial for ClassApp) |
+| Pieces | `src/components/stage/pieces/*`, each at its natural width; scaled only below that width |
 
-**Kept from the current site:** Clash Display + Satoshi, the primary blue on the surname, 2px ink borders with the offset shadow, pill nav and buttons, the dot grid, the selection box from the resizable title, Figma-comment pins, the grayscale-to-colour portrait.
-**Removed as AI slop:** the sticker cloud, emoji as icons, the pinging availability dot (now a still green dot), the pulsing Play button, the dashed tilted outline, 9–10px bold caps with 0.2–0.3em tracking, the three generic icon cards ("Systems thinker", "Fast iterations"), floating/bobbing hero elements, gradient and glow tokens. Still to decide for the build: the global "Ask about my work" button's sparkle icon and shadow, which sits over every page.
+Truest to the work: a recruiter sees the real interfaces doing the thing that mattered, with the reasoning pinned to them. Cost: every piece must stay faithful to its source, and the Lovable-hosted art (Iônica, Quest) only loads on the deployed site.
 
 ### 1 · O Bacellar (ref: vanschneider.com) · `m-b.jpg`
 A broadsheet front page. Blackletter masthead with two ears (availability, a weather joke), a dateline, section nav (Educação, IA, Carreira, Passatempos). The lead story is Meu Arco with a 68px headline, deck, byline, a halftone photo of the real app and a drop-cap column. A right column carries Cheguei and the lesson-plan saving plus a pull quote; an "AI desk" fold covers the in-progress work; the back page has a *Classificados* ad that is the hire-me call, the career as a dotted table, and the game as *Passatempos*.

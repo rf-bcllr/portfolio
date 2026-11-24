@@ -1,0 +1,62 @@
+/* FTD com Você, Calendário: tokens read from the Figma file (Verdana body, Poppins titles, FTD blue, Kit chip colours). */
+.cl-p { --cl-blue:#0a32c8; --cl-blue-2:#0c72d6; --cl-ink:#111317; --cl-muted:#5a5f6b; --cl-line:#e3e5ea; --cl-holiday:#9bd462; --cl-theme:#ffe24a; --cl-note:#d9dadd; --cl-green:#3fa142;
+  color:var(--cl-ink); font:12px/1.35 Verdana, "Noto Sans", ui-sans-serif, sans-serif; }
+.cl-p *, .cl-p *::before, .cl-p *::after { box-sizing:border-box; }
+.cl-p svg { width:11px; height:11px; flex-shrink:0; }
+
+.cl-legend { width:640px; padding:16px 18px; border-radius:12px; background:#fff; }
+.cl-head { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.cl-head b { font:700 22px/1 "Poppins", sans-serif; letter-spacing:-.01em; }
+.cl-today { padding:4px 10px; border:1.5px solid var(--cl-blue); border-radius:6px; color:var(--cl-blue); font:600 12px/1.2 "Poppins", sans-serif; }
+.cl-views { margin-left:auto; display:flex; gap:16px; font-size:14px; color:#30343c; }
+.cl-views .is-on { padding-bottom:4px; border-bottom:2px solid var(--cl-blue); color:var(--cl-ink); }
+.cl-row { display:flex; flex-wrap:wrap; align-items:center; gap:7px; }
+.cl-chip { display:inline-flex; align-items:center; gap:4px; padding:2px 6px; border-radius:3px; font-size:11px; }
+.cl-holiday { background:var(--cl-holiday); } .cl-theme { background:var(--cl-theme); } .cl-note { background:var(--cl-note); }
+.cl-act { background:#0a3cbf; color:#fff; } .cl-plan { background:#0c72d6; color:#fff; }
+.cl-status { margin-left:auto; display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:3px; background:#f0f1f3; color:#5a5f6b; font-size:11px; transition:background .4s, color .4s; }
+.cl-status.is-on { background:#e9f6e2; color:#2f6b25; }
+
+.cl-grid { width:700px; overflow:hidden; border:1px solid var(--cl-line); border-radius:12px; background:#fafbfc; }
+.cl-dow { display:grid; grid-template-columns:repeat(7,1fr); padding:8px 0; border-bottom:1px solid var(--cl-line); text-align:center; font-size:9.5px; font-weight:700; color:#5a5f6b; }
+.cl-week { display:grid; grid-template-columns:repeat(7,1fr); }
+.cl-week + .cl-week { border-top:1px solid var(--cl-line); }
+.cl-cell { min-height:92px; padding:8px 6px; border-left:1px solid var(--cl-line); display:flex; flex-direction:column; gap:4px; transition:background .3s; }
+.cl-cell:first-child { border-left:0; }
+.cl-cell.is-hl { background:#eef3ff; }
+.cl-d { width:22px; height:22px; display:grid; place-items:center; font-weight:700; font-size:12px; }
+.cl-d.is-today { border-radius:50%; background:#0a32c8; color:#fff; }
+.cl-item { display:flex; align-items:flex-start; gap:4px; padding:3px 5px; border-radius:3px; font-size:10px; line-height:1.25; }
+.cl-item em { flex:1; font-style:normal; }
+.cl-item.cl-act, .cl-item.cl-plan { font-weight:700; }
+.cl-act-i { margin-left:auto; }
+.cl-more { color:#0a32c8; font-weight:700; font-size:10px; text-decoration:underline; }
+
+.cl-settings { position:relative; width:520px; height:330px; overflow:hidden; padding:20px; border-radius:12px; background:#fafafa; }
+.cl-h { margin:0 0 14px; font:700 18px/1.2 "Poppins", sans-serif; }
+.cl-card { padding:16px 18px; border:1px solid var(--cl-line); border-radius:10px; background:#fff; }
+.cl-card-h { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.cl-card p { margin:6px 0 0; color:#2b2f36; font-size:11.5px; }
+.cl-acc { animation:cl-in .4s ease both; }
+.cl-switch { width:28px; height:16px; border-radius:999px; background:#2b2f36; position:relative; transition:background .35s; }
+.cl-switch i { position:absolute; left:2px; top:2px; width:12px; height:12px; border-radius:50%; background:#fff; transition:transform .35s cubic-bezier(.3,1.4,.5,1); }
+.cl-switch.is-on { background:var(--cl-green); } .cl-switch.is-on i { transform:translateX(12px); }
+.cl-scrim { position:absolute; inset:0; display:grid; place-items:center; background:#00000070; opacity:0; pointer-events:none; transition:opacity .35s; }
+.cl-scrim.is-on { opacity:1; }
+.cl-dialog { width:400px; padding:20px 22px; border-radius:14px; background:#fff; transform:translateY(8px); transition:transform .35s; }
+.cl-scrim.is-on .cl-dialog { transform:none; }
+.cl-dialog b { display:block; margin-bottom:8px; font:600 16px/1.25 "Poppins", sans-serif; }
+.cl-dialog p { margin:0 0 8px; font-size:11.5px; line-height:1.45; color:#2b2f36; }
+.cl-dialog-f { display:flex; justify-content:flex-end; gap:10px; margin-top:12px; }
+.cl-btn-o, .cl-btn { padding:6px 11px; border-radius:5px; font:600 12px/1.2 "Poppins", sans-serif; }
+.cl-btn-o { border:1.5px solid var(--cl-blue); color:var(--cl-blue); }
+.cl-btn { background:var(--cl-blue); color:#fff; }
+.cl-btn.is-press { animation:cl-press .7s ease-out; }
+@keyframes cl-press { 0%,30% { transform:scale(1); } 50% { transform:scale(.95); } 100% { transform:scale(1); } }
+.cl-toast { position:absolute; left:50%; bottom:16px; display:flex; align-items:center; gap:10px; width:340px; padding:12px 14px; border-radius:6px; background:#e9f6e2; box-shadow:0 6px 16px -6px #0000003d; font-size:12px;
+  transform:translate(-50%, 140%); transition:transform .45s cubic-bezier(.3,1.2,.5,1); }
+.cl-toast.is-on { transform:translate(-50%, 0); }
+.cl-toast svg:first-child { color:var(--cl-green); width:14px; height:14px; }
+.cl-tx { margin-left:auto; }
+@keyframes cl-in { from { opacity:0; transform:translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .cl-p * { transition:none !important; animation:none !important; } }

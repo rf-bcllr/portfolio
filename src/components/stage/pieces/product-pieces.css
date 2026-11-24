@@ -1,0 +1,16 @@
+/* Sizing for pieces cut from the pilots; the pilots' own CSS draws everything else. */
+.pc-arco { width:360px; max-width:none; }
+.pc-arco-tile { height:auto; }
+.pc-arco-card { border-radius:18px; margin:0; }
+.pc-arco-req { padding-bottom:52px; }
+.pc-cq { width:340px; max-width:none; grid-template-columns:1fr; }
+.pc-cq-tile { height:auto; padding-bottom:4px; }
+.pc-cq-sheet { height:auto; background:#fff; }
+.cheguei-bento .pc-static { position:static; inset:auto; transform:none; animation:none; border-radius:14px 14px 0 0; box-shadow:none; }
+.pc-cq-staff { height:auto; padding-bottom:10px; }
+.pc-art { width:460px; overflow:hidden; border-radius:10px; background:#f3f1f8; }
+.pc-ion-duo { display:grid; grid-template-columns:1fr 1.15fr; align-items:center; gap:14px; padding:18px; }
+.pc-crop { position:relative; overflow:hidden; }
+.pc-img { display:block; width:100%; height:auto; }
+.pc-quest { display:grid; grid-template-columns:1fr 1fr; gap:4px; background:#111; }
+.pc-cq-wide { width:480px; }
