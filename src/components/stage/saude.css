@@ -1,0 +1,41 @@
+/* Faux Saúde e Ponto app: the concept's own teal and yellow, independent of the portfolio theme. */
+.sp-bento { --sp-teal:#2a9d8f; --sp-deep:#1f7a70; --sp-mint:#e3f4f1; --sp-yellow:#f7c948; --sp-ink:#1d2a2a; --sp-muted:#6c7a79; --sp-line:#e4ecea;
+  width:100%; max-width:560px; color:var(--sp-ink); font:12px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+.sp-bento *, .sp-bento *::before, .sp-bento *::after { box-sizing:border-box; }
+.sp-bento svg { width:14px; height:14px; flex-shrink:0; }
+.sp-phone { position:relative; overflow:hidden; width:300px; height:520px; margin:0 auto; border:1px solid var(--sp-line); border-radius:28px; background:#fff; box-shadow:0 1px 2px #0000000a, 0 16px 34px -16px #00000048; }
+.sp-top { position:absolute; inset:0 0 auto; z-index:2; display:flex; align-items:center; gap:8px; height:52px; padding:0 14px; }
+.sp-top > svg:first-child { width:30px; height:30px; padding:7px; border-radius:50%; background:#fff; }
+.sp-points { margin-left:auto; padding:3px 9px; border-radius:999px; background:var(--sp-yellow); font-size:10.5px; font-weight:700; }
+.sp-bag { position:relative; display:grid; place-items:center; width:30px; height:30px; border-radius:50%; background:#fff; }
+.sp-bag i { position:absolute; top:-3px; right:-3px; display:grid; place-items:center; min-width:15px; height:15px; border-radius:999px; background:var(--sp-teal); color:#fff; font-size:9px; font-style:normal; font-weight:700; transform:scale(0); transition:transform .35s cubic-bezier(.3,1.6,.5,1); }
+.sp-bag i.is-on { transform:scale(1); }
+.sp-hero { position:relative; display:grid; place-items:center; height:200px; background:var(--sp-mint); }
+.sp-pack { display:grid; place-items:center; width:132px; height:104px; border-radius:10px; background:linear-gradient(160deg,#7ac36a,#3f9a4b); color:#fff; transform:rotate(-6deg); box-shadow:0 12px 22px -12px #1f4d2a99; }
+.sp-pack span { font-size:11px; opacity:.9; } .sp-pack b { margin-top:-18px; font-size:20px; letter-spacing:-.02em; }
+.sp-heart { position:absolute; right:14px; bottom:12px; width:18px !important; height:18px !important; color:#e5484d; }
+.sp-info { padding:14px 16px; }
+.sp-info h4 { margin:0; font-size:17px; font-weight:700; letter-spacing:-.01em; }
+.sp-meta { display:flex; align-items:center; justify-content:space-between; margin:6px 0 10px; }
+.sp-rate { font-size:11px; color:var(--sp-muted); }
+.sp-bar { display:block; height:6px; border-radius:3px; background:#e6eceb; }
+.sp-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.sp-tags span { display:inline-flex; align-items:center; gap:4px; padding:4px 8px; border-radius:999px; background:#f1f4f4; color:var(--sp-muted); font-size:10.5px; transition:background .4s, color .4s; }
+.sp-tags span svg { width:11px; height:11px; }
+.sp-tags.is-lit span { background:var(--sp-mint); color:var(--sp-deep); font-weight:600; }
+.sp-tags.is-lit span:nth-child(2) { transition-delay:.12s; } .sp-tags.is-lit span:nth-child(3) { transition-delay:.24s; }
+.sp-desc { display:grid; gap:5px; margin:12px 0 16px; }
+.sp-buy { display:flex; gap:10px; }
+.sp-qty { display:inline-flex; align-items:center; gap:12px; height:38px; padding:0 12px; border:1px solid var(--sp-line); border-radius:999px; }
+.sp-qty b { min-width:10px; text-align:center; font-size:14px; }
+.sp-roll { animation:sp-roll .35s ease-out; }
+@keyframes sp-roll { from { opacity:0; transform:translateY(-8px); } }
+.sp-add { flex:1; display:grid; place-items:center; height:38px; border-radius:999px; background:var(--sp-teal); color:#fff; font-weight:700; }
+.sp-bento .is-press { animation:sp-press .8s ease-out; }
+@keyframes sp-press { 0%,35% { transform:scale(1); } 50% { transform:scale(.92); } 70%,100% { transform:scale(1); } }
+.sp-toast { position:absolute; left:12px; right:12px; bottom:12px; display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:16px; background:var(--sp-deep); color:#fff;
+  transform:translateY(120%); transition:transform .5s cubic-bezier(.3,1.3,.5,1); }
+.sp-toast.is-on { transform:none; }
+.sp-toast p { margin:0; font-size:11px; line-height:1.35; }
+.sp-coin { display:grid; place-items:center; flex-shrink:0; width:34px; height:34px; border-radius:50%; background:var(--sp-yellow); color:var(--sp-ink); font-weight:800; font-size:11px; }
+@media (prefers-reduced-motion: reduce) { .sp-bento * { transition:none !important; animation:none !important; } }

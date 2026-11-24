@@ -59,7 +59,7 @@ const STOPS: Stop[] = [
 const WATER = new Set(["1-2", "4-5", "8-9"]);
 
 const ISLANDS = [
-  { cx: 255, cy: 410, rx: 175, ry: 150, seed: 3, name: "Bahia · 2015–2022" },
+  { cx: 255, cy: 410, rx: 175, ry: 150, seed: 3, name: "First jobs · 2015–2022" },
   { cx: 615, cy: 320, rx: 185, ry: 140, seed: 7, name: "School island · ClassApp & isaac" },
   { cx: 985, cy: 450, rx: 185, ry: 145, seed: 11, name: "AI coast · FTD & friends" },
   { cx: 1035, cy: 150, rx: 80, ry: 58, seed: 5, name: "Side quest" },

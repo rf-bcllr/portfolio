@@ -2,9 +2,9 @@
 
 Status: **direction not chosen yet.** Sections 1–3 are research. Section 4 holds the rules every page follows, whichever direction wins. Section 5 is the token sheet for each of the three candidate directions. Once one is picked, delete the other two sheets, and section 5 becomes the system.
 
-Mockups: `/lab/directions` (unlinked; `?d=a` Cordel, `?d=b` O Bacellar, `?d=c` Overworld). Screenshots: `docs/design-research/`.
+Mockups: `/lab/directions` (unlinked; `?d=s` Canvas · Stamps, `?d=b` O Bacellar, `?d=c` Overworld). Screenshots: `docs/design-research/`.
 
-Round 1 (statement list, work feed, design-tool canvas) was rejected as generic: each was a tidy copy of a minimalist reference and could have been anyone's site. That failure is now rule zero below.
+Round 1 (statement list, work feed, design-tool canvas) was rejected as generic: each was a tidy copy of a minimalist reference and could have been anyone's site. That failure is now rule zero below. Round 2's Cordel direction was dropped: dressing a Brazilian designer in regional folk costume (cordel, "o designer que veio da Bahia") reads as stereotype, not identity.
 
 ---
 
@@ -73,11 +73,12 @@ Not reviewed: full accessibility pass, reduced-motion behaviour of the live hero
 These hold for whichever direction wins.
 
 ### Rule zero: it has to be Rafa's
-- Cover the name and the page should still say who made it: a Brazilian product designer from the Northeast who designs for schools and AI, writes, and made his career into a game. Brazil, education, print and play are the raw material. A neutral grid with a nice sans is not a concept.
+- Cover the name and the page should still say who made it: a product designer who designs for schools and AI, rebuilds his own work as live interfaces, and made his career into a game. His work, his process and his interests are the raw material. A neutral grid with a nice sans is not a concept.
+- Identity comes from the work and the person, never from regional or national folklore used as costume. Portuguese appears as his working language (product copy, a second line), not as exotic decoration.
 - A reference gives the *move* (a sentence hero, a site you travel through, a printed object), never the look. If a mockup could ship with another designer's name swapped in, start it over.
 
 ### Content
-- The first screen answers **who, what, proof**: the role and the best result are readable within the first screen in every concept (the cordel cover line, the front-page headline, the stage card). No greeting-only headline.
+- The first screen answers **who, what, proof**: the role and the best result are readable within the first screen in every concept (the cover stamp, the front-page headline, the stage card). No greeting-only headline.
 - Every project shows **one measured result** when one exists (4.8★, 12k+, 92%, $8.5k/month). Without one, write "In progress" in muted ink. Never write "TBD".
 - One decimal style (point), one currency style (`$8.5k`), sentence case everywhere. Caps only in mono metadata.
 - Project facts live in `projectsData`, presentation in `featuredProjects` (AGENTS.md). Display names that differ from data titles (Cheguei, Saúde e Ponto) go in one map, not inline.
@@ -87,7 +88,7 @@ These hold for whichever direction wins.
 - One container: `max-width: 1240px`, side padding 24px (mobile) and 40px (≥768). Left and right content edges are equal on every section.
 - Grid: 12 columns, 24px gutter. A list row uses fixed columns for number, year and result, so the result column lines up down the page.
 - One idea per section. A section is 1–2 screens tall at 1440×900, and its heading is the first thing in it.
-- The work is reachable from the first screen: the strings start one scroll down (Cordel), the lead story is the work (O Bacellar), the stages are on the map (Overworld).
+- The work is reachable from the first screen: the stamps are the canvas (Canvas · Stamps), the lead story is the work (O Bacellar), the stages are on the map (Overworld).
 - No carousels for primary content. Filters are fine.
 
 ### Type
@@ -101,7 +102,7 @@ These hold for whichever direction wins.
 - One ground, one ink, one muted ink, one hairline, **one** UI accent. The project media and the concept's own illustration (paper colours, a map palette) are the only other colours, and they never carry UI state.
 - **No purple or violet** in the page's own design, and no purple gradients. Third-party logos keep their colours.
 - The accent marks interaction (links, selection, the one primary button) and availability, never decoration.
-- Text contrast ≥ 4.5:1 on its ground. Muted ink must pass on the paper ground (checked: Cordel `#5A4E3C` on `#E6D7B8`, O Bacellar `#55524A` on `#EFEADF`, Overworld `#4E5B5D` on `#FFF7E6`).
+- Text contrast ≥ 4.5:1 on its ground. Muted ink must pass on the paper ground (checked: Canvas grey `#5F5E59` on `#EBE9E3`, O Bacellar `#55524A` on `#EFEADF`, Overworld `#4E5B5D` on `#FFF7E6`).
 
 ### Spacing
 - 4px base. Steps: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128.
@@ -113,13 +114,13 @@ These hold for whichever direction wins.
 - Video: `muted loop playsInline`, poster first. It rests on the poster under `prefers-reduced-motion`.
 - Lovable-hosted assets (`/__l5e/...`) only resolve on the deployed site. Components fall back to the next media item, then to a titled tile, never a broken image.
 - No captions under images. The title and result sit in the row or card, not under the picture.
-- Phone screens are shown as phones (9:18.2) and web screens as 16:10. Rotation only where the concept is a physical object (cordel booklets, a printed cover), at most ±3°, and straightened on hover or focus.
+- Phone screens are shown as phones (9:18.2) and web screens as 16:10. Rotation only where the concept is a physical object (a printed cover), at most ±3°, and straightened on hover or focus.
 - Print treatments (one-ink multiply, halftone) always give the true-colour screen back on hover and focus, so the work itself is never hidden.
 
 ### Motion
 - The hero enters once (opacity and 8–12px rise, 500ms, `cubic-bezier(0.25,0.46,0.45,0.94)`).
 - Hover: the object answers like the object would: a booklet swings straight on its peg, newsprint turns to colour, a stage flag grows. Press: 1–2px down. Durations 300–500ms.
-- Nothing fades in on scroll, no parallax, no scroll-jacking. One designed moment per page (cordel: the string; jornal: halftone to colour; overworld: the sprite's walk and swim).
+- Nothing fades in on scroll, no parallax, no scroll-jacking. One designed moment per page (canvas: pins that follow the live fragments; jornal: halftone to colour; overworld: the sprite's walk and swim).
 - Everything rests under `prefers-reduced-motion`, and nothing stays hidden.
 
 ### Components
@@ -132,7 +133,7 @@ These hold for whichever direction wins.
 - Every control has a name. Focus is visible (2px outline, 4px offset). Tap targets are ≥ 44px outside running text.
 - Keyboard parity: anything revealed on hover (colour under the print, a swing) is also revealed on focus. The overworld travels with ← → and every stage is a real button.
 - Check 375px: no sideways page scroll. A wide illustration (the map) scrolls inside its own frame and follows the focus.
-- Copy written in Portuguese for flavour (cordel titles, newspaper chrome) carries `lang="pt-BR"` where it is running text, with the English meaning beside it.
+- Copy written in Portuguese for flavour (stamp second lines, newspaper chrome) carries `lang="pt-BR"` where it is running text, with the English meaning beside it.
 
 ### Bans (from the brief, enforced in review)
 No Inter · no purple gradients · no glowing buttons · no serif headline with one italic word · no four stat cards in a row · nothing that looks like a template. If a page could belong to anyone, redo it.
@@ -141,23 +142,23 @@ No Inter · no purple gradients · no glowing buttons · no serif headline with 
 
 ## 5. Direction sheets (pick one)
 
-### 1 · Cordel (ref: lynnandtonic.com) · `m-a.jpg`
-The portfolio as *literatura de cordel*, the Northeast's folk pamphlets sold hanging on a string at the market. The hero is the author's own cover ("O designer que veio da Bahia") with the portrait printed in one ink on yellow paper. The nine cases hang on two strings as booklets on coloured paper: a cordel title in Portuguese, the real screen printed in one ink (true colour on hover), the English line, the result. The bio is two *sextilhas* (rhymed six-line stanzas) with an English gloss, then the career list.
+### C · Canvas · Stamps (ref: rauno.me + the stamp-poster references) · `m-s.jpg`
+Round 1's design-tool canvas, rebuilt in a black-and-white "minimal future" print language. The interface (toolbar, layers, canvas, inspector) is strictly black, off-white and grey; every case is a perforated stamp: index number and title in condensed caps, mono spec lists, a crosshair, a barcode, a Portuguese second line in the product's own language, the result set large. Inside each stamp sits a **live stageshow rebuild** of the real product (Meu Arco, Cheguei, Saúde e Ponto, AI Writing Assistant, AI images, lesson plans, credit transfer, Lia & Íon, Quest) in full colour, with numbered pins that follow the element each note describes while the fragment animates. Drag to pan, ← → between frames, zoom 40–100%; below 1024px the stamps stack and the fragments scale.
 
 | Token | Value |
 |---|---|
-| Wall | `#E6D7B8` kraft, 9% fractal-noise grain |
-| Ink / muted | `#1B1712` / `#5A4E3C` |
-| Paper colours | `#F2C230` `#E9839A` `#7DB86B` `#79A9D1` `#EE9A45` `#F4E9D0` `#C9D96B` |
-| String / peg | `#6B5130` / `#B98B55` |
-| Display | Alfa Slab One (wood type), caps |
-| Body / labels | Courier Prime 400/700 |
-| Print | `grayscale(1) contrast(1.7) brightness(1.12)` + `mix-blend-mode: multiply` |
-| Radius | 0 everywhere |
+| Void / panel | `#0A0A0A` / `#111110`, dot grid `rgba(236,234,228,.12)` on 24px |
+| Paper / ink / grey | `#EBE9E3` / `#0D0D0C` / `#5F5E59` (5.4:1 on paper) |
+| Rules | 1px ink inside stamps; `rgba(236,234,228,.14)` in the chrome |
+| Display | Archivo at `wdth 62`, weight 900, caps, leading .86 |
+| Labels | JetBrains Mono 400–700, caps, +0.04em |
+| Stamp edge | radial-gradient mask, 7px perforations; 22% fractal grain, multiply |
+| Colour | none in the interface; only inside the project fragments |
+| Fragments | `src/components/stage/*Bento.tsx`, 560px design width, scaled to fit |
 
-Most personal and most Brazilian; the hardest to keep legible at scale (screens printed small).
+Most "product designer": the cases are shown working, annotated like a design review. Cost: nine live fragments to keep true to the shipped products, and the Lovable-hosted art (Iônica, Quest) only loads on the deployed site.
 
-### 2 · O Bacellar (ref: vanschneider.com) · `m-b.jpg`
+### 1 · O Bacellar (ref: vanschneider.com) · `m-b.jpg`
 A broadsheet front page. Blackletter masthead with two ears (availability, a weather joke), a dateline, section nav (Educação, IA, Carreira, Passatempos). The lead story is Meu Arco with a 68px headline, deck, byline, a halftone photo of the real app and a drop-cap column. A right column carries Cheguei and the lesson-plan saving plus a pull quote; an "AI desk" fold covers the in-progress work; the back page has a *Classificados* ad that is the hire-me call, the career as a dotted table, and the game as *Passatempos*.
 
 | Token | Value |
@@ -172,8 +173,8 @@ A broadsheet front page. Blackletter masthead with two ears (availability, a wea
 
 Best for recruiters, because every result is a headline; the densest to maintain as projects change.
 
-### 3 · Overworld (ref: rauno.me + Rafa's Quest game) · `m-c.jpg`
-The career as an island map: Bahia (start), School island (ClassApp, isaac), AI coast (FTD, Edvisorly, Iônica) and a Side quest islet for the game. Ten stages joined by a dotted trail. Rafa's own sprite from `/play` runs between stages and swims the water crossings. The stage card shows the company, year, real screen, "Loot" (the result) and "Enter stage". The tools are an inventory of real app icons. Arrow keys travel; on phones the map scrolls inside its frame and follows him.
+### 2 · Overworld (ref: rauno.me + Rafa's Quest game) · `m-c.jpg`
+The career as an island map: First jobs (start), School island (ClassApp, isaac), AI coast (FTD, Edvisorly, Iônica) and a Side quest islet for the game. Ten stages joined by a dotted trail. Rafa's own sprite from `/play` runs between stages and swims the water crossings. The stage card shows the company, year, real screen, "Loot" (the result) and "Enter stage". The tools are an inventory of real app icons. Arrow keys travel; on phones the map scrolls inside its frame and follows him.
 
 | Token | Value |
 |---|---|

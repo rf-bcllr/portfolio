@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
-import { DirectionCordel } from "@/components/lab/directions/DirectionCordel";
 import { DirectionJornal } from "@/components/lab/directions/DirectionJornal";
 import { DirectionOverworld } from "@/components/lab/directions/DirectionOverworld";
+import { DirectionStampCanvas } from "@/components/lab/directions/DirectionStampCanvas";
 import { useLabFonts } from "@/components/lab/directions/shared";
 
 /**
  * Hidden comparison page for three redesign directions (not linked anywhere).
  * Each direction renders the real portfolio content; pick one with the switcher.
+ * (The cordel direction was dropped: it leaned on regional folk stereotypes.)
  * See DESIGN.md for the research behind them.
  */
 const DIRECTIONS = [
-  { id: "a", name: "1 · Cordel", ref: "lynnandtonic.com", Component: DirectionCordel },
-  { id: "b", name: "2 · O Bacellar", ref: "vanschneider.com", Component: DirectionJornal },
-  { id: "c", name: "3 · Overworld", ref: "rauno.me + your Quest sprites", Component: DirectionOverworld },
+  { id: "s", name: "C · Canvas (stamps)", ref: "rauno.me + your stamp posters", Component: DirectionStampCanvas },
+  { id: "b", name: "1 · O Bacellar", ref: "vanschneider.com", Component: DirectionJornal },
+  { id: "c", name: "2 · Overworld", ref: "rauno.me + your Quest sprites", Component: DirectionOverworld },
 ] as const;
 
 type Id = (typeof DIRECTIONS)[number]["id"];
 
 const readId = (): Id => {
   const v = new URLSearchParams(window.location.search).get("d");
-  return v === "b" || v === "c" ? v : "a";
+  return v === "c" || v === "b" ? v : "s";
 };
 
 export default function DirectionsLab() {
