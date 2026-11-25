@@ -10,14 +10,12 @@ import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AskPortfolio } from "@/components/AskPortfolio";
 import Home from "./pages/Home";
-import Resume from "./pages/Resume";
 import Certifications from "./pages/Certifications";
 import NotFound from "./pages/NotFound";
 import Play from "./pages/Play";
 import StageLab from "./pages/StageLab";
 import DirectionsLab from "./pages/DirectionsLab";
 import PiecesLab from "./pages/PiecesLab";
-import MinimalLab from "./pages/MinimalLab";
 
 const queryClient = new QueryClient();
 
@@ -44,13 +42,13 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Navigate to="/" replace />} />
-            <Route path="/resume" element={<Resume />} />
+            <Route path="/resume" element={<Home />} />
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/play" element={<Play />} />
             <Route path="/lab/stageshow" element={<StageLab />} />
             <Route path="/lab/directions" element={<DirectionsLab />} />
             <Route path="/lab/pieces" element={<PiecesLab />} />
-            <Route path="/lab/minimal" element={<MinimalLab />} />
+            <Route path="/lab/minimal" element={<Navigate to="/" replace />} />
             <Route path="/project/:slug" element={<CaseRedirect />} />
             <Route path="/projetos/:slug" element={<CaseRedirect />} />
             <Route path="/experience" element={<Navigate to="/resume" replace />} />

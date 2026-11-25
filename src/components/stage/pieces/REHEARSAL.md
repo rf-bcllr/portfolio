@@ -40,7 +40,7 @@ route; recipe stories). Recipe stills, product photos, illustration and store lo
 
 | Piece | Size | Gold copied | Gate |
 |---|---|---|---|
-| arco-theme | 700 × 680 | `phone-touch`, `panel-annotation` | 3 lines left (below) |
+| arco-theme | 700 × 680 | `phone-touch`, `panel-annotation` | 2 lines left (below) |
 | sp-route | 700 × 680 | `device-pair`, `table-edit` | 1 line left (framing) |
 | sp-stories | 700 × 680 | `swipe`, `subscriptions` | 5 lines left (below) |
 
@@ -49,5 +49,5 @@ route; recipe stories). Recipe stills, product photos, illustration and store lo
 - Not fixed: tab bar padding (flex tabs), Momentos photos meet the Collapse edge as they open, one clipped story
   image as the feed scrolls, and the kit's Count strip re-homing after it settles (not visible on the sheets).
 - The bag adds up its three visible items (R$ 18,40); the prototype's bag held more and read R$ 95,30.
-- The Meu Arco school colour only lights the background. Buttons, alert, tabs and toggles stay Gravity's blue.
+- The Meu Arco school colour only lights the background, mostly dissolved in white. Buttons, alert, tabs and toggles stay Gravity's blue.
 - "Colégio Exemplo", Clara and its colour are placeholders for a second school; which modules each school has is illustrative.

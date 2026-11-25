@@ -1,16 +1,18 @@
 import { useEffect } from "react";
-import { PortfolioCanvas } from "@/components/canvas/PortfolioCanvas";
+import { MinimalPortfolio } from "@/components/minimal/MinimalPortfolio";
 import { useLabFonts } from "@/components/canvas/shared";
 
-/** The portfolio as a design file: every case is a section on one canvas (see DESIGN.md, C · Canvas). */
+/** The home page and the resume: covers, projects and the work history (see DESIGN.md, Minimal). */
 export default function Home() {
   useLabFonts();
   useEffect(() => {
-    document.title = "Rafael Bacellar — Product Designer | Portfólio";
+    const id = "mn-font";
+    if (document.getElementById(id)) return;
+    const l = document.createElement("link");
+    l.id = id;
+    l.rel = "stylesheet";
+    l.href = "https://api.fontshare.com/v2/css?f[]=switzer@400,500&display=swap";
+    document.head.appendChild(l);
   }, []);
-  return (
-    <main id="main-content" className="relative z-10 min-h-dvh">
-      <PortfolioCanvas />
-    </main>
-  );
+  return <MinimalPortfolio />;
 }

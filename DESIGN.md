@@ -2,7 +2,7 @@
 
 Status: **direction not chosen yet.** Sections 1–3 are research. Section 4 holds the rules every page follows, whichever direction wins. Section 5 is the token sheet for each of the three candidate directions. Once one is picked, delete the other two sheets, and section 5 becomes the system.
 
-Mockups: `/lab/directions` (unlinked; `?d=s` Canvas, `?d=b` O Bacellar, `?d=c` Overworld). Screenshots: `docs/design-research/`.
+Home: `/`. Mockups: `/lab/directions` (unlinked; `?d=s` Canvas, `?d=b` O Bacellar, `?d=c` Overworld). Screenshots: `docs/design-research/`.
 
 Round 1 (statement list, work feed, design-tool canvas) was rejected as generic: each was a tidy copy of a minimalist reference and could have been anyone's site. That failure is now rule zero below. Round 2's Cordel direction was dropped: dressing a Brazilian designer in regional folk costume (cordel, "o designer que veio da Bahia") reads as stereotype, not identity. A black-and-white poster-stamp restyle of the canvas was also dropped in favour of the site's own look.
 
@@ -142,8 +142,8 @@ No Inter · no purple gradients · no glowing buttons · no serif headline with 
 
 ## 5. Direction sheets (pick one)
 
-### Minimal · Covers (ref: renan.design) · preview at `/lab/minimal`
-A row of project covers on a white, faintly dotted ground, and almost no words. **Type:** one family, Switzer 400/500 (replaces Clash Display and Satoshi); hierarchy by size and grey only. **Home:** name, three links, one sentence, the row (wheel, drag, arrows, keyboard, touch), the last card is About with the Figma-comment testimonials. **Cover:** one product screen on one flat colour, all at the same height, width by content; captions are the project and the company. **Project:** the cover's colour grows into the panel (View Transitions, off under reduced motion) and holds the live stage pieces on that colour, markers in ink, notes as plain text in three columns, then the case facts in one quiet row and the next project. Esc or Work goes back; each view has its own link (`#meu-arco`). On phones a piece keeps its readable size and is swiped across.
+### Minimal · Covers (ref: renan.design) · **chosen, live on `/`**
+A row of project covers on a white, faintly dotted ground, and almost no words. **Type:** one family, Switzer 400/500 (replaces Clash Display and Satoshi); hierarchy by size and grey only. **Home:** name, three links, one sentence, and the nine covers in four arrangements: **Row**, **Spiral** (a 3D helix; distance is a white veil, not transparency), **Stack** (a deck cropped to one shape) and **Grid** (justified rows, all on one screen). Wheel, drag, touch, arrow keys and the **project index** at the foot (every name with its cover colour, current one widened) all move one position. Changing arrangement takes 0.9s a card, staggered 34ms, ease in-out, each card lifting and turning 5 degrees on the way; it can be interrupted, and reduced motion swaps at once. **Resume** (`/resume`): small portrait, experience, two testimonials as plain text, PDF download. **Cover:** one product screen on one flat colour, all at the same height, width by content; captions are the project and the company. **Project:** the cover's colour grows into the panel (View Transitions, off under reduced motion) and holds the live stage pieces on that colour, markers in ink, notes as plain text in three columns, then the case facts in one quiet row and the next project. Esc or Work goes back; each view has its own link (`#meu-arco`). On phones a piece keeps its readable size and is swiped across.
 
 | Cover | Ground | Cover | Ground | Cover | Ground |
 |---|---|---|---|---|---|
@@ -151,9 +151,9 @@ A row of project covers on a white, faintly dotted ground, and almost no words. 
 | Calendar | `#EA5A36` | Writing assistant | `#BFE3D0` | Lesson plans | `#F5BFD0` |
 | Saúde e Ponto | `#0F6B62` | Lia & Íon | `#FFD3A8` | Quest | `#0055FF` |
 
-Taken from the reference: the quiet chrome, the image-first row, the small captions. Not taken: the staggered sizes, the black intro with falling letters, Manrope, the infinite loop.
+Taken from the reference: the quiet chrome, the image-first row, the small captions. Not taken: the staggered sizes, the black intro with falling letters, Manrope, the infinite loop. The arrangements follow a video reference Rafa supplied (helix, stack, grid); its category filter became the project index.
 
-### C · Canvas (ref: rauno.me, as a design file) · `m-canvas.jpg` · **chosen, live on `/`**
+### C · Canvas (ref: rauno.me, as a design file) · `m-canvas.jpg`
 The portfolio as a design file. **Chrome reads as a design tool:** a white toolbar with working Move (V), Hand (H) and Annotations (C) tools, the file name, Play, a blue Connect and zoom; a Layers panel listing sections and their frames; a Design panel that reads the selection's real X, Y, W and H, its annotations and the case facts. **Canvas:** light grey, no dot grid. **The About section** holds the cover photo, with Ínis' and Esdras' testimonials pinned to it as Figma comments, and the experience frame. **Each case is a section** (white, 1px grey stroke, name tag above it) that opens with a black banner (title, facts, result, **Next project**, which moves the canvas to the next section; the last one says Back to the start). There are no case-study pages any more: a **Case notes** frame at the head of each section carries what they held (challenge, what Rafa did, results, role and team). **Inside, frames hold stageshow pieces**, each a small *system*, not a screenshot: one strong point of the real product and the second surface it feeds (the parent's tap and the school's queue, the app and Google Agenda, a theme and its tokens, an order and the points ledger), rebuilt faithfully from the actual screens. Selecting a frame draws the selection box, square handles and a size badge. **Annotations use Rafa's own documentation style:** red numbered markers that follow the element they describe while the piece animates, and dark note cards under the frame.
 
 | Case | Piece: the system it shows (source) |

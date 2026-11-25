@@ -6,13 +6,15 @@
   & svg { flex: none; }
   & p { margin: 0; }
   & .ars-phone { position: absolute; left: 56px; top: 24px; }
-  & .ars-screen { position: absolute; inset: 0; padding-top: 64px; overflow: hidden; background: #f3f3f6; transition: --amb-a .9s cubic-bezier(.4,0,.2,1), --amb-b .9s cubic-bezier(.4,0,.2,1); }
-  /* The school's colour as light: two soft sources that fade into Gravity's grey */
-  & .ars-amb { position: absolute; inset: 0 0 auto; height: 620px;
+  & .ars-screen { position: absolute; inset: 0; padding-top: 64px; overflow: hidden; background: #f6f6f8; transition: --amb-a .9s cubic-bezier(.4,0,.2,1), --amb-b .9s cubic-bezier(.4,0,.2,1); }
+  /* The school's colour as light, mostly white: two faint sources at the corners, and a white glow
+     between them that dissolves the colour before it reaches the content */
+  & .ars-amb { position: absolute; inset: 0 0 auto; height: 560px;
     background:
-      radial-gradient(90% 62% at 8% 0%, color-mix(in srgb, var(--amb-a) 62%, transparent) 0%, transparent 72%),
-      radial-gradient(80% 58% at 100% 4%, color-mix(in srgb, var(--amb-b) 52%, transparent) 0%, transparent 70%),
-      radial-gradient(120% 70% at 50% 18%, color-mix(in srgb, var(--amb-a) 16%, transparent) 0%, transparent 100%); }
+      radial-gradient(58% 46% at 52% 24%, #fff 0%, rgb(255 255 255 / .82) 38%, transparent 100%),
+      radial-gradient(95% 58% at 0% 0%, color-mix(in srgb, var(--amb-a) 42%, #fff) 0%, transparent 70%),
+      radial-gradient(85% 60% at 100% 6%, color-mix(in srgb, var(--amb-b) 34%, #fff) 0%, transparent 68%),
+      linear-gradient(#fff, #f6f6f8); }
   & .ars-top { position: relative; display: flex; align-items: center; gap: 10px; height: 64px; padding: 0 20px; }
   & .ars-logo { display: grid; place-items: center; flex: none; overflow: hidden; border-radius: 50%; background: #f2603c; color: #fff; font-size: 19px; }
   & .ars-logo img { width: 100%; height: 100%; }
