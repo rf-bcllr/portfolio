@@ -15,7 +15,7 @@
   & .sps-price { margin: 4px 0 10px; color: var(--s-muted); font-size: 13px; }
   & .sps-price b { display: block; color: var(--s-teal); font-size: 19px; }
   & .sps-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  & .sps-tags span { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--s-mint); color: var(--s-deep); font-size: 12.5px; font-weight: 600; }
+  & .sps-tags > span { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--s-mint); color: var(--s-deep); font-size: 12.5px; font-weight: 600; }
   & .sps-tags .is-pt { background: var(--s-yellow); color: var(--s-ink); }
   & .sps-btn { display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; margin-top: 18px; border-radius: 999px; background: var(--s-teal); color: #fff; font-size: 16px; font-weight: 600; transition: transform .1s; will-change: transform; }
   & .sps-btn[data-pressed] { transform: scale(.97); }

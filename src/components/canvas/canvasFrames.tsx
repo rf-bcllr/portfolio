@@ -10,12 +10,13 @@ import { ArcoSystem } from "@/components/stage/pieces/ArcoSystem";
 import { CalendarSystem } from "@/components/stage/pieces/CalendarSystem";
 import { ChegueiSystem } from "@/components/stage/pieces/ChegueiSystem";
 import { LessonSystem } from "@/components/stage/pieces/LessonSystem";
+import { SaudeRoute, SaudeStories } from "@/components/stage/pieces/SaudeFlows";
 import { SaudeSystem } from "@/components/stage/pieces/SaudeSystem";
 import { WritingSystem } from "@/components/stage/pieces/WritingSystem";
 import { outcomeOf, projects } from "./shared";
 
 export type Note = { t: string; d: string; a?: string };
-export type Piece = { id: string; name: string; C: ComponentType; notes: Note[]; w?: number };
+export type Piece = { id: string; name: string; C: ComponentType; notes: Note[]; w?: number; h?: number };
 export type Case = { challenge: string; did: string[]; results: string[]; meta: [string, string][] };
 export type Sec = {
   id: string; title: string; facts: string; result: { value: string; label: string; measured: boolean };
@@ -37,10 +38,10 @@ export const SECTIONS: Sec[] = [
       meta: [["Role", "Product designer, research to handoff"], ["Team", "PM, 5 engineers"], ["Time", "16 weeks"]],
     },
     pieces: [
-      { id: "arco-theme", w: 640, name: "System · One home, every school", C: ArcoSystem, notes: [
-        { t: "Semantic tokens, not skins", d: "Components read brand tokens (primary, soft surface, mark). Switching school repaints the same home: unity without uniformity.", a: ".ars-tokens" },
-        { t: "Three platforms, one home", d: "Re-enrolment, invoices and requests lived in separate products; the home puts the next decision of each on one screen.", a: ".ars-alert" },
-        { t: "One action per card", d: "The invoice asks for one thing: Pagar. Details wait behind Ver fatura.", a: ".ars-pay" },
+      { id: "arco-theme", w: 700, h: 680, name: "System · A home that assembles itself", C: ArcoSystem, notes: [
+        { t: "A home made of modules", d: "Each school turns its own modules on. Switch child, and the home keeps only what that school offers.", a: ".ars-mods" },
+        { t: "School colour as light", d: "The school’s colour lights the background. Buttons and alerts stay Gravity’s, so every action looks the same at every school.", a: ".ars-school" },
+        { t: "Navigation follows", d: "A tab exists only if its module does: no payments at this school, no payments tab.", a: ".ars-tabs" },
       ] },
     ],
   },
@@ -141,6 +142,16 @@ export const SECTIONS: Sec[] = [
       { id: "sp-points", w: 660, name: "System · Points for healthy choices", C: SaudeSystem, notes: [
         { t: "The reward is on the shelf", d: "A healthy item says what it earns (+1 ponto) next to its nutrition facts, before checkout.", a: ".sps-tags" },
         { t: "One account, two moments", d: "Points land when the order is paid, and collecting in store is the next reward, kept in one ledger.", a: ".sps-ledger" },
+      ] },
+      { id: "sp-route", w: 700, h: 680, name: "Flow · Walk to your order", C: SaudeRoute, notes: [
+        { t: "How you go is a choice", d: "Bike, walk or run: the app estimates each one before the trip starts.", a: ".spf-modes" },
+        { t: "The trip becomes exercise", d: "Speed, calories and heartbeat turn a pickup into a walk worth taking.", a: ".spf-stats" },
+        { t: "Paid for showing up", d: "Confirming at the store books 10 more points in the same ledger as the order.", a: ".spf-l-w" },
+      ] },
+      { id: "sp-stories", w: 700, h: 680, name: "Flow · From recipe to bag", C: SaudeStories, notes: [
+        { t: "Stores publish recipes", d: "Markets and restaurants post short videos in Stories, next to what they sell.", a: ".spf-by" },
+        { t: "The recipe is the list", d: "The bag icon opens this video’s ingredients, quantities ready, points on each.", a: ".spf-row" },
+        { t: "One tap, whole recipe", d: "Every ingredient lands in the bag with its total and its points.", a: ".spf-bagcard" },
       ] },
     ],
   },

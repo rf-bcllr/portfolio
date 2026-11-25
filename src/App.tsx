@@ -17,6 +17,7 @@ import Play from "./pages/Play";
 import StageLab from "./pages/StageLab";
 import DirectionsLab from "./pages/DirectionsLab";
 import PiecesLab from "./pages/PiecesLab";
+import MinimalLab from "./pages/MinimalLab";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => {
             <Route path="/lab/stageshow" element={<StageLab />} />
             <Route path="/lab/directions" element={<DirectionsLab />} />
             <Route path="/lab/pieces" element={<PiecesLab />} />
+            <Route path="/lab/minimal" element={<MinimalLab />} />
             <Route path="/project/:slug" element={<CaseRedirect />} />
             <Route path="/projetos/:slug" element={<CaseRedirect />} />
             <Route path="/experience" element={<Navigate to="/resume" replace />} />

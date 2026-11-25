@@ -15,7 +15,7 @@ against `/lab/pieces?p=<id>`. Gold copied per piece is named below; sources are 
 
 | Piece | Width | Gold copied | Result |
 |---|---|---|---|
-| arco-system | 640 | `phone-touch` + `panel-annotation` (setting → what it changed) | rehearsal passed |
+| arco-system | 640 | replaced in round 3 (arco-theme, below) | was passing |
 | cq-system | 700 | `device-pair`, `subscriptions` | one deliberate framing line (above) |
 | ai-prompt | 560 | `form-error` (field fills, counter, button confirms on itself) | rehearsal passed |
 | ai-options | 760 | `ai-cards` + `story` (connector, rolling count) | rehearsal passed |
@@ -33,3 +33,21 @@ toast and footer buttons, a min-width on the Calendar status tag.
   stage fits at 321px, no horizontal overflow), so small type gets small.
 - Dark mode: the canvas is light only.
 - Iônica and Quest frames are image crops hosted on Lovable; they load only on the deployed site.
+
+## Round 3 · modular Meu Arco and the two Saúde flows
+Sources: Meu Arco recording (modules, strings, Momentos photos); two Saúde prototype recordings (pickup
+route; recipe stories). Recipe stills, product photos, illustration and store logo are crops of those recordings.
+
+| Piece | Size | Gold copied | Gate |
+|---|---|---|---|
+| arco-theme | 700 × 680 | `phone-touch`, `panel-annotation` | 3 lines left (below) |
+| sp-route | 700 × 680 | `device-pair`, `table-edit` | 1 line left (framing) |
+| sp-stories | 700 × 680 | `swipe`, `subscriptions` | 5 lines left (below) |
+
+- Deliberate: the phone stands whole beside its satellite, so film reads "off center" (the pair is centered, 56px
+  each side). The sheets and tab bars are the story, so the phone can't bleed off the foot.
+- Not fixed: tab bar padding (flex tabs), Momentos photos meet the Collapse edge as they open, one clipped story
+  image as the feed scrolls, and the kit's Count strip re-homing after it settles (not visible on the sheets).
+- The bag adds up its three visible items (R$ 18,40); the prototype's bag held more and read R$ 95,30.
+- The Meu Arco school colour only lights the background. Buttons, alert, tabs and toggles stay Gravity's blue.
+- "Colégio Exemplo", Clara and its colour are placeholders for a second school; which modules each school has is illustrative.

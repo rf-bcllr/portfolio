@@ -1,42 +1,71 @@
-/* Meu Arco · themed by semantic tokens; product palette from the recording. */
+/* Meu Arco · modular home. The school lights the background; Gravity owns every action. */
+@property --amb-a { syntax: "<color>"; inherits: true; initial-value: #4fb848; }
+@property --amb-b { syntax: "<color>"; inherits: true; initial-value: #c5dd3f; }
 .ars {
-  & .ss-stage { overflow: hidden; border-radius: 12px; background: #eceef3; color: #1d1d22; font-family: -apple-system, "SF Pro Text", ui-sans-serif, system-ui, sans-serif; }
+  & .ss-stage { --g-blue: #3540cf; --g-soft: #d5e3f8; overflow: hidden; border-radius: 12px; background: #eceef3; color: #1d1d22; font-family: -apple-system, "SF Pro Text", ui-sans-serif, system-ui, sans-serif; }
   & svg { flex: none; }
-  /* Pinned from the top, off the bottom; the token card straddles its right edge */
-  & .ars-phone { position: absolute; left: 40px; top: 40px; }
-  & .ars-screen { position: absolute; inset: 0; padding-top: 54px; background: #f0f0f3; }
-  & .ars-top { display: flex; align-items: center; gap: 8px; height: 60px; padding: 0 18px; background: #fcfcfd; border-bottom: 1px solid #e6e6eb; }
-  & .ars-logo { width: 34px; height: 34px; flex: none; border-radius: 50%; background: var(--b-mark); box-shadow: inset 0 0 0 9px color-mix(in srgb, var(--b-mark) 70%, #fff); transition: background .45s ease, box-shadow .45s ease; }
-  & .ars-school { display: inline-flex; align-items: center; gap: 4px; font-size: 17px; font-weight: 600; }
+  & p { margin: 0; }
+  & .ars-phone { position: absolute; left: 56px; top: 24px; }
+  & .ars-screen { position: absolute; inset: 0; padding-top: 64px; overflow: hidden; background: #f3f3f6; transition: --amb-a .9s cubic-bezier(.4,0,.2,1), --amb-b .9s cubic-bezier(.4,0,.2,1); }
+  /* The school's colour as light: two soft sources that fade into Gravity's grey */
+  & .ars-amb { position: absolute; inset: 0 0 auto; height: 620px;
+    background:
+      radial-gradient(90% 62% at 8% 0%, color-mix(in srgb, var(--amb-a) 62%, transparent) 0%, transparent 72%),
+      radial-gradient(80% 58% at 100% 4%, color-mix(in srgb, var(--amb-b) 52%, transparent) 0%, transparent 70%),
+      radial-gradient(120% 70% at 50% 18%, color-mix(in srgb, var(--amb-a) 16%, transparent) 0%, transparent 100%); }
+  & .ars-top { position: relative; display: flex; align-items: center; gap: 10px; height: 64px; padding: 0 20px; }
+  & .ars-logo { display: grid; place-items: center; flex: none; overflow: hidden; border-radius: 50%; background: #f2603c; color: #fff; font-size: 19px; }
+  & .ars-logo img { width: 100%; height: 100%; }
+  & .ars-school { display: inline-flex; align-items: center; gap: 5px; min-width: 185.5px; height: 49.5px; font-size: 20px; font-weight: 600; }
   & .ars-bell { position: relative; margin-left: auto; }
-  & .ars-bell i { position: absolute; top: 0; right: 0; width: 7px; height: 7px; border-radius: 50%; background: #e8453c; }
-  & .ars-me { width: 34px; height: 34px; flex: none; border-radius: 50%; background: radial-gradient(circle at 50% 38%, #8a5a3c 0 30%, #2b1d16 31% 60%, #c6684e 61%); }
-  & .ars-menu { position: absolute; left: 56px; top: 118px; z-index: 5; width: 230px; padding: 6px; --ss-popover-bg: #fff; }
-  & .ars-opt { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 12px; border-radius: 8px; font-size: 16px; }
+  & .ars-bell i, & .ars-tabs i { position: absolute; top: 0; right: 0; width: 8.5px; height: 8.5px; border-radius: 50%; background: #e8453c; }
+  & .ars-me { width: 39.5px; height: 39.5px; flex: none; border-radius: 50%; }
+  & .ars-menu { position: absolute; left: 17px; top: 123.5px; z-index: 5; width: 286px; padding: 7px; --ss-popover-bg: #fff; }
+  & .ars-opt { display: flex; align-items: center; gap: 12px; height: 64px; padding: 0 12px; border-radius: 12px; font-size: 19px; }
   & .ars-opt[data-hover] { background: #f1f1f4; }
-  & .ars-dot { width: 14px; height: 14px; border-radius: 50%; }
-  & .ars-tick { margin-left: auto; color: #3540cf; }
-  & .ars-card { margin: 0 0 8px; padding: 18px 18px 20px; border-radius: 0 0 20px 20px; background: #fcfcfd; }
-  & .ars-card + .ars-card { border-radius: 20px; }
-  & .ars-hi { margin: 0 0 14px; font-size: 20px; font-weight: 700; }
-  & .ars-alert { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: var(--b-soft); font-size: 16px; transition: background .45s ease; }
-  & .ars-alert p { flex: 1; margin: 0; line-height: 1.3; }
-  & .ars-alert > span { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: color-mix(in srgb, var(--b-primary) 22%, #fff); color: var(--b-primary); transition: background .45s ease, color .45s ease; }
-  & .ars-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  & .ars-row span { display: inline-flex; align-items: center; gap: 4px; font-size: 15px; }
-  & .ars-money { font-size: 26px; letter-spacing: -.02em; }
-  & .ars-sub { margin: 6px 0 0; color: #5d5d66; font-size: 14px; }
-  & .ars-pay { display: block; margin-top: 16px; padding: 12px; border-radius: 999px; background: var(--b-primary); color: #fff; text-align: center; font-size: 17px; font-weight: 600; transition: background .45s ease; }
+  & .ars-opt b { display: block; font-weight: 600; line-height: 1.2; } & .ars-opt em { color: #5d5d66; font-size: 15.5px; font-style: normal; }
+  & .ars-tick { margin-left: auto; color: var(--g-blue); opacity: 0; transition: opacity .2s; } & .ars-tick[data-on] { opacity: 1; }
 
-  & .ars-req { padding: 14px 18px; font-size: 15px; }
-  & .ars-req p { margin: 0 0 10px; }
-  & .ars-req-c { display: grid; gap: 8px; padding: 16px; border: 1px solid #e6e6eb; border-radius: 16px; background: #fff; }
-  & .ars-req-c b { font-size: 19px; } & .ars-req-c span { justify-self: start; padding: 3px 10px; border-radius: 999px; background: #f0f0f3; font-size: 13px; }
-  & .ars-tokens { position: absolute; left: 310px; top: 320px; width: 290px; padding: 16px; border-radius: 12px; background: #fff; box-shadow: var(--ss-shadow-satellite); font-size: 12.5px; }
-  & .ars-tok-h { margin: 0 0 10px; font-weight: 600; font-size: 13px; }
-  & .ars-tok { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 7px 0; border-top: 1px solid #eef0f3; }
-  & .ars-sw { width: 18px; height: 18px; border-radius: 5px; box-shadow: inset 0 0 0 1px #0000001a; transition: background .45s ease; }
-  & .ars-tok code { font: 12px/1.3 ui-monospace, "SF Mono", monospace; color: #3c3f47; }
-  & .ars-hex { font: 12px/1.3 ui-monospace, "SF Mono", monospace; color: #6b6f78; font-variant-numeric: tabular-nums; }
-  & .ars-tok-f { margin: 8px 0 0; color: #6b6f78; font-size: 12px; }
+  & .ars-flow { position: relative; padding: 5px 12px 0; }
+  & .ars-hi-c { padding: 7px 7px 15px; }
+  & .ars-hi { margin: 0 0 15px; font-size: 24.5px; font-weight: 700; letter-spacing: -.01em; }
+  & .ars-alert { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 22.5px; background: var(--g-soft); font-size: 19px; }
+  & .ars-alert p { flex: 1; line-height: 1.3; }
+  & .ars-alert-i { display: grid; place-items: center; width: 47px; height: 47px; flex: none; border-radius: 50%; background: #a9c7f3; color: #1c2472; }
+  & .ars-card { margin-bottom: 10px; padding: 17px 17px 20px; border-radius: 22.5px; background: rgb(255 255 255 / .9); }
+  & .ars-row { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+  & .ars-row span { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; }
+  & .ars-money { font-size: 29.5px; letter-spacing: -.02em; }
+  & .ars-sub { margin-top: 5px !important; color: #5d5d66; font-size: 15px; white-space: nowrap; }
+  & .ars-pay { display: block; margin-top: 15px; padding: 11px; border-radius: 999px; background: var(--g-blue); color: #fff; text-align: center; font-size: 19px; font-weight: 600; }
+  & .ars-req, & .ars-msg { display: flex; align-items: center; gap: 12px; }
+  & .ars-req > div, & .ars-msg > div { flex: 1; }
+  & .ars-req b, & .ars-msg b, & .ars-t { display: block; font-size: 20px; }
+  & .ars-chip { display: inline-flex; align-items: center; gap: 6.5px; margin-top: 7px; padding: 2.5px 11px; border-radius: 999px; background: #f0f0f3; font-size: 15px; }
+  & .ars-chip i { width: 8.5px; height: 8.5px; border-radius: 50%; background: #f2b72f; }
+  & .ars-msg-i { display: flex; gap: 6.5px; margin-top: 6.5px; }
+  & .ars-msg em { display: inline-flex; align-items: center; gap: 6.5px; font-size: 15.5px; font-style: normal; }
+  & .ars-msg em i { width: 8.5px; height: 8.5px; border-radius: 50%; background: #e8453c; }
+  & .ars-ev { display: flex; align-items: center; gap: 8.5px; height: 34px; margin-top: 7px !important; padding: 0 11px; border-radius: 8.5px; background: #f0f0f3; font-size: 15px; }
+  & .ars-ev i { width: 8.5px; height: 8.5px; flex: none; border-radius: 50%; }
+  & .ars-photos { display: block; width: 100%; height: auto; margin-top: 12px; }
+  & .ars-tabs { position: absolute; inset: auto 0 0; display: flex; align-items: center; justify-content: space-around; height: 96.5px; padding: 0 12px 24.5px; background: linear-gradient(rgb(252 252 253 / .86), #fcfcfd 40%); }
+  & .ars-tabs > span { position: relative; display: grid; place-items: center; flex: 1 1 0; min-width: 0; height: 56px; }
+  & .ars-tabs i { top: 9px; right: calc(50% - 16px); }
+  & .ars-tabs .is-on { color: var(--g-blue); }
+  & .ars-tabs .is-on::before { content: ""; position: absolute; left: calc(50% - 28px); width: 56px; height: 56px; border-radius: 50%; background: var(--g-soft); }
+  & .ars-tabs svg { position: relative; }
+  /* A tab exists only if its module does */
+  & .ars-tabs > .ars-tab { flex-grow: .0001; opacity: 0; transition: flex-grow .5s cubic-bezier(.25,.8,.25,1), opacity .18s ease; }
+  & .ars-tabs > .ars-tab[data-on] { flex-grow: 1; opacity: 1; transition: flex-grow .5s cubic-bezier(.25,.8,.25,1), opacity .3s ease .2s; }
+
+  & .ars-mods { --ss-accent: #3540cf; position: absolute; left: 354px; top: 176px; width: 290px; padding: 20px; border-radius: 16px; background: #fff; box-shadow: var(--ss-shadow-satellite); font-size: 14px; }
+  & .ars-mods-h { font-size: 17px; font-weight: 600; }
+  & .ars-mods-s { margin: 2px 0 8px !important; color: #6b6f78; font-size: 13px; }
+  & .ars-mods-s2 { margin: 16px 0 4px !important; }
+  & .ars-mod { display: flex; align-items: center; justify-content: space-between; height: 34px; border-top: 1px solid #eef0f3; color: #8b8f98; transition: color .4s ease; }
+  & .ars-mod[data-on] { color: #1d1d22; }
+  & .ars-tok { display: grid; grid-template-columns: 18px minmax(0,1fr) auto; align-items: center; gap: 10px; height: 34px; border-top: 1px solid #eef0f3; }
+  & .ars-tok i { width: 18px; height: 18px; border-radius: 50%; transition: background .9s; }
+  & .ars-tok em { color: #6b6f78; font: 12px/1.3 ui-monospace, "SF Mono", monospace; }
 }
