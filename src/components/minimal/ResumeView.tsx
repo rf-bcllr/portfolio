@@ -1,5 +1,7 @@
 /** Resume: a small portrait, the work history, what colleagues say, and the PDF. */
+import { useState } from "react";
 import { ArrowDown } from "lucide-react";
+import { CertificationsModal } from "./CertificationsModal";
 import { person, portrait } from "@/components/canvas/shared";
 import { experiences } from "@/data/resume";
 import { translations } from "@/hooks/useTranslations";
@@ -8,6 +10,7 @@ import { generateResumePDF } from "@/utils/generateResumePDF";
 const quotes = translations.en.recommendationsItems;
 
 export function ResumeView() {
+  const [certs, setCerts] = useState(false);
   return (
     <article className="mn-resume">
       <header className="mn-r-head">
@@ -45,8 +48,9 @@ export function ResumeView() {
 
       <p className="mn-r-foot">
         <a className="mn-link" href={person.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-        <a className="mn-link" href="/certifications">Certifications</a>
+        <button type="button" className="mn-link" onClick={() => setCerts(true)}>Certifications</button>
       </p>
+      {certs && <CertificationsModal onClose={() => setCerts(false)} />}
     </article>
   );
 }

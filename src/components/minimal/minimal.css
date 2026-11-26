@@ -127,6 +127,20 @@
 .mn-r-quotes figcaption span { color:var(--soft); }
 .mn-r-foot { display:flex; gap:24px; margin:clamp(40px, 7vh, 72px) 0 0 232px !important; }
 
+/* Certifications dialog */
+.mn-link { cursor:pointer; }
+.mn-modal { position:fixed; inset:0; z-index:70; display:grid; place-items:center; padding:var(--pad); background:rgb(17 18 20 / .4); animation:mn-fade .2s ease-out; }
+.mn-modal-box { width:min(560px, 100%); max-height:min(640px, 100%); overflow:auto; padding:24px 24px 12px; border-radius:16px; background:#fff; box-shadow:0 24px 64px rgb(0 0 0 / .22); animation:mn-pop .25s cubic-bezier(.2,0,0,1); }
+.mn-modal-box header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.mn-modal-box h2 { font-size:20px; letter-spacing:-.02em; }
+.mn-modal-box header button { display:grid; place-items:center; width:44px; height:44px; margin:-8px -10px -8px 0; border-radius:999px; color:var(--soft); transition:color .15s, background-color .15s; }
+.mn-modal-box header button:hover { background:#f1f2f4; color:var(--ink); }
+.mn-modal-box li + li { border-top:1px solid var(--line); }
+.mn-modal-box li a { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:64px; padding:10px 0; transition:color .15s; }
+.mn-modal-box li a b { display:block; font-weight:500; } .mn-modal-box li a em { color:var(--soft); font-size:14px; font-style:normal; }
+.mn-modal-box li a svg { color:var(--soft); transition:transform .2s, color .15s; } .mn-modal-box li a:hover svg { color:var(--ink); transform:translate(2px, -2px); }
+@keyframes mn-fade { from { opacity:0; } } @keyframes mn-pop { from { opacity:0; transform:translateY(8px) scale(.98); } }
+
 /* The assistant keeps its place, in this page's voice */
 body:has(.mn) .ask-fab { width:48px; padding:0; gap:0; justify-content:center; border:0; background:#111214; box-shadow:none; }
 body:has(.mn) .ask-fab-label { position:absolute; opacity:0; pointer-events:none; }
