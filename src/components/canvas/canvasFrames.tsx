@@ -141,9 +141,10 @@ export const SECTIONS: Sec[] = [
       meta: [["Role", "Senior product designer, AI workflow"], ["Company", "FTD Educação"], ["Time", "2026"]],
     },
     pieces: [
-      { id: "lp-steps", w: 760, name: "Flow · A plan in three steps", C: LessonFlow, notes: [
-        { t: "Three fields, then an idea", d: "Theme, grade and length are all a plan needs; the AI turns them into three ideas to start from.", a: ".lpf-sugs" },
-        { t: "Generate, then keep it", d: "The finished plan asks for a day and lands in the Calendar, next to holidays and reminders.", a: ".lpf-done" },
+      { id: "lp-steps", w: 820, name: "Flow · A plan in three simple steps", C: LessonFlow, notes: [
+        { t: "Three steps, always in view", d: "Prepare, define, adapt: the stepper says where you are and ticks off what is done.", a: ".lpf-stepper" },
+        { t: "A few fields per step", d: "Grade, subject and length; then the theme; then who the plan adapts to. Nothing else is asked.", a: ".lpf-panels" },
+        { t: "One button to create", d: "The last step turns Continue into Create lesson plan, so the end of the form is obvious.", a: '[data-target="next"]' },
       ] },
       { id: "lp-profile", w: 780, name: "System · A profile, made once, used everywhere", C: LessonSystem, notes: [
         { t: "Needs, not diagnoses", d: "Teachers describe a group by observable needs from a checklist, never by a medical label.", a: ".lps-traits" },

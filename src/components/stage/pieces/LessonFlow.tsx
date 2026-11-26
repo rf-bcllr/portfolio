@@ -1,91 +1,100 @@
 /**
- * FTD com Você · a lesson plan in three steps, from the v2.0 Figma (05 · Criar plano de aula):
- * fill the form, pick a suggestion the AI read from it, generate. Then the plan offers itself to the
- * calendar (13 · Adicionar ao calendário?), which links this tool to the Calendar case.
+ * iônica · a lesson plan in three simple steps, from the Figma "[GEN IA] Plano de Aula Adaptativo com IA":
+ * a vertical stepper (Preparar, Definir, Adaptar) that keeps each step to a few fields and ticks off
+ * what is done, ending on one button that creates the plan.
  */
-import { Collapse, Stage, States, Stream, type Act } from "../kit";
-import { CalendarPlus, ChevronDown, Clock, NotebookPen, Sparkles } from "lucide-react";
+import { Stage, States, Stream, Toggle, type Act } from "../kit";
+import { ArrowLeft, ArrowRight, BookOpen, Check, ChevronDown, History, Bookmark, CircleUserRound, Minus, Plus, Puzzle, Shapes, Sparkles, Users, X } from "lucide-react";
 import "./lesson-flow.css";
 
-type L = { step: number; words: number; pick: boolean; go: boolean; plan: boolean; ask: boolean; added: boolean };
-const L0: L = { step: 0, words: 0, pick: false, go: false, plan: false, ask: false, added: false };
-const DESC = "Aula com um experimento simples de evaporação em copos transparentes e uma conversa sobre o que os alunos observaram.";
-const W = DESC.split(" ");
+type L = { step: number; filled: number; theme: number; adapt: boolean };
+const L0: L = { step: 1, filled: 0, theme: 0, adapt: false };
+const THEME = "Fotossíntese";
 
 async function flow(a: Act<L>) {
-  await a.wait(800);
-  a.mark("form");
-  for (let i = 1; i <= 3; i++) { a.put({ step: i }); await a.wait(420); }
+  await a.wait(700);
+  a.mark("prepare");
+  for (let i = 1; i <= 3; i++) { a.put({ filled: i }); await a.wait(450); }
+  await a.wait(300);
+  await a.click({ at: "next", x: 0.5, y: 0.55 });
+  a.put({ step: 2 });
+  a.mark("define");
   await a.wait(500);
-  a.mark("pick");
-  await a.click({ at: "sug", x: 0.5, y: 0.55 });
-  a.put({ pick: true });
-  for (let i = 1; i <= W.length; i++) { a.put({ words: i }); await a.wait(35); }
-  await a.wait(600);
-  a.mark("go");
-  await a.click({ at: "gen", x: 0.6, y: 0.55 });
-  a.put({ go: true });
-  await a.wait(1600);
-  a.put({ plan: true });
-  await a.wait(1100);
-  a.put({ ask: true });
-  await a.wait(1100);
-  await a.click({ at: "addcal", x: 0.5, y: 0.55 });
-  a.mark("added");
-  a.put({ ask: false, added: true });
-  await a.wait(3000);
+  for (let i = 1; i <= THEME.length; i++) { a.put({ theme: i }); await a.wait(55); }
+  await a.wait(500);
+  await a.click({ at: "next", x: 0.5, y: 0.55 });
+  a.put({ step: 3 });
+  a.mark("adapt");
+  await a.wait(700);
+  await a.click({ at: "adapt", x: 0.9, y: 0.5 });
+  a.put({ adapt: true });
+  await a.wait(900);
+  await a.move({ x: 700, y: 92 });
+  await a.wait(2600);
   await a.snap(L0);
   await a.wait(400);
 }
 
+const STEPS: [string, string][] = [["Preparar", "Ano ou série, componente e duração das aulas"], ["Definir", "Temas e habilidades BNCC trabalhadas"], ["Adaptar", "Inclusão e recursos"]];
+
 export function LessonFlow() {
   return (
-    <Stage width={760} height={560} initial={L0} poster={{ ...L0, step: 3, words: W.length, pick: true, go: true, plan: true, added: true }} script={flow} cursor={{ at: { x: 720, y: 530 } }} className="lpf">
+    <Stage width={820} height={520} initial={L0} poster={{ step: 3, filled: 3, theme: THEME.length, adapt: true }} script={flow} cursor={{ at: { x: 780, y: 500 } }} className="lpf">
       {(s) => (
         <div className="lpf-win">
-          <div className="lpf-head"><span className="lpf-ic"><NotebookPen size={22} /></span><div><b>Criar plano de aula</b><span>Planos completos, com versão adaptada se quiser</span></div></div>
-
-          <div className="lpf-layer" data-on={!s.plan || undefined}>
-            <div className="lpf-steps">
-              <span data-on={s.step >= 1 || undefined}><i>1</i> O básico</span>
-              <span data-on={s.pick || undefined}><i>2</i> A ideia</span>
-              <span data-on={s.go || undefined}><i>3</i> Gerar</span>
-            </div>
-            <label className="lpf-l">Tema da aula</label>
-            <div className="lpf-f" data-on={s.step >= 1 || undefined}><States value={s.step >= 1 ? "y" : "n"} states={{ n: <span className="lpf-ph">Ex.: O ciclo da água</span>, y: <span>O ciclo da água</span> }} /></div>
-            <div className="lpf-row">
-              <div><label className="lpf-l">Ano/Série</label><div className="lpf-f" data-on={s.step >= 2 || undefined}><States value={s.step >= 2 ? "y" : "n"} states={{ n: <span className="lpf-ph">Selecione</span>, y: <span>5º Ano</span> }} /><ChevronDown size={16} /></div></div>
-              <div><label className="lpf-l">Componente curricular</label><div className="lpf-f" data-on={s.step >= 2 || undefined}><States value={s.step >= 2 ? "y" : "n"} states={{ n: <span className="lpf-ph">Selecione</span>, y: <span>Ciências</span> }} /><ChevronDown size={16} /></div></div>
-              <div><label className="lpf-l">Duração estimada</label><div className="lpf-f" data-on={s.step >= 3 || undefined}><Clock size={16} /><States value={s.step >= 3 ? "y" : "n"} states={{ n: <span className="lpf-ph">Ex.: 2 aulas</span>, y: <span>2 aulas de 50 minutos</span> }} /></div></div>
-            </div>
-            <div className="lpf-sugs">
-              <p><Sparkles size={15} /> Sugestões para a descrição</p>
-              <div>
-                <span data-target="sug" data-cursor="pointer" data-on={s.pick || undefined}><b>Experimento de evaporação</b>Um experimento simples com copos transparentes.</span>
-                <span><b>Ciclo na nossa cidade</b>As etapas do ciclo e a água da cidade.</span>
-                <span><b>Preservação da água</b>Desperdício e um desafio para a semana.</span>
-              </div>
-            </div>
-            <div className="lpf-area"><Stream text={DESC} count={s.words} /></div>
-            <div className="lpf-foot">
-              <span className="lpf-btn" data-target="gen" data-cursor="pointer"><States value={s.go ? "busy" : "idle"} states={{ idle: <span className="lpf-in"><Sparkles size={16} /> Gerar plano de aula</span>, busy: <span className="lpf-in"><i className="lpf-spin" /> Gerando o plano</span> }} /></span>
+          <nav className="lpf-tabs"><span className="is-on"><Plus size={15} /> Criar plano de aula</span><span><History size={15} /> Histórico</span><span><Bookmark size={15} /> Planos salvos</span><span><CircleUserRound size={15} /> Perfis de aprendizagem</span></nav>
+          <div className="lpf-top">
+            <h4 className="lpf-h">Criar <span>plano de aula</span></h4>
+            <div className="lpf-acts">
+              <span className="lpf-back" data-on={s.step > 1 || undefined}><ArrowLeft size={15} /> Voltar</span>
+              <span className="lpf-btn" data-target="next" data-cursor="pointer" data-final={s.step === 3 || undefined}>
+                <States value={s.step === 3 ? "go" : "next"} states={{ next: <span className="lpf-in">Continuar <ArrowRight size={15} /></span>, go: <span className="lpf-in"><Sparkles size={15} /> Criar plano de aula</span> }} />
+              </span>
             </div>
           </div>
-
-          <div className="lpf-layer lpf-plan" data-on={s.plan || undefined}>
-            <p className="lpf-t">Plano de aula: O ciclo da água</p>
-            <p className="lpf-meta">Ciências · 5º Ano do Ensino Fundamental</p>
-            {[["Tema e conteúdo da aula", "Compreender os conceitos centrais do tema: o ciclo da água."], ["Metodologia", "Aula dialogada com atividade prática em grupos de 4."], ["Aulas e sequências didáticas", "Acolhida, investigação em grupos e sistematização."]].map(([h, d]) => (
-              <div key={h} className="lpf-sec"><b>{h}</b><span>{d}</span></div>
-            ))}
-            <Collapse open={s.added}><p className="lpf-done"><CalendarPlus size={16} /> Adicionado ao calendário em 22 out</p></Collapse>
-          </div>
-
-          <div className="lpf-scrim" data-on={s.ask || undefined} />
-          <div className="lpf-modal" data-on={s.ask || undefined}>
-            <b>Adicionar ao calendário?</b>
-            <p>Escolha um dia para encontrar este plano de aula no calendário quando for usar na aula.</p>
-            <div><span className="lpf-btn is-o">Agora não</span><span className="lpf-btn" data-target="addcal" data-cursor="pointer">Adicionar ao calendário</span></div>
+          <div className="lpf-body">
+            <ol className="lpf-stepper">
+              {STEPS.map(([t, d], i) => {
+                const n = i + 1;
+                const st = s.step > n ? "done" : s.step === n ? "on" : "off";
+                return (
+                  <li key={t} data-st={st}>
+                    <i>{st === "done" ? <Check size={16} strokeWidth={2.5} /> : n}</i>
+                    <div><b>{t}</b><span>{d}</span></div>
+                  </li>
+                );
+              })}
+            </ol>
+            <div className="lpf-panels">
+              <section className="lpf-panel" data-on={s.step === 1 || undefined}>
+                <p className="lpf-ph"><b>Preparar</b><span>*Campos obrigatórios</span></p>
+                <div className="lpf-row"><Users size={17} /><span>Ano/Série*</span><em className="lpf-chip" data-on={s.filled >= 1 || undefined}>1º Ano - Ensino Fundamental</em><ChevronDown size={16} /></div>
+                <div className="lpf-row"><BookOpen size={17} /><span>Componente curricular*</span><em className="lpf-chip" data-on={s.filled >= 2 || undefined}>Ciências</em><small>{s.filled >= 2 ? 1 : 0}/3 selecionados</small><ChevronDown size={16} /></div>
+                <div className="lpf-two">
+                  <div><label>Quantidade de aulas*</label><div className="lpf-num"><i><Minus size={15} /></i><b>{s.filled >= 3 ? 2 : 1}</b><i><Plus size={15} /></i></div></div>
+                  <div><label>Duração da aula (minutos)*</label><div className="lpf-num"><i><Minus size={15} /></i><b>{s.filled >= 3 ? 50 : 45}</b><i><Plus size={15} /></i></div></div>
+                </div>
+              </section>
+              <section className="lpf-panel" data-on={s.step === 2 || undefined}>
+                <p className="lpf-ph"><b>Definir</b><span>*Campos obrigatórios</span></p>
+                <label>Tema da aula*</label>
+                <div className="lpf-field"><span><Stream text={THEME} count={s.theme} /></span>{s.theme > 0 && <X size={16} />}</div>
+                <p className="lpf-help">Digite um tema para sua aula de ciências no 1º ano do EF</p>
+                <div className="lpf-row"><Puzzle size={17} /><span>Habilidades BNCC (opcional)</span><small>0/3 selecionadas</small><ChevronDown size={16} /></div>
+              </section>
+              <section className="lpf-panel" data-on={s.step === 3 || undefined}>
+                <p className="lpf-ph"><b>Adaptar</b><span>*Campos obrigatórios</span></p>
+                <div className="lpf-adapt" data-on={s.adapt || undefined} data-target="adapt" data-cursor="pointer">
+                  <div><b><CircleUserRound size={16} /> Adaptar para diferentes perfis</b><span>Ative a opção para selecionar ou criar um perfil de inclusão</span></div>
+                  <Toggle on={s.adapt} />
+                </div>
+                <div className="lpf-reveal" data-on={s.adapt || undefined}>
+                  <label>Perfis de aprendizagem*</label>
+                  <div className="lpf-field"><span>Selecionado (1)</span><ChevronDown size={16} /></div>
+                </div>
+                <div className="lpf-row"><Shapes size={17} /><span>Recursos (opcional)</span><small>0/5 selecionados</small><ChevronDown size={16} /></div>
+              </section>
+            </div>
           </div>
         </div>
       )}
