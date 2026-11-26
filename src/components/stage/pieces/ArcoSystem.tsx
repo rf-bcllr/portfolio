@@ -14,7 +14,7 @@ import "./arco-system.css";
 
 type Mod = "fatura" | "solicitacoes" | "mensagens" | "calendario" | "momentos";
 type Key = "coc" | "exemplo";
-const MODS: [Mod, string][] = [["fatura", "Pagamentos"], ["solicitacoes", "Solicitações"], ["mensagens", "Mensagens"], ["calendario", "Calendário"], ["momentos", "Momentos"]];
+const MODS: [Mod, string][] = [["fatura", "Payments"], ["solicitacoes", "Requests"], ["mensagens", "Messages"], ["calendario", "Calendar"], ["momentos", "Moments"]];
 const SCHOOLS: Record<Key, { name: string; child: string; a: string; b: string; hex: string; mods: Mod[]; alert: [string, string] }> = {
   coc: { name: "Colégio COC", child: "Guilherme", a: "#4fb848", b: "#c5dd3f", hex: "#3AA33F", mods: ["fatura", "solicitacoes", "mensagens", "calendario"], alert: ["Rematrícula 2025", "está disponível"] },
   exemplo: { name: "Colégio Exemplo", child: "Clara", a: "#ff7a45", b: "#ff5c8d", hex: "#F2603C", mods: ["mensagens", "calendario", "momentos"], alert: ["1 enquete", "sem resposta"] },
@@ -123,13 +123,13 @@ export function ArcoSystem() {
             {/* What the school decides, and what it doesn't */}
             <div className="ars-mods">
               <p className="ars-mods-h"><Roll>{t.name}</Roll></p>
-              <p className="ars-mods-s">Módulos da escola</p>
+              <p className="ars-mods-s">School modules</p>
               {MODS.map(([k, n]) => (
                 <p key={k} className="ars-mod" data-on={has(k) || undefined}><span>{n}</span><Toggle on={has(k)} /></p>
               ))}
-              <p className="ars-mods-s ars-mods-s2">Cor</p>
-              <p className="ars-tok"><i style={{ background: t.hex }} /><span>Ambiente</span><em><Roll align="end">{t.hex}</Roll></em></p>
-              <p className="ars-tok"><i style={{ background: "#3540CF" }} /><span>Ações, Gravity</span><em>#3540CF</em></p>
+              <p className="ars-mods-s ars-mods-s2">Colour</p>
+              <p className="ars-tok"><i style={{ background: t.hex }} /><span>Ambience</span><em><Roll align="end">{t.hex}</Roll></em></p>
+              <p className="ars-tok"><i style={{ background: "#3540CF" }} /><span>Design System</span><em>#3540CF</em></p>
             </div>
           </>
         );

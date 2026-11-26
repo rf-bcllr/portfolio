@@ -121,8 +121,8 @@ export function ArcoPay() {
           </Phone>
 
           <div className="arm-card is-pay">
-            <p className="arm-c-h">Antes, três boletos</p>
-            <p className="arm-c-s">Uma fatura para a família</p>
+            <p className="arm-c-h">Before: three bills</p>
+            <p className="arm-c-s">One invoice for the family</p>
             {ITEMS.map(([n, w], i) => (
               <p key={n} className="arm-c-r" data-on={s.rows > i || undefined}><span>{n}<em>{w.split(" · ")[0]}</em></span><b><Check size={16} /></b></p>
             ))}

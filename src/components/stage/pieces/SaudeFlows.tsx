@@ -137,10 +137,10 @@ export function SaudeRoute() {
           </Phone>
 
           <div className="spf-card spf-ledger">
-            <p className="spf-l-h"><span>Seus pontos</span><b><Count value={s.balance} /></b></p>
-            <p className="spf-l-r"><span>Pedido confirmado</span><b>+13</b></p>
+            <p className="spf-l-h"><span>Your points</span><b><Count value={s.balance} /></b></p>
+            <p className="spf-l-r"><span>Order confirmed</span><b>+13</b></p>
             <div className="spf-l-r spf-l-w" data-on={s.paid || undefined}>
-              <p><span>Retirar na loja</span><b><Check size={14} />+10</b></p>
+              <p><span>Pick up in store</span><b><Check size={14} />+10</b></p>
               <Meter value={s.km / 1.4} />
               <p className="spf-km"><span><Count value={s.km} duration={1200} format={km} /> de 1,4 km</span><span><States value={s.paid ? "d" : s.phase === "choose" ? "a" : s.km >= 1.4 ? "c" : "b"} states={{ a: <span>Aguardando</span>, b: <span>Andando</span>, c: <span>Na loja</span>, d: <span>Retirado</span> }} /></span></p>
             </div>
@@ -238,13 +238,13 @@ export function SaudeStories() {
           </Phone>
 
           <div className="spf-card spf-bagcard">
-            <p className="spf-l-h"><span className="spf-in"><img src={pao} alt="" /> Sua sacola</span><b><Count value={s.added} /></b></p>
-            <Collapse open={s.added === 0}><p className="spf-l-e">A receita vira lista de compras.</p></Collapse>
+            <p className="spf-l-h"><span className="spf-in"><img src={pao} alt="" /> Your bag</span><b><Count value={s.added} /></b></p>
+            <Collapse open={s.added === 0}><p className="spf-l-e">The recipe becomes the shopping list.</p></Collapse>
             {ITEMS.map((it, i) => (
               <Collapse key={it.n} open={s.added > i} reveal="drop"><p className="spf-l-i"><img src={it.img} alt="" /><span>{it.n}<em>{it.s}</em></span><b>1</b></p></Collapse>
             ))}
             <p className="spf-l-r"><span>Total</span><b className="is-ink">R$ <Count value={s.total} format={brl} duration={400} /></b></p>
-            <p className="spf-l-r"><span>Pontos adquiridos</span><b><Count value={s.added} duration={300} /></b></p>
+            <p className="spf-l-r"><span>Points earned</span><b><Count value={s.added} duration={300} /></b></p>
           </div>
         </>
       )}

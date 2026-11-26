@@ -87,10 +87,10 @@ export function SaudeSystem() {
           </Phone>
 
           <div className="sps-ledger">
-            <p className="sps-l-h"><span>Seus pontos</span><b><Count value={s.balance} /></b></p>
-            <Collapse open={s.rows >= 1}><p className="sps-row"><span>Pedido confirmado</span><b>+13</b></p></Collapse>
-            <Collapse open={s.rows >= 2}><p className="sps-row is-next"><span>Retirar na loja</span><b>+10</b></p></Collapse>
-            <Collapse open={s.rows === 0}><p className="sps-empty">Cada escolha saudável vale pontos.</p></Collapse>
+            <p className="sps-l-h"><span>Your points</span><b><Count value={s.balance} /></b></p>
+            <Collapse open={s.rows >= 1}><p className="sps-row"><span>Order confirmed</span><b>+13</b></p></Collapse>
+            <Collapse open={s.rows >= 2}><p className="sps-row is-next"><span>Pick up in store</span><b>+10</b></p></Collapse>
+            <Collapse open={s.rows === 0}><p className="sps-empty">Every healthy choice earns points.</p></Collapse>
           </div>
         </>
       )}
