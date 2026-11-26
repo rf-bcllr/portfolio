@@ -2,7 +2,8 @@
  * Pieces cut from the faithful stageshow pilots (Meu Arco, Cheguei) and the art-led cases (iônica, Quest).
  * Each piece keeps the pilot's own classes and CSS, so it stays true to the recording it was built from.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   BookOpen, BarChart3, CalendarDays, Check, ChevronDown, ChevronRight, CircleDollarSign, FileCheck2,
   GraduationCap, Home, MapPin, MessageCircle, MoreHorizontal, Navigation, Plus, Search, SlidersHorizontal,
@@ -264,9 +265,20 @@ export function IonSheets() {
 
 /** The game itself, playable in the page; it only loads once it scrolls near. */
 export function QuestPlay() {
+  const frame = useRef<HTMLIFrameElement>(null);
+  const navigate = useNavigate();
+  // The game's "Recruiter Mode" button leads to the Resume page, as it does on /play
+  useEffect(() => {
+    const onMessage = (ev: MessageEvent) => {
+      if (ev.origin !== window.location.origin || ev.source !== frame.current?.contentWindow) return;
+      if (ev.data?.type === "rfb:recruiter-mode") navigate("/resume");
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [navigate]);
   return (
     <div className="pc-game">
-      <iframe src={`${import.meta.env.BASE_URL}game/index.html`} title="End-to-End: Quest for the Next Product, playable" loading="lazy" allow="autoplay; fullscreen" />
+      <iframe ref={frame} src={`${import.meta.env.BASE_URL}game/index.html`} title="End-to-End: Quest for the Next Product, playable" loading="lazy" allow="autoplay; fullscreen" />
     </div>
   );
 }
