@@ -1,12 +1,17 @@
 /** Resume: a small portrait, the work history, what colleagues say, and the PDF. */
 import { useState } from "react";
 import { ArrowDown } from "lucide-react";
+import inisAvatar from "@/assets/inis-avatar.png";
+import esdrasAvatar from "@/assets/esdras-avatar.png";
 import { CertificationsModal } from "./CertificationsModal";
 import { person, portrait } from "@/components/canvas/shared";
 import { experiences } from "@/data/resume";
 import { translations } from "@/hooks/useTranslations";
 import { generateResumePDF } from "@/utils/generateResumePDF";
 
+const AVATARS: Record<string, string> = { "Inis Leahy": inisAvatar, "Esdras Lopes": esdrasAvatar };
+// Inis moved on from Meta: the caption says where she is now and where she was
+const ROLES: Record<string, string> = { "Inis Leahy": "Senior Product Designer @Udemy, former Facebook (Meta)" };
 const quotes = translations.en.recommendationsItems;
 
 export function ResumeView() {
@@ -40,7 +45,7 @@ export function ResumeView() {
           {quotes.map((q) => (
             <figure key={q.author}>
               <blockquote>{q.quote}</blockquote>
-              <figcaption><a className="mn-link" href={q.linkedin} target="_blank" rel="noreferrer">{q.author}</a><span>{q.role}</span></figcaption>
+              <figcaption><img src={AVATARS[q.author]} alt="" width={32} height={32} /><a className="mn-link" href={q.linkedin} target="_blank" rel="noreferrer">{q.author}</a><span>{ROLES[q.author] ?? q.role}</span></figcaption>
             </figure>
           ))}
         </div>
