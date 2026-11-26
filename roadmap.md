@@ -1,4 +1,5 @@
 # Tasks
+- [x] Verify the updated Home, Resume, Play, and Certifications without changing them; redesign only the AI chat to match the minimal portfolio and verify its conversation flow. Build passes, real AI response and interview switch verified, 320/390/855px checked; unrelated existing lint errors left unchanged.
 - [x] Replace Gravedigger battle art with the medical reaper, remove Action gradient shine, and refine the Hero resize cursor to black without its name tag; browser confirmed cursor/Action and art mapping, game syntax passed; full boss encounter not replayed.
 - [x] Restore the mobile game controls to the portfolio's neobrutalist language while retaining a restrained glass layer; verify touch states and small landscapes.
 - [x] Replace only the Gravedigger's large battle sprite with the supplied artwork and verify asset loading and game syntax.

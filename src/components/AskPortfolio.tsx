@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { BriefcaseBusiness, RotateCcw, Sparkles, X } from "lucide-react";
+import { BriefcaseBusiness, MessageCircle, RotateCcw, X } from "lucide-react";
 import {
   Conversation,
   ConversationContent,
@@ -18,6 +18,7 @@ import {
   PromptInputTextarea,
 } from "@/components/ai-elements/prompt-input";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const STORAGE_KEY = "rfbcllr-ask-portfolio-v1";
 const CHAT_ID = "ask-portfolio";
@@ -102,9 +103,9 @@ function AgentAvatar({ className }: { className?: string }) {
   return (
     <span
       aria-hidden="true"
-      className={cn("grid shrink-0 place-items-center rounded-full bg-primary", className)}
+      className={cn("ask-avatar grid shrink-0 place-items-center rounded-full bg-primary", className)}
     >
-      <Sparkles className="h-3/5 w-3/5 fill-primary-foreground text-primary-foreground" strokeWidth={2} />
+      <span className="text-sm font-medium text-primary-foreground">rb.</span>
     </span>
   );
 }
@@ -190,12 +191,12 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
       role="dialog"
       aria-modal="true"
       aria-label={interview ? "Job interview with Rafael's AI" : "Ask about Rafael's work"}
-      className="fixed inset-0 z-[60] flex h-dvh flex-col bg-background pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] sm:inset-auto sm:right-6 sm:bottom-6 sm:h-[min(620px,calc(100dvh-3rem))] sm:w-[400px] sm:border-2 sm:border-foreground sm:p-0 sm:shadow-[6px_6px_0_0_hsl(var(--foreground))]"
+      className="ask-panel fixed inset-0 z-[60] flex h-dvh flex-col bg-background pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] sm:inset-auto sm:right-6 sm:bottom-6 sm:h-[min(660px,calc(100dvh-3rem))] sm:w-[420px] sm:rounded-lg sm:border sm:border-border sm:p-0"
     >
-      <header className="flex items-center gap-3 border-b-2 border-foreground px-4 py-3">
+      <header className="flex items-center gap-3 border-b border-border px-5 py-4">
         <AgentAvatar className="h-10 w-10" />
         <div className="min-w-0 flex-1">
-          <p className="font-display text-sm font-semibold uppercase tracking-wide">
+          <p className="text-sm font-medium">
             {interview ? "Job Interview Mode" : "Ask about my work"}
           </p>
           <p className="text-xs text-muted-foreground">
@@ -203,34 +204,34 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
           </p>
         </div>
         {(messages.length > 0 || interview) && (
-          <button
-            type="button"
+          <Button
+            variant="ghost" type="button"
             onClick={reset}
-            aria-label="New conversation"
+            aria-label="New conversation" title="New conversation"
             className="grid h-10 w-10 place-items-center rounded-full hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
           >
             <RotateCcw className="h-4 w-4" />
-          </button>
+          </Button>
         )}
-        <button
-          type="button"
+        <Button
+          variant="ghost" type="button"
           onClick={onClose}
-          aria-label="Close"
+          aria-label="Close" title="Close"
           className="grid h-10 w-10 place-items-center rounded-full hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
         >
           <X className="h-5 w-5" />
-        </button>
+        </Button>
       </header>
 
       <Conversation className="min-h-0 flex-1">
-        <ConversationContent className="gap-5 p-4">
+        <ConversationContent className="gap-6 p-5">
           {messages.length === 0 ? (
             <ConversationEmptyState
-              className="gap-4 p-2">
-              <div className="flex flex-col items-center gap-3">
-                <AgentAvatar className="h-16 w-16" />
-                <div className="space-y-1">
-                  <p className="font-display text-base font-semibold">
+              className="ask-empty gap-4 px-0 py-8">
+              <div className="flex w-full flex-col items-start gap-5 text-left">
+                <AgentAvatar className="h-12 w-12" />
+                <div className="space-y-3">
+                  <p className="text-2xl font-medium leading-tight">
                     {interview ? "Interview Rafael" : "Curious about a project?"}
                   </p>
                   <p className="text-sm text-muted-foreground">
@@ -241,27 +242,27 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
                 </div>
                 <div className="flex w-full flex-col gap-2 pt-2">
                   {!interview && (
-                    <button
-                      type="button"
+                    <Button
+                      variant="ghost" type="button"
                       onClick={() => {
                         setMode("interview");
                         focusInput();
                       }}
-                      className="flex min-h-11 items-center gap-2 rounded-full bg-primary px-4 py-2 text-left text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      className="ask-interview flex h-auto min-h-11 items-center justify-start gap-2 rounded-full bg-primary px-4 py-3 text-left text-sm font-medium text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
                     >
                       <BriefcaseBusiness className="h-4 w-4 shrink-0" aria-hidden="true" />
                       Start Job Interview Mode
-                    </button>
+                    </Button>
                   )}
                   {(interview ? INTERVIEW_STARTERS : SUGGESTIONS).map((s) => (
-                    <button
+                    <Button
                       key={s}
-                      type="button"
+                      variant="ghost" type="button"
                       onClick={() => ask(s)}
-                      className="min-h-11 rounded-full border-2 border-foreground px-4 py-2 text-left text-sm transition-colors hover:border-primary hover:text-primary"
+                      className="ask-starter h-auto min-h-11 justify-start whitespace-normal rounded-lg border border-border px-4 py-3 text-left text-sm font-normal leading-relaxed hover:bg-muted hover:text-foreground"
                     >
                       {s}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -272,8 +273,8 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
                 <MessageContent
                   className={cn(
                     m.role === "user"
-                      ? "group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground"
-                      : "bg-transparent px-0 text-foreground",
+                      ? "group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground leading-relaxed"
+                      : "bg-transparent px-0 text-foreground leading-relaxed",
                   )}
                 >
                   {m.parts.map((p, i) =>
@@ -319,8 +320,8 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
         <ConversationScrollButton />
       </Conversation>
 
-      <div className="border-t-2 border-foreground p-3">
-        <PromptInput onSubmit={({ text }) => ask(text)}>
+      <div className="ask-composer border-t border-border p-4">
+        <PromptInput className="ask-input" onSubmit={({ text }) => ask(text)}>
           <PromptInputTextarea
             autoFocus
             placeholder={interview ? "Ask an interview question…" : "Ask about a project…"}
@@ -328,7 +329,7 @@ function ChatPanel({ onClose }: { onClose: () => void }) {
             className="min-h-12 text-base sm:text-sm"
           />
           <PromptInputFooter className="justify-end">
-            <PromptInputSubmit status={status} onStop={stop} aria-label={busy ? "Stop" : "Send"} />
+            <PromptInputSubmit className="h-10 w-10 shrink-0 rounded-full" status={status} onStop={stop} aria-label={busy ? "Stop" : "Send"} />
           </PromptInputFooter>
         </PromptInput>
       </div>
@@ -393,19 +394,19 @@ export function AskPortfolio() {
   return open ? (
     <ChatPanel onClose={close} />
   ) : (
-    <button
+    <Button
       ref={launcherRef}
-      type="button"
+      variant="ghost" type="button"
       onClick={() => setOpen(true)}
       aria-label="Ask about my work"
       data-collapsed={collapsed}
       className={cn(
-        "ask-fab fixed right-6 z-[60] inline-flex h-12 items-center overflow-hidden rounded-full border-2 border-foreground bg-primary font-display text-sm font-semibold text-primary-foreground shadow-[4px_4px_0_0_hsl(var(--foreground))] hover:-translate-y-0.5 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
+        "ask-fab ask-launcher fixed right-6 z-[60] inline-flex h-12 items-center overflow-hidden rounded-full border border-border bg-primary text-sm font-medium text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",
         collapsed ? "w-12 justify-center" : "w-[213px] gap-3 pl-4 pr-4",
         clearDrawingVisible ? "bottom-16" : "bottom-6",
       )}
     >
-      <Sparkles className="h-5 w-5 shrink-0 fill-current" strokeWidth={2} aria-hidden="true" />
+      <MessageCircle className="h-5 w-5 shrink-0" strokeWidth={1.75} aria-hidden="true" />
       <span
         aria-hidden={collapsed}
         className={cn(
@@ -415,6 +416,6 @@ export function AskPortfolio() {
       >
         Ask about my work
       </span>
-    </button>
+    </Button>
   );
 }

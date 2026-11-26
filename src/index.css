@@ -862,3 +862,38 @@ All colors MUST be HSL.
 @keyframes ask-thinking { 0%, 65%, 100% { transform: translateY(0); opacity: .4; } 32% { transform: translateY(-3px); opacity: 1; } }
 .ask-thinking-dot { animation: ask-thinking 1.5s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .ask-thinking-dot { animation: none; } }
+
+/* Assistant-only theme: mirrors the minimal portfolio without changing other pages. */
+.ask-panel, .ask-launcher {
+  --background: 0 0% 100%;
+  --foreground: 220 8% 7%;
+  --primary: 220 8% 7%;
+  --primary-foreground: 0 0% 100%;
+  --muted: 225 12% 96%;
+  --muted-foreground: 220 4% 43%;
+  --border: 225 8% 90%;
+  --input: 225 8% 90%;
+  --ring: 220 8% 7%;
+  --accent: 225 12% 96%;
+  --accent-foreground: 220 8% 7%;
+  --font-sans: "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-sans);
+  --shadow-chat: 0 12px 48px hsl(var(--foreground) / .12), 0 2px 8px hsl(var(--foreground) / .04);
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+  color: hsl(var(--foreground));
+}
+.ask-panel { box-shadow: var(--shadow-chat); }
+.ask-launcher { color: hsl(var(--primary-foreground)); }
+.ask-panel button, .ask-panel textarea { font-family: inherit; letter-spacing: 0; }
+.ask-panel .ask-avatar { color: hsl(var(--primary-foreground)); }
+.ask-panel .ask-starter:hover { border-color: hsl(var(--muted-foreground) / .4); }
+.ask-panel .ask-input [data-slot="input-group"] {
+  background: hsl(var(--muted));
+  border-color: transparent;
+  border-radius: 8px;
+}
+.ask-panel .ask-input textarea { max-height: 160px; padding-inline: 14px; }
+.ask-panel .ask-input [data-slot="input-group-addon"] { padding: 0 10px 10px; }
+.ask-panel .ask-input [data-slot="input-group"]:focus-within { border-color: hsl(var(--border)); }
+@media (max-width: 639px) { .ask-panel { box-shadow: none; } }
