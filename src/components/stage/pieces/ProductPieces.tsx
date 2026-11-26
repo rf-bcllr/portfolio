@@ -26,7 +26,6 @@ import ionSheet from "@/assets/ionic-local/ion-sheet.webp";
 import ionLoopWebm from "@/assets/ionic-local/ion-loop.webm";
 import ionLoopMp4 from "@/assets/ionic-local/ion-loop.mp4";
 import ionLoopPoster from "@/assets/ionic-local/ion-loop-poster.webp";
-import questBanner from "@/assets/quest-local/quest-banner.webp";
 import "../meu-arco.css";
 import "../cheguei.css";
 import "../ionic.css";
@@ -261,9 +260,6 @@ export function IonSheets() {
       <img src={ionSheet} alt="íon's character sheet: views, line art and poses" className="pc-img" />
     </div>
   );
-}
-export function QuestArt() {
-  return <div className="pc-art"><img src={questBanner} alt="End-to-End Quest for the Next Product banner" className="pc-img" /></div>;
 }
 
 /** The game itself, playable in the page; it only loads once it scrolls near. */

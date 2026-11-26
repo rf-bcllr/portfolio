@@ -9,7 +9,7 @@ import chegueiStaff from "@/assets/thumbs/cheguei-staff.webp";
 import images from "@/assets/thumbs/images.webp";
 import lesson from "@/assets/thumbs/lesson.webp";
 import lia from "@/assets/ionic-local/lia-hover.webp";
-import quest from "@/assets/quest-local/quest-cover.webp";
+import quest from "@/assets/quest-local/quest-logo.webp";
 import saude from "@/assets/thumbs/saude.webp";
 import writing from "@/assets/thumbs/writing.webp";
 import { SECTIONS, type Sec } from "@/components/canvas/canvasFrames";
@@ -66,8 +66,8 @@ const LOOKS: Record<string, Look> = {
     covers: [{ src: lia, alt: "Lia on her star hovercraft", left: 8, top: 16, width: 84, flat: true }],
   },
   "quest-for-the-next-product": {
-    name: "End-to-End: Quest for the Next Product", short: "Playable portfolio", still: true, line: "My career as a side-scrolling game you can play.", ground: "#dfe6ff", ratio: 1.3, bleed: false,
-    covers: [{ src: quest, alt: "End-to-End Quest for the Next Product", left: 0, top: 0, width: 100, flat: true }],
+    name: "End-to-End: Quest for the Next Product", short: "Playable portfolio", still: true, line: "My career as a side-scrolling game you can play.", ground: "#05060c", ratio: 1.3, bleed: false,
+    covers: [{ src: quest, alt: "End-to-End: Quest for the Next Product", left: 10, top: 24, width: 80, flat: true }],
     link: { href: "/play", label: "Play the game" },
   },
 };
