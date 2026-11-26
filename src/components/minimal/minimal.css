@@ -123,7 +123,8 @@
 .mn-r-quotes { display:grid; gap:48px; }
 .mn-r-quotes figure { margin:0; }
 .mn-r-quotes blockquote { margin:0; font-size:20px; line-height:1.45; letter-spacing:-.012em; text-wrap:pretty; }
-.mn-r-quotes figcaption { display:flex; flex-wrap:wrap; align-items:center; gap:0 12px; margin-top:8px; font-size:15px; }
+.mn-r-quotes figcaption { display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin-top:12px; font-size:15px; }
+.mn-r-quotes figcaption img { width:32px; height:32px; border-radius:50%; object-fit:cover; outline:1px solid rgb(0 0 0 / .1); outline-offset:-1px; }
 .mn-r-quotes figcaption span { color:var(--soft); }
 .mn-r-foot { display:flex; gap:24px; margin:clamp(40px, 7vh, 72px) 0 0 232px !important; }
 
