@@ -65,8 +65,8 @@ export function ChegueiSystem() {
     >
       {(s, rect) => (
         <>
-          <span className="cqs-actor" style={{ left: 50 }}>Responsável</span>
-          <span className="cqs-actor" style={{ left: 360 }}>Escola</span>
+          <span className="cqs-actor" style={{ left: 50 }}>Guardian</span>
+          <span className="cqs-actor" style={{ left: 360 }}>School</span>
 
           <Phone width={290} frame="android" className="cqs-phone" style={{ left: 50 }}>
             <div className="cqs-screen">

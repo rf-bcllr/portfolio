@@ -63,7 +63,7 @@ async function route(a: Act<R>) {
 const P = [0, 0.36, 0.72, 1];
 const ROUTE = "M 235 344 L 109 367 L 288 235";
 const two = (n: number) => String(Math.round(n)).padStart(2, "0");
-const km = (n: number) => n.toFixed(1).replace(".", ",");
+const km = (n: number) => n.toFixed(1);
 
 function Map({ s }: { s: R }) {
   const at = P[s.leg];
@@ -142,7 +142,7 @@ export function SaudeRoute() {
             <div className="spf-l-r spf-l-w" data-on={s.paid || undefined}>
               <p><span>Pick up in store</span><b><Check size={14} />+10</b></p>
               <Meter value={s.km / 1.4} />
-              <p className="spf-km"><span><Count value={s.km} duration={1200} format={km} /> de 1,4 km</span><span><States value={s.paid ? "d" : s.phase === "choose" ? "a" : s.km >= 1.4 ? "c" : "b"} states={{ a: <span>Aguardando</span>, b: <span>Andando</span>, c: <span>Na loja</span>, d: <span>Retirado</span> }} /></span></p>
+              <p className="spf-km"><span><Count value={s.km} duration={1200} format={km} /> of 1.4 km</span><span><States value={s.paid ? "d" : s.phase === "choose" ? "a" : s.km >= 1.4 ? "c" : "b"} states={{ a: <span>Waiting</span>, b: <span>Walking</span>, c: <span>At the store</span>, d: <span>Picked up</span> }} /></span></p>
             </div>
           </div>
         </>
