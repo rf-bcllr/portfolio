@@ -13,7 +13,6 @@ import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AskPortfolio } from "@/components/AskPortfolio";
 import Home from "./pages/Home";
-import Certifications from "./pages/Certifications";
 import NotFound from "./pages/NotFound";
 import Play from "./pages/Play";
 import StageLab from "./pages/StageLab";
@@ -38,7 +37,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Navigate to="/" replace />} />
             <Route path="/resume" element={<Home />} />
-            <Route path="/certifications" element={<Certifications />} />
+            <Route path="/certifications" element={<Navigate to="/resume" replace />} />
             <Route path="/play" element={<Play />} />
             <Route path="/lab/stageshow" element={<StageLab />} />
             <Route path="/lab/directions" element={<DirectionsLab />} />
