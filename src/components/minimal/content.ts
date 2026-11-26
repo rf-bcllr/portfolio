@@ -67,7 +67,7 @@ const LOOKS: Record<string, Look> = {
   },
   "quest-for-the-next-product": {
     name: "End-to-End: Quest for the Next Product", short: "Playable portfolio", line: "My career as a side-scrolling game you can play.", ground: "#e2e6fc", ratio: 1.3, bleed: false,
-    covers: [{ src: quest, alt: "End-to-End: Quest for the Next Product", left: 7, top: 19, width: 86, flat: true }],
+    covers: [{ src: quest, alt: "End-to-End: Quest for the Next Product", left: 6, top: 22, width: 88, flat: true }],
     link: { href: "/play", label: "Play the game" },
   },
 };
