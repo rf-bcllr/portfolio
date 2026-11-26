@@ -50,7 +50,7 @@ function PiecePanel({ p, piece, start, hero }: { p: Project; piece: Piece; start
   if (dead && !hero) return null;
   return (
     <section className="mn-piece" aria-label={piece.name}>
-      <div className={`mn-panel ${p.bleed && !piece.h ? "is-bleed" : ""} ${piece.h ? "is-tall" : ""} ${piece.w ? "" : "is-art"}`} style={{ background: p.ground, viewTransitionName: hero ? "mn-hero" : undefined } as CSSProperties}>
+      <div className={`mn-panel ${p.bleed && !piece.h ? "is-bleed" : ""} ${piece.h ? "is-tall" : ""} ${piece.notes.length ? "" : "is-art"}`} style={{ background: p.ground, viewTransitionName: hero ? "mn-hero" : undefined } as CSSProperties}>
         {dead ? (
           <div className={`mn-still ${p.ratio > 1 ? "is-wide" : ""}`} style={{ ["--ratio" as string]: p.ratio }}><Covers p={p} /></div>
         ) : (
@@ -60,6 +60,7 @@ function PiecePanel({ p, piece, start, hero }: { p: Project; piece: Piece; start
           </div>
         )}
       </div>
+      {piece.notes.length === 0 && <p className="mn-cap-art">{piece.name}</p>}
       {piece.notes.length > 0 && (
         <ol className="mn-notes" start={start}>
           {piece.notes.map((n, i) => (
@@ -134,7 +135,7 @@ export function MinimalPortfolio() {
   return (
     <div className={`mn ${view ? "is-open" : ""}`}>
       <header className="mn-bar">
-        <a {...link(null)} className="mn-brand">Rafael Bacellar</a>
+        <a {...link(null)} className="mn-brand">rfbcllr</a>
         <nav aria-label="Main">
           <a {...link(null)} aria-current={view ? undefined : "page"}>Work</a>
           <a {...link(RESUME)} aria-current={view === RESUME ? "page" : undefined}>Resume</a>

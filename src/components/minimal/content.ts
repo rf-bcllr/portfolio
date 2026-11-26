@@ -8,8 +8,8 @@ import cheguei from "@/assets/thumbs/cheguei.webp";
 import chegueiStaff from "@/assets/thumbs/cheguei-staff.webp";
 import images from "@/assets/thumbs/images.webp";
 import lesson from "@/assets/thumbs/lesson.webp";
-import lia from "@/assets/thumbs/lia.webp";
-import quest from "@/assets/thumbs/quest.webp";
+import lia from "@/assets/ionic-local/lia-hover.webp";
+import quest from "@/assets/quest-local/quest-cover.webp";
 import saude from "@/assets/thumbs/saude.webp";
 import writing from "@/assets/thumbs/writing.webp";
 import { SECTIONS, type Sec } from "@/components/canvas/canvasFrames";
@@ -19,6 +19,10 @@ export type Project = Sec & {
   name: string; line: string; company: string; year: string; ground: string; ratio: number; covers: Cover[];
   /** Stage pieces whose product runs off the foot of the panel */
   bleed: boolean;
+  /** A shorter name for the index under the covers */
+  short?: string;
+  /** The cover is one picture: it zooms gently instead of lifting its screens */
+  still?: boolean;
   link?: { href: string; label: string };
 };
 
@@ -42,7 +46,7 @@ const LOOKS: Record<string, Look> = {
     covers: [{ src: images, alt: "Generate an image with AI, suggestions from the question", left: 10, top: 9.5, width: 80, round: "3.8% / 4.1%" }],
   },
   calendar: {
-    name: "Calendar", line: "The school year, in the agenda teachers already use.", ground: "#ea5a36", ratio: 1.3, bleed: true,
+    name: "Teaching calendar", line: "The school year, its themed dates and every lesson, in one calendar.", ground: "#ea5a36", ratio: 1.3, bleed: true,
     covers: [{ src: calendar, alt: "FTD calendar connected to Google Agenda", left: 8, top: 30, width: 108, round: "1.9% / 2.8%" }],
   },
   "ai-writing-assistant": {
@@ -58,12 +62,12 @@ const LOOKS: Record<string, Look> = {
     covers: [{ src: saude, alt: "Walking to pick up an order, tracked in the app", left: 11, top: 16, width: 78, round: "14% / 6.7%" }],
   },
   "ionic-ai-identity": {
-    name: "Lia & Íon", line: "Two characters that give Iônica’s AI a face.", ground: "#ffd3a8", ratio: 0.8, bleed: false,
-    covers: [{ src: lia, alt: "Lia, the book explorer", left: 23, top: 14, width: 54, flat: true }],
+    name: "Mascots for iônica’s AI", short: "iônica mascots", line: "Lia and íon, two characters that give iônica’s AI a face.", ground: "#e7dcff", ratio: 0.8, bleed: false,
+    covers: [{ src: lia, alt: "Lia on her star hovercraft", left: 8, top: 16, width: 84, flat: true }],
   },
   "quest-for-the-next-product": {
-    name: "Quest", line: "My career as a side-scrolling game.", ground: "#0055ff", ratio: 1.3, bleed: false,
-    covers: [{ src: quest, alt: "Quest for the Next Product, 2015 level", left: 8, top: 15.5, width: 84 }],
+    name: "End-to-End: Quest for the Next Product", short: "Playable portfolio", still: true, line: "My career as a side-scrolling game you can play.", ground: "#dfe6ff", ratio: 1.3, bleed: false,
+    covers: [{ src: quest, alt: "End-to-End Quest for the Next Product", left: 0, top: 0, width: 100, flat: true }],
     link: { href: "/play", label: "Play the game" },
   },
 };

@@ -1,0 +1,50 @@
+/* Meu Arco · messaging and finance, at the phone's own points; Gravity blue for every action. */
+.arm {
+  & .ss-stage { --g-blue: #3540cf; --g-soft: #e6ecfb; --ink: #1d1d22; --muted: #5d5d66; --line: #ececf0;
+    overflow: hidden; border-radius: 12px; background: #eceef3; color: var(--ink); font-family: -apple-system, "SF Pro Text", ui-sans-serif, system-ui, sans-serif; }
+  & svg { flex: none; }
+  & p { margin: 0; }
+  & .arm-phone { position: absolute; left: 56px; top: 24px; }
+  & .arm-screen { position: absolute; inset: 0; padding-top: 62px; background: #f6f6f8; font-size: 17px; }
+  & .arm-chat-h { display: flex; align-items: center; gap: 12px; height: 72px; padding: 0 18px; border-bottom: 1px solid var(--line); background: #fff; }
+  & .arm-chat-h b { display: block; font-size: 18px; } & .arm-chat-h span { color: var(--muted); font-size: 14px; }
+  & .arm-av { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #eef0f3; color: var(--ink); }
+  & .arm-thread { padding: 14px 16px; }
+  & .arm-day { margin-bottom: 12px !important; text-align: center; color: var(--muted); font-size: 13px; }
+  & .arm-b { max-width: 82%; margin-bottom: 10px; padding: 12px 14px 8px; border-radius: 20px; font-size: 16px; line-height: 1.4; }
+  & .arm-b span { display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-top: 4px; color: var(--muted); font-size: 12px; }
+  & .arm-b.is-them { border-bottom-left-radius: 6px; background: #fff; }
+  & .arm-b.is-me { margin-left: auto; border-bottom-right-radius: 6px; background: var(--g-blue); color: #fff; }
+  & .arm-b.is-me span { color: #ffffffb8; } & .arm-b .is-seen { color: #9fd6ff; }
+  & .arm-typing { display: inline-flex; gap: 5px; margin-bottom: 10px; padding: 14px 16px; border-radius: 20px; border-bottom-left-radius: 6px; background: #fff; }
+  & .arm-typing i { width: 8px; height: 8px; border-radius: 50%; background: #a9acb5; animation: arm-dot 1s infinite ease-in-out; }
+  & .arm-typing i:nth-child(2) { animation-delay: .15s; } & .arm-typing i:nth-child(3) { animation-delay: .3s; }
+  & .arm-compose { position: absolute; inset: auto 0 0; display: flex; align-items: center; gap: 12px; padding: 12px 16px 40px; border-top: 1px solid var(--line); background: #fff; color: var(--muted); }
+  & .arm-field { flex: 1; min-height: 44px; padding: 10px 16px; border-radius: 22px; background: #f1f1f4; color: var(--ink); font-size: 16px; line-height: 1.4; }
+  & .arm-ph { color: #9a9ca5; }
+  & .arm-send { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--g-blue); color: #fff; transition: transform .1s; }
+  & .arm-send[data-pressed] { transform: scale(.94); }
+
+  & .arm-screen.is-pay { padding: 62px 22px 0; background: #fff; }
+  & .arm-top { display: flex; justify-content: flex-end; height: 56px; align-items: center; } & .arm-top img { width: 40px; height: 40px; border-radius: 50%; }
+  & .arm-h1 { font-size: 30px; font-weight: 700; letter-spacing: -.01em; }
+  & .arm-month { display: inline-flex; align-items: center; gap: 6px; margin: 12px 0 22px; padding: 5px 14px; border: 1.5px solid var(--ink); border-radius: 999px; font-size: 15px; }
+  & .arm-due { color: var(--muted); font-size: 15px; }
+  & .arm-total { font-size: 36px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  & .arm-sub { color: var(--muted); font-size: 15px; }
+  & .arm-pay { display: block; margin: 18px 0 26px; padding: 14px; border-radius: 999px; background: var(--g-blue); color: #fff; text-align: center; font-size: 19px; font-weight: 600; }
+  & .arm-h2 { margin-bottom: 6px !important; font-size: 20px; font-weight: 600; }
+  & .arm-item { display: flex; align-items: center; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  & .arm-item div { flex: 1; } & .arm-item b { display: block; font-size: 17px; } & .arm-item span { color: var(--muted); font-size: 14px; }
+  & .arm-item em { font-style: normal; font-weight: 600; font-size: 16px; }
+
+  & .arm-card { position: absolute; left: 354px; top: 220px; width: 290px; padding: 20px; border-radius: 16px; background: #fff; box-shadow: var(--ss-shadow-satellite); font-size: 14px; }
+  & .arm-c-h { font-size: 17px; font-weight: 600; } & .arm-c-s { margin: 2px 0 10px !important; color: #6b6f78; font-size: 13px; }
+  & .arm-c-r { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 38px; border-top: 1px solid #eef0f3; }
+  & .arm-c-r b { font-variant-numeric: tabular-nums; } & .arm-c-r em { display: block; color: #6b6f78; font-size: 12px; font-style: normal; }
+  & .is-pay .arm-c-r { color: #9a9ca5; transition: color .3s; } & .is-pay .arm-c-r b { color: #d0d2d8; transition: color .3s; }
+  & .is-pay .arm-c-r[data-on] { color: var(--ink); } & .is-pay .arm-c-r[data-on] b { color: var(--g-blue); }
+  & .arm-c-f { margin-top: 10px !important; color: #6b6f78; font-size: 13px; }
+}
+@keyframes arm-dot { 0%, 80%, 100% { opacity: .35; transform: none; } 40% { opacity: 1; transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .arm .arm-typing i { animation: none; } }

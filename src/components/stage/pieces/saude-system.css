@@ -1,39 +1,57 @@
-/* Saúde e Ponto: teal, mint and the coin yellow from the case screens. */
+/* Saúde e Ponto: teal, mint and the coin yellow, at the phone's own points (402 wide). */
 .sps {
-  & .ss-stage { --s-teal: #2f9c8f; --s-deep: #25867b; --s-mint: #cfe8e4; --s-yellow: #ffd23f; --s-ink: #1f2a2a; --s-muted: #6c7a79; --s-line: #e6eeec;
+  & .ss-stage { --s-teal: #288c80; --s-mint: #e3f1ee; --s-yellow: #ffd23f; --s-ink: #16201f; --s-muted: #5f6f6d; --s-line: #e6eeec;
     overflow: hidden; border-radius: 12px; background: #dcefeb; color: var(--s-ink); font: 13px/1.4 "Poppins", ui-sans-serif, system-ui, sans-serif; }
   & svg { flex: none; }
-  & .sps-phone { position: absolute; left: 40px; top: 40px; }
-  & .sps-screen { position: absolute; inset: 0; padding-top: 58px; background: #fff; }
-  & .sps-layer { position: absolute; inset: 58px 0 0; padding: 0 20px; opacity: 0; transition: opacity .35s ease; }
+  & p { margin: 0; }
+  & .sps-phone { position: absolute; left: 56px; top: 24px; }
+  & .sps-screen { position: absolute; inset: 0; padding-top: 62px; background: #fff; font-size: 17px; }
+  & .sps-top { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 22px; }
+  & .sps-pills { display: flex; gap: 8px; }
+  & .sps-pill { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px 0 6px; border-radius: 999px; background: var(--s-yellow); font-weight: 600; font-size: 16px; font-variant-numeric: tabular-nums; }
+  & .sps-pill.is-g { background: #ececec; }
+  & .sps-coin { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid currentColor; border-radius: 50%; font-size: 9.5px; font-weight: 700; }
+  & .sps-layer { position: absolute; inset: 118px 0 0; padding: 0 22px; opacity: 0; transition: opacity .35s ease; }
   & .sps-layer[data-on] { opacity: 1; }
-  & .sps-top { display: flex; justify-content: space-between; align-items: center; height: 44px; }
-  & .sps-pill { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--s-yellow); font-weight: 600; font-size: 14px; }
-  & .sps-coin { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1.5px solid currentColor; border-radius: 50%; font-size: 8px; font-weight: 700; }
-  & .sps-pack { display: grid; place-items: center; height: 150px; margin: 6px 0 14px; border-radius: 16px; background: linear-gradient(160deg, #7ac36a, #3f9a4b); color: #fff; }
-  & .sps-name { margin: 0; font-size: 18px; font-weight: 600; line-height: 1.25; }
-  & .sps-price { margin: 4px 0 10px; color: var(--s-muted); font-size: 13px; }
-  & .sps-price b { display: block; color: var(--s-teal); font-size: 19px; }
-  & .sps-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  & .sps-tags > span { display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--s-mint); color: var(--s-deep); font-size: 12.5px; font-weight: 600; }
-  & .sps-tags .is-pt { background: var(--s-yellow); color: var(--s-ink); }
-  & .sps-btn { display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; margin-top: 18px; border-radius: 999px; background: var(--s-teal); color: #fff; font-size: 16px; font-weight: 600; transition: transform .1s; will-change: transform; }
+  & .sps-photo { display: block; width: 100%; height: auto; margin: 4px 0 20px; }
+  & .sps-name { font-size: 22px; font-weight: 600; line-height: 1.25; }
+  & .sps-price { margin: 8px 0 14px !important; color: var(--s-muted); font-size: 15px; }
+  & .sps-price b { display: block; color: var(--s-teal); font-size: 22px; }
+  & .sps-tags { display: flex; gap: 8px; overflow: hidden; margin-right: -22px; }
+  & .sps-tags > span { display: inline-flex; align-items: center; gap: 6px; flex: none; height: 34px; padding: 0 12px; border-radius: 999px; background: var(--s-mint); color: var(--s-teal); font-size: 14px; font-weight: 500; }
+  & .sps-tags > .is-pt { padding-left: 6px; background: var(--s-yellow); color: var(--s-ink); font-weight: 600; }
+  & .sps-qty { display: flex; align-items: center; justify-content: space-between; height: 52px; margin-top: 26px; padding: 0 22px; border-radius: 14px; background: #f2f2f2; }
+  & .sps-btn { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; margin-top: 14px; border-radius: 999px; background: var(--s-teal); color: #fff; font-size: 18px; font-weight: 600; transition: transform .1s; will-change: transform; }
   & .sps-btn[data-pressed] { transform: scale(.97); }
-  & .sps-btn.is-o { margin-top: 12px; background: #fff; border: 1.5px solid var(--s-teal); color: var(--s-teal); }
-  & .sps-in { display: inline-flex; align-items: center; gap: 6px; }
-  & .sps-win { text-align: center; padding-top: 24px; }
-  & .sps-blob { position: relative; width: 170px; height: 150px; margin: 0 auto 12px; border-radius: 48% 52% 45% 55%; background: var(--s-mint); }
-  & .sps-blob .sps-coin { position: absolute; width: 36px; height: 36px; font-size: 13px; background: #fff; }
-  & .sps-blob .sps-coin:first-child { left: 22px; top: 76px; } & .sps-blob .sps-coin:last-child { right: 26px; top: 28px; }
-  & .sps-ok { display: inline-flex; align-items: center; gap: 4px; margin: 0; color: var(--s-muted); font-size: 12px; }
-  & .sps-h { margin: 6px 0; color: var(--s-teal); font-size: 18px; font-weight: 700; }
-  & .sps-t { margin: 0; color: #3d4a49; font-size: 13px; }
+  & .sps-btn.is-o { border: 2px solid var(--s-teal); background: #fff; color: var(--s-teal); }
+  & .sps-h1 { margin-top: -54px !important; padding-left: 36px; font-size: 20px; font-weight: 600; }
+  & .sps-store { display: flex; align-items: center; gap: 10px; margin: 30px 0 14px !important; font-size: 20px; }
+  & .sps-store img { width: 30px; height: 30px; border-radius: 50%; }
+  & .sps-line { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--s-line); }
+  & .sps-line div { flex: 1; } & .sps-line b { display: block; font-size: 16px; } & .sps-line span { font-size: 15px; } & .sps-line em { color: var(--s-teal); font-style: normal; font-weight: 600; }
+  & .sps-mini { display: inline-flex; align-items: center; gap: 12px; height: 34px; padding: 0 12px; border-radius: 999px; background: #f2f2f2; font-weight: 600; }
+  & .sps-ask { margin: 150px 0 12px !important; text-align: center; font-size: 15px; }
+  & .sps-seg { display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 999px; background: #f2f2f2; }
+  & .sps-seg span { display: flex; align-items: center; justify-content: center; gap: 6px; height: 46px; border-radius: 999px; color: #9aa3a2; font-size: 15px; font-weight: 600; transition: background .25s, color .25s; }
+  & .sps-seg span[data-on] { background: var(--s-teal); color: #fff; }
+  & .sps-seg i { display: inline-flex; align-items: center; gap: 5px; color: inherit; font-style: normal; }
+  /* On the teal pill the coin is a solid coin, not an outline */
+  & .sps-seg i .sps-coin { width: 20px; height: 20px; border: 0; background: var(--s-yellow); color: var(--s-teal); font-size: 8.5px; }
+  & .sps-seg span:not([data-on]) i .sps-coin { background: #e3e6e5; color: #9aa3a2; }
+  & .sps-sum { display: flex; justify-content: space-between; margin-top: 16px !important; font-size: 15px; }
+  & .sps-sum + .sps-sum { margin-top: 6px !important; }
+  & .sps-sum b.is-t { display: inline-flex; gap: 4px; color: var(--s-teal); }
+  & .sps-win { padding-top: 20px; text-align: center; }
+  & .sps-art { display: block; width: 250px; height: auto; margin: 0 auto 16px; }
+  & .sps-ok { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; }
+  & .sps-h { margin: 8px 0 !important; color: var(--s-teal); font-size: 21.5px; font-weight: 700; white-space: nowrap; letter-spacing: -.01em; }
+  & .sps-t { font-size: 15px; } & .sps-t b { font-weight: 600; }
+  & .sps-win .sps-btn:first-of-type { margin-top: 64px; }
 
-  & .sps-ledger { position: absolute; left: 320px; top: 150px; width: 300px; padding: 16px 18px; border-radius: 14px; background: #fff; box-shadow: var(--ss-shadow-satellite); }
-  & .sps-l-h { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 8px; font-weight: 600; }
+  & .sps-ledger { position: absolute; left: 354px; top: 200px; width: 290px; padding: 18px 20px; border-radius: 16px; background: #fff; box-shadow: var(--ss-shadow-satellite); }
+  & .sps-l-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px !important; font-size: 15px; font-weight: 600; }
   & .sps-l-h b { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  & .sps-row { display: flex; justify-content: space-between; gap: 12px; margin: 0; padding: 10px 0; border-top: 1px solid var(--s-line); font-size: 13px; }
-  & .sps-row b { color: var(--s-teal); font-variant-numeric: tabular-nums; }
-  & .sps-row.is-next { color: var(--s-muted); } & .sps-row.is-next b { color: var(--s-muted); }
-  & .sps-empty { margin: 0; padding: 10px 0 2px; border-top: 1px solid var(--s-line); color: var(--s-muted); font-size: 12.5px; }
+  & .sps-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--s-line); }
+  & .sps-row b { color: var(--s-teal); } & .sps-row.is-next, & .sps-row.is-next b { color: var(--s-muted); }
+  & .sps-empty { padding: 10px 0 2px; border-top: 1px solid var(--s-line); color: var(--s-muted); font-size: 12.5px; }
 }

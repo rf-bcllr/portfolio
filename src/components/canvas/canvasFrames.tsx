@@ -4,7 +4,11 @@
  * the design thinking behind the product, annotated in Rafa's documentation style.
  */
 import { useEffect, useRef, useState, type ComponentType } from "react";
-import { IonDuo, IonMood, IonProcess, QuestBoss, QuestRoute } from "@/components/stage/pieces/ProductPieces";
+import { IonArt, IonMoods, IonSheets, QuestPlay } from "@/components/stage/pieces/ProductPieces";
+import { CalendarDay } from "@/components/stage/pieces/CalendarDay";
+import { ChegueiHistory } from "@/components/stage/pieces/ChegueiHistory";
+import { ArcoPay } from "@/components/stage/pieces/ArcoMore";
+import { LessonFlow } from "@/components/stage/pieces/LessonFlow";
 import { AiImgOptions, AiImgPrompt } from "@/components/stage/pieces/AiImagePieces";
 import { ArcoSystem } from "@/components/stage/pieces/ArcoSystem";
 import { CalendarSystem } from "@/components/stage/pieces/CalendarSystem";
@@ -43,6 +47,10 @@ export const SECTIONS: Sec[] = [
         { t: "School colour as light", d: "The school’s colour lights the background. Buttons and alerts stay Gravity’s, so every action looks the same at every school.", a: ".ars-school" },
         { t: "Navigation follows", d: "A tab exists only if its module does: no payments at this school, no payments tab.", a: ".ars-tabs" },
       ] },
+      { id: "arco-pay", w: 700, h: 680, name: "From isaac · One invoice for the family", C: ArcoPay, notes: [
+        { t: "Every child, one bill", d: "Tuition, the English course and a second child at another school add up to one invoice with one Pagar.", a: ".arm-total" },
+        { t: "Two apps became one", d: "Messaging came from ClassApp and finance from isaac; Meu Arco puts both in one account and one tab bar.", a: ".arm-card" },
+      ] },
     ],
   },
   {
@@ -57,7 +65,12 @@ export const SECTIONS: Sec[] = [
       { id: "cq-system", w: 700, name: "Service · One tap, two people", C: ChegueiSystem, notes: [
         { t: "Designed for two people at once", d: "The parent’s tap and the school’s queue are one event. Both ends were designed together, so each screen shows what the other just did.", a: '[data-target="cheguei"]' },
         { t: "Waiting time in sight", d: "Each arrival carries a running timer, so staff see who has waited longest.", a: ".cqs-timer" },
-        { t: "The button becomes the status", d: "After the tap, the action turns into progress and one next step: Confirmar entrega.", a: ".cqs-status" },
+        { t: "Closed by the school, felt by the parent", d: "Concluir travels back the way Cheguei came: the parent\u2019s card turns Entregue in real time.", a: ".cqs-status" },
+        { t: "A message is one tap away", d: "Under Concluir, staff can write to the guardian without leaving the queue.", a: ".cqs-msg" },
+      ] },
+      { id: "cq-history", w: 900, name: "Desktop · The school's record", C: ChegueiHistory, notes: [
+        { t: "Every pickup, on the record", d: "Each tap on the phones becomes a row the school can audit: student, guardian, transport, gate.", a: ".is-new" },
+        { t: "Proof for the school", d: "Who warned, who released and who collected, with times: the school's answer when a family asks.", a: ".chh-detail" },
       ] },
     ],
   },
@@ -81,7 +94,7 @@ export const SECTIONS: Sec[] = [
     ],
   },
   {
-    id: "calendar", title: "Calendar, connected to Google Agenda",
+    id: "calendar", title: "Teaching calendar",
     facts: "FTD Educação · 2026 · Web app · EdTech · Integration",
     result: { value: "In progress", label: "", measured: false },
     case: {
@@ -91,9 +104,14 @@ export const SECTIONS: Sec[] = [
       meta: [["Role", "Senior product designer"], ["Company", "FTD Educação"], ["Time", "2026"]],
     },
     pieces: [
+      { id: "cal-day", w: 860, name: "A day · Themed dates make their own material", C: CalendarDay, notes: [
+        { t: "The date suggests the lesson", d: "A themed date offers to create an activity or a lesson plan about itself, with the AI.", a: ".cld-theme" },
+        { t: "What you make stays on the day", d: "Generated material and the teacher’s own reminders land in the day and as dots on the month.", a: ".cld-month" },
+      ] },
       { id: "cal-sync", w: 720, name: "System · One calendar, two places", C: CalendarSystem, notes: [
         { t: "A sync rule, made visible", d: "Connecting sends the teacher’s own materials and reminders. Holidays and themed dates stay: they already live in every school calendar.", a: '[data-target="status"]' },
         { t: "One way, on purpose", d: "Changes made in Google Agenda never come back, so FTD stays the source of truth for generated materials.", a: ".cls-gcal" },
+        { t: "Everything the teacher makes lands here", d: "Activities and lesson plans made with AI offer to join the calendar the moment they are generated.", a: '[data-target="i5"]' },
         { t: "One item, many surfaces", d: "The same item component renders the month chip, the week card and the mobile list.", a: '[data-target="i4"]' },
       ] },
     ],
@@ -123,6 +141,10 @@ export const SECTIONS: Sec[] = [
       meta: [["Role", "Senior product designer, AI workflow"], ["Company", "FTD Educação"], ["Time", "2026"]],
     },
     pieces: [
+      { id: "lp-steps", w: 760, name: "Flow · A plan in three steps", C: LessonFlow, notes: [
+        { t: "Three fields, then an idea", d: "Theme, grade and length are all a plan needs; the AI turns them into three ideas to start from.", a: ".lpf-sugs" },
+        { t: "Generate, then keep it", d: "The finished plan asks for a day and lands in the Calendar, next to holidays and reminders.", a: ".lpf-done" },
+      ] },
       { id: "lp-profile", w: 780, name: "System · A profile, made once, used everywhere", C: LessonSystem, notes: [
         { t: "Needs, not diagnoses", d: "Teachers describe a group by observable needs from a checklist, never by a medical label.", a: ".lps-traits" },
         { t: "One object, many forms", d: "The profile becomes a chip in the selector used by activities and lesson plans: created once, reused.", a: '[data-target="chip"]' },
@@ -139,8 +161,9 @@ export const SECTIONS: Sec[] = [
       meta: [["Role", "Solo design and research"], ["Type", "Personal project"], ["Time", "8 weeks"]],
     },
     pieces: [
-      { id: "sp-points", w: 660, name: "System · Points for healthy choices", C: SaudeSystem, notes: [
-        { t: "The reward is on the shelf", d: "A healthy item says what it earns (+1 ponto) next to its nutrition facts, before checkout.", a: ".sps-tags" },
+      { id: "sp-points", w: 700, h: 680, name: "System · Points for healthy choices", C: SaudeSystem, notes: [
+        { t: "The reward is on the shelf", d: "A healthy item says what it earns (+1 ponto) next to its labels, before checkout.", a: ".sps-tags" },
+        { t: "Picking up pays", d: "The bag offers 10 more points for collecting in store, and shows them before paying.", a: ".sps-seg" },
         { t: "One account, two moments", d: "Points land when the order is paid, and collecting in store is the next reward, kept in one ledger.", a: ".sps-ledger" },
       ] },
       { id: "sp-route", w: 700, h: 680, name: "Flow · Walk to your order", C: SaudeRoute, notes: [
@@ -156,21 +179,21 @@ export const SECTIONS: Sec[] = [
     ],
   },
   {
-    id: "ionic-ai-identity", title: "Lia & Íon", ...fromProject("ionic-ai-identity"),
+    id: "ionic-ai-identity", title: "Mascots for iônica’s AI", ...fromProject("ionic-ai-identity"),
     case: {
-      challenge: "Give Iônica’s AI a face students and teachers would want to talk to, without the usual robot.",
-      did: ["Two characters with two jobs: Lia discovers, Íon explains", "Personality moodboards for each", "20+ alternatives explored before the final pair", "Naming with the content designers"],
+      challenge: "Give iônica’s AI a face students and teachers would want to talk to, without the usual robot.",
+      did: ["Two characters with two jobs: Lia discovers, íon explains", "Personality moodboards for each", "20+ alternatives explored before the final pair", "Naming with the content designers"],
       results: ["Identity in rollout; impact to be measured"],
       meta: [["Role", "Identity and character design"], ["Team", "AI squad and content team"], ["Time", "2026"]],
     },
     pieces: [
-      { id: "ion-duo", name: "Characters", C: IonDuo, notes: [] },
-      { id: "ion-mood", name: "Moodboard · Lia", C: IonMood, notes: [] },
-      { id: "ion-process", name: "Process", C: IonProcess, notes: [] },
+      { id: "ion-art", w: 1040, name: "Lia discovers, íon explains", C: IonArt, notes: [] },
+      { id: "ion-sheets", w: 1040, name: "Character sheets", C: IonSheets, notes: [] },
+      { id: "ion-moods", w: 1040, name: "Moodboards", C: IonMoods, notes: [] },
     ],
   },
   {
-    id: "quest-for-the-next-product", title: "Quest for the Next Product", ...fromProject("quest-for-the-next-product"),
+    id: "quest-for-the-next-product", title: "End-to-End: Quest for the Next Product", ...fromProject("quest-for-the-next-product"),
     case: {
       challenge: "Let visitors experience a design career rather than only read about it.",
       did: ["My career as a 2D side-scrolling RPG: each job is a chapter", "Projects as collectible cards, design tools as part of the adventure", "Design and development, responsive end to end"],
@@ -178,8 +201,7 @@ export const SECTIONS: Sec[] = [
       meta: [["Role", "Design and development"], ["Type", "Personal project"], ["Time", "2026"]],
     },
     pieces: [
-      { id: "q-route", name: "Levels · 2015 → 2016", C: QuestRoute, notes: [] },
-      { id: "q-boss", name: "Boss · The Imposter", C: QuestBoss, notes: [] },
+      { id: "q-play", w: 1040, name: "Play it here · arrows to walk, space to jump", C: QuestPlay, notes: [] },
     ],
   },
 ];

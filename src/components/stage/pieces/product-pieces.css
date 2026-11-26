@@ -14,3 +14,19 @@
 .pc-img { display:block; width:100%; height:auto; }
 .pc-quest { display:grid; grid-template-columns:1fr 1fr; gap:4px; background:#111; }
 .pc-cq-wide { width:480px; }
+
+.pc-duo2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 28px); align-items: center; }
+.pc-duo2 video { border-radius: 14px; }
+.pc-dark { padding: 12px; border-radius: 14px; background: #0b0b0c; }
+.pc-float { animation: pc-float 4s ease-in-out infinite; }
+@keyframes pc-float { 50% { transform: translateY(-10px); } }
+@media (prefers-reduced-motion: reduce) { .pc-float { animation: none; } }
+.pc-game { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 14px; background: #0b0b0c; }
+.pc-game iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.mn-fit .pc-art { width: 100%; }
+.mn-fit .pc-art > .pc-img, .pc-duo2 > .pc-img { width: 100%; max-width: none; height: auto; max-height: none; }
+.pc-pair { display: grid; grid-template-columns: 0.5625fr 1.778fr; gap: clamp(12px, 2vw, 28px); align-items: stretch; }
+.pc-pair video { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+.mn-fit .pc-art { border-radius: 0; background: none; }
+.pc-duo2 img { border-radius: 10px; }
+@media (max-width: 640px) { .pc-duo2, .pc-pair { grid-template-columns: 1fr; } }

@@ -1,5 +1,5 @@
 /**
- * Pieces cut from the faithful stageshow pilots (Meu Arco, Cheguei) and the art-led cases (Iônica, Quest).
+ * Pieces cut from the faithful stageshow pilots (Meu Arco, Cheguei) and the art-led cases (iônica, Quest).
  * Each piece keeps the pilot's own classes and CSS, so it stays true to the recording it was built from.
  */
 import { useEffect, useState } from "react";
@@ -16,6 +16,17 @@ import processArt from "../../../assets/ionic/process.png.asset.json";
 import ufrb from "../../../assets/quest/quest-ufrb.png.asset.json";
 import uneb from "../../../assets/quest/quest-uneb.png.asset.json";
 import imposter from "../../../assets/quest/quest-imposter.png.asset.json";
+import liaWebm from "@/assets/ionic-local/lia-recado.webm";
+import liaMp4 from "@/assets/ionic-local/lia-recado.mp4";
+import liaPoster from "@/assets/ionic-local/lia-recado-poster.webp";
+import liaMoodboard from "@/assets/ionic-local/lia-moodboard.webp";
+import ionMoodboard from "@/assets/ionic-local/ion-moodboard.webp";
+import liaSheet from "@/assets/ionic-local/lia-sheet.webp";
+import ionSheet from "@/assets/ionic-local/ion-sheet.webp";
+import ionLoopWebm from "@/assets/ionic-local/ion-loop.webm";
+import ionLoopMp4 from "@/assets/ionic-local/ion-loop.mp4";
+import ionLoopPoster from "@/assets/ionic-local/ion-loop-poster.webp";
+import questBanner from "@/assets/quest-local/quest-banner.webp";
 import "../meu-arco.css";
 import "../cheguei.css";
 import "../ionic.css";
@@ -181,7 +192,7 @@ export function CqStaff() {
   );
 }
 
-/* ---------- Iônica and Quest: the art itself, cropped ---------- */
+/* ---------- iônica and Quest: the art itself, cropped ---------- */
 
 function Crop({ url, sourceWidth, box, label }: { url: string; sourceWidth: number; box: [number, number, number, number]; label: string }) {
   const [x, y, w, h] = box;
@@ -196,7 +207,7 @@ export function IonDuo() {
   return (
     <div className="pc-art pc-ion-duo" data-anchor="duo">
       <Crop url={lia.url} sourceWidth={1660} box={[485, 500, 180, 360]} label="Lia, a exploradora de livros" />
-      <Crop url={ion.url} sourceWidth={1658} box={[40, 220, 370, 350]} label="Íon, o companheiro alienígena" />
+      <Crop url={ion.url} sourceWidth={1658} box={[40, 220, 370, 350]} label="íon, o companheiro alienígena" />
     </div>
   );
 }
@@ -204,7 +215,7 @@ export function IonMood() {
   return <div className="pc-art" data-anchor="mood"><Crop url={liaMood.url} sourceWidth={1662} box={[465, 120, 1150, 730]} label="Moodboard de personalidade da Lia" /></div>;
 }
 export function IonProcess() {
-  return <div className="pc-art" data-anchor="process"><img src={processArt.url} alt="Processo de naming e criação dos mascotes da Iônica" className="pc-img" /></div>;
+  return <div className="pc-art" data-anchor="process"><img src={processArt.url} alt="Processo de naming e criação dos mascotes da iônica" className="pc-img" /></div>;
 }
 export function QuestRoute() {
   return (
@@ -216,4 +227,50 @@ export function QuestRoute() {
 }
 export function QuestBoss() {
   return <div className="pc-art" data-anchor="boss"><img src={imposter.url} alt="Batalha contra The Imposter" className="pc-img" /></div>;
+}
+
+/* ---------- iônica and Quest, from Rafa's own files (bundled, so they load anywhere) ---------- */
+
+/** Lia speaks (sound on request) beside íon changing shape: one character per job. */
+export function IonArt() {
+  return (
+    <div className="pc-art pc-pair">
+      <video className="pc-img" autoPlay muted loop playsInline controls poster={liaPoster} aria-label="Lia's message to students">
+        <source src={liaWebm} type="video/webm" />
+        <source src={liaMp4} type="video/mp4" />
+      </video>
+      <video className="pc-img" autoPlay muted loop playsInline poster={ionLoopPoster} aria-label="íon, a liquid being, changing shape">
+        <source src={ionLoopWebm} type="video/webm" />
+        <source src={ionLoopMp4} type="video/mp4" />
+      </video>
+    </div>
+  );
+}
+export function IonMoods() {
+  return (
+    <div className="pc-art pc-duo2">
+      <img src={liaMoodboard} alt="Lia's moodboard: explorers, libraries, space" className="pc-img" />
+      <img src={ionMoodboard} alt="íon's moodboard: liquid forms, energy, connections" className="pc-img" />
+    </div>
+  );
+}
+export function IonSheets() {
+  return (
+    <div className="pc-art pc-duo2">
+      <img src={liaSheet} alt="Lia's character sheet: views, line art and poses" className="pc-img" />
+      <img src={ionSheet} alt="íon's character sheet: views, line art and poses" className="pc-img" />
+    </div>
+  );
+}
+export function QuestArt() {
+  return <div className="pc-art"><img src={questBanner} alt="End-to-End Quest for the Next Product banner" className="pc-img" /></div>;
+}
+
+/** The game itself, playable in the page; it only loads once it scrolls near. */
+export function QuestPlay() {
+  return (
+    <div className="pc-game">
+      <iframe src={`${import.meta.env.BASE_URL}game/index.html`} title="End-to-End: Quest for the Next Product, playable" loading="lazy" allow="autoplay; fullscreen" />
+    </div>
+  );
 }

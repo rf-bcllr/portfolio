@@ -10,6 +10,7 @@
 - Game-to-portfolio navigation uses origin/source-validated messages handled by the Play page router, not window.top, because the preview can itself be embedded.
 - The "Ask about my work" assistant answers from a generated snapshot of the project data (`bun ./scripts/build-portfolio-context.ts`), so re-run it and redeploy the function whenever project content changes — the edge function cannot import app source.
 - The home page is the minimal portfolio (`src/components/minimal`): covers in four arrangements, with each project at `/#<slug>` and the resume at `/resume`; there are no case-study pages, and `/work` and `/project/:slug` redirect here. The Figma-style canvas (`src/components/canvas`) stays on the unlinked `/lab/directions`, and both read the sections in `canvasFrames.tsx`.
+- A standalone copy builds with `VITE_STATIC=1 npx vite build --base=./`: it swaps BrowserRouter for MemoryRouter and serves the game from BASE_URL, because a copy served from any folder has no server routes.
 - Cover arrangements are pure layout functions (`minimal/layouts.ts`) drawn by one loop with transform, opacity and at-rest clip only, because resizing or repainting covers per frame dropped the morphs below 60fps.
 - Keep project facts in projectsData and featuredProjects; the canvas sections in `canvasFrames.tsx` curate from them, so update both when a case changes.
 - Share portrait and footer-character phrases through one local-state quote hook and an anchored bubble component, so both work independently of live cursors.

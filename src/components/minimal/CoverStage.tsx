@@ -257,7 +257,7 @@ export function CoverStage({ href, onOpen, last }: { href: (id: string) => strin
   return (
     <>
       <div className="mn-intro">
-        <h1 className="mn-lede">Senior product designer. <span>School and AI products, from research to the shipped screen.</span></h1>
+        <h1 className="mn-lede">Rafael Bacellar, senior product designer. <span>Education, SaaS and games, for businesses and the people they serve.</span></h1>
         <div className="mn-modes" role="group" aria-label="Arrange projects">
           {MODES.map(({ id, label, Icon }) => (
             <button key={id} type="button" aria-pressed={mode === id} aria-label={`${label} view`} onClick={() => choose(id)}><Icon size={16} strokeWidth={1.75} aria-hidden="true" /><span>{label}</span></button>
@@ -268,7 +268,7 @@ export function CoverStage({ href, onOpen, last }: { href: (id: string) => strin
       <div ref={stage} className="mn-stage" data-mode={mode} onPointerDown={down}>
         <ul className="mn-world" aria-label="Projects">
           {PROJECTS.map((p, i) => (
-            <li key={p.id} ref={(el) => { cards.current[i] = el; }} style={{ ["--ratio" as string]: p.ratio } as CSSProperties} data-active={active === i || undefined}>
+            <li key={p.id} data-still={p.still || undefined} ref={(el) => { cards.current[i] = el; }} style={{ ["--ratio" as string]: p.ratio } as CSSProperties} data-active={active === i || undefined}>
               <a href={href(p.id)} draggable={false} className="mn-card" aria-label={`${p.name}, ${p.company}`} onClick={click(i)} onFocus={(e) => { if (e.currentTarget.matches(":focus-visible")) to(i); }} onPointerEnter={() => point(i)} onPointerLeave={() => point(null)}>
                 <span ref={(el) => { covers.current[i] = el; }} className="mn-cover" style={{ background: p.ground, viewTransitionName: last === p.id ? "mn-hero" : undefined } as CSSProperties}><Covers p={p} /></span>
                 <span className="mn-cap" aria-hidden="true"><b>{p.name}</b><span>{p.company}</span></span>
@@ -289,7 +289,7 @@ export function CoverStage({ href, onOpen, last }: { href: (id: string) => strin
             <li key={p.id}>
               <button type="button" aria-current={mode !== "grid" && active === i ? "true" : undefined} data-hint={hint === i || undefined}
                 onClick={() => (mode === "grid" ? open(i) : to(i))} onPointerEnter={() => point(i)} onPointerLeave={() => point(null)} onFocus={() => point(i)} onBlur={() => point(null)}>
-                <i style={{ background: p.ground }} />{p.name}
+                <i style={{ background: p.ground }} />{p.short ?? p.name}
               </button>
             </li>
           ))}

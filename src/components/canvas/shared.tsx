@@ -58,7 +58,7 @@ export const shortTitle: Record<string, string> = {
   "ai-image-generation": "AI images for questions",
   "lesson-plan-tool": "Lesson plan generator",
   "credit-transfer-analysis": "Credit transfer analysis",
-  "ionic-ai-identity": "Lia & Íon mascots",
+  "ionic-ai-identity": "Lia & íon mascots",
   "quest-for-the-next-product": "Quest for the Next Product",
 };
 

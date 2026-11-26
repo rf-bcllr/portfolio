@@ -4,11 +4,11 @@
  * Rebuilt from the ClassApp recording (Aluno (Demo), Portaria Teste, Chegaram, Aceitar, A caminho).
  */
 import { Bar, Collapse, Fly, Phone, Roll, Stage, States, type Act } from "../kit";
-import { Check, ChevronDown, Footprints, MapPin, Navigation, Search, SlidersHorizontal } from "lucide-react";
+import { Check, ChevronDown, Footprints, MapPin, Navigation, MessageCircle, Search, SlidersHorizontal } from "lucide-react";
 import "./cheguei-system.css";
 
-type S = { sent: boolean; bud: boolean; fly: boolean; room: boolean; arrived: boolean; accepted: boolean; secs: number; done: boolean };
-const START: S = { sent: false, bud: false, fly: false, room: false, arrived: false, accepted: false, secs: 0, done: false };
+type S = { sent: boolean; bud: boolean; fly: boolean; room: boolean; arrived: boolean; accepted: boolean; secs: number; done: boolean; back: boolean; backBud: boolean };
+const START: S = { sent: false, bud: false, fly: false, room: false, arrived: false, accepted: false, secs: 0, done: false, back: false, backBud: false };
 
 async function script(a: Act<S>) {
   await a.wait(1200);
@@ -31,10 +31,15 @@ async function script(a: Act<S>) {
     await a.wait(650);
     a.put({ secs: i });
   }
-  await a.wait(1200);
+  await a.wait(900);
   a.mark("deliver");
-  await a.click({ at: "confirmar", x: 0.5, y: 0.6 });
-  a.put({ done: true });
+  // The school closes it, and the parent's card hears it the same way the school heard the parent
+  await a.click({ at: "aceitar", x: 0.5, y: 0.55 });
+  a.put({ backBud: true });
+  await a.wait(260);
+  a.put({ back: true });
+  await a.wait(800);
+  a.put({ done: true, back: false, backBud: false });
   await a.wait(1800);
   // The pickup is over: what the story added leaves as one thing, last change first
   a.put({ arrived: false, room: false });
@@ -76,12 +81,12 @@ export function ChegueiSystem() {
                 <div className="cqs-slot">
                   <span className="cqs-btn" data-target="cheguei" data-cursor="pointer" data-gone={s.sent || undefined}><Navigation size={16} /> Cheguei</span>
                   <div className="cqs-status" data-on={s.sent || undefined}>
-                    <b className={s.accepted ? "is-way" : ""}>
+                    <b className={s.accepted ? "is-way" : ""} data-target="pstatus">
                       <States value={s.accepted ? "ok" : "go"} states={{ go: <Navigation size={16} />, ok: <Check size={16} /> }} />
                       <Roll>{s.done ? "Entregue" : s.accepted ? "A caminho" : "Solicitado"}</Roll>
                     </b>
                     <span className="cqs-progress" data-step={s.done ? 4 : s.accepted ? 3 : 1}><i /><i /><i /><i /></span>
-                    <span className="cqs-confirm" data-target="confirmar" data-cursor="pointer" data-on={s.accepted || undefined}>Confirmar entrega</span>
+                    <span className="cqs-confirm" data-on={(s.accepted && !s.done) || undefined}>Aguardando a escola</span>
                   </div>
                 </div>
               </div>
@@ -98,7 +103,10 @@ export function ChegueiSystem() {
                 <div className="cqs-row" data-target="row" data-ghost={!s.arrived || undefined}>
                   <div className="cqs-row-av"><span className="cqs-av cqs-av-lg">A(</span><span className="cqs-timer">{time(s.secs)}</span></div>
                   <div className="cqs-row-info"><b>Aluno (Demo)</b><small><Navigation size={12} /> Rafael Bacellar</small><small><MapPin size={12} /> Portaria Teste</small></div>
-                  <span className="cqs-accept" data-target="aceitar" data-cursor="pointer" data-ok={s.accepted || undefined}><Check size={16} /> <Roll>{s.accepted ? "Concluir" : "Aceitar"}</Roll></span>
+                  <div className="cqs-acts">
+                    <span className="cqs-accept" data-target="aceitar" data-cursor="pointer" data-ok={s.accepted || undefined}><Check size={16} /> <Roll>{s.done ? "Concluído" : s.accepted ? "Concluir" : "Aceitar"}</Roll></span>
+                    <span className="cqs-msg" role="img" aria-label="Mensagem para o responsável"><MessageCircle size={18} /></span>
+                  </div>
                 </div>
               </Collapse>
               {[58, 44].map((w, i) => <div key={i} className="cqs-row is-filler"><span className="cqs-av cqs-av-lg is-grey" /><div className="cqs-row-info"><Bar w={`${w}%`} h={10} r={5} tone={3} /><Bar w="34%" h={8} r={4} tone={2} /></div></div>)}
@@ -108,6 +116,10 @@ export function ChegueiSystem() {
           {/* The arrival, carried from the parent's button into the school's queue */}
           <Fly from={rect("cheguei")} to={rect("row")} go={s.fly} held={s.bud} duration={800} className="cqs-fly">
             <span className="cqs-fly-chip"><Navigation size={16} /> Cheguei</span>
+          </Fly>
+          {/* And back: the school's Concluir reaches the parent's card */}
+          <Fly from={rect("aceitar")} to={rect("pstatus")} go={s.back} held={s.backBud} duration={800} className="cqs-fly">
+            <span className="cqs-fly-chip is-ok"><Check size={16} /> Entregue</span>
           </Fly>
         </>
       )}

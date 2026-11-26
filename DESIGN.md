@@ -149,7 +149,7 @@ A row of project covers on a white, faintly dotted ground, and almost no words. 
 |---|---|---|---|---|---|
 | Meu Arco | `#3540CF` | Cheguei | `#FFC94A` | AI images | `#CFE0F2` |
 | Calendar | `#EA5A36` | Writing assistant | `#BFE3D0` | Lesson plans | `#F5BFD0` |
-| Saúde e Ponto | `#0F6B62` | Lia & Íon | `#FFD3A8` | Quest | `#0055FF` |
+| Saúde e Ponto | `#0F6B62` | Lia & íon | `#FFD3A8` | Quest | `#0055FF` |
 
 Taken from the reference: the quiet chrome, the image-first row, the small captions. Not taken: the staggered sizes, the black intro with falling letters, Manrope, the infinite loop. The arrangements follow a video reference Rafa supplied (helix, stack, grid); its category filter became the project index.
 
@@ -165,7 +165,7 @@ The portfolio as a design file. **Chrome reads as a design tool:** a white toolb
 | AI Writing Assistant | Select, Melhorar texto com IA, the rewrite streams in, the feedback toast feeds a dashboard split (product recording) |
 | Lesson plans + learning profiles | A profile built once flies into the lesson-plan form and tags the adapted steps (product recording) |
 | Saúde e Ponto | A healthy item says what it earns; the order pays 13 points and a ledger books it and the next +10 (Behance screens) |
-| Lia & Íon, Quest | The art itself, cropped |
+| Lia & íon, Quest | The art itself, cropped |
 
 | Token | Value |
 |---|---|
@@ -178,7 +178,7 @@ The portfolio as a design file. **Chrome reads as a design tool:** a white toolb
 | Type | chrome in Satoshi 11–13px; About frames keep Clash Display + Satoshi; pieces use each product's own type (Poppins for FTD, Verdana for the Calendar body, system UI for isaac, Arial for ClassApp) |
 | Pieces | `src/components/stage/pieces/*`, each at its natural width; scaled only below that width |
 
-Truest to the work: a recruiter sees the real interfaces doing the thing that mattered, with the reasoning pinned to them. Cost: every piece must stay faithful to its source, and the Lovable-hosted art (Iônica, Quest) only loads on the deployed site.
+Truest to the work: a recruiter sees the real interfaces doing the thing that mattered, with the reasoning pinned to them. Cost: every piece must stay faithful to its source, and the Lovable-hosted art (iônica, Quest) only loads on the deployed site.
 
 ### 1 · O Bacellar (ref: vanschneider.com) · `m-b.jpg`
 A broadsheet front page. Blackletter masthead with two ears (availability, a weather joke), a dateline, section nav (Educação, IA, Carreira, Passatempos). The lead story is Meu Arco with a 68px headline, deck, byline, a halftone photo of the real app and a drop-cap column. A right column carries Cheguei and the lesson-plan saving plus a pull quote; an "AI desk" fold covers the in-progress work; the back page has a *Classificados* ad that is the hire-me call, the career as a dotted table, and the game as *Passatempos*.
@@ -196,7 +196,7 @@ A broadsheet front page. Blackletter masthead with two ears (availability, a wea
 Best for recruiters, because every result is a headline; the densest to maintain as projects change.
 
 ### 2 · Overworld (ref: rauno.me + Rafa's Quest game) · `m-c.jpg`
-The career as an island map: First jobs (start), School island (ClassApp, isaac), AI coast (FTD, Edvisorly, Iônica) and a Side quest islet for the game. Ten stages joined by a dotted trail. Rafa's own sprite from `/play` runs between stages and swims the water crossings. The stage card shows the company, year, real screen, "Loot" (the result) and "Enter stage". The tools are an inventory of real app icons. Arrow keys travel; on phones the map scrolls inside its frame and follows him.
+The career as an island map: First jobs (start), School island (ClassApp, isaac), AI coast (FTD, Edvisorly, iônica) and a Side quest islet for the game. Ten stages joined by a dotted trail. Rafa's own sprite from `/play` runs between stages and swims the water crossings. The stage card shows the company, year, real screen, "Loot" (the result) and "Enter stage". The tools are an inventory of real app icons. Arrow keys travel; on phones the map scrolls inside its frame and follows him.
 
 | Token | Value |
 |---|---|

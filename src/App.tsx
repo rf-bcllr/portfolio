@@ -2,7 +2,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+
+// A standalone copy (opened as a file or a shared page) has no server routes, so it keeps its address in memory
+const STATIC = import.meta.env.VITE_STATIC === "1";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { LiveCursorsRoom } from "@/components/multiplayer/LiveCursorsRoom";
@@ -27,16 +30,8 @@ const CaseRedirect = () => {
 
 const App = () => {
   useSmoothScroll();
-  
-  return (
-    <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="light" storageKey="rfbcllr-theme-v2">
-      <TooltipProvider>
-        <AnimatedBackground />
-        <Toaster />
-        <Sonner />
-        <a href="#main-content" className="skip-to-content">Skip to content</a>
-        <BrowserRouter basename={import.meta.env.BASE_URL}>
+  const shell = (
+        <>
           <ScrollToTop />
           <AskPortfolio />
           <Routes>
@@ -56,7 +51,18 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
           <LiveCursorsRoom />
-        </BrowserRouter>
+        </>
+  );
+
+  return (
+    <QueryClientProvider client={queryClient}>
+    <ThemeProvider defaultTheme="light" storageKey="rfbcllr-theme-v2">
+      <TooltipProvider>
+        <AnimatedBackground />
+        <Toaster />
+        <Sonner />
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
+        {STATIC ? <MemoryRouter>{shell}</MemoryRouter> : <BrowserRouter basename={import.meta.env.BASE_URL}>{shell}</BrowserRouter>}
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>

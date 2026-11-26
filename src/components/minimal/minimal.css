@@ -44,6 +44,7 @@
 .mn-world > li::after { content:""; position:absolute; inset:-.5px; border-radius:var(--r, 10px); background:#fff; opacity:var(--veil, 0); pointer-events:none; will-change:opacity; }
 .mn-world > li:not([data-veil])::after { display:none; }
 .mn-card:hover .mn-cover img, .mn-next:hover .mn-next-c img { transform:translateY(-10px); }
+.mn-world > li[data-still] .mn-card:hover .mn-cover img { transform:none; }
 .mn-stage:is([data-drag], [data-mode="spiral"], [data-mode="stack"]) li:not([data-active]) .mn-card:hover img { transform:none; }
 .mn-world > li[data-back=""] img { opacity:0; }
 /* Captions keep their size whatever the card's scale */
@@ -78,8 +79,11 @@
 .mn-panel.is-tall { padding-block:clamp(16px, 3vw, 44px); }
 .mn-fit { position:relative; width:100%; }
 .mn-panel .ss-stage, .mn-panel .ai-scrim { background:transparent !important; border-radius:0 !important; }
-.mn-panel.is-art .mn-fit { max-width:1040px; }
-.mn-panel.is-art { padding:clamp(16px, 4vw, 64px); }
+/* Art fills its panel: the colour frames it with one even margin, and a quiet caption names it */
+.mn-panel.is-art .mn-fit { max-width:none !important; }
+.mn-panel.is-art { padding:clamp(12px, 2vw, 28px); }
+.mn-cap-art { margin-top:12px !important; color:var(--soft); font-size:15px; }
+.mn-piece:has(.mn-cap-art) + .mn-piece:has(.mn-cap-art) { margin-top:40px; }
 .mn-still { position:relative; width:min(100%, 520px); aspect-ratio:var(--ratio); }
 .mn-still.is-wide { width:min(100%, 1040px); }
 .mn-panel:has(.mn-still) { padding:0; }
