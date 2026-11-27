@@ -3,13 +3,13 @@
   & .ss-stage { --blue: #2d6ed8; --ink: #222; --muted: #6d6d6d; --line: #ececec;
     overflow: hidden; border-radius: 12px; background: #eef2f0; color: var(--ink); font: 13px/1.35 Arial, Helvetica, sans-serif; }
   & svg { flex: none; } & p { margin: 0; }
-  & .chh-win { position: absolute; left: 24px; right: -40px; top: 24px; bottom: -30px; padding: 18px 24px; border-radius: 14px; background: #fff; box-shadow: var(--ss-shadow-hero); }
+  & .chh-win { position: absolute; left: 24px; right: 24px; top: 24px; bottom: -30px; padding: 18px 24px; border-radius: 14px; background: #fff; box-shadow: var(--ss-shadow-hero); }
   & .chh-tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--line); font-size: 14px; }
   & .chh-tabs span { padding: 0 2px 10px; } & .chh-tabs .is-on { border-bottom: 2px solid var(--blue); color: var(--blue); font-weight: 700; }
   & .chh-bar { display: flex; gap: 8px; margin: 14px 0 10px; }
   & .chh-search, & .chh-pill { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border: 1px solid #d8d8d8; border-radius: 999px; white-space: nowrap; }
   & .chh-search { flex: 1; color: #9a9a9a; }
-  & .chh-th, & .chh-tr { display: grid; grid-template-columns: 92px 168px 86px 132px 150px 140px 1fr; align-items: center; gap: 10px; padding: 0 12px; }
+  & .chh-th, & .chh-tr { display: grid; grid-template-columns: 72px 142px 68px 108px 116px 106px minmax(66px, 1fr); align-items: center; gap: 8px; padding: 0 12px; }
   & .chh-th { height: 38px; background: #f7f7f7; color: var(--muted); }
   & .chh-tr { min-height: 64px; border-bottom: 1px solid var(--line); }
   & .chh-tr.is-new { background: #f4f8ff; }

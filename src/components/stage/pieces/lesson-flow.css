@@ -3,7 +3,7 @@
   & .ss-stage { --p: #6b11c9; --p-soft: #f4ecfd; --ink: #1d1b22; --muted: #5d5a66; --line: #e6e3ec;
     overflow: hidden; border-radius: 12px; background: #efe9f7; color: var(--ink); font: 13px/1.45 Poppins, ui-sans-serif, system-ui, sans-serif; }
   & svg { flex: none; } & p, & h4 { margin: 0; }
-  & .lpf-win { position: absolute; left: 24px; right: -24px; top: 24px; bottom: -24px; padding: 14px 28px; border-radius: 16px; background: #fff; box-shadow: var(--ss-shadow-hero); }
+  & .lpf-win { position: absolute; left: 24px; right: 24px; top: 24px; bottom: -24px; padding: 14px 28px; border-radius: 16px; background: #fff; box-shadow: var(--ss-shadow-hero); }
   & .lpf-tabs { display: flex; gap: 22px; padding-bottom: 10px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 13px; }
   & .lpf-tabs span { display: inline-flex; align-items: center; gap: 6px; } & .lpf-tabs .is-on { padding-bottom: 8px; margin-bottom: -11px; border-bottom: 2px solid var(--p); color: var(--p); font-weight: 600; }
   & .lpf-top { display: flex; align-items: center; justify-content: space-between; margin: 20px 0 16px; }
