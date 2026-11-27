@@ -3,7 +3,7 @@
   & .ss-stage { --b: #0a33c6; --soft: #e6efff; --ink: #15171c; --muted: #4f5563; --line: #e4e6eb;
     overflow: hidden; border-radius: 12px; background: #eef1f6; color: var(--ink); font: 12.5px/1.45 Verdana, "Noto Sans", sans-serif; }
   & svg { flex: none; } & p { margin: 0; }
-  & .cld-win { position: absolute; left: 24px; right: -30px; top: 24px; bottom: -30px; padding: 22px 26px; border-radius: 16px; background: #fff; box-shadow: var(--ss-shadow-hero); }
+  & .cld-win { position: absolute; left: 24px; right: 24px; top: 24px; bottom: -30px; padding: 22px 26px; border-radius: 16px; background: #fff; box-shadow: var(--ss-shadow-hero); }
   & .cld-head { display: flex; align-items: center; gap: 14px; }
   & .cld-head b { display: block; font: 700 24px/1.2 Poppins, sans-serif; } & .cld-head span { color: var(--muted); }
   & .cld-ic { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 10px; background: var(--soft); color: var(--b); }
